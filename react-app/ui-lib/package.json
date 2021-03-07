@@ -1,5 +1,5 @@
 {
-  "name": "my-monorepo-ui-lib",
+  "name": "@ldui.net/ui-lib",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",

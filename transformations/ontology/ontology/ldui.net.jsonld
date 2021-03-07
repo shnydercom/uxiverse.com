@@ -1,0 +1,103 @@
+{
+    "@context": {
+        "ldui": "http://ldui.net/ontology/",
+        "schema": "http://schema.org/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "defines": {
+            "@reverse": "rdfs:isDefinedBy"
+        },
+        "comment": "rdfs:comment",
+        "label": "rdfs:label",
+        "domain": {
+            "@id": "rdfs:domain",
+            "@type": "@id"
+        },
+        "range": {
+            "@id": "rdfs:range",
+            "@type": "@id"
+        },
+        "subClassOf": {
+            "@id": "rdfs:subClassOf",
+            "@type": "@id",
+            "@container": "@set"
+        },
+        "subPropertyOf": {
+            "@id": "rdfs:subPropertyOf",
+            "@type": "@id",
+            "@container": "@set"
+        },
+        "seeAlso": {
+            "@id": "rdfs:seeAlso",
+            "@type": "@id"
+        }
+    },
+    "@id": "http://ldui.net/ontology",
+    "defines": [
+        {
+            "@id": "schema:Thing",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The most generic type of item. Duplicate of schema:Thing-ontology, deprecate as soon as possible",
+            "rdfs:label": "Thing"
+        },
+        {
+            "@id": "ldui:Element",
+            "@type": "rdfs:Class",
+            "rdfs:label": "The base for all Classes in the ldui ontology, both as part of the UI or not",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UIElement",
+            "@type": "rdfs:Class",
+            "comment": "The base class for all User Interface elements",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UserInteraction",
+            "@type": "rdfs:Class",
+            "comment": "The base class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:Button",
+            "@type": "rdfs:Class",
+            "comment": "A Button, if it's a physical, or virtual pressable device of simple intention",
+            "rdfs:label": "Button",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:triggersAction",
+            "@type": "rdf:Property",
+            "schema:domainIncludes": {
+                "@id": "ldui:Button"
+            },
+            "schema:rangeIncludes": {
+                "@id": "ldui:UserInteraction"
+            },
+            "rdfs:comment": "The (UserInter)-Action that gets triggered by a Button",
+            "rdfs:label": "triggersAction"
+        }
+    ]
+}

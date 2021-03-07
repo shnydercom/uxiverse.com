@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "transformations/*",
+    "react-app/*"
   ],
   "version": "0.0.0",
   "npmClient": "yarn",

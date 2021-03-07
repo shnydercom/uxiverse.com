@@ -1,14 +1,15 @@
 {
-  "name": "lerna-typescript-cra-uilib-starter",
+  "name": "ldui.net",
   "version": "2.0.0",
-  "description": "Starter for Monorepos: Lerna, TypeScript, CRA and Storybook",
+  "description": "Linked Data User Interfaces",
   "main": "index.js",
-  "repository": "https://github.com/shnydercom/lerna-typescript-cra-uilib-starter.git",
+  "repository": "https://github.com/shnydercom/ldui.net.git",
   "author": "shnyder.com",
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "transformations/*",
+    "react-app/*"
   ],
   "devDependencies": {
     "lerna": "^3.22.1"

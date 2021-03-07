@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "my-monorepo-ui-lib";
+import { Header } from "@ldui.net/ui-lib";
 
 export const HeaderFromUILib = () => {
   return (
