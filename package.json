@@ -5,11 +5,11 @@
   "main": "index.js",
   "repository": "https://github.com/shnydercom/ldui.net.git",
   "author": "shnyder.com",
-  "license": "MIT",
+  "license": "EUPL-1.2",
   "private": true,
   "workspaces": [
     "transformations/*",
-    "react-app/*"
+    "react-based/*"
   ],
   "devDependencies": {
     "lerna": "^3.22.1"

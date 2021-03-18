@@ -13,7 +13,7 @@
     "compcss": "yarn sass src/:lib/ && yarn sass src/:lib-esm/"
   },
   "author": "shnyder.com",
-  "license": "MIT",
+  "license": "EUPL-1.2",
   "devDependencies": {
     "@storybook/addon-actions": "^6.1.17",
     "@storybook/addon-essentials": "^6.1.17",
