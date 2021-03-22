@@ -18,6 +18,12 @@ min
 max
 currentValue
 
+# Media info
+isPlaying
+image
+audio
+video
+
 # multi states
 selected
 unselected
@@ -47,6 +53,15 @@ scroll
 dismiss
 swipe
 point
+delete
+
+# User media action
+upload
+download
+record
+start
+stop
+pause
 
 # UI element state
 fixed
@@ -66,9 +81,17 @@ unsorted
 filtered
 unfiltered
 
+# UI element state (UI stack)
+blank
+loading
+partial
+error (semantic as well)
+ideal
+
 # UI element state transitions
 opening
 closing
+skeleton
 
 # Visual semantics
 prominent
@@ -78,12 +101,9 @@ mini
 primary
 current
 role
+user
 hierarchy
 help
-
-context
-scope
-constraint
 
 hidden
 modal
@@ -92,7 +112,6 @@ default
 alert
 warning
 error
-loading
 
 incomplete
 empty
@@ -100,18 +119,50 @@ empty
 importance
 priority
 
+result
+output
+status
+
+menu
+
+overlay
+
 # UI elements (Atoms)
 icon
 label
 title
 subtitle
+input
+button
+shape
+heading
+subheading
+checkbox
+radiobutton
+datepicker
+timepicker
+switch
+textfield
+link
+avatar
 
-# UI elements (not Atoms)
+# UI elements (molecules)
 navigationBar
 tooltip
 searchbar
-button
+searchfield
 thumbnail
+dialog
+step
+divider
+dropdown
+pagination
+
+# UI elements (organisms)
+header
+footer
+section
+card
 
 # UI elements (not Atoms, organizing samepage sub-elements)
 directoryStructure
@@ -120,15 +171,26 @@ tabs
 list
 container
 table
+grid
 singleSelection
 multiSelection
 columnHeader
+
+# Non-visual organization
 ABTest
 AVersion
 BVersion
+form
+template
+page
+placeholder
+variation
+context
+scope
+constraint
+autocomplete
 
 # ARIA
 ariaLabel
 moreInfo
 valueText
-
