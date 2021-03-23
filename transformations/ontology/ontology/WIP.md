@@ -24,6 +24,15 @@ image
 audio
 video
 
+# Visual expression
+color
+font
+italic
+bold
+underlined
+background
+highlight
+
 # multi states
 selected
 unselected
@@ -55,6 +64,16 @@ confirm
 swipe
 point
 delete
+zoom
+align
+back
+
+# User to User Actions
+comment
+reply
+annotate
+react
+mark
 
 # User media action
 upload
