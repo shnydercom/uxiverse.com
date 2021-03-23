@@ -88,7 +88,7 @@
             ]
         },
         {
-            "@id": "ldui:triggersAction",
+            "@id": "ldui:triggers",
             "@type": "rdf:Property",
             "schema:domainIncludes": {
                 "@id": "ldui:Button"
@@ -97,7 +97,7 @@
                 "@id": "ldui:UserInteraction"
             },
             "rdfs:comment": "The (UserInter)-Action that gets triggered by a Button",
-            "rdfs:label": "triggersAction"
+            "rdfs:label": "triggers"
         }
     ]
 }

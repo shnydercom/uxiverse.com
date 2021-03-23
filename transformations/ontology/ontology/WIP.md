@@ -68,12 +68,6 @@ zoom
 align
 back
 
-# User to User Actions
-comment
-reply
-annotate
-react
-mark
 
 # User media action
 upload
@@ -82,6 +76,9 @@ record
 start
 stop
 pause
+
+mark
+annotate
 
 # UI element state
 fixed
@@ -127,92 +124,111 @@ help
 content
 progress
 
-hidden
-modal
 
-default
-alert
-warning
-error
-
-incomplete
-empty
-
-importance
-priority
+overlay
 
 result
 output
 status
 
+
+hidden
+modal
+
 menu
 
-overlay
+# issue severity (Enumeration)
+IssueSeverityType
+- Default
+- Alert
+- Warning
+- Error
+- Incomplete
+- Empty
+
+issue
+- priority
+- importance
 
 # UI elements (Atoms)
-icon
-label
-title
-subtitle
-input
-button
-shape
-heading
-subheading
-checkbox
-radiobutton
-datepicker
-timepicker
-switch
-textfield
-link
-avatar
+AtomUIElement
+- Icon
+- Label
+- Title
+- Subtitle
+- Input
+- Button
+- Shape
+- Heading
+- Subheading
+- Checkbox
+- Radiobutton
+- Datepicker
+- Timepicker
+- Switch
+- Textfield
+- Link
+- Avatar
 
 # UI elements (molecules)
-navigationBar
-tooltip
-searchbar
-searchfield
-thumbnail
-dialog
-step
-divider
-dropdown
-pagination
+MoleculeUIElement
+- NavigationBar
+- Tooltip
+- Searchbar
+- Searchfield
+- Thumbnail
+- Dialog
+- Step
+- Divider
+- Dropdown
+- Pagination
 
 # UI elements (organisms)
-header
-footer
-section
-card
+OrganismUIElement
+- Header
+- Footer
+- Section
+- Card
 
 # UI elements (not Atoms, organizing samepage sub-elements)
-directoryStructure
-treeView
-tabs
-list
-container
-table
-grid
-singleSelection
-multiSelection
-columnHeader
+ContainerUIElement
+- DirectoryStructure
+- TreeView
+- Tabs
+- List
+- Container
+- Table
+- Grid
+- SingleSelection
+- MultiSelection
+- ColumnHeader
 
 # Non-visual organization
-ABTest
-AVersion
-BVersion
-form
-template
-page
-placeholder
-variation
-context
-scope
-constraint
-autocomplete
+StructuralUIElement
+- ABTest
+- Form
+- Template
+- Page
+- Placeholder
+- Context
+- Scope
+- Constraint
+- Autocomplete
 
-# ARIA
-ariaLabel
-moreInfo
-valueText
+# Non-visual relations
+variation
+- aVersion
+- bVersion
+triggers
+
+# accessibilitz relations
+a11y
+- ariaLabel
+- moreInfo
+- valueText
+
+# User to User Actions (schema.org/CommunicateAction)
+CommunicateAction
+- CommentAction
+- ReplyAction
+- ReactAction
