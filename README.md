@@ -1,11 +1,7 @@
-# lerna-typescript-cra-uilib-starter
-Starter for Monorepos: Lerna, TypeScript, CRA and Storybook
+# ldui.net
+Good User Experiences are the result of people from different professions working together. The goal of ldui.net is to find a common language for User Interface Creation. 
 
-- now supports react-scripts version 4 
-- contains the storybook "sb init" scaffolding with typescript, with slight modifications
-- the UI library packages .css and .scss files in the library-folders now
-
-[more details in the blogpost](https://dev.to/shnydercom/monorepos-lerna-typescript-cra-and-storybook-combined-4hli)
+- For this, we need data about the current industry standard. A figma plugin that recommends UI terms and tracks their usage will be developed
 
 # Licenses
 This project is licensed under EUPL unless otherwise specified. The goal is to advance the base technology for UX as a community, while each business can keep details confidential.

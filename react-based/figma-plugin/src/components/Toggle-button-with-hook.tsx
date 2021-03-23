@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Button } from "@ldui.net/ui-lib";
 import { useState } from "react";
 

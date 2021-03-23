@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Header } from "@ldui.net/ui-lib";
 
 export const HeaderFromUILib = () => {

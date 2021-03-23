@@ -51,6 +51,7 @@ resize
 changeOrientation
 scroll
 dismiss
+confirm
 swipe
 point
 delete
@@ -104,6 +105,8 @@ role
 user
 hierarchy
 help
+content
+progress
 
 hidden
 modal
