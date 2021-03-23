@@ -1,12 +1,12 @@
 {
-  "name": "create-react-figma-plugin",
+  "name": "@ldui.net/figma-plugin",
   "version": "0.0.1",
   "description": "Create React Figma Plugin with no build configuration.",
   "main": "code.js",
-  "homepage": "https://github.com/FradSer/create-react-figma-plugin/",
-  "bugs": "https://github.com/FradSer/create-react-figma-plugin/issues",
+  "homepage": "https://ldui.net",
+  "bugs": "https://github.com/shnydercom/ldui.net/issues",
   "repository": {
-    "url": "https://github.com/FradSer/create-react-figma-plugin/",
+    "url": "https://github.com/shnydercom/ldui.net",
     "type": "git"
   },
   "scripts": {
