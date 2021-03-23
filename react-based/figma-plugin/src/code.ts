@@ -21,3 +21,5 @@ figma.ui.onmessage = msg => {
 
   figma.closePlugin()
 }
+
+export {}

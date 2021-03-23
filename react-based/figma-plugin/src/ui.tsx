@@ -46,6 +46,7 @@ class App extends React.Component<{}, { value: string }> {
           defaultValue="5"
           icon="frame"
           iconColor="blue"
+          placeholder="helloIAmAPlaceholder"
           onChange={this.onInputChange}
         />
         <Button onClick={this.onCreate}>Create</Button>
