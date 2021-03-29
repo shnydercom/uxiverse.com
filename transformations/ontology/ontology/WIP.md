@@ -232,3 +232,6 @@ CommunicateAction
 - CommentAction
 - ReplyAction
 - ReactAction
+
+
+TODO: add https://schema.org/PropertyValueSpecification values
