@@ -1,143 +1,153 @@
-# terms for frontend-ontology
+# base terms for frontend-ontology
+DataType
+DataTypeProperty
+UIElement
+Action
+SemanticFlag
+SemanticProperty
 
-# Boolean info
-active
-inactive
+# schema:PropertyValueSpecification
+PropertyValueSpecification
+- multipleValues
+- valueName
+- defaultValue
+- valueRequired
+- readonlyValue
 
-on
-off
+# Boolean info properties
+DataType/BooleanType
+- isActive
+- isInactive
+- isOn
+- isOff
+- isChecked
+- isUnchecked
+- isDisabled
+- isEnabled
 
-checked
-unchecked
+# Numeric info properties
+DataTypeProperty/NumericTypeProperty
+- min
+- max
+- currentValue
+- stepValue
+- maxValue
+- minValue
 
-disabled
-enabled
+# Text info properties
+DataTypeProperty/TextTypeProperty
+- valuePattern
+- valueMinLength
+- valueMaxLength
 
-# Numeric info
-min
-max
-currentValue
+# Media properties
+DataType/MediaType
+- image
+- audio
+- video
+DataTypeProperty/MediaTypeProperty
+- isPlaying
 
-# Media info
-isPlaying
-image
-audio
-video
-
-# Visual expression
-color
-font
-italic
-bold
-underlined
-background
-highlight
+# Visual expression properties
+VisualExpression
+- color
+- font
+- italic
+- bold
+- underlined
+- background
+- highlight
 
 # multi states
-selected
-unselected
-
-activeTab
+Some
+- selectedIndex
+- activeTabIndex
+- selectedSet
+- unselectedSet
 
 # User interaction state
-hover
-focus
-pressed
-dragging
+UserInteractionState
+- HoverState
+- FocusState
+- PressedState
+- DraggingState
 
 # User action
-action
-detail
-navigate
-browse
-favorite
-save
-drag
-drop
-click
-keyDown
-resize
-changeOrientation
-scroll
-dismiss
-confirm
-swipe
-point
-delete
-zoom
-align
-back
-
+Action/UserAction
+UserAction
+- DetailAction
+- NavigateAction
+- BrowseAction
+- FavoriteAction
+- SaveAction
+- DragAction
+- DropAction
+- ResizeAction
+- ScrollAction
+- DismissAction
+- ConfirmAction
+- DeleteAction
+- ZoomAction
+- AlignAction
+- BackAction
+UserAction/DeviceSpecificAction
+- ClickAction
+- TouchDownAction
+- KeyDownAction
+- ChangeOrientationAction
+- SwipeAction
+- PointAction
 
 # User media action
-upload
-download
-record
-start
-stop
-pause
-
-mark
-annotate
+UserAction/MediaAction
+- UploadAction
+- DownloadAction
+- RecordAction
+- StartAction
+- StopAction
+- PauseAction
+UserAction/MediaPartAction
+- MarkAction
+- AnnotateAction
 
 # UI element state
-fixed
-loose
+UIElementState
+- FixedState
+- LooseState
 
-minified
-expanded
-maximized
-floating
+- MinifiedState
+- ExpandedState
+- MaximizedState
+- MinimizedState
+- FloatingState
 
-open
-closed
+- OpenState
+- ClosedState
 
-sorted
-unsorted
+- SortedState
+- UnsortedState
 
-filtered
-unfiltered
+- FilteredState
+- UnfilteredState
 
 # UI element state (UI stack)
-blank
-loading
-partial
-error (semantic as well)
-ideal
+UIElementState/UIStack
+- BlankState
+- LoadingState
+- PartialState
+- ErrorState (semantic as well)
+- IdealState
 
 # UI element state transitions
-opening
-closing
-skeleton
+UIElementState/UIElementTransitionState
+- ClosingState
+- OpeningState
+- SkeletonState
 
-# Visual semantics
-prominent
-raised
-dense
-mini
-primary
-current
-role
-user
-hierarchy
-help
-content
-progress
-
-
-overlay
-
-result
-output
-status
-
-
-hidden
-modal
-
-menu
-
-# issue severity (Enumeration)
+# issue severity property (Enumeration)
+issueSeverity
+- priority
+- importance
 IssueSeverityType
 - Default
 - Alert
@@ -146,19 +156,14 @@ IssueSeverityType
 - Incomplete
 - Empty
 
-issue
-- priority
-- importance
-
 # UI elements (Atoms)
-AtomUIElement
+UIElement/AtomUIElement
 - Icon
 - Label
 - Title
 - Subtitle
 - Input
 - Button
-- Shape
 - Heading
 - Subheading
 - Checkbox
@@ -169,9 +174,15 @@ AtomUIElement
 - Textfield
 - Link
 - Avatar
+AtomUIElement/Shape
+- Circle
+- Triangle
+- Rectangle
+- Ellipsis
+- Star
 
 # UI elements (molecules)
-MoleculeUIElement
+UIElement/MoleculeUIElement
 - NavigationBar
 - Tooltip
 - Searchbar
@@ -184,14 +195,14 @@ MoleculeUIElement
 - Pagination
 
 # UI elements (organisms)
-OrganismUIElement
+UIElement/OrganismUIElement
 - Header
 - Footer
 - Section
 - Card
 
 # UI elements (not Atoms, organizing samepage sub-elements)
-ContainerUIElement
+UIElement/ContainerUIElement
 - DirectoryStructure
 - TreeView
 - Tabs
@@ -204,7 +215,7 @@ ContainerUIElement
 - ColumnHeader
 
 # Non-visual organization
-StructuralUIElement
+UIElement/StructuralUIElement
 - ABTest
 - Form
 - Template
@@ -215,23 +226,50 @@ StructuralUIElement
 - Constraint
 - Autocomplete
 
-# Non-visual relations
+# Non-visual properties
 variation
 - aVersion
 - bVersion
 triggers
+slot
+- unorderedSlots
+- orderedSlots
 
-# accessibilitz relations
+# accessibility properties
 a11y
 - ariaLabel
 - moreInfo
 - valueText
 
 # User to User Actions (schema.org/CommunicateAction)
-CommunicateAction
+UserAction/CommunicateAction
 - CommentAction
 - ReplyAction
 - ReactAction
 
-
-TODO: add https://schema.org/PropertyValueSpecification values
+# Visual semantics
+SemanticFlag/HierarchyFlag
+- isProminent
+- isRaised
+- isDense
+- isMini
+- isPrimary
+- isSecondary
+- isTertiary
+- isCurrent
+- isOverlay
+- isHidden
+- isModal
+SemanticFlag/DescriptionFlag
+- isHelp
+- isContent
+- isProgress
+SemanticProperty/OutcomeProperty
+- result
+- output
+- status
+SemanticProperty/NavigationProperty
+- menu
+SemanticProperty/ContextProperty
+- role
+- user
