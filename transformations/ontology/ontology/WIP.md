@@ -273,3 +273,4 @@ SemanticProperty/NavigationProperty
 SemanticProperty/ContextProperty
 - role
 - user
+- group
