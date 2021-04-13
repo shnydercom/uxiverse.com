@@ -1,10 +1,11 @@
 # base terms for frontend-ontology
-DataType
-DataTypeProperty
-UIElement
-Action
-SemanticFlag
-SemanticProperty
+Element
+Element/DataType
+Element/DataTypeProperty
+Element/UIElement
+Element/Action
+Element/SemanticFlag
+Element/SemanticProperty
 
 # schema:PropertyValueSpecification
 PropertyValueSpecification
@@ -66,7 +67,7 @@ Some
 - unselectedSet
 
 # User interaction state
-UserInteractionState
+UserActionState
 - HoverState
 - FocusState
 - PressedState

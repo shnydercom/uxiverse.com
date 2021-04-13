@@ -43,17 +43,43 @@
         {
             "@id": "ldui:Element",
             "@type": "rdfs:Class",
-            "rdfs:label": "The base for all Classes in the ldui ontology, both as part of the UI or not",
+            "rdfs:label": "The root for all Classes in the ldui ontology, both as part of the UI or not",
             "rdfs:subClassOf": [
                 {
                     "@id": "rdfs:Class"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:DataType",
+            "@type": "rdfs:Class",
+            "comment": "The root class for all DataTypes. E.g. on/off -> true/false in the case of BooleanType",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:DataTypeProperty",
+            "@type": "rdfs:Class",
+            "comment": "The root class for all DataTypeProperties, describing a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
                 }
             ]
         },
         {
             "@id": "ldui:UIElement",
             "@type": "rdfs:Class",
-            "comment": "The base class for all User Interface elements",
+            "comment": "The root class for all User Interface elements",
             "rdfs:subClassOf": [
                 {
                     "@id": "rdfs:Class"
@@ -64,9 +90,9 @@
             ]
         },
         {
-            "@id": "ldui:UserInteraction",
+            "@id": "ldui:Action",
             "@type": "rdfs:Class",
-            "comment": "The base class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
+            "comment": "The root Action class, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:CommentAction",
             "rdfs:subClassOf": [
                 {
                     "@id": "rdfs:Class"
@@ -76,6 +102,178 @@
                 }
             ]
         },
+        {
+            "@id": "ldui:SemanticFlag",
+            "@type": "rdfs:Class",
+            "comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:SemanticProperty",
+            "@type": "rdfs:Class",
+            "comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu, role, group",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+
+        {
+            "@id": "ldui:PropertyValueSpecification",
+            "@type": "rdfs:Class",
+            "comment": "similar to schema:PropertyValueSpecification, but contains only a subset of properties. Some of the properties went into NumericTypeProperty and others",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:BooleanType",
+            "@type": "rdfs:Class",
+            "comment": "Data type: Boolean. Human-readable terms like on/off, true/false have this as a supertype",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:DataType"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:NumericTypeProperty",
+            "@type": "rdfs:Class",
+            "comment": "Human-readable numeric values can have min/max/current properties to describe them more closely",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:DataTypeProperty"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:TextTypeProperty",
+            "@type": "rdfs:Class",
+            "comment": "Human-readable text values can have properties such as valueMinLength and valueMaxLength to describe them more closely",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:DataTypeProperty"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:MediaType",
+            "@type": "rdfs:Class",
+            "comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:DataType"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:MediaTypeProperty",
+            "@type": "rdfs:Class",
+            "comment": "Properties of a ldui:MediaType, like isPlaying",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:DataTypeProperty"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:VisualExpression",
+            "@type": "rdfs:Class",
+            "comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:Some",
+            "@type": "rdfs:Class",
+            "comment": "When multiple options are present, ldui:Some is a super-class for a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UserActionState",
+            "@type": "rdfs:Class",
+            "comment": "When the user interacts with the application, the application changes its state as a consequence",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UserAction",
+            "@type": "rdfs:Class",
+            "comment": "The root action class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Action"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:DeviceSpecificAction",
+            "@type": "rdfs:Class",
+            "comment": "The root Action class for any interactions that are specific to the device type. E.g. KeyDownAction, ChangeOrientationAction",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UserAction"
+                }
+            ]
+        },
+
+
         {
             "@id": "ldui:Button",
             "@type": "rdfs:Class",
