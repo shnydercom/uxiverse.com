@@ -583,15 +583,248 @@
 			"@id": "ldui:multipleValues",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
-				"@id": "ldui:Container"
+				"@id": "ldui:PropertyValueSpecification"
 			},
 			"schema:rangeIncludes": {
-				"@id": "ldui:UIElement"
+				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "A slot is a space on a container for sub-elements",
-			"rdfs:label": "slot"
+			"rdfs:comment": "Whether multiple values are allowed for the property. Default is false.",
+			"rdfs:label": "multiple values"
+		},
+		{
+			"@id": "ldui:valueName",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:PropertyValueSpecification"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Text"
+			},
+			"rdfs:comment": "Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
+			"rdfs:label": "value name"
+		},
+		{
+			"@id": "ldui:defaultValue",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:PropertyValueSpecification"
+			},
+			"schema:rangeIncludes": [{
+				"@id": "schema:Text"
+			}, {
+				"@id": "schema:Thing"
+			}],
+			"rdfs:comment": "The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.",
+			"rdfs:label": "default value"
+		},
+		{
+			"@id": "ldui:valueRequired",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:PropertyValueSpecification"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether the property must be filled in to complete the action. Default is false.",
+			"rdfs:label": "value required"
+		},
+		{
+			"@id": "ldui:readonlyValue",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:PropertyValueSpecification"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a 'hidden' input in an HTML form.",
+			"rdfs:label": "read-only value"
 		},
 
+		{
+			"@id": "ldui:isActive",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is active",
+			"rdfs:label": "is active"
+		},
+		{
+			"@id": "ldui:isInactive",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is inactive",
+			"rdfs:label": "is inactive"
+		},
+		{
+			"@id": "ldui:isOn",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is on",
+			"rdfs:label": "is on"
+		},
+
+		{
+			"@id": "ldui:isOff",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is off",
+			"rdfs:label": "is off"
+		},
+		{
+			"@id": "ldui:isChecked",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is checked",
+			"rdfs:label": "is checked"
+		},
+		{
+			"@id": "ldui:isUnchecked",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is unchecked",
+			"rdfs:label": "is unchecked"
+		},
+		{
+			"@id": "ldui:isDisabled",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is disabled",
+			"rdfs:label": "is disabled"
+		},
+		{
+			"@id": "ldui:isEnabled",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:BooleanType"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Boolean"
+			},
+			"rdfs:comment": "Whether or not the element is enabled",
+			"rdfs:label": "is enabled"
+		},
+
+		{
+			"@id": "ldui:min",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:NumericTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Number"
+			},
+			"rdfs:comment": "The minimal amount this numeric value can be",
+			"rdfs:label": "minimum value"
+		},
+		{
+			"@id": "ldui:max",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:NumericTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Number"
+			},
+			"rdfs:comment": "The maximal amount this numeric value can be",
+			"rdfs:label": "maximum value"
+		},
+		{
+			"@id": "ldui:currentValue",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:NumericTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Number"
+			},
+			"rdfs:comment": "The current amount a numeric value has",
+			"rdfs:label": "current value"
+		},
+		{
+			"@id": "ldui:stepValue",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:NumericTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Number"
+			},
+			"rdfs:comment": "When a numeric value can only take amounts in steps",
+			"rdfs:label": "step value"
+		},
+
+		{
+			"@id": "ldui:valuePattern",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:TextTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Text"
+			},
+			"rdfs:comment": "Specifies a regular expression for testing literal values according to the HTML spec.",
+			"rdfs:label": "text pattern"
+		},
+		{
+			"@id": "ldui:valueMinLength",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:TextTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Text"
+			},
+			"rdfs:comment": "Specifies the minimum allowed range for number of characters in a literal value.",
+			"rdfs:label": "minimal text length"
+		},
+		{
+			"@id": "ldui:valueMaxLength",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:TextTypeProperty"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:Text"
+			},
+			"rdfs:comment": "Specifies the allowed range for number of characters in a literal value.",
+			"rdfs:label": "maximal text length"
+		},
 
 		{
 			"@id": "ldui:Button",

@@ -33,8 +33,6 @@ DataTypeProperty/NumericTypeProperty
 - max
 - currentValue
 - stepValue
-- maxValue
-- minValue
 
 # Text info properties
 DataTypeProperty/TextTypeProperty
