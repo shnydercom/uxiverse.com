@@ -43,11 +43,11 @@ DataTypeProperty/TextTypeProperty
 - valueMaxLength
 
 # Media properties
-DataType/MediaType
+DataType/MediaDataType
 - image
 - audio
 - video
-DataTypeProperty/MediaTypeProperty
+DataTypeProperty/MediaDataTypeProperty
 - isPlaying
 
 # Visual expression properties

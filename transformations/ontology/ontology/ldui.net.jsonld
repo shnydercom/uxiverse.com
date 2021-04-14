@@ -43,12 +43,13 @@
         {
             "@id": "ldui:Element",
             "@type": "rdfs:Class",
-            "rdfs:label": "The root for all Classes in the ldui ontology, both as part of the UI or not",
+            "rdfs:comment": "The root for all Classes in the ldui ontology, both as part of the UI or not",
             "rdfs:subClassOf": [
                 {
                     "@id": "rdfs:Class"
                 }
-            ]
+            ],
+            "rdfs:label": "element"
         },
         {
             "@id": "ldui:DataType",
@@ -61,7 +62,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "data type"
         },
         {
             "@id": "ldui:DataTypeProperty",
@@ -74,7 +76,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "data type property"
         },
         {
             "@id": "ldui:UIElement",
@@ -87,7 +90,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "UI element"
         },
         {
             "@id": "ldui:Action",
@@ -100,7 +104,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "action"
         },
         {
             "@id": "ldui:State",
@@ -113,7 +118,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "state"
         },
         {
             "@id": "ldui:SemanticFlag",
@@ -126,7 +132,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "semantic flag"
         },
         {
             "@id": "ldui:SemanticProperty",
@@ -139,7 +146,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "semantic property"
         },
 
         {
@@ -153,7 +161,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "property value specification"
         },
         {
             "@id": "ldui:BooleanType",
@@ -166,7 +175,8 @@
                 {
                     "@id": "ldui:DataType"
                 }
-            ]
+            ],
+            "rdfs:label": "boolean type"
         },
         {
             "@id": "ldui:NumericTypeProperty",
@@ -179,7 +189,8 @@
                 {
                     "@id": "ldui:DataTypeProperty"
                 }
-            ]
+            ],
+            "rdfs:label": "numeric type property"
         },
         {
             "@id": "ldui:TextTypeProperty",
@@ -192,10 +203,11 @@
                 {
                     "@id": "ldui:DataTypeProperty"
                 }
-            ]
+            ],
+            "rdfs:label": "text type property"
         },
         {
-            "@id": "ldui:MediaType",
+            "@id": "ldui:MediaDataType",
             "@type": "rdfs:Class",
             "comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
             "rdfs:subClassOf": [
@@ -205,10 +217,11 @@
                 {
                     "@id": "ldui:DataType"
                 }
-            ]
+            ],
+            "rdfs:label": "media data type"
         },
         {
-            "@id": "ldui:MediaTypeProperty",
+            "@id": "ldui:MediaDataTypeProperty",
             "@type": "rdfs:Class",
             "comment": "Properties of a ldui:MediaType, like isPlaying",
             "rdfs:subClassOf": [
@@ -218,7 +231,8 @@
                 {
                     "@id": "ldui:DataTypeProperty"
                 }
-            ]
+            ],
+            "rdfs:label": "media data type property"
         },
         {
             "@id": "ldui:VisualExpression",
@@ -231,7 +245,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "visual expression"
         },
         {
             "@id": "ldui:Some",
@@ -244,7 +259,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "some"
         },
         {
             "@id": "ldui:UserActionState",
@@ -257,7 +273,8 @@
                 {
                     "@id": "ldui:State"
                 }
-            ]
+            ],
+            "rdfs:label": "user action state"
         },
         {
             "@id": "ldui:UserAction",
@@ -270,7 +287,8 @@
                 {
                     "@id": "ldui:Action"
                 }
-            ]
+            ],
+            "rdfs:label": "user action"
         },
         {
             "@id": "ldui:DeviceSpecificAction",
@@ -283,7 +301,8 @@
                 {
                     "@id": "ldui:UserAction"
                 }
-            ]
+            ],
+            "rdfs:label": "device specific action"
         },
         {
             "@id": "ldui:MediaAction",
@@ -296,7 +315,8 @@
                 {
                     "@id": "ldui:UserAction"
                 }
-            ]
+            ],
+            "rdfs:label": "media action"
         },
         {
             "@id": "ldui:MediaPartAction",
@@ -309,7 +329,8 @@
                 {
                     "@id": "ldui:UserAction"
                 }
-            ]
+            ],
+            "rdfs:label": "media part action"
         },
         {
             "@id": "ldui:UIElementState",
@@ -322,7 +343,8 @@
                 {
                     "@id": "ldui:State"
                 }
-            ]
+            ],
+            "rdfs:label": "ui element state"
         },
         {
             "@id": "ldui:UIStack",
@@ -335,7 +357,8 @@
                 {
                     "@id": "ldui:UIElementState"
                 }
-            ]
+            ],
+            "rdfs:label": "UI stack"
         },
         {
             "@id": "ldui:UIElementTransitionState",
@@ -348,7 +371,8 @@
                 {
                     "@id": "ldui:UIElementState"
                 }
-            ]
+            ],
+            "rdfs:label": "UI element transition state"
         },
         {
             "@id": "ldui:IssueSeverity",
@@ -361,7 +385,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "issue severity"
         },
         {
             "@id": "ldui:IssueSeverityType",
@@ -374,7 +399,8 @@
                 {
                     "@id": "ldui:Element"
                 }
-            ]
+            ],
+            "rdfs:label": "issue severity type"
         },
         {
             "@id": "ldui:AtomUIElement",
@@ -387,7 +413,8 @@
                 {
                     "@id": "ldui:UIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "atom UI element"
         },
         {
             "@id": "ldui:Shape",
@@ -400,7 +427,8 @@
                 {
                     "@id": "ldui:AtomUIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "shape"
         },
         {
             "@id": "ldui:MoleculeUIElement",
@@ -413,7 +441,8 @@
                 {
                     "@id": "ldui:UIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "molecule ui element"
         },
         {
             "@id": "ldui:OrganismUIElement",
@@ -426,7 +455,8 @@
                 {
                     "@id": "ldui:UIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "organism ui element"
         },
         {
             "@id": "ldui:ContainerUIElement",
@@ -439,7 +469,8 @@
                 {
                     "@id": "ldui:UIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "container ui element"
         },
         {
             "@id": "ldui:StructuralUIElement",
@@ -452,7 +483,8 @@
                 {
                     "@id": "ldui:UIElement"
                 }
-            ]
+            ],
+            "rdfs:label": "structural ui element"
         },
         {
             "@id": "ldui:variation",
@@ -526,7 +558,8 @@
                 {
                     "@id": "ldui:SemanticFlag"
                 }
-            ]
+            ],
+            "rdfs:label": "hierarchical flag"
         },
         {
             "@id": "ldui:DescriptionFlag",
@@ -539,7 +572,8 @@
                 {
                     "@id": "ldui:SemanticFlag"
                 }
-            ]
+            ],
+            "rdfs:label": "descriptive flag"
         },
         {
             "@id": "ldui:OutcomeProperty",
@@ -552,7 +586,8 @@
                 {
                     "@id": "ldui:SemanticFlag"
                 }
-            ]
+            ],
+            "rdfs:label": "outcome property"
         },
         {
             "@id": "ldui:NavigationProperty",
@@ -565,7 +600,8 @@
                 {
                     "@id": "ldui:SemanticFlag"
                 }
-            ]
+            ],
+            "rdfs:label": "navigation property"
         },    
         {
             "@id": "ldui:ContextProperty",
@@ -578,7 +614,8 @@
                 {
                     "@id": "ldui:SemanticFlag"
                 }
-            ]
+            ],
+            "rdfs:label": "context property"
         },     
 
         {
