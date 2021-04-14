@@ -33,8 +33,7 @@
         }
     },
     "@id": "http://ldui.net/ontology",
-    "defines": [
-        {
+    "defines": [{
             "@id": "schema:Thing",
             "@type": "rdfs:Class",
             "rdfs:comment": "The most generic type of item. Duplicate of schema:Thing-ontology, deprecate as soon as possible",
@@ -44,19 +43,16 @@
             "@id": "ldui:Element",
             "@type": "rdfs:Class",
             "rdfs:comment": "The root for all Classes in the ldui ontology, both as part of the UI or not",
-            "rdfs:subClassOf": [
-                {
-                    "@id": "rdfs:Class"
-                }
-            ],
+            "rdfs:subClassOf": [{
+                "@id": "rdfs:Class"
+            }],
             "rdfs:label": "element"
         },
         {
             "@id": "ldui:DataType",
             "@type": "rdfs:Class",
             "comment": "The root class for all DataTypes. E.g. on/off -> true/false in the case of BooleanType",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -69,8 +65,7 @@
             "@id": "ldui:DataTypeProperty",
             "@type": "rdfs:Class",
             "comment": "The root class for all DataTypeProperties, describing a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -83,8 +78,7 @@
             "@id": "ldui:UIElement",
             "@type": "rdfs:Class",
             "comment": "The root class for all User Interface elements",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -97,8 +91,7 @@
             "@id": "ldui:Action",
             "@type": "rdfs:Class",
             "comment": "The root Action class, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:CommentAction",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -111,8 +104,7 @@
             "@id": "ldui:State",
             "@type": "rdfs:Class",
             "comment": "The state of a UIElement",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -125,8 +117,7 @@
             "@id": "ldui:SemanticFlag",
             "@type": "rdfs:Class",
             "comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -139,8 +130,7 @@
             "@id": "ldui:SemanticProperty",
             "@type": "rdfs:Class",
             "comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu, role, group",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -154,8 +144,7 @@
             "@id": "ldui:PropertyValueSpecification",
             "@type": "rdfs:Class",
             "comment": "similar to schema:PropertyValueSpecification, but contains only a subset of properties. Some of the properties went into NumericTypeProperty and others",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -168,8 +157,7 @@
             "@id": "ldui:BooleanType",
             "@type": "rdfs:Class",
             "comment": "Data type: Boolean. Human-readable terms like on/off, true/false have this as a supertype",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -182,8 +170,7 @@
             "@id": "ldui:NumericTypeProperty",
             "@type": "rdfs:Class",
             "comment": "Human-readable numeric values can have min/max/current properties to describe them more closely",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -196,8 +183,7 @@
             "@id": "ldui:TextTypeProperty",
             "@type": "rdfs:Class",
             "comment": "Human-readable text values can have properties such as valueMinLength and valueMaxLength to describe them more closely",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -210,8 +196,7 @@
             "@id": "ldui:MediaDataType",
             "@type": "rdfs:Class",
             "comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -224,8 +209,7 @@
             "@id": "ldui:MediaDataTypeProperty",
             "@type": "rdfs:Class",
             "comment": "Properties of a ldui:MediaType, like isPlaying",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -238,8 +222,7 @@
             "@id": "ldui:VisualExpression",
             "@type": "rdfs:Class",
             "comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -252,8 +235,7 @@
             "@id": "ldui:Some",
             "@type": "rdfs:Class",
             "comment": "When multiple options are present, ldui:Some is a super-class for a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -266,8 +248,7 @@
             "@id": "ldui:UserActionState",
             "@type": "rdfs:Class",
             "comment": "When the user interacts with the application, the application changes its state as a consequence",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -280,8 +261,7 @@
             "@id": "ldui:UserAction",
             "@type": "rdfs:Class",
             "comment": "The root action class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -294,8 +274,7 @@
             "@id": "ldui:DeviceSpecificAction",
             "@type": "rdfs:Class",
             "comment": "The root Action class for any interactions that are specific to the device type. E.g. KeyDownAction, ChangeOrientationAction",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -308,8 +287,7 @@
             "@id": "ldui:MediaAction",
             "@type": "rdfs:Class",
             "comment": "Actions that the user can do with media which is embedded in html, like RecordAction, DownloadAction, StartAction, PauseAction",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -322,8 +300,7 @@
             "@id": "ldui:MediaPartAction",
             "@type": "rdfs:Class",
             "comment": "Actions for part of a medium, e.g. AnnotateAction for an interesting part of a recording",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -336,8 +313,7 @@
             "@id": "ldui:UIElementState",
             "@type": "rdfs:Class",
             "comment": "When the user interacts with an UI element, that element changes its state as a consequence",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -350,8 +326,7 @@
             "@id": "ldui:UIStack",
             "@type": "rdfs:Class",
             "comment": "The layers of state as understood by the UI stack: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -364,8 +339,7 @@
             "@id": "ldui:UIElementTransitionState",
             "@type": "rdfs:Class",
             "comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -378,8 +352,7 @@
             "@id": "ldui:IssueSeverity",
             "@type": "rdfs:Class",
             "comment": "Priority or importance are both ways to express the severity of an issue",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -392,8 +365,7 @@
             "@id": "ldui:IssueSeverityType",
             "@type": "rdfs:Class",
             "comment": "Types to categorize the severity of an issue in the UI, e.g. Warning, Error, Incomplete, Empty",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -406,8 +378,7 @@
             "@id": "ldui:AtomUIElement",
             "@type": "rdfs:Class",
             "comment": "An Atom as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -420,8 +391,7 @@
             "@id": "ldui:Shape",
             "@type": "rdfs:Class",
             "comment": "A basic shape like circle, triangle, rectangle etc",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -434,8 +404,7 @@
             "@id": "ldui:MoleculeUIElement",
             "@type": "rdfs:Class",
             "comment": "A Molecule as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -448,8 +417,7 @@
             "@id": "ldui:OrganismUIElement",
             "@type": "rdfs:Class",
             "comment": "An Organism as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -462,8 +430,7 @@
             "@id": "ldui:ContainerUIElement",
             "@type": "rdfs:Class",
             "comment": "A container is a UI element which contains sub-elements",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -476,8 +443,7 @@
             "@id": "ldui:StructuralUIElement",
             "@type": "rdfs:Class",
             "comment": "Structural UI elements express structure of elements in the user interface, e.g. ABTest, Form, Template, Placeholder, Autocomplete",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -538,8 +504,7 @@
             "@id": "ldui:CommunicateAction",
             "@type": "rdfs:Class",
             "comment": "Actions where two users exchange information, e.g. CommentAction, ReplyAction, ReactAction",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -551,8 +516,7 @@
             "@id": "ldui:HierarchyFlag",
             "@type": "rdfs:Class",
             "comment": "Flags that express a hierarchical position on an element",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -565,8 +529,7 @@
             "@id": "ldui:DescriptionFlag",
             "@type": "rdfs:Class",
             "comment": "Flags to express that a UI element describes something, e.g. isHelp, isContent, isProgress",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -579,8 +542,7 @@
             "@id": "ldui:OutcomeProperty",
             "@type": "rdfs:Class",
             "comment": "A property that holds a result, output or status",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -593,8 +555,7 @@
             "@id": "ldui:NavigationProperty",
             "@type": "rdfs:Class",
             "comment": "A property that holds the navigation on a UI element, e.g. menu, settings",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -602,13 +563,12 @@
                 }
             ],
             "rdfs:label": "navigation property"
-        },    
+        },
         {
             "@id": "ldui:ContextProperty",
             "@type": "rdfs:Class",
             "comment": "A property that holds the context a UI element is in, e.g. role, user, group",
-            "rdfs:subClassOf": [
-                {
+            "rdfs:subClassOf": [{
                     "@id": "rdfs:Class"
                 },
                 {
@@ -616,18 +576,16 @@
                 }
             ],
             "rdfs:label": "context property"
-        },     
+        },
 
         {
             "@id": "ldui:Button",
             "@type": "rdfs:Class",
             "comment": "A Button, if it's a physical, or virtual pressable device of simple intention",
             "rdfs:label": "Button",
-            "rdfs:subClassOf": [
-                {
-                    "@id": "ldui:UIElement"
-                }
-            ]
+            "rdfs:subClassOf": [{
+                "@id": "ldui:UIElement"
+            }]
         }
     ]
 }
