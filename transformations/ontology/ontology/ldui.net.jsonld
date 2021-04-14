@@ -103,6 +103,19 @@
             ]
         },
         {
+            "@id": "ldui:State",
+            "@type": "rdfs:Class",
+            "comment": "The state of a UIElement",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
             "@id": "ldui:SemanticFlag",
             "@type": "rdfs:Class",
             "comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
@@ -242,7 +255,7 @@
                     "@id": "rdfs:Class"
                 },
                 {
-                    "@id": "ldui:Element"
+                    "@id": "ldui:State"
                 }
             ]
         },
@@ -272,7 +285,301 @@
                 }
             ]
         },
-
+        {
+            "@id": "ldui:MediaAction",
+            "@type": "rdfs:Class",
+            "comment": "Actions that the user can do with media which is embedded in html, like RecordAction, DownloadAction, StartAction, PauseAction",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UserAction"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:MediaPartAction",
+            "@type": "rdfs:Class",
+            "comment": "Actions for part of a medium, e.g. AnnotateAction for an interesting part of a recording",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UserAction"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UIElementState",
+            "@type": "rdfs:Class",
+            "comment": "When the user interacts with an UI element, that element changes its state as a consequence",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:State"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UIStack",
+            "@type": "rdfs:Class",
+            "comment": "The layers of state as understood by the UI stack: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElementState"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:UIElementTransitionState",
+            "@type": "rdfs:Class",
+            "comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElementState"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:IssueSeverity",
+            "@type": "rdfs:Class",
+            "comment": "Priority or importance are both ways to express the severity of an issue",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:IssueSeverityType",
+            "@type": "rdfs:Class",
+            "comment": "Types to categorize the severity of an issue in the UI, e.g. Warning, Error, Incomplete, Empty",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:Element"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:AtomUIElement",
+            "@type": "rdfs:Class",
+            "comment": "An Atom as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:Shape",
+            "@type": "rdfs:Class",
+            "comment": "A basic shape like circle, triangle, rectangle etc",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:AtomUIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:MoleculeUIElement",
+            "@type": "rdfs:Class",
+            "comment": "A Molecule as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:OrganismUIElement",
+            "@type": "rdfs:Class",
+            "comment": "An Organism as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:ContainerUIElement",
+            "@type": "rdfs:Class",
+            "comment": "A container is a UI element which contains sub-elements",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:StructuralUIElement",
+            "@type": "rdfs:Class",
+            "comment": "Structural UI elements express structure of elements in the user interface, e.g. ABTest, Form, Template, Placeholder, Autocomplete",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UIElement"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:variation",
+            "@type": "rdf:Property",
+            "schema:domainIncludes": {
+                "@id": "ldui:ABTest"
+            },
+            "schema:rangeIncludes": {
+                "@id": "ldui:UIElement"
+            },
+            "rdfs:comment": "variation of the same UI element, e.g. the A and B version of an A/B-test",
+            "rdfs:label": "variation"
+        },
+        {
+            "@id": "ldui:triggers",
+            "@type": "rdf:Property",
+            "schema:domainIncludes": {
+                "@id": "ldui:Button"
+            },
+            "schema:rangeIncludes": {
+                "@id": "ldui:UserInteraction"
+            },
+            "rdfs:comment": "The (User-inter)-Action that gets triggered by a Button",
+            "rdfs:label": "triggers"
+        },
+        {
+            "@id": "ldui:slot",
+            "@type": "rdf:Property",
+            "schema:domainIncludes": {
+                "@id": "ldui:Container"
+            },
+            "schema:rangeIncludes": {
+                "@id": "ldui:UIElement"
+            },
+            "rdfs:comment": "A slot is a space on a container for sub-elements",
+            "rdfs:label": "slot"
+        },
+        {
+            "@id": "ldui:a11y",
+            "@type": "rdf:Property",
+            "schema:domainIncludes": {
+                "@id": "ldui:Element"
+            },
+            "schema:rangeIncludes": {
+                "@id": "ldui:Element"
+            },
+            "rdfs:comment": "Properties related to accessibility",
+            "rdfs:label": "a11y"
+        },
+        {
+            "@id": "ldui:CommunicateAction",
+            "@type": "rdfs:Class",
+            "comment": "Actions where two users exchange information, e.g. CommentAction, ReplyAction, ReactAction",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:UserAction"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:HierarchyFlag",
+            "@type": "rdfs:Class",
+            "comment": "Flags that express a hierarchical position on an element",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:SemanticFlag"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:DescriptionFlag",
+            "@type": "rdfs:Class",
+            "comment": "Flags to express that a UI element describes something, e.g. isHelp, isContent, isProgress",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:SemanticFlag"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:OutcomeProperty",
+            "@type": "rdfs:Class",
+            "comment": "A property that holds a result, output or status",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:SemanticFlag"
+                }
+            ]
+        },
+        {
+            "@id": "ldui:NavigationProperty",
+            "@type": "rdfs:Class",
+            "comment": "A property that holds the navigation on a UI element, e.g. menu, settings",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:SemanticFlag"
+                }
+            ]
+        },    
+        {
+            "@id": "ldui:ContextProperty",
+            "@type": "rdfs:Class",
+            "comment": "A property that holds the context a UI element is in, e.g. role, user, group",
+            "rdfs:subClassOf": [
+                {
+                    "@id": "rdfs:Class"
+                },
+                {
+                    "@id": "ldui:SemanticFlag"
+                }
+            ]
+        },     
 
         {
             "@id": "ldui:Button",
@@ -284,18 +591,6 @@
                     "@id": "ldui:UIElement"
                 }
             ]
-        },
-        {
-            "@id": "ldui:triggers",
-            "@type": "rdf:Property",
-            "schema:domainIncludes": {
-                "@id": "ldui:Button"
-            },
-            "schema:rangeIncludes": {
-                "@id": "ldui:UserInteraction"
-            },
-            "rdfs:comment": "The (UserInter)-Action that gets triggered by a Button",
-            "rdfs:label": "triggers"
         }
     ]
 }

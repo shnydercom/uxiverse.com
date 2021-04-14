@@ -4,6 +4,7 @@ Element/DataType
 Element/DataTypeProperty
 Element/UIElement
 Element/Action
+Element/State
 Element/SemanticFlag
 Element/SemanticProperty
 
@@ -67,7 +68,7 @@ Some
 - unselectedSet
 
 # User interaction state
-UserActionState
+State/UserActionState
 - HoverState
 - FocusState
 - PressedState
@@ -112,7 +113,7 @@ UserAction/MediaPartAction
 - AnnotateAction
 
 # UI element state
-UIElementState
+State/UIElementState
 - FixedState
 - LooseState
 
@@ -146,7 +147,7 @@ UIElementState/UIElementTransitionState
 - SkeletonState
 
 # issue severity property (Enumeration)
-issueSeverity
+IssueSeverity
 - priority
 - importance
 IssueSeverityType
@@ -271,6 +272,7 @@ SemanticProperty/OutcomeProperty
 - status
 SemanticProperty/NavigationProperty
 - menu
+- settings
 SemanticProperty/ContextProperty
 - role
 - user
