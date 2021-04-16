@@ -827,6 +827,2025 @@
 		},
 
 		{
+			"@id": "ldui:image",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:MediaDataType"
+			},
+			"schema:rangeIncludes": [{
+				"@id": "schema:ImageObject"
+			}, {
+				"@id": "schema:URL"
+			}],
+			"rdfs:comment": "An image of the item. This can be a URL or a fully described ImageObject.",
+			"rdfs:label": "image"
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		// DataTypeProperty/MediaDataTypeProperty
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		//VisualExpression
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		
+		//Some
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//State/UserActionState
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		//Action/UserAction
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UserAction/DeviceSpecificAction
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UserAction/MediaAction
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		//UserAction/MediaPartAction
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		//State/UIElementState
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElementState/UIStack
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElementState/UIElementTransitionState
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//IssueSeverity
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//IssueSeverityType
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElement/AtomUIElement
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//AtomUIElement/Shape
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElement/MoleculeUIElement
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElement/OrganismUIElement
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElement/ContainerUIElement
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//UIElement/StructuralUIElement
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//variation
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//triggers
+
+		//slot
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		//a11y
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//UserAction/CommunicateAction
+		{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		//SemanticFlag/HierarchyFlag
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//SemanticFlag/DescriptionFlag
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//SemanticProperty/OutcomeProperty
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+		//SemanticProperty/NavigationProperty
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+		//SemanticProperty/ContextProperty
+		{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},	{
+			"@id": "ldui:",
+			"@type": "rdf:Property",
+			"schema:domainIncludes": {
+				"@id": "ldui:"
+			},
+			"schema:rangeIncludes": {
+				"@id": "schema:"
+			},
+			"rdfs:comment": "",
+			"rdfs:label": ""
+		},
+
+
+
+
+		{
 			"@id": "ldui:Button",
 			"@type": "rdfs:Class",
 			"comment": "A Button, if it's a physical, or virtual pressable device of simple intention",
