@@ -841,7 +841,7 @@
 			"rdfs:label": "image"
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:audio",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -853,7 +853,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:video",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -866,7 +866,7 @@
 		},
 		// DataTypeProperty/MediaDataTypeProperty
 		{
-			"@id": "ldui:",
+			"@id": "ldui:isPlaying",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -879,7 +879,7 @@
 		},
 		//VisualExpression
 		{
-			"@id": "ldui:",
+			"@id": "ldui:color",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -890,7 +890,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:font",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -901,7 +901,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:italic",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -912,7 +912,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:bold",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -923,7 +923,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:underlined",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -934,7 +934,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:background",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -945,7 +945,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:highlight",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -959,7 +959,7 @@
 		
 		//Some
 		{
-			"@id": "ldui:",
+			"@id": "ldui:selectedIndex",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -970,7 +970,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:activeTabIndex",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -981,7 +981,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:selectedSet",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -992,7 +992,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:unselectedSet",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -1006,7 +1006,7 @@
 
 		//State/UserActionState
 		{
-			"@id": "ldui:",
+			"@id": "ldui:HoverState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1019,7 +1019,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:FocusState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1032,7 +1032,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:PressedState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1045,7 +1045,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:DraggingState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1059,7 +1059,7 @@
 		},
 		//Action/UserAction
 		{
-			"@id": "ldui:",
+			"@id": "ldui:DetailAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1072,7 +1072,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:NavigateAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1085,7 +1085,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:BrowseAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1098,7 +1098,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:FavoriteAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1111,7 +1111,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:SaveAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1124,7 +1124,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:DragAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1137,7 +1137,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:DropAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1149,7 +1149,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ResizeAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1161,7 +1161,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ScrollAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1173,7 +1173,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:DismissAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1185,7 +1185,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ConfirmAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1197,7 +1197,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:DeleteAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1209,7 +1209,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ZoomAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1221,7 +1221,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:AlignAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1233,7 +1233,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:BackAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1248,7 +1248,7 @@
 
 		//UserAction/DeviceSpecificAction
 		{
-			"@id": "ldui:",
+			"@id": "ldui:ClickAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1260,7 +1260,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:TouchDownAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1272,7 +1272,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:KeyDownAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1284,7 +1284,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ChangeOrientationAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1296,7 +1296,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:SwipeAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1308,7 +1308,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:PointAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1323,7 +1323,7 @@
 
 		//UserAction/MediaAction
 		{
-			"@id": "ldui:",
+			"@id": "ldui:UploadAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1335,7 +1335,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:DownloadAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1347,7 +1347,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:RecordAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1359,7 +1359,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:StartAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1371,7 +1371,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:StopAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1383,7 +1383,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:PauseAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1397,7 +1397,7 @@
 		},
 		//UserAction/MediaPartAction
 		{
-			"@id": "ldui:",
+			"@id": "ldui:MarkAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1409,7 +1409,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:AnnotateAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1423,7 +1423,7 @@
 		},
 		//State/UIElementState
 		{
-			"@id": "ldui:",
+			"@id": "ldui:FixedState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1436,69 +1436,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},
-
-		{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
+			"@id": "ldui:LooseState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1512,7 +1450,7 @@
 		},
 
 		{
-			"@id": "ldui:",
+			"@id": "ldui:MinifiedState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1524,7 +1462,43 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ExpandedState",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:MaximizedState",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:MinimizedState",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:FloatingState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1538,7 +1512,7 @@
 		},
 
 		{
-			"@id": "ldui:",
+			"@id": "ldui:OpenState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1550,7 +1524,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ClosedState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1564,7 +1538,7 @@
 		},
 
 		{
-			"@id": "ldui:",
+			"@id": "ldui:SortedState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1576,7 +1550,33 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:UnsortedState",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+
+		{
+			"@id": "ldui:FilteredState",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},{
+			"@id": "ldui:UnfilteredState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1591,7 +1591,7 @@
 
 		//UIElementState/UIStack
 		{
-			"@id": "ldui:",
+			"@id": "ldui:BlankState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1603,7 +1603,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:LoadingState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1615,7 +1615,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:PartialState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1627,7 +1627,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ErrorState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1639,7 +1639,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:IdealState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1654,7 +1654,7 @@
 
 		//UIElementState/UIElementTransitionState
 		{
-			"@id": "ldui:",
+			"@id": "ldui:ClosingState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1666,7 +1666,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:OpeningState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1678,7 +1678,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:SkeletonState",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1693,7 +1693,7 @@
 
 		//IssueSeverity
 		{
-			"@id": "ldui:",
+			"@id": "ldui:priority",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -1705,7 +1705,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:importance",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -1719,7 +1719,7 @@
 
 		//IssueSeverityType
 		{
-			"@id": "ldui:",
+			"@id": "ldui:Default",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1731,7 +1731,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Alert",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1743,7 +1743,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Warning",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1755,7 +1755,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Error",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1767,7 +1767,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Incomplete",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1779,7 +1779,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Empty",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1794,7 +1794,7 @@
 
 		//UIElement/AtomUIElement
 		{
-			"@id": "ldui:",
+			"@id": "ldui:Icon",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1806,7 +1806,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Label",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1818,7 +1818,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Title",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1830,7 +1830,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Subtitle",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1842,7 +1842,32 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Input",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "",
+			"rdfs:label": ""
+		},
+		{
+			"@id": "ldui:Button",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "A Button is a device to express simple intention by pressing it. Can be physical or virtual",
+			"rdfs:label": "Button"
+		},{
+			"@id": "ldui:Heading",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1854,7 +1879,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Subheading",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1866,7 +1891,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Checkbox",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1878,7 +1903,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Radiobutton",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1890,7 +1915,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Datepicker",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1902,7 +1927,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Timepicker",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1914,7 +1939,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Switch",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1926,7 +1951,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Textfield",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1938,7 +1963,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Link",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1950,31 +1975,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": ""
-		},{
-			"@id": "ldui:",
+			"@id": "ldui:Avatar",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -1989,7 +1990,7 @@
 
 		//AtomUIElement/Shape
 		{
-			"@id": "ldui:",
+			"@id": "ldui:Circle",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2001,7 +2002,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Triangle",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2013,7 +2014,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Rectangle",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2025,7 +2026,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Ellipsis",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2037,7 +2038,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Star",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2052,7 +2053,7 @@
 
 		//UIElement/MoleculeUIElement
 		{
-			"@id": "ldui:",
+			"@id": "ldui:NavigationBar",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2064,7 +2065,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Tooltip",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2076,7 +2077,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Searchbar",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2088,7 +2089,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Searchfield",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2100,7 +2101,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Thumbnail",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2112,7 +2113,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Dialog",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2124,7 +2125,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Step",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2136,7 +2137,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Divider",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2148,7 +2149,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Dropdown",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2160,7 +2161,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Pagination",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2175,7 +2176,7 @@
 
 		//UIElement/OrganismUIElement
 		{
-			"@id": "ldui:",
+			"@id": "ldui:Header",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2187,7 +2188,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Footer",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2199,7 +2200,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Section",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2211,7 +2212,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Card",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2226,7 +2227,7 @@
 
 		//UIElement/ContainerUIElement
 		{
-			"@id": "ldui:",
+			"@id": "ldui:DirectoryStructure",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2238,7 +2239,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:TreeView",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2250,7 +2251,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Tabs",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2262,7 +2263,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:List",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2274,7 +2275,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Container",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2286,7 +2287,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Table",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2298,7 +2299,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Grid",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2310,7 +2311,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:SingleSelection",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2322,7 +2323,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:MultiSelection",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2334,7 +2335,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ColumnHeader",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2349,7 +2350,7 @@
 
 		//UIElement/StructuralUIElement
 		{
-			"@id": "ldui:",
+			"@id": "ldui:ABTest",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2361,7 +2362,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Form",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2373,7 +2374,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Template",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2385,7 +2386,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Page",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2397,7 +2398,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Placeholder",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2409,7 +2410,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Context",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2421,7 +2422,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Scope",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2433,7 +2434,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Constraint",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2445,7 +2446,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:Autocomplete",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2460,7 +2461,7 @@
 
 		//variation
 		{
-			"@id": "ldui:",
+			"@id": "ldui:aVersion",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2472,7 +2473,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:bVersion",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2488,7 +2489,7 @@
 
 		//slot
 		{
-			"@id": "ldui:",
+			"@id": "ldui:unorderedSlots",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2500,7 +2501,7 @@
 			"rdfs:label": ""
 		},
 		{
-			"@id": "ldui:",
+			"@id": "ldui:orderedSlots",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2513,7 +2514,7 @@
 		},
 		//a11y
 		{
-			"@id": "ldui:",
+			"@id": "ldui:ariaLabel",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2524,7 +2525,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:moreInfo",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2535,7 +2536,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:valueText",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2549,7 +2550,7 @@
 
 		//UserAction/CommunicateAction
 		{
-			"@id": "ldui:",
+			"@id": "ldui:CommentAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2561,7 +2562,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ReplyAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2573,7 +2574,7 @@
 			"comment": "",
 			"rdfs:label": ""
 		},{
-			"@id": "ldui:",
+			"@id": "ldui:ReactAction",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2588,7 +2589,7 @@
 
 		//SemanticFlag/HierarchyFlag
 		{
-			"@id": "ldui:",
+			"@id": "ldui:isProminent",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2599,7 +2600,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isRaised",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2610,7 +2611,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isDense",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2621,7 +2622,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isMini",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2632,7 +2633,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isPrimary",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2643,7 +2644,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isSecondary",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2654,7 +2655,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isTertiary",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2665,7 +2666,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isCurrent",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2676,7 +2677,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isOverlay",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2687,7 +2688,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isHidden",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2698,7 +2699,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isModal",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2712,7 +2713,7 @@
 
 		//SemanticFlag/DescriptionFlag
 		{
-			"@id": "ldui:",
+			"@id": "ldui:isHelp",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2723,7 +2724,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isContent",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2734,7 +2735,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:isProgress",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2748,7 +2749,7 @@
 
 		//SemanticProperty/OutcomeProperty
 		{
-			"@id": "ldui:",
+			"@id": "ldui:result",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2759,7 +2760,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:output",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2770,7 +2771,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:status",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2784,7 +2785,7 @@
 
 		//SemanticProperty/NavigationProperty
 		{
-			"@id": "ldui:",
+			"@id": "ldui:menu",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2795,7 +2796,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:settings",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2808,7 +2809,7 @@
 		},
 		//SemanticProperty/ContextProperty
 		{
-			"@id": "ldui:",
+			"@id": "ldui:role",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2819,7 +2820,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:user",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2830,7 +2831,7 @@
 			"rdfs:comment": "",
 			"rdfs:label": ""
 		},	{
-			"@id": "ldui:",
+			"@id": "ldui:group",
 			"@type": "rdf:Property",
 			"schema:domainIncludes": {
 				"@id": "ldui:"
@@ -2840,19 +2841,6 @@
 			},
 			"rdfs:comment": "",
 			"rdfs:label": ""
-		},
-
-
-
-
-		{
-			"@id": "ldui:Button",
-			"@type": "rdfs:Class",
-			"comment": "A Button, if it's a physical, or virtual pressable device of simple intention",
-			"rdfs:label": "Button",
-			"rdfs:subClassOf": [{
-				"@id": "ldui:UIElement"
-			}]
 		}
 	]
 }
