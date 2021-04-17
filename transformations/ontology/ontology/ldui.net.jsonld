@@ -849,7 +849,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "An embedded audio object. This can be a URL or a fully described AudioObject",
 			"rdfs:label": "audio"
 		},
 		{
@@ -861,7 +861,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "An embedded video object. This can be a URL or a VideoObject",
 			"rdfs:label": "video"
 		},
 		// DataTypeProperty/MediaDataTypeProperty
@@ -874,7 +874,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Whether or not the media is playing",
 			"rdfs:label": "is playing"
 		},
 		//VisualExpression
@@ -887,7 +887,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "The color used to express a meaningful relation in the content",
 			"rdfs:label": "color"
 		}, {
 			"@id": "ldui:font",
@@ -898,7 +898,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "The font used to express a meaningful relation in the content",
 			"rdfs:label": "font"
 		}, {
 			"@id": "ldui:italic",
@@ -909,7 +909,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Italics are used to express importance in the text",
 			"rdfs:label": "italic"
 		}, {
 			"@id": "ldui:bold",
@@ -920,7 +920,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Bold text is used to add significance to a text element",
 			"rdfs:label": "bold"
 		}, {
 			"@id": "ldui:underlined",
@@ -931,7 +931,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Underlining text is a way of highlighting a particular portion of text",
 			"rdfs:label": "underlined"
 		}, {
 			"@id": "ldui:background",
@@ -942,7 +942,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Content of the background of the element",
 			"rdfs:label": "background"
 		}, {
 			"@id": "ldui:highlight",
@@ -953,7 +953,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A form of highlighting an element in relation to others",
 			"rdfs:label": "highlight"
 		},
 
@@ -967,7 +967,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "The technical position of the item that the user has selected",
 			"rdfs:label": "selected index"
 		}, {
 			"@id": "ldui:activeTabIndex",
@@ -978,7 +978,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "The technical position of the tab that the user has selected",
 			"rdfs:label": "index of active tab"
 		}, {
 			"@id": "ldui:selectedSet",
@@ -989,7 +989,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A set to express that there are multiple selected items",
 			"rdfs:label": "selected set"
 		}, {
 			"@id": "ldui:unselectedSet",
@@ -1000,7 +1000,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A set to express that some items are not selected",
 			"rdfs:label": "unselected set"
 		},
 
@@ -1015,7 +1015,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "When the user is hovering over an element, that element's state can change. E.g. useful to show that an element is interactive",
 			"rdfs:label": "hover state"
 		},
 		{
@@ -1028,7 +1028,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "When the user is focussing an interactive element, it enters the focus state. Can happen with a mouse, with the tabulator-key or in other ways",
 			"rdfs:label": "focus state"
 		},
 		{
