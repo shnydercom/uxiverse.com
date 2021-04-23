@@ -1041,7 +1041,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "When the user presses an interactive element, it enters the pressed state. Different from clicking, which is pressing and releasing",
 			"rdfs:label": "pressed state"
 		},
 		{
@@ -1054,7 +1054,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "When the user is dragging an interactive element, it enters the dragging state. For performance reasons it is often better to show a skeleton instead of the full element",
 			"rdfs:label": "dragging state"
 		},
 		//Action/UserAction
@@ -1068,7 +1068,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to get more details about an element. Can mean navigating to a detailed screen, or expanding a minified element on the same page",
 			"rdfs:label": "detail action"
 		},
 		{
@@ -1081,7 +1081,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to navigate the application. Broadly speaking, anything telling users where they are, where to go and how to get there can be called navigation",
 			"rdfs:label": "navigate action"
 		},
 		{
@@ -1094,7 +1094,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to casually look over content in the application. It's an action that doesn't need to have intent, but rather searches something of interest. Combining content the user knows with new content can drive usage of browse features",
 			"rdfs:label": "browse action"
 		},
 		{
@@ -1107,7 +1107,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to mark something as a favorite item. Often the intent is to easily access that item later on, e.g. through a quick-access menu",
 			"rdfs:label": "favorite action"
 		},
 		{
@@ -1120,7 +1120,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to save an element. Depending on how many elements a user will save, saving can be combined with lists, folders or tags",
 			"rdfs:label": "save action"
 		},
 		{
@@ -1133,7 +1133,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to drag an element. Usually combined with a drop action on another element. Typically used to move, copy or link an element to (a group of) other elements. Also check 'DraggingState'.",
 			"rdfs:label": "drag action"
 		},
 		{
@@ -1146,7 +1146,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to drop an element. Usually combined with a drag action on another element, but sometimes used to drop the same element more than once on a number of other elements, e.g. a 'brush' of images in an image editor",
 			"rdfs:label": "drop action"
 		}, {
 			"@id": "ldui:ResizeAction",
@@ -1158,7 +1158,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to resize an element, can mean resizing the entire application as well",
 			"rdfs:label": "resize action"
 		}, {
 			"@id": "ldui:ScrollAction",
@@ -1170,7 +1170,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to scroll through an element which is bigger than its container. Includes 'Endless scroll' action where new content is added to the end of the list as the user scrolls down",
 			"rdfs:label": "scroll action"
 		}, {
 			"@id": "ldui:DismissAction",
@@ -1182,7 +1182,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to dismiss a prompt from the application. Can be used e.g. on modals, banners, notifications as the 'little x'-button or on a button with text next to the confirm action, or swiping to dismiss",
 			"rdfs:label": "dismiss action"
 		}, {
 			"@id": "ldui:ConfirmAction",
@@ -1194,7 +1194,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected.",
 			"rdfs:label": "confirm action"
 		}, {
 			"@id": "ldui:DeleteAction",
@@ -1206,7 +1206,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative",
 			"rdfs:label": "delete action"
 		}, {
 			"@id": "ldui:ZoomAction",
@@ -1218,7 +1218,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to zoom in, out or to a specified zoom-factor. Used to magnify or minimify content and elements. UX examples range from pinch-to-zoom over 'plus and minus' buttons to pressing CTRL+scrolling",
 			"rdfs:label": "zoom action"
 		}, {
 			"@id": "ldui:AlignAction",
@@ -1230,7 +1230,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to align content to a constraint or 'proper' position. This can mean left- or right-align, to the center or another visual guide",
 			"rdfs:label": "align action"
 		}, {
 			"@id": "ldui:BackAction",
@@ -1242,10 +1242,35 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A user action to take a step back in the navigation history or hierarchy. Not to be confused with undo/redo, which modifies the content. In mobile apps, it's often used to move up in the navigation hierarchy, back to the main menu",
 			"rdfs:label": "back action"
 		},
-
+		{
+			"@id": "ldui:UndoAction",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "A user action to undo a modification. Removes a step in the history of edits by the user. Not to be confused with the back action, which is used for navigation",
+			"rdfs:label": "undo action"
+		},
+		{
+			"@id": "ldui:RedoAction",
+			"@type": "rdfs:Class",
+			"rdfs:subClassOf": [{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "ldui:"
+				}
+			],
+			"comment": "A user action to redo a modification that was removed from the history of user-edits by an 'undo' action",
+			"rdfs:label": "redo action"
+		},
 		//UserAction/DeviceSpecificAction
 		{
 			"@id": "ldui:ClickAction",

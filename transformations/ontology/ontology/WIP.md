@@ -90,6 +90,8 @@ UserAction
 - ZoomAction
 - AlignAction
 - BackAction
+- UndoAction
+- RedoAction
 UserAction/DeviceSpecificAction
 - ClickAction
 - TouchDownAction
