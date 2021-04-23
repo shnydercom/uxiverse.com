@@ -1282,7 +1282,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A click action is when a user presses and then releases an element, usually not moving the pointing device out of the element and not pressing for very long. Possibly the most common user interaction",
 			"rdfs:label": "click action"
 		}, {
 			"@id": "ldui:TouchDownAction",
@@ -1294,7 +1294,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A touch-down action is when a user has started touching an element with their fingers. Pointing with a finger on touch-screens is less accurate than pointing with a mouse, so browsers can handle this differently",
 			"rdfs:label": "touch down action"
 		}, {
 			"@id": "ldui:KeyDownAction",
@@ -1306,7 +1306,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A key-down action happens when a user has started pressing a key on a keybord or a hardware-key on a physical controller. Can be used for keyboard shortcuts to often-accessed functionality",
 			"rdfs:label": "key down action"
 		}, {
 			"@id": "ldui:ChangeOrientationAction",
@@ -1318,7 +1318,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A change-orientation action happens when a user turns their mobile device into portrait or landscape mode. Note that users can switch this functionality off, so the actual physical orientation can be different",
 			"rdfs:label": "change orientation action"
 		}, {
 			"@id": "ldui:SwipeAction",
@@ -1330,7 +1330,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A swipe action is a sweeping motion by the user, typically over a touchscreen. Some swipe actions might be reserved by the operating system, e.g. with multiple fingers, the back of the hand etc.",
 			"rdfs:label": "swipe action"
 		}, {
 			"@id": "ldui:PointAction",
@@ -1342,7 +1342,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A point action can be done by moving the mouse, moving or hovering the finger over a touch screen, and other physical devices that detect a user's hand movement, e.g. game controllers",
 			"rdfs:label": "point action"
 		},
 
@@ -1357,7 +1357,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An upload action copies media or a file from the user's device over the network. The file-selection interface is usually provided by the operating system. Files can be dragged and dropped, selected from an 'open file' dialog, or come from the 'share'-function of an operating system. Uploading may take a while or fail entirely, so indicating progress and completion is important",
 			"rdfs:label": "upload action"
 		}, {
 			"@id": "ldui:DownloadAction",
@@ -1369,7 +1369,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A download action copies media or a file to the user's device. In a lot of cases there's a standard UX for downloading already. Indicating progress and completion is important to the user, in the case of a failed download it should be easy to retry. In the case of success the next action should be clear",
 			"rdfs:label": "download action"
 		}, {
 			"@id": "ldui:RecordAction",
@@ -1381,7 +1381,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A record action can be used to create audio or video recordings, may depend on the user's microphone(s) or camera(s), so an easy way to switch or select a recording device is useful. This action can also be used to trigger other types of recordings. Stopping and pausing the recording should also be considered",
 			"rdfs:label": "record action"
 		}, {
 			"@id": "ldui:StartAction",
@@ -1393,7 +1393,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A start action initiates the playback of media, or the start of a game. Can also be used to re-start after the user has paused",
 			"rdfs:label": "start action"
 		}, {
 			"@id": "ldui:StopAction",
@@ -1405,7 +1405,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A stop action can be used to end media playback so that a start action will initiate it from the beginning",
 			"rdfs:label": "stop action"
 		}, {
 			"@id": "ldui:PauseAction",
@@ -1417,7 +1417,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A pause action can be used to halt media playback so that a start action will re-start playback from the point where it was paused. Can also be used to 'pause' a game - and save progress, adjust graphics etc.",
 			"rdfs:label": "pause action"
 		},
 		//UserAction/MediaPartAction
@@ -1431,7 +1431,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A mark action can be used on part of media, e.g. highlighting text, chat-reactions in a live stream, beginning of a section in a podcast, etc.",
 			"rdfs:label": "mark action"
 		}, {
 			"@id": "ldui:AnnotateAction",
@@ -1443,7 +1443,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An annotate action is similar to a mark action, only that it adds more information about why the media part has been marked. E.g. comments, stickers over video, reader-highlights in a blogpost, etc.",
 			"rdfs:label": "annotate action"
 		},
 		//State/UIElementState
@@ -1457,7 +1457,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a fixed state when it can't be moved, used to indicate the opposite of loose state",
 			"rdfs:label": "fixed state"
 		},
 		{
@@ -1470,7 +1470,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a loose state when it's movable",
 			"rdfs:label": "loose state"
 		},
 
