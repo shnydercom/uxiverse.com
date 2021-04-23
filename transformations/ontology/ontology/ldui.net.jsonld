@@ -1457,7 +1457,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A UI element is in a fixed state when it can't be moved, used to indicate the opposite of loose state",
+			"comment": "A UI element is in a fixed state when it can't be moved, used to indicate the opposite of loose state. This is typically the default",
 			"rdfs:label": "fixed state"
 		},
 		{
@@ -1470,7 +1470,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A UI element is in a loose state when it's movable",
+			"comment": "A UI element is in a loose state when it's movable. Opposite of fixed state",
 			"rdfs:label": "loose state"
 		},
 
@@ -1484,7 +1484,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a minified state when it is displayed in a size between maximized and mini-mized- state. Mini-fied- would be a window that fills part of the screen, mini-mized- would be an indicator in the task bar",
 			"rdfs:label": "minified state"
 		}, {
 			"@id": "ldui:ExpandedState",
@@ -1508,7 +1508,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a maximized state when its size can't grow any bigger, or it completely fills the container it's in. Check minified and minimized state as well",
 			"rdfs:label": "maximized state"
 		}, {
 			"@id": "ldui:MinimizedState",
@@ -1520,7 +1520,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a minimized state when it is only shown by a symbol representing it in its stead. Interacting with that mini-mized- symbol will show the mini-fied- or the maximized UI element. The symbol is typically smaller than the smallest minified version of this element",
 			"rdfs:label": "minimized state"
 		}, {
 			"@id": "ldui:FloatingState",
@@ -1532,7 +1532,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a floating state when it is shown above all other elements. Typically used for the primary action of a screen on mobile devices",
 			"rdfs:label": "floating state"
 		},
 
