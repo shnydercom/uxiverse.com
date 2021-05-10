@@ -332,7 +332,7 @@
 					"@id": "ldui:UIElementState"
 				}
 			],
-			"comment": "The layers of state as understood by the UI stack: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
+			"comment": "UIStack is an approach to interface design that includes non-ideal states. These can happen through user interaction or for technical reasons. It includes layers of state, and has been authored by Scott Hurff: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
 			"rdfs:label": "UI stack"
 		},
 		{
@@ -345,7 +345,7 @@
 					"@id": "ldui:UIElementState"
 				}
 			],
-			"comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states",
+			"comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states. It is generally helpful for the user to know what's happening with the UI elements instead of instant changes",
 			"rdfs:label": "UI element transition state"
 		},
 		{
@@ -358,7 +358,7 @@
 					"@id": "ldui:Element"
 				}
 			],
-			"comment": "Priority or importance are both ways to express the severity of an issue",
+			"comment": "Issue severety expresses the way to order elements towards the user's attention. It summarizes properties of priority and importance. Can be used to communicate errors and warnings",
 			"rdfs:label": "issue severity"
 		},
 		{
@@ -371,7 +371,7 @@
 					"@id": "ldui:Element"
 				}
 			],
-			"comment": "Types to categorize the severity of an issue in the UI, e.g. Warning, Error, Incomplete, Empty",
+			"comment": "Issue severity types are used for categorizing elements that need the user's immediate attention, such as Alert, Warning, Error, Incomplete and the Default type",
 			"rdfs:label": "issue severity type"
 		},
 		{
@@ -384,7 +384,7 @@
 					"@id": "ldui:UIElement"
 				}
 			],
-			"comment": "An Atom as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+			"comment": "An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: atomicdesign.bradfrost.com",
 			"rdfs:label": "atom UI element"
 		},
 		{
@@ -397,7 +397,7 @@
 					"@id": "ldui:AtomUIElement"
 				}
 			],
-			"comment": "A basic shape like circle, triangle, rectangle etc",
+			"comment": "A Shape is an Atomic UI element that's used as a basic building block to make other UI elements. It can help express order, relation and hierarchy visually. More specialized examples are circle, triangle, rectangle etc",
 			"rdfs:label": "shape"
 		},
 		{
@@ -1546,7 +1546,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in an open state when it can be either closed or open and its detailed content is visible",
 			"rdfs:label": "open state"
 		}, {
 			"@id": "ldui:ClosedState",
@@ -1558,7 +1558,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a closed state when it can be either closed or open and its content is summarized",
 			"rdfs:label": "closed state"
 		},
 
@@ -1572,7 +1572,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A container in the sorted state displays its elements in order. Often a UI element outside the container is used to control the sorting, e.g. one of the headers of a column in a table",
 			"rdfs:label": "sorted state"
 		}, {
 			"@id": "ldui:UnsortedState",
@@ -1584,7 +1584,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A container is in the unsorted state by default. Berfor a user changes the sorting, this is an option to show recommended elements, history, favorites etc, when there are many elements to sort by",
 			"rdfs:label": "unsorted state"
 		},
 
@@ -1598,7 +1598,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A container in the filtered state shows only a subset of elements. Often a UI element outside the container controls the filtering. Useful when the number of elements in each filtered group is high",
 			"rdfs:label": "filtered state"
 		}, {
 			"@id": "ldui:UnfilteredState",
@@ -1610,7 +1610,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A container in the unfiltered state shows all elements. This the default. When the number of elements is high, consider pagination or a visual hierarchy",
 			"rdfs:label": "unfiltered state"
 		},
 
@@ -1625,7 +1625,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI elment is in a blank state when it has no data. Reasons can be that the user hasn't created anything yet, is a new user, has deleted all data or doesn't have accesss rights. Can also be used for when the user is offline",
 			"rdfs:label": "blank state"
 		}, {
 			"@id": "ldui:LoadingState",
@@ -1637,7 +1637,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI elment is in a loading state when data has been requested, but it isn't completely available. Loading indicators or skeleton states help when the loading time is more than a second. Displaying loading states too quickly can decrease perceived performance",
 			"rdfs:label": "loading state"
 		}, {
 			"@id": "ldui:PartialState",
@@ -1649,7 +1649,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in a partial state when some data is available, but it's not complete.  Data can be streaming and appended, or users can manually hit a 'load more' button. Another example would be the 'user is typing' indicator in chat applications",
 			"rdfs:label": "partial state"
 		}, {
 			"@id": "ldui:ErrorState",
@@ -1661,7 +1661,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element is in an error state when it received bad user input, data from the application or for technical reasons. Ideally the apllication should recover itself. If not, show options to the user",
 			"rdfs:label": "error state"
 		}, {
 			"@id": "ldui:IdealState",
@@ -1673,7 +1673,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI element shows the ideal state which proviedes value to the user when it isn't in the blank/empty state, data has loaded completeley and no errors happened",
 			"rdfs:label": "ideal state"
 		},
 
@@ -1688,7 +1688,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "The closing state is entered when an open elment closes. It enters the closed state afterwards. Acoordeon menus or folder trees often use this for subtle tranistions",
 			"rdfs:label": "closing state"
 		}, {
 			"@id": "ldui:OpeningState",
@@ -1700,7 +1700,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "The opening state is entered when a closed element opens. It enters the open state afterwards. If UI elements are pushed out of the way by the opening animation, a skeleton of the appearing content is useful",
 			"rdfs:label": "opening state"
 		}, {
 			"@id": "ldui:SkeletonState",
@@ -1712,7 +1712,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "The skeleton state is a way of showing positions and layout of content before it is loaded or otherwise available. It is often a grayed out or boxed out version of the contentful UI",
 			"rdfs:label": "skeleton state"
 		},
 
@@ -1753,7 +1753,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "UI elements have default priority or importance when they add information that doesn't require a reaction, such as banners that point to new features",
 			"rdfs:label": "default"
 		}, {
 			"@id": "ldui:Alert",
@@ -1765,7 +1765,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Alerts notify the user that an expected event has happend or is about to happen. Common examples are price alerts or alerts to check in or board a flight",
 			"rdfs:label": "alert"
 		}, {
 			"@id": "ldui:Warning",
@@ -1777,7 +1777,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Warnings notify the user that an unexpected or insecure event occured, but the application can continue to function. This gives the user the option to intervene.",
 			"rdfs:label": "warning"
 		}, {
 			"@id": "ldui:Error",
@@ -1789,7 +1789,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Errors are events that stop part of an application to work as intended. Known errors can give users an option to intervene, similar to warnings. Another option can be to restart thtat part of the application",
 			"rdfs:label": "error"
 		}, {
 			"@id": "ldui:Incomplete",
@@ -1801,7 +1801,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Issues that come from incomplete data can be caused by the application, the connection or the users themselves. Options to reload, retry or wait plus a status message help the users take next steps",
 			"rdfs:label": "incomplete"
 		}, {
 			"@id": "ldui:Empty",
@@ -1813,7 +1813,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Issues coming from empty data are common, because new users or new features usually start with no data. This is an opportunity for onboarding and explaining features. Users can also remove data they've entered, leaving a UI element empty. E.g. A To-Do App can have different empty states: on first use and after finishing all To-Dos",
 			"rdfs:label": "empty"
 		},
 
@@ -1828,7 +1828,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An Icon is an Atom UI element that visually communicates meaning. It can symbolize text, and its meaning depends on the interpretation of the user, so alternative texts and tooltips can help users understand",
 			"rdfs:label": "icon"
 		}, {
 			"@id": "ldui:Label",
@@ -1840,7 +1840,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Label is an Atom UI element that describes another UI element more closely. These typically appear in forms to describe what the Inputs can be used for. Labels are important for visually impaired users, even if the label is not visible",
 			"rdfs:label": "label"
 		}, {
 			"@id": "ldui:Title",
@@ -1852,7 +1852,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Title describes and identifies content of a UI element. Web pages have titles which are displayed in the menu of the browser, the title is often repeated as a header.",
 			"rdfs:label": "title"
 		}, {
 			"@id": "ldui:Subtitle",
@@ -1864,7 +1864,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A subtitle is often used to describe a title more closely. It can also tell the userwhat benefit to expect, or clarify the title. Check subheading for this usage. Also can be a synonym for closed-captioned text",
 			"rdfs:label": "sub-title"
 		}, {
 			"@id": "ldui:Input",
@@ -1876,7 +1876,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An Input is a UI element that helps users enter data. Some inputs like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in gneeral",
 			"rdfs:label": "input"
 		},
 		{
@@ -1889,7 +1889,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A Button is a device to express simple intention by pressing it. Can be physical or virtual",
+			"comment": "A Button lets users take actions and make choices with a single tap. This is typically referred to as the onClick event, but buttons can react to pressing and holding, hovering, or focussing with a keyboard. As UI elements, Buttons try to mimick physical buttons, so in AR/VR interfaces the onClick doesn't happen until it is fully pressed 'down'. Hardware Buttons on physical devices, e.g. smart home buttons, usually handle this on the device",
 			"rdfs:label": "button"
 		}, {
 			"@id": "ldui:Heading",
@@ -1901,7 +1901,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A heading is a UI element that serves as the head of another UI element, usually setting it apart in typography, style or position. In HTML there are different heading sizes which can be used for visual and semantic hierarchy. Check out Subheading, Title and Subtitle as well",
 			"rdfs:label": "heading"
 		}, {
 			"@id": "ldui:Subheading",
@@ -1913,7 +1913,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Subheading can refer to an additional headline similar to Subtitle. It can also be the heading of a smaller portion of a piece of writing",
 			"rdfs:label": "sub-heading"
 		}, {
 			"@id": "ldui:Checkbox",
@@ -1925,7 +1925,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Checkboxes are UI elements to select one or more values from several options. They are typically displayed as a small box in which a check mark is placed if it 'isChecked'. If the checkbox is part of a group, clicking it will change the selectedSet.",
 			"rdfs:label": "checkbox"
 		}, {
 			"@id": "ldui:Radiobutton",
@@ -1937,7 +1937,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Radio buttons are UI elements for selecting a single element out of a group of options. It is a good practice to have a default option pre-selected. Clicking the Radiobutton will change the group's selectedIndex. All available options are shown in the group, so keeping the number of options small is helpful for the user",
 			"rdfs:label": "radio button"
 		}, {
 			"@id": "ldui:Datepicker",
@@ -1949,7 +1949,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Datepicker is a UI element which lets users select a date, often as part of a form, and often displaying a minimizedState with the current date pre-set. Clicking it opens a minimal interface to help select a different date. Consider different date formats and keyboard input as well, and using a Timepicker fo finer control.",
 			"rdfs:label": "date picker"
 		}, {
 			"@id": "ldui:Timepicker",
@@ -1961,7 +1961,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Timepicker is a UI element which lets users select a time of the day. Different date and time formats may display AM/PM, this is also adjustable on users' devices, as well as the users' time zones. A hint for working hours in another time zone might be helpful, and changes for summer- and wintertime might also be useful info.",
 			"rdfs:label": "time picker"
 		}, {
 			"@id": "ldui:Switch",
@@ -1973,7 +1973,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Switch is a UI element to let users toggle between two states or on-off settings. Users are used to seeing a reaction to clicking the switch immediately, based on their experience on mobile devices. Useful to control Boolean types.",
 			"rdfs:label": "switch"
 		}, {
 			"@id": "ldui:Textfield",
@@ -1985,7 +1985,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A TextField is a UI element that allows Text to be entered. This may be a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web.",
 			"rdfs:label": "text field"
 		}, {
 			"@id": "ldui:Link",
@@ -1997,7 +1997,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Link is clickable text that lets users navigate to other websites or other parts of the same site or app. They can also be used for file downloads or opening up a new email and other actions in apps.",
 			"rdfs:label": "link"
 		}, {
 			"@id": "ldui:Avatar",
@@ -2009,7 +2009,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An Avatar is a UI element to visually represent a user, business or organization with a single image or icon. They often frame that image in a way that makes it easy to distinguish from other icons. Avatars can also contain user's initials, a colour, or an auto-generated Avatar if none has been set. They're often combined with indicators for activity or status.",
 			"rdfs:label": "avatar"
 		},
 
@@ -2024,7 +2024,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Circle is a type of Shape which is often used as a frame, for Avatars for example. As a filled shape it might appear as a background or as a status indicator. E.g. the activity-indicator next to an avatar.",
 			"rdfs:label": "circle"
 		}, {
 			"@id": "ldui:Triangle",
@@ -2036,7 +2036,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A triangle is a type of Shape that's often used to indicate something is playable media, e.g. the icon in the middle of a video player. In 3D environments it is the smallest building block of a (sur)face. If one corner is sharp it can be used that is often used to point at content, and in small-size scenarios it's used to indicate closed and open states.",
 			"rdfs:label": "triangle"
 		}, {
 			"@id": "ldui:Rectangle",
