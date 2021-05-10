@@ -384,7 +384,7 @@
 					"@id": "ldui:UIElement"
 				}
 			],
-			"comment": "An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: atomicdesign.bradfrost.com",
+			"comment": "An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: https://atomicdesign.bradfrost.com",
 			"rdfs:label": "atom UI element"
 		},
 		{
@@ -410,7 +410,7 @@
 					"@id": "ldui:UIElement"
 				}
 			],
-			"comment": "A Molecule as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+			"comment": "A Molecule UI element is the second smallest type of element, as understood by the Atomic Design Methodology. One Molecule UI element is made up of groups of Atoms, and form Organism UI Elements when combined with other molecules",
 			"rdfs:label": "molecule UI element"
 		},
 		{
@@ -2048,10 +2048,10 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A rectangle is a type of Shape very common in interface design to create 'boxes' of dfferent sizes and aspect ratios. Their relative sizes and positions usually make up most of the layout. For users, boxes with rounded corners are easier to mentally process.",
 			"rdfs:label": "rectangle"
 		}, {
-			"@id": "ldui:Ellipsis",
+			"@id": "ldui:Ellipse",
 			"@type": "rdfs:Class",
 			"rdfs:subClassOf": [{
 					"@id": "rdfs:Class"
@@ -2060,8 +2060,8 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
-			"rdfs:label": "ellipsis"
+			"comment": "An Ellipse is a type of Shape similar to a Circle, but squished. Easily confused with ellipsis, which are words in a sentence that are omitted, but would be needed for grammatical correctness. In CSS, ellipsis can be used for a text-overflow to create dots at the end of text that is cut by the layout.",
+			"rdfs:label": "ellipse"
 		}, {
 			"@id": "ldui:Star",
 			"@type": "rdfs:Class",
@@ -2072,7 +2072,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Star is a type of Shape that is often used for indicating a favorite, in which it is colored yellow. A number of 1-5 stars usually communicates a rating of some sort. To indicate that a favorite is not set or a rating doesn't have full stars, the remaining stars are often grey and outlined, while the favorite or 'achieved' stars are filled and yellow.",
 			"rdfs:label": "star"
 		},
 
@@ -2087,7 +2087,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A navigation bar is a type of Molecule UI Element that...",
 			"rdfs:label": "navigation bar"
 		}, {
 			"@id": "ldui:Tooltip",
