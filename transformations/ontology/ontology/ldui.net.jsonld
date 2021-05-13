@@ -2087,7 +2087,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A navigation bar is a type of Molecule UI Element that...",
+			"comment": "A navigation bar is a type of Molecule UI Element that guides users through main parts of the application. It often tells the users which part they are currently at, where to go and sometimes where they come from. Most commonly placed on top, but can also be found on either side of the screen. Navigation Elements often minify to increase the space for other interactions. Also referred to as an App-Bar when visible throughout the application.",
 			"rdfs:label": "navigation bar"
 		}, {
 			"@id": "ldui:Tooltip",
@@ -2099,7 +2099,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A tooltip is ",
 			"rdfs:label": "tool-tip"
 		}, {
 			"@id": "ldui:Searchbar",
