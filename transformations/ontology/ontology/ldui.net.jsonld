@@ -1925,7 +1925,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "Checkboxes are UI elements to select one or more values from several options. They are typically displayed as a small box in which a check mark is placed if it 'isChecked'. If the checkbox is part of a group, clicking it will change the selectedSet.",
+			"comment": "Checkboxes are UI elements to select one or more values from several options. They are typically displayed as a small box in which a check mark is placed if it 'isChecked'. If the checkbox is part of a group, clicking it will change the selectedSet. Checkboxes are independent, contrary to RadioButtons",
 			"rdfs:label": "checkbox"
 		}, {
 			"@id": "ldui:Radiobutton",
@@ -2135,7 +2135,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Dialog is a type of Molecule UI Element shown overlaying the rest of the application, calling for the users direct attention. It informs users about a task and can require decisions, or involve multiple tasks. If it isModal, the user has to interact before continuing to use the application.",
 			"rdfs:label": "dialog"
 		}, {
 			"@id": "ldui:Step",
@@ -2147,7 +2147,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Step is a type of Molecule UI Element which guides users through the steps of a task or workflow. Multiple steps combined form a wizard, which helps to break down long and complex processes: Breaking a complex task into smaller steps can improve conversion.",
 			"rdfs:label": "step"
 		}, {
 			"@id": "ldui:Divider",
@@ -2159,7 +2159,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Divider is a type of Molecule UI Element which seperates content into clear groups. The simplest form is a horizontal line to split content, but more sophisticated dividers can include branding elements. Useful for creating scroll-to-bottom-of-section UX of a page.",
 			"rdfs:label": "divider"
 		}, {
 			"@id": "ldui:Dropdown",
@@ -2171,7 +2171,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Dropdown is a type of Molecule UI Element which lets users select one item of a set, changing the selectedIndex-property. More sophisticated dropdowns allow selecting multipe items, changing the selectedSet. The type of items can range from text to thumbnails of images and more.",
 			"rdfs:label": "drop-down"
 		}, {
 			"@id": "ldui:Pagination",
@@ -2183,7 +2183,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Pagination is a type of Molecule UI Element which is used to break down long content into pages, usually on websites. It often features a back-and-forth navigation, the current page number and close page numbers. Pagination can be placed both on top or at the bottom of the paginated content.",
 			"rdfs:label": "pagination"
 		},
 
