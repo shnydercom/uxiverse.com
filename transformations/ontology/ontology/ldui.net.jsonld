@@ -2297,7 +2297,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Container UI Element can hold other UI elements, and as such is a general class. Most of the time you'd want a more specialized container such as list, grid or table.",
 			"rdfs:label": "container"
 		}, {
 			"@id": "ldui:Table",
@@ -2309,7 +2309,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows.",
 			"rdfs:label": "table"
 		}, {
 			"@id": "ldui:Grid",
@@ -2321,7 +2321,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Grid is a container that shows other UI elements in rows and columns, independently of another. If the row and column-number have meaning, use a Table instead.",
 			"rdfs:label": "grid"
 		}, {
 			"@id": "ldui:SingleSelection",
@@ -2357,7 +2357,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A ColumnHeader is a container that is displayed on the top row of a table, showing the name of that column and often controls for sorting, filtering and ordering.",
 			"rdfs:label": "column header"
 		},
 
@@ -2372,7 +2372,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "An A/B test is an important tool for improving UX based on data. In such a test, the users are presented with almost identical versions of a page, and only one aspect is varied. Interaction data is collected and compared between both versions. Analysing A/B-tests rely on statistical methods, so one needs a high number of views to yield meaningful results. Testing more than two versions (A/B/C-tests) is possible, but harder to analyze, and even more views are needed.",
 			"rdfs:label": "A/B test"
 		}, {
 			"@id": "ldui:Form",
@@ -2482,7 +2482,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "An A-version is one of the two versions tested in an A/B-Test. The A-version is usually the status quo of the application, and the B-version the changed one that's hoped to bring improved conversion.",
 			"rdfs:label": "A-version"
 		},
 		{
@@ -2494,7 +2494,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A B-version is one of the two versions tested in an A/B-Test. The B-version is usually the 'new' version that is tested against the status quo, which is called the A-version.",
 			"rdfs:label": "B-version"
 		},
 
@@ -2535,7 +2535,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "An ARIA label is an accessibility feature that helps visually impaired users understand and use a UI control. Blind users use screen readers to navigate User Interfaces, so concise, readable text helps users navigate the application.",
 			"rdfs:label": "aria label"
 		}, {
 			"@id": "ldui:moreInfo",
@@ -2557,7 +2557,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "An ARIA value text is an accessibility feature that serves as a text alternative to visually communicated values. E.g. a progress bar could read out the percentage, a slider the current value and the minimum, maximum and stepsize.",
 			"rdfs:label": "value text"
 		},
 
