@@ -2099,7 +2099,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A tooltip is ",
+			"comment": "A tooltip is a type of Molecule UI Element that displays informative text when users hover over, focus on, or tap a UI Element. When activated, Tooltips display brief information on how to use the element, or what it is. Tooltips often only contain text, but in some cases even contain explainer-videos.",
 			"rdfs:label": "tool-tip"
 		}, {
 			"@id": "ldui:Searchbar",
@@ -2111,20 +2111,8 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A search bar is a type of Molecule UI Element that lets users enter search terms. Users often use this to navigate to content directly, or get recomendations to see what the site has to offer. Often accompanied by a magnifying lens icon or a button next it. Clicking the button or hitting the 'Enter'-key on a keyboard are well-understood interactions. Auto-completing the search terms is becoming more common as well.",
 			"rdfs:label": "search bar"
-		}, {
-			"@id": "ldui:Searchfield",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
-				},
-				{
-					"@id": "ldui:"
-				}
-			],
-			"comment": "",
-			"rdfs:label": "search field"
 		}, {
 			"@id": "ldui:Thumbnail",
 			"@type": "rdfs:Class",
@@ -2135,7 +2123,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A thumbnail is a type of Molecule UI Element that is a miniature graphic which opens or links to a full image or other visual content. Thumbnails can be auto-generated from the full content or custom, show parts of it on hover. This is especially useful for previewing video-content.",
 			"rdfs:label": "thumbnail"
 		}, {
 			"@id": "ldui:Dialog",

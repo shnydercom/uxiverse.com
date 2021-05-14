@@ -188,7 +188,6 @@ UIElement/MoleculeUIElement
 - NavigationBar
 - Tooltip
 - Searchbar
-- Searchfield
 - Thumbnail
 - Dialog
 - Step
