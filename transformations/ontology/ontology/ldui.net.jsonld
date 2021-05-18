@@ -2510,7 +2510,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "unordered slots of containers are places where UI elements can go without a particular order",
 			"rdfs:label": "unordered slots"
 		},
 		{
@@ -2522,7 +2522,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "ordered slots of containers are places where UI elements can go in a particular order",
 			"rdfs:label": "ordered slots"
 		},
 		//a11y
@@ -2546,7 +2546,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A 'more info'-text can be shown as the text in a Tooltip or other helpful element, when the user needs clarification about a UI element or step in a process. This can include helptext, or describe what will happen when the user takes the next step.",
 			"rdfs:label": "more info"
 		}, {
 			"@id": "ldui:valueText",
@@ -2572,7 +2572,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Comment Action describes the act of creating a comment about a subject. CommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Go to https://schema.org/CommentAction for more details.",
 			"rdfs:label": "comment action"
 		}, {
 			"@id": "ldui:ReplyAction",
@@ -2584,7 +2584,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A ReplyAction is similar to a CommentAction, and refers to the act of responding to a question/message asked/sent by the object. Go to https://schema.org/ReplyAction for more details.",
 			"rdfs:label": "reply action"
 		}, {
 			"@id": "ldui:ReactAction",
@@ -2596,7 +2596,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A ReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Go to https://schema.org/ReactAction for more info.",
 			"rdfs:label": "react action"
 		},
 
