@@ -2285,7 +2285,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A List is a Container UI Element which shows its content in either a vertical or horizontal order. The order doesn't have to be important, but if it is, consider sorting or filtering controls. Compare with Grids and Tables if your content can grow horizontally and vertically.",
 			"rdfs:label": "list"
 		}, {
 			"@id": "ldui:Container",
@@ -2333,7 +2333,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Single Selection is a Container UI Element which is part of a controlling element that only allows one item inside the container to be selected. Selection can be indicated by borders, colors, size or texture, but a SelectedIndex should be included for accessibility.",
 			"rdfs:label": "single selection"
 		}, {
 			"@id": "ldui:MultiSelection",
@@ -2345,7 +2345,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A MultiSelection is a Container UI element which is part of a controlling element that allows many items inside it to be selected. Selection can be indicated visually, but a SelectedSet should be included for accessibility.",
 			"rdfs:label": "multiple selection"
 		}, {
 			"@id": "ldui:ColumnHeader",
@@ -2384,7 +2384,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Form is a Structural UI Element that users can use to submit information. The UI elements inside forms are often referred to as inputs or form controls. To aid the user, inputs and form controls can limit the selectable options or validate user input and display help.",
 			"rdfs:label": "form"
 		}, {
 			"@id": "ldui:Template",
@@ -2408,7 +2408,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A page is a Structural UI Element that used to describe the data that is found at a single URL. With responsive applications and single-page web apps loading and changing that data is possible. Colloquially, the term is often used to summarize content structure, like Master/Detail-page, or may refer to a number of sub-pages, e.g. if a checkout process is called 'checkout page'.",
 			"rdfs:label": "page"
 		}, {
 			"@id": "ldui:Placeholder",
@@ -2420,7 +2420,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Placeholder is a Structural UI Element that is displayed in the position of the 'actual' content. A UI Element in the skeleton state is one example, another example would be placeholder text that shows 'Jane Doe' in an input field for user name.",
 			"rdfs:label": "placeholder"
 		}, {
 			"@id": "ldui:Context",
@@ -2468,7 +2468,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Autocomplete is a Structural UI Element that is most commonly used with search bars, showing longer text after a short user input text. When the user input is likely imperfect or can only match a number of values, auto-correcting saves effort for cleaning data. Examples would be converting pen strokes to common shapes in a design tool or code completion in a coding tool (IDE).",
 			"rdfs:label": "auto-complete"
 		},
 
