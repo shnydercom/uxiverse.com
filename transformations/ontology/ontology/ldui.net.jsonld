@@ -1484,7 +1484,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A UI element is in a minified state when it is displayed in a size between maximized and mini-mized- state. Mini-fied- would be a window that fills part of the screen, mini-mized- would be an indicator in the task bar",
+			"comment": "A UI element is in a minified state when it is displayed in a size smaller than its ideal display. That is usually somewhere between the size of maximized and mini-mized- state. Mini-fied- would be a window that fills part of the screen, mini-mized- would be an indicator in the task bar",
 			"rdfs:label": "minified state"
 		}, {
 			"@id": "ldui:ExpandedState",
@@ -1496,7 +1496,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A UI Element is in an expanded state when it is displayed in a size larger than its ideal display. For an accordeon menu, an open section would be in an expanded state rather than maximized state.",
 			"rdfs:label": "expanded state"
 		}, {
 			"@id": "ldui:MaximizedState",
@@ -2198,7 +2198,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Header is a type of Organism UI Element that contains UI Elements for the most common actions on a page, and is placed at the top. Beware that the term 'Header' or 'head' is also used for the invisible, technical part of documents which contain info like keywords (html), dates (photo taken) or login-info.",
 			"rdfs:label": "header"
 		}, {
 			"@id": "ldui:Footer",
@@ -2210,7 +2210,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Footer is a type of Organism UI Element that contains UI elements for the least commonly used information, at the bottom of a page. Leaving it out is often not an option, because of legal requirements etc. Information such as imprint or contact info is so commonly found at the bottom that users who want to search for it directly scroll to the bottom.",
 			"rdfs:label": "footer"
 		}, {
 			"@id": "ldui:Section",
@@ -2222,7 +2222,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Section is a type of Organism UI Element that contains UI elements that semantically belong together, and form a part of a page. Because sections are unspecific, it should have a Heading to describe its content, and make it easier for visually impaired users to navigate your content.",
 			"rdfs:label": "section"
 		}, {
 			"@id": "ldui:Card",
@@ -2249,7 +2249,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Directory Structure or folder structure is a Container UI Element that shows an editable hierarchy of files and folders. Users often use it to categorize content, and create sub-folders. It's helpful to combine this with a quick navigation for frequently or recently visited items, since these structures can be deep. If it's displayed vertically, Users might expect drag and drop to work.",
 			"rdfs:label": "directory structure"
 		}, {
 			"@id": "ldui:TreeView",
@@ -2261,7 +2261,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A TreeView is a Container UI Element that shows hierarchical structures, most commoly in a vertical direction. Can show an organization's hierarchy, a web page and its sub-pages or anything organized in a tree. For files and folders check out Directory Structure.",
 			"rdfs:label": "tree view"
 		}, {
 			"@id": "ldui:Tabs",
@@ -2273,7 +2273,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Tabs are Container UI Elements shown as a group on the same page. Only one tab is fully visible at a time, the other tabs' content can be seen by clicking another element in the tab bar which controls the group.",
 			"rdfs:label": "tabs"
 		}, {
 			"@id": "ldui:List",
