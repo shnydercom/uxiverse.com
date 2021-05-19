@@ -2234,7 +2234,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Card is a type of Organism UI Element that groups content and controls about a single subject. Most commonly, cards separate themselves from the surrounding elements with an outline or raised appearance.",
 			"rdfs:label": "card"
 		},
 
@@ -2396,7 +2396,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "A Template is a Structural UI Element that serves as a pattern to generate more, similar elements from it. Templates are meant to increase productivity, but can themself cost time if they're too restrictive or offer too complex choices for the person who's adjusting the template.",
 			"rdfs:label": "template"
 		}, {
 			"@id": "ldui:Page",
@@ -2432,7 +2432,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Contexts are Structural UI Elements that define the environment in which other UI Elements exist. Switching between dark and light themes is often achieved with context. E.g. not showing all streamable movies at your travel destination is a result of a location context.",
 			"rdfs:label": "context"
 		}, {
 			"@id": "ldui:Scope",
@@ -2444,7 +2444,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Scopes are Structural UI Elements that define the range of operation for their sub-elements. E.g. each user gets their own user-scope when they access their profile at example.com/myprofile, so the application will return different users when it accesses the 'currentUser' profile. To avoid confusion: In project management, this term is understood as the scope of work needed to finish a project. It can also mean different viewing instruments, microscope etc.",
 			"rdfs:label": "scope"
 		}, {
 			"@id": "ldui:Constraint",
@@ -2456,7 +2456,7 @@
 					"@id": "ldui:"
 				}
 			],
-			"comment": "",
+			"comment": "Constraints are Structural UI Elements that limit the movement, or restrict in other ways other UI Elements. E.g. centering, aligning, cutting off text etc. are all examples of constraints. A good balance between dynamic and fixed constraints can make responsive designs flexible but calm.",
 			"rdfs:label": "constraint"
 		}, {
 			"@id": "ldui:Autocomplete",
@@ -2756,7 +2756,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A desctiption flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
+			"rdfs:comment": "A description flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
 			"rdfs:label": "is progress"
 		},
 
@@ -2770,7 +2770,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A result is an outcome property to tell the user what consequences their actions have. Can refer to the result in a currency calculator app, a finished user profile as a result of editing, or a fulfilled workflow after performing a sequence of tasks.",
 			"rdfs:label": "result"
 		}, {
 			"@id": "ldui:output",
@@ -2781,7 +2781,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents.",
 			"rdfs:label": "output"
 		}, {
 			"@id": "ldui:status",
