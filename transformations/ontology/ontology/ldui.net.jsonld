@@ -1726,7 +1726,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Priority is a property on an UI Element to order elements towards the user. The order expresses relative significance over other elements. For absolute ordering, check out Importance.",
 			"rdfs:label": "priority"
 		},
 		{
@@ -1738,7 +1738,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Importance is a property on an UI Element to order elements toward the user. The order expresses a fixed significance over other elements. When issues happen in the application, Error notifications should get highest importance, followed by Warnings, and Alerts.",
 			"rdfs:label": "importance"
 		},
 
@@ -2610,7 +2610,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to indicate that a UI Element stands out and is readily noticeable, such as a red CTA-button. An example where isProminent switches from one UI Element to another are tutorial-UIs, where the user can see the full UI, but only click the explained part.",
 			"rdfs:label": "is prominent"
 		}, {
 			"@id": "ldui:isRaised",
@@ -2621,7 +2621,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag that has its origin in Material Design and the visual metaphor of paper lying on top of other paper. A raised UI Element is an element that's one paper layer above, with a slight shadow, but it's 'glued' to the layer below.",
 			"rdfs:label": "is raised"
 		}, {
 			"@id": "ldui:isDense",
@@ -2632,7 +2632,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to indicate if a Container UI Element should display its content with less space between elements, or smaller elements, smaller fonts sizes etc. This can be useful on different screen sizes, or when a mouse is available for more precise pointing. Power users often prefer a denser UI with less guidance. Lesser used control elements can be grouped like this as well, while keeping them on screen.",
 			"rdfs:label": "is dense"
 		}, {
 			"@id": "ldui:isMini",
@@ -2792,7 +2792,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Status is a property of a UI Element to tell the user what happened in the application. 404 pages display technical status. The green or yellow dot in chat applications display user statuses.",
 			"rdfs:label": "status"
 		},
 
@@ -2806,7 +2806,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Menu is a property of a Container UI Element that tells the user that this part of the container is used as a way to control the rest of the container.",
 			"rdfs:label": "menu"
 		}, {
 			"@id": "ldui:settings",
@@ -2817,7 +2817,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "Settings is a property of a Container UI Element that affect not only this container, but apply to similar parts of the application elsewhere.",
 			"rdfs:label": "settings"
 		},
 		//SemanticProperty/ContextProperty
@@ -2830,7 +2830,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A role is a context property, summarizing a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
 			"rdfs:label": "role"
 		}, {
 			"@id": "ldui:user",
@@ -2841,7 +2841,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
 			"rdfs:label": "user"
 		}, {
 			"@id": "ldui:group",
@@ -2852,7 +2852,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
 			"rdfs:label": "group"
 		}
 	]
