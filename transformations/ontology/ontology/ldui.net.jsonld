@@ -2643,7 +2643,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to indicate if an Element is minimized or maximized. Compare with minimizedState and maximizedState, and minifiedState.",
 			"rdfs:label": "is mini"
 		}, {
 			"@id": "ldui:isPrimary",
@@ -2654,7 +2654,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to switch an element between being a primary element or not.",
 			"rdfs:label": "is primary"
 		}, {
 			"@id": "ldui:isSecondary",
@@ -2665,7 +2665,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to switch an element between being a secondary element or not.",
 			"rdfs:label": "is secondary"
 		}, {
 			"@id": "ldui:isTertiary",
@@ -2676,7 +2676,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to switch an element between being a tertiary element or not.",
 			"rdfs:label": "is tertiary"
 		}, {
 			"@id": "ldui:isCurrent",
@@ -2687,7 +2687,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to indicate if an element shows current status/value or not. E.g. while the user drags a Slider, the current value might be displayed over the pointer. The current value may get validated, but data in other parts of the application should only be updated after the user doesn't press the slider any more.",
 			"rdfs:label": "is current"
 		}, {
 			"@id": "ldui:isOverlay",
@@ -2698,7 +2698,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag for UI Elements overlaying other UI Elements. It can be used with Dialogs, Popovers, Dropdowns, etc.",
 			"rdfs:label": "is overlay"
 		}, {
 			"@id": "ldui:isHidden",
@@ -2709,7 +2709,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to toggle the visibility of an UI Element. If you want to transition between visibility states, you can use opacity for fading, size for shrinking and growing, or 3D transformations for flipping. Transitions tell the user what happened to an element, when hiding the user should be shown how to un-hide.",
 			"rdfs:label": "is hidden"
 		}, {
 			"@id": "ldui:isModal",
@@ -2720,7 +2720,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A hierarchy flag to toggle an element as modal. Modal Elements are a way to force users to interact with a UI element, they show content in front of the rest of the application and don't allow any input apart from the front element. The background is often dimmed or greyed out. Modals must be tested for accessibility, since they can trap a user.",
 			"rdfs:label": "is modal"
 		},
 
@@ -2734,7 +2734,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A description flag to mark an element as help-content. This is useful e.g. for tooltips, and setting such a flag can be helpful to hide onboarding-content from experienced users, giving back space to the designer.",
 			"rdfs:label": "is help"
 		}, {
 			"@id": "ldui:isContent",
@@ -2745,7 +2745,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A description flag to mark an element as containing content as opposed to layout or navigation elements. Parts of the UI that are content can go into SEO efforts, or be interesting for a editors, who would want to edit it in a content management system.",
 			"rdfs:label": "is content"
 		}, {
 			"@id": "ldui:isProgress",
@@ -2756,7 +2756,7 @@
 			"schema:rangeIncludes": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "",
+			"rdfs:comment": "A desctiption flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
 			"rdfs:label": "is progress"
 		},
 
