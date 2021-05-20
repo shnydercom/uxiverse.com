@@ -27,6 +27,9 @@ DataType/BooleanType
 - isDisabled
 - isEnabled
 
+# Color info properties
+DataType/ColorCodeType
+
 # Numeric info properties
 DataTypeProperty/NumericTypeProperty
 - min
