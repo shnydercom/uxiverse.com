@@ -14,6 +14,7 @@
 			"@type": "@id"
 		},
 		"Class": "rdfs:Class",
+		"Property": "rdf:Property",
 		"range": {
 			"@id": "rdfs:range",
 			"@type": "@id"
@@ -461,7 +462,7 @@
 		},
 		{
 			"@id": "ldui:variation",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:ABTest"
 			},
@@ -473,7 +474,7 @@
 		},
 		{
 			"@id": "ldui:triggers",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:Button"
 			},
@@ -485,7 +486,7 @@
 		},
 		{
 			"@id": "ldui:slot",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:Container"
 			},
@@ -497,7 +498,7 @@
 		},
 		{
 			"@id": "ldui:a11y",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:Element"
 			},
@@ -588,7 +589,7 @@
 
 		{
 			"@id": "ldui:multipleValues",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
@@ -600,7 +601,7 @@
 		},
 		{
 			"@id": "ldui:valueName",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
@@ -612,7 +613,7 @@
 		},
 		{
 			"@id": "ldui:defaultValue",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
@@ -626,7 +627,7 @@
 		},
 		{
 			"@id": "ldui:valueRequired",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
@@ -638,7 +639,7 @@
 		},
 		{
 			"@id": "ldui:readonlyValue",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
@@ -651,7 +652,7 @@
 
 		{
 			"@id": "ldui:isActive",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -663,7 +664,7 @@
 		},
 		{
 			"@id": "ldui:isInactive",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -675,7 +676,7 @@
 		},
 		{
 			"@id": "ldui:isOn",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -688,7 +689,7 @@
 
 		{
 			"@id": "ldui:isOff",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -700,7 +701,7 @@
 		},
 		{
 			"@id": "ldui:isChecked",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -712,7 +713,7 @@
 		},
 		{
 			"@id": "ldui:isUnchecked",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -724,7 +725,7 @@
 		},
 		{
 			"@id": "ldui:isDisabled",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -736,7 +737,7 @@
 		},
 		{
 			"@id": "ldui:isEnabled",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
@@ -749,7 +750,7 @@
 
 		{
 			"@id": "ldui:min",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
@@ -761,7 +762,7 @@
 		},
 		{
 			"@id": "ldui:max",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
@@ -773,7 +774,7 @@
 		},
 		{
 			"@id": "ldui:currentValue",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
@@ -785,7 +786,7 @@
 		},
 		{
 			"@id": "ldui:stepValue",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
@@ -798,7 +799,7 @@
 
 		{
 			"@id": "ldui:valuePattern",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
@@ -810,7 +811,7 @@
 		},
 		{
 			"@id": "ldui:valueMinLength",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
@@ -822,7 +823,7 @@
 		},
 		{
 			"@id": "ldui:valueMaxLength",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
@@ -835,7 +836,7 @@
 
 		{
 			"@id": "ldui:image",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"subClassOf": {
 				"@id": "ldui:MediaDataType"
 			},
@@ -849,7 +850,7 @@
 		},
 		{
 			"@id": "ldui:audio",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"subClassOf": {
 				"@id": "ldui:MediaDataType"
 			},
@@ -865,7 +866,7 @@
 		},
 		{
 			"@id": "ldui:video",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"subClassOf": {
 				"@id": "ldui:MediaDataType"
 			},
@@ -882,7 +883,7 @@
 		// DataTypeProperty/MediaDataTypeProperty
 		{
 			"@id": "ldui:isPlaying",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"subClassOf":[{
 				"@id": "ldui:MediaDataTypeProperty"
 			}],
@@ -898,7 +899,7 @@
 		//VisualExpression
 		{
 			"@id": "ldui:color",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -909,7 +910,7 @@
 			"label": "color"
 		}, {
 			"@id": "ldui:font",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -920,7 +921,7 @@
 			"label": "font"
 		}, {
 			"@id": "ldui:italic",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -931,7 +932,7 @@
 			"label": "italic"
 		}, {
 			"@id": "ldui:bold",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -942,7 +943,7 @@
 			"label": "bold"
 		}, {
 			"@id": "ldui:underlined",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -953,7 +954,7 @@
 			"label": "underlined"
 		}, {
 			"@id": "ldui:background",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -964,7 +965,7 @@
 			"label": "background"
 		}, {
 			"@id": "ldui:highlight",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -978,7 +979,7 @@
 		//Some
 		{
 			"@id": "ldui:selectedIndex",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -989,7 +990,7 @@
 			"label": "selected index"
 		}, {
 			"@id": "ldui:activeTabIndex",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -1000,7 +1001,7 @@
 			"label": "index of active tab"
 		}, {
 			"@id": "ldui:selectedSet",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -1011,7 +1012,7 @@
 			"label": "selected set"
 		}, {
 			"@id": "ldui:unselectedSet",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -1737,7 +1738,7 @@
 		//IssueSeverity
 		{
 			"@id": "ldui:priority",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -1749,7 +1750,7 @@
 		},
 		{
 			"@id": "ldui:importance",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2493,7 +2494,7 @@
 		//variation
 		{
 			"@id": "ldui:aVersion",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2505,7 +2506,7 @@
 		},
 		{
 			"@id": "ldui:bVersion",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2521,7 +2522,7 @@
 		//slot
 		{
 			"@id": "ldui:unorderedSlots",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2533,7 +2534,7 @@
 		},
 		{
 			"@id": "ldui:orderedSlots",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2546,7 +2547,7 @@
 		//a11y
 		{
 			"@id": "ldui:ariaLabel",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2557,7 +2558,7 @@
 			"label": "aria label"
 		}, {
 			"@id": "ldui:moreInfo",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2568,7 +2569,7 @@
 			"label": "more info"
 		}, {
 			"@id": "ldui:valueText",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2621,7 +2622,7 @@
 		//SemanticFlag/HierarchyFlag
 		{
 			"@id": "ldui:isProminent",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2632,7 +2633,7 @@
 			"label": "is prominent"
 		}, {
 			"@id": "ldui:isRaised",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2643,7 +2644,7 @@
 			"label": "is raised"
 		}, {
 			"@id": "ldui:isDense",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2654,7 +2655,7 @@
 			"label": "is dense"
 		}, {
 			"@id": "ldui:isMini",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2665,7 +2666,7 @@
 			"label": "is mini"
 		}, {
 			"@id": "ldui:isPrimary",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2676,7 +2677,7 @@
 			"label": "is primary"
 		}, {
 			"@id": "ldui:isSecondary",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2687,7 +2688,7 @@
 			"label": "is secondary"
 		}, {
 			"@id": "ldui:isTertiary",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2698,7 +2699,7 @@
 			"label": "is tertiary"
 		}, {
 			"@id": "ldui:isCurrent",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2709,7 +2710,7 @@
 			"label": "is current"
 		}, {
 			"@id": "ldui:isOverlay",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2720,7 +2721,7 @@
 			"label": "is overlay"
 		}, {
 			"@id": "ldui:isHidden",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2731,7 +2732,7 @@
 			"label": "is hidden"
 		}, {
 			"@id": "ldui:isModal",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2745,7 +2746,7 @@
 		//SemanticFlag/DescriptionFlag
 		{
 			"@id": "ldui:isHelp",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2756,7 +2757,7 @@
 			"label": "is help"
 		}, {
 			"@id": "ldui:isContent",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2767,7 +2768,7 @@
 			"label": "is content"
 		}, {
 			"@id": "ldui:isProgress",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2781,7 +2782,7 @@
 		//SemanticProperty/OutcomeProperty
 		{
 			"@id": "ldui:result",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2792,7 +2793,7 @@
 			"label": "result"
 		}, {
 			"@id": "ldui:output",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2803,7 +2804,7 @@
 			"label": "output"
 		}, {
 			"@id": "ldui:status",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2817,7 +2818,7 @@
 		//SemanticProperty/NavigationProperty
 		{
 			"@id": "ldui:menu",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2828,7 +2829,7 @@
 			"label": "menu"
 		}, {
 			"@id": "ldui:settings",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2841,7 +2842,7 @@
 		//SemanticProperty/ContextProperty
 		{
 			"@id": "ldui:role",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2852,7 +2853,7 @@
 			"label": "role"
 		}, {
 			"@id": "ldui:user",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
@@ -2863,7 +2864,7 @@
 			"label": "user"
 		}, {
 			"@id": "ldui:group",
-			"@type": "rdf:Property",
+			"@type": "Property",
 			"canExistOnType": {
 				"@id": "ldui:"
 			},
