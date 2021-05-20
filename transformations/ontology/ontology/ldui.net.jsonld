@@ -13,6 +13,7 @@
 			"@id": "rdfs:domain",
 			"@type": "@id"
 		},
+		"Class": "rdfs:Class",
 		"range": {
 			"@id": "rdfs:range",
 			"@type": "@id"
@@ -27,6 +28,12 @@
 			"@type": "@id",
 			"@container": "@set"
 		},
+		"canBeOfType": {
+			"@id": "schema:rangeIncludes"
+		},
+		"canExistOnType": {
+			"@id": "schema:domainIncludes"
+		},
 		"seeAlso": {
 			"@id": "rdfs:seeAlso",
 			"@type": "@id"
@@ -35,2467 +42,2478 @@
 	"@id": "http://ldui.net/ontology",
 	"defines": [{
 			"@id": "schema:Thing",
-			"@type": "rdfs:Class",
-			"rdfs:comment": "The most generic type of item. Duplicate of schema:Thing-ontology, deprecate as soon as possible",
-			"rdfs:label": "Thing"
+			"@type": "Class",
+			"comment": "The most generic type of item. Duplicate of schema:Thing-ontology, deprecate as soon as possible",
+			"label": "Thing"
 		},
 		{
 			"@id": "ldui:Element",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-				"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+				"@id": "Class"
 			}],
-			"rdfs:comment": "The root for all Classes in the ldui ontology, both as part of the UI or not",
-			"rdfs:label": "element"
+			"comment": "The root for all Classes in the ldui ontology, both as part of the UI or not",
+			"label": "element"
 		},
 		{
 			"@id": "ldui:DataType",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root class for all DataTypes. E.g. on/off -> true/false in the case of BooleanType",
-			"rdfs:label": "data type"
+			"label": "data type"
 		},
 		{
 			"@id": "ldui:DataTypeProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root class for all DataTypeProperties, describing a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
-			"rdfs:label": "data type property"
+			"label": "data type property"
 		},
 		{
 			"@id": "ldui:UIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root class for all User Interface elements",
-			"rdfs:label": "UI element"
+			"label": "UI element"
 		},
 		{
 			"@id": "ldui:Action",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root Action class, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:CommentAction",
-			"rdfs:label": "action"
+			"label": "action"
 		},
 		{
 			"@id": "ldui:State",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The state of a UIElement",
-			"rdfs:label": "state"
+			"label": "state"
 		},
 		{
 			"@id": "ldui:SemanticFlag",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
-			"rdfs:label": "semantic flag"
+			"label": "semantic flag"
 		},
 		{
 			"@id": "ldui:SemanticProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu, role, group",
-			"rdfs:label": "semantic property"
+			"label": "semantic property"
 		},
 
 		{
 			"@id": "ldui:PropertyValueSpecification",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "similar to schema:PropertyValueSpecification, but contains only a subset of properties. Some of the properties went into NumericTypeProperty and others",
-			"rdfs:label": "property value specification"
+			"label": "property value specification"
 		},
 		{
 			"@id": "ldui:BooleanType",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:DataType"
 				}
 			],
 			"comment": "Data type: Boolean. Human-readable terms like on/off, true/false have this as a supertype",
-			"rdfs:label": "boolean type"
+			"label": "boolean type"
 		},
 		{
 			"@id": "ldui:NumericTypeProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:DataTypeProperty"
 				}
 			],
 			"comment": "Human-readable numeric values can have min/max/current properties to describe them more closely",
-			"rdfs:label": "numeric type property"
+			"label": "numeric type property"
 		},
 		{
 			"@id": "ldui:TextTypeProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:DataTypeProperty"
 				}
 			],
 			"comment": "Human-readable text values can have properties such as valueMinLength and valueMaxLength to describe them more closely",
-			"rdfs:label": "text type property"
+			"label": "text type property"
 		},
 		{
 			"@id": "ldui:MediaDataType",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:DataType"
 				}
 			],
 			"comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
-			"rdfs:label": "media data type"
+			"label": "media data type"
 		},
 		{
 			"@id": "ldui:MediaDataTypeProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:DataTypeProperty"
 				}
 			],
 			"comment": "Properties of a ldui:MediaType, like isPlaying",
-			"rdfs:label": "media data type property"
+			"label": "media data type property"
 		},
 		{
 			"@id": "ldui:VisualExpression",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
-			"rdfs:label": "visual expression"
+			"label": "visual expression"
 		},
 		{
 			"@id": "ldui:Some",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "When multiple options are present, ldui:Some is a super-class for a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
-			"rdfs:label": "some"
+			"label": "some"
 		},
 		{
 			"@id": "ldui:UserActionState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:State"
 				}
 			],
 			"comment": "When the user interacts with the application, the application changes its state as a consequence",
-			"rdfs:label": "user action state"
+			"label": "user action state"
 		},
 		{
 			"@id": "ldui:UserAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Action"
 				}
 			],
 			"comment": "The root action class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
-			"rdfs:label": "user action"
+			"label": "user action"
 		},
 		{
 			"@id": "ldui:DeviceSpecificAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UserAction"
 				}
 			],
 			"comment": "The root Action class for any interactions that are specific to the device type. E.g. KeyDownAction, ChangeOrientationAction",
-			"rdfs:label": "device specific action"
+			"label": "device specific action"
 		},
 		{
 			"@id": "ldui:MediaAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UserAction"
 				}
 			],
 			"comment": "Actions that the user can do with media which is embedded in html, like RecordAction, DownloadAction, StartAction, PauseAction",
-			"rdfs:label": "media action"
+			"label": "media action"
 		},
 		{
 			"@id": "ldui:MediaPartAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UserAction"
 				}
 			],
 			"comment": "Actions for part of a medium, e.g. AnnotateAction for an interesting part of a recording",
-			"rdfs:label": "media part action"
+			"label": "media part action"
 		},
 		{
 			"@id": "ldui:UIElementState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:State"
 				}
 			],
 			"comment": "When the user interacts with an UI element, that element changes its state as a consequence",
-			"rdfs:label": "ui element state"
+			"label": "ui element state"
 		},
 		{
 			"@id": "ldui:UIStack",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElementState"
 				}
 			],
 			"comment": "UIStack is an approach to interface design that includes non-ideal states. These can happen through user interaction or for technical reasons. It includes layers of state, and has been authored by Scott Hurff: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
-			"rdfs:label": "UI stack"
+			"label": "UI stack"
 		},
 		{
 			"@id": "ldui:UIElementTransitionState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElementState"
 				}
 			],
 			"comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states. It is generally helpful for the user to know what's happening with the UI elements instead of instant changes",
-			"rdfs:label": "UI element transition state"
+			"label": "UI element transition state"
 		},
 		{
 			"@id": "ldui:IssueSeverity",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "Issue severety expresses the way to order elements towards the user's attention. It summarizes properties of priority and importance. Can be used to communicate errors and warnings",
-			"rdfs:label": "issue severity"
+			"label": "issue severity"
 		},
 		{
 			"@id": "ldui:IssueSeverityType",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:Element"
 				}
 			],
 			"comment": "Issue severity types are used for categorizing elements that need the user's immediate attention, such as Alert, Warning, Error, Incomplete and the Default type",
-			"rdfs:label": "issue severity type"
+			"label": "issue severity type"
 		},
 		{
 			"@id": "ldui:AtomUIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElement"
 				}
 			],
 			"comment": "An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: https://atomicdesign.bradfrost.com",
-			"rdfs:label": "atom UI element"
+			"label": "atom UI element"
 		},
 		{
 			"@id": "ldui:Shape",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:AtomUIElement"
 				}
 			],
 			"comment": "A Shape is an Atomic UI element that's used as a basic building block to make other UI elements. It can help express order, relation and hierarchy visually. More specialized examples are circle, triangle, rectangle etc",
-			"rdfs:label": "shape"
+			"label": "shape"
 		},
 		{
 			"@id": "ldui:MoleculeUIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElement"
 				}
 			],
 			"comment": "A Molecule UI element is the second smallest type of element, as understood by the Atomic Design Methodology. One Molecule UI element is made up of groups of Atoms, and form Organism UI Elements when combined with other molecules",
-			"rdfs:label": "molecule UI element"
+			"label": "molecule UI element"
 		},
 		{
 			"@id": "ldui:OrganismUIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElement"
 				}
 			],
 			"comment": "An Organism as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
-			"rdfs:label": "organism UI element"
+			"label": "organism UI element"
 		},
 		{
 			"@id": "ldui:ContainerUIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UIElement"
 				}
 			],
 			"comment": "A container is a UI element which contains sub-elements",
-			"rdfs:label": "container UI element"
+			"label": "container UI element"
 		},
 		{
-			"@id": "ldui:StructuralUIElement",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@id": "ldui:StructuralElement",
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
-					"@id": "ldui:UIElement"
+					"@id": "ldui:Element"
 				}
 			],
-			"comment": "Structural UI elements express structure of elements in the user interface, e.g. ABTest, Form, Template, Placeholder, Autocomplete",
-			"rdfs:label": "structural UI element"
+			"comment": "Structural elements express structure of elements in the user interface, e.g. ABTest, Form, Template, Placeholder, Autocomplete. They're not necessarily visible elements.",
+			"label": "structural element"
 		},
 		{
 			"@id": "ldui:variation",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:ABTest"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "ldui:UIElement"
 			},
-			"rdfs:comment": "variation of the same UI element, e.g. the A and B version of an A/B-test",
-			"rdfs:label": "variation"
+			"comment": "variation of the same UI element, e.g. the A and B version of an A/B-test",
+			"label": "variation"
 		},
 		{
 			"@id": "ldui:triggers",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:Button"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "ldui:UserInteraction"
 			},
-			"rdfs:comment": "The (User-inter)-Action that gets triggered by a Button",
-			"rdfs:label": "triggers"
+			"comment": "The (User-inter)-Action that gets triggered by a Button",
+			"label": "triggers"
 		},
 		{
 			"@id": "ldui:slot",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:Container"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "ldui:UIElement"
 			},
-			"rdfs:comment": "A slot is a space on a container for sub-elements",
-			"rdfs:label": "slot"
+			"comment": "A slot is a space on a container for sub-elements",
+			"label": "slot"
 		},
 		{
 			"@id": "ldui:a11y",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:Element"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "ldui:Element"
 			},
-			"rdfs:comment": "Properties related to accessibility",
-			"rdfs:label": "accessibility"
+			"comment": "Properties related to accessibility",
+			"label": "accessibility"
 		},
 		{
 			"@id": "ldui:CommunicateAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:UserAction"
 				}
 			],
 			"comment": "Actions where two users exchange information, e.g. CommentAction, ReplyAction, ReactAction",
-			"rdfs:label": "communicate action"
+			"label": "communicate action"
 		},
 		{
 			"@id": "ldui:HierarchyFlag",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:SemanticFlag"
 				}
 			],
 			"comment": "Flags that express a hierarchical position on an element",
-			"rdfs:label": "hierarchical flag"
+			"label": "hierarchical flag"
 		},
 		{
 			"@id": "ldui:DescriptionFlag",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:SemanticFlag"
 				}
 			],
 			"comment": "Flags to express that a UI element describes something, e.g. isHelp, isContent, isProgress",
-			"rdfs:label": "descriptive flag"
+			"label": "descriptive flag"
 		},
 		{
 			"@id": "ldui:OutcomeProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:SemanticFlag"
 				}
 			],
 			"comment": "A property that holds a result, output or status",
-			"rdfs:label": "outcome property"
+			"label": "outcome property"
 		},
 		{
 			"@id": "ldui:NavigationProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:SemanticFlag"
 				}
 			],
 			"comment": "A property that holds the navigation on a UI element, e.g. menu, settings",
-			"rdfs:label": "navigation property"
+			"label": "navigation property"
 		},
 		{
 			"@id": "ldui:ContextProperty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:SemanticFlag"
 				}
 			],
 			"comment": "A property that holds the context a UI element is in, e.g. role, user, group",
-			"rdfs:label": "context property"
+			"label": "context property"
 		},
 
 		{
 			"@id": "ldui:multipleValues",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether multiple values are allowed for the property. Default is false.",
-			"rdfs:label": "multiple values"
+			"comment": "Whether multiple values are allowed for the property. Default is false.",
+			"label": "multiple values"
 		},
 		{
 			"@id": "ldui:valueName",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Text"
 			},
-			"rdfs:comment": "Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
-			"rdfs:label": "value name"
+			"comment": "Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
+			"label": "value name"
 		},
 		{
 			"@id": "ldui:defaultValue",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
-			"schema:rangeIncludes": [{
+			"canBeOfType": [{
 				"@id": "schema:Text"
 			}, {
 				"@id": "schema:Thing"
 			}],
-			"rdfs:comment": "The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.",
-			"rdfs:label": "default value"
+			"comment": "The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.",
+			"label": "default value"
 		},
 		{
 			"@id": "ldui:valueRequired",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether the property must be filled in to complete the action. Default is false.",
-			"rdfs:label": "value required"
+			"comment": "Whether the property must be filled in to complete the action. Default is false.",
+			"label": "value required"
 		},
 		{
 			"@id": "ldui:readonlyValue",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:PropertyValueSpecification"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a 'hidden' input in an HTML form.",
-			"rdfs:label": "read-only value"
+			"comment": "Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a 'hidden' input in an HTML form.",
+			"label": "read-only value"
 		},
 
 		{
 			"@id": "ldui:isActive",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is active",
-			"rdfs:label": "is active"
+			"comment": "Whether or not the element is active",
+			"label": "is active"
 		},
 		{
 			"@id": "ldui:isInactive",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is inactive",
-			"rdfs:label": "is inactive"
+			"comment": "Whether or not the element is inactive",
+			"label": "is inactive"
 		},
 		{
 			"@id": "ldui:isOn",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is on",
-			"rdfs:label": "is on"
+			"comment": "Whether or not the element is on",
+			"label": "is on"
 		},
 
 		{
 			"@id": "ldui:isOff",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is off",
-			"rdfs:label": "is off"
+			"comment": "Whether or not the element is off",
+			"label": "is off"
 		},
 		{
 			"@id": "ldui:isChecked",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is checked",
-			"rdfs:label": "is checked"
+			"comment": "Whether or not the element is checked",
+			"label": "is checked"
 		},
 		{
 			"@id": "ldui:isUnchecked",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is unchecked",
-			"rdfs:label": "is unchecked"
+			"comment": "Whether or not the element is unchecked",
+			"label": "is unchecked"
 		},
 		{
 			"@id": "ldui:isDisabled",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is disabled",
-			"rdfs:label": "is disabled"
+			"comment": "Whether or not the element is disabled",
+			"label": "is disabled"
 		},
 		{
 			"@id": "ldui:isEnabled",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:BooleanType"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the element is enabled",
-			"rdfs:label": "is enabled"
+			"comment": "Whether or not the element is enabled",
+			"label": "is enabled"
 		},
 
 		{
 			"@id": "ldui:min",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Number"
 			},
-			"rdfs:comment": "The minimal amount this numeric value can be",
-			"rdfs:label": "minimum value"
+			"comment": "The minimal amount this numeric value can be",
+			"label": "minimum value"
 		},
 		{
 			"@id": "ldui:max",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Number"
 			},
-			"rdfs:comment": "The maximal amount this numeric value can be",
-			"rdfs:label": "maximum value"
+			"comment": "The maximal amount this numeric value can be",
+			"label": "maximum value"
 		},
 		{
 			"@id": "ldui:currentValue",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Number"
 			},
-			"rdfs:comment": "The current amount a numeric value has",
-			"rdfs:label": "current value"
+			"comment": "The current amount a numeric value has",
+			"label": "current value"
 		},
 		{
 			"@id": "ldui:stepValue",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:NumericTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Number"
 			},
-			"rdfs:comment": "When a numeric value can only take amounts in steps",
-			"rdfs:label": "step value"
+			"comment": "When a numeric value can only take amounts in steps",
+			"label": "step value"
 		},
 
 		{
 			"@id": "ldui:valuePattern",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Text"
 			},
-			"rdfs:comment": "Specifies a regular expression for testing literal values according to the HTML spec. (RegEx pattern)",
-			"rdfs:label": "text pattern"
+			"comment": "Specifies a regular expression for testing literal values according to the HTML spec. (RegEx pattern)",
+			"label": "text pattern"
 		},
 		{
 			"@id": "ldui:valueMinLength",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Text"
 			},
-			"rdfs:comment": "Specifies the minimum allowed range for number of characters in a literal value.",
-			"rdfs:label": "minimal text length"
+			"comment": "Specifies the minimum allowed range for number of characters in a literal value.",
+			"label": "minimal text length"
 		},
 		{
 			"@id": "ldui:valueMaxLength",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:TextTypeProperty"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:Text"
 			},
-			"rdfs:comment": "Specifies the allowed range for number of characters in a literal value.",
-			"rdfs:label": "maximal text length"
+			"comment": "Specifies the allowed range for number of characters in a literal value.",
+			"label": "maximal text length"
 		},
 
 		{
 			"@id": "ldui:image",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"subClassOf": {
 				"@id": "ldui:MediaDataType"
 			},
-			"schema:rangeIncludes": [{
+			"canBeOfType": [{
 				"@id": "schema:ImageObject"
 			}, {
 				"@id": "schema:URL"
 			}],
-			"rdfs:comment": "An image of the item. This can be a URL or a fully described ImageObject.",
-			"rdfs:label": "image"
+			"comment": "An image of the item. This can be a URL or a fully described ImageObject.",
+			"label": "image"
 		},
 		{
 			"@id": "ldui:audio",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
-				"@id": "ldui:"
+			"subClassOf": {
+				"@id": "ldui:MediaDataType"
 			},
-			"schema:rangeIncludes": {
-				"@id": "schema:"
-			},
-			"rdfs:comment": "An embedded audio object. This can be a URL or a fully described AudioObject",
-			"rdfs:label": "audio"
+			"canBeOfType": [{
+					"@id": "schema:AudioObject"
+				},
+				{
+					"@id": "schema:URL"
+				}
+			],
+			"comment": "An embedded audio object. This can be a URL or a fully described AudioObject",
+			"label": "audio"
 		},
 		{
 			"@id": "ldui:video",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
-				"@id": "ldui:"
+			"subClassOf": {
+				"@id": "ldui:MediaDataType"
 			},
-			"schema:rangeIncludes": {
-				"@id": "schema:"
-			},
-			"rdfs:comment": "An embedded video object. This can be a URL or a VideoObject",
-			"rdfs:label": "video"
+			"canBeOfType": [{
+					"@id": "schema:" //VideoObject
+				},
+				{
+					"@id": "schema:URL"
+				}
+			],
+			"comment": "An embedded video object. This can be a URL or a VideoObject",
+			"label": "video"
 		},
 		// DataTypeProperty/MediaDataTypeProperty
 		{
 			"@id": "ldui:isPlaying",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
-				"@id": "ldui:"
+			"subClassOf":[{
+				"@id": "ldui:MediaDataTypeProperty"
+			}],
+			"canExistOnType": {
+				"@id": "ldui:MediaDataType"
 			},
-			"schema:rangeIncludes": {
-				"@id": "schema:"
+			"canBeOfType": {
+				"@id": "schema:Boolean"
 			},
-			"rdfs:comment": "Whether or not the media is playing",
-			"rdfs:label": "is playing"
+			"comment": "Whether or not the media is playing",
+			"label": "is playing"
 		},
 		//VisualExpression
 		{
 			"@id": "ldui:color",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "The color used to express a meaningful relation in the content",
-			"rdfs:label": "color"
+			"comment": "The color used to express a meaningful relation in the content",
+			"label": "color"
 		}, {
 			"@id": "ldui:font",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "The font used to express a meaningful relation in the content",
-			"rdfs:label": "font"
+			"comment": "The font used to express a meaningful relation in the content",
+			"label": "font"
 		}, {
 			"@id": "ldui:italic",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Italics are used to express importance in the text",
-			"rdfs:label": "italic"
+			"comment": "Italics are used to express importance in the text",
+			"label": "italic"
 		}, {
 			"@id": "ldui:bold",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Bold text is used to add significance to a text element",
-			"rdfs:label": "bold"
+			"comment": "Bold text is used to add significance to a text element",
+			"label": "bold"
 		}, {
 			"@id": "ldui:underlined",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Underlining text is a way of highlighting a particular portion of text",
-			"rdfs:label": "underlined"
+			"comment": "Underlining text is a way of highlighting a particular portion of text",
+			"label": "underlined"
 		}, {
 			"@id": "ldui:background",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Content of the background of the element",
-			"rdfs:label": "background"
+			"comment": "Content of the background of the element",
+			"label": "background"
 		}, {
 			"@id": "ldui:highlight",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A form of highlighting an element in relation to others",
-			"rdfs:label": "highlight"
+			"comment": "A form of highlighting an element in relation to others",
+			"label": "highlight"
 		},
 
 		//Some
 		{
 			"@id": "ldui:selectedIndex",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "The technical position of the item that the user has selected",
-			"rdfs:label": "selected index"
+			"comment": "The technical position of the item that the user has selected",
+			"label": "selected index"
 		}, {
 			"@id": "ldui:activeTabIndex",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "The technical position of the tab that the user has selected",
-			"rdfs:label": "index of active tab"
+			"comment": "The technical position of the tab that the user has selected",
+			"label": "index of active tab"
 		}, {
 			"@id": "ldui:selectedSet",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A set to express that there are multiple selected items",
-			"rdfs:label": "selected set"
+			"comment": "A set to express that there are multiple selected items",
+			"label": "selected set"
 		}, {
 			"@id": "ldui:unselectedSet",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A set to express that some items are not selected",
-			"rdfs:label": "unselected set"
+			"comment": "A set to express that some items are not selected",
+			"label": "unselected set"
 		},
 
 		//State/UserActionState
 		{
 			"@id": "ldui:HoverState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "When the user is hovering over an element, that element's state can change. E.g. useful to show that an element is interactive",
-			"rdfs:label": "hover state"
+			"label": "hover state"
 		},
 		{
 			"@id": "ldui:FocusState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "When the user is focussing an interactive element, it enters the focus state. Can happen with a mouse, with the tabulator-key or in other ways",
-			"rdfs:label": "focus state"
+			"label": "focus state"
 		},
 		{
 			"@id": "ldui:PressedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "When the user presses an interactive element, it enters the pressed state. Different from clicking, which is pressing and releasing",
-			"rdfs:label": "pressed state"
+			"label": "pressed state"
 		},
 		{
 			"@id": "ldui:DraggingState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "When the user is dragging an interactive element, it enters the dragging state. For performance reasons it is often better to show a skeleton instead of the full element",
-			"rdfs:label": "dragging state"
+			"label": "dragging state"
 		},
 		//Action/UserAction
 		{
 			"@id": "ldui:DetailAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to get more details about an element. Can mean navigating to a detailed screen, or expanding a minified element on the same page",
-			"rdfs:label": "detail action"
+			"label": "detail action"
 		},
 		{
 			"@id": "ldui:NavigateAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to navigate the application. Broadly speaking, anything telling users where they are, where to go and how to get there can be called navigation",
-			"rdfs:label": "navigate action"
+			"label": "navigate action"
 		},
 		{
 			"@id": "ldui:BrowseAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to casually look over content in the application. It's an action that doesn't need to have intent, but rather searches something of interest. Combining content the user knows with new content can drive usage of browse features",
-			"rdfs:label": "browse action"
+			"label": "browse action"
 		},
 		{
 			"@id": "ldui:FavoriteAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to mark something as a favorite item. Often the intent is to easily access that item later on, e.g. through a quick-access menu",
-			"rdfs:label": "favorite action"
+			"label": "favorite action"
 		},
 		{
 			"@id": "ldui:SaveAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to save an element. Depending on how many elements a user will save, saving can be combined with lists, folders or tags",
-			"rdfs:label": "save action"
+			"label": "save action"
 		},
 		{
 			"@id": "ldui:DragAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to drag an element. Usually combined with a drop action on another element. Typically used to move, copy or link an element to (a group of) other elements. Also check 'DraggingState'.",
-			"rdfs:label": "drag action"
+			"label": "drag action"
 		},
 		{
 			"@id": "ldui:DropAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to drop an element. Usually combined with a drag action on another element, but sometimes used to drop the same element more than once on a number of other elements, e.g. a 'brush' of images in an image editor",
-			"rdfs:label": "drop action"
+			"label": "drop action"
 		}, {
 			"@id": "ldui:ResizeAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to resize an element, can mean resizing the entire application as well",
-			"rdfs:label": "resize action"
+			"label": "resize action"
 		}, {
 			"@id": "ldui:ScrollAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to scroll through an element which is bigger than its container. Includes 'Endless scroll' action where new content is added to the end of the list as the user scrolls down",
-			"rdfs:label": "scroll action"
+			"label": "scroll action"
 		}, {
 			"@id": "ldui:DismissAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to dismiss a prompt from the application. Can be used e.g. on modals, banners, notifications as the 'little x'-button or on a button with text next to the confirm action, or swiping to dismiss",
-			"rdfs:label": "dismiss action"
+			"label": "dismiss action"
 		}, {
 			"@id": "ldui:ConfirmAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected.",
-			"rdfs:label": "confirm action"
+			"label": "confirm action"
 		}, {
 			"@id": "ldui:DeleteAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative",
-			"rdfs:label": "delete action"
+			"label": "delete action"
 		}, {
 			"@id": "ldui:ZoomAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to zoom in, out or to a specified zoom-factor. Used to magnify or minimify content and elements. UX examples range from pinch-to-zoom over 'plus and minus' buttons to pressing CTRL+scrolling",
-			"rdfs:label": "zoom action"
+			"label": "zoom action"
 		}, {
 			"@id": "ldui:AlignAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to align content to a constraint or 'proper' position. This can mean left- or right-align, to the center or another visual guide",
-			"rdfs:label": "align action"
+			"label": "align action"
 		}, {
 			"@id": "ldui:BackAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to take a step back in the navigation history or hierarchy. Not to be confused with undo/redo, which modifies the content. In mobile apps, it's often used to move up in the navigation hierarchy, back to the main menu",
-			"rdfs:label": "back action"
+			"label": "back action"
 		},
 		{
 			"@id": "ldui:UndoAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to undo a modification. Removes a step in the history of edits by the user. Not to be confused with the back action, which is used for navigation",
-			"rdfs:label": "undo action"
+			"label": "undo action"
 		},
 		{
 			"@id": "ldui:RedoAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A user action to redo a modification that was removed from the history of user-edits by an 'undo' action",
-			"rdfs:label": "redo action"
+			"label": "redo action"
 		},
 		//UserAction/DeviceSpecificAction
 		{
 			"@id": "ldui:ClickAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A click action is when a user presses and then releases an element, usually not moving the pointing device out of the element and not pressing for very long. Possibly the most common user interaction",
-			"rdfs:label": "click action"
+			"label": "click action"
 		}, {
 			"@id": "ldui:TouchDownAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A touch-down action is when a user has started touching an element with their fingers. Pointing with a finger on touch-screens is less accurate than pointing with a mouse, so browsers can handle this differently",
-			"rdfs:label": "touch down action"
+			"label": "touch down action"
 		}, {
 			"@id": "ldui:KeyDownAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A key-down action happens when a user has started pressing a key on a keybord or a hardware-key on a physical controller. Can be used for keyboard shortcuts to often-accessed functionality",
-			"rdfs:label": "key down action"
+			"label": "key down action"
 		}, {
 			"@id": "ldui:ChangeOrientationAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A change-orientation action happens when a user turns their mobile device into portrait or landscape mode. Note that users can switch this functionality off, so the actual physical orientation can be different",
-			"rdfs:label": "change orientation action"
+			"label": "change orientation action"
 		}, {
 			"@id": "ldui:SwipeAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A swipe action is a sweeping motion by the user, typically over a touchscreen. Some swipe actions might be reserved by the operating system, e.g. with multiple fingers, the back of the hand etc.",
-			"rdfs:label": "swipe action"
+			"label": "swipe action"
 		}, {
 			"@id": "ldui:PointAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A point action can be done by moving the mouse, moving or hovering the finger over a touch screen, and other physical devices that detect a user's hand movement, e.g. game controllers",
-			"rdfs:label": "point action"
+			"label": "point action"
 		},
 
 		//UserAction/MediaAction
 		{
 			"@id": "ldui:UploadAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An upload action copies media or a file from the user's device over the network. The file-selection interface is usually provided by the operating system. Files can be dragged and dropped, selected from an 'open file' dialog, or come from the 'share'-function of an operating system. Uploading may take a while or fail entirely, so indicating progress and completion is important",
-			"rdfs:label": "upload action"
+			"label": "upload action"
 		}, {
 			"@id": "ldui:DownloadAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A download action copies media or a file to the user's device. In a lot of cases there's a standard UX for downloading already. Indicating progress and completion is important to the user, in the case of a failed download it should be easy to retry. In the case of success the next action should be clear",
-			"rdfs:label": "download action"
+			"label": "download action"
 		}, {
 			"@id": "ldui:RecordAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A record action can be used to create audio or video recordings, may depend on the user's microphone(s) or camera(s), so an easy way to switch or select a recording device is useful. This action can also be used to trigger other types of recordings. Stopping and pausing the recording should also be considered",
-			"rdfs:label": "record action"
+			"label": "record action"
 		}, {
 			"@id": "ldui:StartAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A start action initiates the playback of media, or the start of a game. Can also be used to re-start after the user has paused",
-			"rdfs:label": "start action"
+			"label": "start action"
 		}, {
 			"@id": "ldui:StopAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A stop action can be used to end media playback so that a start action will initiate it from the beginning",
-			"rdfs:label": "stop action"
+			"label": "stop action"
 		}, {
 			"@id": "ldui:PauseAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A pause action can be used to halt media playback so that a start action will re-start playback from the point where it was paused. Can also be used to 'pause' a game - and save progress, adjust graphics etc.",
-			"rdfs:label": "pause action"
+			"label": "pause action"
 		},
 		//UserAction/MediaPartAction
 		{
 			"@id": "ldui:MarkAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A mark action can be used on part of media, e.g. highlighting text, chat-reactions in a live stream, beginning of a section in a podcast, etc.",
-			"rdfs:label": "mark action"
+			"label": "mark action"
 		}, {
 			"@id": "ldui:AnnotateAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An annotate action is similar to a mark action, only that it adds more information about why the media part has been marked. E.g. comments, stickers over video, reader-highlights in a blogpost, etc.",
-			"rdfs:label": "annotate action"
+			"label": "annotate action"
 		},
 		//State/UIElementState
 		{
 			"@id": "ldui:FixedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a fixed state when it can't be moved, used to indicate the opposite of loose state. This is typically the default",
-			"rdfs:label": "fixed state"
+			"label": "fixed state"
 		},
 		{
 			"@id": "ldui:LooseState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a loose state when it's movable. Opposite of fixed state",
-			"rdfs:label": "loose state"
+			"label": "loose state"
 		},
 
 		{
 			"@id": "ldui:MinifiedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a minified state when it is displayed in a size smaller than its ideal display. That is usually somewhere between the size of maximized and mini-mized- state. Mini-fied- would be a window that fills part of the screen, mini-mized- would be an indicator in the task bar",
-			"rdfs:label": "minified state"
+			"label": "minified state"
 		}, {
 			"@id": "ldui:ExpandedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI Element is in an expanded state when it is displayed in a size larger than its ideal display. For an accordeon menu, an open section would be in an expanded state rather than maximized state.",
-			"rdfs:label": "expanded state"
+			"label": "expanded state"
 		}, {
 			"@id": "ldui:MaximizedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a maximized state when its size can't grow any bigger, or it completely fills the container it's in. Check minified and minimized state as well",
-			"rdfs:label": "maximized state"
+			"label": "maximized state"
 		}, {
 			"@id": "ldui:MinimizedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a minimized state when it is only shown by a symbol representing it in its stead. Interacting with that mini-mized- symbol will show the mini-fied- or the maximized UI element. The symbol is typically smaller than the smallest minified version of this element",
-			"rdfs:label": "minimized state"
+			"label": "minimized state"
 		}, {
 			"@id": "ldui:FloatingState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a floating state when it is shown above all other elements. Typically used for the primary action of a screen on mobile devices",
-			"rdfs:label": "floating state"
+			"label": "floating state"
 		},
 
 		{
 			"@id": "ldui:OpenState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in an open state when it can be either closed or open and its detailed content is visible",
-			"rdfs:label": "open state"
+			"label": "open state"
 		}, {
 			"@id": "ldui:ClosedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a closed state when it can be either closed or open and its content is summarized",
-			"rdfs:label": "closed state"
+			"label": "closed state"
 		},
 
 		{
 			"@id": "ldui:SortedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A container in the sorted state displays its elements in order. Often a UI element outside the container is used to control the sorting, e.g. one of the headers of a column in a table",
-			"rdfs:label": "sorted state"
+			"label": "sorted state"
 		}, {
 			"@id": "ldui:UnsortedState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A container is in the unsorted state by default. Berfor a user changes the sorting, this is an option to show recommended elements, history, favorites etc, when there are many elements to sort by",
-			"rdfs:label": "unsorted state"
+			"label": "unsorted state"
 		},
 
 		{
 			"@id": "ldui:FilteredState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A container in the filtered state shows only a subset of elements. Often a UI element outside the container controls the filtering. Useful when the number of elements in each filtered group is high",
-			"rdfs:label": "filtered state"
+			"label": "filtered state"
 		}, {
 			"@id": "ldui:UnfilteredState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A container in the unfiltered state shows all elements. This the default. When the number of elements is high, consider pagination or a visual hierarchy",
-			"rdfs:label": "unfiltered state"
+			"label": "unfiltered state"
 		},
 
 		//UIElementState/UIStack
 		{
 			"@id": "ldui:BlankState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI elment is in a blank state when it has no data. Reasons can be that the user hasn't created anything yet, is a new user, has deleted all data or doesn't have accesss rights. Can also be used for when the user is offline",
-			"rdfs:label": "blank state"
+			"label": "blank state"
 		}, {
 			"@id": "ldui:LoadingState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI elment is in a loading state when data has been requested, but it isn't completely available. Loading indicators or skeleton states help when the loading time is more than a second. Displaying loading states too quickly can decrease perceived performance",
-			"rdfs:label": "loading state"
+			"label": "loading state"
 		}, {
 			"@id": "ldui:PartialState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in a partial state when some data is available, but it's not complete.  Data can be streaming and appended, or users can manually hit a 'load more' button. Another example would be the 'user is typing' indicator in chat applications",
-			"rdfs:label": "partial state"
+			"label": "partial state"
 		}, {
 			"@id": "ldui:ErrorState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element is in an error state when it received bad user input, data from the application or for technical reasons. Ideally the apllication should recover itself. If not, show options to the user",
-			"rdfs:label": "error state"
+			"label": "error state"
 		}, {
 			"@id": "ldui:IdealState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A UI element shows the ideal state which proviedes value to the user when it isn't in the blank/empty state, data has loaded completeley and no errors happened",
-			"rdfs:label": "ideal state"
+			"label": "ideal state"
 		},
 
 		//UIElementState/UIElementTransitionState
 		{
 			"@id": "ldui:ClosingState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "The closing state is entered when an open elment closes. It enters the closed state afterwards. Acoordeon menus or folder trees often use this for subtle tranistions",
-			"rdfs:label": "closing state"
+			"label": "closing state"
 		}, {
 			"@id": "ldui:OpeningState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "The opening state is entered when a closed element opens. It enters the open state afterwards. If UI elements are pushed out of the way by the opening animation, a skeleton of the appearing content is useful",
-			"rdfs:label": "opening state"
+			"label": "opening state"
 		}, {
 			"@id": "ldui:SkeletonState",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "The skeleton state is a way of showing positions and layout of content before it is loaded or otherwise available. It is often a grayed out or boxed out version of the contentful UI",
-			"rdfs:label": "skeleton state"
+			"label": "skeleton state"
 		},
 
 		//IssueSeverity
 		{
 			"@id": "ldui:priority",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Priority is a property on an UI Element to order elements towards the user. The order expresses relative significance over other elements. For absolute ordering, check out Importance.",
-			"rdfs:label": "priority"
+			"comment": "Priority is a property on an UI Element to order elements towards the user. The order expresses relative significance over other elements. For absolute ordering, check out Importance.",
+			"label": "priority"
 		},
 		{
 			"@id": "ldui:importance",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Importance is a property on an UI Element to order elements toward the user. The order expresses a fixed significance over other elements. When issues happen in the application, Error notifications should get highest importance, followed by Warnings, and Alerts.",
-			"rdfs:label": "importance"
+			"comment": "Importance is a property on an UI Element to order elements toward the user. The order expresses a fixed significance over other elements. When issues happen in the application, Error notifications should get highest importance, followed by Warnings, and Alerts.",
+			"label": "importance"
 		},
 
 		//IssueSeverityType
 		{
 			"@id": "ldui:Default",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "UI elements have default priority or importance when they add information that doesn't require a reaction, such as banners that point to new features",
-			"rdfs:label": "default"
+			"label": "default"
 		}, {
 			"@id": "ldui:Alert",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Alerts notify the user that an expected event has happend or is about to happen. Common examples are price alerts or alerts to check in or board a flight",
-			"rdfs:label": "alert"
+			"label": "alert"
 		}, {
 			"@id": "ldui:Warning",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Warnings notify the user that an unexpected or insecure event occured, but the application can continue to function. This gives the user the option to intervene.",
-			"rdfs:label": "warning"
+			"label": "warning"
 		}, {
 			"@id": "ldui:Error",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Errors are events that stop part of an application to work as intended. Known errors can give users an option to intervene, similar to warnings. Another option can be to restart thtat part of the application",
-			"rdfs:label": "error"
+			"label": "error"
 		}, {
 			"@id": "ldui:Incomplete",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Issues that come from incomplete data can be caused by the application, the connection or the users themselves. Options to reload, retry or wait plus a status message help the users take next steps",
-			"rdfs:label": "incomplete"
+			"label": "incomplete"
 		}, {
 			"@id": "ldui:Empty",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Issues coming from empty data are common, because new users or new features usually start with no data. This is an opportunity for onboarding and explaining features. Users can also remove data they've entered, leaving a UI element empty. E.g. A To-Do App can have different empty states: on first use and after finishing all To-Dos",
-			"rdfs:label": "empty"
+			"label": "empty"
 		},
 
 		//UIElement/AtomUIElement
 		{
 			"@id": "ldui:Icon",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An Icon is an Atom UI element that visually communicates meaning. It can symbolize text, and its meaning depends on the interpretation of the user, so alternative texts and tooltips can help users understand",
-			"rdfs:label": "icon"
+			"label": "icon"
 		}, {
 			"@id": "ldui:Label",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Label is an Atom UI element that describes another UI element more closely. These typically appear in forms to describe what the Inputs can be used for. Labels are important for visually impaired users, even if the label is not visible",
-			"rdfs:label": "label"
+			"label": "label"
 		}, {
 			"@id": "ldui:Title",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Title describes and identifies content of a UI element. Web pages have titles which are displayed in the menu of the browser, the title is often repeated as a header.",
-			"rdfs:label": "title"
+			"label": "title"
 		}, {
 			"@id": "ldui:Subtitle",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A subtitle is often used to describe a title more closely. It can also tell the userwhat benefit to expect, or clarify the title. Check subheading for this usage. Also can be a synonym for closed-captioned text",
-			"rdfs:label": "sub-title"
+			"label": "sub-title"
 		}, {
 			"@id": "ldui:Input",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An Input is a UI element that helps users enter data. Some inputs like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in gneeral",
-			"rdfs:label": "input"
+			"label": "input"
 		},
 		{
 			"@id": "ldui:Button",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Button lets users take actions and make choices with a single tap. This is typically referred to as the onClick event, but buttons can react to pressing and holding, hovering, or focussing with a keyboard. As UI elements, Buttons try to mimick physical buttons, so in AR/VR interfaces the onClick doesn't happen until it is fully pressed 'down'. Hardware Buttons on physical devices, e.g. smart home buttons, usually handle this on the device",
-			"rdfs:label": "button"
+			"label": "button"
 		}, {
 			"@id": "ldui:Heading",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A heading is a UI element that serves as the head of another UI element, usually setting it apart in typography, style or position. In HTML there are different heading sizes which can be used for visual and semantic hierarchy. Check out Subheading, Title and Subtitle as well",
-			"rdfs:label": "heading"
+			"label": "heading"
 		}, {
 			"@id": "ldui:Subheading",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Subheading can refer to an additional headline similar to Subtitle. It can also be the heading of a smaller portion of a piece of writing",
-			"rdfs:label": "sub-heading"
+			"label": "sub-heading"
 		}, {
 			"@id": "ldui:Checkbox",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Checkboxes are UI elements to select one or more values from several options. They are typically displayed as a small box in which a check mark is placed if it 'isChecked'. If the checkbox is part of a group, clicking it will change the selectedSet. Checkboxes are independent, contrary to RadioButtons",
-			"rdfs:label": "checkbox"
+			"label": "checkbox"
 		}, {
 			"@id": "ldui:Radiobutton",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Radio buttons are UI elements for selecting a single element out of a group of options. It is a good practice to have a default option pre-selected. Clicking the Radiobutton will change the group's selectedIndex. All available options are shown in the group, so keeping the number of options small is helpful for the user",
-			"rdfs:label": "radio button"
+			"label": "radio button"
 		}, {
 			"@id": "ldui:Datepicker",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Datepicker is a UI element which lets users select a date, often as part of a form, and often displaying a minimizedState with the current date pre-set. Clicking it opens a minimal interface to help select a different date. Consider different date formats and keyboard input as well, and using a Timepicker fo finer control.",
-			"rdfs:label": "date picker"
+			"label": "date picker"
 		}, {
 			"@id": "ldui:Timepicker",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Timepicker is a UI element which lets users select a time of the day. Different date and time formats may display AM/PM, this is also adjustable on users' devices, as well as the users' time zones. A hint for working hours in another time zone might be helpful, and changes for summer- and wintertime might also be useful info.",
-			"rdfs:label": "time picker"
+			"label": "time picker"
 		}, {
 			"@id": "ldui:Switch",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Switch is a UI element to let users toggle between two states or on-off settings. Users are used to seeing a reaction to clicking the switch immediately, based on their experience on mobile devices. Useful to control Boolean types.",
-			"rdfs:label": "switch"
+			"label": "switch"
 		}, {
 			"@id": "ldui:Textfield",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A TextField is a UI element that allows Text to be entered. This may be a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web.",
-			"rdfs:label": "text field"
+			"label": "text field"
 		}, {
 			"@id": "ldui:Link",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Link is clickable text that lets users navigate to other websites or other parts of the same site or app. They can also be used for file downloads or opening up a new email and other actions in apps.",
-			"rdfs:label": "link"
+			"label": "link"
 		}, {
 			"@id": "ldui:Avatar",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An Avatar is a UI element to visually represent a user, business or organization with a single image or icon. They often frame that image in a way that makes it easy to distinguish from other icons. Avatars can also contain user's initials, a colour, or an auto-generated Avatar if none has been set. They're often combined with indicators for activity or status.",
-			"rdfs:label": "avatar"
+			"label": "avatar"
 		},
 
 		//AtomUIElement/Shape
 		{
 			"@id": "ldui:Circle",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Circle is a type of Shape which is often used as a frame, for Avatars for example. As a filled shape it might appear as a background or as a status indicator. E.g. the activity-indicator next to an avatar.",
-			"rdfs:label": "circle"
+			"label": "circle"
 		}, {
 			"@id": "ldui:Triangle",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A triangle is a type of Shape that's often used to indicate something is playable media, e.g. the icon in the middle of a video player. In 3D environments it is the smallest building block of a (sur)face. If one corner is sharp it can be used that is often used to point at content, and in small-size scenarios it's used to indicate closed and open states.",
-			"rdfs:label": "triangle"
+			"label": "triangle"
 		}, {
 			"@id": "ldui:Rectangle",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A rectangle is a type of Shape very common in interface design to create 'boxes' of dfferent sizes and aspect ratios. Their relative sizes and positions usually make up most of the layout. For users, boxes with rounded corners are easier to mentally process.",
-			"rdfs:label": "rectangle"
+			"label": "rectangle"
 		}, {
 			"@id": "ldui:Ellipse",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An Ellipse is a type of Shape similar to a Circle, but squished. Easily confused with ellipsis, which are words in a sentence that are omitted, but would be needed for grammatical correctness. In CSS, ellipsis can be used for a text-overflow to create dots at the end of text that is cut by the layout.",
-			"rdfs:label": "ellipse"
+			"label": "ellipse"
 		}, {
 			"@id": "ldui:Star",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Star is a type of Shape that is often used for indicating a favorite, in which it is colored yellow. A number of 1-5 stars usually communicates a rating of some sort. To indicate that a favorite is not set or a rating doesn't have full stars, the remaining stars are often grey and outlined, while the favorite or 'achieved' stars are filled and yellow.",
-			"rdfs:label": "star"
+			"label": "star"
 		},
 
 		//UIElement/MoleculeUIElement
 		{
 			"@id": "ldui:NavigationBar",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A navigation bar is a type of Molecule UI Element that guides users through main parts of the application. It often tells the users which part they are currently at, where to go and sometimes where they come from. Most commonly placed on top, but can also be found on either side of the screen. Navigation Elements often minify to increase the space for other interactions. Also referred to as an App-Bar when visible throughout the application.",
-			"rdfs:label": "navigation bar"
+			"label": "navigation bar"
 		}, {
 			"@id": "ldui:Tooltip",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A tooltip is a type of Molecule UI Element that displays informative text when users hover over, focus on, or tap a UI Element. When activated, Tooltips display brief information on how to use the element, or what it is. Tooltips often only contain text, but in some cases even contain explainer-videos.",
-			"rdfs:label": "tool-tip"
+			"label": "tool-tip"
 		}, {
 			"@id": "ldui:Searchbar",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A search bar is a type of Molecule UI Element that lets users enter search terms. Users often use this to navigate to content directly, or get recomendations to see what the site has to offer. Often accompanied by a magnifying lens icon or a button next it. Clicking the button or hitting the 'Enter'-key on a keyboard are well-understood interactions. Auto-completing the search terms is becoming more common as well.",
-			"rdfs:label": "search bar"
+			"label": "search bar"
 		}, {
 			"@id": "ldui:Thumbnail",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A thumbnail is a type of Molecule UI Element that is a miniature graphic which opens or links to a full image or other visual content. Thumbnails can be auto-generated from the full content or custom, show parts of it on hover. This is especially useful for previewing video-content.",
-			"rdfs:label": "thumbnail"
+			"label": "thumbnail"
 		}, {
 			"@id": "ldui:Dialog",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Dialog is a type of Molecule UI Element shown overlaying the rest of the application, calling for the users direct attention. It informs users about a task and can require decisions, or involve multiple tasks. If it isModal, the user has to interact before continuing to use the application.",
-			"rdfs:label": "dialog"
+			"label": "dialog"
 		}, {
 			"@id": "ldui:Step",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Step is a type of Molecule UI Element which guides users through the steps of a task or workflow. Multiple steps combined form a wizard, which helps to break down long and complex processes: Breaking a complex task into smaller steps can improve conversion.",
-			"rdfs:label": "step"
+			"label": "step"
 		}, {
 			"@id": "ldui:Divider",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Divider is a type of Molecule UI Element which seperates content into clear groups. The simplest form is a horizontal line to split content, but more sophisticated dividers can include branding elements. Useful for creating scroll-to-bottom-of-section UX of a page.",
-			"rdfs:label": "divider"
+			"label": "divider"
 		}, {
 			"@id": "ldui:Dropdown",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Dropdown is a type of Molecule UI Element which lets users select one item of a set, changing the selectedIndex-property. More sophisticated dropdowns allow selecting multipe items, changing the selectedSet. The type of items can range from text to thumbnails of images and more.",
-			"rdfs:label": "drop-down"
+			"label": "drop-down"
 		}, {
 			"@id": "ldui:Pagination",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Pagination is a type of Molecule UI Element which is used to break down long content into pages, usually on websites. It often features a back-and-forth navigation, the current page number and close page numbers. Pagination can be placed both on top or at the bottom of the paginated content.",
-			"rdfs:label": "pagination"
+			"label": "pagination"
 		},
 
 		//UIElement/OrganismUIElement
 		{
 			"@id": "ldui:Header",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Header is a type of Organism UI Element that contains UI Elements for the most common actions on a page, and is placed at the top. Beware that the term 'Header' or 'head' is also used for the invisible, technical part of documents which contain info like keywords (html), dates (photo taken) or login-info.",
-			"rdfs:label": "header"
+			"label": "header"
 		}, {
 			"@id": "ldui:Footer",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Footer is a type of Organism UI Element that contains UI elements for the least commonly used information, at the bottom of a page. Leaving it out is often not an option, because of legal requirements etc. Information such as imprint or contact info is so commonly found at the bottom that users who want to search for it directly scroll to the bottom.",
-			"rdfs:label": "footer"
+			"label": "footer"
 		}, {
 			"@id": "ldui:Section",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Section is a type of Organism UI Element that contains UI elements that semantically belong together, and form a part of a page. Because sections are unspecific, it should have a Heading to describe its content, and make it easier for visually impaired users to navigate your content.",
-			"rdfs:label": "section"
+			"label": "section"
 		}, {
 			"@id": "ldui:Card",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Card is a type of Organism UI Element that groups content and controls about a single subject. Most commonly, cards separate themselves from the surrounding elements with an outline or raised appearance.",
-			"rdfs:label": "card"
+			"label": "card"
 		},
 
 		//UIElement/ContainerUIElement
 		{
 			"@id": "ldui:DirectoryStructure",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Directory Structure or folder structure is a Container UI Element that shows an editable hierarchy of files and folders. Users often use it to categorize content, and create sub-folders. It's helpful to combine this with a quick navigation for frequently or recently visited items, since these structures can be deep. If it's displayed vertically, Users might expect drag and drop to work.",
-			"rdfs:label": "directory structure"
+			"label": "directory structure"
 		}, {
 			"@id": "ldui:TreeView",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A TreeView is a Container UI Element that shows hierarchical structures, most commoly in a vertical direction. Can show an organization's hierarchy, a web page and its sub-pages or anything organized in a tree. For files and folders check out Directory Structure.",
-			"rdfs:label": "tree view"
+			"label": "tree view"
 		}, {
 			"@id": "ldui:Tabs",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "Tabs are Container UI Elements shown as a group on the same page. Only one tab is fully visible at a time, the other tabs' content can be seen by clicking another element in the tab bar which controls the group.",
-			"rdfs:label": "tabs"
+			"label": "tabs"
 		}, {
 			"@id": "ldui:List",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A List is a Container UI Element which shows its content in either a vertical or horizontal order. The order doesn't have to be important, but if it is, consider sorting or filtering controls. Compare with Grids and Tables if your content can grow horizontally and vertically.",
-			"rdfs:label": "list"
+			"label": "list"
 		}, {
 			"@id": "ldui:Container",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Container UI Element can hold other UI elements, and as such is a general class. Most of the time you'd want a more specialized container such as list, grid or table.",
-			"rdfs:label": "container"
+			"label": "container"
 		}, {
 			"@id": "ldui:Table",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows.",
-			"rdfs:label": "table"
+			"label": "table"
 		}, {
 			"@id": "ldui:Grid",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Grid is a container that shows other UI elements in rows and columns, independently of another. If the row and column-number have meaning, use a Table instead.",
-			"rdfs:label": "grid"
+			"label": "grid"
 		}, {
 			"@id": "ldui:SingleSelection",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Single Selection is a Container UI Element which is part of a controlling element that only allows one item inside the container to be selected. Selection can be indicated by borders, colors, size or texture, but a SelectedIndex should be included for accessibility.",
-			"rdfs:label": "single selection"
+			"label": "single selection"
 		}, {
 			"@id": "ldui:MultiSelection",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A MultiSelection is a Container UI element which is part of a controlling element that allows many items inside it to be selected. Selection can be indicated visually, but a SelectedSet should be included for accessibility.",
-			"rdfs:label": "multiple selection"
+			"label": "multiple selection"
 		}, {
 			"@id": "ldui:ColumnHeader",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A ColumnHeader is a container that is displayed on the top row of a table, showing the name of that column and often controls for sorting, filtering and ordering.",
-			"rdfs:label": "column header"
+			"label": "column header"
 		},
 
-		//UIElement/StructuralUIElement
+		//Element/StructuralElement
 		{
 			"@id": "ldui:ABTest",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "An A/B test is an important tool for improving UX based on data. In such a test, the users are presented with almost identical versions of a page, and only one aspect is varied. Interaction data is collected and compared between both versions. Analysing A/B-tests rely on statistical methods, so one needs a high number of views to yield meaningful results. Testing more than two versions (A/B/C-tests) is possible, but harder to analyze, and even more views are needed.",
-			"rdfs:label": "A/B test"
+			"label": "A/B test"
 		}, {
 			"@id": "ldui:Form",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A Form is a Structural UI Element that users can use to submit information. The UI elements inside forms are often referred to as inputs or form controls. To aid the user, inputs and form controls can limit the selectable options or validate user input and display help.",
-			"rdfs:label": "form"
+			"comment": "A Form is a Structural Element that users can use to submit information. The UI elements inside forms are often referred to as inputs or form controls. To aid the user, inputs and form controls can limit the selectable options or validate user input and display help.",
+			"label": "form"
 		}, {
 			"@id": "ldui:Template",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A Template is a Structural UI Element that serves as a pattern to generate more, similar elements from it. Templates are meant to increase productivity, but can themself cost time if they're too restrictive or offer too complex choices for the person who's adjusting the template.",
-			"rdfs:label": "template"
+			"comment": "A Template is a Structural Element that serves as a pattern to generate more, similar elements from it. Templates are meant to increase productivity, but can themself cost time if they're too restrictive or offer too complex choices for the person who's adjusting the template.",
+			"label": "template"
 		}, {
 			"@id": "ldui:Page",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A page is a Structural UI Element that used to describe the data that is found at a single URL. With responsive applications and single-page web apps loading and changing that data is possible. Colloquially, the term is often used to summarize content structure, like Master/Detail-page, or may refer to a number of sub-pages, e.g. if a checkout process is called 'checkout page'.",
-			"rdfs:label": "page"
+			"comment": "A page is a Structural Element that used to describe the data that is found at a single URL. With responsive applications and single-page web apps loading and changing that data is possible. Colloquially, the term is often used to summarize content structure, like Master/Detail-page, or may refer to a number of sub-pages, e.g. if a checkout process is called 'checkout page'.",
+			"label": "page"
 		}, {
 			"@id": "ldui:Placeholder",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "A Placeholder is a Structural UI Element that is displayed in the position of the 'actual' content. A UI Element in the skeleton state is one example, another example would be placeholder text that shows 'Jane Doe' in an input field for user name.",
-			"rdfs:label": "placeholder"
+			"comment": "A Placeholder is a Structural Element that is displayed in the position of the 'actual' content. A UI Element in the skeleton state is one example, another example would be placeholder text that shows 'Jane Doe' in an input field for user name.",
+			"label": "placeholder"
 		}, {
 			"@id": "ldui:Context",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "Contexts are Structural UI Elements that define the environment in which other UI Elements exist. Switching between dark and light themes is often achieved with context. E.g. not showing all streamable movies at your travel destination is a result of a location context.",
-			"rdfs:label": "context"
+			"comment": "Contexts are Structural Elements that define the environment in which other UI Elements exist. Switching between dark and light themes is often achieved with context. E.g. not showing all streamable movies at your travel destination is a result of a location context.",
+			"label": "context"
 		}, {
 			"@id": "ldui:Scope",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "Scopes are Structural UI Elements that define the range of operation for their sub-elements. E.g. each user gets their own user-scope when they access their profile at example.com/myprofile, so the application will return different users when it accesses the 'currentUser' profile. To avoid confusion: In project management, this term is understood as the scope of work needed to finish a project. It can also mean different viewing instruments, microscope etc.",
-			"rdfs:label": "scope"
+			"comment": "Scopes are Structural Elements that define the range of operation for their sub-elements. E.g. each user gets their own user-scope when they access their profile at example.com/myprofile, so the application will return different users when it accesses the 'currentUser' profile. To avoid confusion: In project management, this term is understood as the scope of work needed to finish a project. It can also mean different viewing instruments, microscope etc.",
+			"label": "scope"
 		}, {
 			"@id": "ldui:Constraint",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "Constraints are Structural UI Elements that limit the movement, or restrict in other ways other UI Elements. E.g. centering, aligning, cutting off text etc. are all examples of constraints. A good balance between dynamic and fixed constraints can make responsive designs flexible but calm.",
-			"rdfs:label": "constraint"
+			"comment": "Constraints are Structural Elements that limit the movement, or restrict in other ways other UI Elements. E.g. centering, aligning, cutting off text etc. are all examples of constraints. A good balance between dynamic and fixed constraints can make responsive designs flexible but calm.",
+			"label": "constraint"
 		}, {
 			"@id": "ldui:Autocomplete",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
-			"comment": "Autocomplete is a Structural UI Element that is most commonly used with search bars, showing longer text after a short user input text. When the user input is likely imperfect or can only match a number of values, auto-correcting saves effort for cleaning data. Examples would be converting pen strokes to common shapes in a design tool or code completion in a coding tool (IDE).",
-			"rdfs:label": "auto-complete"
+			"comment": "Autocomplete is a Structural Element that is most commonly used with search bars, showing longer text after a short user input text. When the user input is likely imperfect or can only match a number of values, auto-correcting saves effort for cleaning data. Examples would be converting pen strokes to common shapes in a design tool or code completion in a coding tool (IDE).",
+			"label": "auto-complete"
 		},
 
 		//variation
 		{
 			"@id": "ldui:aVersion",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "An A-version is one of the two versions tested in an A/B-Test. The A-version is usually the status quo of the application, and the B-version the changed one that's hoped to bring improved conversion.",
-			"rdfs:label": "A-version"
+			"comment": "An A-version is one of the two versions tested in an A/B-Test. The A-version is usually the status quo of the application, and the B-version the changed one that's hoped to bring improved conversion.",
+			"label": "A-version"
 		},
 		{
 			"@id": "ldui:bVersion",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A B-version is one of the two versions tested in an A/B-Test. The B-version is usually the 'new' version that is tested against the status quo, which is called the A-version.",
-			"rdfs:label": "B-version"
+			"comment": "A B-version is one of the two versions tested in an A/B-Test. The B-version is usually the 'new' version that is tested against the status quo, which is called the A-version.",
+			"label": "B-version"
 		},
 
 		//triggers
@@ -2504,356 +2522,356 @@
 		{
 			"@id": "ldui:unorderedSlots",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "unordered slots of containers are places where UI elements can go without a particular order",
-			"rdfs:label": "unordered slots"
+			"comment": "unordered slots of containers are places where UI elements can go without a particular order",
+			"label": "unordered slots"
 		},
 		{
 			"@id": "ldui:orderedSlots",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "ordered slots of containers are places where UI elements can go in a particular order",
-			"rdfs:label": "ordered slots"
+			"comment": "ordered slots of containers are places where UI elements can go in a particular order",
+			"label": "ordered slots"
 		},
 		//a11y
 		{
 			"@id": "ldui:ariaLabel",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "An ARIA label is an accessibility feature that helps visually impaired users understand and use a UI control. Blind users use screen readers to navigate User Interfaces, so concise, readable text helps users navigate the application.",
-			"rdfs:label": "aria label"
+			"comment": "An ARIA label is an accessibility feature that helps visually impaired users understand and use a UI control. Blind users use screen readers to navigate User Interfaces, so concise, readable text helps users navigate the application.",
+			"label": "aria label"
 		}, {
 			"@id": "ldui:moreInfo",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A 'more info'-text can be shown as the text in a Tooltip or other helpful element, when the user needs clarification about a UI element or step in a process. This can include helptext, or describe what will happen when the user takes the next step.",
-			"rdfs:label": "more info"
+			"comment": "A 'more info'-text can be shown as the text in a Tooltip or other helpful element, when the user needs clarification about a UI element or step in a process. This can include helptext, or describe what will happen when the user takes the next step.",
+			"label": "more info"
 		}, {
 			"@id": "ldui:valueText",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "An ARIA value text is an accessibility feature that serves as a text alternative to visually communicated values. E.g. a progress bar could read out the percentage, a slider the current value and the minimum, maximum and stepsize.",
-			"rdfs:label": "value text"
+			"comment": "An ARIA value text is an accessibility feature that serves as a text alternative to visually communicated values. E.g. a progress bar could read out the percentage, a slider the current value and the minimum, maximum and stepsize.",
+			"label": "value text"
 		},
 
 		//UserAction/CommunicateAction
 		{
 			"@id": "ldui:CommentAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A Comment Action describes the act of creating a comment about a subject. CommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Go to https://schema.org/CommentAction for more details.",
-			"rdfs:label": "comment action"
+			"label": "comment action"
 		}, {
 			"@id": "ldui:ReplyAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A ReplyAction is similar to a CommentAction, and refers to the act of responding to a question/message asked/sent by the object. Go to https://schema.org/ReplyAction for more details.",
-			"rdfs:label": "reply action"
+			"label": "reply action"
 		}, {
 			"@id": "ldui:ReactAction",
-			"@type": "rdfs:Class",
-			"rdfs:subClassOf": [{
-					"@id": "rdfs:Class"
+			"@type": "Class",
+			"subClassOf": [{
+					"@id": "Class"
 				},
 				{
 					"@id": "ldui:"
 				}
 			],
 			"comment": "A ReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Go to https://schema.org/ReactAction for more info.",
-			"rdfs:label": "react action"
+			"label": "react action"
 		},
 
 		//SemanticFlag/HierarchyFlag
 		{
 			"@id": "ldui:isProminent",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to indicate that a UI Element stands out and is readily noticeable, such as a red CTA-button. An example where isProminent switches from one UI Element to another are tutorial-UIs, where the user can see the full UI, but only click the explained part.",
-			"rdfs:label": "is prominent"
+			"comment": "A hierarchy flag to indicate that a UI Element stands out and is readily noticeable, such as a red CTA-button. An example where isProminent switches from one UI Element to another are tutorial-UIs, where the user can see the full UI, but only click the explained part.",
+			"label": "is prominent"
 		}, {
 			"@id": "ldui:isRaised",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag that has its origin in Material Design and the visual metaphor of paper lying on top of other paper. A raised UI Element is an element that's one paper layer above, with a slight shadow, but it's 'glued' to the layer below.",
-			"rdfs:label": "is raised"
+			"comment": "A hierarchy flag that has its origin in Material Design and the visual metaphor of paper lying on top of other paper. A raised UI Element is an element that's one paper layer above, with a slight shadow, but it's 'glued' to the layer below.",
+			"label": "is raised"
 		}, {
 			"@id": "ldui:isDense",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to indicate if a Container UI Element should display its content with less space between elements, or smaller elements, smaller fonts sizes etc. This can be useful on different screen sizes, or when a mouse is available for more precise pointing. Power users often prefer a denser UI with less guidance. Lesser used control elements can be grouped like this as well, while keeping them on screen.",
-			"rdfs:label": "is dense"
+			"comment": "A hierarchy flag to indicate if a Container UI Element should display its content with less space between elements, or smaller elements, smaller fonts sizes etc. This can be useful on different screen sizes, or when a mouse is available for more precise pointing. Power users often prefer a denser UI with less guidance. Lesser used control elements can be grouped like this as well, while keeping them on screen.",
+			"label": "is dense"
 		}, {
 			"@id": "ldui:isMini",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to indicate if an Element is minimized or maximized. Compare with minimizedState and maximizedState, and minifiedState.",
-			"rdfs:label": "is mini"
+			"comment": "A hierarchy flag to indicate if an Element is minimized or maximized. Compare with minimizedState and maximizedState, and minifiedState.",
+			"label": "is mini"
 		}, {
 			"@id": "ldui:isPrimary",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to switch an element between being a primary element or not.",
-			"rdfs:label": "is primary"
+			"comment": "A hierarchy flag to switch an element between being a primary element or not.",
+			"label": "is primary"
 		}, {
 			"@id": "ldui:isSecondary",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to switch an element between being a secondary element or not.",
-			"rdfs:label": "is secondary"
+			"comment": "A hierarchy flag to switch an element between being a secondary element or not.",
+			"label": "is secondary"
 		}, {
 			"@id": "ldui:isTertiary",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to switch an element between being a tertiary element or not.",
-			"rdfs:label": "is tertiary"
+			"comment": "A hierarchy flag to switch an element between being a tertiary element or not.",
+			"label": "is tertiary"
 		}, {
 			"@id": "ldui:isCurrent",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to indicate if an element shows current status/value or not. E.g. while the user drags a Slider, the current value might be displayed over the pointer. The current value may get validated, but data in other parts of the application should only be updated after the user doesn't press the slider any more.",
-			"rdfs:label": "is current"
+			"comment": "A hierarchy flag to indicate if an element shows current status/value or not. E.g. while the user drags a Slider, the current value might be displayed over the pointer. The current value may get validated, but data in other parts of the application should only be updated after the user doesn't press the slider any more.",
+			"label": "is current"
 		}, {
 			"@id": "ldui:isOverlay",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag for UI Elements overlaying other UI Elements. It can be used with Dialogs, Popovers, Dropdowns, etc.",
-			"rdfs:label": "is overlay"
+			"comment": "A hierarchy flag for UI Elements overlaying other UI Elements. It can be used with Dialogs, Popovers, Dropdowns, etc.",
+			"label": "is overlay"
 		}, {
 			"@id": "ldui:isHidden",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to toggle the visibility of an UI Element. If you want to transition between visibility states, you can use opacity for fading, size for shrinking and growing, or 3D transformations for flipping. Transitions tell the user what happened to an element, when hiding the user should be shown how to un-hide.",
-			"rdfs:label": "is hidden"
+			"comment": "A hierarchy flag to toggle the visibility of an UI Element. If you want to transition between visibility states, you can use opacity for fading, size for shrinking and growing, or 3D transformations for flipping. Transitions tell the user what happened to an element, when hiding the user should be shown how to un-hide.",
+			"label": "is hidden"
 		}, {
 			"@id": "ldui:isModal",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A hierarchy flag to toggle an element as modal. Modal Elements are a way to force users to interact with a UI element, they show content in front of the rest of the application and don't allow any input apart from the front element. The background is often dimmed or greyed out. Modals must be tested for accessibility, since they can trap a user.",
-			"rdfs:label": "is modal"
+			"comment": "A hierarchy flag to toggle an element as modal. Modal Elements are a way to force users to interact with a UI element, they show content in front of the rest of the application and don't allow any input apart from the front element. The background is often dimmed or greyed out. Modals must be tested for accessibility, since they can trap a user.",
+			"label": "is modal"
 		},
 
 		//SemanticFlag/DescriptionFlag
 		{
 			"@id": "ldui:isHelp",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A description flag to mark an element as help-content. This is useful e.g. for tooltips, and setting such a flag can be helpful to hide onboarding-content from experienced users, giving back space to the designer.",
-			"rdfs:label": "is help"
+			"comment": "A description flag to mark an element as help-content. This is useful e.g. for tooltips, and setting such a flag can be helpful to hide onboarding-content from experienced users, giving back space to the designer.",
+			"label": "is help"
 		}, {
 			"@id": "ldui:isContent",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A description flag to mark an element as containing content as opposed to layout or navigation elements. Parts of the UI that are content can go into SEO efforts, or be interesting for a editors, who would want to edit it in a content management system.",
-			"rdfs:label": "is content"
+			"comment": "A description flag to mark an element as containing content as opposed to layout or navigation elements. Parts of the UI that are content can go into SEO efforts, or be interesting for a editors, who would want to edit it in a content management system.",
+			"label": "is content"
 		}, {
 			"@id": "ldui:isProgress",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A description flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
-			"rdfs:label": "is progress"
+			"comment": "A description flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
+			"label": "is progress"
 		},
 
 		//SemanticProperty/OutcomeProperty
 		{
 			"@id": "ldui:result",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A result is an outcome property to tell the user what consequences their actions have. Can refer to the result in a currency calculator app, a finished user profile as a result of editing, or a fulfilled workflow after performing a sequence of tasks.",
-			"rdfs:label": "result"
+			"comment": "A result is an outcome property to tell the user what consequences their actions have. Can refer to the result in a currency calculator app, a finished user profile as a result of editing, or a fulfilled workflow after performing a sequence of tasks.",
+			"label": "result"
 		}, {
 			"@id": "ldui:output",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents.",
-			"rdfs:label": "output"
+			"comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents.",
+			"label": "output"
 		}, {
 			"@id": "ldui:status",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Status is a property of a UI Element to tell the user what happened in the application. 404 pages display technical status. The green or yellow dot in chat applications display user statuses.",
-			"rdfs:label": "status"
+			"comment": "Status is a property of a UI Element to tell the user what happened in the application. 404 pages display technical status. The green or yellow dot in chat applications display user statuses.",
+			"label": "status"
 		},
 
 		//SemanticProperty/NavigationProperty
 		{
 			"@id": "ldui:menu",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Menu is a property of a Container UI Element that tells the user that this part of the container is used as a way to control the rest of the container.",
-			"rdfs:label": "menu"
+			"comment": "Menu is a property of a Container UI Element that tells the user that this part of the container is used as a way to control the rest of the container.",
+			"label": "menu"
 		}, {
 			"@id": "ldui:settings",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "Settings is a property of a Container UI Element that affect not only this container, but apply to similar parts of the application elsewhere.",
-			"rdfs:label": "settings"
+			"comment": "Settings is a property of a Container UI Element that affect not only this container, but apply to similar parts of the application elsewhere.",
+			"label": "settings"
 		},
 		//SemanticProperty/ContextProperty
 		{
 			"@id": "ldui:role",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A role is a context property, summarizing a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
-			"rdfs:label": "role"
+			"comment": "A role is a context property, summarizing a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
+			"label": "role"
 		}, {
 			"@id": "ldui:user",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
-			"rdfs:label": "user"
+			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
+			"label": "user"
 		}, {
 			"@id": "ldui:group",
 			"@type": "rdf:Property",
-			"schema:domainIncludes": {
+			"canExistOnType": {
 				"@id": "ldui:"
 			},
-			"schema:rangeIncludes": {
+			"canBeOfType": {
 				"@id": "schema:"
 			},
-			"rdfs:comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
-			"rdfs:label": "group"
+			"comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
+			"label": "group"
 		}
 	]
 }

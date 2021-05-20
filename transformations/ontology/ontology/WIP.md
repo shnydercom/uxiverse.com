@@ -216,7 +216,7 @@ UIElement/ContainerUIElement
 - ColumnHeader
 
 # Non-visual organization
-UIElement/StructuralUIElement
+Element/StructuralElement
 - ABTest
 - Form
 - Template
