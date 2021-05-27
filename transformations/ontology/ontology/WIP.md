@@ -62,7 +62,7 @@ VisualExpression
 - highlight
 
 # multi states
-Some
+some
 - selectedIndex
 - activeTabIndex
 - selectedSet

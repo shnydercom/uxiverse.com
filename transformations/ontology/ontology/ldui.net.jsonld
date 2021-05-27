@@ -253,8 +253,8 @@
 			"label": "visual expression"
 		},
 		{
-			"@id": "ldui:Some",
-			"@type": "Class",
+			"@id": "ldui:some",
+			"@type": "Property",
 			"subClassOf": [{
 					"@id": "Class"
 				},
@@ -262,7 +262,7 @@
 					"@id": "ldui:Element"
 				}
 			],
-			"comment": "When multiple options are present, ldui:Some is a super-class for a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
+			"comment": "When multiple options are present, ldui:some is a super-class for a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
 			"label": "some"
 		},
 		{
@@ -1016,9 +1016,16 @@
 		{
 			"@id": "ldui:selectedIndex",
 			"@type": "Property",
-			"canExistOnType": {
-				"@id": "ldui:"
-			},
+			"subPropertyOf": [{
+				"@id": "ldui:some"
+			}],
+			"canExistOnType": [{
+				"@id": "ldui:RadioButton"
+			}, {
+				"@id": "ldui:DropDown"
+			}, {
+				"@id": "ldui:SingleSelection"
+			}],
 			"canBeOfType": {
 				"@id": "schema:Number"
 			},
@@ -1027,6 +1034,9 @@
 		}, {
 			"@id": "ldui:activeTabIndex",
 			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "ldui:some"
+			}],
 			"canExistOnType": {
 				"@id": "ldui:Tabs"
 			},
@@ -1038,9 +1048,16 @@
 		}, {
 			"@id": "ldui:selectedSet",
 			"@type": "Property",
-			"canExistOnType": {
-				"@id": "ldui:"
-			},
+			"subPropertyOf": [{
+				"@id": "ldui:some"
+			}],
+			"canExistOnType": [{
+				"@id": "ldui:Checkbox"
+			},{
+				"@id": "ldui:Dropdown"
+			},{
+				"@id": "ldui:MultiSelection"
+			}],
 			"canBeOfType": {
 				"@id": "schema:Number",
 				"@container": "@set"
@@ -1050,9 +1067,16 @@
 		}, {
 			"@id": "ldui:unselectedSet",
 			"@type": "Property",
-			"canExistOnType": {
-				"@id": "ldui:"
-			},
+			"subPropertyOf": [{
+				"@id": "ldui:some"
+			}],
+			"canExistOnType": [{
+				"@id": "ldui:Checkbox"
+			},{
+				"@id": "ldui:Dropdown"
+			},{
+				"@id": "ldui:MultiSelection"
+			}],
 			"canBeOfType": {
 				"@id": "schema:Number",
 				"@container": "@set"
@@ -2806,10 +2830,10 @@
 			"@id": "ldui:menu",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:"
+				"@id": "ldui:ContainerUIElement"
 			},
 			"canBeOfType": {
-				"@id": "schema:"
+				"@id": "ldui:UIElement"
 			},
 			"comment": "Menu is a property of a Container UI Element that tells the user that this part of the container is used as a way to control the rest of the container.",
 			"label": "menu"
@@ -2817,10 +2841,10 @@
 			"@id": "ldui:settings",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:"
+				"@id": "ldui:ContainerUIElement"
 			},
 			"canBeOfType": {
-				"@id": "schema:"
+				"@id": "ldui:UIElement"
 			},
 			"comment": "Settings is a property of a Container UI Element that affect not only this container, but apply to similar parts of the application elsewhere.",
 			"label": "settings"
@@ -2830,10 +2854,10 @@
 			"@id": "ldui:role",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:"
+				"@id": "ldui:Element"
 			},
 			"canBeOfType": {
-				"@id": "schema:"
+				"@id": "schema:Text"
 			},
 			"comment": "A role is a context property, summarizing a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
 			"label": "role"
@@ -2841,21 +2865,23 @@
 			"@id": "ldui:user",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:"
+				"@id": "ldui:Element"
 			},
-			"canBeOfType": {
-				"@id": "schema:"
-			},
+			"canBeOfType": [{
+				"@id": "schema:Person"
+			},{
+				"@id": "schema:Text"
+			}],
 			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
 			"label": "user"
 		}, {
 			"@id": "ldui:group",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:"
+				"@id": "ldui:Element"
 			},
 			"canBeOfType": {
-				"@id": "schema:"
+				"@id": "schema:Text"
 			},
 			"comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
 			"label": "group"
