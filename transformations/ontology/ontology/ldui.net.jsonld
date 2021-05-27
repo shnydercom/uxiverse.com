@@ -123,27 +123,19 @@
 		},
 		{
 			"@id": "ldui:SemanticFlag",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:Element"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}],
 			"comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
 			"label": "semantic flag"
 		},
 		{
 			"@id": "ldui:SemanticProperty",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:Element"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}],
 			"comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu, role, group",
 			"label": "semantic property"
 		},
@@ -189,27 +181,23 @@
 		},
 		{
 			"@id": "ldui:NumericTypeProperty",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:DataTypeProperty"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}, {
+				"@id": "ldui:DataTypeProperty"
+			}],
 			"comment": "Human-readable numeric values can have min/max/current properties to describe them more closely",
 			"label": "numeric type property"
 		},
 		{
 			"@id": "ldui:TextTypeProperty",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:DataTypeProperty"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}, {
+				"@id": "ldui:DataTypeProperty"
+			}],
 			"comment": "Human-readable text values can have properties such as valueMinLength and valueMaxLength to describe them more closely",
 			"label": "text type property"
 		},
@@ -228,27 +216,23 @@
 		},
 		{
 			"@id": "ldui:MediaDataTypeProperty",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:DataTypeProperty"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}, {
+				"@id": "ldui:DataTypeProperty"
+			}],
 			"comment": "Properties of a ldui:MediaType, like isPlaying",
 			"label": "media data type property"
 		},
 		{
 			"@id": "ldui:VisualExpression",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:Element"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}, {
+				"@id": "ldui:Element"
+			}],
 			"comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
 			"label": "visual expression"
 		},
@@ -371,14 +355,12 @@
 		},
 		{
 			"@id": "ldui:IssueSeverity",
-			"@type": "Class",
-			"subClassOf": [{
-					"@id": "Class"
-				},
-				{
-					"@id": "ldui:Element"
-				}
-			],
+			"@type": "Property",
+			"subPropertyOf": [{
+				"@id": "Property"
+			}, {
+				"@id": "ldui:Element"
+			}],
 			"comment": "Issue severety expresses the way to order elements towards the user's attention. It summarizes properties of priority and importance. Can be used to communicate errors and warnings",
 			"label": "issue severity"
 		},
@@ -1053,9 +1035,9 @@
 			}],
 			"canExistOnType": [{
 				"@id": "ldui:Checkbox"
-			},{
+			}, {
 				"@id": "ldui:Dropdown"
-			},{
+			}, {
 				"@id": "ldui:MultiSelection"
 			}],
 			"canBeOfType": {
@@ -1072,9 +1054,9 @@
 			}],
 			"canExistOnType": [{
 				"@id": "ldui:Checkbox"
-			},{
+			}, {
 				"@id": "ldui:Dropdown"
-			},{
+			}, {
 				"@id": "ldui:MultiSelection"
 			}],
 			"canBeOfType": {
@@ -2869,7 +2851,7 @@
 			},
 			"canBeOfType": [{
 				"@id": "schema:Person"
-			},{
+			}, {
 				"@id": "schema:Text"
 			}],
 			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
