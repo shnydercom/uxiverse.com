@@ -60,7 +60,7 @@
 			"label": "element"
 		},
 		{
-			"@id": "ldui:DataType",
+			"@id": "ldui:UIDataType",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -70,18 +70,18 @@
 					"@id": "ldui:Element"
 				}
 			],
-			"comment": "The root class for all DataTypes. E.g. on/off -> true/false in the case of BooleanType. Formally extends https://schema.org/DataType, but support can't be 100% guaranteed.",
+			"comment": "The root class for all UI DataTypes. E.g. on/off -> true/false in the case of BooleanType. Formally extends https://schema.org/DataType, but support can't be 100% guaranteed.",
 			"label": "data type"
 		},
 		{
-			"@id": "ldui:DataTypeProperty",
+			"@id": "ldui:UIDataTypeProperty",
 			"@type": "Property",
 			"subPropertyOf": [
 				{
 					"@id": "rdf:Property"
 				}
 			],
-			"comment": "The root class for all DataTypeProperties, describing a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
+			"comment": "The root class for all DataTypeProperties with relation to the user interface. Used to describe a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
 			"label": "data type property"
 		},
 		{
@@ -99,7 +99,7 @@
 			"label": "UI element"
 		},
 		{
-			"@id": "ldui:Action",
+			"@id": "ldui:UIAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -107,13 +107,16 @@
 				},
 				{
 					"@id": "ldui:Element"
+				},
+				{
+					"@id": "schema:Action"
 				}
 			],
-			"comment": "The root Action class, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:CommentAction",
+			"comment": "The root Action class for the user interface, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:UICommentAction",
 			"label": "action"
 		},
 		{
-			"@id": "ldui:State",
+			"@id": "ldui:UIState",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -149,7 +152,7 @@
 			"label": "semantic property"
 		},
 		{
-			"@id": "ldui:PropertyValueSpecification",
+			"@id": "ldui:UIPropertyValueSpecification",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -170,7 +173,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				}
 			],
 			"comment": "Data type: Boolean. Human-readable terms like on/off, true/false have this as a supertype",
@@ -184,7 +187,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				}
 			],
 			"comment": "Data type: Numeric. Human-readable terms that are expressed in numbers, examples could be an NPS score, temperature, etc.",
@@ -198,7 +201,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				}
 			],
 			"comment": "Data type: Text. Human-readable terms that are expressed as text, like names, descriptions, messages, comments",
@@ -212,7 +215,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				}
 			],
 			"comment": "Data type: color code. Hexadecimal RGB or ARGB-value",
@@ -226,7 +229,7 @@
 					"@id": "rdf:Property"
 				},
 				{
-					"@id": "ldui:DataTypeProperty"
+					"@id": "ldui:UIDataTypeProperty"
 				}
 			],
 			"canExistOnType": {
@@ -246,7 +249,7 @@
 					"@id": "rdf:Property"
 				},
 				{
-					"@id": "ldui:DataTypeProperty"
+					"@id": "ldui:UIDataTypeProperty"
 				}
 			],
 			"canExistOnType": {
@@ -266,7 +269,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				}
 			],
 			"comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
@@ -280,7 +283,7 @@
 					"@id": "rdf:Property"
 				},
 				{
-					"@id": "ldui:DataTypeProperty"
+					"@id": "ldui:UIDataTypeProperty"
 				}
 			],
 			"comment": "Properties of a ldui:MediaType, like isPlaying",
@@ -319,7 +322,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:State"
+					"@id": "ldui:UIState"
 				}
 			],
 			"comment": "When the user interacts with the application, the application changes its state as a consequence",
@@ -333,7 +336,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:Action"
+					"@id": "ldui:UIAction"
 				}
 			],
 			"comment": "The root action class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
@@ -364,7 +367,7 @@
 					"@id": "ldui:UserAction"
 				}
 			],
-			"comment": "Actions that the user can do with media which is embedded in html, like RecordAction, DownloadAction, StartAction, PauseAction",
+			"comment": "Actions that the user can do with media which is embedded in html, like RecordAction, UIDownloadAction, StartAction, PauseAction",
 			"label": "media action"
 		},
 		{
@@ -389,7 +392,7 @@
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:State"
+					"@id": "ldui:UIState"
 				}
 			],
 			"comment": "When the user interacts with an UI element, that element changes its state as a consequence",
@@ -584,7 +587,7 @@
 			"label": "accessibility"
 		},
 		{
-			"@id": "ldui:CommunicateAction",
+			"@id": "ldui:UICommunicateAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -592,9 +595,12 @@
 				},
 				{
 					"@id": "ldui:UserAction"
+				},
+				{
+					"@id": "schema:CommunicateAction"
 				}
 			],
-			"comment": "Actions where two users exchange information, e.g. CommentAction, ReplyAction, ReactAction",
+			"comment": "Actions where two users exchange information, e.g. UICommentAction, UIReplyAction, UIReactAction. Extends https://schema.org/CommunicateAction to add properties specific to user interfaces.",
 			"label": "communicate action"
 		},
 		{
@@ -644,7 +650,7 @@
 			},
 			"canBeOfType": [
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				},
 				{
 					"@id": "schema:Thing"
@@ -694,7 +700,7 @@
 			"@id": "ldui:multipleValues",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:PropertyValueSpecification"
+				"@id": "ldui:UIPropertyValueSpecification"
 			},
 			"canBeOfType": {
 				"@id": "schema:Boolean"
@@ -706,19 +712,19 @@
 			"@id": "ldui:valueName",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:PropertyValueSpecification"
+				"@id": "ldui:UIPropertyValueSpecification"
 			},
 			"canBeOfType": {
 				"@id": "schema:Text"
 			},
-			"comment": "Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
+			"comment": "Indicates the name of the UIPropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
 			"label": "value name"
 		},
 		{
 			"@id": "ldui:defaultValue",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:PropertyValueSpecification"
+				"@id": "ldui:UIPropertyValueSpecification"
 			},
 			"canBeOfType": [
 				{
@@ -735,7 +741,7 @@
 			"@id": "ldui:valueRequired",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:PropertyValueSpecification"
+				"@id": "ldui:UIPropertyValueSpecification"
 			},
 			"canBeOfType": {
 				"@id": "schema:Boolean"
@@ -747,7 +753,7 @@
 			"@id": "ldui:readonlyValue",
 			"@type": "Property",
 			"canExistOnType": {
-				"@id": "ldui:PropertyValueSpecification"
+				"@id": "ldui:UIPropertyValueSpecification"
 			},
 			"canBeOfType": {
 				"@id": "schema:Boolean"
@@ -1388,7 +1394,7 @@
 			"label": "dismiss action"
 		},
 		{
-			"@id": "ldui:ConfirmAction",
+			"@id": "ldui:UIConfirmAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -1396,13 +1402,16 @@
 				},
 				{
 					"@id": "ldui:UserAction"
+				},
+				{
+					"@id": "schema:ConfirmAction"
 				}
 			],
-			"comment": "A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected.",
+			"comment": "A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected. Extends https://schema.org/ConfirmAction, which should be used if the confirmation happens offline.",
 			"label": "confirm action"
 		},
 		{
-			"@id": "ldui:DeleteAction",
+			"@id": "ldui:UIDeleteAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -1410,9 +1419,12 @@
 				},
 				{
 					"@id": "ldui:UserAction"
+				},
+				{
+					"@id": "schema:DeleteAction"
 				}
 			],
-			"comment": "A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative",
+			"comment": "A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative. Extends https://schema.org/DeleteAction, to design flows like confirm-before-delete more easily.",
 			"label": "delete action"
 		},
 		{
@@ -1584,7 +1596,7 @@
 			"label": "upload action"
 		},
 		{
-			"@id": "ldui:DownloadAction",
+			"@id": "ldui:UIDownloadAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -2640,7 +2652,7 @@
 			"label": "container"
 		},
 		{
-			"@id": "ldui:Table",
+			"@id": "ldui:UITable",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -2650,7 +2662,7 @@
 					"@id": "ldui:ContainerUIElement"
 				}
 			],
-			"comment": "A Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows.",
+			"comment": "A UI Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows. UITables need more properties than https://schema.org/Table provides to function, so it's not extending from the schema.org type.",
 			"label": "table"
 		},
 		{
@@ -2942,45 +2954,54 @@
 			"label": "value text"
 		},
 		{
-			"@id": "ldui:CommentAction",
+			"@id": "ldui:UICommentAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:CommunicateAction"
+					"@id": "ldui:UICommunicateAction"
+				},
+				{
+					"@id": "schema:CommentAction"
 				}
 			],
-			"comment": "A Comment Action describes the act of creating a comment about a subject. CommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Go to https://schema.org/CommentAction for more details.",
+			"comment": "A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends https://schema.org/CommentAction to add more User Interface-specific features.",
 			"label": "comment action"
 		},
 		{
-			"@id": "ldui:ReplyAction",
+			"@id": "ldui:UIReplyAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:CommunicateAction"
+					"@id": "ldui:UICommunicateAction"
+				},
+				{
+					"@id": "schema:ReplyAction"
 				}
 			],
-			"comment": "A ReplyAction is similar to a CommentAction, and refers to the act of responding to a question/message asked/sent by the object. Go to https://schema.org/ReplyAction for more details.",
+			"comment": "A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from https://schema.org/ReplyAction, but the user interface needs more details.",
 			"label": "reply action"
 		},
 		{
-			"@id": "ldui:ReactAction",
+			"@id": "ldui:UIReactAction",
 			"@type": "Class",
 			"subClassOf": [
 				{
 					"@id": "rdfs:Class"
 				},
 				{
-					"@id": "ldui:CommunicateAction"
+					"@id": "ldui:UICommunicateAction"
+				},
+				{
+					"@id": "schema:ReactAction"
 				}
 			],
-			"comment": "A ReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Go to https://schema.org/ReactAction for more info.",
+			"comment": "A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends https://schema.org/ReactAction to add more user interface-related features.",
 			"label": "react action"
 		},
 		{
@@ -3093,7 +3114,7 @@
 			"@type": "Property",
 			"canBeOfType": [
 				{
-					"@id": "ldui:DataType"
+					"@id": "ldui:UIDataType"
 				},
 				{
 					"@id": "schema:Thing"
@@ -3115,7 +3136,7 @@
 			"@id": "ldui:status",
 			"@type": "Property",
 			"canBeOfType": {
-				"@id": "ldui:State"
+				"@id": "ldui:UIState"
 			},
 			"comment": "Status is a property of a UI Element to tell the user what happened in the application. 404 pages display technical status. The green or yellow dot in chat applications display user statuses.",
 			"label": "status"
