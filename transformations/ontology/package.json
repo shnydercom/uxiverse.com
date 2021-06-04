@@ -15,9 +15,9 @@
   },
   "scripts": {
     "clean": "rm -r ./cli-gen",
-    "build:setup": "mkdir ./cli-gen",
+    "initmonorepo": "mkdir ./cli-gen",
     "build:downloadschema": "yarn ts-node ./buildsteps/downloadSchemaNT.ts",
-    "build:ont": "echo ignoring linting for now, run with: jsonld-lint ./ontology/ldui.net.jsonld",
+    "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/ldui.net.jsonld",
     "build:jsld": "jsonld format ./ontology/ldui.net.jsonld --nquads > ./cli-gen/ldui-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
     "build:dts": "schema-dts-gen --context=ldui:http://ldui.net/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
