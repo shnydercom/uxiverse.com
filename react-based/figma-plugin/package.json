@@ -1,12 +1,12 @@
 {
-  "name": "@ldui.net/figma-plugin",
+  "name": "@uxiverse.com/figma-plugin",
   "version": "0.0.1",
   "description": "Create React Figma Plugin with no build configuration.",
   "main": "code.js",
-  "homepage": "https://ldui.net",
-  "bugs": "https://github.com/shnydercom/ldui.net/issues",
+  "homepage": "https://uxiverse.com",
+  "bugs": "https://github.com/shnydercom/uxiverse.com/issues",
   "repository": {
-    "url": "https://github.com/shnydercom/ldui.net",
+    "url": "https://github.com/shnydercom/uxiverse.com",
     "type": "git"
   },
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.19.2",
-    "@ldui.net/ui-lib": "*",
+    "@uxiverse.com/ui-lib": "*",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
     "@typescript-eslint/eslint-plugin": "^1.13.0",

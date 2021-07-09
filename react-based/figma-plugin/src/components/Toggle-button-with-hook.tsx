@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "@ldui.net/ui-lib";
+import { Button } from "@uxiverse.com/ui-lib";
 import { useState } from "react";
 
 export const ToggleButtonWithHook = () => {

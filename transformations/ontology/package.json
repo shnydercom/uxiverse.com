@@ -1,9 +1,9 @@
 {
-  "name": "@ldui.net/ontology",
+  "name": "@uxiverse.com/ontology",
   "version": "0.1.0",
   "description": "a repository for the development of an ontology and a documentation for Linked Data UI (dot net)",
   "main": "index.js",
-  "repository": "https://github.com/shnydercom/ldui.net.git",
+  "repository": "https://github.com/shnydercom/uxiverse.com.git",
   "author": "contact@metaexplorer.io",
   "license": "EUPL-1.2",
   "dependencies": {
@@ -17,10 +17,10 @@
     "clean": "rm -r ./cli-gen",
     "initmonorepo": "mkdir ./cli-gen",
     "build:downloadschema": "yarn ts-node ./buildsteps/downloadSchemaNT.ts",
-    "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/ldui.net.jsonld",
-    "build:jsld": "jsonld format ./ontology/ldui.net.jsonld --nquads > ./cli-gen/ldui-ontology.nt",
+    "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/uxiverse.com.jsonld",
+    "build:jsld": "jsonld format ./ontology/uxiverse.com.jsonld --nquads > ./cli-gen/ldui-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
-    "build:dts": "schema-dts-gen --context=ldui:http://ldui.net/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
+    "build:dts": "schema-dts-gen --context=ldui:http://uxiverse.com/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
     "build": "yarn build:jsld && yarn build:combine && yarn build:dts"
   },
   "devDependencies": {

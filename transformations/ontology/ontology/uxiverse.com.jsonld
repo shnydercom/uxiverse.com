@@ -1,6 +1,6 @@
 {
 	"@context": {
-		"ldui": "https://ldui.net/ontology/",
+		"ldui": "https://uxiverse.com/ontology/",
 		"schema": "https://schema.org/",
 		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
 		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -40,7 +40,7 @@
 			"@type": "@id"
 		}
 	},
-	"@id": "http://ldui.net/ontology",
+	"@id": "http://uxiverse.com/ontology",
 	"defines": [
 		{
 			"@id": "schema:Thing",

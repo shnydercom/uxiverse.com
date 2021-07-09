@@ -1,5 +1,5 @@
-# ldui.net
-Good User Experiences are the result of people from different professions working together. The goal of ldui.net is to find a common language for User Interface Creation. 
+# uxiverse.com
+Good User Experiences are the result of people from different professions working together. The goal of uxiverse.com is to find a common language for User Interface Creation. 
 
 - For this, we need data about the current industry standard. A figma plugin that recommends UI terms and tracks their usage will be developed
 
