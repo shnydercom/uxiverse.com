@@ -1,0 +1,7 @@
+{
+  "name": "UI Vocabulary",
+  "id": "956151024412087001",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
+}

@@ -1,8 +1,13 @@
-# lerna-typescript-cra-uilib-starter
-Starter for Monorepos: Lerna, TypeScript, CRA and Storybook
+# uxiverse.com
+Good User Experiences are the result of people from different professions working together. The goal of uxiverse.com is to find a common language for User Interface Creation. 
 
-- now supports react-scripts version 4 
-- contains the storybook "sb init" scaffolding with typescript, with slight modifications
-- the UI library packages .css and .scss files in the library-folders now
+- For this, we need data about the current industry standard. A figma plugin that recommends UI terms and tracks their usage will be developed
 
-[more details in the blogpost](https://dev.to/shnydercom/monorepos-lerna-typescript-cra-and-storybook-combined-4hli)
+## dictionary do's and don'ts
+- When referring to other terms in the dictionary, the terms Capitalized or camelCase form is used. They might be turned into links at some point.
+
+# Licenses
+This project is licensed under EUPL unless otherwise specified. The goal is to advance the base technology for UX as a community, while each business can keep details confidential.
+
+Projects and their licenses that went into this project but have been modified (templates etc)
+- (MIT) https://github.com/FradSer/create-react-figma-plugin

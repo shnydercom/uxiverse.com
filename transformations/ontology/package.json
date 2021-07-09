@@ -1,28 +1,29 @@
 {
-  "name": "@ldui.net/ontology",
+  "name": "@uxiverse.com/ontology",
   "version": "0.1.0",
   "description": "a repository for the development of an ontology and a documentation for Linked Data UI (dot net)",
   "main": "index.js",
-  "repository": "https://github.com/shnydercom/ldui.net.git",
+  "repository": "https://github.com/shnydercom/uxiverse.com.git",
   "author": "contact@metaexplorer.io",
-  "license": "EUPL",
+  "license": "EUPL-1.2",
   "dependencies": {
     "jsonld": "^3.3.0",
     "jsonld-cli": "^0.3.0",
     "jsonld-lint-cli": "^0.3.0",
-    "schema-dts-gen": "^0.8.2"
+    "schema-dts": "^0.8.3",
+    "schema-dts-gen": "^0.8.3"
   },
   "scripts": {
     "clean": "rm -r ./cli-gen",
-    "build:setup": "mkdir ./cli-gen",
-    "build:ont": "jsonld-lint ./ontology/ldui.net.jsonld",
-    "build:jsld": "jsonld format ./ontology/ldui.net.jsonld --nquads > ./cli-gen/ontology.nt",
-    "build:dts": "schema-dts-gen --context=ldui:http://ldui.net/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/ontology.nt > ./cli-gen/ontology.ts",
-    "build": "yarn build:setup && yarn build:ont && yarn build:jsld && yarn build:dts"
+    "initmonorepo": "mkdir ./cli-gen",
+    "build:downloadschema": "yarn ts-node ./buildsteps/downloadSchemaNT.ts",
+    "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/uxiverse.com.jsonld",
+    "build:jsld": "jsonld format ./ontology/uxiverse.com.jsonld --nquads > ./cli-gen/ldui-ontology.nt",
+    "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
+    "build:dts": "schema-dts-gen --context=ldui:http://uxiverse.com/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
+    "build": "yarn build:jsld && yarn build:combine && yarn build:dts"
   },
   "devDependencies": {
-    "typescript": "^4.1.3",
-    "unified": "^9.2.0",
     "@types/argparse": "^2.0.0",
     "@types/array.prototype.flatmap": "^1.2.2",
     "@types/diff": "^4.0.2",
@@ -48,6 +49,9 @@
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.0.0",
     "remark-wiki-link": "^1.0.0",
-    "ts-jest": "^26.4.0"
+    "ts-jest": "^26.4.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.1.3",
+    "unified": "^9.2.0"
   }
 }
