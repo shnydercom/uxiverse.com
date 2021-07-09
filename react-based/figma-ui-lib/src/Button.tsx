@@ -1,5 +1,6 @@
 import React from 'react';
-import './button.css';
+import { Button as FigmaButton, Textarea } from "react-figma-plugin-ds";
+//import './button.css';
 
 export interface ButtonProps {
   /**
@@ -26,6 +27,7 @@ export interface ButtonProps {
 
 /**
  * Primary UI component for user interaction
+ * docs for figma comp: https://alexandrtovmach.github.io/react-figma-plugin-ds/#checkbox
  */
 export const Button: React.FC<ButtonProps> = ({
   primary = false,
@@ -34,15 +36,15 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-  return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+  const mode = primary ? 'button--primary' : 'button--secondary';
+  return (<>
+    <FigmaButton
+      className={['button', `storybook-button--${size}`, mode].join(' ')}
       {...props}
     >
       {label}
-    </button>
+    </FigmaButton>
+    <Textarea placeholder={"asdf"} rows={5}></Textarea>
+    </>
   );
 };

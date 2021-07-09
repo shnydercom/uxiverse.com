@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "https://github.com/shnydercom/ldui.net.git",
   "author": "contact@metaexplorer.io",
-  "license": "EUPL",
+  "license": "EUPL-1.2",
   "dependencies": {
     "jsonld": "^3.3.0",
     "jsonld-cli": "^0.3.0",
