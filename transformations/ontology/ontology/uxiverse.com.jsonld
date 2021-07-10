@@ -7,6 +7,10 @@
 		"defines": {
 			"@reverse": "rdfs:isDefinedBy"
 		},
+		"inTagList": {
+			"@reverse": "schema:itemListElement",
+			"@type": "@id"
+		},
 		"comment": "rdfs:comment",
 		"label": "rdfs:label",
 		"domain": {
@@ -2962,7 +2966,8 @@
 				}
 			],
 			"comment": "A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends https://schema.org/CommentAction to add more User Interface-specific features.",
-			"label": "comment action"
+			"label": "comment action",
+			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
 		},
 		{
 			"@id": "uxi:UIReplyAction",
@@ -2979,7 +2984,8 @@
 				}
 			],
 			"comment": "A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from https://schema.org/ReplyAction, but the user interface needs more details.",
-			"label": "reply action"
+			"label": "reply action",
+			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
 		},
 		{
 			"@id": "uxi:UIReactAction",
@@ -2996,7 +3002,8 @@
 				}
 			],
 			"comment": "A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends https://schema.org/ReactAction to add more user interface-related features.",
-			"label": "react action"
+			"label": "react action",
+			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
 		},
 		{
 			"@id": "uxi:isProminent",
@@ -3232,6 +3239,24 @@
 			],
 			"comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
 			"label": "Group"
+		},
+		{
+			"@id": "uxi:Tags",
+			"@type": "schema:ItemList",
+			"schema:itemListElement": [
+				{
+					"@id": "uxi:Developer-Tag",
+					"@type": "schema:ItemList"
+				},
+				{
+					"@id": "uxi:Designer-Tag",
+					"@type": "schema:ItemList"
+				},
+				{
+					"@id": "uxi:Copywriter-Tag",
+					"@type": "schema:ItemList"
+				}
+			]
 		}
 	]
 }
