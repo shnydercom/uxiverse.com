@@ -43,12 +43,6 @@
 	"@id": "http://uxiverse.com/ontology",
 	"defines": [
 		{
-			"@id": "schema:Thing",
-			"@type": "Class",
-			"comment": "The most generic type of item. Duplicate of schema:Thing-ontology, deprecate as soon as possible",
-			"label": "Thing"
-		},
-		{
 			"@id": "uxi:Element",
 			"@type": "Class",
 			"subClassOf": [
@@ -3166,45 +3160,78 @@
 			"label": "settings"
 		},
 		{
-			"@id": "uxi:role",
-			"@type": "Property",
-			"canExistOnType": {
-				"@id": "uxi:Element"
-			},
-			"canBeOfType": {
-				"@id": "schema:Text"
-			},
-			"comment": "A role is a context property, summarizing a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
-			"label": "role"
-		},
-		{
-			"@id": "uxi:user",
+			"@id": "uxi:isUsableBy",
 			"@type": "Property",
 			"canExistOnType": {
 				"@id": "uxi:Element"
 			},
 			"canBeOfType": [
 				{
-					"@id": "schema:Person"
+					"@id": "uxi:User"
 				},
 				{
-					"@id": "schema:Text"
+					"@id": "schema:Role"
+				},
+				{
+					"@id": "uxi:Group"
+				},
+				{
+					"@id": "schema:Person"
 				}
 			],
-			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages.",
-			"label": "user"
+			"comment": "To handle which User, Role or Group can use an Element of the UI, the property isUsableBy can be used to grey out parts of the interface, or hide them entirely.",
+			"label": "isUsableBy"
 		},
 		{
-			"@id": "uxi:group",
+			"@id": "uxi:isInUseBy",
 			"@type": "Property",
 			"canExistOnType": {
 				"@id": "uxi:Element"
 			},
-			"canBeOfType": {
-				"@id": "schema:Text"
-			},
+			"canBeOfType": [
+				{
+					"@id": "schema:Role"
+				},
+				{
+					"@id": "uxi:User"
+				},
+				{
+					"@id": "uxi:Group"
+				},
+				{
+					"@id": "schema:Person"
+				}
+			],
+			"comment": "When people collaboratively work, the property isInUseBy can be used to make an element non-editable until it is set free. Showing where other users are can also prevent conflicting edits.",
+			"label": "isInUseBy"
+		},
+		{
+			"@id": "uxi:User",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages. Compared to a role, a role summarizes a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
+			"label": "User"
+		},
+		{
+			"@id": "uxi:Group",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
 			"comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
-			"label": "group"
+			"label": "Group"
 		}
 	]
 }
