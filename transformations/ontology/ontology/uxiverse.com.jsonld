@@ -146,7 +146,7 @@
 					"@id": "rdf:Property"
 				}
 			],
-			"comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu, role, group",
+			"comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu",
 			"label": "semantic property"
 		},
 		{
@@ -691,7 +691,7 @@
 			"canBeOfType": {
 				"@id": "uxi:Element"
 			},
-			"comment": "A property that holds the context a UI element is in, e.g. role, user, group",
+			"comment": "A property that holds the context a UI element is in",
 			"label": "context property"
 		},
 		{
