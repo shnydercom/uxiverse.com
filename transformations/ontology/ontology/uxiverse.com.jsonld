@@ -128,6 +128,40 @@
 			"label": "state"
 		},
 		{
+			"@id": "uxi:Converter",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all technical components that convert from one data type to another",
+			"label": "converter",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:SideEffectHandler",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all technical components that handle side effects like data fetching/sending, I/O or anything else outside the application state",
+			"label": "side effect handler",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
 			"@id": "uxi:SemanticFlag",
 			"@type": "Property",
 			"subPropertyOf": [
@@ -2170,7 +2204,7 @@
 					"@id": "uxi:AtomUIElement"
 				}
 			],
-			"comment": "An Input is a UI element that helps users enter data. Some inputs like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in gneeral",
+			"comment": "An Input is a UI element that helps users enter data. Some inputs like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in general",
 			"label": "input"
 		},
 		{
@@ -2967,7 +3001,10 @@
 			],
 			"comment": "A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends https://schema.org/CommentAction to add more User Interface-specific features.",
 			"label": "comment action",
-			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
 		},
 		{
 			"@id": "uxi:UIReplyAction",
@@ -2985,7 +3022,10 @@
 			],
 			"comment": "A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from https://schema.org/ReplyAction, but the user interface needs more details.",
 			"label": "reply action",
-			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
 		},
 		{
 			"@id": "uxi:UIReactAction",
@@ -3003,7 +3043,10 @@
 			],
 			"comment": "A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends https://schema.org/ReactAction to add more user interface-related features.",
 			"label": "react action",
-			"inTagList":  ["uxi:Developer-Tag", "uxi:Designer-Tag"]
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
 		},
 		{
 			"@id": "uxi:isProminent",
@@ -3121,8 +3164,41 @@
 					"@id": "schema:Thing"
 				}
 			],
-			"comment": "A result is an outcome property to tell the user what consequences their actions have. Can refer to the result in a currency calculator app, a finished user profile as a result of editing, or a fulfilled workflow after performing a sequence of tasks.",
-			"label": "result"
+			"canExistOnType": [
+				{
+					"@id": "uxi:Converter"
+				}
+			],
+			"comment": "A result is an outcome property that's immediately evaluated. It can be used to tell the user what consequences their actions will have. E.g. the result in a currency calculator app, completed user profile data as a result of editing, or a fulfilled workflow after performing a sequence of tasks (before submitting). Technically, results should be treated as immediate/synchronous outcomes, compare with uxi:output for side-effects/asynchronous handling.",
+			"label": "result",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:inputRange",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:Converter"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "The input range defines the data type a uxi:UIElement can consume. E.g. in the case of a date picker this would be https://schema.org/Date. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data.",
+			"label": "input range"
 		},
 		{
 			"@id": "uxi:output",
@@ -3130,7 +3206,15 @@
 			"canBeOfType": {
 				"@id": "schema:Thing"
 			},
-			"comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents.",
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents. Technically, outputs should be treated as side-effects/asynchronously, compare with uxi:result for immediate/synchronous outcomes.",
 			"label": "output"
 		},
 		{
