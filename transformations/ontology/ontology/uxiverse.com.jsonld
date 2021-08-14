@@ -162,6 +162,23 @@
 			]
 		},
 		{
+			"@id": "uxi:Validator",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all validators. They take in an uxi:input, evaluate it and create a uxi:result, which should be a boolean by default",
+			"label": "side effect handler",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
 			"@id": "uxi:SemanticFlag",
 			"@type": "Property",
 			"subPropertyOf": [
@@ -2194,7 +2211,7 @@
 			"label": "sub-title"
 		},
 		{
-			"@id": "uxi:Input",
+			"@id": "uxi:InputElement",
 			"@type": "Class",
 			"subClassOf": [
 				{
@@ -2204,8 +2221,8 @@
 					"@id": "uxi:AtomUIElement"
 				}
 			],
-			"comment": "An Input is a UI element that helps users enter data. Some inputs like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in general",
-			"label": "input"
+			"comment": "An InputElement is a UI element that helps users enter data. Some input elementss like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in general",
+			"label": "input element"
 		},
 		{
 			"@id": "uxi:Button",
@@ -3167,6 +3184,9 @@
 			"canExistOnType": [
 				{
 					"@id": "uxi:Converter"
+				},
+				{
+					"@id": "uxi:Validator"
 				}
 			],
 			"comment": "A result is an outcome property that's immediately evaluated. It can be used to tell the user what consequences their actions will have. E.g. the result in a currency calculator app, completed user profile data as a result of editing, or a fulfilled workflow after performing a sequence of tasks (before submitting). Technically, results should be treated as immediate/synchronous outcomes, compare with uxi:output for side-effects/asynchronous handling.",
@@ -3197,8 +3217,51 @@
 					"@id": "uxi:SideEffectHandler"
 				}
 			],
-			"comment": "The input range defines the data type a uxi:UIElement can consume. E.g. in the case of a date picker this would be https://schema.org/Date. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data.",
+			"comment": "The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data.",
 			"label": "input range"
+		},
+		{
+			"@id": "uxi:inputTriggerValidator",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:Validator"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "The input trigger validator can be used with side-effect handlers, so that they only trigger when the input is valid.",
+			"label": "input trigger validator",
+			"inTagList":["uxi:Developer-Tag"]
+		},
+		{
+			"@id": "uxi:input",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				},
+				{
+					"@id": "schema:DataType"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "Input is the value/parameter/prop that gets passed to an element in the UX, and can be empty. This applies to visual as well as non-visual elements.",
+			"label": "input value",
+			"inTagList":["uxi:Developer-Tag"]
 		},
 		{
 			"@id": "uxi:output",
