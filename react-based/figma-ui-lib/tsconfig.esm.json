@@ -9,6 +9,6 @@
       "target": "esnext",
       "moduleResolution": "node",
       "lib": ["dom", "esnext"],
-      "declaration": false
+      "declaration": true
     }
   }
