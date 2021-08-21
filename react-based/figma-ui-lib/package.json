@@ -10,12 +10,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "libbuild": "tsc && tsc --build tsconfig.esm.json && yarn compcss",
-    "compcss": "yarn sass src/:lib/ && yarn sass src/:lib-esm/",
-    "docGen": "tsc docGenerator.ts --m commonjs",
-    "genDoc": "node docGenerator.js /lib/Button.d.ts",
-    "morphGen": "tsc ts-morph-test.ts --m commonjs",
-    "genMorph": "node ts-morph-test.js /lib/"
-
+    "compcss": "yarn sass src/:lib/ && yarn sass src/:lib-esm/"
   },
   "author": "shnyder.com",
   "license": "EUPL-1.2",
@@ -33,7 +28,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "react-figma-plugin-ds": "^2.3.0",
-    "ts-morph": "^11.0.3"
+    "@uxiverse.com/ontology": "*",
+    "react-figma-plugin-ds": "^2.3.0"
   }
 }

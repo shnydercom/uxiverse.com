@@ -1,6 +1,6 @@
 {
 	"@context": {
-		"uxi": "https://uxiverse.com/ontology/",
+		"uxi": "https://uxiverse.com/ontology#",
 		"schema": "https://schema.org/",
 		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
 		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -44,7 +44,7 @@
 			"@type": "@id"
 		}
 	},
-	"@id": "http://uxiverse.com/ontology",
+	"@id": "https://uxiverse.com/ontology",
 	"defines": [
 		{
 			"@id": "uxi:Element",
@@ -52,6 +52,9 @@
 			"subClassOf": [
 				{
 					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "schema:Thing"
 				}
 			],
 			"comment": "The root for all Classes in the uxiverse ontology, both as part of the UI or not",
@@ -3068,8 +3071,14 @@
 		{
 			"@id": "uxi:isProminent",
 			"@type": "Property",
+			"subPropertyOf": {
+				"@id": "uxi:HierarchyFlag"
+			},
 			"canExistOnType": {
 				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
 			},
 			"comment": "A hierarchy flag to indicate that a UI Element stands out and is readily noticeable, such as a red CTA-button. An example where isProminent switches from one UI Element to another are tutorial-UIs, where the user can see the full UI, but only click the explained part.",
 			"label": "is prominent"

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import https from 'https';
+import path from 'path';
 
 /**
  * function to download over https
@@ -7,14 +8,14 @@ import https from 'https';
  * @param dest 
  * @param errCB 
  */
-var download = function(url, dest, errCB) {
-  var file = fs.createWriteStream(dest);
-  var request = https.get(url, function(response) {
+const download = function (url, dest, errCB) {
+  const file = fs.createWriteStream(dest);
+  const request = https.get(url, function (response) {
     response.pipe(file);
-    file.on('finish', function() {
-      file.close();  
+    file.on('finish', function () {
+      file.close();
     });
-  }).on('error', function(err) {
+  }).on('error', function (err) {
     fs.unlink(dest, () => console.warn("no params specified in unlink")); // Delete the file async.
     if (errCB) errCB(err.message);
   });
@@ -23,4 +24,13 @@ var download = function(url, dest, errCB) {
 const latestSchemaNT: string = "https://schema.org/version/latest/schemaorg-current-https.nt";
 const dest: string = "./cli-gen/schema-ontology.nt";
 
-download(latestSchemaNT, dest, (args) => console.log(args));
+const downloadIfNecessary = (url, dest, errCB) => {
+  const isDestExists = fs.existsSync(path.resolve(dest));
+  if (isDestExists) {
+    console.warn("Not re-downloading, file found at destination: " + dest);
+    return;
+  }
+  download(url, dest, errCB);
+};
+
+downloadIfNecessary(latestSchemaNT, dest, (args) => console.log(args));

@@ -1,0 +1,40 @@
+{
+  "name": "examples",
+  "version": "0.0.1",
+  "description": "examples and playground for conversions/transformations",
+  "main": "index.js",
+  "author": "Jonathan Schneider",
+  "license": "EUPL-1.2",
+  "dependencies": {
+    "jsonld": "^3.3.0",
+    "jsonld-cli": "^0.3.0",
+    "jsonld-lint-cli": "^0.3.0",
+    "schema-dts": "^0.11.0",
+    "schema-dts-gen": "^0.11.0",
+    "graphlib": "2.1.8",
+    "dagrejs": "0.1.1",
+    "@uxiverse.com/ontology": "*"
+  },
+  "scripts": {
+    "docGen": "tsc ./src/docGenerator.ts --m commonjs",
+    "genDoc": "node ./src/docGenerator.js ./testdata/Header.d.ts",
+    "morphGen": "tsc ./src/ts-morph-test.ts --m commonjs",
+    "genMorph": "node ./src/ts-morph-test.js ./testdata/Header.d.ts",
+    "uxitest": "yarn ts-node --project tsconfig.tsnode.json ./src/uxiverse-test.ts"
+  },
+  "devDependencies": {
+    "@types/argparse": "^2.0.0",
+    "@types/array.prototype.flatmap": "^1.2.2",
+    "@types/diff": "^4.0.2",
+    "@types/jest": "^26.0.14",
+    "@types/jsonld": "^1.5.6",
+    "@types/node": "^14.11.2",
+    "coveralls": "^3.1.0",
+    "cpy-cli": "^3.1.1",
+    "del-cli": "^3.0.1",
+    "ts-jest": "^26.4.0",
+    "ts-node": "^10.0.0",
+    "ts-morph": "^11.0.3",
+    "typescript": "^4.1.3"
+  }
+}

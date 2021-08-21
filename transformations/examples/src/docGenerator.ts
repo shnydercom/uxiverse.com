@@ -1,6 +1,10 @@
 import * as ts from "typescript";
 import * as fs from "fs";
 
+//this script could help generate documentation 
+//copied from here: https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
+//ts-node looks more easy to use though
+
 interface DocEntry {
 	name?: string;
 	fileName?: string;

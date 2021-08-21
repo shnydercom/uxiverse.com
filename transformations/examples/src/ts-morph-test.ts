@@ -2,17 +2,16 @@ import { Project } from "ts-morph";
 
 const project = new Project();
 
-
-const sourceFiles = project.addSourceFilesAtPaths("lib/**/*{.d.ts,.ts}");
+const sourceFiles = project.addSourceFilesAtPaths("testdata/Header.d.ts");//"lib/**/*{.d.ts,.ts}");
 //const sourceFile = project.getSourceFileOrThrow("./lib/Button.d.ts");
 
-const personInterface = sourceFiles[2].getInterfaces();
+const interfacesInFile = sourceFiles[0].getInterfaces();
 
-console.log("bla " + personInterface[0].getName());
+console.log("interfaceName: " + interfacesInFile[0].getName());
 //prints the key on the interface
-console.log(personInterface[0].getMembers()[1].getSymbol().getName());
+console.log(interfacesInFile[0]?.getMembers()[1]?.getSymbol()?.getName());
 //prints "__type", if that member doesn't have a named type, otherwise the named type
-console.log(personInterface[0].getMembers()[1].getType().getSymbol().getName());
+console.log(interfacesInFile[0]?.getMembers()[1]?.getType()?.getSymbol()?.getName());
 /**
  * returns this for the `interface IBla {onLogin: () => void}`
  * {
@@ -25,4 +24,4 @@ console.log(personInterface[0].getMembers()[1].getType().getSymbol().getName());
   kind: 31
 }
  */
-console.log(personInterface[0].getMembers()[1].getStructure());
+console.log(interfacesInFile[0].getMembers()[1].getStructure());
