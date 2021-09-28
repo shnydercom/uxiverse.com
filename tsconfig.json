@@ -1,9 +1,10 @@
 {
-	"files": ["./typings.d.ts"],
-	"compilerOptions": {
-		"jsx": "react",
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"noFallthroughCasesInSwitch": true,
-	}
+  "files": ["./typings.d.ts"],
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": ["node_modules"]
 }
