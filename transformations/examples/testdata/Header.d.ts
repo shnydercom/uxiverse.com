@@ -4,4 +4,4 @@ export interface HeaderProps {
     onLogout: () => void;
     onCreateAccount: () => void;
 }
-// export declare const Header: React.FC<HeaderProps>;
+export declare const Header: React.FC<HeaderProps>;
