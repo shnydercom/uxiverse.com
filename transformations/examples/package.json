@@ -6,21 +6,25 @@
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.5",
+    "@uxiverse.com/ontology": "*",
+    "dagrejs": "0.1.1",
+    "graphlib": "2.1.8",
     "jsonld": "^3.3.0",
     "jsonld-cli": "^0.3.0",
     "jsonld-lint-cli": "^0.3.0",
     "schema-dts": "^0.11.0",
-    "schema-dts-gen": "^0.11.0",
-    "graphlib": "2.1.8",
-    "dagrejs": "0.1.1",
-    "@uxiverse.com/ontology": "*"
+    "schema-dts-gen": "^0.11.0"
   },
   "scripts": {
     "docGen": "tsc ./src/docGenerator.ts --m commonjs",
     "genDoc": "node ./src/docGenerator.js ./testdata/Header.d.ts",
     "morphGen": "tsc ./src/ts-morph-test.ts --m commonjs",
     "genMorph": "node ./src/ts-morph-test.js ./testdata/Header.d.ts",
-    "uxitest": "yarn ts-node --project tsconfig.tsnode.json ./src/uxiverse-test.ts"
+    "uxitest": "yarn ts-node --project tsconfig.tsnode.json ./src/uxiverse-test.ts",
+    "muitest": "ts-node --project tsconfig.tsnode.json ./src/mui-test.ts"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.0",
@@ -33,8 +37,8 @@
     "cpy-cli": "^3.1.1",
     "del-cli": "^3.0.1",
     "ts-jest": "^26.4.0",
-    "ts-node": "^10.0.0",
     "ts-morph": "^11.0.3",
+    "ts-node": "^10.4.0",
     "typescript": "^4.1.3"
   }
 }
