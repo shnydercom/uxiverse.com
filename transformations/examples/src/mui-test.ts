@@ -16,7 +16,6 @@ for (const property of defaultImportType.getProperties()) {
   console.log(property.getName());
 }*/
 
-
 const project = new Project( {skipFileDependencyResolution: false, skipLoadingLibFiles: false});
 
 const sourceFile = project.createSourceFile("file.ts", `
@@ -26,7 +25,18 @@ import muiLib from "@mui/material";
 for (const importDeclaration of sourceFile.getImportDeclarations()) {
     const moduleSpecifierSymbol = importDeclaration.getModuleSpecifier().getSymbolOrThrow();
     for (const symbol of moduleSpecifierSymbol.getExports()) {
-      console.log(symbol.getName());
+      //console.log(symbol.getName());
+      if(/*symbol.getName() === "StyledEngineProvider" ||*/ symbol.getName() === "Button"){
+        //console.log(symbol.getMembers());
+        //console.log(symbol.getExports());
+        console.log(symbol.compilerSymbol.declarations![0].getChildren() ?? "bla" );
+        //console.log(symbol.getAliasedSymbol()?.getDeclarations()[0].getFirstChild()?.getType());
+        //console.log(symbol.getAliasedSymbol()?.getValueDeclaration()?.getParent());
+        //console.log(symbol.getDeclarations()[0].getType());
+        //console.log(symbol.getFlags());
+        //console.log(symbol.getFullyQualifiedName());
+        //gets the @mui/material/index.ts console.log(symbol.getDeclarations()[0].getSourceFile());
+      }
     }
   }
 
