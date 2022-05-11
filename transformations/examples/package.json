@@ -19,10 +19,6 @@
     "schema-dts-gen": "^0.11.0"
   },
   "scripts": {
-    "docGen": "tsc ./src/docGenerator.ts --m commonjs",
-    "genDoc": "node ./src/docGenerator.js ./testdata/Header.d.ts",
-    "morphGen": "tsc ./src/ts-morph-test.ts --m commonjs",
-    "genMorph": "node ./src/ts-morph-test.js ./testdata/Header.d.ts",
     "uxitest": "yarn ts-node --project tsconfig.tsnode.json ./src/uxiverse-test.ts",
     "muitest": "ts-node --project tsconfig.tsnode.json ./src/mui-test.ts"
   },

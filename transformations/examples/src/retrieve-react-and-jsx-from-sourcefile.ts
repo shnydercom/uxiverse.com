@@ -6,15 +6,17 @@ import {
   CallSignatureDeclaration,
   SourceFile,
 } from "ts-morph";
+import { ExportsMatcherSummary } from "./interfaces";
 
-export interface ExportsMatcherSummary {
-  matchingExports: string[];
-  otherExports: string[];
-}
-
+/**
+ * gets all exported react and jsx exports. Useful for compiling a list of visual components in a library
+ * @param sourceFile the sourceFile that ts-morph can work on
+ * @param isLoggingInRecursion if true, prints debug messages to the console in the recursive function(s) while traversing the syntax tree
+ * @returns 
+ */
 export function retrieveReactAndJSXexportsFromSourceFile(
   sourceFile: SourceFile,
-  isLogging: boolean = false
+  isLoggingInRecursion: boolean = false
 ): ExportsMatcherSummary {
   const rv: ExportsMatcherSummary = { matchingExports: [], otherExports: [] };
   for (const importDeclaration of sourceFile.getImportDeclarations()) {
@@ -33,7 +35,7 @@ export function retrieveReactAndJSXexportsFromSourceFile(
       } else {
         rv.otherExports.push(symbolName);
       }
-      if (isLogging)
+      if (isLoggingInRecursion)
         console.log(
           `root type search result for ${symbolName} was: ${searchResult}`
         );
@@ -45,13 +47,13 @@ export function retrieveReactAndJSXexportsFromSourceFile(
 export function recursiveRootTypeSearch(
   symb: TSSymbol,
   acceptedInterfaceNames: string[] = [],
-  isLogging: boolean = false
+  isLoggingInRecursion: boolean = false
 ): boolean {
   return !!symb
     .getDeclarations()
     .map((decl) => {
       if (!decl.compilerNode.parent) {
-        if (isLogging) console.log("decl has no parent");
+        if (isLoggingInRecursion) console.log("decl has no parent");
         return false;
       }
       const kindName = decl.getKindName();
@@ -68,7 +70,7 @@ export function recursiveRootTypeSearch(
             (acceptedInterfaceName) => acceptedInterfaceName === returnTypeText
           ) >= 0
         ) {
-          if (isLogging)
+          if (isLoggingInRecursion)
             console.log(
               `found call signature with return type: ${returnTypeText}`
             );
@@ -78,7 +80,7 @@ export function recursiveRootTypeSearch(
           return recursiveRootTypeSearch(
             symb,
             acceptedInterfaceNames,
-            isLogging
+            isLoggingInRecursion
           );
       }
       if (kindName === "InterfaceDeclaration") {
@@ -89,7 +91,7 @@ export function recursiveRootTypeSearch(
             (acceptedInterfaceName) => acceptedInterfaceName === ideclName
           ) >= 0
         ) {
-          if (isLogging)
+          if (isLoggingInRecursion)
             console.log(`found declaration with name: ${ideclName}`);
           return true;
         }
@@ -102,7 +104,7 @@ export function recursiveRootTypeSearch(
                 return recursiveRootTypeSearch(
                   extClauseSymbol,
                   acceptedInterfaceNames,
-                  isLogging
+                  isLoggingInRecursion
                 );
             })
             .reduce(onceTruth, false);
@@ -115,7 +117,7 @@ export function recursiveRootTypeSearch(
               return recursiveRootTypeSearch(
                 memberSymbol,
                 acceptedInterfaceNames,
-                isLogging
+                isLoggingInRecursion
               );
             }
           })
@@ -130,7 +132,7 @@ export function recursiveRootTypeSearch(
           return recursiveRootTypeSearch(
             fnReturnTypeSymbol,
             acceptedInterfaceNames,
-            isLogging
+            isLoggingInRecursion
           );
       }
       if (kindName === "TypeAliasDeclaration") {
@@ -143,7 +145,7 @@ export function recursiveRootTypeSearch(
               return recursiveRootTypeSearch(
                 utypeSymbol,
                 acceptedInterfaceNames,
-                isLogging
+                isLoggingInRecursion
               );
           })
           .reduce(onceTruth, false);
@@ -154,7 +156,7 @@ export function recursiveRootTypeSearch(
               return recursiveRootTypeSearch(
                 itypeSymbol,
                 acceptedInterfaceNames,
-                isLogging
+                isLoggingInRecursion
               );
           })
           .reduce(onceTruth, false);
@@ -165,7 +167,7 @@ export function recursiveRootTypeSearch(
         return recursiveRootTypeSearch(
           aliasSymb,
           acceptedInterfaceNames,
-          isLogging
+          isLoggingInRecursion
         );
       }
       if (kindName === "ExportSpecifier") {
@@ -176,7 +178,7 @@ export function recursiveRootTypeSearch(
           return recursiveRootTypeSearch(
             exportTypeSymbol,
             acceptedInterfaceNames,
-            isLogging
+            isLoggingInRecursion
           );
         }
       }
