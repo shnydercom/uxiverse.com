@@ -15,6 +15,7 @@
   "author": "shnyder.com",
   "license": "EUPL-1.2",
   "devDependencies": {
+    "@figma/plugin-typings": "*",
     "@storybook/addon-actions": "^6.1.17",
     "@storybook/addon-essentials": "^6.1.17",
     "@storybook/addon-links": "^6.1.17",

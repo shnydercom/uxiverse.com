@@ -6,24 +6,19 @@ import { Text, Input, Title, Button } from 'react-figma-plugin-ds'
 import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import './ui.css'
 
-import OtherApp from "./App";
+import OtherApp from './App'
 
 declare function require(path: string): string
 
-class App extends React.Component<{}, { value: string }> {
-  constructor(props) {
-    super(props)
-    this.state = { value: '5' }
-    this.onInputChange = this.onInputChange.bind(this)
-    this.onCreate = this.onCreate.bind(this)
+export interface FigmaPluginRootProps {}
+
+const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
+  const [count, setCount] = React.useState(5)
+  const onInputChange = (value, event) => {
+    setCount(event.target.value)
   }
 
-  onInputChange(value, event) {
-    this.setState({ value: event.target.value })
-  }
-
-  onCreate(event) {
-    const count = parseInt(this.state.value, 10)
+  const onCreate = event => {
     event.preventDefault()
     parent.postMessage(
       { pluginMessage: { type: 'create-rectangles', count } },
@@ -31,34 +26,31 @@ class App extends React.Component<{}, { value: string }> {
     )
   }
 
-  onCancel() {
+  const onCancel = () => {
     parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
   }
 
-  render() {
-    return (
-      <div>
-        <img src={require('./logo.svg')} />
-        <Title level="h1" size="xlarge" weight="bold">
-          Icon Maker
-        </Title>
-        <Text size="small">Count:</Text>
-        <Input
-          type="text"
-          defaultValue="5"
-          icon="frame"
-          iconColor="blue"
-          placeholder="helloIAmAPlaceholder"
-          onChange={this.onInputChange}
-        />
-        <Button onClick={this.onCreate}>Create</Button>
-        <Button isSecondary onClick={this.onCancel}>
-          Cancel
-        </Button>
-        <OtherApp/>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <img src={require('./logo.svg')} />
+      <Title level="h1" size="xlarge" weight="bold">
+        Icon Maker
+      </Title>
+      <Text size="small">Count:</Text>
+      <Input
+        type="text"
+        defaultValue="5"
+        icon="frame"
+        iconColor="blue"
+        placeholder="helloIAmAPlaceholder"
+        onChange={onInputChange}
+      />
+      <Button onClick={onCreate}>Create</Button>
+      <Button isSecondary onClick={onCancel}>
+        Cancel
+      </Button>
+    </div>
+  )
 }
 
-ReactDOM.render(<App />, document.getElementById('react-page'))
+ReactDOM.render(<FigmaPluginRoot />, document.getElementById('react-page'))
