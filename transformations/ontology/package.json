@@ -10,8 +10,8 @@
     "jsonld": "^3.3.0",
     "jsonld-cli": "^0.3.0",
     "jsonld-lint-cli": "^0.3.0",
-    "schema-dts": "^0.8.3",
-    "schema-dts-gen": "^0.8.3"
+    "schema-dts": "^0.11.0",
+    "schema-dts-gen": "^0.11.0"
   },
   "scripts": {
     "clean": "rm -r ./cli-gen",
@@ -20,7 +20,7 @@
     "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/uxiverse.com.jsonld",
     "build:jsld": "jsonld format ./ontology/uxiverse.com.jsonld --nquads > ./cli-gen/uxiverse-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
-    "build:dts": "schema-dts-gen --context=uxi:http://uxiverse.com/ontology,schema:https://schema.org --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
+    "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology#,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
     "build": "yarn build:jsld && yarn build:combine && yarn build:dts"
   },
   "devDependencies": {
