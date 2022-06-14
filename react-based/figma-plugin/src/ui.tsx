@@ -7,6 +7,7 @@ import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import './ui.css'
 
 import OtherApp from './App'
+import { FindAndReplace } from './components/FindAndReplace'
 
 declare function require(path: string): string
 
@@ -32,6 +33,7 @@ const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
 
   return (
     <div>
+        <FindAndReplace/>
       <img src={require('./logo.svg')} />
       <Title level="h1" size="xlarge" weight="bold">
         Icon Maker
