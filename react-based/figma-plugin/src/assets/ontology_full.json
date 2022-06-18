@@ -1,0 +1,3418 @@
+{
+	"@context": {
+		"uxi": "https://uxiverse.com/ontology#",
+		"schema": "https://schema.org/",
+		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+		"defines": {
+			"@reverse": "rdfs:isDefinedBy"
+		},
+		"inTagList": {
+			"@reverse": "schema:itemListElement",
+			"@type": "@id"
+		},
+		"comment": "rdfs:comment",
+		"label": "rdfs:label",
+		"domain": {
+			"@id": "rdfs:domain",
+			"@type": "@id"
+		},
+		"Class": "rdfs:Class",
+		"Property": "rdf:Property",
+		"range": {
+			"@id": "rdfs:range",
+			"@type": "@id"
+		},
+		"subClassOf": {
+			"@id": "rdfs:subClassOf",
+			"@type": "@id",
+			"@container": "@set"
+		},
+		"subPropertyOf": {
+			"@id": "rdfs:subPropertyOf",
+			"@type": "@id",
+			"@container": "@set"
+		},
+		"canBeOfType": {
+			"@id": "schema:rangeIncludes"
+		},
+		"canExistOnType": {
+			"@id": "schema:domainIncludes"
+		},
+		"seeAlso": {
+			"@id": "rdfs:seeAlso",
+			"@type": "@id"
+		}
+	},
+	"@id": "https://uxiverse.com/ontology",
+	"defines": [
+		{
+			"@id": "uxi:Element",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "schema:Thing"
+				}
+			],
+			"comment": "The root for all Classes in the uxiverse ontology, both as part of the UI or not",
+			"label": "element"
+		},
+		{
+			"@id": "uxi:UIDataType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all UI DataTypes. E.g. on/off -> true/false in the case of BooleanType. Formally extends https://schema.org/DataType, but support can't be 100% guaranteed.",
+			"label": "data type"
+		},
+		{
+			"@id": "uxi:UIDataTypeProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				}
+			],
+			"comment": "The root class for all DataTypeProperties with relation to the user interface. Used to describe a DataType more clearly. E.g. minValue/currentValue/maxValue in the case of NumericTypeProperties",
+			"label": "data type property"
+		},
+		{
+			"@id": "uxi:UIElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all User Interface elements",
+			"label": "UI element"
+		},
+		{
+			"@id": "uxi:UIAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				},
+				{
+					"@id": "schema:Action"
+				}
+			],
+			"comment": "The root Action class for the user interface, more detailed than schema:Action. Can be as specific as a ClickAction, or similar to a schema:UICommentAction",
+			"label": "action"
+		},
+		{
+			"@id": "uxi:UIState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The state of a UIElement",
+			"label": "state"
+		},
+		{
+			"@id": "uxi:Converter",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all technical components that convert from one data type to another",
+			"label": "converter",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:SideEffectHandler",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all technical components that handle side effects like data fetching/sending, I/O or anything else outside the application state",
+			"label": "side effect handler",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:Validator",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "The root class for all validators. They take in an uxi:input, evaluate it and create a uxi:result, which should be a boolean by default",
+			"label": "side effect handler",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:SemanticFlag",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				}
+			],
+			"comment": "The root for flags that add semantic information by a simple flag. E.g. isHelp, isDense, isMini, isOverlay, isModal",
+			"label": "semantic flag"
+		},
+		{
+			"@id": "uxi:SemanticProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				}
+			],
+			"comment": "The root for properties that add semantic information about parts of a UI, e.g. result, menu",
+			"label": "semantic property"
+		},
+		{
+			"@id": "uxi:UIPropertyValueSpecification",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "similar to schema:PropertyValueSpecification, but contains only a subset of properties. Some of the properties went into NumericTypeProperty and others",
+			"label": "property value specification"
+		},
+		{
+			"@id": "uxi:BooleanType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIDataType"
+				}
+			],
+			"comment": "Data type: Boolean. Human-readable terms like on/off, true/false have this as a supertype",
+			"label": "boolean type"
+		},
+		{
+			"@id": "uxi:NumericType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIDataType"
+				}
+			],
+			"comment": "Data type: Numeric. Human-readable terms that are expressed in numbers, examples could be an NPS score, temperature, etc.",
+			"label": "boolean type"
+		},
+		{
+			"@id": "uxi:TextType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIDataType"
+				}
+			],
+			"comment": "Data type: Text. Human-readable terms that are expressed as text, like names, descriptions, messages, comments",
+			"label": "boolean type"
+		},
+		{
+			"@id": "uxi:ColorCodeType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIDataType"
+				}
+			],
+			"comment": "Data type: color code. Hexadecimal RGB or ARGB-value",
+			"label": "color code type"
+		},
+		{
+			"@id": "uxi:NumericTypeProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				},
+				{
+					"@id": "uxi:UIDataTypeProperty"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:NumericType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Number"
+			},
+			"comment": "Human-readable numeric values can have min/max/current properties to describe them more closely",
+			"label": "numeric type property"
+		},
+		{
+			"@id": "uxi:TextTypeProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				},
+				{
+					"@id": "uxi:UIDataTypeProperty"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:TextType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Human-readable text values can have properties such as valueMinLength and valueMaxLength to describe them more closely",
+			"label": "text type property"
+		},
+		{
+			"@id": "uxi:MediaDataType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIDataType"
+				}
+			],
+			"comment": "Data types that are not part of html, but can be embedded, such as image, audio and video",
+			"label": "media data type"
+		},
+		{
+			"@id": "uxi:MediaDataTypeProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				},
+				{
+					"@id": "uxi:UIDataTypeProperty"
+				}
+			],
+			"comment": "Properties of a uxi:MediaType, like isPlaying",
+			"label": "media data type property"
+		},
+		{
+			"@id": "uxi:VisualExpression",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
+			"label": "visual expression"
+		},
+		{
+			"@id": "uxi:some",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				}
+			],
+			"comment": "When multiple options are present, uxi:some is a super-property for describing a number of items out of a whole. E.g.: selectedIndex, activeTabIndex, unselectedSet",
+			"label": "some"
+		},
+		{
+			"@id": "uxi:UserActionState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIState"
+				}
+			],
+			"comment": "When the user interacts with the application, the application changes its state as a consequence",
+			"label": "user action state"
+		},
+		{
+			"@id": "uxi:UserAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIAction"
+				}
+			],
+			"comment": "The root action class for all minor interactions users have with the interface (click, scroll, key-press, etc.)",
+			"label": "user action"
+		},
+		{
+			"@id": "uxi:DeviceSpecificAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "The root Action class for any interactions that are specific to the device type. E.g. KeyDownAction, ChangeOrientationAction",
+			"label": "device specific action"
+		},
+		{
+			"@id": "uxi:MediaAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "Actions that the user can do with media which is embedded in html, like RecordAction, UIDownloadAction, StartAction, PauseAction",
+			"label": "media action"
+		},
+		{
+			"@id": "uxi:MediaPartAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "Actions for part of a medium, e.g. AnnotateAction for an interesting part of a recording",
+			"label": "media part action"
+		},
+		{
+			"@id": "uxi:UIElementState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIState"
+				}
+			],
+			"comment": "When the user interacts with an UI element, that element changes its state as a consequence",
+			"label": "ui element state"
+		},
+		{
+			"@id": "uxi:UIStack",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "UIStack is an approach to interface design that includes non-ideal states. These can happen through user interaction or for technical reasons. It includes layers of state, and has been authored by Scott Hurff: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack",
+			"label": "UI stack"
+		},
+		{
+			"@id": "uxi:UIElementTransitionState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a transition state when it is entering another state over time. This can be useful for opening and closing animations, or skeleton states. It is generally helpful for the user to know what's happening with the UI elements instead of instant changes",
+			"label": "UI element transition state"
+		},
+		{
+			"@id": "uxi:IssueSeverity",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "rdf:Property"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "Issue severety expresses the way to order elements towards the user's attention. It summarizes properties of priority and importance. Can be used to communicate errors and warnings",
+			"label": "issue severity"
+		},
+		{
+			"@id": "uxi:IssueSeverityType",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "Issue severity types are used for categorizing elements that need the user's immediate attention, such as Alert, Warning, Error, Incomplete and the Default type",
+			"label": "issue severity type"
+		},
+		{
+			"@id": "uxi:AtomUIElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElement"
+				}
+			],
+			"comment": "An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: https://atomicdesign.bradfrost.com",
+			"label": "atom UI element"
+		},
+		{
+			"@id": "uxi:Shape",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Shape is an Atomic UI element that's used as a basic building block to make other UI elements. It can help express order, relation and hierarchy visually. More specialized examples are circle, triangle, rectangle etc",
+			"label": "shape"
+		},
+		{
+			"@id": "uxi:MoleculeUIElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElement"
+				}
+			],
+			"comment": "A Molecule UI element is the second smallest type of element, as understood by the Atomic Design Methodology. One Molecule UI element is made up of groups of Atoms, and form Organism UI Elements when combined with other molecules",
+			"label": "molecule UI element"
+		},
+		{
+			"@id": "uxi:OrganismUIElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElement"
+				}
+			],
+			"comment": "An Organism as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com",
+			"label": "organism UI element"
+		},
+		{
+			"@id": "uxi:ContainerUIElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElement"
+				}
+			],
+			"comment": "A container is a UI element which contains sub-elements",
+			"label": "container UI element"
+		},
+		{
+			"@id": "uxi:StructuralElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "Structural elements express structure of elements in the user interface, e.g. ABTest, Form, Template, Placeholder, Autocomplete. They're not necessarily visible elements.",
+			"label": "structural element"
+		},
+		{
+			"@id": "uxi:variation",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:ABTest"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "variation of the same UI element, e.g. the A and B version of an A/B-test",
+			"label": "variation"
+		},
+		{
+			"@id": "uxi:triggers",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:Button"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UserAction"
+			},
+			"comment": "The (User-inter)-Action that gets triggered by a Button",
+			"label": "triggers"
+		},
+		{
+			"@id": "uxi:slot",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:Container"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A slot is a space on a container for sub-elements",
+			"label": "slot"
+		},
+		{
+			"@id": "uxi:a11y",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element"
+			},
+			"comment": "Properties related to accessibility",
+			"label": "accessibility"
+		},
+		{
+			"@id": "uxi:UICommunicateAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				},
+				{
+					"@id": "schema:CommunicateAction"
+				}
+			],
+			"comment": "Actions where two users exchange information, e.g. UICommentAction, UIReplyAction, UIReactAction. Extends https://schema.org/CommunicateAction to add properties specific to user interfaces.",
+			"label": "communicate action"
+		},
+		{
+			"@id": "uxi:HierarchyFlag",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:SemanticFlag"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Flags that express a hierarchical position on an element",
+			"label": "hierarchical flag"
+		},
+		{
+			"@id": "uxi:DescriptionFlag",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:SemanticFlag"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element"
+			},
+			"comment": "Flags to express that a UI element describes something, e.g. isHelp, isContent, isProgress",
+			"label": "descriptive flag"
+		},
+		{
+			"@id": "uxi:OutcomeProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:SemanticFlag"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "A property that holds a result, output or status",
+			"label": "outcome property"
+		},
+		{
+			"@id": "uxi:NavigationProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:SemanticFlag"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element"
+			},
+			"comment": "A property that holds the navigation on a UI element, e.g. menu, settings",
+			"label": "navigation property"
+		},
+		{
+			"@id": "uxi:ContextProperty",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:SemanticFlag"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element"
+			},
+			"comment": "A property that holds the context a UI element is in",
+			"label": "context property"
+		},
+		{
+			"@id": "uxi:multipleValues",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIPropertyValueSpecification"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether multiple values are allowed for the property. Default is false.",
+			"label": "multiple values"
+		},
+		{
+			"@id": "uxi:valueName",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIPropertyValueSpecification"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Indicates the name of the UIPropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.",
+			"label": "value name"
+		},
+		{
+			"@id": "uxi:defaultValue",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIPropertyValueSpecification"
+			},
+			"canBeOfType": [
+				{
+					"@id": "schema:Text"
+				},
+				{
+					"@id": "schema:Thing"
+				}
+			],
+			"comment": "The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.",
+			"label": "default value"
+		},
+		{
+			"@id": "uxi:valueRequired",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIPropertyValueSpecification"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether the property must be filled in to complete the action. Default is false.",
+			"label": "value required"
+		},
+		{
+			"@id": "uxi:readonlyValue",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIPropertyValueSpecification"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a 'hidden' input in an HTML form.",
+			"label": "read-only value"
+		},
+		{
+			"@id": "uxi:isActive",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is active",
+			"label": "is active"
+		},
+		{
+			"@id": "uxi:isInactive",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is inactive",
+			"label": "is inactive"
+		},
+		{
+			"@id": "uxi:isOn",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is on",
+			"label": "is on"
+		},
+		{
+			"@id": "uxi:isOff",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is off",
+			"label": "is off"
+		},
+		{
+			"@id": "uxi:isChecked",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is checked",
+			"label": "is checked"
+		},
+		{
+			"@id": "uxi:isUnchecked",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is unchecked",
+			"label": "is unchecked"
+		},
+		{
+			"@id": "uxi:isDisabled",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is disabled",
+			"label": "is disabled"
+		},
+		{
+			"@id": "uxi:isEnabled",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:BooleanType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the element is enabled",
+			"label": "is enabled"
+		},
+		{
+			"@id": "uxi:min",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:NumericTypeProperty"
+				}
+			],
+			"comment": "The minimal amount this numeric value can be",
+			"label": "minimum value"
+		},
+		{
+			"@id": "uxi:max",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:NumericTypeProperty"
+				}
+			],
+			"comment": "The maximal amount this numeric value can be",
+			"label": "maximum value"
+		},
+		{
+			"@id": "uxi:currentValue",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:NumericTypeProperty"
+				}
+			],
+			"comment": "The current amount a numeric value has",
+			"label": "current value"
+		},
+		{
+			"@id": "uxi:stepValue",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:NumericTypeProperty"
+				}
+			],
+			"comment": "When a numeric value can only take amounts in steps",
+			"label": "step value"
+		},
+		{
+			"@id": "uxi:valuePattern",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:TextTypeProperty"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Specifies a regular expression for testing literal values according to the HTML spec. (RegEx pattern)",
+			"label": "text pattern"
+		},
+		{
+			"@id": "uxi:valueMinLength",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:TextTypeProperty"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Specifies the minimum allowed range for number of characters in a literal value.",
+			"label": "minimal text length"
+		},
+		{
+			"@id": "uxi:valueMaxLength",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:TextTypeProperty"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Specifies the allowed range for number of characters in a literal value.",
+			"label": "maximal text length"
+		},
+		{
+			"@id": "uxi:image",
+			"@type": "Property",
+			"subClassOf": {
+				"@id": "uxi:MediaDataType"
+			},
+			"canBeOfType": [
+				{
+					"@id": "schema:ImageObject"
+				},
+				{
+					"@id": "schema:URL"
+				}
+			],
+			"comment": "An image of the item. This can be a URL or a fully described ImageObject.",
+			"label": "image"
+		},
+		{
+			"@id": "uxi:audio",
+			"@type": "Property",
+			"subClassOf": {
+				"@id": "uxi:MediaDataType"
+			},
+			"canBeOfType": [
+				{
+					"@id": "schema:AudioObject"
+				},
+				{
+					"@id": "schema:URL"
+				}
+			],
+			"comment": "An embedded audio object. This can be a URL or a fully described AudioObject",
+			"label": "audio"
+		},
+		{
+			"@id": "uxi:video",
+			"@type": "Property",
+			"subClassOf": {
+				"@id": "uxi:MediaDataType"
+			},
+			"canBeOfType": [
+				{
+					"@id": "schema:VideoObject"
+				},
+				{
+					"@id": "schema:URL"
+				}
+			],
+			"comment": "An embedded video object. This can be a URL or a VideoObject",
+			"label": "video"
+		},
+		{
+			"@id": "uxi:isPlaying",
+			"@type": "Property",
+			"subClassOf": [
+				{
+					"@id": "uxi:MediaDataTypeProperty"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:MediaDataType"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "Whether or not the media is playing",
+			"label": "is playing"
+		},
+		{
+			"@id": "uxi:color",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": [
+				{
+					"@id": "uxi:ColorCodeType"
+				},
+				{
+					"@id": "schema:Number"
+				},
+				{
+					"@id": "schema:Text"
+				}
+			],
+			"comment": "The color used to express a meaningful relation in the content",
+			"label": "color"
+		},
+		{
+			"@id": "uxi:font",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "The font used to express a meaningful relation in the content",
+			"label": "font"
+		},
+		{
+			"@id": "uxi:italic",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Italics are used to express importance in the text",
+			"label": "italic"
+		},
+		{
+			"@id": "uxi:bold",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Bold text is used to add significance to a text element",
+			"label": "bold"
+		},
+		{
+			"@id": "uxi:underlined",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "Underlining text is a way of highlighting a particular portion of text",
+			"label": "underlined"
+		},
+		{
+			"@id": "uxi:background",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "Content of the background of the element",
+			"label": "background"
+		},
+		{
+			"@id": "uxi:highlight",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A form of highlighting an element in relation to others",
+			"label": "highlight"
+		},
+		{
+			"@id": "uxi:selectedIndex",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:some"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Radiobutton"
+				},
+				{
+					"@id": "uxi:Dropdown"
+				},
+				{
+					"@id": "uxi:SingleSelection"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Number"
+			},
+			"comment": "The technical position of the item that the user has selected",
+			"label": "selected index"
+		},
+		{
+			"@id": "uxi:activeTabIndex",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:some"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:Tabs"
+			},
+			"canBeOfType": {
+				"@id": "schema:Number"
+			},
+			"comment": "The technical position of the tab that the user has selected",
+			"label": "index of active tab"
+		},
+		{
+			"@id": "uxi:selectedSet",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:some"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Checkbox"
+				},
+				{
+					"@id": "uxi:Dropdown"
+				},
+				{
+					"@id": "uxi:MultiSelection"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Number",
+				"@container": "@set"
+			},
+			"comment": "A set to express that there are multiple selected items",
+			"label": "selected set"
+		},
+		{
+			"@id": "uxi:unselectedSet",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:some"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Checkbox"
+				},
+				{
+					"@id": "uxi:Dropdown"
+				},
+				{
+					"@id": "uxi:MultiSelection"
+				}
+			],
+			"canBeOfType": {
+				"@id": "schema:Number",
+				"@container": "@set"
+			},
+			"comment": "A set to express that some items are not selected",
+			"label": "unselected set"
+		},
+		{
+			"@id": "uxi:HoverState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserActionState"
+				}
+			],
+			"comment": "When the user is hovering over an element, that element's state can change. E.g. useful to show that an element is interactive",
+			"label": "hover state"
+		},
+		{
+			"@id": "uxi:FocusState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserActionState"
+				}
+			],
+			"comment": "When the user is focussing an interactive element, it enters the focus state. Can happen with a mouse, with the tabulator-key or in other ways",
+			"label": "focus state"
+		},
+		{
+			"@id": "uxi:PressedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserActionState"
+				}
+			],
+			"comment": "When the user presses an interactive element, it enters the pressed state. Different from clicking, which is pressing and releasing",
+			"label": "pressed state"
+		},
+		{
+			"@id": "uxi:DraggingState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserActionState"
+				}
+			],
+			"comment": "When the user is dragging an interactive element, it enters the dragging state. For performance reasons it is often better to show a skeleton instead of the full element",
+			"label": "dragging state"
+		},
+		{
+			"@id": "uxi:DetailAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to get more details about an element. Can mean navigating to a detailed screen, or expanding a minified element on the same page",
+			"label": "detail action"
+		},
+		{
+			"@id": "uxi:NavigateAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to navigate the application. Broadly speaking, anything telling users where they are, where to go and how to get there can be called navigation",
+			"label": "navigate action"
+		},
+		{
+			"@id": "uxi:BrowseAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to casually look over content in the application. It's an action that doesn't need to have intent, but rather searches something of interest. Combining content the user knows with new content can drive usage of browse features",
+			"label": "browse action"
+		},
+		{
+			"@id": "uxi:FavoriteAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to mark something as a favorite item. Often the intent is to easily access that item later on, e.g. through a quick-access menu",
+			"label": "favorite action"
+		},
+		{
+			"@id": "uxi:SaveAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to save an element. Depending on how many elements a user will save, saving can be combined with lists, folders or tags",
+			"label": "save action"
+		},
+		{
+			"@id": "uxi:DragAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to drag an element. Usually combined with a drop action on another element. Typically used to move, copy or link an element to (a group of) other elements. Also check 'DraggingState'.",
+			"label": "drag action"
+		},
+		{
+			"@id": "uxi:DropAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to drop an element. Usually combined with a drag action on another element, but sometimes used to drop the same element more than once on a number of other elements, e.g. a 'brush' of images in an image editor",
+			"label": "drop action"
+		},
+		{
+			"@id": "uxi:ResizeAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to resize an element, can mean resizing the entire application as well",
+			"label": "resize action"
+		},
+		{
+			"@id": "uxi:ScrollAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to scroll through an element which is bigger than its container. Includes 'Endless scroll' action where new content is added to the end of the list as the user scrolls down",
+			"label": "scroll action"
+		},
+		{
+			"@id": "uxi:DismissAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to dismiss a prompt from the application. Can be used e.g. on modals, banners, notifications as the 'little x'-button or on a button with text next to the confirm action, or swiping to dismiss",
+			"label": "dismiss action"
+		},
+		{
+			"@id": "uxi:UIConfirmAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				},
+				{
+					"@id": "schema:ConfirmAction"
+				}
+			],
+			"comment": "A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected. Extends https://schema.org/ConfirmAction, which should be used if the confirmation happens offline.",
+			"label": "confirm action"
+		},
+		{
+			"@id": "uxi:UIDeleteAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				},
+				{
+					"@id": "schema:DeleteAction"
+				}
+			],
+			"comment": "A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative. Extends https://schema.org/DeleteAction, to design flows like confirm-before-delete more easily.",
+			"label": "delete action"
+		},
+		{
+			"@id": "uxi:ZoomAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to zoom in, out or to a specified zoom-factor. Used to magnify or minimify content and elements. UX examples range from pinch-to-zoom over 'plus and minus' buttons to pressing CTRL+scrolling",
+			"label": "zoom action"
+		},
+		{
+			"@id": "uxi:AlignAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to align content to a constraint or 'proper' position. This can mean left- or right-align, to the center or another visual guide",
+			"label": "align action"
+		},
+		{
+			"@id": "uxi:BackAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to take a step back in the navigation history or hierarchy. Not to be confused with undo/redo, which modifies the content. In mobile apps, it's often used to move up in the navigation hierarchy, back to the main menu",
+			"label": "back action"
+		},
+		{
+			"@id": "uxi:UndoAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to undo a modification. Removes a step in the history of edits by the user. Not to be confused with the back action, which is used for navigation",
+			"label": "undo action"
+		},
+		{
+			"@id": "uxi:RedoAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UserAction"
+				}
+			],
+			"comment": "A user action to redo a modification that was removed from the history of user-edits by an 'undo' action",
+			"label": "redo action"
+		},
+		{
+			"@id": "uxi:ClickAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A click action is when a user presses and then releases an element, usually not moving the pointing device out of the element and not pressing for very long. Possibly the most common user interaction",
+			"label": "click action"
+		},
+		{
+			"@id": "uxi:TouchDownAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A touch-down action is when a user has started touching an element with their fingers. Pointing with a finger on touch-screens is less accurate than pointing with a mouse, so browsers can handle this differently",
+			"label": "touch down action"
+		},
+		{
+			"@id": "uxi:KeyDownAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A key-down action happens when a user has started pressing a key on a keybord or a hardware-key on a physical controller. Can be used for keyboard shortcuts to often-accessed functionality",
+			"label": "key down action"
+		},
+		{
+			"@id": "uxi:ChangeOrientationAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A change-orientation action happens when a user turns their mobile device into portrait or landscape mode. Note that users can switch this functionality off, so the actual physical orientation can be different",
+			"label": "change orientation action"
+		},
+		{
+			"@id": "uxi:SwipeAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A swipe action is a sweeping motion by the user, typically over a touchscreen. Some swipe actions might be reserved by the operating system, e.g. with multiple fingers, the back of the hand etc.",
+			"label": "swipe action"
+		},
+		{
+			"@id": "uxi:PointAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:DeviceSpecificAction"
+				}
+			],
+			"comment": "A point action can be done by moving the mouse, moving or hovering the finger over a touch screen, and other physical devices that detect a user's hand movement, e.g. game controllers",
+			"label": "point action"
+		},
+		{
+			"@id": "uxi:UploadAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "An upload action copies media or a file from the user's device over the network. The file-selection interface is usually provided by the operating system. Files can be dragged and dropped, selected from an 'open file' dialog, or come from the 'share'-function of an operating system. Uploading may take a while or fail entirely, so indicating progress and completion is important",
+			"label": "upload action"
+		},
+		{
+			"@id": "uxi:UIDownloadAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "A download action copies media or a file to the user's device. In a lot of cases there's a standard UX for downloading already. Indicating progress and completion is important to the user, in the case of a failed download it should be easy to retry. In the case of success the next action should be clear",
+			"label": "download action"
+		},
+		{
+			"@id": "uxi:RecordAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "A record action can be used to create audio or video recordings, may depend on the user's microphone(s) or camera(s), so an easy way to switch or select a recording device is useful. This action can also be used to trigger other types of recordings. Stopping and pausing the recording should also be considered",
+			"label": "record action"
+		},
+		{
+			"@id": "uxi:StartAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "A start action initiates the playback of media, or the start of a game. Can also be used to re-start after the user has paused",
+			"label": "start action"
+		},
+		{
+			"@id": "uxi:StopAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "A stop action can be used to end media playback so that a start action will initiate it from the beginning",
+			"label": "stop action"
+		},
+		{
+			"@id": "uxi:PauseAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaAction"
+				}
+			],
+			"comment": "A pause action can be used to halt media playback so that a start action will re-start playback from the point where it was paused. Can also be used to 'pause' a game - and save progress, adjust graphics etc.",
+			"label": "pause action"
+		},
+		{
+			"@id": "uxi:MarkAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaPartAction"
+				}
+			],
+			"comment": "A mark action can be used on part of media, e.g. highlighting text, chat-reactions in a live stream, beginning of a section in a podcast, etc.",
+			"label": "mark action"
+		},
+		{
+			"@id": "uxi:AnnotateAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MediaPartAction"
+				}
+			],
+			"comment": "An annotate action is similar to a mark action, only that it adds more information about why the media part has been marked. E.g. comments, stickers over video, reader-highlights in a blogpost, etc.",
+			"label": "annotate action"
+		},
+		{
+			"@id": "uxi:FixedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a fixed state when it can't be moved, used to indicate the opposite of loose state. This is typically the default",
+			"label": "fixed state"
+		},
+		{
+			"@id": "uxi:LooseState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a loose state when it's movable. Opposite of fixed state",
+			"label": "loose state"
+		},
+		{
+			"@id": "uxi:MinifiedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a minified state when it is displayed in a size smaller than its ideal display. That is usually somewhere between the size of maximized and mini-mized- state. Mini-fied- would be a window that fills part of the screen, mini-mized- would be an indicator in the task bar",
+			"label": "minified state"
+		},
+		{
+			"@id": "uxi:ExpandedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI Element is in an expanded state when it is displayed in a size larger than its ideal display. For an accordeon menu, an open section would be in an expanded state rather than maximized state.",
+			"label": "expanded state"
+		},
+		{
+			"@id": "uxi:MaximizedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a maximized state when its size can't grow any bigger, or it completely fills the container it's in. Check minified and minimized state as well",
+			"label": "maximized state"
+		},
+		{
+			"@id": "uxi:MinimizedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a minimized state when it is only shown by a symbol representing it in its stead. Interacting with that mini-mized- symbol will show the mini-fied- or the maximized UI element. The symbol is typically smaller than the smallest minified version of this element",
+			"label": "minimized state"
+		},
+		{
+			"@id": "uxi:FloatingState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a floating state when it is shown above all other elements. Typically used for the primary action of a screen on mobile devices",
+			"label": "floating state"
+		},
+		{
+			"@id": "uxi:OpenState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in an open state when it can be either closed or open and its detailed content is visible",
+			"label": "open state"
+		},
+		{
+			"@id": "uxi:ClosedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A UI element is in a closed state when it can be either closed or open and its content is summarized",
+			"label": "closed state"
+		},
+		{
+			"@id": "uxi:SortedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A container in the sorted state displays its elements in order. Often a UI element outside the container is used to control the sorting, e.g. one of the headers of a column in a table",
+			"label": "sorted state"
+		},
+		{
+			"@id": "uxi:UnsortedState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A container is in the unsorted state by default. Berfor a user changes the sorting, this is an option to show recommended elements, history, favorites etc, when there are many elements to sort by",
+			"label": "unsorted state"
+		},
+		{
+			"@id": "uxi:FilteredState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A container in the filtered state shows only a subset of elements. Often a UI element outside the container controls the filtering. Useful when the number of elements in each filtered group is high",
+			"label": "filtered state"
+		},
+		{
+			"@id": "uxi:UnfilteredState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementState"
+				}
+			],
+			"comment": "A container in the unfiltered state shows all elements. This the default. When the number of elements is high, consider pagination or a visual hierarchy",
+			"label": "unfiltered state"
+		},
+		{
+			"@id": "uxi:BlankState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIStack"
+				}
+			],
+			"comment": "A UI elment is in a blank state when it has no data. Reasons can be that the user hasn't created anything yet, is a new user, has deleted all data or doesn't have accesss rights. Can also be used for when the user is offline",
+			"label": "blank state"
+		},
+		{
+			"@id": "uxi:LoadingState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIStack"
+				}
+			],
+			"comment": "A UI elment is in a loading state when data has been requested, but it isn't completely available. Loading indicators or skeleton states help when the loading time is more than a second. Displaying loading states too quickly can decrease perceived performance",
+			"label": "loading state"
+		},
+		{
+			"@id": "uxi:PartialState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIStack"
+				}
+			],
+			"comment": "A UI element is in a partial state when some data is available, but it's not complete.  Data can be streaming and appended, or users can manually hit a 'load more' button. Another example would be the 'user is typing' indicator in chat applications",
+			"label": "partial state"
+		},
+		{
+			"@id": "uxi:ErrorState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIStack"
+				}
+			],
+			"comment": "A UI element is in an error state when it received bad user input, data from the application or for technical reasons. Ideally the apllication should recover itself. If not, show options to the user",
+			"label": "error state"
+		},
+		{
+			"@id": "uxi:IdealState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIStack"
+				}
+			],
+			"comment": "A UI element shows the ideal state which proviedes value to the user when it isn't in the blank/empty state, data has loaded completeley and no errors happened",
+			"label": "ideal state"
+		},
+		{
+			"@id": "uxi:ClosingState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementTransitionState"
+				}
+			],
+			"comment": "The closing state is entered when an open elment closes. It enters the closed state afterwards. Acoordeon menus or folder trees often use this for subtle tranistions",
+			"label": "closing state"
+		},
+		{
+			"@id": "uxi:OpeningState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementTransitionState"
+				}
+			],
+			"comment": "The opening state is entered when a closed element opens. It enters the open state afterwards. If UI elements are pushed out of the way by the opening animation, a skeleton of the appearing content is useful",
+			"label": "opening state"
+		},
+		{
+			"@id": "uxi:SkeletonState",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UIElementTransitionState"
+				}
+			],
+			"comment": "The skeleton state is a way of showing positions and layout of content before it is loaded or otherwise available. It is often a grayed out or boxed out version of the contentful UI",
+			"label": "skeleton state"
+		},
+		{
+			"@id": "uxi:priority",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:IssueSeverity"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:IssueSeverityType"
+			},
+			"comment": "Priority is a property on an UI Element to order elements towards the user. The order expresses relative significance over other elements. For absolute ordering, check out Importance.",
+			"label": "priority"
+		},
+		{
+			"@id": "uxi:importance",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:IssueSeverity"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:IssueSeverityType"
+			},
+			"comment": "Importance is a property on an UI Element to order elements toward the user. The order expresses a fixed significance over other elements. When issues happen in the application, Error notifications should get highest importance, followed by Warnings, and Alerts.",
+			"label": "importance"
+		},
+		{
+			"@id": "uxi:Default",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "UI elements have default priority or importance when they add information that doesn't require a reaction, such as banners that point to new features",
+			"label": "default"
+		},
+		{
+			"@id": "uxi:Alert",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "Alerts notify the user that an expected event has happend or is about to happen. Common examples are price alerts or alerts to check in or board a flight",
+			"label": "alert"
+		},
+		{
+			"@id": "uxi:Warning",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "Warnings notify the user that an unexpected or insecure event occured, but the application can continue to function. This gives the user the option to intervene.",
+			"label": "warning"
+		},
+		{
+			"@id": "uxi:Error",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "Errors are events that stop part of an application to work as intended. Known errors can give users an option to intervene, similar to warnings. Another option can be to restart thtat part of the application",
+			"label": "error"
+		},
+		{
+			"@id": "uxi:Incomplete",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "Issues that come from incomplete data can be caused by the application, the connection or the users themselves. Options to reload, retry or wait plus a status message help the users take next steps",
+			"label": "incomplete"
+		},
+		{
+			"@id": "uxi:Empty",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:IssueSeverityType"
+				}
+			],
+			"comment": "Issues coming from empty data are common, because new users or new features usually start with no data. This is an opportunity for onboarding and explaining features. Users can also remove data they've entered, leaving a UI element empty. E.g. A To-Do App can have different empty states: on first use and after finishing all To-Dos",
+			"label": "empty"
+		},
+		{
+			"@id": "uxi:Icon",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "An Icon is an Atom UI element that visually communicates meaning. It can symbolize text, and its meaning depends on the interpretation of the user, so alternative texts and tooltips can help users understand",
+			"label": "icon"
+		},
+		{
+			"@id": "uxi:Label",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Label is an Atom UI element that describes another UI element more closely. These typically appear in forms to describe what the Inputs can be used for. Labels are important for visually impaired users, even if the label is not visible",
+			"label": "label"
+		},
+		{
+			"@id": "uxi:Title",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Title describes and identifies content of a UI element. Web pages have titles which are displayed in the menu of the browser, the title is often repeated as a header.",
+			"label": "title"
+		},
+		{
+			"@id": "uxi:Subtitle",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A subtitle is often used to describe a title more closely. It can also tell the userwhat benefit to expect, or clarify the title. Check subheading for this usage. Also can be a synonym for closed-captioned text",
+			"label": "sub-title"
+		},
+		{
+			"@id": "uxi:InputElement",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "An InputElement is a UI element that helps users enter data. Some input elementss like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in general",
+			"label": "input element"
+		},
+		{
+			"@id": "uxi:Button",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Button lets users take actions and make choices with a single tap. This is typically referred to as the onClick event, but buttons can react to pressing and holding, hovering, or focussing with a keyboard. As UI elements, Buttons try to mimick physical buttons, so in AR/VR interfaces the onClick doesn't happen until it is fully pressed 'down'. Hardware Buttons on physical devices, e.g. smart home buttons, usually handle this on the device",
+			"label": "button"
+		},
+		{
+			"@id": "uxi:Heading",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A heading is a UI element that serves as the head of another UI element, usually setting it apart in typography, style or position. In HTML there are different heading sizes which can be used for visual and semantic hierarchy. Check out Subheading, Title and Subtitle as well",
+			"label": "heading"
+		},
+		{
+			"@id": "uxi:Subheading",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Subheading can refer to an additional headline similar to Subtitle. It can also be the heading of a smaller portion of a piece of writing",
+			"label": "sub-heading"
+		},
+		{
+			"@id": "uxi:Checkbox",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "Checkboxes are UI elements to select one or more values from several options. They are typically displayed as a small box in which a check mark is placed if it 'isChecked'. If the checkbox is part of a group, clicking it will change the selectedSet. Checkboxes are independent, contrary to Radiobuttons",
+			"label": "checkbox"
+		},
+		{
+			"@id": "uxi:Radiobutton",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "Radio buttons are UI elements for selecting a single element out of a group of options. It is a good practice to have a default option pre-selected. Clicking the Radiobutton will change the group's selectedIndex. All available options are shown in the group, so keeping the number of options small is helpful for the user",
+			"label": "radio button"
+		},
+		{
+			"@id": "uxi:Datepicker",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Datepicker is a UI element which lets users select a date, often as part of a form, and often displaying a minimizedState with the current date pre-set. Clicking it opens a minimal interface to help select a different date. Consider different date formats and keyboard input as well, and using a Timepicker fo finer control.",
+			"label": "date picker"
+		},
+		{
+			"@id": "uxi:Timepicker",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Timepicker is a UI element which lets users select a time of the day. Different date and time formats may display AM/PM, this is also adjustable on users' devices, as well as the users' time zones. A hint for working hours in another time zone might be helpful, and changes for summer- and wintertime might also be useful info.",
+			"label": "time picker"
+		},
+		{
+			"@id": "uxi:Switch",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Switch is a UI element to let users toggle between two states or on-off settings. Users are used to seeing a reaction to clicking the switch immediately, based on their experience on mobile devices. Useful to control Boolean types.",
+			"label": "switch"
+		},
+		{
+			"@id": "uxi:Textfield",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A TextField is a UI element that allows Text to be entered. This may be a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web.",
+			"label": "text field"
+		},
+		{
+			"@id": "uxi:Link",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "A Link is clickable text that lets users navigate to other websites or other parts of the same site or app. They can also be used for file downloads or opening up a new email and other actions in apps.",
+			"label": "link"
+		},
+		{
+			"@id": "uxi:Avatar",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:AtomUIElement"
+				}
+			],
+			"comment": "An Avatar is a UI element to visually represent a user, business or organization with a single image or icon. They often frame that image in a way that makes it easy to distinguish from other icons. Avatars can also contain user's initials, a colour, or an auto-generated Avatar if none has been set. They're often combined with indicators for activity or status.",
+			"label": "avatar"
+		},
+		{
+			"@id": "uxi:Circle",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Shape"
+				}
+			],
+			"comment": "A Circle is a type of Shape which is often used as a frame, for Avatars for example. As a filled shape it might appear as a background or as a status indicator. E.g. the activity-indicator next to an avatar.",
+			"label": "circle"
+		},
+		{
+			"@id": "uxi:Triangle",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Shape"
+				}
+			],
+			"comment": "A triangle is a type of Shape that's often used to indicate something is playable media, e.g. the icon in the middle of a video player. In 3D environments it is the smallest building block of a (sur)face. If one corner is sharp it can be used that is often used to point at content, and in small-size scenarios it's used to indicate closed and open states.",
+			"label": "triangle"
+		},
+		{
+			"@id": "uxi:Rectangle",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Shape"
+				}
+			],
+			"comment": "A rectangle is a type of Shape very common in interface design to create 'boxes' of dfferent sizes and aspect ratios. Their relative sizes and positions usually make up most of the layout. For users, boxes with rounded corners are easier to mentally process.",
+			"label": "rectangle"
+		},
+		{
+			"@id": "uxi:Ellipse",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Shape"
+				}
+			],
+			"comment": "An Ellipse is a type of Shape similar to a Circle, but squished. Easily confused with ellipsis, which are words in a sentence that are omitted, but would be needed for grammatical correctness. In CSS, ellipsis can be used for a text-overflow to create dots at the end of text that is cut by the layout.",
+			"label": "ellipse"
+		},
+		{
+			"@id": "uxi:Star",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Shape"
+				}
+			],
+			"comment": "A Star is a type of Shape that is often used for indicating a favorite, in which it is colored yellow. A number of 1-5 stars usually communicates a rating of some sort. To indicate that a favorite is not set or a rating doesn't have full stars, the remaining stars are often grey and outlined, while the favorite or 'achieved' stars are filled and yellow.",
+			"label": "star"
+		},
+		{
+			"@id": "uxi:NavigationBar",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A navigation bar is a type of Molecule UI Element that guides users through main parts of the application. It often tells the users which part they are currently at, where to go and sometimes where they come from. Most commonly placed on top, but can also be found on either side of the screen. Navigation Elements often minify to increase the space for other interactions. Also referred to as an App-Bar when visible throughout the application.",
+			"label": "navigation bar"
+		},
+		{
+			"@id": "uxi:Tooltip",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A tooltip is a type of Molecule UI Element that displays informative text when users hover over, focus on, or tap a UI Element. When activated, Tooltips display brief information on how to use the element, or what it is. Tooltips often only contain text, but in some cases even contain explainer-videos.",
+			"label": "tool-tip"
+		},
+		{
+			"@id": "uxi:Searchbar",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A search bar is a type of Molecule UI Element that lets users enter search terms. Users often use this to navigate to content directly, or get recomendations to see what the site has to offer. Often accompanied by a magnifying lens icon or a button next it. Clicking the button or hitting the 'Enter'-key on a keyboard are well-understood interactions. Auto-completing the search terms is becoming more common as well.",
+			"label": "search bar"
+		},
+		{
+			"@id": "uxi:Thumbnail",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A thumbnail is a type of Molecule UI Element that is a miniature graphic which opens or links to a full image or other visual content. Thumbnails can be auto-generated from the full content or custom, show parts of it on hover. This is especially useful for previewing video-content.",
+			"label": "thumbnail"
+		},
+		{
+			"@id": "uxi:Dialog",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A Dialog is a type of Molecule UI Element shown overlaying the rest of the application, calling for the users direct attention. It informs users about a task and can require decisions, or involve multiple tasks. If it isModal, the user has to interact before continuing to use the application.",
+			"label": "dialog"
+		},
+		{
+			"@id": "uxi:Step",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A Step is a type of Molecule UI Element which guides users through the steps of a task or workflow. Multiple steps combined form a wizard, which helps to break down long and complex processes: Breaking a complex task into smaller steps can improve conversion.",
+			"label": "step"
+		},
+		{
+			"@id": "uxi:Divider",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A Divider is a type of Molecule UI Element which seperates content into clear groups. The simplest form is a horizontal line to split content, but more sophisticated dividers can include branding elements. Useful for creating scroll-to-bottom-of-section UX of a page.",
+			"label": "divider"
+		},
+		{
+			"@id": "uxi:Dropdown",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A Dropdown is a type of Molecule UI Element which lets users select one item of a set, changing the selectedIndex-property. More sophisticated dropdowns allow selecting multipe items, changing the selectedSet. The type of items can range from text to thumbnails of images and more.",
+			"label": "drop-down"
+		},
+		{
+			"@id": "uxi:Pagination",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:MoleculeUIElement"
+				}
+			],
+			"comment": "A Pagination is a type of Molecule UI Element which is used to break down long content into pages, usually on websites. It often features a back-and-forth navigation, the current page number and close page numbers. Pagination can be placed both on top or at the bottom of the paginated content.",
+			"label": "pagination"
+		},
+		{
+			"@id": "uxi:Header",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:OrganismUIElement"
+				}
+			],
+			"comment": "A Header is a type of Organism UI Element that contains UI Elements for the most common actions on a page, and is placed at the top. Beware that the term 'Header' or 'head' is also used for the invisible, technical part of documents which contain info like keywords (html), dates (photo taken) or login-info.",
+			"label": "header"
+		},
+		{
+			"@id": "uxi:Footer",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:OrganismUIElement"
+				}
+			],
+			"comment": "A Footer is a type of Organism UI Element that contains UI elements for the least commonly used information, at the bottom of a page. Leaving it out is often not an option, because of legal requirements etc. Information such as imprint or contact info is so commonly found at the bottom that users who want to search for it directly scroll to the bottom.",
+			"label": "footer"
+		},
+		{
+			"@id": "uxi:Section",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:OrganismUIElement"
+				}
+			],
+			"comment": "A Section is a type of Organism UI Element that contains UI elements that semantically belong together, and form a part of a page. Because sections are unspecific, it should have a Heading to describe its content, and make it easier for visually impaired users to navigate your content.",
+			"label": "section"
+		},
+		{
+			"@id": "uxi:Card",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:OrganismUIElement"
+				}
+			],
+			"comment": "A Card is a type of Organism UI Element that groups content and controls about a single subject. Most commonly, cards separate themselves from the surrounding elements with an outline or raised appearance.",
+			"label": "card"
+		},
+		{
+			"@id": "uxi:DirectoryStructure",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A Directory Structure or folder structure is a Container UI Element that shows an editable hierarchy of files and folders. Users often use it to categorize content, and create sub-folders. It's helpful to combine this with a quick navigation for frequently or recently visited items, since these structures can be deep. If it's displayed vertically, Users might expect drag and drop to work.",
+			"label": "directory structure"
+		},
+		{
+			"@id": "uxi:TreeView",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A TreeView is a Container UI Element that shows hierarchical structures, most commoly in a vertical direction. Can show an organization's hierarchy, a web page and its sub-pages or anything organized in a tree. For files and folders check out Directory Structure.",
+			"label": "tree view"
+		},
+		{
+			"@id": "uxi:Tabs",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "Tabs are Container UI Elements shown as a group on the same page. Only one tab is fully visible at a time, the other tabs' content can be seen by clicking another element in the tab bar which controls the group.",
+			"label": "tabs"
+		},
+		{
+			"@id": "uxi:List",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A List is a Container UI Element which shows its content in either a vertical or horizontal order. The order doesn't have to be important, but if it is, consider sorting or filtering controls. Compare with Grids and Tables if your content can grow horizontally and vertically.",
+			"label": "list"
+		},
+		{
+			"@id": "uxi:Container",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A Container UI Element can hold other UI elements, and as such is a general class. Most of the time you'd want a more specialized container such as list, grid or table.",
+			"label": "container"
+		},
+		{
+			"@id": "uxi:UITable",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A UI Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows. UITables need more properties than https://schema.org/Table provides to function, so it's not extending from the schema.org type.",
+			"label": "table"
+		},
+		{
+			"@id": "uxi:Grid",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A Grid is a container that shows other UI elements in rows and columns, independently of another. If the row and column-number have meaning, use a Table instead.",
+			"label": "grid"
+		},
+		{
+			"@id": "uxi:SingleSelection",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A Single Selection is a Container UI Element which is part of a controlling element that only allows one item inside the container to be selected. Selection can be indicated by borders, colors, size or texture, but a SelectedIndex should be included for accessibility.",
+			"label": "single selection"
+		},
+		{
+			"@id": "uxi:MultiSelection",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A MultiSelection is a Container UI element which is part of a controlling element that allows many items inside it to be selected. Selection can be indicated visually, but a SelectedSet should be included for accessibility.",
+			"label": "multiple selection"
+		},
+		{
+			"@id": "uxi:ColumnHeader",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:ContainerUIElement"
+				}
+			],
+			"comment": "A ColumnHeader is a container that is displayed on the top row of a table, showing the name of that column and often controls for sorting, filtering and ordering.",
+			"label": "column header"
+		},
+		{
+			"@id": "uxi:ABTest",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "An A/B test is an important tool for improving UX based on data. In such a test, the users are presented with almost identical versions of a page, and only one aspect is varied. Interaction data is collected and compared between both versions. Analysing A/B-tests rely on statistical methods, so one needs a high number of views to yield meaningful results. Testing more than two versions (A/B/C-tests) is possible, but harder to analyze, and even more views are needed.",
+			"label": "A/B test"
+		},
+		{
+			"@id": "uxi:Form",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "A Form is a Structural Element that users can use to submit information. The UI elements inside forms are often referred to as inputs or form controls. To aid the user, inputs and form controls can limit the selectable options or validate user input and display help.",
+			"label": "form"
+		},
+		{
+			"@id": "uxi:Template",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "A Template is a Structural Element that serves as a pattern to generate more, similar elements from it. Templates are meant to increase productivity, but can themself cost time if they're too restrictive or offer too complex choices for the person who's adjusting the template.",
+			"label": "template"
+		},
+		{
+			"@id": "uxi:Page",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "A page is a Structural Element that used to describe the data that is found at a single URL. With responsive applications and single-page web apps loading and changing that data is possible. Colloquially, the term is often used to summarize content structure, like Master/Detail-page, or may refer to a number of sub-pages, e.g. if a checkout process is called 'checkout page'.",
+			"label": "page"
+		},
+		{
+			"@id": "uxi:Placeholder",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "A Placeholder is a Structural Element that is displayed in the position of the 'actual' content. A UI Element in the skeleton state is one example, another example would be placeholder text that shows 'Jane Doe' in an input field for user name.",
+			"label": "placeholder"
+		},
+		{
+			"@id": "uxi:Context",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "Contexts are Structural Elements that define the environment in which other UI Elements exist. Switching between dark and light themes is often achieved with context. E.g. not showing all streamable movies at your travel destination is a result of a location context.",
+			"label": "context"
+		},
+		{
+			"@id": "uxi:Scope",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "Scopes are Structural Elements that define the range of operation for their sub-elements. E.g. each user gets their own user-scope when they access their profile at example.com/myprofile, so the application will return different users when it accesses the 'currentUser' profile. To avoid confusion: In project management, this term is understood as the scope of work needed to finish a project. It can also mean different viewing instruments, microscope etc.",
+			"label": "scope"
+		},
+		{
+			"@id": "uxi:Constraint",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "Constraints are Structural Elements that limit the movement, or restrict in other ways other UI Elements. E.g. centering, aligning, cutting off text etc. are all examples of constraints. A good balance between dynamic and fixed constraints can make responsive designs flexible but calm.",
+			"label": "constraint"
+		},
+		{
+			"@id": "uxi:Autocomplete",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:StructuralElement"
+				}
+			],
+			"comment": "Autocomplete is a Structural Element that is most commonly used with search bars, showing longer text after a short user input text. When the user input is likely imperfect or can only match a number of values, auto-correcting saves effort for cleaning data. Examples would be converting pen strokes to common shapes in a design tool or code completion in a coding tool (IDE).",
+			"label": "auto-complete"
+		},
+		{
+			"@id": "uxi:aVersion",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:variation"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:ABTest"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "An A-version is one of the two versions tested in an A/B-Test. The A-version is usually the status quo of the application, and the B-version the changed one that's hoped to bring improved conversion.",
+			"label": "A-version"
+		},
+		{
+			"@id": "uxi:bVersion",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:variation"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:ABTest"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A B-version is one of the two versions tested in an A/B-Test. The B-version is usually the 'new' version that is tested against the status quo, which is called the A-version.",
+			"label": "B-version"
+		},
+		{
+			"@id": "uxi:unorderedSlots",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:slot"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:ContainerUIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element",
+				"@container": "@set"
+			},
+			"comment": "unordered slots of containers are places where UI elements can go without a particular order",
+			"label": "unordered slots"
+		},
+		{
+			"@id": "uxi:orderedSlots",
+			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:slot"
+				}
+			],
+			"canExistOnType": {
+				"@id": "uxi:ContainerUIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:Element",
+				"@container": "@set"
+			},
+			"comment": "ordered slots of containers are places where UI elements can go in a particular order",
+			"label": "ordered slots"
+		},
+		{
+			"@id": "uxi:ariaLabel",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "An ARIA label is an accessibility feature that helps visually impaired users understand and use a UI control. Blind users use screen readers to navigate User Interfaces, so concise, readable text helps users navigate the application.",
+			"label": "aria label"
+		},
+		{
+			"@id": "uxi:moreInfo",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "A 'more info'-text can be shown as the text in a Tooltip or other helpful element, when the user needs clarification about a UI element or step in a process. This can include helptext, or describe what will happen when the user takes the next step.",
+			"label": "more info"
+		},
+		{
+			"@id": "uxi:valueText",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Text"
+			},
+			"comment": "An ARIA value text is an accessibility feature that serves as a text alternative to visually communicated values. E.g. a progress bar could read out the percentage, a slider the current value and the minimum, maximum and stepsize.",
+			"label": "value text"
+		},
+		{
+			"@id": "uxi:UICommentAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UICommunicateAction"
+				},
+				{
+					"@id": "schema:CommentAction"
+				}
+			],
+			"comment": "A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends https://schema.org/CommentAction to add more User Interface-specific features.",
+			"label": "comment action",
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:UIReplyAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UICommunicateAction"
+				},
+				{
+					"@id": "schema:ReplyAction"
+				}
+			],
+			"comment": "A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from https://schema.org/ReplyAction, but the user interface needs more details.",
+			"label": "reply action",
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:UIReactAction",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:UICommunicateAction"
+				},
+				{
+					"@id": "schema:ReactAction"
+				}
+			],
+			"comment": "A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends https://schema.org/ReactAction to add more user interface-related features.",
+			"label": "react action",
+			"inTagList": [
+				"uxi:Developer-Tag",
+				"uxi:Designer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:isProminent",
+			"@type": "Property",
+			"subPropertyOf": {
+				"@id": "uxi:HierarchyFlag"
+			},
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"canBeOfType": {
+				"@id": "schema:Boolean"
+			},
+			"comment": "A hierarchy flag to indicate that a UI Element stands out and is readily noticeable, such as a red CTA-button. An example where isProminent switches from one UI Element to another are tutorial-UIs, where the user can see the full UI, but only click the explained part.",
+			"label": "is prominent"
+		},
+		{
+			"@id": "uxi:isRaised",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A hierarchy flag that has its origin in Material Design and the visual metaphor of paper lying on top of other paper. A raised UI Element is an element that's one paper layer above, with a slight shadow, but it's 'glued' to the layer below.",
+			"label": "is raised"
+		},
+		{
+			"@id": "uxi:isDense",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:ContainerUIElement"
+			},
+			"comment": "A hierarchy flag to indicate if a Container UI Element should display its content with less space between elements, or smaller elements, smaller fonts sizes etc. This can be useful on different screen sizes, or when a mouse is available for more precise pointing. Power users often prefer a denser UI with less guidance. Lesser used control elements can be grouped like this as well, while keeping them on screen.",
+			"label": "is dense"
+		},
+		{
+			"@id": "uxi:isMini",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A hierarchy flag to indicate if an Element is minimized or maximized. Compare with minimizedState and maximizedState, and minifiedState.",
+			"label": "is mini"
+		},
+		{
+			"@id": "uxi:isPrimary",
+			"@type": "Property",
+			"comment": "A hierarchy flag to switch an element between being a primary element or not.",
+			"label": "is primary"
+		},
+		{
+			"@id": "uxi:isSecondary",
+			"@type": "Property",
+			"comment": "A hierarchy flag to switch an element between being a secondary element or not.",
+			"label": "is secondary"
+		},
+		{
+			"@id": "uxi:isTertiary",
+			"@type": "Property",
+			"comment": "A hierarchy flag to switch an element between being a tertiary element or not.",
+			"label": "is tertiary"
+		},
+		{
+			"@id": "uxi:isCurrent",
+			"@type": "Property",
+			"comment": "A hierarchy flag to indicate if an element shows current status/value or not. E.g. while the user drags a Slider, the current value might be displayed over the pointer. The current value may get validated, but data in other parts of the application should only be updated after the user doesn't press the slider any more.",
+			"label": "is current"
+		},
+		{
+			"@id": "uxi:isOverlay",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A hierarchy flag for UI Elements overlaying other UI Elements. It can be used with Dialogs, Popovers, Dropdowns, etc.",
+			"label": "is overlay"
+		},
+		{
+			"@id": "uxi:isHidden",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A hierarchy flag to toggle the visibility of an UI Element. If you want to transition between visibility states, you can use opacity for fading, size for shrinking and growing, or 3D transformations for flipping. Transitions tell the user what happened to an element, when hiding the user should be shown how to un-hide.",
+			"label": "is hidden"
+		},
+		{
+			"@id": "uxi:isModal",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "A hierarchy flag to toggle an element as modal. Modal Elements are a way to force users to interact with a UI element, they show content in front of the rest of the application and don't allow any input apart from the front element. The background is often dimmed or greyed out. Modals must be tested for accessibility, since they can trap a user.",
+			"label": "is modal"
+		},
+		{
+			"@id": "uxi:isHelp",
+			"@type": "Property",
+			"comment": "A description flag to mark an element as help-content. This is useful e.g. for tooltips, and setting such a flag can be helpful to hide onboarding-content from experienced users, giving back space to the designer.",
+			"label": "is help"
+		},
+		{
+			"@id": "uxi:isContent",
+			"@type": "Property",
+			"comment": "A description flag to mark an element as containing content as opposed to layout or navigation elements. Parts of the UI that are content can go into SEO efforts, or be interesting for a editors, who would want to edit it in a content management system.",
+			"label": "is content"
+		},
+		{
+			"@id": "uxi:isProgress",
+			"@type": "Property",
+			"comment": "A description flag to mark an element as showing progress to the user. This can be the user's progress in a process, or the application's progress to load. Progress bars, Spinners etc. often only visually show progress, a textValue can help with accessibility.",
+			"label": "is progress"
+		},
+		{
+			"@id": "uxi:result",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Converter"
+				},
+				{
+					"@id": "uxi:Validator"
+				}
+			],
+			"comment": "A result is an outcome property that's immediately evaluated. It can be used to tell the user what consequences their actions will have. E.g. the result in a currency calculator app, completed user profile data as a result of editing, or a fulfilled workflow after performing a sequence of tasks (before submitting). Technically, results should be treated as immediate/synchronous outcomes, compare with uxi:output for side-effects/asynchronous handling.",
+			"label": "result",
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
+		},
+		{
+			"@id": "uxi:inputRange",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:Converter"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data.",
+			"label": "input range"
+		},
+		{
+			"@id": "uxi:inputTriggerValidator",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:Validator"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "The input trigger validator can be used with side-effect handlers, so that they only trigger when the input is valid.",
+			"label": "input trigger validator",
+			"inTagList":["uxi:Developer-Tag"]
+		},
+		{
+			"@id": "uxi:input",
+			"@type": "Property",
+			"canBeOfType": [
+				{
+					"@id": "uxi:UIDataType"
+				},
+				{
+					"@id": "schema:Thing"
+				},
+				{
+					"@id": "schema:DataType"
+				}
+			],
+			"canExistOnType": [
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "Input is the value/parameter/prop that gets passed to an element in the UX, and can be empty. This applies to visual as well as non-visual elements.",
+			"label": "input value",
+			"inTagList":["uxi:Developer-Tag"]
+		},
+		{
+			"@id": "uxi:output",
+			"@type": "Property",
+			"canBeOfType": {
+				"@id": "schema:Thing"
+			},
+			"canExistOnType": [
+				{
+					"@id": "uxi:UIElement"
+				},
+				{
+					"@id": "uxi:SideEffectHandler"
+				}
+			],
+			"comment": "Output is the outcome property of something produced. A QR code generator can output an image file, a form can output a document to be signed, a digital signature app can output signed documents. Technically, outputs should be treated as side-effects/asynchronously, compare with uxi:result for immediate/synchronous outcomes.",
+			"label": "output"
+		},
+		{
+			"@id": "uxi:status",
+			"@type": "Property",
+			"canBeOfType": {
+				"@id": "uxi:UIState"
+			},
+			"comment": "Status is a property of a UI Element to tell the user what happened in the application. 404 pages display technical status. The green or yellow dot in chat applications display user statuses.",
+			"label": "status"
+		},
+		{
+			"@id": "uxi:menu",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:ContainerUIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "Menu is a property of a Container UI Element that tells the user that this part of the container is used as a way to control the rest of the container.",
+			"label": "menu"
+		},
+		{
+			"@id": "uxi:settings",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:ContainerUIElement"
+			},
+			"canBeOfType": {
+				"@id": "uxi:UIElement"
+			},
+			"comment": "Settings is a property of a Container UI Element that affect not only this container, but apply to similar parts of the application elsewhere.",
+			"label": "settings"
+		},
+		{
+			"@id": "uxi:isUsableBy",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": [
+				{
+					"@id": "uxi:User"
+				},
+				{
+					"@id": "schema:Role"
+				},
+				{
+					"@id": "uxi:Group"
+				},
+				{
+					"@id": "schema:Person"
+				}
+			],
+			"comment": "To handle which User, Role or Group can use an Element of the UI, the property isUsableBy can be used to grey out parts of the interface, or hide them entirely.",
+			"label": "isUsableBy"
+		},
+		{
+			"@id": "uxi:isInUseBy",
+			"@type": "Property",
+			"canExistOnType": {
+				"@id": "uxi:Element"
+			},
+			"canBeOfType": [
+				{
+					"@id": "schema:Role"
+				},
+				{
+					"@id": "uxi:User"
+				},
+				{
+					"@id": "uxi:Group"
+				},
+				{
+					"@id": "schema:Person"
+				}
+			],
+			"comment": "When people collaboratively work, the property isInUseBy can be used to make an element non-editable until it is set free. Showing where other users are can also prevent conflicting edits.",
+			"label": "isInUseBy"
+		},
+		{
+			"@id": "uxi:User",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "A user is an individual person accessing the application. Users typically have roles, belong to groups and have permissions (or not). User data and personal data should be especially secured and anonymized for development. Dummy personas can help with testing the boundaries of the application better, e.g. when testing for long names or characters in Asian or Right-to-left languages. Compared to a role, a role summarizes a 'job' that can be done in an application. One user can have many roles, and is permitted access and view parts of the application or not, depending on the activity. E.g. in a marketplace, the same user might be a seller for one item, but a buyer for other items.",
+			"label": "User"
+		},
+		{
+			"@id": "uxi:Group",
+			"@type": "Class",
+			"subClassOf": [
+				{
+					"@id": "rdfs:Class"
+				},
+				{
+					"@id": "uxi:Element"
+				}
+			],
+			"comment": "A group is used to refer to a number of users that share common features, and thus can be treated similarly. Users typically belong to a group for a longer time, so group-level permissions determine the basic UI a user sees. If the activity determines the permissions, user roles are a better way to handle UI access.",
+			"label": "Group"
+		},
+		{
+			"@id": "uxi:Tags",
+			"@type": "schema:ItemList",
+			"schema:itemListElement": [
+				{
+					"@id": "uxi:Developer-Tag",
+					"@type": "schema:ItemList"
+				},
+				{
+					"@id": "uxi:Designer-Tag",
+					"@type": "schema:ItemList"
+				},
+				{
+					"@id": "uxi:Copywriter-Tag",
+					"@type": "schema:ItemList"
+				}
+			]
+		}
+	]
+}

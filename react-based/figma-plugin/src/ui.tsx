@@ -2,12 +2,10 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Text, Input, Title, Button } from 'react-figma-plugin-ds'
 import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import './ui.css'
 
-import OtherApp from './App'
-import { FindAndReplace } from './components/FindAndReplace'
+import { PluginMainLayout } from './PluginMainLayout'
 
 declare function require(path: string): string
 
@@ -32,9 +30,9 @@ const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
   }
 
   return (
-    <div>
-        <FindAndReplace/>
-      <img src={require('./logo.svg')} />
+    <>
+      <PluginMainLayout/>
+      {/*<img src={require('./logo.svg')} />
       <Title level="h1" size="xlarge" weight="bold">
         Icon Maker
       </Title>
@@ -50,8 +48,8 @@ const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
       <Button onClick={onCreate}>Create</Button>
       <Button isSecondary onClick={onCancel}>
         Cancel
-      </Button>
-    </div>
+  </Button>*/}
+    </>
   )
 }
 

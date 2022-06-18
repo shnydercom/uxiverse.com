@@ -18,7 +18,8 @@
   "author": "Frad LEE",
   "license": "EUPL-1.2",
   "dependencies": {
-    "react-figma-plugin-ds": "^2.3.0"
+    "react-figma-plugin-ds": "^2.3.0",
+    "@uxiverse.com/ontology": "*"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.19.2",

@@ -4,6 +4,16 @@ body {
   margin: 0;
 }
 
+.react-page {
+  height: 100%;
+}
+
+.main-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .find-and-replace {
   background: #F3F3F3;
   padding: 6px 0;
@@ -26,3 +36,8 @@ width: 100%;
 .find-and-replace :nth-child(5) { grid-area: 3 / 1 / 4 / 2; }
 .find-and-replace :nth-child(6) { grid-area: 3 / 2 / 4 / 3; }
 .find-and-replace :nth-child(7) { grid-area: 3 / 3 / 4 / 4; }
+
+.ontology-results {
+  flex: 1;
+  overflow-y: scroll;
+}
