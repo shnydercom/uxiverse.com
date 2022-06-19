@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import * as React from 'react'
 import { FindAndReplace } from './components/FindAndReplace'
 import { OntologyResults } from './components/OntologyResults'
-import { searchDefinitionNames } from './logic/search'
+import { searchDefinitionNames } from './browserlogic/search'
 
 export const PluginMainLayout = () => {
   //state
