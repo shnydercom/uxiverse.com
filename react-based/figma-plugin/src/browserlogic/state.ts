@@ -3,17 +3,16 @@ import { DEFAULT_TOOLTIP } from '../components/TooltipBar'
 export interface PluginState {
   tooltip: string
 }
-const initialState: PluginState = {
-  tooltip: DEFAULT_TOOLTIP,
-}
 
 export enum HoverableElements {
   btnPrevComponent,
   btnNextComponent,
+  inputChangeReplace,
 }
 
 export enum PluginActionType {
   UsrHover = 'UsrHover',
+  UsrChangeReplaceInput = 'UsrChangeReplaceInput',
 }
 
 export interface UserHoverAction {
@@ -21,12 +20,21 @@ export interface UserHoverAction {
   payload: HoverableElements
 }
 
-export type PluginAction = UserHoverAction
+export interface UserChangeReplaceAction {
+  type: PluginActionType.UsrChangeReplaceInput
+  payload: string
+}
 
-const reducer: (state: PluginState, action: PluginAction) => PluginState = (
-  state,
-  action
-) => {
+export type PluginAction = UserHoverAction | UserChangeReplaceAction
+
+export const initialState: PluginState = {
+  tooltip: DEFAULT_TOOLTIP,
+}
+
+export const pluginReducer: (
+  state: PluginState,
+  action: PluginAction
+) => PluginState = (state, action) => {
   switch (action.type) {
     case PluginActionType.UsrHover:
       let tooltip = DEFAULT_TOOLTIP
@@ -39,6 +47,7 @@ const reducer: (state: PluginState, action: PluginAction) => PluginState = (
           break
       }
       return {
+        ...state,
         tooltip,
       }
     default:

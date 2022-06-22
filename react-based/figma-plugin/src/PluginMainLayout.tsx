@@ -3,6 +3,7 @@ import * as React from 'react'
 import { FindAndReplace } from './components/FindAndReplace'
 import { OntologyResults } from './components/OntologyResults'
 import { searchDefinitionNames } from './browserlogic/search'
+import { TooltipBar } from './components/TooltipBar'
 
 export const PluginMainLayout = () => {
   //state

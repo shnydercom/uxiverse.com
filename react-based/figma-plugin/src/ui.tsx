@@ -6,13 +6,15 @@ import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import './ui.css'
 
 import { PluginMainLayout } from './PluginMainLayout'
+import { PluginContext } from './browserlogic/context'
+import { initialState, pluginReducer } from './browserlogic/state'
 
 declare function require(path: string): string
 
 export interface FigmaPluginRootProps {}
 
 const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
-  const [count, setCount] = React.useState(5)
+  /* const [count, setCount] = React.useState(5)
   const onInputChange = (value, event) => {
     setCount(event.target.value)
   }
@@ -27,11 +29,14 @@ const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
 
   const onCancel = () => {
     parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-  }
+  }*/
+  const [state, dispatch] = React.useReducer(pluginReducer, initialState)
 
   return (
     <>
-      <PluginMainLayout/>
+      <PluginContext.Provider value={{ state, dispatch }}>
+        <PluginMainLayout />
+      </PluginContext.Provider>
       {/*<img src={require('./logo.svg')} />
       <Title level="h1" size="xlarge" weight="bold">
         Icon Maker
