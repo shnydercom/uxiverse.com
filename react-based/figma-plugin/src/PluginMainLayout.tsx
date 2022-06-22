@@ -3,6 +3,7 @@ import * as React from 'react'
 import { FindAndReplace } from './components/FindAndReplace'
 import { OntologyResults } from './components/OntologyResults'
 import { searchDefinitionNames } from './logic/search'
+import { TooltipBar } from './components/TooltipBar'
 
 export const PluginMainLayout = () => {
   //state
@@ -28,6 +29,7 @@ export const PluginMainLayout = () => {
         onConfirmReplaceClick={onConfirmReplaceClick}
       /> 
       <OntologyResults searchResults={searchResult} />
+      <TooltipBar/>
     </div>
   )
 }

@@ -41,3 +41,7 @@ width: 100%;
   flex: 1;
   overflow-y: scroll;
 }
+
+.tooltip-bar {
+  background: #F3F3F3;
+}

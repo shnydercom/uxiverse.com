@@ -4,7 +4,8 @@
     "jsx": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "strict": true
   },
   "exclude": ["node_modules"]
 }
