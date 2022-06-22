@@ -1,5 +1,5 @@
 {
-  "files": ["./typings.d.ts"],
+  "files": ["./typings.d.ts", "./figma.d.ts"],
   "compilerOptions": {
     "jsx": "react",
     "esModuleInterop": true,
@@ -7,5 +7,5 @@
     "noFallthroughCasesInSwitch": true,
     "strict": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["./node_modules"]
 }

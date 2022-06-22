@@ -51,7 +51,7 @@
     "remark-wiki-link": "^1.0.0",
     "ts-jest": "^26.4.0",
     "ts-node": "^10.0.0",
-    "typescript": "^4.1.3",
+    "typescript": "^4.7.4",
     "unified": "^9.2.0"
   }
 }

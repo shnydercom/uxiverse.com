@@ -6,11 +6,6 @@
     "jsx": "react",
     "moduleResolution": "node"
   },
-  "include": [
-		"./node_modules/@figma"
+  "include": ["src/code.ts"
   ],
-  "typeRoots": [
-		"./node_modules/@types",
-		"./node_modules/@figma"
-  ]
 }
