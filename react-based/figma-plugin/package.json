@@ -19,7 +19,7 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "@uxiverse.com/ontology": "*",
-    "react-figma-plugin-ds": "^2.3.0"
+    "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.47.0",
