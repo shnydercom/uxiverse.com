@@ -4,7 +4,8 @@
     "target": "es6",
     "module": "esnext",
     "jsx": "react",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": false,
   },
   "include": ["src/code.ts"
   ],

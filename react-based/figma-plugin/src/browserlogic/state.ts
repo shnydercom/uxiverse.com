@@ -5,9 +5,13 @@ export interface PluginState {
 }
 
 export enum HoverableElements {
-  btnPrevComponent,
-  btnNextComponent,
-  inputChangeReplace,
+  btnPrevComponent = 'btn-prev',
+  btnNextComponent = 'btn-next',
+  inputChangeReplace = 'input-replace',
+  inputCompName = 'input-comp-name',
+  btnCompTxtToReplace = 'bnt-comptxt-to-replace',
+  btnExecReplace = 'btn-exec-replace',
+  btnClear = 'btn-clear',
 }
 
 export enum PluginActionType {
@@ -44,6 +48,21 @@ export const pluginReducer: (
           break
         case HoverableElements.btnNextComponent:
           tooltip = 'select next'
+          break
+        case HoverableElements.inputChangeReplace:
+          tooltip = 'new name for the element'
+          break
+        case HoverableElements.inputCompName:
+          tooltip = 'search in canvas by name'
+          break;
+        case HoverableElements.btnCompTxtToReplace:
+          tooltip = 'append original name'
+          break;
+        case HoverableElements.btnExecReplace:
+          tooltip = 'replace name in canvas'
+          break;
+        case HoverableElements.btnClear:
+          tooltip = 'clear new name'
           break
       }
       return {

@@ -1,15 +1,12 @@
 import * as React from 'react'
-export interface OntologyResultsProps {
-  searchResults: string[]
-}
 
-export const OntologyResults = (props: OntologyResultsProps) => {
-  const { searchResults } = props
+export const OntologyResults = () => {
+  
   return (
     <div className='ontology-results'>
-      {searchResults.map(val => (
-        <div>{val}</div>
-      ))}
+      <div className='search-results'></div>
+      <div className='search-relations'></div>
+      <div className='full-search-result'></div>
     </div>
   )
 }
