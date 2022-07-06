@@ -18,7 +18,7 @@ body {
   background: #f3f3f3;
   padding: 6px 0;
   display: grid;
-  height: 76px;
+  height: 88px;
   grid-template-columns: 32px 1fr 32px;
   grid-template-rows: 32px 12px 32px;
   grid-column-gap: 0px;
@@ -52,12 +52,44 @@ body {
 
 .ontology-results {
   flex: 1;
-  overflow-y: scroll;
-  height: 152px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.partial-search-results {
+  height: 88px;
+  padding: 0px 12px;
+  box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
+  display:flex;
+  flex-direction: column;
+}
+
+.partial-search-results--inner {
+  margin: 12px 0px;
+  display:flex;
+  flex-direction: column;
+}
+
+.found-term {
+  line-height: 20px;
+}
+
+.full-search-result {
+  min-height: 88px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.full-search-result--inner {
+  text-align: center;
+  height: min-content;  
 }
 
 .tooltip-bar {
-  margin: 2px;
+  padding: 2px;
   font-size: 12px;
   background: #f3f3f3;
 }

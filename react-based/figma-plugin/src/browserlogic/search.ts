@@ -1,5 +1,7 @@
 import ontology from './../assets/ontology_full.json'
 
+type UxiDefinition = ArrayElemType<typeof ontology.defines>
+
 const preFilteredIDs = ontology.defines.map(entry => {
   return entry['@id'].replace('uxi:', '')
 })
@@ -17,4 +19,11 @@ export function searchDefinitionDescriptions(searchValue: string): string[] {
       const lowerCaseComment = filteredVal.toLowerCase() ?? ''
       return lowerCaseComment.indexOf(searchValue.toLowerCase()) >= 0
     })
+}
+
+export function getSingleUxiDefinition(uxiValue: string): string | undefined {
+  return ontology.defines
+    .find(defEntry => {
+      return (defEntry['@id'] ?? "") === `uxi:${uxiValue}`
+    })?.comment ?? undefined
 }

@@ -1,12 +1,19 @@
 import * as React from 'react'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import { DefinitionSearchResult } from './searchResults/definitionSearchResult'
+
+import { PartialSearchResults } from './searchResults/PartialSearchResults'
 
 export const OntologyResults = () => {
-  
   return (
-    <div className='ontology-results'>
-      <div className='search-results'></div>
-      <div className='search-relations'></div>
-      <div className='full-search-result'></div>
+    <div className="ontology-results">
+      <OverlayScrollbarsComponent
+        style={{ flex: 1 }}
+        options={{ scrollbars: { autoHide: 'never' } }}
+      >
+        <PartialSearchResults />
+        <DefinitionSearchResult />
+      </OverlayScrollbarsComponent>
     </div>
   )
 }

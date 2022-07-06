@@ -2,6 +2,9 @@ import { DEFAULT_TOOLTIP } from '../components/TooltipBar'
 
 export interface PluginState {
   tooltip: string
+  searchValue: string | undefined
+  confirmedRenameParts: string[]
+  hoveredDefinition: string | undefined
 }
 
 export enum HoverableElements {
@@ -17,6 +20,8 @@ export enum HoverableElements {
 export enum PluginActionType {
   UsrHover = 'UsrHover',
   UsrChangeReplaceInput = 'UsrChangeReplaceInput',
+  UsrConfirmRenamePart = 'UsrConfirmRenamePart',
+  UsrHoverDefinition = 'UsrHoverDefinition',
 }
 
 export interface UserHoverAction {
@@ -29,10 +34,27 @@ export interface UserChangeReplaceAction {
   payload: string
 }
 
-export type PluginAction = UserHoverAction | UserChangeReplaceAction
+export interface UserConfirmRenamePartAction {
+  type: PluginActionType.UsrConfirmRenamePart
+  payload: string
+}
+
+export interface UserHoverDefinitionAction {
+  type: PluginActionType.UsrHoverDefinition
+  payload: string
+}
+
+export type PluginAction =
+  | UserHoverAction
+  | UserChangeReplaceAction
+  | UserConfirmRenamePartAction
+  | UserHoverDefinitionAction
 
 export const initialState: PluginState = {
   tooltip: DEFAULT_TOOLTIP,
+  searchValue: undefined,
+  confirmedRenameParts: [],
+  hoveredDefinition: undefined,
 }
 
 export const pluginReducer: (
@@ -54,13 +76,13 @@ export const pluginReducer: (
           break
         case HoverableElements.inputCompName:
           tooltip = 'search in canvas by name'
-          break;
+          break
         case HoverableElements.btnCompTxtToReplace:
           tooltip = 'append original name'
-          break;
+          break
         case HoverableElements.btnExecReplace:
           tooltip = 'replace name in canvas'
-          break;
+          break
         case HoverableElements.btnClear:
           tooltip = 'clear new name'
           break
@@ -68,6 +90,25 @@ export const pluginReducer: (
       return {
         ...state,
         tooltip,
+      }
+    case PluginActionType.UsrChangeReplaceInput:
+      return {
+        ...state,
+        searchValue: action.payload,
+      }
+    case PluginActionType.UsrConfirmRenamePart:
+      const confirmedRenameParts = [
+        ...state.confirmedRenameParts,
+        action.payload,
+      ]
+      return {
+        ...state,
+        confirmedRenameParts,
+      }
+    case PluginActionType.UsrHoverDefinition:
+      return {
+        ...state,
+        hoveredDefinition: action.payload,
       }
     default:
       break

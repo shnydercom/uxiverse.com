@@ -3,6 +3,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import 'react-figma-plugin-ds/figma-plugin-ds.css'
+import "overlayscrollbars/css/OverlayScrollbars.css";
 import './ui.css'
 
 import { PluginMainLayout } from './PluginMainLayout'

@@ -18,3 +18,6 @@ declare module "*.svg" {
   const content: any;
   export default content;
 }
+
+//convenience types
+type ArrayElemType<T> = T extends (infer Elem)[] ? Elem : T;

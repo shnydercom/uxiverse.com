@@ -6,7 +6,8 @@
     "jsx": "react",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": ["src/code.ts"
-  ],
+  "include": ["src/code.ts"]
 }
