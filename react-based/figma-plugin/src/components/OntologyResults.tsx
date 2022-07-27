@@ -3,6 +3,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { DefinitionSearchResult } from './searchResults/definitionSearchResult'
 
 import { PartialSearchResults } from './searchResults/PartialSearchResults'
+import { PreviewSearchResult } from './searchResults/PreviewSearchResult'
 
 export const OntologyResults = () => {
   return (
@@ -12,6 +13,7 @@ export const OntologyResults = () => {
         options={{ scrollbars: { autoHide: 'never' } }}
       >
         <PartialSearchResults />
+        <PreviewSearchResult />
         <DefinitionSearchResult />
       </OverlayScrollbarsComponent>
     </div>
