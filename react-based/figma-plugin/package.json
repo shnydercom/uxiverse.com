@@ -21,7 +21,8 @@
     "@uxiverse.com/ontology": "*",
     "overlayscrollbars": "^1.13.2",
     "overlayscrollbars-react": "^0.3.0",
-    "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git"
+    "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git",
+    "xstate": "^4.33.0"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.47.0",

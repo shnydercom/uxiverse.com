@@ -1,5 +1,7 @@
 # uxiverse.com
-Good User Experiences are the result of people from different professions working together. The goal of uxiverse.com is to find a common language for User Interface Creation. 
+Good User Experiences are the result of people from different professions working together. The goal of uxiverse.com is to find a common language for User Interface Creation.
+
+That can be design, development, different tester professions and the domain experts who need digital tools to support their work.
 
 - For this, we need data about the current industry standard. A figma plugin that recommends UI terms and tracks their usage will be developed
 
