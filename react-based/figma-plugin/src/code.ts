@@ -1,3 +1,4 @@
+import { PluginSelectionChanged } from "./communicationInterfaces";
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
@@ -6,10 +7,15 @@
 if (figma.editorType === 'figma') {
   // This plugin will open a window to prompt the user to enter a number, and
   // it will then create that many rectangles on the screen.
-  
+
   // This shows the HTML page in "ui.html".
-  figma.showUI(__html__,{ width: 256, height: 336 });
-  
+  figma.showUI(__html__, { width: 256, height: 336 });
+
+  figma.on("selectionchange", () => {
+    const selChangeObj: PluginSelectionChanged = { type: "selectionChanged" };
+    figma.ui.postMessage(selChangeObj)
+  })
+
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
@@ -21,7 +27,7 @@ if (figma.editorType === 'figma') {
       for (let i = 0; i < msg.count; i++) {
         const rect = figma.createRectangle();
         rect.x = i * 150;
-        rect.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
+        rect.fills = [{ type: 'SOLID', color: { r: 1, g: 0.5, b: 0 } }];
         figma.currentPage.appendChild(rect);
         nodes.push(rect);
       }
@@ -34,7 +40,7 @@ if (figma.editorType === 'figma') {
     figma.closePlugin();
   };
 
-// If the plugins isn't run in Figma, run this code
+  // If the plugins isn't run in Figma, run this code
 } else {
   // This plugin will open a window to prompt the user to enter a number, and
   // it will then create that many shapes and connectors on the screen.
@@ -56,7 +62,7 @@ if (figma.editorType === 'figma') {
         // You can set shapeType to one of: 'SQUARE' | 'ELLIPSE' | 'ROUNDED_RECTANGLE' | 'DIAMOND' | 'TRIANGLE_UP' | 'TRIANGLE_DOWN' | 'PARALLELOGRAM_RIGHT' | 'PARALLELOGRAM_LEFT'
         shape.shapeType = 'ROUNDED_RECTANGLE'
         shape.x = i * (shape.width + 200);
-        shape.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}];
+        shape.fills = [{ type: 'SOLID', color: { r: 1, g: 0.5, b: 0 } }];
         figma.currentPage.appendChild(shape);
         nodes.push(shape);
       };
@@ -71,7 +77,7 @@ if (figma.editorType === 'figma') {
         };
 
         connector.connectorEnd = {
-          endpointNodeId: nodes[i+1].id,
+          endpointNodeId: nodes[i + 1].id,
           magnet: 'AUTO',
         };
       };
