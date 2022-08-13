@@ -13,12 +13,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode production --watch",
     "lint": "eslint './src/**/*.{ts,tsx}' --fix && stylelint '**/*.css' --fix",
-    "build": "webpack --mode production && zip create-react-figma-plugin.zip ./dist/* manifest.json LICENSE"
+    "build": "webpack --mode production",
+    "zip": "zip create-react-figma-plugin.zip ./dist/* manifest.json LICENSE"
   },
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
   "dependencies": {
     "@uxiverse.com/ontology": "*",
+    "@xstate/react": "^3.0.1",
     "overlayscrollbars": "^1.13.2",
     "overlayscrollbars-react": "^0.3.0",
     "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git",

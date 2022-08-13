@@ -1,4 +1,4 @@
-import { DEFAULT_TOOLTIP } from '../components/TooltipBar'
+import { DEFAULT_TOOLTIP } from '../state/microCopyConstants'
 
 export interface PluginState {
   tooltip: string

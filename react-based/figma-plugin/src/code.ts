@@ -1,4 +1,4 @@
-import { PluginSelectionChanged } from "./communicationInterfaces";
+import { HostEventTypes, PluginSelectionChanged } from "./communicationInterfaces";
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
@@ -12,7 +12,7 @@ if (figma.editorType === 'figma') {
   figma.showUI(__html__, { width: 256, height: 336 });
 
   figma.on("selectionchange", () => {
-    const selChangeObj: PluginSelectionChanged = { type: "selectionChanged" };
+    const selChangeObj: PluginSelectionChanged = { type: HostEventTypes.selectionChanged };
     figma.ui.postMessage(selChangeObj)
   })
 
@@ -39,7 +39,6 @@ if (figma.editorType === 'figma') {
     // keep running, which shows the cancel button at the bottom of the screen.
     figma.closePlugin();
   };
-
   // If the plugins isn't run in Figma, run this code
 } else {
   // This plugin will open a window to prompt the user to enter a number, and

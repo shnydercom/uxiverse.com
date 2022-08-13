@@ -1,6 +1,6 @@
 /* global document, parent*/
 
-import * as React from 'react'
+import React, { createContext } from 'react'
 import * as ReactDOM from 'react-dom'
 import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import "overlayscrollbars/css/OverlayScrollbars.css";
@@ -9,10 +9,11 @@ import './ui.css'
 import { PluginMainLayout } from './PluginMainLayout'
 import { PluginContext } from './browserlogic/context'
 import { initialState, pluginReducer } from './browserlogic/state'
+import { GlobalStateProvider } from './state/globalStateProvider';
 
 declare function require(path: string): string
 
-export interface FigmaPluginRootProps {}
+export interface FigmaPluginRootProps { }
 
 const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
   /* const [count, setCount] = React.useState(5)
@@ -36,7 +37,9 @@ const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
   return (
     <>
       <PluginContext.Provider value={{ state, dispatch }}>
-        <PluginMainLayout />
+        <GlobalStateProvider>
+          <PluginMainLayout />
+        </GlobalStateProvider>
       </PluginContext.Provider>
       {/*<img src={require('./logo.svg')} />
       <Title level="h1" size="xlarge" weight="bold">

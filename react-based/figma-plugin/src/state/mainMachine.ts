@@ -1,5 +1,5 @@
 import { createMachine } from 'xstate'
-import { DEFAULT_TOOLTIP } from '../components/TooltipBar'
+import { DEFAULT_TOOLTIP } from './microCopyConstants'
 
 /**
  * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list
