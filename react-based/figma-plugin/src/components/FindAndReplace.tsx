@@ -2,19 +2,24 @@ import React, { MouseEventHandler, useCallback, useContext } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { PluginContext } from '../browserlogic/context'
 import { HoverableElements, PluginActionType } from '../browserlogic/state'
+import { GlobalStateContext } from '../state/globalStateProvider'
+import { HoverUIElemEnterEvent } from '../state/mainMachine'
 
 export const FindAndReplace = () => {
+  const globalServices = useContext(GlobalStateContext);
+  const { send } = globalServices.mainService;
+
   const { dispatch } = useContext(PluginContext)
 
-  const onPreviousClick = useCallback(() => {}, [])
-  const onNextClick = useCallback(() => {}, [])
-  const onOverwriteReplaceClick = useCallback(() => {}, [])
-  const onConfirmReplaceClick = useCallback(() => {}, [])
-  const onDeleteClick = useCallback(() => {}, [])
+  const onPreviousClick = useCallback(() => { }, [])
+  const onNextClick = useCallback(() => { }, [])
+  const onOverwriteReplaceClick = useCallback(() => { }, [])
+  const onConfirmReplaceClick = useCallback(() => { }, [])
+  const onDeleteClick = useCallback(() => { }, [])
 
   //input fields
 
-  const onSearchChange = useCallback(() => {}, [])
+  const onSearchChange = useCallback(() => { }, [])
 
   const onReplaceChange = useCallback(
     (value: string, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,15 +42,17 @@ export const FindAndReplace = () => {
       case HoverableElements.btnCompTxtToReplace:
       case HoverableElements.btnExecReplace:
       case HoverableElements.btnClear:
-        dispatch({
-          type: PluginActionType.UsrHover,
-          payload: event.currentTarget.id,
-        })
+        send({ type: "HOVER_UI_ELEM_ENTER", payload: event.currentTarget.id })
       default:
         break
     }
   }, [])
 
+  const onElemHoverLeave: MouseEventHandler<
+  HTMLButtonElement | HTMLInputElement
+> = useCallback(event => {
+  send("HOVER_UI_ELEM_EXIT")
+},[])
   return (
     <div className="find-and-replace">
       <Icon
@@ -53,6 +60,7 @@ export const FindAndReplace = () => {
         onClick={onPreviousClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnPrevComponent,
         }}
       />
@@ -61,6 +69,7 @@ export const FindAndReplace = () => {
         onChange={onSearchChange}
         icon="search-large"
         onMouseOver={onElemHover}
+        onMouseLeave={onElemHoverLeave}
         id={HoverableElements.inputCompName}
       />
       <Icon
@@ -68,6 +77,7 @@ export const FindAndReplace = () => {
         onClick={onNextClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnNextComponent,
         }}
       />
@@ -77,6 +87,7 @@ export const FindAndReplace = () => {
         onClick={onOverwriteReplaceClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnCompTxtToReplace,
         }}
       />
@@ -86,6 +97,7 @@ export const FindAndReplace = () => {
         onClick={onConfirmReplaceClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnExecReplace,
         }}
       />
@@ -94,6 +106,7 @@ export const FindAndReplace = () => {
         onChange={onReplaceChange}
         icon="swap"
         onMouseOver={onElemHover}
+        onMouseLeave={onElemHoverLeave}
         id={HoverableElements.inputChangeReplace}
       />
       <Icon
@@ -101,6 +114,7 @@ export const FindAndReplace = () => {
         onClick={onDeleteClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnClear,
         }}
       />

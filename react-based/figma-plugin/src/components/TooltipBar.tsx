@@ -1,4 +1,4 @@
-import { useSelector } from '@xstate/react';
+import { useActor, useSelector } from '@xstate/react';
 import React, { useContext } from 'react'
 import { PluginContext } from '../browserlogic/context';
 import { GlobalStateContext } from '../state/globalStateProvider';
@@ -6,8 +6,7 @@ import { SelectorType } from '../state/moreTypes';
 
 const loggedInSelector: SelectorType =
   (state) => {
-    console.log(state);
-    return state.matches('tooltipState');
+    return state.context.plugin.tooltip;
   };
 
 export interface TooltipBarProps {
@@ -15,8 +14,6 @@ export interface TooltipBarProps {
 
 export function TooltipBar(props: TooltipBarProps) {
   const globalServices = useContext(GlobalStateContext);
-  const isLoggedIn = useSelector(globalServices.mainService, loggedInSelector);
-  const { state } = useContext(PluginContext)
-  const text = state.tooltip;
-  return <div className="tooltip-bar">{text}</div>
+  const tooltipText = useSelector(globalServices.mainService, loggedInSelector);
+  return <div className="tooltip-bar">{tooltipText ?? " "}</div>
 }
