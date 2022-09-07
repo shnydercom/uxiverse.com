@@ -1,5 +1,4 @@
-import { DEFAULT_TOOLTIP } from '../state/microCopyConstants'
-
+const DEFAULT_TOOLTIP = "to be deprecated"
 export interface PluginState {
   tooltip: string
   searchValue: string | undefined

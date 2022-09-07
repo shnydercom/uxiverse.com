@@ -1,6 +1,7 @@
 import { assign, createMachine, EventType } from 'xstate'
-import { DEFAULT_TOOLTIP } from './microCopyConstants'
+import { getI18n } from './../i18n'
 
+const i18n = getI18n();
 /**
  * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list
  */
@@ -97,7 +98,7 @@ export const mainMachine =
           hoveredDefinition: '',
           searchValue: '',
         },
-        tooltip: DEFAULT_TOOLTIP,
+        tooltip: i18n.tooltipDefault,
       },
     },
     schema: {
@@ -122,6 +123,7 @@ export const mainMachine =
             on: {
               HOVER_UI_ELEM_EXIT: {
                 target: 'defaultTooltip',
+                actions: ["resetTooltip"]
               },
             },
           },
@@ -411,13 +413,17 @@ export const mainMachine =
         },
       },
     },
-  },
-  {
+  }).withConfig({
     actions: {
       showTooltip: (context, event: HoverUIElemEnterEvent) => {
         const ctxCopy = {...context};
         ctxCopy.plugin.tooltip = event.payload;
         assign<MainMachineState, HoverUIElemEnterEvent>(ctxCopy)
-      }
+      },
+      resetTooltip:  (context, event: HoverUIElemEnterEvent) => {
+        const ctxCopy = {...context};
+        ctxCopy.plugin.tooltip = i18n.tooltipDefault;
+        assign<MainMachineState, HoverUIElemEnterEvent>(ctxCopy)
+      },
     }
   })

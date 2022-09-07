@@ -1,1 +1,0 @@
-export const DEFAULT_TOOLTIP = 'tooltips are here'
