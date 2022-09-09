@@ -1,4 +1,6 @@
 import { assign, createMachine, EventType } from 'xstate'
+import { HoverableElements } from '../identifiable/HoverableElements';
+import { compIdToTooltip } from '../mappers/compIdToTooltip';
 import { getI18n } from './../i18n'
 
 const i18n = getI18n();
@@ -44,7 +46,7 @@ export interface HostAppElement {
 
 export interface HoverUIElemEnterEvent {
   type: 'HOVER_UI_ELEM_ENTER';
-  payload: string;
+  payload: HoverableElements;
 }
 
 export interface HostAppState {
@@ -417,7 +419,7 @@ export const mainMachine =
     actions: {
       showTooltip: (context, event: HoverUIElemEnterEvent) => {
         const ctxCopy = {...context};
-        ctxCopy.plugin.tooltip = event.payload;
+        ctxCopy.plugin.tooltip = compIdToTooltip(event.payload);
         assign<MainMachineState, HoverUIElemEnterEvent>(ctxCopy)
       },
       resetTooltip:  (context, event: HoverUIElemEnterEvent) => {

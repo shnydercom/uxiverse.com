@@ -1,9 +1,9 @@
 import React, { MouseEventHandler, useCallback, useContext } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { PluginContext } from '../browserlogic/context'
-import { HoverableElements, PluginActionType } from '../browserlogic/state'
+import { PluginActionType } from '../browserlogic/state'
+import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
-import { HoverUIElemEnterEvent } from '../state/mainMachine'
 
 export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext);
