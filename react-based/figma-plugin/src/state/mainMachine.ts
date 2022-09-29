@@ -88,360 +88,363 @@ export interface MainMachineState {
 }
 
 export const mainMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QFsCGBLAdgOgC4Ht8AbXdABwGVdVcxsIwAzVAVxIBVCTyBiACQDyANQCiAJQD6AVQCSEkQBkRAWXkA5duMSgy+WOlL5M2kAA9EAJgDMV7BYBsAVkcAWAAwBOAOwW3LrwCMjgA0IACeiAH21tguHh4AHAFu0VYBCU4AvpmhaFh4XKSU1LTYsGRgAMbojOiVnMRF-MLi0nKKKvIAGjLsJrr6hsZIZpY2dk6unj5+gSHhkYFusfEJ1mvOFh722bkYOAAWergUYERVQ1Q0dJj4p+eVQ80U7BIyGuIAggDC7DICagkFA6vwkyikCj+-T0BnQRhM5gQCQSthcVi8zg8AWx9mSXlCEQQFgCVns2BsaTibkcCXijisuxAeUOx3uFzhmCupVubMeHOer3emjEPz+AKBINeFHeAHElNDBhyEZFXF5sG40lYXBYXDTHLiCZYgi4VokrDSMm5rC5GczsEdYCczuyjFy6AAnVAAd2UbFIvKewKUoIACmIREIFbD4SNEY4AibovGbBYMejHB5DUSoo5YjYAl4US57GsvDackz9vbWc6+a6Sh7vb7uAH+UGRKC1CIun0RgNo8NQHGE7EEmiLM4vJ5tQks8SC3m0vq3EkLFsGRW7Q6nQ9Lg3sJ6fX70K2jAKJAARETt35RobKpFeWyJccJMtOez2TMLbNj8n5wIrB1DMtVtKtt1PTl90PZt-VrJ5BBeN4PhFX5-kBG8pVleU+xhe9Y0QN9nzHIC32LfUvznDUTXiRIdTTNcXHLPZ8gg+COTdMosCgc4ZFoZAZEwWCT3Ys9EMFFDRXQiVg1ecFIRkO8lQIhAtQSUcXATLwS3cal5kJNdnGwFEgLcMyAi2LxtLA1ia13Dj930TAeLAPiwAEoTj0g88hS+NDxUwoFsJEJSYyHRA1I0rSdLM5w53NAJjPzewqXSNwvBsllHUgzinJctyPOE7zxMva9JVCwdRlUlx1JqzT-BivT4o1JLKQcUlfA8TLq2y0SoOuA9vQobjzmKgQkKvTCKofKIsTzLwPAcKJPDM+w518CxTQSGkgiiYlHG6tj7PrAbD2G5zRr6nzJP8jDJTBCEoVwxUwqqoJ9Q0idtVcElCyzAIsVzOJEhJaI-C+7r3SqfBkGQMBMAgGgHNO6HYfhxGhm+Ig9EgHgRAvXoJG+ARlBDYFPjEb4+GmlSrDM8kM1+7anAxFwsxRNVnGcfN-GxbFIdRuGEaRk7SihyoYaFjGOSxnGIDxgnXnDNRPmUcQRBDBQfhC56BwfUyGaxdFmccVm52RbArKsr7428CyBYltHhb3AbIFhZzvhhygwFQd1KgOTisFhVAiE95Bvd9-2eHDYnlDVtQLwkT4FBDPhPgAIREP5vmThQAE0afCokvuMjwNXRdwOf+801WBhIUnSu3UwdyX0ZF-rSjd0gPa905I4D-cg9IEOw4jv2Dh4ChBAAdSJkmyZECmqYkP4ycLqq1zfYzsQ8cc5lxNaf1cE0TK2Cw1jXCcW6d6XRboLvuNHvvx848XW4R7jIL4dAoAOIgf4OE6fu7AwCmFwJPe6scF5Lz4BIGOJNlDr0RMkU22ACzpGLPRZITF-qpk2rRDIZZtIpR2JuKsb8b7t04g-Hu4dn7+1foLdGn8+rf1-v-X+QDx4gLARAmByEJBazzuICgSDIjUjVOgsc0ReZ+DZj+DwrhTS713laJYXUyH5AoVLKh+4aFQCfj7F+0EmEf2cl-ABHDAH0IODw8B5NKawPeCvbs7BRG63wkXFBkjAjSKwXI-61Jlh1y1ClLET5mKVi0aY2+Hd74QHdgY3uRiGEmMdlLFhx1MBsL-gArh-s7HNFEJIKBEh05iAENPYEcCOwIJEAnT4Yo1BiIQN4tBvjMGyJwT+HeJo67EnrqSMyCRr46Jdp3BJ3ckl0JSQPFG6TmHmNYZYvJNjCkAGkRB5zDNeCgc9SZlIqVUkQNTY7xwvI09CLS2lSM6UsbphJsTFi2gtNKpJtijLbuM+JiTDH90YQssxUALHsNWbMwp+NCalIcVTTQPZrkSPaRgmR9z5GEkLJtCkeCCyaS-CMzROBtFfORhM35yT-n7kdmPAp5BYBqDuFdGFTjARCJEQi1BtyUXYLRYgMuZJHBmVWlZXeC0MoEoPDE3RrtJmP3JcYgaVK1m0vpd5JlAi4VuPZT45F-iHniKtFtRaVoMzagsJ852JKflTL+fK0oirwXKoZVkhWUL54ShgRqrVSK-FdJ5QgCJ-4UyKIFR4KwGRzWxOoTK2h1K5mlCIKgMIYB3Q2IUPgVACTnI8AAGICCkAnARrKxDuJ0HhZSXjPzLDLN4bUVlzQokCfGQNUQFobHShGqVpLrVytSQNBNSaU2zLTRm7iPAi0SDUAIV4ub80XmuZWy2cQyypifDSKwWYy5qgpFqNw2Jz4kg7d87A+ibW9rtT22xtKFCJuTXS-AuBs34BYAjF1rxoWL0cZ6jx5aN4l1pOXMsK50QbvSoGhwsw5HREPZa490bpmxs4va4BtK7H0ofU+l9kK31uqZV+0tL1KqIkMifMuNhANVx6WZWwWKJzmkWhiA64qiUWrvrBslMyKUDVoGA1N6bM1QB4BqidU6JAzoTvO+wVal21tXQ2yjLUaP0gzKmZw0HWMnovZxbj+SDjDv4zmvNBbnF4ZAP2Txb0F3VuXXWtdgT4jNuSJJ02Ya1NxLY92jjtq6AVDAAAa1HkIdAYAvS6HdPYyB881XwLjhJqTNaV31vXT0hM6laILUUWGsyzcmOSqPRpzzZ7vNgD8wFoLIX8BhZ4PmwQxT9khkOZU6p0XzmXIBF68+jcpx+BMnZ2qtFSSThJGOVzUb2MIYbDm94Mgp7yEVnVplLS0jLDo0zfUptXBZkLB4bAXM0QWSsFiYsG4WKEtyzB-RYh4aoDhpdsgCbKhgGoeHXAYRLuYGu2AW792wCvqBOwCm7BU4imBC0scy2y4FmpNYL8Fg5yoNorvMNpIw3DZy4CyNei4NvY+191AD2AXv341cMLIYDielgD9rDYIZAXgvEoIHnwQfftesg1M23kj-upCQnw+IfwTjVAjtEKJ7Ao8iXaZjGPpWJOxzdsAd28ePbSYT7iyh0AQAgOcUn5Ofs1daOUxrJyanNfqRcpp1zWY7eLCWWkup4xBDnKG7ABDFppBSwmEbmPpdXdl-L-HSub4q7VxrsAWvUAU54Js7Z4YKB7P18c05dSGlm+Z4RxYSjXCfmRLvZw2J9KWF1E72icRrcTitGL8hZ31NY+959uX32CcB+cqr9Xmuydh5+8TNQ2aZBiFUMoGndONZ8GBzrfDesVIFnT1brPtvc9ZmNq1dEQyUqaQ91LqZMva++8VwNHzvnQ8U4vEwIe-JO-d979T2n9Ph+M9H6ZstLOxgrktlaZEawNQ6hSnDk+PMRcohSLWmvl2txJvrjn7tcJNmoNNrAlTsrKrOrJrNrItr4IbKtizBtnzu4JbFbGsLgYBn4N1MgMeAfjvp3M9mEMJGQG3hTrADwMTCGHnHVuwD2CvAIDUirGrOGIgd8HfmZj+kRk4LEMSLvJZFMCkHOLiLYKfCuFsLnmiIQcQdQaQffOQZQUobQe8MCGIK8AzkzmPuZkRhiEIQDNqN4GIYfAZGtq1A4BRAtGuGKidtgEQdwCQZxLUEQOcBAMJCQbAFxBdCHkoTwFeEoJoIIozjoTfnoffgRvrCkE7o4OuOXCiOkE4A7oWElFsFRmiFaOaAoS4UoW4egB4ZAN4eoX4S5CQTwJ8LThILodeItnEYookTYMkRkHnqpOlD-qmNtDSLvOGuKs4aQK4fuO4Z4aUdrr4RAJ6FAFANxJUeGAIGIFeJIHUSWtEePkXHTGSE0aGkkWkG0fPhZJtCZH4PYBihgsdlEjgIMegMMQNKMSUYoRMfQNMbMc5JUTIDKJOuGA0dsQkbsS0fsakT+EBFgafAmHiPRHkUMQUSMUUWMU8e3r4TcZUdUYnPmmfj3mrInHUS0riOpFqMjvXADJurOCCefNtkGrvMXjkdCbcbCfcfCY8fkc8SiYEcEVnCcmoJrFIC8NPGwbiSng+NEIlPzspqGnEPSAEPPjqIlBSNSOkDzuEnSXcaUA8V4YiTQU4ZqR3gCOfqoIKfofwYgCzMYRmMiGRjiIcY7hSMkItJKU5iqQyWqUyRqSyUidqe6eHheCKDKLUZEbwQ-qnggOOLECkGuHRrSEELDiCfWq1OGRkOfPIQMTqYUcUW6TCayTqUER0KEcCJ3nTuEf6SPotiONpJsAtDVCuKGvPlaGSCiEmVsJ+F9GaimV6codgOqeMUiTmSEfjGEUhIaesQYZYEYdqCYaIbpBYZYPGGqCZEBHTExF+EENkBWLcAwPACMHaAQI0OQJxAwMwH6A0NwGQC0rqOzjqBkKaulDYKbP9ClJIp+HELNOaOlK2Y4TuSeblBUNULUPUIUOQC0j4PeUxNgJ+GEi+QKj4N1J+UUG6GeWSY8jni8u1N4PEIdHZC6G5jyH1NciYTttECLqumRn9Hzu9K1FEAWDWliBhb1Fkq-E2F5LhUKSpJ+NtuGbqNEGXEkF-mRdEIuOkBZDzjSO+VcT1DuFhblCNK5PxIJEVMxUaY-v6jGQZKRGBZ+AkciGWAmIxo4UdJJdBENNJZBNcm+GqJJqGqCYomXO0cSDVIXokDSD4F9KQnpZhXWHEghf9CRC8vqOiBqIWEAR6JXpgLLBThAEBSpfnuzlbBaAMrqBqEFe5rKgVnGnQCfiPBei0vzupKcYEGXLuvGO0YWHKdukuPENGUlfluNvMsrkslkjklYjpnYi0iBMZGiFKWZKGliJttsGBXzBqAKmcabOXtEujp2lailTVeeqlewI6iZSxUXFOCaL4HTFaItFpHEFmE5XYPKdGWGgtFVXBqemlU4fsJBN8AcKgM5JANctsLXPEDDmGkxG+FFa0p4OpE+HTIorqBiCSKJeLiFaNh5tNXQP2smrxiOs5NcpxfNAleaBOPGCBttvOQDGuMuQEEdWNjYohhenNWQLANegOneuhs+hFYtW9PdaaE9WODVMBQoruovtYBZEkAkQDRXuNXlsdZppSnjShqArgGho+mTXdU+Ggu4Liq4FKdYBut4BRefE+IxPio4RLhNclTGjjfuNppDfxjDTSGgvRKmLWqSG+IEtSBRcmIWJ0ljSDZrbvsVv5l7IFsFqFrgHrWSGiGWAKgjTnv9AmKiKsCKYolOMiDbVNXbbQK1V+O1eaEtp4AdtKT+P4McSmGOFsM4CtJcYDZzedtXu9j7vXnouQaAXXgrniamGBfRJpD4NXXFHzgkcog4NtAWEbezWNYTmrRdjXmAR2RLp-NQCTkoQiuiHYHEP4PXHVBDnDptMDItCWLOa3WHc5CXdvg3hkk3kHq3trjDVvMDIWGthiNSElpYTPbRE3QveWUvVACvYXfbX5iQUfrUJgBscOcadmH4DtpZckAdqmCQnOHEGBitO4FZHIlfTfQrm4WwEQCQdlVzOLVDv4AlbxZYXOSmAlGcdsCiGA93aXeAZHRTYiJJrYCitXbKQxv9GLYLjiEEFqOfEFV5ZRolAjgKqmCkAKsmY4Wydrk9mQC9moRMZFdPbYEBjuutQjVnVWFw+3mmQie2b4XlFve3tcvrU2SbW+MijVLWcSP+EbSLj-dlpw6mXCemd2Vqe5Lw4SIpcGSWHKWWBzA3F+LvGkSnU2RfGuLME6dw8Y7I5mR6VMagDMXMUPQQ5EMBuST4PGVOBnu4NYJ49I948yb41qVIxTniUkOSHY-5ZJo436jYNqDo6GoEGja4HExTjI4k-SQIyE60iSA7vTCcXTOsEkA4WJSk8oQwwZExLmPOdtCkCSAQQStlX6lsA5bvDigdlqDVIxtkEAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QFsCGBLAdgOgC4Ht8AbXdABwGVdVcxsIwAzVAVxIBVCTyBiACQDyANQCiAJQD6AVQCSEkQBkRAWXkA5duMSgy+WOlL5M2kAA9EAJgsB2bAE4AbBYcBmAKzW3dty4CM1gBYAGhAAT0R-XwAGbDcoqL8-N2TXCwBfNJC0LDwuUkpqWmxYMjAAY3RGdDLOYnz+YXFpOUUVeQANGXYTXX1DYyQzSwCA7GsLOIs7OwnfFxsXEPCEXycXWPjnTzcA3wAOPesMrIwcAAs9XAowInL+qho6THxr27L+hop2CQpWgGF2DIBGoJH8+ABBNQAcREPT0BnQRhM5gQI1GAU8E2m1gSASiewcS2GUV82HiJMcLgxDi8LmOIGy50urzuiMwDyKACdUAB3ZRsUgs95sni-JQAiQABTEIiEcL6bORES8bmwB3GuwmCQ8RIQVhsGyiE22dgxI3pjOwF1gVxurKMHLo3L5AvQQo+YpEErUIna3UGvQRSMGKN8KrVhwsmri7msuqsnkNLj2sYCDiiAQtpytzLtwodhToyFd7rZFBYACNrrhPt9PQCgSCwZCYfKgwNQCi0dgMW4sXYcVT8YSwpY5qTye4rHNrNZvFmctbbW97oXsMXuKWHZXq6L-t9pbK2-0laiRj3MV4B7jh-HtWT4rHpnMHGmF0ybVv2WuN4K8-cdzAGt62+H0-WPRUQ0Qbte37Qc8QJO8UwfbU3GiY10kyBlsyXL9HWwZ0KCwKBbi-Wsfn3RtQQhaFYQDeETygs90UvbEb0Q0c9X8OwUKpOx5gCOxDkzLDLVw-8yzXTkwDAAA3VAiDIwQvgkGQNHEcEG2BCjxW+ZQpAUQEIODTtEH42wpgHAI3BpaJaXjKxRjiI0LD2XxogcBxfHfHNPwkgtHgImT5MU-zMHItTNDETTAW0kCfjUqElGMjshmYi8+yveDb04-VbEnNMAhcLz51EnDcxXSTAukuSFKUgQVIAEREECUtPHYYmsYTkmsMM8TTeM-FGckbDmOxfBmI4ysXCr7W-argoU-lNzC8sqyAngpElRrwU0CR9MMmQQMbCgpAAIV+f0dAYyDTJWcN1SjXwtVjXUJrDJMvCKjx0zsHzpLKfBkGQMBMAgGgqq5cogZBsGIaMP4iD0SAeBERqulBARlElX5wTEME2qYlx4mwPi7HiEZxrcjjlhTWxkmSFMommNCbH+6HgdB8HVwWwHObh-pEeRiBUfR74ZTUcFlHEERJQUTS6OuhUTLS+YYjJinBP2fYR2WVy9jGWdxm8AIUx8CZ2b52HuchuhIARTAoD+IHKDAVBOTKM58KwBEFOd5BXfdz2eBlP4seltRGokcEFElCEzpEQE-hjhQAE1CbuqwdjVTwEipA5XMWTi5g8Q1-AJGxkj+6acABmGufh+aint0hHf9wOPa9tcfdIP2XeuIOzlFQQAHVMex3H8b4CRARxjO0qsQ4xkOFNXK619kl1HZRhTeY9gHcb9W8mugqthueebiAHad-u3c7-C6-5q-Ha-Ph0CgM4iHfs5bUH9gwFMMBfc48cYiDxmCCQodw7z1DFEUuqwJgTFNszIab0FgoV8IJNwKZ942UtvXAWttsAt2Iu3Ae98pIc2tsRV+38v4f1-p3f+gC9zgOnmpCQ8tU7iAoDAiIcDbAIMysg-imDdQmx7NMFmLhrDuDctXE4ORH7W0bvhEhbdb6DwflQrmNCwpvw-vQn+5DPbMKAWw1SIJNB+l4fRZWqVYHwKcMIvYKCxHFzgTEZyz1yZdWJlNRRtcdGEICpfa+ZC76e20WfMGejKpGAMZ-b+jDTEAJrIIUQkgw7YwkGdMQAgR6-EgV6cOIhI67UbHwlYAjsBCKQa40RwRi4TScvEMMFhME4lNPgp+qi1zqJvgHExXdeYEOflAWhhjknDLMTwAA0iIVOh4KAUBAbk-JhSRDFOyRHHasU1BVLsoI5x9S3FNOWO5NMZc0QeEEnsESgTT5jL6YFAZEStGUJieMyZSSGEzLSaLDG2TJQUTYdYq6IBAyMTukc2pJydgNNQZxLqFhSYuHRWGfezMrB0hPso8+RC3maIoYFPmHdTHkFgGoF4YVWFT0sZw8E3CxC2KVu2U8sK6kIrOeIqIDhJHTEOA4FMQkvI9JURfO2V9W6DPJSMooZKZmUupWRSeECOHgtZZCm6KtHHHMQdyxpb1NiGkfHyvws43DioJaEqV4TiVRLXIqyJZx2DKppfE8KaMgVYxBWqvg4LDk1K5SIpFyxZGjHRei-EFgSTzE8takJTc7UyveSSooRBUChDAJyYZCh8CoHGTwAAYgIKQkcGVcJ4YczynUZHCr7PxPwrljVoTRUOAS6p3CJptra4h0rSEOvlXQTN2bc0uvzYW4iPAq2SDUAIb4pby2NRremMY9a9iNoxS2zivj23zGiP4PwpVHn4qTWogdGihkuvws6v+lKFBZpzVS-AuBi34BYGDQF3xgWgqnoGux7KmJZx3rndFps9iF15bYKNB6SSyImlavFwTe3Jv7fa69HzSVDrdWQWAZjqVvo-V+71P7fV-rBABtl0KF5IJzjGfOkGUzGoSPu7wVcbCzh7S8sJqah34VoIAvNBai3gokPOxdZbI6rrrdYBtUxt17BY+sWD7GvCcYCdhJRKGeMpsHZh9NdBBMpLOJOotS6K0at9BCqFt00qrDXbIuTm6FPNqUx46Y7bdgoPuQ4fi3HJXob4wZx1gVShgAANbtyEOgMAPJdCciAbpEB-rtnQMAzR0Mtb13Oa3W5t6mCeLkkwSMW5QkHlaaCV83TQX9NyvwuFqLLsYtxYSzWctGSmi-ryQUopUDlC7IqcCINpdK7tKY6sGyxqhJl2KnJucRoFGVaeb0wLRKQvDpLWpI609SMpbAVPKpfh1aCXJhmLW1NdaIC6jxBmHgOrPk05aM9qGL3XzEKDVAIMPtkEzWUMAaiA64FCB9zAX2wA-b+2Ab9Px2B43YHHaKvwqn3PVoES1Xl0VoSLnrUuUjvAdIxKNY+p6dNrcvVAUH4PIeoH+9EsZNDqCJclGcbksBod7eUDIRqjUlCI-BMjjLdnQw2CK9MBwng1NzfjHjqRfZOnE4C4SinVPvtgF+7TgHnyGeO2UOgCAEBbgs7Z9DzrkgeubIkMU-rg39mHM8E5GRUY5MYn8BYHHlh+L2Dl+MWRnlINK77QM1XEP1dQ-p0-YieuDdG9Z6gdn8zFnLNWRbvrJSBtlL2ZUoXuqIgO9iE76krvxge71NZb30wsGo41HsQPaHg+fbVxrun2vI+6-14bsAxv4-Q7DmoYtMgxCqC5zzvnfAkeK21fYjl+efAahd71EvuoZEG13vMdFpp-A+Dr29mVIeact7CzJCL3f2eNSYD3EUfeB9D-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-bve9jAQfgwencfvQeflUL1TRq-mcR0j9dgmQfxBhbIsQTxFGjYHiK+JENgqg3vugwfZg9gIwGwEQCA25aeBMMkGHVqFGBmNMTLrYLvMAdBTSEts9mTt-Y7L-RPYVaA4gA+Vdc9FSEvS7ivRcjbfjumL1PLviLXp-dVbakVR4qSPjskDIuig+cYzQUaWw2AEwYYWQE0Q1bjuMFfZMPQzZPbTXQEY458YaXmcaS0SRF3sYYcqHZZBLs4G0ubEUTiG6UVE7jaR-Q46E2w36Y41Ec4-ocsDw0xBDaTF-q4n5jY6lXcS5ChB4GzV4O5H2R8QOSE4WdiesagJsdsVE8oysDIgyVYMuczEKsmNvlUUEy07mW0-mUGeSW5KUyvONZU6XhvqhW0vdUTreU0+zsE1M7qasYcnMPGBvbU8lXU1gts5g+Y3rFgimVSNggSMKu+FOedXqDxPjh8-jsYxkEAA */
   createMachine<MainMachineState>({
-    context: {
-      /**place cursor here and press CTRL+SHIFT+P and choose "XState: Open Visual Editor"*/
-      host: {
-        lastLayerSearchResult: [],
-        lastTextSearchResult: [],
-        selectionFocusedElement: undefined,
-        userSelection: [],
-      },
-      plugin: {
-        hostAppSearch: {
-          isSearchValueElemNameMatch: false,
-          searchValue: '',
-        },
-        ontologySearch: {
-          confirmedRenameParts: [],
-          hoveredDefinition: '',
-          searchValue: '',
-        },
-        tooltip: i18n.tooltipDefault,
-      },
+  context: {
+    /**place cursor here and press CTRL+SHIFT+P and choose "XState: Open Visual Editor"*/
+    host: {
+      lastLayerSearchResult: [],
+      lastTextSearchResult: [],
+      selectionFocusedElement: undefined,
+      userSelection: [],
     },
-    schema: {
-      context: {} as MainMachineState,
-      events: {} as { type: 'FOO' },
+    plugin: {
+      hostAppSearch: {
+        isSearchValueElemNameMatch: false,
+        searchValue: '',
+      },
+      ontologySearch: {
+        confirmedRenameParts: [],
+        hoveredDefinition: '',
+        searchValue: '',
+      },
+      tooltip: i18n.tooltipDefault,
     },
-    predictableActionArguments: true,
-    type: 'parallel',
-    id: 'main',
-    states: {
-      tooltipState: {
-        initial: 'defaultTooltip',
-        states: {
-          defaultTooltip: {
-            on: {
-              HOVER_UI_ELEM_ENTER: {
-                actions: 'showTooltip',
-                target: 'specificTooltip',
-              },
-            },
-          },
-          specificTooltip: {
-            on: {
-              HOVER_UI_ELEM_EXIT: {
-                actions: 'resetTooltip',
-                target: 'defaultTooltip',
-              },
+  },
+  schema: {
+    context: {} as MainMachineState,
+    events: {} as { type: 'FOO' },
+  },
+  predictableActionArguments: true,
+  type: 'parallel',
+  id: 'main',
+  states: {
+    tooltipState: {
+      initial: 'defaultTooltip',
+      states: {
+        defaultTooltip: {
+          on: {
+            HOVER_UI_ELEM_ENTER: {
+              actions: 'showTooltip',
+              target: 'specificTooltip',
             },
           },
         },
-      },
-      hostSelectionState: {
-        initial: 'noSelection',
-        states: {
-          noSelection: {
-            invoke: {
-              src: 'checkForFigmaDocMessages',
-            },
-            on: {
-              HOST_INTERACTION_SELECT_MULTI: {
-                target: 'rawMultiSelection',
-                actions: ['assignHostUserSelection'],
-              },
-              HOST_INTERACTION_SELECT_SINGLE: {
-                target: 'rawSingleSelection',
-                actions: ['assignHostUserSelection'],
-              },
-            },
-          },
-          rawMultiSelection: {
-            invoke: {
-              src: 'checkForFigmaDocMessages',
-            },
-            on: {
-              SELECT_PREV: {
-                target: 'singleItemInMultiSelection',
-              },
-              SELECT_NEXT: {
-                target: 'singleItemInMultiSelection',
-              },
-              HOST_DESELECT: {
-                target: 'noSelection',
-              },
-              HOST_INTERACTION_SELECT_SINGLE: {
-                target: 'rawSingleSelection',
-                actions: ['assignHostUserSelection'],
-              },
-            },
-          },
-          singleItemInMultiSelection: {
-            on: {
-              HOST_INTERACTION_SELECT_MULTI: {
-                target: 'rawMultiSelection',
-                actions: ['assignHostUserSelection'],
-              },
-              HOST_INTERACTION_SELECT_SINGLE: {
-                target: 'rawSingleSelection',
-                actions: ['assignHostUserSelection'],
-              },
-              HOST_DESELECT: {
-                target: 'noSelection',
-                actions: ['assignHostUserSelection'],
-              },
-            },
-          },
-          rawSingleSelection: {
-            invoke: {
-              src: 'checkForFigmaDocMessages',
-            },
-            on: {
-              HOST_DESELECT: {
-                target: 'noSelection',
-                actions: ['assignHostUserSelection'],
-              },
-              HOST_INTERACTION_SELECT_MULTI: {
-                target: 'rawMultiSelection',
-                actions: ['assignHostUserSelection'],
-              },
-            },
-          },
-        },
-      },
-      recommendationState: {
-        initial: 'recommendationClosed',
-        states: {
-          recommendationClosed: {
-            on: {
-              EDIT_COMPSEARCH: {
-                target: 'editingCompSearchState',
-              },
-              EDIT_RENAMEREPLACE: {
-                target: 'editingRenameReplaceState',
-              },
-            },
-          },
-          editingCompSearchState: {
-            initial: 'initialCompSearch',
-            states: {
-              initialCompSearch: {
-                on: {
-                  RECOMMEND_ALPHABETICALLY: {
-                    cond: 'HAS_SELECTION',
-                    target: 'recommendingSelectionHighlightSearchText',
-                  },
-                  SHOW_COMPSEARCH_TIPS: {
-                    cond: 'HAS_NO_SELECTION',
-                    target: 'compSearchTipsNoSelection',
-                  },
-                },
-              },
-              recommendingSelectionHighlightSearchText: {
-                on: {
-                  SELECT_COMPSEARCH_RECOMM: {
-                    target: 'mainSelectionChanged',
-                  },
-                  SEARCH_IN_LAYERS: {
-                    target: 'layerSearchLoading',
-                  },
-                  SEARCH_IN_TEXTS: {
-                    target: 'textSearchLoading',
-                  },
-                  HOVER_COMP_BROWSE_RECOMMENDATION: {
-                    target: 'peekCompViewport',
-                  },
-                  KEYPRESS_COMP_BROWSE_RECOMMENDATION: {
-                    target: 'peekCompViewport',
-                  },
-                  EDIT_COMP_SEARCHTEXT: {
-                    target: 'initialCompSearch',
-                  },
-                },
-              },
-              compSearchTipsNoSelection: {
-                on: {
-                  SEARCH_IN_LAYERS: {
-                    target: 'layerSearchLoading',
-                  },
-                  SEARCH_IN_TEXTS: {
-                    target: 'textSearchLoading',
-                  },
-                  EDIT_COMP_SEARCHTEXT: {
-                    target: 'initialCompSearch',
-                  },
-                },
-              },
-              mainSelectionChanged: {
-                type: 'final',
-              },
-              layerSearchLoading: {
-                on: {
-                  FOUND_IN_LAYERS: {
-                    target: 'mainSelectionChanged',
-                  },
-                  LAYER_NOT_FOUND: {
-                    target: 'compSearchTipsLayersNotFound',
-                  },
-                },
-              },
-              compSearchTipsLayersNotFound: {
-                on: {
-                  EDIT_COMP_SEARCHTEXT: {
-                    target: 'initialCompSearch',
-                  },
-                },
-              },
-              compSearchTipsTextNotFound: {
-                on: {
-                  EDIT_COMP_SEARCHTEXT: {
-                    target: 'initialCompSearch',
-                  },
-                },
-              },
-              textSearchLoading: {
-                on: {
-                  TEXT_NOT_FOUND: {
-                    target: 'compSearchTipsTextNotFound',
-                  },
-                  FOUND_IN_TEXT: {
-                    target: 'mainSelectionChanged',
-                  },
-                },
-              },
-              peekCompViewport: {
-                on: {
-                  SELECT_COMPSEARCH_RECOMM: {
-                    target: 'mainSelectionChanged',
-                  },
-                  UNHOVER_COMP_BROWSE_RECOMMENDATION: {
-                    target: 'recommendingSelectionHighlightSearchText',
-                  },
-                },
-              },
-            },
-            on: {
-              FINISH_EDIT_COMPSEARCH: {
-                target: 'recommendationClosed',
-              },
-            },
-          },
-          editingRenameReplaceState: {
-            initial: 'emptyRenameReplace',
-            states: {
-              emptyRenameReplace: {
-                on: {
-                  EDIT_STARTPHRASE: {
-                    target: 'recommendingStartPhrase',
-                  },
-                },
-              },
-              recommendingStartPhrase: {
-                on: {
-                  EDIT_MIDDLEPHRASE: {
-                    target: 'recommendingMiddlePhrase',
-                  },
-                },
-              },
-              recommendingMiddlePhrase: {
-                on: {
-                  HOVER_BROWSE__RERECOMMENDATION: {
-                    target: 'peekPhraseDefinition',
-                  },
-                  KEYPRESS_BROWSE_RECOMMENDATION: {
-                    target: 'peekPhraseDefinition',
-                  },
-                  CONFIRM_MIDDLEPHRASE: {
-                    target: 'fullPhrase',
-                  },
-                },
-              },
-              peekPhraseDefinition: {
-                on: {
-                  CONFIRM_MIDDLEPHRASE: {
-                    target: 'fullPhrase',
-                  },
-                },
-              },
-              fullPhrase: {
-                type: 'final',
-              },
-            },
-            on: {
-              FINISH_EDIT_RENAMEREPLACE: {
-                target: 'recommendationClosed',
-              },
-            },
-          },
-        },
-      },
-      multiPhraseState: {
-        initial: 'emptyMultiphrases',
-        states: {
-          emptyMultiphrases: {
-            on: {
-              COPY_COMPTXT_TO_RENAMEREPLACE: {
-                target: 'filledMultiPhrases',
-              },
-              INSERT_PHRASE: {
-                target: 'filledMultiPhrases',
-              },
-            },
-          },
-          filledMultiPhrases: {
-            initial: 'singlePhrase',
-            states: {
-              singlePhrase: {
-                on: {
-                  DELETE_LAST_PHRASE: {
-                    target: 'empty',
-                  },
-                  ADD_PHRASES: {
-                    target: 'multiPhrase',
-                  },
-                },
-              },
-              empty: {
-                type: 'final',
-              },
-              draggingPhrase: {
-                on: {
-                  REORDER_PHRASES: {
-                    cond: 'VALID_DROPTARGET',
-                    target: 'multiPhrase',
-                  },
-                  IGNORE: {
-                    cond: 'INVALID_DROPTARGET',
-                    target: 'multiPhrase',
-                  },
-                },
-              },
-              multiPhrase: {
-                on: {
-                  ADD_UNCONFIRMED_PHRASE: {},
-                  DELETE_NPLUSTWO_PHRASE: {},
-                  CONFIRM_PHRASE: {},
-                  DRAG_PHRASE: {
-                    target: 'draggingPhrase',
-                  },
-                  DELETE_SECONDLAST_PHRASE: {
-                    target: 'singlePhrase',
-                  },
-                },
-              },
-            },
-            on: {
-              DELETED_LAST_PHRASE: {
-                target: 'emptyMultiphrases',
-              },
+        specificTooltip: {
+          on: {
+            HOVER_UI_ELEM_EXIT: {
+              actions: 'resetTooltip',
+              target: 'defaultTooltip',
             },
           },
         },
       },
     },
-  }).withConfig({
+    hostSelectionState: {
+      initial: 'noSelection',
+      states: {
+        noSelection: {
+          invoke: {
+            src: 'checkForFigmaDocMessages',
+          },
+          on: {
+            HOST_SELECTION_CHANGE: {
+              target: 'reevalSelection',
+            },
+          },
+        },
+        rawMultiSelection: {
+          invoke: {
+            src: 'checkForFigmaDocMessages',
+          },
+          on: {
+            SELECT_PREV: {
+              target: 'reevalMultiSelectionSubSet',
+            },
+            SELECT_NEXT: {
+              target: 'reevalMultiSelectionSubSet',
+            },
+          },
+        },
+        multiSelectionSubSet: {
+          on: {
+            HOST_SELECTION_CHANGE: {
+              target: 'reevalSelection',
+            },
+            SELECT_PREV: {
+              target: 'reevalMultiSelectionSubSet',
+            },
+            SELECT_NEXT: {
+              target: 'reevalMultiSelectionSubSet',
+            },
+          },
+        },
+        rawSingleSelection: {
+          invoke: {
+            src: 'checkForFigmaDocMessages',
+          },
+          on: {
+            HOST_SELECTION_CHANGE: {
+              target: 'reevalSelection',
+            },
+          },
+        },
+        reevalSelection: {
+          on: {
+            HOST_INTERACTION_SELECT_MULTI: {
+              actions: 'assignHostUserSelection',
+              target: 'rawMultiSelection',
+            },
+            HOST_INTERACTION_SELECT_SINGLE: {
+              actions: 'assignHostUserSelection',
+              target: 'rawSingleSelection',
+            },
+            HOST_DESELECT: {
+              actions: 'assignHostUserSelection',
+              target: 'noSelection',
+            },
+          },
+        },
+        reevalMultiSelectionSubSet: {
+          on: {
+            UPDATE_MULTISELECTIONSUBSET: {
+              target: 'multiSelectionSubSet',
+            },
+          },
+        },
+      },
+    },
+    recommendationState: {
+      initial: 'recommendationClosed',
+      states: {
+        recommendationClosed: {
+          on: {
+            EDIT_COMPSEARCH: {
+              target: 'editingCompSearchState',
+            },
+            EDIT_RENAMEREPLACE: {
+              target: 'editingRenameReplaceState',
+            },
+          },
+        },
+        editingCompSearchState: {
+          initial: 'initialCompSearch',
+          states: {
+            initialCompSearch: {
+              on: {
+                RECOMMEND_ALPHABETICALLY: {
+                  cond: 'HAS_SELECTION',
+                  target: 'recommendingSelectionHighlightSearchText',
+                },
+                SHOW_COMPSEARCH_TIPS: {
+                  cond: 'HAS_NO_SELECTION',
+                  target: 'compSearchTipsNoSelection',
+                },
+              },
+            },
+            recommendingSelectionHighlightSearchText: {
+              on: {
+                SELECT_COMPSEARCH_RECOMM: {
+                  target: 'mainSelectionChanged',
+                },
+                SEARCH_IN_LAYERS: {
+                  target: 'layerSearchLoading',
+                },
+                SEARCH_IN_TEXTS: {
+                  target: 'textSearchLoading',
+                },
+                HOVER_COMP_BROWSE_RECOMMENDATION: {
+                  target: 'peekCompViewport',
+                },
+                KEYPRESS_COMP_BROWSE_RECOMMENDATION: {
+                  target: 'peekCompViewport',
+                },
+                EDIT_COMP_SEARCHTEXT: {
+                  target: 'initialCompSearch',
+                },
+              },
+            },
+            compSearchTipsNoSelection: {
+              on: {
+                SEARCH_IN_LAYERS: {
+                  target: 'layerSearchLoading',
+                },
+                SEARCH_IN_TEXTS: {
+                  target: 'textSearchLoading',
+                },
+                EDIT_COMP_SEARCHTEXT: {
+                  target: 'initialCompSearch',
+                },
+              },
+            },
+            mainSelectionChanged: {
+              type: 'final',
+            },
+            layerSearchLoading: {
+              on: {
+                FOUND_IN_LAYERS: {
+                  target: 'mainSelectionChanged',
+                },
+                LAYER_NOT_FOUND: {
+                  target: 'compSearchTipsLayersNotFound',
+                },
+              },
+            },
+            compSearchTipsLayersNotFound: {
+              on: {
+                EDIT_COMP_SEARCHTEXT: {
+                  target: 'initialCompSearch',
+                },
+              },
+            },
+            compSearchTipsTextNotFound: {
+              on: {
+                EDIT_COMP_SEARCHTEXT: {
+                  target: 'initialCompSearch',
+                },
+              },
+            },
+            textSearchLoading: {
+              on: {
+                TEXT_NOT_FOUND: {
+                  target: 'compSearchTipsTextNotFound',
+                },
+                FOUND_IN_TEXT: {
+                  target: 'mainSelectionChanged',
+                },
+              },
+            },
+            peekCompViewport: {
+              on: {
+                SELECT_COMPSEARCH_RECOMM: {
+                  target: 'mainSelectionChanged',
+                },
+                UNHOVER_COMP_BROWSE_RECOMMENDATION: {
+                  target: 'recommendingSelectionHighlightSearchText',
+                },
+              },
+            },
+          },
+          on: {
+            FINISH_EDIT_COMPSEARCH: {
+              target: 'recommendationClosed',
+            },
+          },
+        },
+        editingRenameReplaceState: {
+          initial: 'emptyRenameReplace',
+          states: {
+            emptyRenameReplace: {
+              on: {
+                EDIT_STARTPHRASE: {
+                  target: 'recommendingStartPhrase',
+                },
+              },
+            },
+            recommendingStartPhrase: {
+              on: {
+                EDIT_MIDDLEPHRASE: {
+                  target: 'recommendingMiddlePhrase',
+                },
+              },
+            },
+            recommendingMiddlePhrase: {
+              on: {
+                HOVER_BROWSE__RERECOMMENDATION: {
+                  target: 'peekPhraseDefinition',
+                },
+                KEYPRESS_BROWSE_RECOMMENDATION: {
+                  target: 'peekPhraseDefinition',
+                },
+                CONFIRM_MIDDLEPHRASE: {
+                  target: 'fullPhrase',
+                },
+              },
+            },
+            peekPhraseDefinition: {
+              on: {
+                CONFIRM_MIDDLEPHRASE: {
+                  target: 'fullPhrase',
+                },
+              },
+            },
+            fullPhrase: {
+              type: 'final',
+            },
+          },
+          on: {
+            FINISH_EDIT_RENAMEREPLACE: {
+              target: 'recommendationClosed',
+            },
+          },
+        },
+      },
+    },
+    multiPhraseState: {
+      initial: 'emptyMultiphrases',
+      states: {
+        emptyMultiphrases: {
+          on: {
+            COPY_COMPTXT_TO_RENAMEREPLACE: {
+              target: 'filledMultiPhrases',
+            },
+            INSERT_PHRASE: {
+              target: 'filledMultiPhrases',
+            },
+          },
+        },
+        filledMultiPhrases: {
+          initial: 'singlePhrase',
+          states: {
+            singlePhrase: {
+              on: {
+                DELETE_LAST_PHRASE: {
+                  target: 'empty',
+                },
+                ADD_PHRASES: {
+                  target: 'multiPhrase',
+                },
+              },
+            },
+            empty: {
+              type: 'final',
+            },
+            draggingPhrase: {
+              on: {
+                REORDER_PHRASES: {
+                  cond: 'VALID_DROPTARGET',
+                  target: 'multiPhrase',
+                },
+                IGNORE: {
+                  cond: 'INVALID_DROPTARGET',
+                  target: 'multiPhrase',
+                },
+              },
+            },
+            multiPhrase: {
+              on: {
+                ADD_UNCONFIRMED_PHRASE: {},
+                DELETE_NPLUSTWO_PHRASE: {},
+                CONFIRM_PHRASE: {},
+                DRAG_PHRASE: {
+                  target: 'draggingPhrase',
+                },
+                DELETE_SECONDLAST_PHRASE: {
+                  target: 'singlePhrase',
+                },
+              },
+            },
+          },
+          on: {
+            DELETED_LAST_PHRASE: {
+              target: 'emptyMultiphrases',
+            },
+          },
+        },
+      },
+    },
+  },
+}).withConfig({
     actions: {
       showTooltip: (context, event: HoverUIElemEnterEvent) => {
         const ctxCopy = { ...context }
