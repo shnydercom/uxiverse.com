@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "@uxiverse.com/ontology": "*",
-    "react-figma-plugin-ds": "^2.3.0"
+    "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git"
   }
 }
