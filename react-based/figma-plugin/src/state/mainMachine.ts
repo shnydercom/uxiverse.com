@@ -233,11 +233,11 @@ export const mainMachine =
             initialCompSearch: {
               on: {
                 RECOMMEND_ALPHABETICALLY: {
-                  cond: 'HAS_SELECTION',
+                  cond: 'hasMultiSelection',
                   target: 'recommendingSelectionHighlightSearchText',
                 },
                 SHOW_COMPSEARCH_TIPS: {
-                  cond: 'HAS_NO_SELECTION',
+                  cond: 'hasNoSelection',
                   target: 'compSearchTipsNoSelection',
                 },
               },
@@ -461,6 +461,14 @@ export const mainMachine =
         const ctxCopy = { ...context }
         ctxCopy.host.userSelection = event.userSelection
         assign<MainMachineState, HostAppSelectionEvent>(ctxCopy)
+      },
+    },
+    guards: {
+      hasMultiSelection: (context, event) => {
+        return context.host.userSelection && context.host.userSelection.length > 1;
+      },
+      hasNoSelection: (context, event) => {
+        return context.host.userSelection && context.host.userSelection.length === 1;
       },
     },
     services: {

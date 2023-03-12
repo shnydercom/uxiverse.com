@@ -2,5 +2,7 @@ export enum HostEventTypes { selectionChanged = "selectionChanged" }
 
 export interface PluginSelectionChanged {
 	type: HostEventTypes;
-	selection: readonly SceneNode[]
+	selection: FigmaSelectionList;
 }
+
+export type FigmaSelectionList = readonly SceneNode[]
