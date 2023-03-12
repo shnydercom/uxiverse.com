@@ -5,6 +5,8 @@ export interface SelectionListProps {
 	hostSelection: HostAppElement[];
 }
 
+//icons classes can be found here: https://github.com/thomas-lowry/figma-plugin-ds#icon
+
 export function SelectionList(props: SelectionListProps) {
 	const { hostSelection } = props
 
