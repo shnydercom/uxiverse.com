@@ -1,12 +1,22 @@
-import React, { MouseEventHandler, useCallback, useContext } from 'react'
+import React, { MouseEventHandler, useCallback, useContext, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { PluginContext } from '../browserlogic/context'
 import { PluginActionType } from '../browserlogic/state'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
+import { HostSelectorType } from '../state/moreTypes'
+import { useActor, useSelector } from '@xstate/react';
+import { SelectionList } from './hostcomp-selection/selection-list'
+
+const hostSelectionSelector: HostSelectorType =
+  (state) => {
+    return state.context.host.userSelection;
+  };
 
 export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext);
+  const hostSelection = useSelector(globalServices.mainService, hostSelectionSelector);
   const { send } = globalServices.mainService;
 
   const { dispatch } = useContext(PluginContext)
@@ -30,7 +40,7 @@ export const FindAndReplace = () => {
     },
     []
   )
-
+  const rootPortal = useMemo(() => document.getElementById("react-portal"), undefined)
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
   > = useCallback(event => {
@@ -49,10 +59,10 @@ export const FindAndReplace = () => {
   }, [])
 
   const onElemHoverLeave: MouseEventHandler<
-  HTMLButtonElement | HTMLInputElement
-> = useCallback(event => {
-  send("HOVER_UI_ELEM_EXIT")
-},[])
+    HTMLButtonElement | HTMLInputElement
+  > = useCallback(event => {
+    send("HOVER_UI_ELEM_EXIT")
+  }, [])
   return (
     <div className="find-and-replace">
       <Icon
@@ -63,7 +73,10 @@ export const FindAndReplace = () => {
           onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnPrevComponent,
         }}
-      />
+      />{rootPortal && createPortal(
+        <SelectionList hostSelection={hostSelection} />,
+        rootPortal
+      )}
       <Input
         placeholder="Find element"
         onChange={onSearchChange}

@@ -1,25 +1,23 @@
 import React from 'react'
-import { FigmaSelectionList } from '../../communicationInterfaces'
+import { HostAppElement } from '../../state/mainMachine';
 
 export interface SelectionListProps {
-    hostSelection: FigmaSelectionList;
+	hostSelection: HostAppElement[];
 }
 
-function SelectionList(props: SelectionListProps) {
-    const { hostSelection } = props
+export function SelectionList(props: SelectionListProps) {
+	const { hostSelection } = props
 
-    return (
-        <div className='hostcomp-list'>
-            {
-                hostSelection.map((itm) => {
-                    return <div className='hostcomp-listentry'>
-                        <div className="icon icon--spinner icon--spin"></div>
-                        <div>{itm}</div>
-                    </div>
-                })
-            }
-        </div>
-    )
+	return (
+		<div className='hostcomp-list'>
+			{
+				hostSelection.map((itm) => {
+					return <div className='hostcomp-listentry'>
+						<div className="icon icon--spinner icon--spin"></div>
+						<div>{JSON.stringify(itm)}</div>
+					</div>
+				})
+			}
+		</div>
+	)
 }
-
-export default SelectionList
