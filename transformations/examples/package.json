@@ -19,6 +19,7 @@
     "schema-dts-gen": "^0.11.0"
   },
   "scripts": {
+    "test": "jest",
     "uxitest": "yarn ts-node --project tsconfig.tsnode.json ./src/uxiverse-test.ts",
     "muitest": "ts-node --project tsconfig.tsnode.json ./src/mui-test.ts"
   },
@@ -32,7 +33,7 @@
     "coveralls": "^3.1.0",
     "cpy-cli": "^3.1.1",
     "del-cli": "^3.0.1",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^29.0.5",
     "ts-morph": "^11.0.3",
     "ts-node": "^10.4.0",
     "typescript": "^4.7.4"

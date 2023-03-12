@@ -12,7 +12,10 @@
     "react-based/*"
   ],
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "@types/jest": "^29.0.5",
+    "jest": "^29.0.5",
+    "ts-jest": "^29.0.5"
   },
   "scripts": {
     "story": "lerna run storybook --stream",
