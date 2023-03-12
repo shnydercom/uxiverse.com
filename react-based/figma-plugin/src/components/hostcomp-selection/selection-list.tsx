@@ -1,5 +1,6 @@
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React from 'react'
-import { HostAppElement } from '../../state/mainMachine';
+import { HostAppElement } from '../../communicationInterfaces';
 
 export interface SelectionListProps {
 	hostSelection: HostAppElement[];
@@ -10,7 +11,10 @@ export interface SelectionListProps {
 export function SelectionList(props: SelectionListProps) {
 	const { hostSelection } = props
 
-	return (
+	return (<OverlayScrollbarsComponent
+		style={{ flex: 1 }}
+		options={{ scrollbars: { autoHide: 'leave' /* never || scroll || leave || move */ } }}
+	>
 		<div className='hostcomp-list'>
 			{
 				hostSelection.map((itm) => {
@@ -20,6 +24,6 @@ export function SelectionList(props: SelectionListProps) {
 					</div>
 				})
 			}
-		</div>
+		</div></OverlayScrollbarsComponent>
 	)
 }

@@ -1,6 +1,9 @@
 import {
+  HostAppElement,
+  HostAppElementTypeEquivalents,
   HostEventTypes,
   PluginSelectionChanged,
+  TypeEquivalentsKeys,
 } from './communicationInterfaces'
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
@@ -15,10 +18,24 @@ if (figma.editorType === 'figma') {
   figma.showUI(__html__, { width: 256, height: 336 })
 
   figma.on('selectionchange', () => {
-    const selection = figma.currentPage.selection
+    const { selection } = figma.currentPage;
+    if (!selection.length) {
+      const selChangeObj: PluginSelectionChanged = {
+        type: HostEventTypes.selectionChanged,
+        selection: [],
+      }
+      figma.ui.postMessage(selChangeObj)
+      return;
+    }
+    const selectionAsHostAppelements: HostAppElement[] = selection.map(({ id, name, type, }) => {
+      if (TypeEquivalentsKeys.some((val) => type === val)) {
+        return { id, name, type: type as HostAppElementTypeEquivalents, }
+      }
+      return { id, name, type: "UNSUPPORTED" }
+    })
     const selChangeObj: PluginSelectionChanged = {
       type: HostEventTypes.selectionChanged,
-      selection,
+      selection: selectionAsHostAppelements,
     }
     figma.ui.postMessage(selChangeObj)
   })

@@ -10,8 +10,12 @@ body {
 
 #react-portal {
   position: absolute;
+  display: flex;
   background-color: rgb(230, 230, 0);
-  top: 0;
+  top: 37px;
+  left: 32px;
+  right: 32px;
+  bottom: 0;
   opacity: 0.5;
 }
 

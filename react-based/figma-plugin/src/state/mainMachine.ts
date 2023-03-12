@@ -2,48 +2,9 @@ import { assign, createMachine } from 'xstate'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { compIdToTooltip } from '../mappers/compIdToTooltip'
 import { getI18n } from './../i18n'
-import { HostEventTypes } from './../communicationInterfaces'
+import { HostAppElement, HostEventTypes } from './../communicationInterfaces'
 
 const i18n = getI18n()
-/**
- * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list
- */
-export type HostAppElementTypeEquivalents =
-  | 'BOOLEAN_OPERATION'
-  | 'CODE_BLOCK'
-  | 'COMPONENT'
-  | 'COMPONENT_SET'
-  | 'CONNECTOR'
-  | 'DOCUMENT'
-  | 'ELLIPSE'
-  | 'EMBED'
-  | 'FRAME'
-  | 'GROUP'
-  | 'INSTANCE'
-  | 'LINE'
-  | 'LINK_UNFURL'
-  | 'MEDIA'
-  | 'PAGE'
-  | 'POLYGON'
-  | 'RECTANGLE'
-  | 'SHAPE_WITH_TEXT'
-  | 'SLICE'
-  | 'STAMP'
-  | 'STAR'
-  | 'STICKY'
-  | 'TEXT'
-  | 'VECTOR'
-  | 'WIDGET'
-
-export interface HostAppElement {
-  id: string
-  name: string
-  elemType: HostAppElementTypeEquivalents
-  /**
-   * used for calculating reading-direction-sorting (ltr, top to bottom) position of elements
-   */
-  absolutePosition: DOMRect
-}
 
 export interface HoverUIElemEnterEvent {
   type: 'HOVER_UI_ELEM_ENTER'
@@ -474,7 +435,6 @@ export const mainMachine =
       },
       assignHostUserSelection: (context, event: HostAppSelectionEvent) => {
         const ctxCopy = { ...context }
-        console.log("assign Host user sel")
         ctxCopy.host.userSelection = event.userSelection
         assign<MainMachineState, HostAppSelectionEvent>(ctxCopy)
       },
@@ -498,7 +458,6 @@ export const mainMachine =
         /** that's "onmessage" on the figma api: */
         onmessage = event => {
           const plMsg = event.data.pluginMessage
-          console.log(plMsg.selection.length)
           switch (plMsg.type) {
             case HostEventTypes.selectionChanged:
               if (!plMsg.selection.length) {
