@@ -5,18 +5,23 @@ import { PluginContext } from '../browserlogic/context'
 import { PluginActionType } from '../browserlogic/state'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
-import { HostSelectorType } from '../state/moreTypes'
-import { useActor, useSelector } from '@xstate/react';
+import { FocusSelectorType, HostSelectorType } from '../state/moreTypes'
+import { useSelector } from '@xstate/react';
 import { SelectionList } from './hostcomp-selection/selection-list'
 
 const hostSelectionSelector: HostSelectorType =
   (state) => {
     return state.context.host.userSelection;
   };
+const selectionFocusedSelector: FocusSelectorType | undefined =
+  (state) => {
+    return state.context.host.selectionFocusedElement;
+  };
 
 export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext);
   const hostSelection = useSelector(globalServices.mainService, hostSelectionSelector);
+  const selectionFocus = useSelector(globalServices.mainService, selectionFocusedSelector);
   const { send } = globalServices.mainService;
 
   const { dispatch } = useContext(PluginContext)
@@ -73,8 +78,8 @@ export const FindAndReplace = () => {
           onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnPrevComponent,
         }}
-      />{rootPortal && createPortal(
-        <SelectionList hostSelection={hostSelection} />,
+      />{rootPortal && !selectionFocus && createPortal(
+        <SelectionList hostSelection={hostSelection} selectionFocusedElement={selectionFocus} />,
         rootPortal
       )}
       <Input

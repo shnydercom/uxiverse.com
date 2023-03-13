@@ -11,12 +11,11 @@ body {
 #react-portal {
   position: absolute;
   display: flex;
-  background-color: rgb(230, 230, 0);
-  top: 37px;
-  left: 32px;
-  right: 32px;
-  bottom: 0;
-  opacity: 0.5;
+  left: 0;
+  top: 0;
+  /* right: 0;
+  bottom: 0;*/
+  z-index: 100;
 }
 
 .main-layout {
@@ -128,14 +127,65 @@ body {
   background: #f3f3f3;
 }
 
+.hostcomp-list-scrollcontainer {
+  margin: 37px 32px auto 32px;
+  height: fit-content;
+  max-height: 280px;
+  width: 190px;
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
 
 .hostcomp-list {
   display: flex;
   flex-direction: column;
   background: white;
+
 }
 
 .hostcomp-listentry {
   display: flex;
   flex-direction: row;
+  height: 32px;
+  align-items: center;
+}
+
+.hostcomp-listentry:hover {
+  outline: 1px solid var(--blue);
+}
+
+
+.hostcomp-listentry:active {
+  background-color: var(--color-bg-selected, #daebf7);
+  border-color: transparent;
+}
+
+.hostcomp-listentry-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  user-select: none;
+}
+
+.icon--text:before {
+  content: "T"
+}
+
+.icon--vector:before {
+  content: "Vect"
+}
+
+.icon--rectangle:before {
+  content: " ";
+  border: 1px solid grey;
+  height: 8px;
+  width: 12px;
+}
+
+.icon-reposition {
+  background-position: 0;
+  min-width: 32px;
+  min-height: 32px;
 }

@@ -37,6 +37,9 @@ export type HostAppElementTypeEquivalents =
 	// a catch-all for unsupported types
 	| "UNSUPPORTED"
 
+/**
+* this helps keep the array and the union type in sync, details: https://dev.to/shnydercom/string-literal-union-types-to-array-or-how-to-kick-pluto-out-of-the-list-of-planets-f21
+*/
 const TypeEquivalentsHelperObj: { [s in HostAppElementTypeEquivalents]: HostAppElementTypeEquivalents } = {
 	'BOOLEAN_OPERATION': 'BOOLEAN_OPERATION'
 	, 'CODE_BLOCK': 'CODE_BLOCK'

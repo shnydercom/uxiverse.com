@@ -5,3 +5,5 @@ import { MainMachineState } from "./mainMachine";
 export type SelectorType = (emitted: State<MainMachineState, AnyEventObject, any, { value: any; context: MainMachineState; }, ResolveTypegenMeta<TypegenDisabled, AnyEventObject, BaseActionObject, ServiceMap>>) => string;
 
 export type HostSelectorType = (emitted: State<MainMachineState, AnyEventObject, any, { value: any; context: MainMachineState; }, ResolveTypegenMeta<TypegenDisabled, AnyEventObject, BaseActionObject, ServiceMap>>) => HostAppElement[];
+
+export type FocusSelectorType = (emitted: State<MainMachineState, AnyEventObject, any, { value: any; context: MainMachineState; }, ResolveTypegenMeta<TypegenDisabled, AnyEventObject, BaseActionObject, ServiceMap>>) => HostAppElement | undefined;
