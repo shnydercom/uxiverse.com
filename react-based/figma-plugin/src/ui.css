@@ -11,8 +11,8 @@ body {
 #react-portal {
   position: absolute;
   display: flex;
-  left: 0;
-  top: 0;
+  top: 37px;
+  left: 32px;
   /* right: 0;
   bottom: 0;*/
   z-index: 100;
@@ -128,7 +128,6 @@ body {
 }
 
 .hostcomp-list-scrollcontainer {
-  margin: 37px 32px auto 32px;
   height: fit-content;
   max-height: 280px;
   width: 190px;
@@ -188,4 +187,14 @@ body {
   background-position: 0;
   min-width: 32px;
   min-height: 32px;
+}
+
+button:disabled,
+button[disabled],
+button[disabled]:hover,
+button[disabled]:focus {
+  border-color: transparent;
+  outline-color: transparent;
+  background: none;
+  opacity: 0.3
 }

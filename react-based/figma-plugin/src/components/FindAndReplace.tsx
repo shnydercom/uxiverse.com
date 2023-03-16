@@ -5,7 +5,7 @@ import { PluginContext } from '../browserlogic/context'
 import { PluginActionType } from '../browserlogic/state'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
-import { FocusSelectorType, HostSelectorType } from '../state/moreTypes'
+import { FocusSelectorType, HostSelectorType, StateMatchSelectorType } from '../state/moreTypes'
 import { useSelector } from '@xstate/react';
 import { SelectionList } from './hostcomp-selection/selection-list'
 
@@ -18,15 +18,33 @@ const selectionFocusedSelector: FocusSelectorType | undefined =
     return state.context.host.selectionFocusedElement;
   };
 
+const rawMultiSelectionSelector: StateMatchSelectorType = (state) => {
+  return state.matches("hostSelectionState.rawMultiSelection")
+}
+
+const navArrowsDisabledSelector: StateMatchSelectorType = (state) => {
+  if (state.matches("hostSelectionState.rawSingleSelection") ||
+    state.matches("hostSelectionState.noSelection")) {
+    return true;
+  }
+  if (state.matches("hostSelectionState.rawMultiSelection") && state.context.host.selectionFocusedElement) {
+    return true;
+  }
+  return false;
+}
+
 export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext);
   const hostSelection = useSelector(globalServices.mainService, hostSelectionSelector);
   const selectionFocus = useSelector(globalServices.mainService, selectionFocusedSelector);
+  const isHostSelectionMultiAndRaw = useSelector(globalServices.mainService, rawMultiSelectionSelector);
+  const isNavArrowsDisabled = useSelector(globalServices.mainService, navArrowsDisabledSelector)
+
   const { send } = globalServices.mainService;
 
   const { dispatch } = useContext(PluginContext)
 
-  const onPreviousClick = useCallback(() => { }, [])
+  const onPreviousClick = useCallback(() => { console.log("bla") }, [])
   const onNextClick = useCallback(() => { }, [])
   const onOverwriteReplaceClick = useCallback(() => { }, [])
   const onConfirmReplaceClick = useCallback(() => { }, [])
@@ -72,13 +90,14 @@ export const FindAndReplace = () => {
     <div className="find-and-replace">
       <Icon
         name="caret-left"
+        isDisabled={isNavArrowsDisabled}
         onClick={onPreviousClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
           onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnPrevComponent,
         }}
-      />{rootPortal && !selectionFocus && createPortal(
+      />{rootPortal && isHostSelectionMultiAndRaw && createPortal(
         <SelectionList hostSelection={hostSelection} selectionFocusedElement={selectionFocus} />,
         rootPortal
       )}
@@ -92,6 +111,7 @@ export const FindAndReplace = () => {
       />
       <Icon
         name="caret-right"
+        isDisabled={isNavArrowsDisabled}
         onClick={onNextClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
