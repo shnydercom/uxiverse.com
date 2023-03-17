@@ -44,7 +44,7 @@ export const FindAndReplace = () => {
 
   const { dispatch } = useContext(PluginContext)
 
-  const onPreviousClick = useCallback(() => { console.log("bla") }, [])
+  const onPreviousClick = useCallback(() => { }, [])
   const onNextClick = useCallback(() => { }, [])
   const onOverwriteReplaceClick = useCallback(() => { }, [])
   const onConfirmReplaceClick = useCallback(() => { }, [])
@@ -107,6 +107,7 @@ export const FindAndReplace = () => {
         icon="search-large"
         onMouseOver={onElemHover}
         onMouseLeave={onElemHoverLeave}
+        value={selectionFocus?.name ?? ""}
         id={HoverableElements.inputCompName}
       />
       <Icon
