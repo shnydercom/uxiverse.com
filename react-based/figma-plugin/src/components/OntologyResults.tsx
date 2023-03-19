@@ -13,7 +13,6 @@ export const OntologyResults = () => {
         options={{ scrollbars: { autoHide: 'never' } }}
       >
         <PartialSearchResults />
-        <PreviewSearchResult />
         <DefinitionSearchResult />
       </OverlayScrollbarsComponent>
     </div>

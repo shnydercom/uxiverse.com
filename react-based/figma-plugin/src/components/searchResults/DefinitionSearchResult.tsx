@@ -1,10 +1,12 @@
 import React from 'react'
 import { PluginContext } from '../../browserlogic/context'
 import { getSingleUxiDefinition } from '../../browserlogic/search'
+import { getRandomTip } from '../../state/initialValues'
+import { PreviewSearchResult } from './PreviewSearchResult'
 
 export const DefinitionSearchResult = () => {
   const { state } = React.useContext(PluginContext)
-  const [fullText, setFullText] = React.useState('')
+  const [fullText, setFullText] = React.useState(getRandomTip())
   React.useEffect(() => {
     if (!state.hoveredDefinition) {
       setFullText('')
@@ -18,7 +20,10 @@ export const DefinitionSearchResult = () => {
   }, [state.hoveredDefinition])
   return (
     <div className="full-search-result">
-      <div className="full-search-result--inner">{fullText}</div>
+      <div className="full-search-result--inner">
+        <PreviewSearchResult />
+        {fullText}
+      </div>
     </div>
   )
 }

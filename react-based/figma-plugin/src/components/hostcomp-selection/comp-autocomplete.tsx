@@ -65,8 +65,6 @@ export function CompAutocomplete(
     onSelectionClick(hostAppElement)
     setIsOpen(false)
   }
-
-  console.log(`selfocus: ${selectionFocus} val: ${value}`)
   const isIconForSelection: boolean =
     !!selectionFocus && value === selectionFocus.name
 

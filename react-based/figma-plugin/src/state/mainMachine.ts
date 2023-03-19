@@ -3,6 +3,7 @@ import { HoverableElements } from '../identifiable/HoverableElements'
 import { compIdToTooltip } from '../mappers/compIdToTooltip'
 import { getI18n } from './../i18n'
 import { HostAppElement, HostEventTypes } from './../communicationInterfaces'
+import { getRandomTip } from './initialValues'
 
 const i18n = getI18n()
 
@@ -40,6 +41,7 @@ export interface OntologySearchState {
   searchValue: string | undefined
   confirmedRenameParts: string[]
   hoveredDefinition: string | undefined
+  fullText: string | undefined
 }
 
 export interface PluginState {
@@ -72,6 +74,7 @@ export const mainMachine =
         ontologySearch: {
           confirmedRenameParts: [],
           hoveredDefinition: '',
+          fullText: getRandomTip(),
           searchValue: '',
         },
         tooltip: i18n.tooltipDefault,
