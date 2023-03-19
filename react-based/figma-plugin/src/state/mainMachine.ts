@@ -16,12 +16,11 @@ export interface FocusSelectionEvent {
   focusedElement: HostAppElement
 }
 
-
 export interface HostAppSelectionEvent {
   type:
-  | 'HOST_INTERACTION_SELECT_MULTI'
-  | 'HOST_INTERACTION_SELECT_SINGLE'
-  | 'HOST_DESELECT'
+    | 'HOST_INTERACTION_SELECT_MULTI'
+    | 'HOST_INTERACTION_SELECT_SINGLE'
+    | 'HOST_DESELECT'
   userSelection: HostAppElement[]
 }
 
@@ -55,7 +54,7 @@ export interface MainMachineState {
 }
 
 export const mainMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QFsCGBLAdgOgC4Ht8AbXdABwGVdVcxsIwAzVAVxIBVCTyBiACQDyANQCiAJQD6AVQCSEkQBkRAWXkA5duIDaABgC6iUGXyx0pfJkMgAHogBMAZgCM2ACw6PTpwFYHvu3YAbAAcADQgAJ6IPsF22N5OgYEA7EEAnA52OsGuAL654WhYeFyklNS02LBkYADG6IzotZzEZfzC4tJyiiryABoy7LoGSCDGpuaWo7YIdq6B2GlOdgnewcHe3sk+yeFRCE6uwQuJKTq+aSlOaXb5hRg4ABYmuBRgRHWTVDR0mPhvH1qk3aFHYEhkGnEAEEAMLsGQCNQSCg9OESZRSBTw4ZWcZmdAWKwzBw5bCJObBG46OzJVx0vbRYKJbA6Bxs2JzbyBDLJO4gIpPF4Az4EzDfSp-YVA0UgsEQzRiWHwxHI1FgigQgDiShxozxkyJiBJrjJgQpVJpdNcDNmzmCi0SqScDnOgT8Dj5Auwz1gr3eIos4roACdUAB3ZRsUhS4EopRogAKYhEQl1RhM+MJ02iOmSOmwNO81KL8zsaWSDhtWTs9ocS0C3jsPhCl28noe3qF-ulgYqIfDke4MZlcZEaLUIj6Q30uIzBuzB1z+cLxZ0pfLlci9mWJtpiWurl8JN87eKPr9gK+fewoYjUfQw4ssvBkMVcIRSNHaI1am1IjTYxzqKhqLnmBbJEWKxrmaG5VgELg6EsawpK4aTBLSHoFPyHbno+YrXreg7Rt2wKCKCL4KkqH6qvG6pajqTgjOmEzAQuPgZNgyQhMkaR0hka52HBpJ+HSOhJAJGynoKvp4UGN4DveeHPvK0LviqX5ghiWIyAB+qsaAMybHEHg6E4wTOOc8zrFW1K1vWqHcuyJ5YV6uEkaKcmEYp7lPhpEgAGICDCUgULpQFZgZ0RePaXIrF4XgOK40U2mZZpkgkiVOIha68W2Lk4V2l4edeyDeUVgYsAARm8uDKa+VHqWqyL0f+M56uFUyRQcyFkhBuZeN4dJmbsW4HLl2AkpkHhcUEriJVJnYyT5+E-NgpVDstFBVTVdWUWpn5NT+f5aIxs4sRFNj2IhLhshBmzBKZmRujZ3KcWyLq8U2GxbAtbnlStlTrcR-1bdVYC1WRcr1ftNFjppmLYm1zGZp1l0HGZDiLA4yQQSSTpltao3XFl6XOkl2WoYev2FQGAN0EDD6bdt4PPgAIiIGlhedqMzE4yQPZxXLOIlOPoSsVbNgW73OFkmwOIE1NLSDBHhhQWBQB8SmQxRqnKgdtHogjOlI4B3MgY4jjYIEyxrLEc1rEEKX87WSSBElZk3FseX3MUwZ1PgyDIGAmAQDQxWrX7tQB0HIdhxYMJECYkA8CIrODBIMICMoCYolCYgwnwXMoyBLompcFIhEEEGuI4No48kE3nFyaxZbS6wLZH0fB6HV4R-7gfd3HmAJ0nEAp2nYLJmoULKOIIgJgosKtUxpvFwumRl2aRyVykg216N6RuI61IZG7FYNh3-cxz34eVJA+KYFAMIB5QYCoMGtSPEGPD+RCMgUHweQE8M5ZxziIPOBci7zi6s4TeFdYi7xrpufYqQFgPU2GsJKCCnCXyjgPWOvc74QAfk-F+bx36fzklgfEqAiDP2QK-ChjweDJkzsoWeahWYSChAoBMfAoQACERDwhhDwhQABNKB+k0YWwbr4O6qR3BmTCETMsJxXbmWtnWbGuCu4ENvnQe+pBH70MYR-L+15qGkFoaY8h5ieAAIEAAdRAdnXO+dAHwhzlIi6MxHA4wmmaIyjYspHBtEWe0qE0jRNcLSQ8dZeT5V9lfQehDDHEOMaQhhdjKEERSSHdWeE+DoCgI8IgJTHh+iYewMA1hap+TYWAiBgDWFZ2UD4nmOYNgTSLJ4Uy6F5bIKihBI+SRzIkibjSXR+Cb69lWkY9Wti37mM8vk4hj8ikVPKaUqp5ial1IceAjxL4JCL3EeIUKJs9K+K6d4HpJksrDUGTaDY+ZTghGWA9RCIRpnXyHnJBZJiyHLNyX3PB19CnLWKaU7ZlScmPH2fUo5BcTmaCnJcle1zOmLm6X4B5-Tz5DIQGkBIpoxnwUGUEX5qSDHYEBVksxoLKidxmZC-60KykVN2Z-RF7RRCSEaRIARYhnEogkK09hIhOFQj1h0kCWVcW9NMgS55RMspxFdiEeWzpT7BGpfouZRCSFLKYas8F3c2W0w5bC7lCLam1QANIiHEUmDmFBXEJiFSKpxYqJUcNZjKj8cq2LZDuXivpTznpE3OHEd55lDjbG5Pq2ZdM6UZMWcC01eTzUFI2VCrZXL4W8tTunQV7iC5ounJijq8rQ33IjQMqN+wUhpEFiZG4lxnQ+GTf8689KTUrOvHgxlCLyCwDUP8ZahzmknLORc4NXUFVhqVY8xtRKeKts1fzEsd1vbYWSTmlNAL01AuySCixq1h1FrHROpS5bAEQgkJWjFZ016LrreG5VkaiVpA8FbDRfMrJnx7WktNxrM2DsvRBnlN7J3-XHqW0BqpmmVoXWjJd9av1rptDBAsUTeLlh4v4kDtL+3QYvZUIgqAIhgGDPChQ+BUDrKgD-AQUhOGzqhOcsQL72pmzYtsFwryxJiRyDcJwNoSXGQeZseYlxrYkcNek8DZ6s2rSozRuj56GNMfVjwOdkg1ACDBIFdjrM0O80E9gYTgRROoSbC8v9SrEKNhJT4PISScAsr+aBsjqnIOVCvee9gY6FDUdo+O-AuB-L4BYCHBDYIy3Ir4Khq5NaFyyPiNjTYij+kqP2F8+IJkXNllWB5n2Xm1m9vmSehl8K5JBeqWOxFE7ouxfiyWxLSH72perfxrqmX5E5bmHlyTpkiueAiaZNCODPM3iq752rA6mV0FoHU+jjHmM8ErRIIzJm2OcIs9EKzNm7PibGy4FdU3rhMkU6mvzI65JrdtTprbpmOOPt66+6B6GTu9NsyEezEno3Ugm6ZWzzoKzlf3ZVw91WjWZOWxRugNQwAAGtTFCHQGAMMxhgxIoNo0+94qxxtKOwcP7HgAdiYc9Gwa-6xmwMTehO7x6VOPevKjjHL8sc47x7Vdjgh+Ueq9aKkQJO2H+sDYicnCrW2Q6LHzXwsTywpU8AzneD13DZFZ322rYhg6oCDgbsgVHahgG-r-NQ-9AGdZJ9PWeyYF5L3JxvRYW9jgIOrvvfYX0HRJDpHdbG8tbhze8zSpTYHMkG8wEbsAJuzcW77Qw3AEQY9x4T6gc3CXkTsDzuwPhioUTk+OHENCEEghjIwoEKsLoyRzHLPuMsOQ1y65qyQ9PxuwCm6z0nsFejmPfHxwmR4oZYBgBz8oGQrNWZKEL1CYvaX+vobdzyRs-gBm0993XncjfrbN-cNDr04eDX3f14brvPfzdmoH+rZQ6AIAQA+CPsfE+hedGFWLiQJO-VSoDbKpfN9dDJke0akVCdCa4R6dCKsMCaJaJbYS4F0WzVkNvBHdWTvePbvRPG-VlR+e-R-Z-UfVAcfHgJ1F1ZMCgd1T-H1cXX-aVAAvrIA3mEAlkBvCA39Z0aAg+LINwOA7YByMsLITCCrebOHRbDvC-TAq-PvZlNZO-B-J-MAF-YgifTONQX+MQVQKfGfOfPgIvZeb7aRZgsyVg8AhAqAkafYRKGKYrMSN2N0H5MPBbUjc-WPS-bAznMAdHZQ8fVmJgKxGUNQjQrQ6fWfeePQhfAwvjJg+wbRTiBvWJdCDYRKIlAIBuWkGJGkRIKkJIBaBmHwmQwxFPCIIicgIg8fWAHgTOBMcRD1dgKcJ9AQe3GeOeZ3GEKI5GH7PxbYK2XpQ4OaD5NYSw+wIJTiV2CJGsLiDIPI+8AogFYo0osgcouAHgCEFEMQMEefRfRgro+wJkXozwOkeWJkIYqsL2AscY1kM0TwRJEQ-I5YuSRoIgD4CAUogoyo9mJQTQLhReciLYjo1eXY2YfYhsQ4gYk4rg33RsXcV2cAqTNkPdL0e41-R49AZ4yAN45Y2AKodWQg1-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 */
+  /** @xstate-layout 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-WXH9Fhf2OAw6e-99hfQdEkOkd1sZFOD0BkRYfMAR7AFHmPceFUKNwBEOvDem+oFj015E7A+7sD0YqFEsvjhxDQhBII5yMKBCrC6Mkcxyz7jLDkNc1eFWkc75HsA0ee8t4pbc9T3xRcJkeKGWAYA+-KBkKzVmShh9QlHx1o7bGc88hKZkQ5Svi8L53Mv6OVfdwJnL0J7ZtEPLfcPHfPfWPcNI-d2ZQdACACAD4M-C-K-C3ToE1G3CQKXPNa1AtO1F-HlNjJke0akVCdCa4R6dCKsMCGpGpbYS4F0RLVkDfEjWvKAxvXfZvOAtpBApAlAsANA1AS-HgJNFNZMCgdNbAnNW3fAm1Igw7Eg3mMglkJfKg7DZ0WggBLINwBg7YByMsLITCR7fLZHSA+vaA3gzteAxBRA5A1A8-UQq-TuNQXBMQVQG-O-B-PgEfZ+QnaxVQsydQygpgmgkafYRKGKUbMSNON0PFXLMAwDTfTgqw7gmAg-LnMAXnEQy-VmJgaJGUNwjwrw2-e-e+Pwp-AIlDFQ-JDiRxXifmL9RKEVAIBeWkWpGkRIKkJIBaBmPIrIoJNvCIIicgZwy-WAHgTuBMcxDNdgKcRDAQVPG+O+TPGEGoozII+wbYKOPZQ4OaLFNYSI+wM0J1LiJISpGsLiDIfo+8QYolEYsYsgCYuAHgCEFEMQMER-Z-ZQonewJkPYzwOkeWJkY4qsLOAsVOIsIpTwETZnNae414uSRoIgD4CAMYwYqY9mJQTQLRR+ciH4zY1+f42YQEhsYEw4sEnQ4vRsXcVOSgsVRwPwO47gB468VE9EzE142AKod2Jw9AngHE4xW3Ak74qo34wIvJBAZwFwUsBIMVKyVCLiKscsJdBIc5C4dYZ0Vk0gdk1aTkyAbk9A3k0wRBAUlwngKEO-CQIkwzEk7YmUkneU64QaCncsOfUaF0AWDUkIN0TIRKW43LAY5Ejk9ANEo0pEk0+gUMKAKAd2QYlREQAQMQdmSQO07PZ0s410pUj0m0YWBCU4Y4HiJYD3XU9AfUyoQ0jEqMlw3kiAWM+MxBRMmQTUMLZMTMuU7MxU90lUr0syGHIs1hWOX9L0EM9AlE8Mrk2syYxEtk14q0m07TEomQTw1uW0iU4k2FECPMGtKCZYTkB6TIfMjXFkOk0yQ8HYf1YMmcoY7Aas40usucvUhc4UzQAHB+EKdgZJZYok2XXcqOGWCsZ0FYesE8vmeIc8xCHIRHG8+cicsMiMms+Cp88cy0lczwjc-w-8pKeLGWN0VkVkOtfMsSBeatQPBIAPRwcsysugB8283ktCsQ1mRUTULC6o2XEsTiJFPmLiddQSL0iOFkIcisIII8Gi0Mg0qcyMlC2cpiq-N823FENw+-J-cU7C4g0kkkOU0bHIGsdwV9I0Qi4SzU44e6HhLCP4BgeAUYAUKUuFAAWjmBtAcpnnsxMmjnWCxXlgWgIFaHICDHspAmcqJjrHtC9S4hJBpCit8tKACuvAYGYCjBaG4DICCoXFSBSlWF6kggCHaNzDSFiv8vKFWmqDqAaCaBSrKHSq6jqTiCCBWH0qZBdEsiyogt-mpDyppAKsdlkj7BqpsUJn2D5hw2OCSGWA9xpAgVyz+mdlWklGWgGpmEyqJnMmXGyD8B8G6tpFuBmpph7G3S8g2n+iWsQFSExi8A0OwzdAek9OGrBMWDWESjmkOJnl6s2hVmOrVmZlwFOoOEnijgggGjXB4iSBsnmGthrCZByjmlMIRNmoOs8ldn5Lj0WtqNJLEpNDxi2HOH5kPF4nBqXWZKmhngcl4nYNoD+pCv2EPH0IYI2GE0qThtAPMO12SKPhPkvwgD+pWt-3zHmCSArCnxxvOAptez3T105zAD+qFgdCXzJgvL5htBnnzAYJqQ8EyFXlHI7HZrZ3m2PSkUwBkTkWWypuaPi2WG5FKXNkG0QApxZEMOcEuEPG5F2rMNZwsP1vI1sP4J7VphjXpUx2ZT+ujhcCWHlsSkVpOIQG5AWGlhnmhrQi5DFp1wloNsPWW2o1WxgzRq2OlNYRZHQiOHtmMNiAqWuBZH4yOByBxoewRN1s9t13TtWgFDwhhEeFQEQUgCptZBrRMlSEekmiGpzDEjLQSlMxxm1v-SP1m1TpA2bsqB80U2+0C0QT+rhwur6ibGLHlhnlSwXiSkFspBSBlhAJ1tZogK9rAwo0zvK0q2DGq02wa25vRsdJML7umiyGdCHtSwQh4vMgenWGvPdpnr1qbu9qW0lqzrW0HQ2zq2fp7pJDcDEg+mLsyG91Gmw2MiRTrFAq8DPunoJTAbTogfR0HRXvU3Xq4r8BgkuGODMgSEuyqSLKyk2GdCnpZ1AcbpIevuvAN350F2F3wFFyodZByupA9V8DTgEuGqXglTVzqR6JTtDy4O71gP6tfulO8DQgLHQg1LMjLDSBSkyEWAMMpESjdFJuUcsK7x4P30eLIHb23wyObxDohuuP0diBqXn3zC-gAOWDQmAOsbSNscyL4PVSgBP1wEGPXtzCdWyGnmnh9TWB8ajiXwbQCbXwIc4aIe4cQWcbUbvOSIEMcOENeKodppXBiDOOxhkfyV8fSZX0CfXySIvpryeQKbsfUdWgN0GIKMaCNuM23K6wxgmgYPOw8EpDmiEj40YJ2HcGLLrpZo9u1xUfSMKZRLYCIBic0bhTEph06MYL-i5HnxNC9TLB4mxiXA4efIrMkspt2eCuHtmDmgXmn22EAfqX5gkoQs6SePvBeJNJ5rqdmCPCjkPv2OuBlTgpfN+arOkuQthbrL+spCrEpBcGn2-lBLqR+ZcMnKQsfNnLNI9jKfQKofCpMnljARJA2BIoX19I2DMpXlxcv3xenNkrgGDRGJ5tejqXd0-zQkuFVP5k4lThji8tLBZbvPoo5frMbITPKcebYmxhPNJAZeHPWBufkrZZkqRbktvJ5aXT5dMgFePvzICExiMicSWHMnmHyHyCAA */
   createMachine<MainMachineState>({
     context: {
       /**place cursor here and press CTRL+SHIFT+P and choose "XState: Open Visual Editor"*/
@@ -116,89 +115,103 @@ export const mainMachine =
             },
             on: {
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "rawMultiSelection",
-                actions: "assignHostUserSelection"
+                target: 'rawMultiSelection',
+                actions: 'assignHostUserSelection',
               },
 
               HOST_INTERACTION_SELECT_SINGLE: {
-                target: "rawSingleSelection",
-                actions: "assignHostUserSelection"
-              }
+                target: 'rawSingleSelection',
+                actions: 'assignHostUserSelection',
+              },
             },
           },
 
           rawMultiSelection: {
             invoke: {
-              src: 'checkForFigmaDocMessages'
+              src: 'checkForFigmaDocMessages',
             },
             on: {
               SELECT_PREV: {
-                target: "multiSelectionSubSet",
-                actions: "assignPluginSingleSelect"
+                target: 'multiSelectionSubSet',
+                actions: 'assignPluginSingleSelect',
               },
 
               SELECT_NEXT: {
-                target: "multiSelectionSubSet",
-                actions: "assignPluginSingleSelect"
+                target: 'multiSelectionSubSet',
+                actions: 'assignPluginSingleSelect',
               },
 
-              HOST_INTERACTION_SELECT_SINGLE: [{
-                cond: "isSelectionInSubSet",
-                target: "multiSelectionSubSet"
-              }, {
-                target: "rawSingleSelection",
-                cond: "isNotSelectionInSubSet"
-              }],
+              HOST_INTERACTION_SELECT_SINGLE: [
+                {
+                  cond: 'isSelectionInSubSet',
+                  target: 'multiSelectionSubSet',
+                },
+                {
+                  target: 'rawSingleSelection',
+                  cond: 'isNotSelectionInSubSet',
+                },
+              ],
 
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "rawMultiSelection",
+                target: 'rawMultiSelection',
                 internal: false,
-                actions: "assignHostUserSelection"
+                actions: 'assignHostUserSelection',
               },
               SELECT_FOCUS: {
-                target: "multiSelectionSubSet",
-                actions: "assignFocusSelection"
-              }
+                target: 'multiSelectionSubSet',
+                actions: 'assignFocusSelection',
+              },
             },
           },
 
           multiSelectionSubSet: {
             on: {
-              HOST_INTERACTION_SELECT_SINGLE: [{
-                target: "multiSelectionSubSet",
-                cond: "isSelectionInSubSet",
-                internal: true,
-                actions: "updateSelectionSubSet"
-              }, {
-                cond: "isNotSelectionInSubSet",
-                target: "rawSingleSelection"
-              }],
+              HOST_INTERACTION_SELECT_SINGLE: [
+                {
+                  target: 'multiSelectionSubSet',
+                  cond: 'isSelectionInSubSet',
+                  internal: true,
+                  actions: 'updateSelectionSubSet',
+                },
+                {
+                  cond: 'isNotSelectionInSubSet',
+                  target: 'rawSingleSelection',
+                },
+              ],
 
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "rawMultiSelection",
-                actions: "assignHostUserSelection"
+                target: 'rawMultiSelection',
+                actions: 'assignHostUserSelection',
               },
 
-              HOST_DESELECT: "rawMultiSelection"
+              HOST_DESELECT: {
+                target: 'rawMultiSelection',
+                actions: 'assignFocusSelection',
+              },
+
+              SELECT_FOCUS: {
+                target: 'multiSelectionSubSet',
+                actions: 'assignFocusSelection',
+              },
             },
 
             invoke: {
-              src: "checkForFigmaDocMessages"
-            }
+              src: 'checkForFigmaDocMessages',
+            },
           },
 
           rawSingleSelection: {
             invoke: {
-              src: 'checkForFigmaDocMessages'
+              src: 'checkForFigmaDocMessages',
             },
 
             on: {
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "rawMultiSelection",
-                actions: "assignHostUserSelection"
-              }
-            }
-          }
+                target: 'rawMultiSelection',
+                actions: 'assignHostUserSelection',
+              },
+            },
+          },
         },
       },
       recommendationState: {
@@ -450,23 +463,32 @@ export const mainMachine =
       },
       assignFocusSelection: (context, event: FocusSelectionEvent) => {
         const ctxCopy = { ...context }
-        ctxCopy.host.selectionFocusedElement = event.focusedElement
-        ctxCopy.plugin.hostAppSearch.searchValue = event.focusedElement.name
+        ctxCopy.host.selectionFocusedElement = event.focusedElement ?? undefined
+        ctxCopy.plugin.hostAppSearch.searchValue =
+          event.focusedElement?.name ?? undefined
         assign<MainMachineState, FocusSelectionEvent>(ctxCopy)
       },
     },
     guards: {
       hasMultiSelection: (context, event) => {
-        return context.host.userSelection && context.host.userSelection.length > 1;
+        return (
+          context.host.userSelection && context.host.userSelection.length > 1
+        )
       },
       hasNoSelection: (context, event) => {
-        return context.host.userSelection && context.host.userSelection.length === 1;
+        return (
+          context.host.userSelection && context.host.userSelection.length === 1
+        )
       },
       isSelectionInSubSet: (context, event) => {
-        return !!context.host.userSelection.find((val) => val.id === (event as HostAppSelectionEvent).userSelection[0].id)
+        return !!context.host.userSelection.find(
+          val => val.id === (event as HostAppSelectionEvent).userSelection[0].id
+        )
       },
       isNotSelectionInSubSet: (context, event) => {
-        return context.host.userSelection.every((val) => val.id !== (event as HostAppSelectionEvent).userSelection[0].id)
+        return context.host.userSelection.every(
+          val => val.id !== (event as HostAppSelectionEvent).userSelection[0].id
+        )
       },
     },
     services: {
@@ -479,7 +501,7 @@ export const mainMachine =
               if (!plMsg.selection.length) {
                 send({
                   type: 'HOST_DESELECT',
-                  userSelection: plMsg.selection,
+                  userSelection: plMsg.selection ?? [],
                 } as HostAppSelectionEvent)
                 break
               }

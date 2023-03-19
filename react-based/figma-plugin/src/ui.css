@@ -209,7 +209,7 @@ body {
   align-items: center;
   border: 1px solid;
   border-left: none;
-  border-color: var(--color-bg-hover, #e5e5e5);
+  border-color: rgb(245, 245, 245);
   color: var(--fg-select-chevron-hover);
   fill: var(--fg-select-chevron-hover);
   visibility: visible;
@@ -218,11 +218,20 @@ body {
 
 .auto-complete #input-comp-name:hover + .select-chevron {
   display: flex;
+  border-left: 1px solid rgb(245, 245, 245);
+
+  background-color: white;
 }
 .auto-complete .select-chevron:hover {
   display: flex;
+  background-color: rgb(245, 245, 245);
 }
 
+.auto-complete:hover #input-comp-name:not(:hover) {
+  border: 1px solid var(--black1);
+}
+
+.auto-complete .select-chevron:active,
 .auto-complete #input-comp-name:focus + .select-chevron {
   border-color: var(--blue);
   background-color: var(--blue);

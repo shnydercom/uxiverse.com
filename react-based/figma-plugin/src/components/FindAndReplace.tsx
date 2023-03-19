@@ -17,8 +17,9 @@ import {
   StateMatchSelectorType,
 } from '../state/moreTypes'
 import { useSelector } from '@xstate/react'
-import { SelectionList } from './hostcomp-selection/selection-list'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
+import { HostAppElement } from '../communicationInterfaces'
+import { FocusSelectionEvent } from '../state/mainMachine'
 
 const hostSelectionSelector: HostSelectorType = state => {
   return state.context.host.userSelection
@@ -77,6 +78,10 @@ export const FindAndReplace = () => {
   const { send } = globalServices.mainService
 
   const { dispatch } = useContext(PluginContext)
+
+  const onListEntryClick = (focusedElement: HostAppElement) => {
+    send({ type: 'SELECT_FOCUS', focusedElement } as FocusSelectionEvent)
+  }
 
   const onPreviousClick = useCallback(() => {}, [])
   const onNextClick = useCallback(() => {}, [])
@@ -140,6 +145,7 @@ export const FindAndReplace = () => {
         hostSelection={hostSelection}
         selectionFocus={selectionFocus}
         value={componentSearchValue}
+        onSelectionClick={onListEntryClick}
         id={HoverableElements.inputCompName}
       />
       <Icon

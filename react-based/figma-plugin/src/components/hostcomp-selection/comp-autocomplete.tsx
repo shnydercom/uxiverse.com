@@ -12,6 +12,7 @@ interface HostAppElementSelection {
 interface CompAutoCompleteProps {
   hostSelection: HostAppElement[]
   isForcedOpen: boolean
+  onSelectionClick: (selection: HostAppElement) => void
 }
 
 const IconRenderer = (props: HostAppElementSelection) => {
@@ -34,6 +35,7 @@ export function CompAutocomplete(
     children,
     value,
     isForcedOpen,
+    onSelectionClick,
     ...remainingProps
   } = props
 
@@ -54,12 +56,17 @@ export function CompAutocomplete(
   const manualCaretOpener:
     | React.MouseEventHandler<HTMLDivElement>
     | undefined = event => {
-    console.log(isForcedOpen)
     if (!isForcedOpen) {
       setIsOpen(!isOpen)
     }
   }
 
+  const onSelectionClickWrapper = (hostAppElement: HostAppElement) => {
+    onSelectionClick(hostAppElement)
+    setIsOpen(false)
+  }
+
+  console.log(`selfocus: ${selectionFocus} val: ${value}`)
   const isIconForSelection: boolean =
     !!selectionFocus && value === selectionFocus.name
 
@@ -72,8 +79,8 @@ export function CompAutocomplete(
   }
   return (
     <div className="auto-complete">
-      <Input value={value} {...remainingProps}>
-        {hostSelection.length > 0 && (
+      <Input value={value ?? ''} {...remainingProps}>
+        {hostSelection?.length > 0 && (
           <div className="select-chevron" onClick={manualCaretOpener}>
             <CaretDownIcon />
           </div>
@@ -83,6 +90,7 @@ export function CompAutocomplete(
         isOpen &&
         createPortal(
           <SelectionList
+            onSelectionClick={onSelectionClickWrapper}
             hostSelection={hostSelection}
             selectionFocusedElement={selectionFocus}
           />,
