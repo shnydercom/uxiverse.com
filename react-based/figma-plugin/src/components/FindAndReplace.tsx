@@ -83,8 +83,34 @@ export const FindAndReplace = () => {
     send({ type: 'SELECT_FOCUS', focusedElement } as FocusSelectionEvent)
   }
 
-  const onPreviousClick = useCallback(() => {}, [])
-  const onNextClick = useCallback(() => {}, [])
+  const onPreviousClick = () => {
+    let currentSelectionIndex = hostSelection.findIndex(
+      val => val === selectionFocus
+    )
+    currentSelectionIndex =
+      currentSelectionIndex <= 0
+        ? hostSelection.length - 1
+        : currentSelectionIndex - 1
+    const previousElement: HostAppElement = hostSelection[currentSelectionIndex]
+    send({
+      type: 'SELECT_FOCUS',
+      focusedElement: previousElement,
+    } as FocusSelectionEvent)
+  }
+  const onNextClick = () => {
+    let currentSelectionIndex = hostSelection.findIndex(
+      val => val === selectionFocus
+    )
+    currentSelectionIndex =
+      currentSelectionIndex >= hostSelection.length - 1
+        ? 0
+        : currentSelectionIndex + 1
+    const previousElement: HostAppElement = hostSelection[currentSelectionIndex]
+    send({
+      type: 'SELECT_FOCUS',
+      focusedElement: previousElement,
+    } as FocusSelectionEvent)
+  }
   const onOverwriteReplaceClick = useCallback(() => {}, [])
   const onConfirmReplaceClick = useCallback(() => {}, [])
   const onDeleteClick = useCallback(() => {}, [])
