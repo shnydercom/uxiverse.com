@@ -1,41 +1,93 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Input, InputWithIconProps } from 'react-figma-plugin-ds'
 import { HostAppElement } from '../../communicationInterfaces'
-import { hostAppElementTypeToClassName } from './selection-list'
-import { CaretDownIcon } from "../../assets/caret-down-icon";
+import { hostAppElementTypeToClassName, SelectionList } from './selection-list'
+import { CaretDownIcon } from '../../assets/caret-down-icon'
+import { createPortal } from 'react-dom'
+
+interface HostAppElementSelection {
+  selectionFocus: HostAppElement | undefined
+}
 
 interface CompAutoCompleteProps {
-    selectionFocus: HostAppElement | undefined;
-    hostSelection: HostAppElement[]
+  hostSelection: HostAppElement[]
+  isForcedOpen: boolean
 }
 
-const IconRenderer = (props: CompAutoCompleteProps) => {
-    if (!props.selectionFocus) return null;
-    return <div className={`${hostAppElementTypeToClassName(props.selectionFocus.type)}  icon-reposition`}></div>
+const IconRenderer = (props: HostAppElementSelection) => {
+  if (!props.selectionFocus) return null
+  return (
+    <div
+      className={`${hostAppElementTypeToClassName(
+        props.selectionFocus.type
+      )}  icon-reposition`}
+    ></div>
+  )
 }
 
-export function CompAutocomplete(props: CompAutoCompleteProps & InputWithIconProps) {
-    const { hostSelection, selectionFocus, children, ...remainingProps } = props
+export function CompAutocomplete(
+  props: CompAutoCompleteProps & HostAppElementSelection & InputWithIconProps
+) {
+  const {
+    hostSelection,
+    selectionFocus,
+    children,
+    value,
+    isForcedOpen,
+    ...remainingProps
+  } = props
 
-    const isIconForSelection: boolean = !!selectionFocus;
+  const rootPortal = useMemo(
+    () => document.getElementById('react-portal'),
+    undefined
+  )
 
-    remainingProps.icon = "search-large"
-    if (isIconForSelection) {
-        remainingProps.iconColor = "white" //same color as background
+  const [isOpen, setIsOpen] = useState<boolean>(isForcedOpen)
+  useEffect(() => {
+    if (!isOpen && isForcedOpen) {
+      setIsOpen(true)
     }
-    return (
-        <div className='auto-complete'>
-            <Input
-                {...remainingProps}
-            />
-            {
-                isIconForSelection && <IconRenderer selectionFocus={selectionFocus} hostSelection={[]} />
-            }
-            {hostSelection.length > 0 &&
-                <div className="select-chevron">
-                    <CaretDownIcon />
-                </div>
-            }
-        </div>
+    //otherwise controlled by component state
+    return () => {}
+  }, [isForcedOpen])
+
+  const manualCaretOpener:
+    | React.MouseEventHandler<HTMLDivElement>
+    | undefined = event => {
+    console.log(isForcedOpen)
+    if (!isForcedOpen) {
+      setIsOpen(!isOpen)
+    }
+  }
+
+  const isIconForSelection: boolean =
+    !!selectionFocus && value === selectionFocus.name
+
+  remainingProps.icon = 'search-large'
+  if (isIconForSelection) {
+    //remainingProps.iconColor = 'white' //same color as background
+    remainingProps.iconComponent = (
+      <IconRenderer selectionFocus={selectionFocus} />
     )
+  }
+  return (
+    <div className="auto-complete">
+      <Input value={value} {...remainingProps}>
+        {hostSelection.length > 0 && (
+          <div className="select-chevron" onClick={manualCaretOpener}>
+            <CaretDownIcon />
+          </div>
+        )}
+      </Input>
+      {rootPortal &&
+        isOpen &&
+        createPortal(
+          <SelectionList
+            hostSelection={hostSelection}
+            selectionFocusedElement={selectionFocus}
+          />,
+          rootPortal
+        )}
+    </div>
+  )
 }

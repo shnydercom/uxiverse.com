@@ -21,6 +21,7 @@
   "dependencies": {
     "@uxiverse.com/ontology": "*",
     "@xstate/react": "^3.0.1",
+    "autosuggest-highlight": "^3.3.4",
     "overlayscrollbars": "^1.13.2",
     "overlayscrollbars-react": "^0.3.0",
     "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git",

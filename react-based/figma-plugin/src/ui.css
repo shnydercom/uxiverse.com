@@ -140,7 +140,6 @@ body {
   display: flex;
   flex-direction: column;
   background: white;
-
 }
 
 .hostcomp-listentry {
@@ -153,7 +152,6 @@ body {
 .hostcomp-listentry:hover {
   outline: 1px solid var(--blue);
 }
-
 
 .hostcomp-listentry:active {
   background-color: var(--color-bg-selected, #daebf7);
@@ -169,15 +167,15 @@ body {
 }
 
 .icon--text:before {
-  content: "T"
+  content: 'T';
 }
 
 .icon--vector:before {
-  content: "Vect"
+  content: 'Vect';
 }
 
 .icon--rectangle:before {
-  content: " ";
+  content: ' ';
   border: 1px solid grey;
   height: 8px;
   width: 12px;
@@ -191,23 +189,45 @@ body {
 
 .auto-complete .icon-reposition {
   position: absolute;
-  top: 0;
+  top: -1px;
 }
 
 .auto-complete {
-  position: relative
+  position: relative;
 }
 
 .auto-complete .select-chevron {
+  /* is only visible on hover/interaction: https://www.figma.com/file/Gj9iMcTbFbHrFq1ZWbDBuyc9/UI2%3A-Figma's-Design-System?node-id=0-7815&t=YI5bkIX9ugb7vepn-4*/
+  display: none;
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 26px;
+  top: 1px;
+  right: 1px;
+  height: 28px;
   width: 24px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-left: none;
+  border-color: var(--color-bg-hover, #e5e5e5);
   color: var(--fg-select-chevron-hover);
   fill: var(--fg-select-chevron-hover);
   visibility: visible;
   background-color: var(--color-bg-hover, #e5e5e5);
+}
+
+.auto-complete #input-comp-name:hover + .select-chevron {
+  display: flex;
+}
+.auto-complete .select-chevron:hover {
+  display: flex;
+}
+
+.auto-complete #input-comp-name:focus + .select-chevron {
+  border-color: var(--blue);
+  background-color: var(--blue);
+  fill: white;
+  color: white;
 }
 
 button:disabled,
@@ -217,5 +237,9 @@ button[disabled]:focus {
   border-color: transparent;
   outline-color: transparent;
   background: none;
-  opacity: 0.3
+  opacity: 0.3;
+}
+
+.input .icon {
+  opacity: 1;
 }
