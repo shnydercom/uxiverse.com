@@ -19,7 +19,10 @@ import {
 import { useSelector } from '@xstate/react'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
-import { FocusSelectionEvent } from '../state/mainMachine'
+import {
+  CopyCompTxtToRenameEvent,
+  FocusSelectionEvent,
+} from '../state/mainMachine'
 
 const hostSelectionSelector: HostSelectorType = state => {
   return state.context.host.userSelection
@@ -30,6 +33,12 @@ const selectionFocusedSelector: FocusSelectorType | undefined = state => {
 
 const hostSearchValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.hostAppSearch.searchValue
+}
+
+const ontologySearchValueSelector:
+  | SearchValueSelectorType
+  | undefined = state => {
+  return state.context.plugin.ontologySearch.searchValue
 }
 
 const rawMultiSelectionSelector: StateMatchSelectorType = state => {
@@ -74,6 +83,10 @@ export const FindAndReplace = () => {
     globalServices.mainService,
     navArrowsDisabledSelector
   )
+  const ontologySearchValue = useSelector(
+    globalServices.mainService,
+    ontologySearchValueSelector
+  )
 
   const { send } = globalServices.mainService
 
@@ -111,7 +124,12 @@ export const FindAndReplace = () => {
       focusedElement: previousElement,
     } as FocusSelectionEvent)
   }
-  const onOverwriteReplaceClick = useCallback(() => {}, [])
+  const onOverwriteReplaceClick = () => {
+    send({
+      type: 'COPY_COMPTXT_TO_RENAMEREPLACE',
+      copiedText: componentSearchValue,
+    } as CopyCompTxtToRenameEvent)
+  }
   const onConfirmReplaceClick = useCallback(() => {}, [])
   const onDeleteClick = useCallback(() => {}, [])
 
@@ -119,15 +137,15 @@ export const FindAndReplace = () => {
 
   const onSearchChange = useCallback(() => {}, [])
 
-  const onReplaceChange = useCallback(
-    (value: string, event: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch({
-        type: PluginActionType.UsrChangeReplaceInput,
-        payload: value,
-      })
-    },
-    []
-  )
+  const onReplaceChange = (
+    value: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch({
+      type: PluginActionType.UsrChangeReplaceInput,
+      payload: value,
+    })
+  }
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
   > = useCallback(event => {
@@ -210,6 +228,7 @@ export const FindAndReplace = () => {
         icon="swap"
         onMouseOver={onElemHover}
         onMouseLeave={onElemHoverLeave}
+        //value={ontologySearchValue}
         id={HoverableElements.inputChangeReplace}
       />
       <Icon
