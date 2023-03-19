@@ -451,6 +451,7 @@ export const mainMachine =
       assignFocusSelection: (context, event: FocusSelectionEvent) => {
         const ctxCopy = { ...context }
         ctxCopy.host.selectionFocusedElement = event.focusedElement
+        ctxCopy.plugin.hostAppSearch.searchValue = event.focusedElement.name
         assign<MainMachineState, FocusSelectionEvent>(ctxCopy)
       },
     },

@@ -189,6 +189,27 @@ body {
   min-height: 32px;
 }
 
+.auto-complete .icon-reposition {
+  position: absolute;
+  top: 0;
+}
+
+.auto-complete {
+  position: relative
+}
+
+.auto-complete .select-chevron {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 26px;
+  width: 24px;
+  color: var(--fg-select-chevron-hover);
+  fill: var(--fg-select-chevron-hover);
+  visibility: visible;
+  background-color: var(--color-bg-hover, #e5e5e5);
+}
+
 button:disabled,
 button[disabled],
 button[disabled]:hover,

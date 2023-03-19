@@ -5,9 +5,10 @@ import { PluginContext } from '../browserlogic/context'
 import { PluginActionType } from '../browserlogic/state'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
-import { FocusSelectorType, HostSelectorType, StateMatchSelectorType } from '../state/moreTypes'
+import { FocusSelectorType, HostSelectorType, SearchValueSelectorType, StateMatchSelectorType } from '../state/moreTypes'
 import { useSelector } from '@xstate/react';
 import { SelectionList } from './hostcomp-selection/selection-list'
+import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 
 const hostSelectionSelector: HostSelectorType =
   (state) => {
@@ -16,6 +17,11 @@ const hostSelectionSelector: HostSelectorType =
 const selectionFocusedSelector: FocusSelectorType | undefined =
   (state) => {
     return state.context.host.selectionFocusedElement;
+  };
+
+const hostSearchValueSelector: SearchValueSelectorType | undefined =
+  (state) => {
+    return state.context.plugin.hostAppSearch.searchValue
   };
 
 const rawMultiSelectionSelector: StateMatchSelectorType = (state) => {
@@ -37,6 +43,7 @@ export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext);
   const hostSelection = useSelector(globalServices.mainService, hostSelectionSelector);
   const selectionFocus = useSelector(globalServices.mainService, selectionFocusedSelector);
+  const componentSearchValue = useSelector(globalServices.mainService, hostSearchValueSelector);
   const isHostSelectionMultiAndRaw = useSelector(globalServices.mainService, rawMultiSelectionSelector);
   const isNavArrowsDisabled = useSelector(globalServices.mainService, navArrowsDisabledSelector)
 
@@ -101,13 +108,14 @@ export const FindAndReplace = () => {
         <SelectionList hostSelection={hostSelection} selectionFocusedElement={selectionFocus} />,
         rootPortal
       )}
-      <Input
-        placeholder="Find element"
+      <CompAutocomplete
+        placeholder="Find and select"
         onChange={onSearchChange}
-        icon="search-large"
         onMouseOver={onElemHover}
         onMouseLeave={onElemHoverLeave}
-        value={selectionFocus?.name ?? ""}
+        hostSelection={hostSelection}
+        selectionFocus={selectionFocus}
+        value={componentSearchValue}
         id={HoverableElements.inputCompName}
       />
       <Icon

@@ -9,7 +9,7 @@ export interface SelectionListProps {
 	hostSelection: HostAppElement[];
 }
 
-function hostAppElementTypeToClassName(type: HostAppElementTypeEquivalents): string {
+export function hostAppElementTypeToClassName(type: HostAppElementTypeEquivalents): string {
 	let result: string;
 	switch (type) {
 		case "FRAME":
