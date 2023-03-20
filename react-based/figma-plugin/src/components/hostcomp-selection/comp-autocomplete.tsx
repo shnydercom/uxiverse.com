@@ -1,9 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Input, InputWithIconProps } from 'react-figma-plugin-ds'
 import { HostAppElement } from '../../communicationInterfaces'
 import { hostAppElementTypeToClassName, SelectionList } from './selection-list'
 import { CaretDownIcon } from '../../assets/caret-down-icon'
 import { createPortal } from 'react-dom'
+import { IsOpenSelectorType } from '../../state/moreTypes'
+import { useSelector } from '@xstate/react'
+import { GlobalStateContext } from '../../state/globalStateProvider'
+import { ToggleHostOptionsVisibilityEvent } from '../../state/mainMachine'
 
 interface HostAppElementSelection {
   selectionFocus: HostAppElement | undefined
@@ -11,7 +15,6 @@ interface HostAppElementSelection {
 
 interface CompAutoCompleteProps {
   hostSelection: HostAppElement[]
-  isForcedOpen: boolean
   onSelectionClick: (selection: HostAppElement) => void
 }
 
@@ -26,6 +29,11 @@ const IconRenderer = (props: HostAppElementSelection) => {
   )
 }
 
+const isOptionsOpenSelector: IsOpenSelectorType = state => {
+  return state.context.plugin.hostAppSearch.isOptionsOpen
+}
+
+
 export function CompAutocomplete(
   props: CompAutoCompleteProps & HostAppElementSelection & InputWithIconProps
 ) {
@@ -34,36 +42,29 @@ export function CompAutocomplete(
     selectionFocus,
     children,
     value,
-    isForcedOpen,
     onSelectionClick,
     ...remainingProps
   } = props
+  const globalServices = useContext(GlobalStateContext)
+  const { send } = globalServices.mainService
 
+  const isOptionsOpen = useSelector(
+    globalServices.mainService,
+    isOptionsOpenSelector
+  )
   const rootPortal = useMemo(
     () => document.getElementById('react-portal'),
     undefined
   )
 
-  const [isOpen, setIsOpen] = useState<boolean>(isForcedOpen)
-  useEffect(() => {
-    if (!isOpen && isForcedOpen) {
-      setIsOpen(true)
-    }
-    //otherwise controlled by component state
-    return () => {}
-  }, [isForcedOpen])
-
   const manualCaretOpener:
     | React.MouseEventHandler<HTMLDivElement>
     | undefined = event => {
-    if (!isForcedOpen) {
-      setIsOpen(!isOpen)
+      send({ type: 'MANUALLY_TOGGLE_HOST_OPTIONS' } as ToggleHostOptionsVisibilityEvent)
     }
-  }
 
   const onSelectionClickWrapper = (hostAppElement: HostAppElement) => {
     onSelectionClick(hostAppElement)
-    setIsOpen(false)
   }
   const isIconForSelection: boolean =
     !!selectionFocus && value === selectionFocus.name
@@ -85,7 +86,7 @@ export function CompAutocomplete(
         )}
       </Input>
       {rootPortal &&
-        isOpen &&
+        isOptionsOpen &&
         createPortal(
           <SelectionList
             onSelectionClick={onSelectionClickWrapper}

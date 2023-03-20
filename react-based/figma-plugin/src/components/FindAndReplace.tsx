@@ -38,8 +38,8 @@ const hostSearchValueSelector: SearchValueSelectorType | undefined = state => {
 const ontologySearchValueSelector:
   | SearchValueSelectorType
   | undefined = state => {
-  return state.context.plugin.ontologySearch.searchValue
-}
+    return state.context.plugin.ontologySearch.searchValue
+  }
 
 const rawMultiSelectionSelector: StateMatchSelectorType = state => {
   return state.matches('hostSelectionState.rawMultiSelection')
@@ -130,12 +130,12 @@ export const FindAndReplace = () => {
       copiedText: componentSearchValue,
     } as CopyCompTxtToRenameEvent)
   }
-  const onConfirmReplaceClick = useCallback(() => {}, [])
-  const onDeleteClick = useCallback(() => {}, [])
+  const onConfirmReplaceClick = useCallback(() => { }, [])
+  const onDeleteClick = useCallback(() => { }, [])
 
   //input fields
 
-  const onSearchChange = useCallback(() => {}, [])
+  const onSearchChange = useCallback(() => { }, [])
 
   const onReplaceChange = (
     value: string,
@@ -181,7 +181,6 @@ export const FindAndReplace = () => {
         }}
       />
       <CompAutocomplete
-        isForcedOpen={isHostSelectionMultiAndRaw}
         placeholder="Find and select"
         onChange={onSearchChange}
         onMouseOver={onElemHover}
