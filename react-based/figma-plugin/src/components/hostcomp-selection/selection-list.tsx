@@ -54,6 +54,7 @@ export function SelectionList(props: SelectionListProps) {
   if (hostSelection?.length <= 1 && !selectionFocusedElement) {
     return null
   }
+
   return (
     <OverlayScrollbarsComponent
       className="hostcomp-list-scrollcontainer"
@@ -68,7 +69,7 @@ export function SelectionList(props: SelectionListProps) {
         {hostSelection.map(itm => {
           return (
             <div
-              className="hostcomp-listentry"
+              className={`hostcomp-listentry ${selectionFocusedElement && itm.id === selectionFocusedElement?.id ? "selected" : ""}`}
               onClick={() => onSelectionClick(itm)}
             >
               <div

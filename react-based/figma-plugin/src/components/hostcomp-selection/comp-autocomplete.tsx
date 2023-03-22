@@ -63,9 +63,6 @@ export function CompAutocomplete(
       send({ type: 'MANUALLY_TOGGLE_HOST_OPTIONS' } as ToggleHostOptionsVisibilityEvent)
     }
 
-  const onSelectionClickWrapper = (hostAppElement: HostAppElement) => {
-    onSelectionClick(hostAppElement)
-  }
   const isIconForSelection: boolean =
     !!selectionFocus && value === selectionFocus.name
 
@@ -89,7 +86,7 @@ export function CompAutocomplete(
         isOptionsOpen &&
         createPortal(
           <SelectionList
-            onSelectionClick={onSelectionClickWrapper}
+            onSelectionClick={onSelectionClick}
             hostSelection={hostSelection}
             selectionFocusedElement={selectionFocus}
           />,
