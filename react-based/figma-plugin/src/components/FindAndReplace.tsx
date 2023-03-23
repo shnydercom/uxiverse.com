@@ -22,6 +22,7 @@ import { HostAppElement } from '../communicationInterfaces'
 import {
   CopyCompTxtToRenameEvent,
   FocusSelectionEvent,
+  PluginInputTypingEvent,
 } from '../state/mainMachine'
 
 const hostSelectionSelector: HostSelectorType = state => {
@@ -141,10 +142,11 @@ export const FindAndReplace = () => {
     value: string,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch({
+    send({ type: 'EDIT_PHRASES', inputValue: event.currentTarget.value } as PluginInputTypingEvent)
+    /*dispatch({
       type: PluginActionType.UsrChangeReplaceInput,
       payload: value,
-    })
+    })*/
   }
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
