@@ -1,8 +1,6 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { PluginContext } from '../../browserlogic/context'
 import { searchDefinitionNames } from '../../browserlogic/search'
-import { PluginActionType } from '../../browserlogic/state'
 import { SearchValueSelectorType } from '../../state/moreTypes'
 import { useSelector } from '@xstate/react'
 import { GlobalStateContext } from '../../state/globalStateProvider'
@@ -20,7 +18,6 @@ export const PartialSearchResults = () => {
     ontologySearchValueSelector
   )
 
-  //const { state, dispatch } = React.useContext(PluginContext)
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   React.useEffect(() => {
     if (!ontologySearch) {
@@ -40,10 +37,6 @@ export const PartialSearchResults = () => {
   > = (event) => {
     send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id } as HoverUIElemEnterEvent)
     send({ type: 'HOVER_DEFINITION_ENTER', focusedDefinition: event.currentTarget.innerText ?? '' } as HoverDefinitionEnterEvent)
-    /*dispatch({
-      type: PluginActionType.UsrHoverDefinition,
-      payload: event.currentTarget.innerText ?? '',
-    })*/
   }
 
   const onElemHoverLeave: MouseEventHandler<

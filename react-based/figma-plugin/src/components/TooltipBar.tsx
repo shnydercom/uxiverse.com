@@ -1,6 +1,5 @@
-import { useActor, useSelector } from '@xstate/react';
+import { useSelector } from '@xstate/react';
 import React, { useContext } from 'react'
-import { PluginContext } from '../browserlogic/context';
 import { GlobalStateContext } from '../state/globalStateProvider';
 import { SelectorType } from '../state/moreTypes';
 

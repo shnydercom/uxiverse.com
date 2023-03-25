@@ -2,12 +2,8 @@ import React, {
   MouseEventHandler,
   useCallback,
   useContext,
-  useMemo,
 } from 'react'
-import { createPortal } from 'react-dom'
 import { Icon, Input } from 'react-figma-plugin-ds'
-import { PluginContext } from '../browserlogic/context'
-import { PluginActionType } from '../browserlogic/state'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { GlobalStateContext } from '../state/globalStateProvider'
 import {
@@ -90,8 +86,6 @@ export const FindAndReplace = () => {
   )
 
   const { send } = globalServices.mainService
-
-  const { dispatch } = useContext(PluginContext)
 
   const onListEntryClick = (focusedElement: HostAppElement) => {
     send({ type: 'SELECT_FOCUS', focusedElement } as FocusSelectionEvent)
