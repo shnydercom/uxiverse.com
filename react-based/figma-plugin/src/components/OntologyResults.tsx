@@ -3,7 +3,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { DefinitionSearchResult } from './searchResults/definitionSearchResult'
 
 import { PartialSearchResults } from './searchResults/PartialSearchResults'
-import { PreviewSearchResult } from './searchResults/PreviewSearchResult'
+import { SearchResultVisualization } from './searchResults/SearchResultVisualization'
 
 export const OntologyResults = () => {
   return (

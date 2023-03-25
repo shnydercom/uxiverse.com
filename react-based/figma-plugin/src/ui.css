@@ -106,7 +106,7 @@ body {
   color: #333333;
 }
 
-.preview-search-result {
+.search-result-visualization {
   height: 64px;
   width: 64px;
   padding: 12px;
@@ -117,7 +117,7 @@ body {
   float: left;
 }
 
-.preview-search-result--inner {
+.search-result-visualization--inner {
   height: 32px;
   width: 32px;
   border: 2px solid #f3f3f3;

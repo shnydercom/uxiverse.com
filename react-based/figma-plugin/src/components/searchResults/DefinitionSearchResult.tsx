@@ -2,7 +2,7 @@ import React from 'react'
 import { PluginContext } from '../../browserlogic/context'
 import { getSingleUxiDefinition } from '../../browserlogic/search'
 import { getRandomTip } from '../../state/initialValues'
-import { PreviewSearchResult } from './PreviewSearchResult'
+import { SearchResultVisualization } from './SearchResultVisualization'
 
 export const DefinitionSearchResult = () => {
   const { state } = React.useContext(PluginContext)
@@ -21,7 +21,7 @@ export const DefinitionSearchResult = () => {
   return (
     <div className="full-search-result">
       <div className="full-search-result--inner">
-        <PreviewSearchResult />
+        <SearchResultVisualization />
         {fullText}
       </div>
     </div>
