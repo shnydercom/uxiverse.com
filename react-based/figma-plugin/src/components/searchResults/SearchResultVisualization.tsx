@@ -1,7 +1,7 @@
 import { useSelector } from '@xstate/react'
 import React, { useContext } from 'react'
-import { GlobalStateContext } from '../../state/globalStateProvider'
-import { SearchValueSelectorType } from '../../state/moreTypes'
+import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
+import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
 
 const focusedDefinitionSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.ontologySearch.focusedDefinition

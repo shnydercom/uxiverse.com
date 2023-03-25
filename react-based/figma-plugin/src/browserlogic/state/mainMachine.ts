@@ -1,10 +1,10 @@
 import { assign, createMachine } from 'xstate'
-import { HoverableElements } from '../identifiable/HoverableElements'
-import { compIdToTooltip } from '../mappers/compIdToTooltip'
-import { getI18n } from './../i18n'
-import { HostAppElement, HostEventTypes } from './../communicationInterfaces'
+import { HoverableElements } from '../../identifiable/HoverableElements'
+import { compIdToTooltip } from '../../mappers/compIdToTooltip'
+import { getI18n } from './../../i18n'
+import { HostAppElement, HostEventTypes } from './../../communicationInterfaces'
 import { getRandomTip } from './initialValues'
-import { getSingleUxiDefinition } from '../browserlogic/search'
+import { getSingleUxiDefinition } from '../search'
 
 const i18n = getI18n()
 

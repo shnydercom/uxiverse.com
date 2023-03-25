@@ -5,21 +5,12 @@ import React, {
 } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
-import { GlobalStateContext } from '../state/globalStateProvider'
-import {
-  FocusSelectorType,
-  HostSelectorType,
-  SearchValueSelectorType,
-  StateMatchSelectorType,
-} from '../state/moreTypes'
 import { useSelector } from '@xstate/react'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
-import {
-  CopyCompTxtToRenameEvent,
-  FocusSelectionEvent,
-  PluginInputTypingEvent,
-} from '../state/mainMachine'
+import { FocusSelectorType, HostSelectorType, SearchValueSelectorType, StateMatchSelectorType } from '../browserlogic/state/moreTypes'
+import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
+import { CopyCompTxtToRenameEvent, FocusSelectionEvent, PluginInputTypingEvent } from '../browserlogic/state/mainMachine'
 
 const hostSelectionSelector: HostSelectorType = state => {
   return state.context.host.userSelection

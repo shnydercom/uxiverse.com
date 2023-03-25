@@ -1,7 +1,7 @@
 import { useSelector } from '@xstate/react';
 import React, { useContext } from 'react'
-import { GlobalStateContext } from '../state/globalStateProvider';
-import { SelectorType } from '../state/moreTypes';
+import { SelectorType } from '../browserlogic/state/moreTypes';
+import { GlobalStateContext } from '../browserlogic/state/globalStateProvider';
 
 const loggedInSelector: SelectorType =
   (state) => {

@@ -1,7 +1,7 @@
 import { useSelector } from '@xstate/react'
 import React, { useContext } from 'react'
-import { GlobalStateContext } from '../../state/globalStateProvider'
-import { SearchValueSelectorType } from '../../state/moreTypes'
+import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
+import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
 import { SearchResultVisualization } from './SearchResultVisualization'
 
 const defintionFullTextSelector: SearchValueSelectorType | undefined = state => {

@@ -7,7 +7,7 @@ import "overlayscrollbars/css/OverlayScrollbars.css";
 import './ui.css'
 
 import { PluginMainLayout } from './PluginMainLayout'
-import { GlobalStateProvider } from './state/globalStateProvider';
+import { GlobalStateProvider } from './browserlogic/state/globalStateProvider';
 
 export interface FigmaPluginRootProps { }
 

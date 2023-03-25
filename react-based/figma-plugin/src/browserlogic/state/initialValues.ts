@@ -1,6 +1,10 @@
+import { getI18n } from "../../i18n"
+
+const i18n = getI18n()
+
 const generalFigmaUserTips: string[] = [
-  'TIP: use "⌘ + ⏎" to select all child-layers of your current selection (AltGr + ⏎ on Windows)',
-  'TIP: use "Shift + ⏎ to select the parents of all selected layers" ',
+  i18n.figmaTip001,
+  i18n.figmaTip002
 ]
 
 export function getRandomTip(): string {

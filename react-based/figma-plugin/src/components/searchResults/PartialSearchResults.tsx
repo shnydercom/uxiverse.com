@@ -1,10 +1,10 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/search'
-import { SearchValueSelectorType } from '../../state/moreTypes'
 import { useSelector } from '@xstate/react'
-import { GlobalStateContext } from '../../state/globalStateProvider'
-import { HoverDefinitionEnterEvent, HoverUIElemEnterEvent } from '../../state/mainMachine'
+import { HoverDefinitionEnterEvent, HoverUIElemEnterEvent } from '../../browserlogic/state/mainMachine'
+import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
+import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 
 const ontologySearchValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.ontologySearch.searchValue

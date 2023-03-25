@@ -4,10 +4,10 @@ import { HostAppElement } from '../../communicationInterfaces'
 import { hostAppElementTypeToClassName, SelectionList } from './selection-list'
 import { CaretDownIcon } from '../../assets/caret-down-icon'
 import { createPortal } from 'react-dom'
-import { IsOpenSelectorType } from '../../state/moreTypes'
 import { useSelector } from '@xstate/react'
-import { GlobalStateContext } from '../../state/globalStateProvider'
-import { ToggleHostOptionsVisibilityEvent } from '../../state/mainMachine'
+import { IsOpenSelectorType } from '../../browserlogic/state/moreTypes'
+import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
+import { ToggleHostOptionsVisibilityEvent } from '../../browserlogic/state/mainMachine'
 
 interface HostAppElementSelection {
   selectionFocus: HostAppElement | undefined

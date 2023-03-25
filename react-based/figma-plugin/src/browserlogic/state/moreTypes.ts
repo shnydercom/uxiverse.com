@@ -1,5 +1,5 @@
 import { AnyEventObject, BaseActionObject, ResolveTypegenMeta, ServiceMap, State, TypegenDisabled } from "xstate";
-import { HostAppElement } from "../communicationInterfaces";
+import { HostAppElement } from "../../communicationInterfaces";
 import { MainMachineXSCtx } from "./mainMachine";
 
 export type SelectorType = (emitted: State<MainMachineXSCtx, AnyEventObject, any, { value: any; context: MainMachineXSCtx; }, ResolveTypegenMeta<TypegenDisabled, AnyEventObject, BaseActionObject, ServiceMap>>) => string;
