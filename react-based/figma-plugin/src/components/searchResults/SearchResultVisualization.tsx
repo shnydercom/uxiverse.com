@@ -1,19 +1,19 @@
-import React from 'react'
-import { PluginContext } from '../../browserlogic/context'
+import { useSelector } from '@xstate/react'
+import React, { useContext } from 'react'
+import { GlobalStateContext } from '../../state/globalStateProvider'
+import { SearchValueSelectorType } from '../../state/moreTypes'
+
+const focusedDefinitionSelector: SearchValueSelectorType | undefined = state => {
+  return state.context.plugin.ontologySearch.focusedDefinition
+}
 
 export const SearchResultVisualization = () => {
-  const { state } = React.useContext(PluginContext)
-  const [visualization, setvisualization] = React.useState('')
-  React.useEffect(() => {
-    if (!state.hoveredDefinition) {
-      setvisualization('')
-      return
-    }
-    setvisualization(state.hoveredDefinition ?? '')
-    return () => {
-      setvisualization('')
-    }
-  }, [state.hoveredDefinition])
+  const globalServices = useContext(GlobalStateContext)
+  const focusedDefinition = useSelector(
+    globalServices.mainService,
+    focusedDefinitionSelector
+  )
+  const visualization = focusedDefinition;//TODO: add Icons
   return (
     <div className="search-result-visualization">
       <div className="search-result-visualization--inner">{visualization}</div>

@@ -5,7 +5,7 @@ export interface PluginState {
   tooltip: string
   searchValue: string | undefined
   confirmedRenameParts: string[]
-  hoveredDefinition: string | undefined
+  focusedDefinition: string | undefined
 }
 
 export enum PluginActionType {
@@ -45,7 +45,7 @@ export const initialState: PluginState = {
   tooltip: DEFAULT_TOOLTIP,
   searchValue: undefined,
   confirmedRenameParts: [],
-  hoveredDefinition: undefined,
+  focusedDefinition: undefined,
 }
 
 export const pluginReducer: (
@@ -99,7 +99,7 @@ export const pluginReducer: (
     case PluginActionType.UsrHoverDefinition:
       return {
         ...state,
-        hoveredDefinition: action.payload,
+        focusedDefinition: action.payload,
       }
     default:
       break

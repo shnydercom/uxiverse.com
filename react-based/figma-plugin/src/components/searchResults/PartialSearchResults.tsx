@@ -6,6 +6,7 @@ import { PluginActionType } from '../../browserlogic/state'
 import { SearchValueSelectorType } from '../../state/moreTypes'
 import { useSelector } from '@xstate/react'
 import { GlobalStateContext } from '../../state/globalStateProvider'
+import { HoverDefinitionEnterEvent, HoverUIElemEnterEvent } from '../../state/mainMachine'
 
 const ontologySearchValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.ontologySearch.searchValue
@@ -19,7 +20,7 @@ export const PartialSearchResults = () => {
     ontologySearchValueSelector
   )
 
-  const { state, dispatch } = React.useContext(PluginContext)
+  //const { state, dispatch } = React.useContext(PluginContext)
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   React.useEffect(() => {
     if (!ontologySearch) {
@@ -37,13 +38,20 @@ export const PartialSearchResults = () => {
   const onHoverSearchResult: MouseEventHandler<
     HTMLDivElement
   > = (event) => {
-    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id })
-    dispatch({
+    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id } as HoverUIElemEnterEvent)
+    send({ type: 'HOVER_DEFINITION_ENTER', focusedDefinition: event.currentTarget.innerText ?? '' } as HoverDefinitionEnterEvent)
+    /*dispatch({
       type: PluginActionType.UsrHoverDefinition,
       payload: event.currentTarget.innerText ?? '',
-    })
+    })*/
   }
 
+  const onElemHoverLeave: MouseEventHandler<
+    HTMLDivElement
+  > = (event) => {
+    send('HOVER_UI_ELEM_EXIT')
+    send('HOVER_DEFINITION_EXIT')
+  }
 
   return (
     <div className="partial-search-results">
@@ -53,7 +61,7 @@ export const PartialSearchResults = () => {
       >
         <div className="partial-search-results--inner">
           {searchResult.map(sr => (
-            <div className="found-term" onMouseEnter={onHoverSearchResult}>{sr}</div>
+            <div className="found-term" onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>{sr}</div>
           ))}
         </div>
       </OverlayScrollbarsComponent>

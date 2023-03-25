@@ -4,6 +4,7 @@ import { compIdToTooltip } from '../mappers/compIdToTooltip'
 import { getI18n } from './../i18n'
 import { HostAppElement, HostEventTypes } from './../communicationInterfaces'
 import { getRandomTip } from './initialValues'
+import { getSingleUxiDefinition } from '../browserlogic/search'
 
 const i18n = getI18n()
 
@@ -16,6 +17,11 @@ XState events
 export interface HoverUIElemEnterEvent {
   type: 'HOVER_UI_ELEM_ENTER'
   payload: HoverableElements
+}
+
+export interface HoverDefinitionEnterEvent {
+  type: 'HOVER_DEFINITION_ENTER'
+  focusedDefinition: string
 }
 
 export interface FocusSelectionEvent {
@@ -66,7 +72,7 @@ export interface HostAppElementSearchXSCtx {
 export interface OntologySearchXSCtx {
   searchValue: string | undefined
   confirmedRenameParts: string[]
-  hoveredDefinition: string | undefined
+  focusedDefinition: string | undefined
   fullText: string | undefined
 }
 
@@ -100,7 +106,7 @@ export const mainMachine =
         },
         ontologySearch: {
           confirmedRenameParts: [],
-          hoveredDefinition: '',
+          focusedDefinition: '',
           fullText: getRandomTip(),
           searchValue: '',
         },
@@ -115,6 +121,27 @@ export const mainMachine =
     type: 'parallel',
     id: 'main',
     states: {
+      ontologyState: {
+        initial: 'defaultDefinition',
+        states: {
+          defaultDefinition: {
+            on: {
+              HOVER_DEFINITION_ENTER: {
+                actions: 'showDefinition',
+                target: 'specificDefinition',
+              },
+            },
+          },
+          specificDefinition: {
+            on: {
+              HOVER_DEFINITION_EXIT: {
+                actions: 'resetDefinition',
+                target: 'defaultDefinition',
+              },
+            },
+          },
+        },
+      },
       tooltipState: {
         initial: 'defaultTooltip',
         states: {
@@ -337,6 +364,17 @@ export const mainMachine =
         const ctxCopy = { ...context }
         ctxCopy.plugin.tooltip = i18n.tooltipDefault
         assign<MainMachineXSCtx, HoverUIElemEnterEvent>(ctxCopy)
+      },
+      showDefinition: (context, event: HoverDefinitionEnterEvent) => {
+        const ctxCopy = { ...context }
+        ctxCopy.plugin.ontologySearch.focusedDefinition = event.focusedDefinition
+        ctxCopy.plugin.ontologySearch.fullText = getSingleUxiDefinition(event.focusedDefinition)
+        assign<MainMachineXSCtx, HoverDefinitionEnterEvent>(ctxCopy)
+      },
+      resetDefinition: (context, event: HoverDefinitionEnterEvent) => {
+        const ctxCopy = { ...context }
+        //ctxCopy.plugin.ontologySearch.focusedDefinition = ""
+        assign<MainMachineXSCtx, HoverDefinitionEnterEvent>(ctxCopy)
       },
       assignHostUserSelection: (context, event: HostAppSelectionEvent) => {
         const ctxCopy = { ...context }
