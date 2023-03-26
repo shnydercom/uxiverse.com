@@ -6,30 +6,30 @@ import { HoverDefinitionEnterEvent, HoverUIElemEnterEvent } from '../../browserl
 import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 
-const ontologySearchValueSelector: SearchValueSelectorType | undefined = state => {
-  return state.context.plugin.ontologySearch.searchValue
+const renameValueSelector: SearchValueSelectorType | undefined = state => {
+  return state.context.plugin.renameValue
 }
 
 export const PartialSearchResults = () => {
   const globalServices = useContext(GlobalStateContext)
   const { send } = globalServices.mainService
-  const ontologySearch = useSelector(
+  const renameValue = useSelector(
     globalServices.mainService,
-    ontologySearchValueSelector
+    renameValueSelector
   )
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   React.useEffect(() => {
-    if (!ontologySearch) {
+    if (!renameValue) {
       setSearchResult([])
       return
     }
-    const definitionNameResult = searchDefinitionNames(ontologySearch)
+    const definitionNameResult = searchDefinitionNames(renameValue)
     setSearchResult(definitionNameResult)
     return () => {
       setSearchResult([])
     }
-  }, [ontologySearch])
+  }, [renameValue])
 
 
   const onHoverSearchResult: MouseEventHandler<

@@ -1,5 +1,5 @@
 export const microCopy_EN = {
-  tooltipDefault: 'tooltips are here',
+  tooltipDefault: 'how-to',
   tooltipPrev: 'select previous',
   toooltipNext: 'select next',
   tooltipNewName: 'new name for the element',

@@ -70,7 +70,6 @@ export interface HostAppElementSearchXSCtx {
 }
 
 export interface OntologySearchXSCtx {
-  searchValue: string | undefined
   confirmedRenameParts: string[]
   focusedDefinition: string | undefined
   fullText: string | undefined
@@ -78,6 +77,7 @@ export interface OntologySearchXSCtx {
 
 export interface PluginXSCtx {
   tooltip: string
+  renameValue: string | undefined
   hostAppSearch: HostAppElementSearchXSCtx
   ontologySearch: OntologySearchXSCtx
 }
@@ -108,8 +108,8 @@ export const mainMachine =
           confirmedRenameParts: [],
           focusedDefinition: '',
           fullText: getRandomTip(),
-          searchValue: '',
         },
+        renameValue: '',
         tooltip: i18n.tooltipDefault,
       },
     },
@@ -405,13 +405,13 @@ export const mainMachine =
       },
       overwriteMultiPhrase: (context, event: CopyCompTxtToRenameEvent) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.ontologySearch.searchValue =
+        ctxCopy.plugin.renameValue =
           event.copiedText ?? undefined
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       editMultiPhrase: (context, event: PluginInputTypingEvent) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.ontologySearch.searchValue =
+        ctxCopy.plugin.renameValue =
           event.inputValue ?? undefined
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
