@@ -54,7 +54,10 @@ if (figma.editorType === 'figma') {
       figma.currentPage.selection = [msg.selectedNode as SceneNode];
       const nodeToBeChanged = figma.currentPage.selection[0]
       nodeToBeChanged.name = msg.newName;
-      nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", JSON.stringify(msg.pluginData))
+      if (msg.pluginData)
+        nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", "")
+      else
+        nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", JSON.stringify(msg.pluginData))
     }
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.

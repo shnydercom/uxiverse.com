@@ -18,7 +18,7 @@ export interface PluginRenameBridgeEvent {
 	type: PluginEventTypes;
 	selectedNode: HostAppElement;
 	newName: string;
-	pluginData: JSON;
+	pluginData: JSON | null;
 }
 
 export type PluginBridgeEvent = PluginSelectionChangedBridgeEvent | PluginRenameBridgeEvent;

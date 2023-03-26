@@ -10,7 +10,7 @@ import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
 import { FocusSelectorType, HostSelectorType, SearchValueSelectorType, StateMatchSelectorType } from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
-import { CopyCompTxtToRenameEvent, FocusSelectionEvent, PluginInputTypingEvent } from '../browserlogic/state/mainMachine'
+import { CopyCompTxtToRenameEvent, FocusSelectionEvent, PluginInputTypingEvent, PluginUnlinkedDataUpdateEvent } from '../browserlogic/state/mainMachine'
 
 const hostSelectionSelector: HostSelectorType = state => {
   return state.context.host.userSelection
@@ -109,7 +109,10 @@ export const FindAndReplace = () => {
       copiedText: componentSearchValue,
     } as CopyCompTxtToRenameEvent)
   }
-  const onConfirmReplaceClick = () => { }
+  const onConfirmReplaceClick = () => {
+
+    send({ type: "UPDATE_UNLINKED_DATA", } as PluginUnlinkedDataUpdateEvent)
+  }
   const onDeleteClick = () => { }
 
   //input fields
