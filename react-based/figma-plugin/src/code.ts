@@ -3,9 +3,10 @@ import {
   HostAppElementTypeEquivalents,
   HostEventTypes,
   HostSelectionChangedBridgeEvent,
-  PluginSelectionChangedBridgeEvent,
+  PluginBridgeEvent,
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
+import { isAPluginRenameBridgeEvent, isAPluginSelectionChangedBridgeEvent } from "./figmalogic/pluginBridgeTypeguards"
 // This file holds the main code for the plugin. It has access to the *document*.
 // You can access browser APIs such as the network by creating a UI which contains
 // a full browser environment (see documentation).
@@ -44,10 +45,16 @@ if (figma.editorType === 'figma') {
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
-  figma.ui.onmessage = (msg: PluginSelectionChangedBridgeEvent) => {
-    if (msg.type === "selection-by-plugin") {
+  figma.ui.onmessage = (msg: PluginBridgeEvent) => {
+    if (isAPluginSelectionChangedBridgeEvent(msg)) {
       figma.currentPage.selection = [msg.selectedNode as SceneNode];
       figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
+    }
+    if (isAPluginRenameBridgeEvent(msg)) {
+      figma.currentPage.selection = [msg.selectedNode as SceneNode];
+      const nodeToBeChanged = figma.currentPage.selection[0]
+      nodeToBeChanged.name = msg.newName;
+      nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", JSON.stringify(msg.pluginData))
     }
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.

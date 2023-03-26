@@ -1,5 +1,8 @@
 export enum HostEventTypes { selectionChanged = "selectionChanged" }
-export enum PluginEventTypes { selectionByPlugin = "selection-by-plugin" }
+export enum PluginEventTypes {
+	selectionByPlugin = "selection-by-plugin",
+	renameByPlugin = "rename-by-plugin"
+}
 
 export interface HostSelectionChangedBridgeEvent {
 	type: HostEventTypes;
@@ -10,6 +13,15 @@ export interface PluginSelectionChangedBridgeEvent {
 	type: PluginEventTypes;
 	selectedNode: HostAppElement
 }
+
+export interface PluginRenameBridgeEvent {
+	type: PluginEventTypes;
+	selectedNode: HostAppElement;
+	newName: string;
+	pluginData: JSON;
+}
+
+export type PluginBridgeEvent = PluginSelectionChangedBridgeEvent | PluginRenameBridgeEvent;
 
 /**
  * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list
