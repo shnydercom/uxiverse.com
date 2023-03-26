@@ -1,8 +1,14 @@
 export enum HostEventTypes { selectionChanged = "selectionChanged" }
+export enum PluginEventTypes { selectionByPlugin = "selection-by-plugin" }
 
-export interface PluginSelectionChanged {
+export interface HostSelectionChangedBridgeEvent {
 	type: HostEventTypes;
 	selection: HostAppElement[];
+}
+
+export interface PluginSelectionChangedBridgeEvent {
+	type: PluginEventTypes;
+	selectedNode: HostAppElement
 }
 
 /**

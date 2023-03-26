@@ -2,7 +2,7 @@ import { assign, createMachine } from 'xstate'
 import { HoverableElements } from '../../identifiable/HoverableElements'
 import { compIdToTooltip } from '../../mappers/compIdToTooltip'
 import { getI18n } from './../../i18n'
-import { HostAppElement, HostEventTypes } from './../../communicationInterfaces'
+import { HostAppElement, HostEventTypes, PluginEventTypes, PluginSelectionChangedBridgeEvent } from './../../communicationInterfaces'
 import { getRandomTip } from './initialValues'
 import { getSingleUxiDefinition } from '../search'
 
@@ -391,6 +391,17 @@ export const mainMachine =
           event.focusedElement?.name ?? undefined
         ctxCopy.plugin.hostAppSearch.isOptionsOpen = false;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
+        if (ctxCopy.host.selectionFocusedElement) {
+          // send to figma bridge
+          const bridgeEvent: PluginSelectionChangedBridgeEvent = {
+            selectedNode: ctxCopy.host.selectionFocusedElement,
+            type: PluginEventTypes.selectionByPlugin
+          }
+          parent.postMessage(
+            { pluginMessage: bridgeEvent },
+            '*'
+          )
+        }
       },
       overwriteMultiPhrase: (context, event: CopyCompTxtToRenameEvent) => {
         const ctxCopy = { ...context }

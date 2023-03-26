@@ -2,7 +2,8 @@ import {
   HostAppElement,
   HostAppElementTypeEquivalents,
   HostEventTypes,
-  PluginSelectionChanged,
+  HostSelectionChangedBridgeEvent,
+  PluginSelectionChangedBridgeEvent,
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
 // This file holds the main code for the plugin. It has access to the *document*.
@@ -20,7 +21,7 @@ if (figma.editorType === 'figma') {
   figma.on('selectionchange', () => {
     const { selection } = figma.currentPage;
     if (!selection.length) {
-      const selChangeObj: PluginSelectionChanged = {
+      const selChangeObj: HostSelectionChangedBridgeEvent = {
         type: HostEventTypes.selectionChanged,
         selection: [],
       }
@@ -33,7 +34,7 @@ if (figma.editorType === 'figma') {
       }
       return { id, name, type: "UNSUPPORTED" }
     })
-    const selChangeObj: PluginSelectionChanged = {
+    const selChangeObj: HostSelectionChangedBridgeEvent = {
       type: HostEventTypes.selectionChanged,
       selection: selectionAsHostAppelements,
     }
@@ -43,10 +44,14 @@ if (figma.editorType === 'figma') {
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
-  figma.ui.onmessage = msg => {
+  figma.ui.onmessage = (msg: PluginSelectionChangedBridgeEvent) => {
+    if (msg.type === "selection-by-plugin") {
+      figma.currentPage.selection = [msg.selectedNode as SceneNode];
+      figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
+    }
     // One way of distinguishing between different types of messages sent from
     // your HTML page is to use an object with a "type" property like this.
-    if (msg.type === 'create-shapes') {
+    /*if (msg.type === 'create-shapes') {
       const nodes: SceneNode[] = []
       for (let i = 0; i < msg.count; i++) {
         const rect = figma.createRectangle()
@@ -57,11 +62,11 @@ if (figma.editorType === 'figma') {
       }
       figma.currentPage.selection = nodes
       figma.viewport.scrollAndZoomIntoView(nodes)
-    }
+    }*/
 
     // Make sure to close the plugin when you're done. Otherwise the plugin will
     // keep running, which shows the cancel button at the bottom of the screen.
-    figma.closePlugin()
+    //figma.closePlugin()
   }
   // If the plugins isn't run in Figma, run this code
 } else {
