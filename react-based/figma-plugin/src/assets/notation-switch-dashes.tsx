@@ -9,8 +9,8 @@ export const NotationSwitchDashesIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M12 18H16" stroke="currentColor" />
-      <path d="M20 18H24" stroke="currentColor" />
+      <path d="M10 18H14" stroke="currentColor" />
+      <path d="M18 18H22" stroke="currentColor" />
     </svg>
   )
 }

@@ -1,9 +1,4 @@
-import React, {
-  MouseEventHandler,
-  useCallback,
-  useContext,
-  useState,
-} from 'react'
+import React, { MouseEventHandler, useContext, useState } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useSelector } from '@xstate/react'
@@ -20,12 +15,16 @@ import {
   CopyCompTxtToRenameEvent,
   FocusSelectionEvent,
   PluginInputTypingEvent,
+  PluginNotationToggleEvent,
   PluginUnlinkedDataUpdateEvent,
 } from '../browserlogic/state/mainMachine'
 import { RenameIcon } from '../assets/Rename'
 import { PostRenameIcon } from '../assets/post-rename-icon'
 import { PreRenameIcon } from '../assets/pre-rename-icon'
+import { NotationSwitchDashesIcon } from '../assets/notation-switch-dashes'
+import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
+import { AvailableNotations } from '../browserlogic/notation-handler'
 
 const i18n = getI18n()
 
@@ -42,6 +41,9 @@ const hostSearchValueSelector: SearchValueSelectorType | undefined = state => {
 
 const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
+}
+const notationIsDashedSelector: StateMatchSelectorType | undefined = state => {
+  return state.matches('NotationState.SpacedDashes')
 }
 
 const navArrowsDisabledSelector: StateMatchSelectorType = state => {
@@ -81,6 +83,10 @@ export const FindAndReplace = () => {
   const renameValue = useSelector(
     globalServices.mainService,
     renameValueSelector
+  )
+  const isNotationDashed = useSelector(
+    globalServices.mainService,
+    notationIsDashedSelector
   )
 
   const { send } = globalServices.mainService
@@ -130,6 +136,9 @@ export const FindAndReplace = () => {
     send({
       type: 'COPY_COMPTXT_TO_RENAMEREPLACE',
       copiedText: componentSearchValue,
+      targetNotation: isNotationDashed
+        ? AvailableNotations.SpacedDashes
+        : AvailableNotations.SpacedSlashes,
     } as CopyCompTxtToRenameEvent)
   }
   const onConfirmReplaceClick = () => {
@@ -140,7 +149,11 @@ export const FindAndReplace = () => {
 
   const onSearchChange = () => {}
 
-  const onNotationChange = () => {}
+  const onNotationChange = () => {
+    send({
+      type: 'CHANGE_NOTATION',
+    } as PluginNotationToggleEvent)
+  }
 
   const onReplaceChange = (
     value: string,
@@ -253,6 +266,13 @@ export const FindAndReplace = () => {
       />
       <Icon
         name="alert"
+        iconComponent={
+          !isNotationDashed ? (
+            <NotationSwitchDashesIcon />
+          ) : (
+            <NotationSwitchSlashesIcon />
+          )
+        }
         onClick={onNotationChange}
         iconButtonProps={{
           onMouseOver: onElemHover,
