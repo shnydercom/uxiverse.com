@@ -6,5 +6,6 @@ export enum HoverableElements {
   btnCompTxtToReplace = 'bnt-comptxt-to-replace',
   btnExecReplace = 'btn-exec-replace',
   btnClear = 'btn-clear',
-  foundTerm = 'found-term'
+  btnToggleNotation = 'btn-toggle-notation',
+  foundTerm = 'found-term',
 }

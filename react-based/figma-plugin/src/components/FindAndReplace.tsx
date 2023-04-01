@@ -135,11 +135,12 @@ export const FindAndReplace = () => {
   const onConfirmReplaceClick = () => {
     send({ type: 'UPDATE_UNLINKED_DATA' } as PluginUnlinkedDataUpdateEvent)
   }
-  const onDeleteClick = () => {}
 
   //input fields
 
   const onSearchChange = () => {}
+
+  const onNotationChange = () => {}
 
   const onReplaceChange = (
     value: string,
@@ -167,6 +168,8 @@ export const FindAndReplace = () => {
         break
       case HoverableElements.btnExecReplace:
         setIsExecReplaceIconHovered(true)
+        break
+      case HoverableElements.btnToggleNotation:
         break
       case HoverableElements.btnClear:
         break
@@ -249,12 +252,12 @@ export const FindAndReplace = () => {
         id={HoverableElements.inputChangeReplace}
       />
       <Icon
-        name="trash"
-        onClick={onDeleteClick}
+        name="alert"
+        onClick={onNotationChange}
         iconButtonProps={{
           onMouseOver: onElemHover,
           onMouseLeave: onElemHoverLeave,
-          id: HoverableElements.btnClear,
+          id: HoverableElements.btnToggleNotation,
         }}
       />
     </div>

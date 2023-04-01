@@ -1,18 +1,49 @@
-import { useSelector } from '@xstate/react';
-import React, { useContext } from 'react'
-import { SelectorType } from '../browserlogic/state/moreTypes';
-import { GlobalStateContext } from '../browserlogic/state/globalStateProvider';
+import { useSelector } from '@xstate/react'
+import React, { MouseEventHandler, useContext } from 'react'
+import { SelectorType } from '../browserlogic/state/moreTypes'
+import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
+import { Icon } from 'react-figma-plugin-ds'
+import { HoverableElements } from '../identifiable/HoverableElements'
 
-const loggedInSelector: SelectorType =
-  (state) => {
-    return state.context.plugin.tooltip;
-  };
-
-export interface TooltipBarProps {
+const loggedInSelector: SelectorType = state => {
+  return state.context.plugin.tooltip
 }
 
+export interface TooltipBarProps {}
+
 export function TooltipBar(props: TooltipBarProps) {
-  const globalServices = useContext(GlobalStateContext);
-  const tooltipText = useSelector(globalServices.mainService, loggedInSelector);
-  return <div className="tooltip-bar">{tooltipText ?? " "}</div>
+  const globalServices = useContext(GlobalStateContext)
+  const tooltipText = useSelector(globalServices.mainService, loggedInSelector)
+  const { send } = globalServices.mainService
+  const onDeleteClick = () => {}
+  const onElemHover: MouseEventHandler<
+    HTMLButtonElement | HTMLInputElement
+  > = event => {
+    switch (event.currentTarget.id) {
+      case HoverableElements.btnClear:
+        break
+      default:
+        return // function returns on any other DOM element id
+    }
+    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id })
+  }
+  const onElemHoverLeave: MouseEventHandler<
+    HTMLButtonElement | HTMLInputElement
+  > = event => {
+    send('HOVER_UI_ELEM_EXIT')
+  }
+  return (
+    <div className="tooltip-bar">
+      <span>{tooltipText ?? ' '}</span>
+      <Icon
+        name="trash"
+        onClick={onDeleteClick}
+        iconButtonProps={{
+          onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
+          id: HoverableElements.btnClear,
+        }}
+      />
+    </div>
+  )
 }

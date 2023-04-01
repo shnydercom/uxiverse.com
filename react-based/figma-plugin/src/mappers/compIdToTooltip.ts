@@ -1,7 +1,7 @@
-import { getI18n } from "../i18n";
-import { HoverableElements } from "../identifiable/HoverableElements";
+import { getI18n } from '../i18n'
+import { HoverableElements } from '../identifiable/HoverableElements'
 
-const i18n = getI18n();
+const i18n = getI18n()
 
 const mappingMap: Map<HoverableElements, string> = new Map([
   [HoverableElements.btnPrevComponent, i18n.tooltipPrev],
@@ -11,12 +11,13 @@ const mappingMap: Map<HoverableElements, string> = new Map([
   [HoverableElements.btnCompTxtToReplace, i18n.tooltipAppendOrigName],
   [HoverableElements.btnExecReplace, i18n.tooltipReplaceInCanvas],
   [HoverableElements.btnClear, i18n.tooltipClearName],
+  [HoverableElements.btnToggleNotation, i18n.tooltipChangeNotation],
 ])
 
 export function compIdToTooltip(compId: HoverableElements): string {
-   let rv = mappingMap.get(compId);
-   if(!rv){
-    rv = i18n.tooltipDefault;
-   }
-   return rv;
+  let rv = mappingMap.get(compId)
+  if (!rv) {
+    rv = i18n.tooltipDefault
+  }
+  return rv
 }

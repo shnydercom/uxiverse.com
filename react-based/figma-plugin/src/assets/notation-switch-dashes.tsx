@@ -3,14 +3,14 @@ import React from 'react'
 export const NotationSwitchDashesIcon = () => {
   return (
     <svg
-      width="24"
-      height="28"
-      viewBox="0 0 24 28"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M6 14L10 14" stroke="currentColor" />
-      <path d="M14 14H18" stroke="currentColor" />
+      <path d="M12 18H16" stroke="currentColor" />
+      <path d="M20 18H24" stroke="currentColor" />
     </svg>
   )
 }

@@ -6,11 +6,16 @@ export const microCopy_EN = {
   tooltipSearchInCanvasByName: 'search in canvas by name',
   tooltipAppendOrigName: 'append original name',
   tooltipReplaceInCanvas: 'replace name in canvas',
-  tooltipClearName: 'clear new name',
+  tooltipClearName: 'clear name and selection',
+  tooltipChangeNotation: 'switch - from - dashes / to / slashes',
   figmaTip001:
     'TIP: use "⌘ + ⏎" to select all child-layers of your current selection (AltGr + ⏎ on Windows)',
   figmaTip002:
     'TIP: use "Shift + ⏎ to select the parents of all selected layers" ',
   findAndSelect: 'Find and select',
   prepareNewName: 'Prepare new name',
+  emptyOntologyIntro:
+    "Start typing in the lower input field, and you'll get recommendations:",
+  emptyClassOntology: 'Classes will appear on the left',
+  emptyPropertiesOntology: 'Properties on the right',
 }

@@ -131,6 +131,7 @@ body {
   padding: 2px;
   font-size: 12px;
   background: #f3f3f3;
+  position: relative;
 }
 
 .hostcomp-list-scrollcontainer {
@@ -259,4 +260,39 @@ button[disabled]:focus {
 
 .input .icon {
   opacity: 1;
+}
+
+.empty-ontology {
+  margin: 11 20px;
+}
+.empty-ontology > p {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #c4c4c4;
+  text-align: justify;
+}
+.empty-ontology .left-aligned {
+  margin-top: 12px;
+  text-align: start;
+}
+
+.empty-ontology .right-aligned {
+  text-align: end;
+}
+
+.tooltip-bar .icon-button,
+.tooltip-bar .icon-button .icon {
+  height: 18px;
+  width: 18px;
+}
+
+.tooltip-bar .icon-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.tooltip-bar .icon-button .icon {
+  background-position: -9px -8px;
 }

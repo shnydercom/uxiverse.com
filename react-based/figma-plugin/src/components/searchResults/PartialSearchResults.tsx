@@ -2,9 +2,13 @@ import React, { MouseEventHandler, useContext } from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/search'
 import { useSelector } from '@xstate/react'
-import { HoverDefinitionEnterEvent, HoverUIElemEnterEvent } from '../../browserlogic/state/mainMachine'
+import {
+  HoverDefinitionEnterEvent,
+  HoverUIElemEnterEvent,
+} from '../../browserlogic/state/mainMachine'
 import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
+import { OntologyEmptyState } from './OntologyEmptyState'
 
 const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
@@ -31,33 +35,44 @@ export const PartialSearchResults = () => {
     }
   }, [renameValue])
 
-
-  const onHoverSearchResult: MouseEventHandler<
-    HTMLDivElement
-  > = (event) => {
-    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id } as HoverUIElemEnterEvent)
-    send({ type: 'HOVER_DEFINITION_ENTER', focusedDefinition: event.currentTarget.innerText ?? '' } as HoverDefinitionEnterEvent)
+  const onHoverSearchResult: MouseEventHandler<HTMLDivElement> = event => {
+    send({
+      type: 'HOVER_UI_ELEM_ENTER',
+      payload: event.currentTarget.id,
+    } as HoverUIElemEnterEvent)
+    send({
+      type: 'HOVER_DEFINITION_ENTER',
+      focusedDefinition: event.currentTarget.innerText ?? '',
+    } as HoverDefinitionEnterEvent)
   }
 
-  const onElemHoverLeave: MouseEventHandler<
-    HTMLDivElement
-  > = (event) => {
+  const onElemHoverLeave: MouseEventHandler<HTMLDivElement> = event => {
     send('HOVER_UI_ELEM_EXIT')
     send('HOVER_DEFINITION_EXIT')
   }
 
   return (
     <div className="partial-search-results">
-      <OverlayScrollbarsComponent
-        style={{ flex: 1 }}
-        options={{ scrollbars: { autoHide: 'never' } }}
-      >
-        <div className="partial-search-results--inner">
-          {searchResult.map(sr => (
-            <div className="found-term" onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>{sr}</div>
-          ))}
-        </div>
-      </OverlayScrollbarsComponent>
+      {!renameValue ? (
+        <OntologyEmptyState />
+      ) : (
+        <OverlayScrollbarsComponent
+          style={{ flex: 1 }}
+          options={{ scrollbars: { autoHide: 'never' } }}
+        >
+          <div className="partial-search-results--inner">
+            {searchResult.map(sr => (
+              <div
+                className="found-term"
+                onMouseEnter={onHoverSearchResult}
+                onMouseLeave={onElemHoverLeave}
+              >
+                {sr}
+              </div>
+            ))}
+          </div>
+        </OverlayScrollbarsComponent>
+      )}
     </div>
   )
 }
