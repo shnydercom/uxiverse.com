@@ -35,19 +35,19 @@ body {
   grid-row-gap: 0px;
 }
 
-.find-and-replace :nth-child(1) {
+.find-and-replace > :nth-child(1) {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.find-and-replace :nth-child(2) {
+.find-and-replace > :nth-child(2) {
   grid-area: 1 / 2 / 2 / 3;
 }
 
-.find-and-replace :nth-child(3) {
+.find-and-replace > :nth-child(3) {
   grid-area: 1 / 3 / 2 / 4;
 }
 
-.find-and-replace :nth-child(4) {
+.find-and-replace > :nth-child(4) {
   grid-area: 2 / 2 / 3 / 3;
 
   height: 12px;
@@ -223,7 +223,7 @@ body {
   background-color: var(--color-bg-hover, #e5e5e5);
 }
 
-.auto-complete #input-comp-name:hover+.select-chevron {
+.auto-complete #input-comp-name:hover + .select-chevron {
   display: flex;
   border-left: 1px solid rgb(245, 245, 245);
 
@@ -240,7 +240,7 @@ body {
 }
 
 .auto-complete .select-chevron:active,
-.auto-complete #input-comp-name:focus+.select-chevron {
+.auto-complete #input-comp-name:focus + .select-chevron {
   border-color: var(--blue);
   background-color: var(--blue);
   fill: white;

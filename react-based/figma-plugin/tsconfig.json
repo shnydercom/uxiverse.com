@@ -5,9 +5,11 @@
     "module": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": false,
+    "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["src/code.ts"]
+  "include": [
+    "src/code.ts"
+  ]
 }

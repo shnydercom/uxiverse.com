@@ -2,15 +2,32 @@ import React, {
   MouseEventHandler,
   useCallback,
   useContext,
+  useState,
 } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useSelector } from '@xstate/react'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
-import { FocusSelectorType, HostSelectorType, SearchValueSelectorType, StateMatchSelectorType } from '../browserlogic/state/moreTypes'
+import {
+  FocusSelectorType,
+  HostSelectorType,
+  SearchValueSelectorType,
+  StateMatchSelectorType,
+} from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
-import { CopyCompTxtToRenameEvent, FocusSelectionEvent, PluginInputTypingEvent, PluginUnlinkedDataUpdateEvent } from '../browserlogic/state/mainMachine'
+import {
+  CopyCompTxtToRenameEvent,
+  FocusSelectionEvent,
+  PluginInputTypingEvent,
+  PluginUnlinkedDataUpdateEvent,
+} from '../browserlogic/state/mainMachine'
+import { RenameIcon } from '../assets/Rename'
+import { PostRenameIcon } from '../assets/post-rename-icon'
+import { PreRenameIcon } from '../assets/pre-rename-icon'
+import { getI18n } from '../i18n'
+
+const i18n = getI18n()
 
 const hostSelectionSelector: HostSelectorType = state => {
   return state.context.host.userSelection
@@ -23,12 +40,9 @@ const hostSearchValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.hostAppSearch.searchValue
 }
 
-const renameValueSelector:
-  | SearchValueSelectorType
-  | undefined = state => {
-    return state.context.plugin.renameValue
-  }
-
+const renameValueSelector: SearchValueSelectorType | undefined = state => {
+  return state.context.plugin.renameValue
+}
 
 const navArrowsDisabledSelector: StateMatchSelectorType = state => {
   if (
@@ -71,6 +85,15 @@ export const FindAndReplace = () => {
 
   const { send } = globalServices.mainService
 
+  const [isExecReplaceIconHovered, setIsExecReplaceIconHovered] = useState<
+    boolean
+  >(false)
+  const execReplaceIcon = isExecReplaceIconHovered ? (
+    <PostRenameIcon />
+  ) : (
+    <PreRenameIcon />
+  )
+
   const onListEntryClick = (focusedElement: HostAppElement) => {
     send({ type: 'SELECT_FOCUS', focusedElement } as FocusSelectionEvent)
   }
@@ -110,41 +133,55 @@ export const FindAndReplace = () => {
     } as CopyCompTxtToRenameEvent)
   }
   const onConfirmReplaceClick = () => {
-
-    send({ type: "UPDATE_UNLINKED_DATA", } as PluginUnlinkedDataUpdateEvent)
+    send({ type: 'UPDATE_UNLINKED_DATA' } as PluginUnlinkedDataUpdateEvent)
   }
-  const onDeleteClick = () => { }
+  const onDeleteClick = () => {}
 
   //input fields
 
-  const onSearchChange = () => { }
+  const onSearchChange = () => {}
 
   const onReplaceChange = (
     value: string,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    send({ type: 'EDIT_PHRASES', inputValue: event.currentTarget.value } as PluginInputTypingEvent)
+    send({
+      type: 'EDIT_PHRASES',
+      inputValue: event.currentTarget.value,
+    } as PluginInputTypingEvent)
   }
+
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
-  > = (event) => {
+  > = event => {
     switch (event.currentTarget.id) {
       case HoverableElements.btnPrevComponent:
-      case HoverableElements.btnNextComponent:
-      case HoverableElements.inputChangeReplace:
-      case HoverableElements.inputCompName:
-      case HoverableElements.btnCompTxtToReplace:
-      case HoverableElements.btnExecReplace:
-      case HoverableElements.btnClear:
-        send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id })
-      default:
         break
+      case HoverableElements.btnNextComponent:
+        break
+      case HoverableElements.inputChangeReplace:
+        break
+      case HoverableElements.inputCompName:
+        break
+      case HoverableElements.btnCompTxtToReplace:
+        break
+      case HoverableElements.btnExecReplace:
+        setIsExecReplaceIconHovered(true)
+        break
+      case HoverableElements.btnClear:
+        break
+      default:
+        return // function returns on any other DOM element id
     }
+    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id })
   }
 
   const onElemHoverLeave: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
-  > = (event) => {
+  > = event => {
+    if (isExecReplaceIconHovered) {
+      setIsExecReplaceIconHovered(false)
+    }
     send('HOVER_UI_ELEM_EXIT')
   }
   return (
@@ -160,7 +197,7 @@ export const FindAndReplace = () => {
         }}
       />
       <CompAutocomplete
-        placeholder="Find and select"
+        placeholder={i18n.findAndSelect}
         onChange={onSearchChange}
         onMouseOver={onElemHover}
         onMouseLeave={onElemHoverLeave}
@@ -193,6 +230,7 @@ export const FindAndReplace = () => {
 
       <Icon
         name="play"
+        iconComponent={execReplaceIcon}
         onClick={onConfirmReplaceClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
@@ -201,9 +239,10 @@ export const FindAndReplace = () => {
         }}
       />
       <Input
-        placeholder="Rename"
+        placeholder={i18n.prepareNewName}
         onChange={onReplaceChange}
         icon="swap"
+        iconComponent={<RenameIcon />}
         onMouseOver={onElemHover}
         onMouseLeave={onElemHoverLeave}
         value={renameValue}
