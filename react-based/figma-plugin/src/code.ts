@@ -6,76 +6,73 @@ import {
   PluginBridgeEvent,
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
-import { isAPluginRenameBridgeEvent, isAPluginSelectionChangedBridgeEvent } from "./figmalogic/pluginBridgeTypeguards"
-// This file holds the main code for the plugin. It has access to the *document*.
-// You can access browser APIs such as the network by creating a UI which contains
-// a full browser environment (see documentation).
+import {
+  isAPluginRenameBridgeEvent,
+  isAPluginSelectionChangedBridgeEvent,
+} from './figmalogic/pluginBridgeTypeguards'
+
+const forwardFigmaSelectionToPlugin = (
+  isSelectionUnavailable: boolean
+) => () => {
+  const { selection } = figma.currentPage
+  if (!selection.length) {
+    const selChangeObj: HostSelectionChangedBridgeEvent = {
+      type: HostEventTypes.selectionChanged,
+      selection: [],
+      isSelectionUnavailable,
+    }
+    figma.ui.postMessage(selChangeObj)
+    return
+  }
+  const selectionAsHostAppelements: HostAppElement[] = selection.map(
+    ({ id, name, type }) => {
+      if (TypeEquivalentsKeys.some(val => type === val)) {
+        return { id, name, type: type as HostAppElementTypeEquivalents }
+      }
+      return { id, name, type: 'UNSUPPORTED' }
+    }
+  )
+  const selChangeObj: HostSelectionChangedBridgeEvent = {
+    type: HostEventTypes.selectionChanged,
+    selection: selectionAsHostAppelements,
+    isSelectionUnavailable,
+  }
+  figma.ui.postMessage(selChangeObj)
+}
 
 // Runs this code if the plugin is run in Figma
 if (figma.editorType === 'figma') {
-  // This plugin will open a window to prompt the user to enter a number, and
-  // it will then create that many rectangles on the screen.
-
   // This shows the HTML page in "ui.html".
   figma.showUI(__html__, { width: 256, height: 336 })
 
-  figma.on('selectionchange', () => {
-    const { selection } = figma.currentPage;
-    if (!selection.length) {
-      const selChangeObj: HostSelectionChangedBridgeEvent = {
-        type: HostEventTypes.selectionChanged,
-        selection: [],
-      }
-      figma.ui.postMessage(selChangeObj)
-      return;
-    }
-    const selectionAsHostAppelements: HostAppElement[] = selection.map(({ id, name, type, }) => {
-      if (TypeEquivalentsKeys.some((val) => type === val)) {
-        return { id, name, type: type as HostAppElementTypeEquivalents, }
-      }
-      return { id, name, type: "UNSUPPORTED" }
-    })
-    const selChangeObj: HostSelectionChangedBridgeEvent = {
-      type: HostEventTypes.selectionChanged,
-      selection: selectionAsHostAppelements,
-    }
-    figma.ui.postMessage(selChangeObj)
-  })
+  // use case: user has started plugin with a selection in the figma file
+  forwardFigmaSelectionToPlugin(false)()
+  // use case: user changes selection in figma file after plugin has been started
+  figma.on('selectionchange', forwardFigmaSelectionToPlugin(false))
+  figma.on('currentpagechange', forwardFigmaSelectionToPlugin(true))
 
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
-      figma.currentPage.selection = [msg.selectedNode as SceneNode];
+      figma.currentPage.selection = [msg.selectedNode as SceneNode]
       figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
     }
     if (isAPluginRenameBridgeEvent(msg)) {
-      figma.currentPage.selection = [msg.selectedNode as SceneNode];
+      figma.currentPage.selection = [msg.selectedNode as SceneNode]
       const nodeToBeChanged = figma.currentPage.selection[0]
-      nodeToBeChanged.name = msg.newName;
+      nodeToBeChanged.name = msg.newName
       if (msg.pluginData)
-        nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", "")
+        nodeToBeChanged.setSharedPluginData('uxiverse', 'linkedData', '')
       else
-        nodeToBeChanged.setSharedPluginData("uxiverse", "linkedData", JSON.stringify(msg.pluginData))
+        nodeToBeChanged.setSharedPluginData(
+          'uxiverse',
+          'linkedData',
+          JSON.stringify(msg.pluginData)
+        )
     }
-    // One way of distinguishing between different types of messages sent from
-    // your HTML page is to use an object with a "type" property like this.
-    /*if (msg.type === 'create-shapes') {
-      const nodes: SceneNode[] = []
-      for (let i = 0; i < msg.count; i++) {
-        const rect = figma.createRectangle()
-        rect.x = i * 150
-        rect.fills = [{ type: 'SOLID', color: { r: 1, g: 0.5, b: 0 } }]
-        figma.currentPage.appendChild(rect)
-        nodes.push(rect)
-      }
-      figma.currentPage.selection = nodes
-      figma.viewport.scrollAndZoomIntoView(nodes)
-    }*/
-
-    // Make sure to close the plugin when you're done. Otherwise the plugin will
-    // keep running, which shows the cancel button at the bottom of the screen.
+    // anti-use case: plugin should be closed manually
     //figma.closePlugin()
   }
   // If the plugins isn't run in Figma, run this code
