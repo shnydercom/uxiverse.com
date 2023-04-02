@@ -43,7 +43,7 @@ const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
 }
 const notationIsDashedSelector: StateMatchSelectorType | undefined = state => {
-  return state.matches('NotationState.SpacedDashes')
+  return state.matches('notation.spacedDashes')
 }
 
 const navArrowsDisabledSelector: StateMatchSelectorType = state => {
@@ -72,6 +72,7 @@ export const FindAndReplace = () => {
     globalServices.mainService,
     selectionFocusedSelector
   )
+  console.log(selectionFocus)
   const componentSearchValue = useSelector(
     globalServices.mainService,
     hostSearchValueSelector
