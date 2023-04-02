@@ -48,13 +48,13 @@ const notationIsDashedSelector: StateMatchSelectorType | undefined = state => {
 
 const navArrowsDisabledSelector: StateMatchSelectorType = state => {
   if (
-    state.matches('hostSelectionState.rawSingleSelection') ||
-    state.matches('hostSelectionState.noSelection')
+    state.matches('hostSelection.singleRaw') ||
+    state.matches('hostSelection.empty')
   ) {
     return true
   }
   if (
-    state.matches('hostSelectionState.rawMultiSelection') &&
+    state.matches('hostSelection.multi.raw') &&
     state.context.host.selectionFocusedElement
   ) {
     return true
