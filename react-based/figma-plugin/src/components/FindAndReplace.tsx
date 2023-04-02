@@ -147,7 +147,7 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => {}
+  const onSearchChange = () => { }
 
   const onNotationChange = () => {
     send({

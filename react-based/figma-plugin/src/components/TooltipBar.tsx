@@ -9,13 +9,15 @@ const loggedInSelector: SelectorType = state => {
   return state.context.plugin.tooltip
 }
 
-export interface TooltipBarProps {}
+export interface TooltipBarProps { }
 
 export function TooltipBar(props: TooltipBarProps) {
   const globalServices = useContext(GlobalStateContext)
   const tooltipText = useSelector(globalServices.mainService, loggedInSelector)
   const { send } = globalServices.mainService
-  const onDeleteClick = () => {}
+  const onDeleteClick = () => {
+    send({ type: "TRIGGER_TRASH" })
+  }
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
   > = event => {
