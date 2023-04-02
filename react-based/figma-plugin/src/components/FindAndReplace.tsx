@@ -106,7 +106,7 @@ export const FindAndReplace = () => {
 
   const onPreviousClick = () => {
     let currentSelectionIndex = hostSelection.findIndex(
-      val => val === selectionFocus
+      val => val.id === selectionFocus?.id
     )
     currentSelectionIndex =
       currentSelectionIndex <= 0
@@ -120,16 +120,16 @@ export const FindAndReplace = () => {
   }
   const onNextClick = () => {
     let currentSelectionIndex = hostSelection.findIndex(
-      val => val === selectionFocus
+      val => val.id === selectionFocus?.id
     )
     currentSelectionIndex =
       currentSelectionIndex >= hostSelection.length - 1
         ? 0
         : currentSelectionIndex + 1
-    const previousElement: HostAppElement = hostSelection[currentSelectionIndex]
+    const nextElement: HostAppElement = hostSelection[currentSelectionIndex]
     send({
       type: 'SELECT_FOCUS',
-      focusedElement: previousElement,
+      focusedElement: nextElement,
     } as FocusSelectionEvent)
   }
   const onOverwriteReplaceClick = () => {
