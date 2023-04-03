@@ -7,6 +7,7 @@ import {
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
 import {
+  isAPluginDeselectionBridgeEvent,
   isAPluginRenameBridgeEvent,
   isAPluginSelectionChangedBridgeEvent,
 } from './figmalogic/pluginBridgeTypeguards'
@@ -58,6 +59,9 @@ if (figma.editorType === 'figma') {
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
       figma.currentPage.selection = [msg.selectedNode as SceneNode]
       figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
+    }
+    if (isAPluginDeselectionBridgeEvent(msg)) {
+      figma.currentPage.selection = []
     }
     if (isAPluginRenameBridgeEvent(msg)) {
       figma.currentPage.selection = [msg.selectedNode as SceneNode]

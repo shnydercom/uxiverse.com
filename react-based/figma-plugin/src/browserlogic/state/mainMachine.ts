@@ -6,6 +6,7 @@ import {
   HostAppElement,
   HostEventTypes,
   HostSelectionChangedBridgeEvent,
+  PluginDeselectionBridgeEvent,
   PluginEventTypes,
   PluginRenameBridgeEvent,
   PluginSelectionChangedBridgeEvent,
@@ -546,6 +547,11 @@ export const mainMachine =
       },
       assignTrashReset: assign(context => {
         const ctxCopy: Partial<MainMachineXSCtx> = { ...getInitialXStateContextCopy() }
+        // send to figma bridge
+        const bridgeEvent: PluginDeselectionBridgeEvent = {
+          type: PluginEventTypes.deselectByPlugin,
+        }
+        parent.postMessage({ pluginMessage: bridgeEvent }, '*')
         return ctxCopy
       }),
       toggleHostOptionsVisibility: assign(context => {

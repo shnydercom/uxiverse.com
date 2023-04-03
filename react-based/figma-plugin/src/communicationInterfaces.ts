@@ -2,6 +2,7 @@ export enum HostEventTypes {
   selectionChanged = 'selectionChanged',
 }
 export enum PluginEventTypes {
+  deselectByPlugin = "deselect-by-plugin",
   selectionByPlugin = 'selection-by-plugin',
   renameByPlugin = 'rename-by-plugin',
 }
@@ -16,12 +17,16 @@ export interface HostSelectionChangedBridgeEvent {
 }
 
 export interface PluginSelectionChangedBridgeEvent {
-  type: PluginEventTypes
+  type: PluginEventTypes.selectionByPlugin
   selectedNode: HostAppElement
 }
 
+export interface PluginDeselectionBridgeEvent {
+  type: PluginEventTypes.deselectByPlugin
+}
+
 export interface PluginRenameBridgeEvent {
-  type: PluginEventTypes
+  type: PluginEventTypes.renameByPlugin
   selectedNode: HostAppElement
   newName: string
   pluginData: JSON | null
@@ -29,6 +34,7 @@ export interface PluginRenameBridgeEvent {
 
 export type PluginBridgeEvent =
   | PluginSelectionChangedBridgeEvent
+  | PluginDeselectionBridgeEvent
   | PluginRenameBridgeEvent
 
 /**
