@@ -10,7 +10,7 @@ import {
   PluginRenameBridgeEvent,
   PluginSelectionChangedBridgeEvent,
 } from './../../communicationInterfaces'
-import { getRandomTip, getInitialXStateContextCopy } from './initialValues'
+import { getInitialXStateContextCopy } from './initialValues'
 import { getSingleUxiDefinition } from '../search'
 import { AvailableNotations, handleNotation } from '../notation-handler'
 
@@ -544,18 +544,19 @@ export const mainMachine =
           parent.postMessage({ pluginMessage: bridgeEvent }, '*')
         }
       },
-      assignTrashReset: context => {
-        const ctxCopy = getInitialXStateContextCopy()
-        console.log("assigning trash reset")
-        assign<MainMachineXSCtx>(ctxCopy)
-      },
-      toggleHostOptionsVisibility: context => {
+      assignTrashReset: assign(context => {
+        const ctxCopy: Partial<MainMachineXSCtx> = { ...getInitialXStateContextCopy() }
+        return ctxCopy
+      }),
+      toggleHostOptionsVisibility: assign(context => {
         const ctxCopy = { ...context }
         ctxCopy.plugin.hostAppSearch.isOptionsOpen = !ctxCopy.plugin
           .hostAppSearch.isOptionsOpen
-        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
-      },
-      clearHostFocus: context => {
+        return ctxCopy
+      }
+      )
+      ,
+      clearHostFocus: assign(context => {
         const ctxCopy = {
           ...context,
         }
@@ -563,7 +564,8 @@ export const mainMachine =
         ctxCopy.host.selectionFocusedElement = undefined
         ctxCopy.plugin.hostAppSearch.searchValue = undefined
         ctxCopy.host.userSelection
-      },
+        return ctxCopy
+      }),
     },
     guards: {
       hasMultiSelection: (context, event) => {
