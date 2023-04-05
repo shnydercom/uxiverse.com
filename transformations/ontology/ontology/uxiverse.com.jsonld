@@ -347,9 +347,6 @@
 			"subPropertyOf": [
 				{
 					"@id": "rdf:Property"
-				},
-				{
-					"@id": "uxi:Element"
 				}
 			],
 			"comment": "A visual form of expressing relations of UI elements to each other. E.g. color, italic, underlined, background, highlight",
@@ -484,9 +481,6 @@
 			"subPropertyOf": [
 				{
 					"@id": "rdf:Property"
-				},
-				{
-					"@id": "uxi:Element"
 				}
 			],
 			"comment": "Issue severety expresses the way to order elements towards the user's attention. It summarizes properties of priority and importance. Can be used to communicate errors and warnings",
@@ -3247,7 +3241,9 @@
 			],
 			"comment": "The input trigger validator can be used with side-effect handlers, so that they only trigger when the input is valid.",
 			"label": "input trigger validator",
-			"inTagList":["uxi:Developer-Tag"]
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
 		},
 		{
 			"@id": "uxi:input",
@@ -3270,7 +3266,9 @@
 			],
 			"comment": "Input is the value/parameter/prop that gets passed to an element in the UX, and can be empty. This applies to visual as well as non-visual elements.",
 			"label": "input value",
-			"inTagList":["uxi:Developer-Tag"]
+			"inTagList": [
+				"uxi:Developer-Tag"
+			]
 		},
 		{
 			"@id": "uxi:output",
