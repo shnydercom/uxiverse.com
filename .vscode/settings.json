@@ -1,3 +1,7 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "jest.jestCommandLine": "yarn test",
+    "jest.nodeEnv": {
+        "NODE_OPTIONS": "--experimental-modules"
+    }
 }

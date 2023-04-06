@@ -14,6 +14,7 @@
     "@types/node": "^18.15.11",
     "@uxiverse.com/ontology": "*",
     "jsonld": "^8.1.1",
+    "jsonld-lint": "^0.3.0",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.3"
