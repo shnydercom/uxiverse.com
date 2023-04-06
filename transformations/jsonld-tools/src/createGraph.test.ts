@@ -1,7 +1,6 @@
+import { JsonLdProcessor } from 'jsonld';
 import { createGraph } from './createGraph';
 import * as  uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
-import JsonLdProcessor from 'jsonld';
-import { process, } from "jsonld-lint"
 
 describe('given empty input object', () => {
     test('then should return empty output object', async () => {
@@ -38,9 +37,11 @@ describe('given flattened json-ld including blank nodes and no language specific
 // nodes with "http://..." should have a place
 // nodes with a namespace like "uxi:..." should have a place
 
-describe('given flattened uxiverse json-ld without blank nodes and no language specifics', () => {
-    test('takes an empty POJO and returns an empty POJO', async () => {
-        expect(createGraph({})).toStrictEqual({});
+describe('given flattened uxiverse json-ld without blank nodes and no language specifics, no context supplied', () => {
+    test('should contain only IRIs', async () => {
+        const uxiverseFlattened = await JsonLdProcessor.flatten(uxiverseOntologyJSONLDfile as any, {})
+        const runtimeGraph = createGraph(uxiverseFlattened)
+        expect(runtimeGraph).toStrictEqual({});
     });
 });
 
