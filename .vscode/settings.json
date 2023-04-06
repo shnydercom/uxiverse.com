@@ -1,7 +1,8 @@
 {
     "editor.formatOnSave": true,
-    "jest.jestCommandLine": "yarn test",
+    "jest.jestCommandLine": "yarn jestplugin",
     "jest.nodeEnv": {
-        "NODE_OPTIONS": "--experimental-modules"
-    }
+        "NODE_OPTIONS": "--experimental-vm-modules"
+    },
+    "jestrunner.jestCommand": "yarn test"
 }

@@ -19,6 +19,7 @@
     "ts-jest": "^29.0.5"
   },
   "scripts": {
+    "jestplugin": "jest",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "story": "lerna run storybook --stream",
     "libbuild": "lerna run libbuild --stream",

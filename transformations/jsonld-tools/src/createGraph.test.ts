@@ -1,7 +1,7 @@
 import { createGraph } from './createGraph';
 import * as  uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
 import JsonLdProcessor from 'jsonld';
-import { process } from "jsonld-lint"
+import { process, } from "jsonld-lint"
 
 describe('given empty input object', () => {
     test('then should return empty output object', async () => {
@@ -23,6 +23,7 @@ describe('given flattened json-ld including blank nodes and no language specific
 // should be able to handle json-ld keywords
 // should be able to handle "@id"
 // should be able to handle "@type"
+// should be able to handle "@value"
 
 // should create a runtime-graph
 // should create a class list
@@ -39,10 +40,6 @@ describe('given flattened json-ld including blank nodes and no language specific
 
 describe('given flattened uxiverse json-ld without blank nodes and no language specifics', () => {
     test('takes an empty POJO and returns an empty POJO', async () => {
-
-        const getProcessedUxiverse = await process(JSON.stringify(uxiverseOntologyJSONLDfile))
-        const getUxiverseFlattened = () => JsonLdProcessor.flatten(uxiverseOntologyJSONLDfile as any)
-        const flattenedLD = await getUxiverseFlattened()
         expect(createGraph({})).toStrictEqual({});
     });
 });
