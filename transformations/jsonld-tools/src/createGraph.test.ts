@@ -39,10 +39,12 @@ describe('given flattened json-ld including blank nodes and no language specific
 
 describe('given flattened uxiverse json-ld without blank nodes and no language specifics, no context supplied', () => {
     test('should contain only IRIs', async () => {
+        console.time("flatten graph")
         const uxiverseFlattened = await JsonLdProcessor.flatten(uxiverseOntologyJSONLDfile as any, {})
-        console.time();
+        console.timeEnd("flatten graph")
+        console.time("createGraph");
         const runtimeGraph = createGraph(uxiverseFlattened)
-        console.timeEnd();
+        console.timeEnd("createGraph");
         runtimeGraph.identifiableNodes.forEach((node) => {
             expect(node['@id']).toMatch(new RegExp("http(s)?:\/\/"))
         })

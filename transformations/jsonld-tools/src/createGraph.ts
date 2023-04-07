@@ -55,6 +55,9 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
         const { "@id": ldId, "@type": ldType, ...remaining } = inputFullNode;
         const inputNodeOwnKeys = Reflect.ownKeys(remaining) as string[];
         inputNodeOwnKeys.forEach((nodeKey) => {
+            // unhandled keywords:
+            const isUnhandledKeyword: boolean = match(nodeKey).with(P.union("@container", "@language", "@none", "@set"), () => true).otherwise(() => false)
+            if (isUnhandledKeyword) { return }
             const inputNodeEntry = remaining[nodeKey];
             match(inputNodeEntry)
                 .with(P.array({ "@id": P.string }), (graphConnectionEntries) => {
