@@ -11,6 +11,7 @@ export interface RtLdCollections {
 
 export interface RtLdType {
     iri: String;
+    nodes: RtLdIdentifiableNode[]
 }
 
 export interface RtLdIdentifiableNode {

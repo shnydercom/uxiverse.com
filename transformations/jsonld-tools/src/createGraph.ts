@@ -23,8 +23,8 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
     if (Array.isArray(flattenedJsonLd["@graph"])) {
         inputGraphArray = flattenedJsonLd["@graph"];
     }
-    inputGraphArray.map((nodeObj) => {
-        match(nodeObj)
+    inputGraphArray.map((inputFullNode) => {
+        match(inputFullNode)
             .with({ "@id": P.string, "@type": P.union(P.string, [P.string]) }, (typesAndId) => {
                 const newNode: RtLdIdentifiableNode = { "@id": typesAndId["@id"] }
                 const types = Array.isArray(typesAndId["@type"]) ? typesAndId["@type"] : [typesAndId["@type"]];
@@ -32,10 +32,11 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
                     let existingType = resultGraph.collections.types
                         .find((eType) => eType.iri === typeIRI);
                     if (!existingType) {
-                        existingType = { iri: typeIRI }
+                        existingType = { iri: typeIRI, nodes: [] }
                         resultGraph.collections.types.push(existingType)
                     }
                     newNode["@t"] = existingType;
+                    existingType.nodes.push(newNode)
                 })
                 resultGraph.identifiableNodes.push(newNode)
             })
@@ -43,9 +44,24 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
                 resultGraph.identifiableNodes.push({ "@id": onlyId["@id"] })
             })
             .otherwise((otherValue) => {
-                console.log('unhandled input:')
+                console.log('unhandled "@id/@type" input:')
                 console.dir(otherValue)
             });
+        const { "@id": ldId, "@type": ldType, ...remaining } = inputFullNode;
+        const inputNodeOwnKeys = Reflect.ownKeys(remaining) as string[];
+        inputNodeOwnKeys.forEach((nodeKey) => {
+            const inputNodeEntry = remaining[nodeKey];
+            match(inputNodeEntry)
+                .with([{ "@id": P.string }], (graphConnectionEntry) => {
+                    console.log("g conn entry")
+                })
+                .with([{ "@value": P.string }], (valueEntry) => {
+                    console.log("value entry")
+                }).otherwise((otherValue) => {
+                    console.log('unhandled ld node key input:')
+                    console.dir(otherValue)
+                });
+        })
     })
     return resultGraph
 }
