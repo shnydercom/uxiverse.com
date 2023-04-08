@@ -27,7 +27,11 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
         let newNode: RtLdIdentifiableNode = { "@id": "", fields: [] };
         match(inputFullNode)
             .with({ "@id": P.string, "@type": P.union(P.string, P.array(P.string)) }, (typesAndId) => {
-                newNode = { "@id": typesAndId["@id"], fields: [] }
+                const oldNode = resultGraph.identifiableNodes.find((existingNode) => existingNode["@id"] === typesAndId["@id"]);
+                if (!oldNode) {
+                    newNode = { "@id": typesAndId["@id"], fields: [] }
+                    resultGraph.identifiableNodes.push(newNode)
+                }
                 const types = Array.isArray(typesAndId["@type"]) ? typesAndId["@type"] : [typesAndId["@type"]];
                 types.forEach((typeIRI) => {
                     let existingType = resultGraph.collections.types
@@ -39,10 +43,15 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
                     newNode["@t"] = existingType;
                     existingType.nodes.push(newNode)
                 })
-                resultGraph.identifiableNodes.push(newNode)
             })
             .with({ "@id": P.string }, (onlyId) => {
-                resultGraph.identifiableNodes.push({ "@id": onlyId["@id"], fields: [] })
+                const oldNode = resultGraph.identifiableNodes.find((existingNode) => existingNode["@id"] === onlyId["@id"]);
+                if (!oldNode) {
+                    newNode = { "@id": onlyId["@id"], fields: [] }
+                    resultGraph.identifiableNodes.push(newNode)
+                    return
+                }
+                newNode = oldNode
             })
             .otherwise((otherValue) => {
                 console.log('unhandled "@id/@type" input:')

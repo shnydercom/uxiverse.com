@@ -10,13 +10,13 @@ export interface RtLdCollections {
 }
 
 export interface RtLdType {
-    iri: String;
+    iri: string;
     nodes: RtLdIdentifiableNode[]
     values: RtLdValue[]
 }
 
 export interface RtLdIdentifiableNode {
-    "@id": String;
+    "@id": string;
     "@t"?: RtLdType
     fields: RtLdEdge[]
 }
@@ -27,7 +27,7 @@ export interface RtLdEdge {
     out: RtLdIdentifiableNode | RtLdValue
 }
 
-export type RtLdSingleValueType = String | boolean | Object
+export type RtLdSingleValueType = string | boolean | Object
 
 export interface RtLdValue {
     "@v": RtLdSingleValueType

@@ -1,6 +1,8 @@
-import { JsonLdProcessor } from 'jsonld';
+import { JsonLdProcessor, NodeObject } from 'jsonld';
 import { createGraph } from './createGraph';
 import * as  uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
+
+const findDuplicates = (arr: string[]) => arr.filter((item, index) => arr.indexOf(item) !== index)
 
 describe('given empty input object', () => {
     test('then should return empty output object', async () => {
@@ -49,6 +51,23 @@ describe('given flattened uxiverse json-ld without blank nodes and no language s
             expect(node['@id']).toMatch(new RegExp("http(s)?:\/\/"))
         })
     });
+    test('should "define" the same number of entries behind the URL of "https://uxiverse.com/ontology"',
+        async () => {
+            const uxiverseRootIRI: string = "https://uxiverse.com/ontology#";
+            const uxiverseFlattened = await JsonLdProcessor.flatten(uxiverseOntologyJSONLDfile as any, {})
+            const runtimeGraph = createGraph(uxiverseFlattened);
+            const flattenedUxiEntries = (uxiverseFlattened as any as Array<NodeObject>).filter(
+                (nObj) => (nObj['@id'] as string).startsWith(uxiverseRootIRI)
+            )
+            const rtUxiEntries = runtimeGraph.identifiableNodes.filter((node) => {
+                return node['@id'].startsWith(uxiverseRootIRI);
+            })
+            expect(flattenedUxiEntries.length).toBeGreaterThan(0)
+            const duplicates = findDuplicates(rtUxiEntries.map((entry) => entry['@id']))
+            expect(duplicates.length).toBe(0)
+            expect(rtUxiEntries.length).toEqual(flattenedUxiEntries.length);
+        }
+    )
 });
 
 export default {}

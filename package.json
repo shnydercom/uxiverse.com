@@ -20,7 +20,7 @@
   },
   "scripts": {
     "jestplugin": "jest",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules yarn jest",
     "story": "lerna run storybook --stream",
     "libbuild": "lerna run libbuild --stream",
     "prestart": "yarn libbuild",
