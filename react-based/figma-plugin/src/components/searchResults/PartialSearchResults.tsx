@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { searchDefinitionNames } from '../../browserlogic/search'
+import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
 import {
   HoverDefinitionEnterEvent,

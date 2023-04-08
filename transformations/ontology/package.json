@@ -1,6 +1,6 @@
 {
   "name": "@uxiverse.com/ontology",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "a repository for the development of an ontology and a documentation for Linked Data UI (dot net)",
   "main": "index.js",
   "repository": "https://github.com/shnydercom/uxiverse.com.git",

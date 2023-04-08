@@ -1,1 +1,2 @@
-export * from "./createGraph"
+export * from "./graphInterfaces";
+export * from "./createGraph";

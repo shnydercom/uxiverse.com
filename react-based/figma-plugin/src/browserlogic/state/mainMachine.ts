@@ -12,7 +12,7 @@ import {
   PluginSelectionChangedBridgeEvent,
 } from './../../communicationInterfaces'
 import { getInitialXStateContextCopy } from './initialValues'
-import { getSingleUxiDefinition } from '../search'
+import { getSingleUxiDefinition } from '../naming-recommendations/search'
 import { AvailableNotations, handleNotation } from '../notation-handler'
 
 const i18n = getI18n()
@@ -63,10 +63,10 @@ export interface CopyCompTxtToRenameEvent {
 
 export interface HostAppSelectionEvent {
   type:
-  | 'HOST_INTERACTION_SELECT_MULTI'
-  | 'HOST_INTERACTION_SELECT_SINGLE'
-  | 'HOST_DESELECT'
-  | 'HOST_SELECTION_UNAVAILABE'
+    | 'HOST_INTERACTION_SELECT_MULTI'
+    | 'HOST_INTERACTION_SELECT_SINGLE'
+    | 'HOST_DESELECT'
+    | 'HOST_SELECTION_UNAVAILABE'
   userSelection: HostAppElement[]
   focusedElement: HostAppElement | undefined
 }
@@ -124,13 +124,13 @@ export const mainMachine =
 
     states: {
       ontology: {
-        initial: "empty",
+        initial: 'empty',
         states: {
           empty: {
             on: {
               HOVER_DEFINITION_ENTER: {
                 actions: 'showDefinition',
-                target: "specific",
+                target: 'specific',
               },
             },
           },
@@ -138,7 +138,7 @@ export const mainMachine =
             on: {
               HOVER_DEFINITION_EXIT: {
                 actions: 'resetDefinition',
-                target: "empty",
+                target: 'empty',
               },
             },
           },
@@ -171,13 +171,13 @@ export const mainMachine =
       },
 
       tooltip: {
-        initial: "default",
+        initial: 'default',
         states: {
           default: {
             on: {
               HOVER_UI_ELEM_ENTER: {
                 actions: 'showTooltip',
-                target: "specific",
+                target: 'specific',
               },
             },
           },
@@ -185,7 +185,7 @@ export const mainMachine =
             on: {
               HOVER_UI_ELEM_EXIT: {
                 actions: 'resetTooltip',
-                target: "default",
+                target: 'default',
               },
             },
           },
@@ -193,130 +193,130 @@ export const mainMachine =
       },
 
       hostSelection: {
-        initial: "empty",
+        initial: 'empty',
 
         states: {
           empty: {
             on: {
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "multi",
+                target: 'multi',
                 actions: 'assignHostUserSelection',
-              }
+              },
             },
 
             invoke: {
-              src: "checkForFigmaDocMessages"
-            }
+              src: 'checkForFigmaDocMessages',
+            },
           },
 
           multi: {
             on: {
               HOST_SELECTION_UNAVAILABE: {
-                target: "empty",
+                target: 'empty',
                 actions: 'clearHostFocus',
               },
 
-              TRIGGER_TRASH: "empty",
+              TRIGGER_TRASH: 'empty',
 
               HOST_INTERACTION_SELECT_SINGLE: {
-                target: "singleRaw",
+                target: 'singleRaw',
                 cond: 'isNotSelectionInSubSet',
-                actions: "updateSelectionSubSet"
-              }
+                actions: 'updateSelectionSubSet',
+              },
             },
 
             states: {
               raw: {
                 on: {
                   HOST_INTERACTION_SELECT_MULTI: {
-                    target: "raw",
+                    target: 'raw',
                     actions: ['assignHostUserSelection'],
                   },
 
                   SELECT_FOCUS: {
-                    target: "subSet",
+                    target: 'subSet',
                     actions: 'assignFocusSelection',
                   },
 
                   HOST_INTERACTION_SELECT_SINGLE: {
-                    target: "subSet",
-                    cond: "isSelectionInSubSet",
-                    actions: "updateSelectionSubSet"
-                  }
+                    target: 'subSet',
+                    cond: 'isSelectionInSubSet',
+                    actions: 'updateSelectionSubSet',
+                  },
                 },
 
-                entry: "clearHostFocus",
+                entry: 'clearHostFocus',
 
                 invoke: {
-                  src: "checkForFigmaDocMessages"
-                }
+                  src: 'checkForFigmaDocMessages',
+                },
               },
 
               subSet: {
                 on: {
                   HOST_INTERACTION_SELECT_MULTI: {
-                    target: "raw",
+                    target: 'raw',
                     actions: 'assignHostUserSelection',
                   },
 
                   HOST_DESELECT: {
-                    target: "raw",
+                    target: 'raw',
                     actions: 'assignFocusSelection',
                   },
 
                   SELECT_FOCUS: {
-                    target: "subSet",
+                    target: 'subSet',
                     actions: 'assignFocusSelection',
                   },
 
                   HOST_INTERACTION_SELECT_SINGLE: {
-                    target: "subSet",
+                    target: 'subSet',
                     internal: true,
-                    cond: "isSelectionInSubSet",
-                    actions: "updateSelectionSubSet"
+                    cond: 'isSelectionInSubSet',
+                    actions: 'updateSelectionSubSet',
                   },
 
                   MANUALLY_TOGGLE_HOST_OPTIONS: {
-                    target: "subSet",
+                    target: 'subSet',
                     actions: 'toggleHostOptionsVisibility',
-                    internal: true
-                  }
+                    internal: true,
+                  },
                 },
 
                 invoke: {
-                  src: "checkForFigmaDocMessages"
-                }
-              }
+                  src: 'checkForFigmaDocMessages',
+                },
+              },
             },
 
-            initial: "raw",
+            initial: 'raw',
 
             invoke: {
-              src: "checkForFigmaDocMessages"
-            }
+              src: 'checkForFigmaDocMessages',
+            },
           },
 
           singleRaw: {
             on: {
               HOST_SELECTION_UNAVAILABE: {
-                target: "empty",
+                target: 'empty',
                 actions: ['toggleHostOptionsVisibility', 'clearHostFocus'],
               },
 
-              HOST_INTERACTION_SELECT_SINGLE: "singleRaw",
+              HOST_INTERACTION_SELECT_SINGLE: 'singleRaw',
               HOST_INTERACTION_SELECT_MULTI: {
-                target: "multi",
-                actions: "assignHostUserSelection"
-              }
+                target: 'multi',
+                actions: 'assignHostUserSelection',
+              },
             },
 
             entry: 'assignRawSingleSelect',
 
             invoke: {
-              src: "checkForFigmaDocMessages"
-            }
-          }
-        }
+              src: 'checkForFigmaDocMessages',
+            },
+          },
+        },
       },
 
       multiPhraseState: {
@@ -325,7 +325,7 @@ export const mainMachine =
           emptyMultiphrases: {
             on: {
               COPY_COMPTXT_TO_RENAMEREPLACE: {
-                target: "filledMultiPhrases",
+                target: 'filledMultiPhrases',
                 actions: 'overwriteMultiPhrase',
               },
               EDIT_PHRASES: {
@@ -393,7 +393,10 @@ export const mainMachine =
               DELETED_LAST_PHRASE: {
                 target: 'emptyMultiphrases',
               },
-              TRIGGER_TRASH: { target: "emptyMultiphrases", actions: 'assignTrashReset' }
+              TRIGGER_TRASH: {
+                target: 'emptyMultiphrases',
+                actions: 'assignTrashReset',
+              },
             },
           },
         },
@@ -403,7 +406,7 @@ export const mainMachine =
         states: {
           spacedDashes: {
             on: {
-              CHANGE_NOTATION: "spacedSlashes",
+              CHANGE_NOTATION: 'spacedSlashes',
             },
 
             entry: 'assignSpacedDashesNotation',
@@ -411,14 +414,14 @@ export const mainMachine =
 
           spacedSlashes: {
             on: {
-              CHANGE_NOTATION: "spacedDashes",
+              CHANGE_NOTATION: 'spacedDashes',
             },
 
             entry: 'assignSpacedSlashesNotation',
           },
         },
 
-        initial: "spacedDashes",
+        initial: 'spacedDashes',
       },
     },
   }).withConfig({
@@ -449,7 +452,7 @@ export const mainMachine =
       },
       assignHostUserSelection: (context, event: HostAppSelectionEvent) => {
         const ctxCopy = { ...context }
-        console.log("assignHostUserSelection")
+        console.log('assignHostUserSelection')
         ctxCopy.host.userSelection = event.userSelection
         if (event.userSelection.length > 1) {
           ctxCopy.plugin.hostAppSearch.isOptionsOpen = true
@@ -531,8 +534,13 @@ export const mainMachine =
           const focusedElement = context.host.selectionFocusedElement
           //change in plugin-statemachine
           const ctxCopy = { ...context }
-          ctxCopy.host.selectionFocusedElement = { ...focusedElement, name: newName }
-          ctxCopy.host.userSelection.find((val) => val.id === focusedElement?.id)!.name = newName
+          ctxCopy.host.selectionFocusedElement = {
+            ...focusedElement,
+            name: newName,
+          }
+          ctxCopy.host.userSelection.find(
+            val => val.id === focusedElement?.id
+          )!.name = newName
           ctxCopy.plugin.hostAppSearch.searchValue = newName
           assign<MainMachineXSCtx>(ctxCopy)
           // send to figma bridge
@@ -546,7 +554,9 @@ export const mainMachine =
         }
       },
       assignTrashReset: assign(context => {
-        const ctxCopy: Partial<MainMachineXSCtx> = { ...getInitialXStateContextCopy() }
+        const ctxCopy: Partial<MainMachineXSCtx> = {
+          ...getInitialXStateContextCopy(),
+        }
         // send to figma bridge
         const bridgeEvent: PluginDeselectionBridgeEvent = {
           type: PluginEventTypes.deselectByPlugin,
@@ -559,14 +569,12 @@ export const mainMachine =
         ctxCopy.plugin.hostAppSearch.isOptionsOpen = !ctxCopy.plugin
           .hostAppSearch.isOptionsOpen
         return ctxCopy
-      }
-      )
-      ,
+      }),
       clearHostFocus: assign(context => {
         const ctxCopy = {
           ...context,
         }
-        console.log("clearHostFocus")
+        console.log('clearHostFocus')
         ctxCopy.host.selectionFocusedElement = undefined
         ctxCopy.plugin.hostAppSearch.searchValue = undefined
         ctxCopy.host.userSelection

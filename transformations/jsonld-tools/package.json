@@ -1,12 +1,14 @@
 {
-  "name": "jsonld-tools",
-  "version": "1.0.0",
+  "name": "@uxiverse.com/jsonld-tools",
+  "version": "0.0.1",
   "description": "tools to handle jsonld as ontologies, metadata and data",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "yarn tsc"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

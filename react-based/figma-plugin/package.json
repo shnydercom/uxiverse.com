@@ -19,7 +19,7 @@
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
   "dependencies": {
-    "@uxiverse.com/ontology": "*",
+    "@uxiverse.com/jsonld-tools": "*",
     "@xstate/react": "^3.0.1",
     "autosuggest-highlight": "^3.3.4",
     "overlayscrollbars": "^1.13.2",
