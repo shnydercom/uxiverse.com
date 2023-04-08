@@ -5,7 +5,7 @@ import {
   RtLdGraph,
 } from '@uxiverse.com/jsonld-tools'
 
-const GraphContext = createContext<RtLdGraph>(createEmptyGraph())
+export const GraphContext = createContext<RtLdGraph>(createEmptyGraph())
 
 export const OntologyProvider = (props: React.PropsWithChildren<unknown>) => {
   const [rtGraphValue, setrtGraphValue] = useState<RtLdGraph>(
@@ -19,7 +19,7 @@ export const OntologyProvider = (props: React.PropsWithChildren<unknown>) => {
       const flattenedUxiverseOntology = await data.json()
       const result = createGraph(flattenedUxiverseOntology)
       // here is a good point to add plugin-specific functionality to the graph
-      return result
+      setrtGraphValue(result)
     }
     fetchLatestOntology().catch(console.error)
     return () => {

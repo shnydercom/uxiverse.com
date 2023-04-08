@@ -9,12 +9,15 @@ import {
 import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { OntologyEmptyState } from './OntologyEmptyState'
+import { GraphContext } from '../../browserlogic/naming-recommendations/OntologyProvider'
 
 const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
 }
 
 export const PartialSearchResults = () => {
+  const runtimeGraph = useContext(GraphContext)
+  //TODO: consume graph from online source
   const globalServices = useContext(GlobalStateContext)
   const { send } = globalServices.mainService
   const renameValue = useSelector(
@@ -29,6 +32,7 @@ export const PartialSearchResults = () => {
       return
     }
     const definitionNameResult = searchDefinitionNames(renameValue)
+
     setSearchResult(definitionNameResult)
     return () => {
       setSearchResult([])
