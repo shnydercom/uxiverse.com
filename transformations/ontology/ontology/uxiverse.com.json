@@ -243,7 +243,7 @@
 				}
 			],
 			"comment": "Data type: Numeric. Human-readable terms that are expressed in numbers, examples could be an NPS score, temperature, etc.",
-			"label": "boolean type"
+			"label": "numeric type"
 		},
 		{
 			"@id": "uxi:TextType",
@@ -257,7 +257,7 @@
 				}
 			],
 			"comment": "Data type: Text. Human-readable terms that are expressed as text, like names, descriptions, messages, comments",
-			"label": "boolean type"
+			"label": "text type"
 		},
 		{
 			"@id": "uxi:ColorCodeType",
