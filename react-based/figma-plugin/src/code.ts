@@ -2,12 +2,14 @@ import {
   HostAppElement,
   HostAppElementTypeEquivalents,
   HostEventTypes,
+  HostFetchSuccessfulBridgeEvent,
   HostSelectionChangedBridgeEvent,
   PluginBridgeEvent,
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
 import {
   isAPluginDeselectionBridgeEvent,
+  isAPluginFetchBridgeEvent,
   isAPluginRenameBridgeEvent,
   isAPluginSelectionChangedBridgeEvent,
 } from './figmalogic/pluginBridgeTypeguards'
@@ -39,6 +41,14 @@ const forwardFigmaSelectionToPlugin = (
     isSelectionUnavailable,
   }
   figma.ui.postMessage(selChangeObj)
+}
+
+const forwardFetchToPlugin = (returnObj: Object) => {
+  const fetchSuccessfulMsg: HostFetchSuccessfulBridgeEvent = {
+    type: HostEventTypes.fetchSuccessful,
+    result: returnObj,
+  }
+  figma.ui.postMessage(fetchSuccessfulMsg)
 }
 
 // Runs this code if the plugin is run in Figma
@@ -75,6 +85,14 @@ if (figma.editorType === 'figma') {
           'linkedData',
           JSON.stringify(msg.pluginData)
         )
+    }
+    if (isAPluginFetchBridgeEvent(msg)) {
+      fetch(msg.url)
+        .then(async res => {
+          const fetchResult = await res.json()
+          forwardFetchToPlugin(fetchResult)
+        })
+        .catch(console.error)
     }
     // anti-use case: plugin should be closed manually
     //figma.closePlugin()

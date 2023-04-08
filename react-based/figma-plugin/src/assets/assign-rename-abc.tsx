@@ -16,7 +16,7 @@ export const AssignRenameAbcIcon = () => {
           width="1"
           height="10"
           fill="currentColor"
-          fill-opacity="0.8"
+          fillOpacity="0.8"
         />
         <rect x="15" y="10" width="3" height="1" fill="currentColor" />
         <rect x="15" y="21" width="3" height="1" fill="currentColor" />

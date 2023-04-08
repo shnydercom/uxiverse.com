@@ -72,7 +72,6 @@ export const FindAndReplace = () => {
     globalServices.mainService,
     selectionFocusedSelector
   )
-  console.log(selectionFocus)
   const componentSearchValue = useSelector(
     globalServices.mainService,
     hostSearchValueSelector
@@ -148,7 +147,7 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => { }
+  const onSearchChange = () => {}
 
   const onNotationChange = () => {
     send({

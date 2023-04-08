@@ -1,10 +1,12 @@
 export enum HostEventTypes {
   selectionChanged = 'selectionChanged',
+  fetchSuccessful = 'fetchSuccessful',
 }
 export enum PluginEventTypes {
-  deselectByPlugin = "deselect-by-plugin",
+  deselectByPlugin = 'deselect-by-plugin',
   selectionByPlugin = 'selection-by-plugin',
   renameByPlugin = 'rename-by-plugin',
+  fetchByPlugin = 'fetch-by-plugin',
 }
 
 export interface HostSelectionChangedBridgeEvent {
@@ -16,6 +18,11 @@ export interface HostSelectionChangedBridgeEvent {
   isSelectionUnavailable: boolean
 }
 
+export interface HostFetchSuccessfulBridgeEvent {
+  type: HostEventTypes.fetchSuccessful
+  result: Object
+}
+
 export interface PluginSelectionChangedBridgeEvent {
   type: PluginEventTypes.selectionByPlugin
   selectedNode: HostAppElement
@@ -23,6 +30,11 @@ export interface PluginSelectionChangedBridgeEvent {
 
 export interface PluginDeselectionBridgeEvent {
   type: PluginEventTypes.deselectByPlugin
+}
+
+export interface PluginFetchBridgeEvent {
+  type: PluginEventTypes.fetchByPlugin
+  url: string
 }
 
 export interface PluginRenameBridgeEvent {
@@ -36,6 +48,7 @@ export type PluginBridgeEvent =
   | PluginSelectionChangedBridgeEvent
   | PluginDeselectionBridgeEvent
   | PluginRenameBridgeEvent
+  | PluginFetchBridgeEvent
 
 /**
  * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list

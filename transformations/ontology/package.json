@@ -15,7 +15,8 @@
     "build:jsld": "jsonld format ./ontology/uxiverse.com.jsonld --nquads > ./cli-gen/uxiverse-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
     "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology#,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
-    "build": "yarn build:jsld && yarn build:combine && yarn build:dts"
+    "build": "yarn build:jsld && yarn build:combine && yarn build:dts",
+    "serve": "http-server -p 4321 --cors -c2"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.0",
@@ -49,6 +50,7 @@
     "ts-pattern": "^4.2.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.7.4",
-    "unified": "^9.2.0"
+    "unified": "^9.2.0",
+    "http-server": "^14.1.1"
   }
 }

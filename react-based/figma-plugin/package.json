@@ -13,7 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode production --watch",
     "lint": "eslint './src/**/*.{ts,tsx}' --fix && stylelint '**/*.css' --fix",
-    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production",
     "zip": "zip create-react-figma-plugin.zip ./dist/* manifest.json LICENSE"
   },
   "author": "Jonathan Schneider",
