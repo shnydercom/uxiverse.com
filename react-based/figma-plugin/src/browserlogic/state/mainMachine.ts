@@ -602,6 +602,7 @@ export const mainMachine =
         const ctxCopy: Partial<MainMachineXSCtx> = {
           ...getInitialXStateContextCopy(),
         }
+        ctxCopy.plugin!.graph = context.plugin.graph
         // send to figma bridge
         const bridgeEvent: PluginDeselectionBridgeEvent = {
           type: PluginEventTypes.deselectByPlugin,
