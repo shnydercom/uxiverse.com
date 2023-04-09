@@ -6,12 +6,20 @@ import {
   HoverDefinitionEnterEvent,
   HoverUIElemEnterEvent,
 } from '../../browserlogic/state/mainMachine'
-import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
+import {
+  GraphSelectorType,
+  SearchValueSelectorType,
+} from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { OntologyEmptyState } from './OntologyEmptyState'
+import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
 
 const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
+}
+
+const graphSelector: GraphSelectorType | undefined = state => {
+  return state.context.plugin.graph
 }
 
 export const PartialSearchResults = () => {
@@ -22,14 +30,15 @@ export const PartialSearchResults = () => {
     globalServices.mainService,
     renameValueSelector
   )
+  const rtGraph = useSelector(globalServices.mainService, graphSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   React.useEffect(() => {
-    if (!renameValue) {
+    if (!renameValue || !rtGraph) {
       setSearchResult([])
       return
     }
-    const definitionNameResult = searchDefinitionNames(renameValue)
+    const definitionNameResult = searchDefinitionNames(renameValue, rtGraph)
 
     setSearchResult(definitionNameResult)
     return () => {
@@ -42,9 +51,11 @@ export const PartialSearchResults = () => {
       type: 'HOVER_UI_ELEM_ENTER',
       payload: event.currentTarget.id,
     } as HoverUIElemEnterEvent)
+    console.log(event.currentTarget)
     send({
       type: 'HOVER_DEFINITION_ENTER',
-      focusedDefinition: event.currentTarget.innerText ?? '',
+      focusedDefinition:
+        event.currentTarget.attributes.getNamedItem('data-ld')?.value ?? '',
     } as HoverDefinitionEnterEvent)
   }
 
@@ -63,13 +74,15 @@ export const PartialSearchResults = () => {
           options={{ scrollbars: { autoHide: 'never' } }}
         >
           <div className="partial-search-results--inner">
-            {searchResult.map(sr => (
+            {searchResult.map((sr, idx) => (
               <div
+                key={idx}
                 className="found-term"
                 onMouseEnter={onHoverSearchResult}
                 onMouseLeave={onElemHoverLeave}
+                data-ld={sr}
               >
-                {sr}
+                {sr.substring(uxiverseRootIRI.length)}
               </div>
             ))}
           </div>

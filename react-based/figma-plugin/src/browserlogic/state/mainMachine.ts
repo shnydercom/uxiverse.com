@@ -15,7 +15,11 @@ import {
 import { getInitialXStateContextCopy } from './initialValues'
 import { getSingleUxiDefinition } from '../naming-recommendations/search'
 import { AvailableNotations, handleNotation } from '../notation-handler'
-import { RtLdGraph, createGraph } from '@uxiverse.com/jsonld-tools'
+import {
+  RtLdGraph,
+  createEmptyGraph,
+  createGraph,
+} from '@uxiverse.com/jsonld-tools'
 
 const i18n = getI18n()
 
@@ -487,7 +491,8 @@ export const mainMachine =
         ctxCopy.plugin.ontologySearch.focusedDefinition =
           event.focusedDefinition
         ctxCopy.plugin.ontologySearch.fullText = getSingleUxiDefinition(
-          event.focusedDefinition
+          event.focusedDefinition,
+          context.plugin.graph ?? createEmptyGraph()
         )
         assign<MainMachineXSCtx, HoverDefinitionEnterEvent>(ctxCopy)
       },
