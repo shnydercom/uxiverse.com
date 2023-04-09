@@ -69,10 +69,10 @@ export interface CopyCompTxtToRenameEvent {
 
 export interface HostAppSelectionEvent {
   type:
-    | 'HOST_INTERACTION_SELECT_MULTI'
-    | 'HOST_INTERACTION_SELECT_SINGLE'
-    | 'HOST_DESELECT'
-    | 'HOST_SELECTION_UNAVAILABE'
+  | 'HOST_INTERACTION_SELECT_MULTI'
+  | 'HOST_INTERACTION_SELECT_SINGLE'
+  | 'HOST_DESELECT'
+  | 'HOST_SELECTION_UNAVAILABE'
   userSelection: HostAppElement[]
   focusedElement: HostAppElement | undefined
 }
@@ -655,6 +655,8 @@ export const mainMachine =
     },
     services: {
       checkForFigmaDocMessages: (context, event) => send => {
+        const pfn = (resolve, reject) => { }
+        const result = new Promise(pfn);
         /** that's "onmessage" on the figma api: */
         onmessage = event => {
           const plMsg = event.data.pluginMessage
@@ -703,10 +705,7 @@ export const mainMachine =
               break
           }
         }
-
-        return () => {
-          //cleanup onmessage?
-        }
+        return result
       },
     },
   })
