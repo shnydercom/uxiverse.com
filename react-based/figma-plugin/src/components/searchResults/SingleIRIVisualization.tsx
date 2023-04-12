@@ -16,22 +16,20 @@ export const SingleIRIVisualization = () => {
     globalServices.mainService,
     focusedDefinitionSelector
   )
-  let visualization: string = ''
+  let visualizationDataURL: string = ''
   if (focusedDefinition) {
     try {
-      visualization = String(
+      visualizationDataURL = String(
         require(`../../../assets/type-icons/${getWellKnownIriSubPath(
           focusedDefinition
         )}.svg`).default
       )
     } catch (error) {}
   }
-
-  console.log(visualization)
   return (
-    <div className={`iri-visualization ${!visualization && 'gone'}`}>
+    <div className={`iri-visualization ${!visualizationDataURL && 'gone'}`}>
       <div className="iri-visualization--inner">
-        <img src={visualization} alt="IRI visualization icon" />
+        <img src={visualizationDataURL} alt="IRI visualization icon" />
       </div>
     </div>
   )
