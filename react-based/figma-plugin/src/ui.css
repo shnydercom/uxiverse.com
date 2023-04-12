@@ -88,7 +88,8 @@ body {
 }
 
 .found-term-list {
-  line-height: 20px;
+  font-size: 11px;
+  line-height: 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
