@@ -1,4 +1,4 @@
-import { RtLdGraph, RtLdValue } from '@uxiverse.com/jsonld-tools'
+import { RtLdGraph, RtLdValue, RtLdIdentifiableNode, isRtLdIdentifiableNode } from '@uxiverse.com/jsonld-tools'
 import { sortAlphabeticallyAndFavorStartswith } from '../sort'
 import { definitionIRI, uxiverseRootIRI } from './ontology-globals'
 
@@ -34,6 +34,25 @@ export function getSingleUxiDefinition(
     })
   const value = (foundEdge?.out as RtLdValue)['@v']?.toString() ?? ''
   return value
+}
+
+export function filterIdentifiableNodesById(rtGraph: RtLdGraph, filterStrings: string[]): RtLdIdentifiableNode[] {
+  return rtGraph.identifiableNodes.filter(node => filterStrings.some(filterString => node["@id"].includes(filterString)));
+}
+
+export function getIRIsAndIdsFromIdentifiableNode(node: RtLdIdentifiableNode): { iriArray: string[], idArray: string[] } {
+  const iriArray: string[] = [];
+  const idArray: string[] = [];
+  node.fields.forEach(field => {
+    if (field.type && field.type.iri) {
+      iriArray.push(field.type.iri);
+    }
+    if (isRtLdIdentifiableNode(field.out)) {
+      iriArray.push(field.out["@id"]);
+      idArray.push(field.out["@id"]);
+    }
+  });
+  return { iriArray, idArray };
 }
 /*
 const preFilteredIDs = ontology.defines.map(entry => {

@@ -64,6 +64,9 @@ export const PartialSearchResults = () => {
     send('HOVER_DEFINITION_EXIT')
   }
 
+  const leftTerms = searchResult.filter((val) => val.substring(uxiverseRootIRI.length)[0].toUpperCase() === val.substring(uxiverseRootIRI.length)[0])
+  const rightTerms = searchResult.filter((val) => val.substring(uxiverseRootIRI.length)[0].toUpperCase() !== val.substring(uxiverseRootIRI.length)[0])
+
   return (
     <div className="partial-search-results">
       {!renameValue ? (
@@ -74,17 +77,32 @@ export const PartialSearchResults = () => {
           options={{ scrollbars: { autoHide: 'never' } }}
         >
           <div className="partial-search-results--inner">
-            {searchResult.map((sr, idx) => (
-              <div
-                key={idx}
-                className="found-term"
-                onMouseEnter={onHoverSearchResult}
-                onMouseLeave={onElemHoverLeave}
-                data-ld={sr}
-              >
-                {sr.substring(uxiverseRootIRI.length)}
-              </div>
-            ))}
+            <div className='found-term-list'>
+              {leftTerms.map((sr, idx) => (
+                <div
+                  key={idx}
+                  onMouseEnter={onHoverSearchResult}
+                  onMouseLeave={onElemHoverLeave}
+                  data-ld={sr}
+                >
+                  {sr.substring(uxiverseRootIRI.length)}
+                </div>
+
+              ))}
+            </div>
+            <div className='found-term-list'>
+              {rightTerms.map((sr, idx) => (
+                <div
+                  key={idx}
+                  onMouseEnter={onHoverSearchResult}
+                  onMouseLeave={onElemHoverLeave}
+                  data-ld={sr}
+                >
+                  {sr.substring(uxiverseRootIRI.length)}
+                </div>
+
+              ))}
+            </div>
           </div>
         </OverlayScrollbarsComponent>
       )}
