@@ -22,7 +22,7 @@ const graphSelector: GraphSelectorType | undefined = state => {
   return state.context.plugin.graph
 }
 
-export const PartialSearchResults = () => {
+export const OntologyViewContainer = () => {
   //TODO: consume graph from online source
   const globalServices = useContext(GlobalStateContext)
   const { send } = globalServices.mainService
@@ -64,11 +64,19 @@ export const PartialSearchResults = () => {
     send('HOVER_DEFINITION_EXIT')
   }
 
-  const leftTerms = searchResult.filter((val) => val.substring(uxiverseRootIRI.length)[0].toUpperCase() === val.substring(uxiverseRootIRI.length)[0])
-  const rightTerms = searchResult.filter((val) => val.substring(uxiverseRootIRI.length)[0].toUpperCase() !== val.substring(uxiverseRootIRI.length)[0])
+  const leftTerms = searchResult.filter(
+    val =>
+      val.substring(uxiverseRootIRI.length)[0].toUpperCase() ===
+      val.substring(uxiverseRootIRI.length)[0]
+  )
+  const rightTerms = searchResult.filter(
+    val =>
+      val.substring(uxiverseRootIRI.length)[0].toUpperCase() !==
+      val.substring(uxiverseRootIRI.length)[0]
+  )
 
   return (
-    <div className="partial-search-results">
+    <div className="ontology-view-container">
       {!renameValue ? (
         <OntologyEmptyState />
       ) : (
@@ -76,8 +84,8 @@ export const PartialSearchResults = () => {
           style={{ flex: 1 }}
           options={{ scrollbars: { autoHide: 'never' } }}
         >
-          <div className="partial-search-results--inner">
-            <div className='found-term-list'>
+          <div className="ontology-view-container--inner">
+            <div className="found-term-list">
               {leftTerms.map((sr, idx) => (
                 <div
                   key={idx}
@@ -87,10 +95,9 @@ export const PartialSearchResults = () => {
                 >
                   {sr.substring(uxiverseRootIRI.length)}
                 </div>
-
               ))}
             </div>
-            <div className='found-term-list'>
+            <div className="found-term-list">
               {rightTerms.map((sr, idx) => (
                 <div
                   key={idx}
@@ -100,7 +107,6 @@ export const PartialSearchResults = () => {
                 >
                   {sr.substring(uxiverseRootIRI.length)}
                 </div>
-
               ))}
             </div>
           </div>

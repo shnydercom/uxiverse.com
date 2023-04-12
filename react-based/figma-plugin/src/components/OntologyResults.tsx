@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { DefinitionSearchResult } from './searchResults/definitionSearchResult'
+import { SingleIRIFullView } from './searchResults/SingleIRIFullView'
 
-import { PartialSearchResults } from './searchResults/PartialSearchResults'
-import { SearchResultVisualization } from './searchResults/SearchResultVisualization'
+import { OntologyViewContainer } from './searchResults/OntologyViewContainer'
 
 export const OntologyResults = () => {
   return (
@@ -12,8 +11,8 @@ export const OntologyResults = () => {
         style={{ flex: 1 }}
         options={{ scrollbars: { autoHide: 'never' } }}
       >
-        <PartialSearchResults />
-        <DefinitionSearchResult />
+        <OntologyViewContainer />
+        <SingleIRIFullView />
       </OverlayScrollbarsComponent>
     </div>
   )
