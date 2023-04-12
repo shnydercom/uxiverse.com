@@ -476,7 +476,7 @@
 			"label": "UI element transition state"
 		},
 		{
-			"@id": "uxi:IssueSeverity",
+			"@id": "uxi:issueSeverity",
 			"@type": "Property",
 			"subPropertyOf": [
 				{
@@ -2038,7 +2038,7 @@
 			"@type": "Property",
 			"subPropertyOf": [
 				{
-					"@id": "uxi:IssueSeverity"
+					"@id": "uxi:issueSeverity"
 				}
 			],
 			"canExistOnType": {
@@ -2055,7 +2055,7 @@
 			"@type": "Property",
 			"subPropertyOf": [
 				{
-					"@id": "uxi:IssueSeverity"
+					"@id": "uxi:issueSeverity"
 				}
 			],
 			"canExistOnType": {
@@ -3210,6 +3210,9 @@
 				}
 			],
 			"canExistOnType": [
+				{
+					"@id": "uxi:InputElement"
+				},
 				{
 					"@id": "uxi:UIElement"
 				},
