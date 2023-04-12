@@ -26,9 +26,6 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   const endString = displayFullValue.substring(
     splitpart[0].length + typedValue.length
   )
-  console.log(startString)
-  console.log(centerString)
-  console.log(endString)
   return (
     <div className="list-entry">
       <div className="explore"></div>

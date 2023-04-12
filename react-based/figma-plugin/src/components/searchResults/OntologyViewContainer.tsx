@@ -53,7 +53,6 @@ export const OntologyViewContainer = () => {
       type: 'HOVER_UI_ELEM_ENTER',
       payload: event.currentTarget.id,
     } as HoverUIElemEnterEvent)
-    console.log(event.currentTarget)
     send({
       type: 'HOVER_DEFINITION_ENTER',
       focusedDefinition:
