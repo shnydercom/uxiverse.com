@@ -13,6 +13,8 @@ import {
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { OntologyEmptyState } from './OntologyEmptyState'
 import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
+import { ResultList } from './searchCompletion/ResultList'
+import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 
 const renameValueSelector: SearchValueSelectorType | undefined = state => {
   return state.context.plugin.renameValue
@@ -64,6 +66,7 @@ export const OntologyViewContainer = () => {
     send('HOVER_DEFINITION_EXIT')
   }
 
+  /*
   const leftTerms = searchResult.filter(
     val =>
       val.substring(uxiverseRootIRI.length)[0].toUpperCase() ===
@@ -73,6 +76,10 @@ export const OntologyViewContainer = () => {
     val =>
       val.substring(uxiverseRootIRI.length)[0].toUpperCase() !==
       val.substring(uxiverseRootIRI.length)[0]
+  )*/
+
+  const shortenedTerms = searchResult.map(value =>
+    getWellKnownIriSubPath(value)
   )
 
   return (
@@ -85,7 +92,11 @@ export const OntologyViewContainer = () => {
           options={{ scrollbars: { autoHide: 'never' } }}
         >
           <div className="ontology-view-container--inner">
-            <div className="found-term-list">
+            <ResultList
+              typedValue={renameValue}
+              recommendations={shortenedTerms}
+            />
+            {/* <div className="found-term-list">
               {leftTerms.map((sr, idx) => (
                 <div
                   key={idx}
@@ -108,7 +119,7 @@ export const OntologyViewContainer = () => {
                   {sr.substring(uxiverseRootIRI.length)}
                 </div>
               ))}
-            </div>
+            </div>*/}
           </div>
         </OverlayScrollbarsComponent>
       )}

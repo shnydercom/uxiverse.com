@@ -1,13 +1,28 @@
 import React from 'react'
 import { FunctionComponent } from 'react'
+import { ResultListEntry } from './ResultListEntry'
 
-interface ResultListProps {
+export interface ResultListProps {
   typedValue: string
   recommendations: string[]
 }
 
-const ResultList: FunctionComponent<ResultListProps> = () => {
-  return <></>
+export const ResultList: FunctionComponent<ResultListProps> = ({
+  typedValue,
+  recommendations,
+}) => {
+  return (
+    <div className="result-list">
+      {recommendations.map((fullVal, idx) => {
+        return (
+          <ResultListEntry
+            key={`rli-${idx}`}
+            typedValue={typedValue}
+            displayFullValue={fullVal}
+            isFocused={false}
+          />
+        )
+      })}
+    </div>
+  )
 }
-
-export default ResultList

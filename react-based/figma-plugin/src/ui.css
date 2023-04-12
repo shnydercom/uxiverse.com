@@ -297,3 +297,30 @@ button[disabled]:focus {
 .gone {
   display: none;
 }
+
+.result-list {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  margin-top: 4px;
+}
+
+.result-list .list-entry {
+  display: flex;
+  flex-direction: row;
+}
+
+.result-list .list-entry .explore {
+  display: block;
+  width: 33px;
+  height: 16px;
+  padding: 0 2px 0 14px;
+}
+
+.result-list .list-entry .no-match {
+  font-weight: normal;
+}
+
+.result-list .list-entry .match {
+  font-weight: bold;
+}
