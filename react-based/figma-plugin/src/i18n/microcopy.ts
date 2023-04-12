@@ -15,7 +15,5 @@ export const microCopy_EN = {
   findAndSelect: 'Find and select',
   prepareNewName: 'Prepare new name',
   emptyOntologyIntro:
-    "Start typing in the lower input field, and you'll get recommendations:",
-  emptyClassOntology: 'Classes will appear on the left',
-  emptyPropertiesOntology: 'Properties on the right',
+    'Start typing in the lower input field, and recommendations will appear here',
 }

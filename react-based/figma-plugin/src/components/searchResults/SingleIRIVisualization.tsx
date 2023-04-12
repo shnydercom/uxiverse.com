@@ -2,6 +2,7 @@ import { useSelector } from '@xstate/react'
 import React, { useContext } from 'react'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
+import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 
 const focusedDefinitionSelector:
   | SearchValueSelectorType
@@ -15,10 +16,23 @@ export const SingleIRIVisualization = () => {
     globalServices.mainService,
     focusedDefinitionSelector
   )
-  const visualization = focusedDefinition //TODO: add Icons
+  let visualization: string = ''
+  if (focusedDefinition) {
+    try {
+      visualization = String(
+        require(`../../../assets/type-icons/${getWellKnownIriSubPath(
+          focusedDefinition
+        )}.svg`).default
+      )
+    } catch (error) {}
+  }
+
+  console.log(visualization)
   return (
-    <div className="iri-visualization">
-      <div className="iri-visualization--inner">{visualization}</div>
+    <div className={`iri-visualization ${!visualization && 'gone'}`}>
+      <div className="iri-visualization--inner">
+        <img src={visualization} alt="IRI visualization icon" />
+      </div>
     </div>
   )
 }

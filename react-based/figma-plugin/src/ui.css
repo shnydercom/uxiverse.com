@@ -103,7 +103,7 @@ body {
   padding-right: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
 }
 
 .single-iri-full-view--inner {
@@ -126,8 +126,6 @@ body {
 .iri-visualization--inner {
   height: 32px;
   width: 32px;
-  border: 2px solid #f3f3f3;
-  border-radius: 8px;
 
   /* for testing: */
   font-size: 8px;
@@ -280,15 +278,6 @@ button[disabled]:focus {
   text-align: justify;
 }
 
-.empty-ontology .left-aligned {
-  margin-top: 12px;
-  text-align: start;
-}
-
-.empty-ontology .right-aligned {
-  text-align: end;
-}
-
 .tooltip-bar .icon-button,
 .tooltip-bar .icon-button .icon {
   height: 18px;
@@ -303,4 +292,8 @@ button[disabled]:focus {
 
 .tooltip-bar .icon-button .icon {
   background-position: -9px -8px;
+}
+
+.gone {
+  display: none;
 }
