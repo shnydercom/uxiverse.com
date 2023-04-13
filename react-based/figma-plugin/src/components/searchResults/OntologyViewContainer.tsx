@@ -15,7 +15,7 @@ import { TreeView } from './exploration/TreeView'
 enum ContainerVisuals {
   initialRunEmptyView = "initial",
   resultListView = "resultlist",
-  treeView = "treeview"
+  exploration = "exploration"
 }
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
@@ -28,7 +28,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
     .when(
       (state) => (state.matches("multiPhraseState.filledMultiPhrases.singlePhrase")
         && !state.context.plugin.renameValue),
-      () => { result.containerVisuals = ContainerVisuals.treeView })
+      () => { result.containerVisuals = ContainerVisuals.exploration })
     .when(
       (state) => (state.matches("multiPhraseState.filledMultiPhrases.singlePhrase")
         && (state.context.plugin.renameValue?.length ?? 0) > 0),
@@ -82,15 +82,22 @@ export const OntologyViewContainer = () => {
         }).when(
           (val) => ((val === ContainerVisuals.resultListView) && renameValue),
           () => {
-            return <ScrollBarWrapper><ResultList
-              typedValue={renameValue!}
-              recommendations={shortenedTerms}
-              iris={searchResult}
-            /></ScrollBarWrapper>
+            return <ScrollBarWrapper>
+              <ResultList
+                typedValue={renameValue!}
+                recommendations={shortenedTerms}
+                iris={searchResult}
+              />
+            </ScrollBarWrapper>
           }
         ).otherwise(
           () => {
-            return <ScrollBarWrapper>{/*<TreeView node={{}} />*/}</ScrollBarWrapper>
+            return <ScrollBarWrapper>
+              <div className='exploration'>
+                {/*<TreeView node={{}} />*/}
+                {/* <SectionListView /> */}
+              </div>
+            </ScrollBarWrapper>
           })
       }
     </div>

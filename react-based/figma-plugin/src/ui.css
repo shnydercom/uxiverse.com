@@ -357,3 +357,8 @@ button[disabled]:focus {
 .tree-view .tree-entry .topmost {
   font-style: italic;
 }
+
+.exploration {
+  display: flex;
+  flex-direction: row;
+}
