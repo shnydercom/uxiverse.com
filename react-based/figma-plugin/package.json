@@ -26,6 +26,7 @@
     "overlayscrollbars": "^1.13.2",
     "overlayscrollbars-react": "^0.3.0",
     "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git",
+    "ts-pattern": "^4.2.2",
     "xstate": "^4.33.0"
   },
   "devDependencies": {

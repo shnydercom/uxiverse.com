@@ -8,31 +8,29 @@ import {
 } from '../../browserlogic/state/mainMachine'
 import {
   GraphSelectorType,
+  MainMachineSelectorArg,
   SearchValueSelectorType,
 } from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { OntologyEmptyState } from './OntologyEmptyState'
-import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
 import { ResultList } from './searchCompletion/ResultList'
 import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 
-const renameValueSelector: SearchValueSelectorType | undefined = state => {
-  return state.context.plugin.renameValue
-}
-
-const graphSelector: GraphSelectorType | undefined = state => {
-  return state.context.plugin.graph
+const mainMachineSelector = (state: MainMachineSelectorArg) => {
+  const isSinglePhrase = state.value;
+  console.log("state value")
+  console.log(isSinglePhrase)
+  return {
+    renameValue: state.context.plugin.renameValue,
+    rtGraph: state.context.plugin.graph
+  }
 }
 
 export const OntologyViewContainer = () => {
   //TODO: consume graph from online source
   const globalServices = useContext(GlobalStateContext)
   const { send } = globalServices.mainService
-  const renameValue = useSelector(
-    globalServices.mainService,
-    renameValueSelector
-  )
-  const rtGraph = useSelector(globalServices.mainService, graphSelector)
+  const { rtGraph, renameValue } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   React.useEffect(() => {

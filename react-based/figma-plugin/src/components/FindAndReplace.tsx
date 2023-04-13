@@ -147,7 +147,7 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => {}
+  const onSearchChange = () => { }
 
   const onNotationChange = () => {
     send({
@@ -162,6 +162,16 @@ export const FindAndReplace = () => {
     send({
       type: 'EDIT_PHRASES',
       inputValue: event.currentTarget.value,
+    } as PluginInputTypingEvent)
+  }
+
+  const onFocusChange: React.FocusEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    send({
+      type: 'EDIT_PHRASES',
+      inputValue:
+        event.currentTarget.value,
     } as PluginInputTypingEvent)
   }
 
@@ -256,6 +266,7 @@ export const FindAndReplace = () => {
       />
       <Input
         placeholder={i18n.prepareNewName}
+        onFocus={onFocusChange}
         onChange={onReplaceChange}
         icon="swap"
         iconComponent={<RenameIcon />}

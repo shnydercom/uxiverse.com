@@ -112,3 +112,16 @@ export type GraphSelectorType = (
     >
   >
 ) => RtLdGraph | undefined
+
+export type MainMachineSelectorArg = State<
+  MainMachineXSCtx,
+  AnyEventObject,
+  any,
+  { value: any; context: MainMachineXSCtx },
+  ResolveTypegenMeta<
+    TypegenDisabled,
+    AnyEventObject,
+    BaseActionObject,
+    ServiceMap
+  >
+>
