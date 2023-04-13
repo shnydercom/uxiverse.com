@@ -1,5 +1,7 @@
 import React from 'react'
 import { FunctionComponent } from 'react'
+import { ExploreIRI } from '../../../assets/explore-iri'
+import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
 
 interface ResultListEntryProps {
   typedValue: string
@@ -28,10 +30,11 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   )
   return (
     <div className="list-entry">
-      <div className="explore"></div>
+      <ExploreIRI className="explore" />
       {splitpart[0] && <span className="no-match">{startString}</span>}
       {<span className="match">{centerString}</span>}
       {splitpart[1] && <span className="no-match">{endString}</span>}
+      <AddToReplaceValue className='add-to-rename' />
     </div>
   )
 }
