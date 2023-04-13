@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom'
 import { useSelector } from '@xstate/react'
 import { IsOpenSelectorType } from '../../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
-import { ToggleHostOptionsVisibilityEvent } from '../../browserlogic/state/mainMachine'
+import { ToggleHostOptionsVisibilityEvent } from '../../browserlogic/state/stateEvents'
 
 interface HostAppElementSelection {
   selectionFocus: HostAppElement | undefined

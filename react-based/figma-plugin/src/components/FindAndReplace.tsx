@@ -17,7 +17,7 @@ import {
   PluginInputTypingEvent,
   PluginNotationToggleEvent,
   PluginUnlinkedDataUpdateEvent,
-} from '../browserlogic/state/mainMachine'
+} from '../browserlogic/state/stateEvents'
 import { RenameIcon } from '../assets/Rename'
 import { PostRenameIcon } from '../assets/post-rename-icon'
 import { PreRenameIcon } from '../assets/pre-rename-icon'

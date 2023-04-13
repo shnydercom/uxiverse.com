@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { FunctionComponent } from 'react'
 import { ExploreIRI } from '../../../assets/explore-iri'
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
 
 interface ResultListEntryProps {
-  typedValue: string
-  displayFullValue: string
-  isFocused: boolean
-  onExploreClick?: () => void
-  onAddStringClick?: () => void
+  typedValue: string;
+  displayFullValue: string;
+  iri: string;
+  isFocused: boolean;
+  onHoverSearchResult: MouseEventHandler<HTMLDivElement>
+  onElemHoverLeave: MouseEventHandler<HTMLDivElement>
 }
 
 export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   typedValue,
   displayFullValue,
   isFocused,
+  iri,
+  onHoverSearchResult,
+  onElemHoverLeave
 }) => {
   const splitpart = displayFullValue
     .toLowerCase()
@@ -29,7 +33,7 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
     splitpart[0].length + typedValue.length
   )
   return (
-    <div className="list-entry">
+    <div className="list-entry" data-ld={iri} onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>
       <ExploreIRI className="explore" />
       {splitpart[0] && <span className="no-match">{startString}</span>}
       {<span className="match">{centerString}</span>}
