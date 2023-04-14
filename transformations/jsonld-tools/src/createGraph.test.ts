@@ -97,9 +97,8 @@ describe("given flattened uxiverse json-ld without blank nodes and no language s
 
   test("should contain both the properties and the direct fields on UIElement", () => {
     const uiElementDefinition = "The root class for all User Interface elements"
-    const values = runtimeGraph.collections.values.find((val) => val["@v"] === uiElementDefinition);
-    const edges = runtimeGraph.edges;
-    expect(edges.length).toBeGreaterThan(0);
+    const definitionValue = runtimeGraph.collections.values.find((val) => val["@v"] === uiElementDefinition);
+    expect(definitionValue?.["@v"]).toEqual(uiElementDefinition)
   });
 });
 

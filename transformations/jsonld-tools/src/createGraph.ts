@@ -31,6 +31,8 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
                 if (!oldNode) {
                     newNode = { "@id": typesAndId["@id"], fields: [] }
                     resultGraph.identifiableNodes.push(newNode)
+                } else {
+                    newNode = oldNode
                 }
                 const types = Array.isArray(typesAndId["@type"]) ? typesAndId["@type"] : [typesAndId["@type"]];
                 types.forEach((typeIRI) => {
