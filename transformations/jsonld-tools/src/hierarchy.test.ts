@@ -7,7 +7,7 @@ import { getAncestorsSiblingsAndDirectChildren } from "./hierarchy";
 describe("should get all ancestors, siblings and direct children as an object of IRIs", () => {
     const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
     const RDFS_SUBCLASS_OF = "http://www.w3.org/2000/01/rdf-schema#subClassOf";
-    const RDFS_SUBPROP_OF = "http://www.w3.org/2000/01/rdf-schema#ssubPropertyOf";
+    const RDFS_SUBPROP_OF = "http://www.w3.org/2000/01/rdf-schema#subPropertyOf";
     const RDF_PROP = "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property";
     // test initialization variables
     let uxiverseRootIRI: string;
@@ -80,12 +80,16 @@ describe("should get all ancestors, siblings and direct children as an object of
         ))
     });
 
-    test("should get all ancestors on a property", async () => {
+    test("should get all ancestors on Property 'isProminent', it is a sub-property", async () => {
+        const settingsIri = uxiverseRootIRI + "isProminent";
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF)
+        expect(strHierarchy).not.toBeNull();
+    });
+    test("should get no ancestors on Property 'settings', as it is not a sub-property", async () => {
         const settingsIri = uxiverseRootIRI + "settings";
         const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF)
-        /*runtimeGraph.identifiableNodes.forEach((node) => {
-            expect(node["@id"]).toMatch(new RegExp("http(s)?://"));
-        });*/
+        expect(strHierarchy).not.toBeNull();
+        expect(strHierarchy?.iris).toContain(settingsIri)
     });
     test("should get all siblings on a class", async () => {
         /*runtimeGraph.identifiableNodes.forEach((node) => {
