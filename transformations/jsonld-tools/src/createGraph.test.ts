@@ -96,9 +96,18 @@ describe("given flattened uxiverse json-ld without blank nodes and no language s
   });
 
   test("should contain both the properties and the direct fields on UIElement", () => {
-    const uiElementDefinition = "The root class for all User Interface elements"
+    const uiElementDefinition = "The root class for all User Interface elements";
+    const uiElementIRI = "https://uxiverse.com/ontology/UIElement";
     const definitionValue = runtimeGraph.collections.values.find((val) => val["@v"] === uiElementDefinition);
-    expect(definitionValue?.["@v"]).toEqual(uiElementDefinition)
+    const rdfClass = "http://www.w3.org/2000/01/rdf-schema#Class";
+    const RDFS_SUBCLASS_OF = "http://www.w3.org/2000/01/rdf-schema#subClassOf";
+    const typeEntry = runtimeGraph.collections.types.find((val) => val.iri === rdfClass)?.nodes.find((val) => val["@id"] === uiElementIRI)
+    const uiElemSubclassOfEntries = typeEntry?.fields.filter((val) => val.type.iri === RDFS_SUBCLASS_OF)
+    const isHiddenIRI = "https://uxiverse.com/ontology/isHidden";
+    expect(definitionValue?.["@v"]).toEqual(uiElementDefinition);
+    expect(typeEntry?.["@id"]).toBeTruthy();
+    expect(uiElemSubclassOfEntries?.filter((val) => val.in["@id"] === uiElementIRI).length).toEqual(2)
+    expect(typeEntry?.fields.filter((val) => val.in["@id"] === isHiddenIRI).length).toEqual(1)
   });
 });
 

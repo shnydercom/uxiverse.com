@@ -2,7 +2,7 @@ import { JsonLdProcessor, NodeObject } from "jsonld";
 import { createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
 import { RtLdGraph } from "./graphInterfaces";
-import { StringifiedHierarchy, getAncestorsSiblingsAndDirectChildren } from "./hierarchy";
+import { getAncestorsSiblingsAndDirectChildren } from "./hierarchy";
 
 describe("should get all ancestors, siblings and direct children as an object of IRIs", () => {
     const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
@@ -23,7 +23,7 @@ describe("should get all ancestors, siblings and direct children as an object of
         runtimeGraph = createGraph(uxiverseFlattened);
     });
 
-    test("should get all ancestors on a class", async () => {
+    test("should get all ancestors on class Button", async () => {
         const buttonIRI = uxiverseRootIRI + "Button";
         const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, buttonIRI, RDFS_SUBCLASS_OF)
         expect(strHierarchy).not.toBeNull();
@@ -31,27 +31,55 @@ describe("should get all ancestors, siblings and direct children as an object of
         const uiElementIRI = uxiverseRootIRI + "UIElement";
         const elementIRI = uxiverseRootIRI + "Element";
         const schemaThing = "https://schema.org/Thing";
-        const targetHierarchy: StringifiedHierarchy = {
-            iris: [schemaThing, RDFS_CLASS],
-            subElements: {
-                iris: [schemaThing],
+        expect(strHierarchy).toEqual(expect.objectContaining(
+            {
+                iris: [RDFS_CLASS, schemaThing],
                 subElements: {
-                    iris: [elementIRI],
+                    iris: [RDFS_CLASS, elementIRI],
                     subElements: {
-                        iris: [elementIRI],
+                        iris: [RDFS_CLASS, uiElementIRI],
                         subElements: {
-                            iris: [uiElementIRI],
+                            iris: [RDFS_CLASS, atomUIElementIRI],
                             subElements: {
-                                iris: [atomUIElementIRI],
-                                subElements: { iris: [buttonIRI] }
+                                iris: [buttonIRI],
+                                subElements: {
+                                    iris: []
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        expect(strHierarchy).toContain(targetHierarchy)
+        ))
     });
+    test("should get all children on class UIElement", async () => {
+        const uiElementIRI = uxiverseRootIRI + "UIElement";
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, uiElementIRI, RDFS_SUBCLASS_OF)
+        expect(strHierarchy).not.toBeNull();
+        const atomUIElementIRI = uxiverseRootIRI + "AtomUIElement";
+        const elementIRI = uxiverseRootIRI + "Element";
+        const schemaThing = "https://schema.org/Thing";
+        expect(strHierarchy).toEqual(expect.objectContaining(
+            {
+                iris: [RDFS_CLASS, schemaThing],
+                subElements: {
+                    iris: [RDFS_CLASS, elementIRI],
+                    subElements: {
+                        iris: [uiElementIRI],
+                        subElements: {
+                            iris: [
+                                atomUIElementIRI,
+                                "https://uxiverse.com/ontology/ContainerUIElement",
+                                "https://uxiverse.com/ontology/MoleculeUIElement",
+                                "https://uxiverse.com/ontology/OrganismUIElement"
+                            ],
+                        }
+                    }
+                }
+            }
+        ))
+    });
+
     test("should get all ancestors on a property", async () => {
         const settingsIri = uxiverseRootIRI + "settings";
         const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF)

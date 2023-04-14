@@ -30,14 +30,45 @@ export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestor
         return inputHierarchy;
     }
     const higherHierarchy = createHierarchyTemplate();
-    higherHierarchy.iris.push(...ancestorEdges.map((edge) => edge.out["@id"]))
+    const newAncestors = ancestorEdges
+        .map((edge) => (edge.out))
+        .filter(isRtLdIdentifiableNode)
+    if (newAncestors.length > 1) {
+        //de-duplicated string array
+        higherHierarchy.iris.push(...Array.from(new Set(newAncestors.map((val) => val["@id"]))))
+    }
+    if (newAncestors.length === 1) {
+        higherHierarchy.iris.push(newAncestors[0]["@id"])
+    }
     higherHierarchy.subElements = inputHierarchy;
     return getAncestors(
-        ancestorEdges
-            .map((edge) => (edge.out))
-            .filter(isRtLdIdentifiableNode)
+        newAncestors
         , ancestorIri
         , higherHierarchy);
+}
+
+export const getDirectChildren = (identifiableNode: RtLdIdentifiableNode,
+    ancestorIri: string): StringifiedHierarchy => {
+    const result: StringifiedHierarchy = createHierarchyTemplate();
+    result.iris = identifiableNode.fields.filter((val) => {
+        if (!isRtLdIdentifiableNode(val.out) || !isRtLdIdentifiableNode(val.in)) {
+            return false;
+        }
+        return (val.type.iri === ancestorIri && val.out["@id"] === identifiableNode["@id"])
+    }).map((val) => {
+        return val.in["@id"]
+    })
+    return result;
+}
+
+export const findIRIinHierarchy = (strHierarchy: StringifiedHierarchy, iri: string): StringifiedHierarchy | null => {
+    if (strHierarchy.iris.includes(iri)) {
+        return strHierarchy;
+    }
+    if (!strHierarchy.subElements) {
+        return null;
+    }
+    return findIRIinHierarchy(strHierarchy.subElements, iri)
 }
 
 /**
@@ -51,6 +82,11 @@ export const getAncestorsSiblingsAndDirectChildren = (graph: RtLdGraph, startIRI
     if (!matchedNode) return null;
     result.iris = [startIRI]
     result = getAncestors([matchedNode], ancestorIri, result);
+    const matchingStrHierarchy = findIRIinHierarchy(result, matchedNode["@id"]);
+    if (!matchingStrHierarchy) {
+        throw new Error("built hierarchy didn't contain match for startIRI");
+    }
+    matchingStrHierarchy.subElements = getDirectChildren(matchedNode, ancestorIri);
     return result;
 }
 
