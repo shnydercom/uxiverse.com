@@ -12,13 +12,7 @@ interface LineageTreeviewProps {
 
 
 const mapNodeChildrenToTreeViewProps = (node: StringifiedLineage): TreeViewProps<StringifiedLineage>[] => {
-    const allChildren: StringifiedLineage[] = [];
-    if (node.descendant) {
-        allChildren.push(node.descendant)
-    }
-    if (node.siblings) {
-        allChildren.push(...node.siblings);
-    }
+    const allChildren: StringifiedLineage[] = node.descendants;
     return allChildren.map((val) => {
         const treeViewProps: TreeViewProps<StringifiedLineage> = {
             mapNodeChildrenToTreeViewProps,

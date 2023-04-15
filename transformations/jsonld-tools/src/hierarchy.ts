@@ -1,11 +1,10 @@
-import { getDirectAncestorEdges, getDirectChildrenEdges } from "./graph-queries";
+import { getDirectAncestorEdges, getChildrenEdges } from "./graph-queries";
 import { RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
 import { isRtLdIdentifiableNode } from "./typeguards";
 
 export interface StringifiedLineage {
     iris: string[];
-    descendant?: StringifiedLineage;
-    siblings?: StringifiedLineage[];
+    descendants: StringifiedLineage[];
 }
 
 export interface CategorizedEdges {
@@ -13,7 +12,7 @@ export interface CategorizedEdges {
 }
 
 const createLineageTemplate = (): StringifiedLineage => {
-    const hierarchyTemplate: StringifiedLineage = { iris: [] };
+    const hierarchyTemplate: StringifiedLineage = { iris: [], descendants: [] };
     return JSON.parse(JSON.stringify(hierarchyTemplate))
 }
 
@@ -34,30 +33,52 @@ export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestor
     if (newAncestors.length === 1) {
         higherHierarchy.iris.push(newAncestors[0]["@id"])
     }
-    higherHierarchy.descendant = inputHierarchy;
+    higherHierarchy.descendants.push(inputHierarchy);
     return getAncestors(
         newAncestors
         , ancestorIri
         , higherHierarchy, ignoreType);
 }
 
-export const getDirectDescendants = (identifiableNode: RtLdIdentifiableNode,
-    ancestorIri: string): StringifiedLineage => {
-    const result: StringifiedLineage = createLineageTemplate();
-    result.siblings = getDirectChildrenEdges(identifiableNode, ancestorIri).map((val) => {
+export const getChildren = (identifiableNode: RtLdIdentifiableNode,
+    ancestorIri: string): StringifiedLineage[] => {
+    return getChildrenEdges(identifiableNode, ancestorIri).map((val) => {
         return { ...createLineageTemplate(), iris: [val.in["@id"]] }
     })
-    return result;
 }
 
 export const findIRIinLineage = (strLineage: StringifiedLineage, iri: string): StringifiedLineage | null => {
     if (strLineage.iris.includes(iri)) {
         return strLineage;
     }
-    if (!strLineage.descendant) {
+    if (!strLineage.descendants?.length) {
         return null;
     }
-    return findIRIinLineage(strLineage.descendant, iri)
+    for (let index = 0; index < strLineage.descendants.length; index++) {
+        const element = strLineage.descendants[index];
+        const recursionResult = findIRIinLineage(element, iri);
+        if (recursionResult) {
+            return recursionResult;
+        }
+    }
+    return null;
+}
+
+export const findParentIRIinLineage = (strLineage: StringifiedLineage, iri: string): StringifiedLineage | null => {
+    if (!strLineage.descendants?.length) {
+        return null;
+    }
+    for (let index = 0; index < strLineage.descendants.length; index++) {
+        const element = strLineage.descendants[index];
+        if (element.iris.includes(iri)) {
+            return strLineage;
+        }
+        const recursionResult = findParentIRIinLineage(element, iri);
+        if (recursionResult) {
+            return recursionResult;
+        }
+    }
+    return null;
 }
 
 export const getSiblings = (
@@ -84,7 +105,7 @@ export const getSiblings = (
                 }
                 return true;
             }).map((edgeVal) => {
-                return { iris: [edgeVal.in["@id"]] }
+                return { iris: [edgeVal.in["@id"]], descendants: [] }
             })
         result.push(...fieldIRIs)
     })
@@ -94,7 +115,7 @@ export const getSiblings = (
 /**
  * gets all ancestors, siblings and direct children as an object of IRIs
  */
-export const getAncestorsSiblingsAndDirectDescendants = (graph: RtLdGraph, startIRI: string, ancestorIri: string, ignoreType: boolean): StringifiedLineage | null => {
+export const getAncestorsSiblingsAndChildren = (graph: RtLdGraph, startIRI: string, ancestorIri: string, ignoreType: boolean): StringifiedLineage | null => {
     let result: StringifiedLineage = createLineageTemplate();
     const matchedNode = graph.identifiableNodes.find(
         (node, idx) => { return node["@id"] === startIRI }
@@ -109,8 +130,11 @@ export const getAncestorsSiblingsAndDirectDescendants = (graph: RtLdGraph, start
     if (!matchingStrHierarchy) {
         throw new Error("built hierarchy didn't contain match for startIRI");
     }
-    matchingStrHierarchy.descendant = getDirectDescendants(matchedNode, ancestorIri);
-    matchingStrHierarchy.siblings = getSiblings(matchedNode, ancestorIri, ignoreType);
+    matchingStrHierarchy.descendants.push(...getChildren(matchedNode, ancestorIri));
+    const matchingParent = findParentIRIinLineage(result, matchedNode["@id"])
+    if (matchingParent) {
+        matchingParent.descendants.push(...getSiblings(matchedNode, ancestorIri, ignoreType));
+    }
     return result;
 }
 

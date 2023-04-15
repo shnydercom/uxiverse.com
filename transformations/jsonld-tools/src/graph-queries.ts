@@ -25,7 +25,7 @@ export const getDirectAncestorEdges = (identifiableNodes: RtLdIdentifiableNode[]
         })
 }
 
-export const getDirectChildrenEdges = (identifiableNode: RtLdIdentifiableNode, ancestorIri: string): RtLdEdge[] => {
+export const getChildrenEdges = (identifiableNode: RtLdIdentifiableNode, ancestorIri: string): RtLdEdge[] => {
     return identifiableNode.fields.filter((val) => {
         if (!isRtLdIdentifiableNode(val.out) || !isRtLdIdentifiableNode(val.in)) {
             return false;

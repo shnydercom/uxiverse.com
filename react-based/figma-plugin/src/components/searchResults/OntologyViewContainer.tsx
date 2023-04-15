@@ -58,7 +58,11 @@ export const OntologyViewContainer = () => {
   const { rtGraph, renameValue, containerVisuals } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
-  const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>({ lineage: { iris: [] }, edges: {} })
+  const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>(
+    {
+      lineage: { iris: [], descendants: [] },
+      edges: {}
+    })
   React.useEffect(() => {
     if (containerVisuals !== ContainerVisuals.resultListView) {
       return;
@@ -81,7 +85,7 @@ export const OntologyViewContainer = () => {
     if (!rtGraph) {
       return;
     }
-    const lineage = getLineage(rtGraph, uxiverseRootIRI + "UIElement", false);
+    const lineage = getLineage(rtGraph, uxiverseRootIRI + "AtomUIElement", false);
     console.log(lineage);
     if (!lineage) {
       return;
