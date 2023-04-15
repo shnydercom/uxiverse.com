@@ -4,16 +4,15 @@ import { ExploreIRI } from "./../../../assets/explore-iri"
 import { AddToReplaceValue } from "./../../../assets/add-to-replacevalue"
 
 export interface TreeviewEntryProps {
-    isTopmost?: boolean;
     displayFullValue: string;
     iri: string;
     isHighlighted?: boolean;
 }
 
 export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
-    { isTopmost, displayFullValue, isHighlighted }
+    { displayFullValue, isHighlighted }
 ) => {
-    return (<div className={`tree-entry ${isTopmost ? "topmost" : ""} ${isHighlighted ? "highlight" : ""}`}>
+    return (<div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}>
         <ExploreIRI />
         <span>{displayFullValue}</span>
         <AddToReplaceValue />

@@ -351,11 +351,11 @@ button[disabled]:focus {
   color: rgba(0, 0, 0, 0.8)
 }
 
-.tree-view .tree-entry .highlight {
+.tree-view .tree-entry.highlight {
   text-decoration: underline;
 }
 
-.tree-view .tree-entry .topmost {
+.tree-view.topmost>.tree-entry {
   font-style: italic;
 }
 

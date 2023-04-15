@@ -60,6 +60,7 @@ export const OntologyViewContainer = () => {
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>(
     {
+      lineageHighlightIRI: uxiverseRootIRI + "UIElement",
       lineage: { iris: [], descendants: [] },
       edges: {}
     })
@@ -85,13 +86,14 @@ export const OntologyViewContainer = () => {
     if (!rtGraph) {
       return;
     }
-    const lineage = getLineage(rtGraph, uxiverseRootIRI + "AtomUIElement", false);
+    const lineage = getLineage(rtGraph, explorationResult.lineageHighlightIRI, false);
     console.log(lineage);
     if (!lineage) {
       return;
     }
     setExplorationResult({
       ...explorationResult,
+      lineageHighlightIRI: explorationResult.lineageHighlightIRI,
       lineage
     })
   }, [containerVisuals, renameValue]);

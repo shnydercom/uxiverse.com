@@ -2,6 +2,7 @@ import { CategorizedEdges, RtLdGraph, StringifiedLineage, getAncestorsSiblingsAn
 import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF } from "./ontology-globals";
 
 export interface ExplorationResult {
+    lineageHighlightIRI: string;
     lineage: StringifiedLineage;
     edges: CategorizedEdges;
 }

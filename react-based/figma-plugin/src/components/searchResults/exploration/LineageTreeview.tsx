@@ -4,42 +4,43 @@ import { TreeView, TreeViewProps } from "./TreeView";
 import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
 import React from "react";
 import { TreeviewEntryProps } from "./TreeviewEntry";
-import { uxiverseRootIRI } from "../../../browserlogic/naming-recommendations/ontology-globals";
+import { getWellKnownIriSubPath } from "../../../browserlogic/naming-recommendations/IRIUtils";
 
 interface LineageTreeviewProps {
     exploration: ExplorationResult;
 }
 
-
-const mapNodeChildrenToTreeViewProps = (node: StringifiedLineage): TreeViewProps<StringifiedLineage>[] => {
+const mapNodeChildrenToTreeViewPropsFactory = (highlight: string) => (node: StringifiedLineage): TreeViewProps<StringifiedLineage>[] => {
     const allChildren: StringifiedLineage[] = node.descendants;
     return allChildren.map((val) => {
         const treeViewProps: TreeViewProps<StringifiedLineage> = {
-            mapNodeChildrenToTreeViewProps,
-            mapNodeToTreeviewEntryProps,
+            mapNodeChildrenToTreeViewProps: mapNodeChildrenToTreeViewPropsFactory(highlight),
+            mapNodeToTreeviewEntryProps: mapNodeToTreeviewEntryPropsFactory(highlight),
             node: val
         }
         return treeViewProps
     })
 };
-const mapNodeToTreeviewEntryProps = (node: StringifiedLineage): TreeviewEntryProps => {
-    const formattedIRIs: string[] = node.iris.map((val) => val.substring(uxiverseRootIRI.length))
+const mapNodeToTreeviewEntryPropsFactory = (highlight: string) => (node: StringifiedLineage): TreeviewEntryProps => {
+    const formattedIRIs: string[] = node.iris.map(getWellKnownIriSubPath);
+    const displayFullValue = formattedIRIs.length > 1 ? formattedIRIs.join(" / ") : formattedIRIs[0];
     return {
-        displayFullValue: formattedIRIs.length > 1 ? formattedIRIs.join(" / ") : formattedIRIs[0],
+        displayFullValue,
         iri: node.iris[0],
+        isHighlighted: highlight === node.iris[0],
     }
 }
 
 const mapExplorationToTreeViewProps = (exploration: ExplorationResult) => {
     const result: TreeViewProps<StringifiedLineage> = {
         node: exploration.lineage,
-        mapNodeChildrenToTreeViewProps,
-        mapNodeToTreeviewEntryProps,
+        mapNodeChildrenToTreeViewProps: mapNodeChildrenToTreeViewPropsFactory(exploration.lineageHighlightIRI),
+        mapNodeToTreeviewEntryProps: mapNodeToTreeviewEntryPropsFactory(exploration.lineageHighlightIRI),
     }
     return result;
 }
 
 export const LineageTreeview: FunctionComponent<LineageTreeviewProps> = ({ exploration }) => {
     const treeviewProps = mapExplorationToTreeViewProps(exploration)
-    return (<TreeView<StringifiedLineage> {...treeviewProps} />);
+    return (<TreeView<StringifiedLineage> {...treeviewProps} topClass="topmost" />);
 }
