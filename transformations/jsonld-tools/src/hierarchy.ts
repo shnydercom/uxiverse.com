@@ -1,4 +1,5 @@
-import { RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
+import { getDirectAncestorEdges, getDirectChildrenEdges } from "./graph-queries";
+import { RtLdEdge, RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
 import { isRtLdIdentifiableNode } from "./typeguards";
 
 export interface StringifiedHierarchy {
@@ -15,16 +16,8 @@ const createHierarchyTemplate = (): StringifiedHierarchy => {
     return JSON.parse(JSON.stringify(hierarchyTemplate))
 }
 
-export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestorIri: string, inputHierarchy: StringifiedHierarchy): StringifiedHierarchy => {
-    const ancestorEdges = identifiableNodes.map((iNode) => iNode.fields)
-        .reduce((arr1, arr2) => [...arr1, ...arr2])
-        .filter((val) => {
-            if (!isRtLdIdentifiableNode(val.in)) {
-                return false
-            }
-            return (identifiableNodes.some((iNode => iNode["@id"] === val.in["@id"]))
-                && (val.type.iri === ancestorIri))
-        })
+export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestorIri: string, inputHierarchy: StringifiedHierarchy, ignoreType: boolean): StringifiedHierarchy => {
+    const ancestorEdges = getDirectAncestorEdges(identifiableNodes, ancestorIri, ignoreType)
     if (!ancestorEdges || ancestorEdges.length === 0) {
         //recursion end condition
         return inputHierarchy;
@@ -44,18 +37,13 @@ export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestor
     return getAncestors(
         newAncestors
         , ancestorIri
-        , higherHierarchy);
+        , higherHierarchy, ignoreType);
 }
 
 export const getDirectChildren = (identifiableNode: RtLdIdentifiableNode,
     ancestorIri: string): StringifiedHierarchy => {
     const result: StringifiedHierarchy = createHierarchyTemplate();
-    result.iris = identifiableNode.fields.filter((val) => {
-        if (!isRtLdIdentifiableNode(val.out) || !isRtLdIdentifiableNode(val.in)) {
-            return false;
-        }
-        return (val.type.iri === ancestorIri && val.out["@id"] === identifiableNode["@id"])
-    }).map((val) => {
+    result.iris = getDirectChildrenEdges(identifiableNode, ancestorIri).map((val) => {
         return val.in["@id"]
     })
     return result;
@@ -74,14 +62,17 @@ export const findIRIinHierarchy = (strHierarchy: StringifiedHierarchy, iri: stri
 /**
  * gets all ancestors, siblings and direct children as an object of IRIs
  */
-export const getAncestorsSiblingsAndDirectChildren = (graph: RtLdGraph, startIRI: string, ancestorIri: string): StringifiedHierarchy | null => {
+export const getAncestorsSiblingsAndDirectChildren = (graph: RtLdGraph, startIRI: string, ancestorIri: string, ignoreType: boolean): StringifiedHierarchy | null => {
     let result: StringifiedHierarchy = createHierarchyTemplate();
     const matchedNode = graph.identifiableNodes.find(
         (node, idx) => { return node["@id"] === startIRI }
     )
     if (!matchedNode) return null;
     result.iris = [startIRI]
-    result = getAncestors([matchedNode], ancestorIri, result);
+    if (matchedNode["@t"] && !ignoreType) {
+        result.iris.push(matchedNode["@t"].iri)
+    }
+    result = getAncestors([matchedNode], ancestorIri, result, ignoreType);
     const matchingStrHierarchy = findIRIinHierarchy(result, matchedNode["@id"]);
     if (!matchingStrHierarchy) {
         throw new Error("built hierarchy didn't contain match for startIRI");

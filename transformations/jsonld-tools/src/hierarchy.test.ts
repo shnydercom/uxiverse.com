@@ -25,7 +25,7 @@ describe("should get all ancestors, siblings and direct children as an object of
 
     test("should get all ancestors on class Button", async () => {
         const buttonIRI = uxiverseRootIRI + "Button";
-        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, buttonIRI, RDFS_SUBCLASS_OF)
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, buttonIRI, RDFS_SUBCLASS_OF, false)
         expect(strHierarchy).not.toBeNull();
         const atomUIElementIRI = uxiverseRootIRI + "AtomUIElement";
         const uiElementIRI = uxiverseRootIRI + "UIElement";
@@ -41,7 +41,7 @@ describe("should get all ancestors, siblings and direct children as an object of
                         subElements: {
                             iris: [RDFS_CLASS, atomUIElementIRI],
                             subElements: {
-                                iris: [buttonIRI],
+                                iris: [buttonIRI, RDFS_CLASS],
                                 subElements: {
                                     iris: []
                                 }
@@ -52,9 +52,9 @@ describe("should get all ancestors, siblings and direct children as an object of
             }
         ))
     });
-    test("should get all children on class UIElement", async () => {
+    test("should get all children on class UIElement, not ignoring the @type", async () => {
         const uiElementIRI = uxiverseRootIRI + "UIElement";
-        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, uiElementIRI, RDFS_SUBCLASS_OF)
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, uiElementIRI, RDFS_SUBCLASS_OF, false)
         expect(strHierarchy).not.toBeNull();
         const atomUIElementIRI = uxiverseRootIRI + "AtomUIElement";
         const elementIRI = uxiverseRootIRI + "Element";
@@ -64,6 +64,34 @@ describe("should get all ancestors, siblings and direct children as an object of
                 iris: [RDFS_CLASS, schemaThing],
                 subElements: {
                     iris: [RDFS_CLASS, elementIRI],
+                    subElements: {
+                        iris: [uiElementIRI, RDFS_CLASS],
+                        subElements: {
+                            iris: [
+                                atomUIElementIRI,
+                                "https://uxiverse.com/ontology/ContainerUIElement",
+                                "https://uxiverse.com/ontology/MoleculeUIElement",
+                                "https://uxiverse.com/ontology/OrganismUIElement"
+                            ],
+                        }
+                    }
+                }
+            }
+        ))
+    });
+
+    test("should get all children on class UIElement, but ignoring the @type", async () => {
+        const uiElementIRI = uxiverseRootIRI + "UIElement";
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, uiElementIRI, RDFS_SUBCLASS_OF, true)
+        expect(strHierarchy).not.toBeNull();
+        const atomUIElementIRI = uxiverseRootIRI + "AtomUIElement";
+        const elementIRI = uxiverseRootIRI + "Element";
+        const schemaThing = "https://schema.org/Thing";
+        expect(strHierarchy).toEqual(expect.objectContaining(
+            {
+                iris: [schemaThing],
+                subElements: {
+                    iris: [elementIRI],
                     subElements: {
                         iris: [uiElementIRI],
                         subElements: {
@@ -81,13 +109,14 @@ describe("should get all ancestors, siblings and direct children as an object of
     });
 
     test("should get all ancestors on Property 'isProminent', it is a sub-property", async () => {
-        const settingsIri = uxiverseRootIRI + "isProminent";
-        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF)
+        const isProminentIri = uxiverseRootIRI + "isProminent";
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, isProminentIri, RDFS_SUBPROP_OF, true)
         expect(strHierarchy).not.toBeNull();
+        expect(strHierarchy?.iris).not.toContain(isProminentIri)
     });
     test("should get no ancestors on Property 'settings', as it is not a sub-property", async () => {
         const settingsIri = uxiverseRootIRI + "settings";
-        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF)
+        const strHierarchy = getAncestorsSiblingsAndDirectChildren(runtimeGraph, settingsIri, RDFS_SUBPROP_OF, true)
         expect(strHierarchy).not.toBeNull();
         expect(strHierarchy?.iris).toContain(settingsIri)
     });
