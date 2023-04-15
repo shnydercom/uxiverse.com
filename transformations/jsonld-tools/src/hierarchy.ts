@@ -1,11 +1,11 @@
 import { getDirectAncestorEdges, getDirectChildrenEdges } from "./graph-queries";
 import { RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
-import { isRtLdIdentifiableNode, isRtLdValue } from "./typeguards";
+import { isRtLdIdentifiableNode } from "./typeguards";
 
 export interface StringifiedLineage {
     iris: string[];
     descendant?: StringifiedLineage;
-    siblingIRIs?: string[];
+    siblings?: StringifiedLineage[];
 }
 
 export interface CategorizedEdges {
@@ -44,8 +44,8 @@ export const getAncestors = (identifiableNodes: RtLdIdentifiableNode[], ancestor
 export const getDirectDescendants = (identifiableNode: RtLdIdentifiableNode,
     ancestorIri: string): StringifiedLineage => {
     const result: StringifiedLineage = createLineageTemplate();
-    result.iris = getDirectChildrenEdges(identifiableNode, ancestorIri).map((val) => {
-        return val.in["@id"]
+    result.siblings = getDirectChildrenEdges(identifiableNode, ancestorIri).map((val) => {
+        return { ...createLineageTemplate(), iris: [val.in["@id"]] }
     })
     return result;
 }
@@ -64,14 +64,14 @@ export const getSiblings = (
     identifiableNode: RtLdIdentifiableNode,
     ancestorIri: string,
     ignoreType: boolean
-): string[] => {
-    const result: string[] = [];
+): StringifiedLineage[] => {
+    const result: StringifiedLineage[] = [];
     const ancestorEdges = getDirectAncestorEdges([identifiableNode], ancestorIri, ignoreType);
     ancestorEdges.forEach((ancEdge) => {
         if (!isRtLdIdentifiableNode(ancEdge.out)) {
             return;
         }
-        const fieldIRIs = ancEdge.out.fields
+        const fieldIRIs: StringifiedLineage[] = ancEdge.out.fields
             .filter((edgeVal) => {
                 if (!isRtLdIdentifiableNode(edgeVal.out) || !isRtLdIdentifiableNode(edgeVal.in)) {
                     return false;
@@ -84,7 +84,7 @@ export const getSiblings = (
                 }
                 return true;
             }).map((edgeVal) => {
-                return edgeVal.in["@id"]
+                return { iris: [edgeVal.in["@id"]] }
             })
         result.push(...fieldIRIs)
     })
@@ -110,7 +110,7 @@ export const getAncestorsSiblingsAndDirectDescendants = (graph: RtLdGraph, start
         throw new Error("built hierarchy didn't contain match for startIRI");
     }
     matchingStrHierarchy.descendant = getDirectDescendants(matchedNode, ancestorIri);
-    matchingStrHierarchy.siblingIRIs = getSiblings(matchedNode, ancestorIri, ignoreType);
+    matchingStrHierarchy.siblings = getSiblings(matchedNode, ancestorIri, ignoreType);
     return result;
 }
 

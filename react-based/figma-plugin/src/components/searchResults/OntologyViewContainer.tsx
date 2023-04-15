@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
@@ -10,7 +10,9 @@ import { OntologyEmptyState } from './OntologyEmptyState'
 import { ResultList } from './searchCompletion/ResultList'
 import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 import { match } from "ts-pattern"
-import { TreeView } from './exploration/TreeView'
+import { LineageTreeview } from './exploration/LineageTreeview'
+import { ExplorationResult, getLineage } from '../../browserlogic/naming-recommendations/exploration'
+import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
 
 enum ContainerVisuals {
   initialRunEmptyView = "initial",
@@ -56,7 +58,11 @@ export const OntologyViewContainer = () => {
   const { rtGraph, renameValue, containerVisuals } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
+  const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>({ lineage: { iris: [] }, edges: {} })
   React.useEffect(() => {
+    if (containerVisuals !== ContainerVisuals.resultListView) {
+      return;
+    }
     if (!renameValue || !rtGraph) {
       setSearchResult([])
       return
@@ -67,7 +73,24 @@ export const OntologyViewContainer = () => {
     return () => {
       setSearchResult([])
     }
-  }, [renameValue])
+  }, [containerVisuals, renameValue]);
+  React.useEffect(() => {
+    if (containerVisuals !== ContainerVisuals.exploration) {
+      return;
+    }
+    if (!rtGraph) {
+      return;
+    }
+    const lineage = getLineage(rtGraph, uxiverseRootIRI + "UIElement", false);
+    console.log(lineage);
+    if (!lineage) {
+      return;
+    }
+    setExplorationResult({
+      ...explorationResult,
+      lineage
+    })
+  }, [containerVisuals, renameValue]);
 
   const shortenedTerms = searchResult.map(value =>
     getWellKnownIriSubPath(value)
@@ -94,7 +117,7 @@ export const OntologyViewContainer = () => {
           () => {
             return <ScrollBarWrapper>
               <div className='exploration'>
-                {/*<TreeView node={{}} />*/}
+                <LineageTreeview exploration={explorationResult} />
                 {/* <SectionListView /> */}
               </div>
             </ScrollBarWrapper>

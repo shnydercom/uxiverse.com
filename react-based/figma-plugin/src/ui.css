@@ -337,6 +337,7 @@ button[disabled]:focus {
 .tree-view {
   display: flex;
   flex-direction: column;
+  margin-left: 2em;
 }
 
 .tree-view .tree-entry {

@@ -13,7 +13,7 @@ export interface TreeviewEntryProps {
 export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
     { isTopmost, displayFullValue, isHighlighted }
 ) => {
-    return (<div className={`tree-entry ${isTopmost && "topmost"} ${isHighlighted && "highlight"}`}>
+    return (<div className={`tree-entry ${isTopmost ? "topmost" : ""} ${isHighlighted ? "highlight" : ""}`}>
         <ExploreIRI />
         <span>{displayFullValue}</span>
         <AddToReplaceValue />

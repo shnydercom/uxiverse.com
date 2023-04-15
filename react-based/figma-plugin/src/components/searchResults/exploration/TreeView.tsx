@@ -12,7 +12,7 @@ export const TreeView: <T extends {}>(props: TreeViewProps<T>) => React.ReactEle
 }) => {
   const entryProps = mapNodeToTreeviewEntryProps(node);
   const childTreeViewProps = mapNodeChildrenToTreeViewProps(node);
-  return <div className='treeview'>
+  return <div className='tree-view'>
     {childTreeViewProps.map((val, idx) => <TreeView key={`tv-${idx}`} {...val} />)}
     <TreeviewEntry {...entryProps} />
   </div>

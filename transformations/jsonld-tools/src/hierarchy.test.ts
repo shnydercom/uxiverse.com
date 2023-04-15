@@ -45,7 +45,7 @@ describe("should get all ancestors, siblings and direct children as an object of
                                 descendant: {
                                     iris: []
                                 },
-                                siblingIRIs: expect.any(Array)
+                                siblings: expect.any(Array)
                             }
                         }
                     }
@@ -75,7 +75,7 @@ describe("should get all ancestors, siblings and direct children as an object of
                                 "https://uxiverse.com/ontology/OrganismUIElement"
                             ],
                         },
-                        siblingIRIs: expect.any(Array)
+                        siblings: expect.any(Array)
                     }
                 }
             }
@@ -104,7 +104,7 @@ describe("should get all ancestors, siblings and direct children as an object of
                                 "https://uxiverse.com/ontology/OrganismUIElement"
                             ],
                         },
-                        siblingIRIs: expect.any(Array)
+                        siblings: expect.any(Array)
                     }
                 }
             }
