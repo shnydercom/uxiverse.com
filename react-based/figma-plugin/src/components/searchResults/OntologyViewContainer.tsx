@@ -11,7 +11,7 @@ import { ResultList } from './searchCompletion/ResultList'
 import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 import { match } from "ts-pattern"
 import { LineageTreeview } from './exploration/LineageTreeview'
-import { ExplorationResult, getLineage } from '../../browserlogic/naming-recommendations/exploration'
+import { ExplorationResult, getCategorizedEdges, getLineage } from '../../browserlogic/naming-recommendations/exploration'
 import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
 
 enum ContainerVisuals {
@@ -60,9 +60,9 @@ export const OntologyViewContainer = () => {
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>(
     {
-      lineageHighlightIRI: uxiverseRootIRI + "UIElement",
+      lineageHighlightIRI: uxiverseRootIRI + "Button",
       lineage: { iris: [], descendants: [] },
-      edges: {}
+      catEdges: { categories: {}, straightLineage: [] }
     })
   React.useEffect(() => {
     if (containerVisuals !== ContainerVisuals.resultListView) {
@@ -87,14 +87,17 @@ export const OntologyViewContainer = () => {
       return;
     }
     const lineage = getLineage(rtGraph, explorationResult.lineageHighlightIRI, false);
+    const catEdges = getCategorizedEdges(rtGraph, explorationResult.lineageHighlightIRI, false);
     console.log(lineage);
-    if (!lineage) {
+    console.log(catEdges)
+    if (!lineage || !catEdges) {
       return;
     }
     setExplorationResult({
       ...explorationResult,
       lineageHighlightIRI: explorationResult.lineageHighlightIRI,
-      lineage
+      lineage,
+      catEdges
     })
   }, [containerVisuals, renameValue]);
 

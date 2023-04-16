@@ -1,4 +1,4 @@
-import { RtLdEdge, RtLdIdentifiableNode } from "./graphInterfaces"
+import { RtLdEdge, RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
 import { isRtLdIdentifiableNode } from "./typeguards"
 
 // these functions should only consume and produce types on graphInterfaces
@@ -32,4 +32,31 @@ export const getChildrenEdges = (identifiableNode: RtLdIdentifiableNode, ancesto
         }
         return (val.type.iri === ancestorIri && val.out["@id"] === identifiableNode["@id"])
     })
+}
+
+export const findIdentifiableNode = (graph: RtLdGraph, searchIri: string): RtLdIdentifiableNode | undefined => {
+    return graph.identifiableNodes.find(
+        (node) => { return node["@id"] === searchIri }
+    )
+}
+
+export const compareEdgeTypeIriAnd = (typeIri: string) => {
+    return (val: RtLdEdge) => {
+        return val.type.iri === typeIri;
+    }
+}
+
+export const compareEdgeNodeIriAnd = (edgeID: string, filterIn: boolean = false) => {
+    return (val: RtLdEdge) => {
+        if (filterIn) {
+            if (!isRtLdIdentifiableNode(val.in)) {
+                return false;
+            }
+            return val.in["@id"] === edgeID;
+        }
+        if (!isRtLdIdentifiableNode(val.out)) {
+            return false;
+        }
+        return val.out["@id"] === edgeID;
+    }
 }

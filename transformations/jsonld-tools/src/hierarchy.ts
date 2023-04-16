@@ -1,4 +1,4 @@
-import { getDirectAncestorEdges, getChildrenEdges } from "./graph-queries";
+import { getDirectAncestorEdges, getChildrenEdges, findIdentifiableNode, compareEdgeTypeIriAnd, compareEdgeNodeIriAnd } from "./graph-queries";
 import { RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
 import { isRtLdIdentifiableNode } from "./typeguards";
 
@@ -8,7 +8,10 @@ export interface StringifiedLineage {
 }
 
 export interface CategorizedEdges {
-    [s: string]: string[]
+    categories: {
+        [s: string]: string[];
+    }
+    straightLineage: string[];
 }
 
 const createLineageTemplate = (): StringifiedLineage => {
@@ -117,9 +120,7 @@ export const getSiblings = (
  */
 export const getAncestorsSiblingsAndChildren = (graph: RtLdGraph, startIRI: string, ancestorIri: string, ignoreType: boolean): StringifiedLineage | null => {
     let result: StringifiedLineage = createLineageTemplate();
-    const matchedNode = graph.identifiableNodes.find(
-        (node, idx) => { return node["@id"] === startIRI }
-    )
+    const matchedNode = findIdentifiableNode(graph, startIRI);
     if (!matchedNode) return null;
     result.iris = [startIRI]
     if (matchedNode["@t"] && !ignoreType) {
@@ -141,7 +142,30 @@ export const getAncestorsSiblingsAndChildren = (graph: RtLdGraph, startIRI: stri
 /**
  * gets edges of all ancestors that are not the ancestors themselves as an object of string-arrays
  */
-export const getEdgesOfAncestorsOnly = (graph: RtLdGraph, startIRI): CategorizedEdges => {
-    const result: CategorizedEdges = {}
+export const getEdgesOfAncestorsOnly = (graph: RtLdGraph, startIRI: string, typeIri: string, ancestorIri: string): CategorizedEdges | null => {
+    const result: CategorizedEdges = { straightLineage: [], categories: {} };
+    let matchedNode = findIdentifiableNode(graph, startIRI)
+    if (!matchedNode) return null;
+    while (matchedNode) {
+        const matchingEdges = matchedNode.fields
+            .filter(compareEdgeTypeIriAnd(typeIri))
+            .filter(compareEdgeNodeIriAnd(matchedNode["@id"], false))
+        const newKey: string = matchedNode["@id"];
+        result.straightLineage.unshift(matchedNode["@id"])
+        result.categories[newKey] = matchingEdges.map((val) => (val.in as RtLdIdentifiableNode)["@id"])
+        const ancestorEdges = getDirectAncestorEdges([matchedNode], ancestorIri, true);
+        if (!ancestorEdges || ancestorEdges.length === 0) {
+            //loop end condition
+            break;
+        }
+        const nextAncestors = ancestorEdges
+            .map((edge) => (edge.out))
+            .filter(isRtLdIdentifiableNode)
+        if (nextAncestors.length === 0) {
+            //loop end condition
+            break;
+        }
+        matchedNode = nextAncestors[0]
+    }
     return result;
 }

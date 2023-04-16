@@ -2,7 +2,7 @@ import { JsonLdProcessor, NodeObject } from "jsonld";
 import { createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
 import { RtLdGraph } from "./graphInterfaces";
-import { getAncestorsSiblingsAndChildren } from "./hierarchy";
+import { getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "./hierarchy";
 
 describe("should get all ancestors, siblings and direct children as an object of IRIs", () => {
     const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
@@ -135,4 +135,45 @@ describe("should get all ancestors, siblings and direct children as an object of
             expect(node["@id"]).toMatch(new RegExp("http(s)?://"));
         });*/
     });
+})
+
+
+describe("should get edges of all ancestors that are not the ancestors themselves as an object of string-arrays", () => {
+    const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
+    const RDFS_SUBCLASS_OF = "http://www.w3.org/2000/01/rdf-schema#subClassOf";
+    const RDFS_SUBPROP_OF = "http://www.w3.org/2000/01/rdf-schema#subPropertyOf";
+    const RDF_PROP = "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property";
+
+    const DOMAIN_INCLUDES = "https://schema.org/domainIncludes";
+    const RANGE_INCLUDES = "https://schema.org/rangeIncludes";
+    // test initialization variables
+    let uxiverseRootIRI: string;
+    let uxiverseFlattened: NodeObject;
+    let runtimeGraph: RtLdGraph;
+
+    beforeEach(async () => {
+        uxiverseRootIRI = "https://uxiverse.com/ontology/";
+        uxiverseFlattened = await JsonLdProcessor.flatten(
+            uxiverseOntologyJSONLDfile as any,
+            {}
+        );
+        runtimeGraph = createGraph(uxiverseFlattened);
+    });
+
+    test("should write categories and edges for class Button and its ancestors", async () => {
+        const buttonIRI = uxiverseRootIRI + "Button";
+        const catEdges = getEdgesOfAncestorsOnly(runtimeGraph, buttonIRI, DOMAIN_INCLUDES, RDFS_SUBCLASS_OF);
+        expect(catEdges).not.toBeNull();
+        expect(catEdges!.categories[buttonIRI]).toContain("https://uxiverse.com/ontology/triggers");
+        const expectedLineage = [
+            "https://schema.org/Thing",
+            "https://uxiverse.com/ontology/Element",
+            "https://uxiverse.com/ontology/UIElement",
+            "https://uxiverse.com/ontology/AtomUIElement",
+            "https://uxiverse.com/ontology/Button",
+        ];
+        expect(catEdges!.straightLineage).toEqual(expectedLineage);
+        expect(Object.keys(catEdges!.categories).length).toBe(expectedLineage.length);
+        expect(Object.keys(catEdges!.categories)).toEqual(expect.arrayContaining(expectedLineage))
+    })
 })
