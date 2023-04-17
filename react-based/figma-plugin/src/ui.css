@@ -363,3 +363,27 @@ button[disabled]:focus {
   display: flex;
   flex-direction: row;
 }
+
+.categorized-edges-view {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.categorized-edges-view>.category {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorized-edges-view>.category>.label {
+  opacity: 0.8;
+}
+
+.categorized-edges-view>.category>.edges {
+  padding: 0;
+  margin: 0 0 0 2em;
+}
+
+.categorized-edges-view>.category>.edges>.edge {
+  list-style-type: none;
+}

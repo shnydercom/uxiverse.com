@@ -8,18 +8,18 @@ interface Props {
 
 const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
     return (
-        <div>
+        <div className='categorized-edges-view'>
             {categorizedEdges.straightLineage.map((category) => {
                 const items = categorizedEdges.categories[category];
                 const categoryTrimmed = getWellKnownIriSubPath(category)
                 return (
-                    <div key={category}>
-                        <div data-ld={category}>{categoryTrimmed}</div>
-                        <ul style={{ marginLeft: '2em' }}>
+                    <div key={category} className='category'>
+                        <div className='label' data-ld={category}>{categoryTrimmed}</div>
+                        <ul className='edges'>
                             {items.map((item) => {
                                 const itemTrimmed = getWellKnownIriSubPath(item);
                                 return (
-                                    <li key={itemTrimmed} data-ld={item}>{itemTrimmed}</li>
+                                    <li key={itemTrimmed} className='edge' data-ld={item}>{itemTrimmed}</li>
                                 )
                             })}
                         </ul>
