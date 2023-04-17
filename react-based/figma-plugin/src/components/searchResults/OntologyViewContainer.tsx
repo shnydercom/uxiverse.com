@@ -13,6 +13,7 @@ import { match } from "ts-pattern"
 import { LineageTreeview } from './exploration/LineageTreeview'
 import { ExplorationResult, getCategorizedEdges, getLineage } from '../../browserlogic/naming-recommendations/exploration'
 import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
+import CategorizedEdgesList from './exploration/CategorizedEdgesList'
 
 enum ContainerVisuals {
   initialRunEmptyView = "initial",
@@ -127,6 +128,7 @@ export const OntologyViewContainer = () => {
             return <ScrollBarWrapper>
               <div className='exploration'>
                 <LineageTreeview exploration={explorationResult} />
+                <CategorizedEdgesList categorizedEdges={explorationResult.catEdges} />
                 {/* <SectionListView /> */}
               </div>
             </ScrollBarWrapper>
