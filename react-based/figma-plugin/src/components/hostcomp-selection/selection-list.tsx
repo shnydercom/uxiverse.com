@@ -69,6 +69,7 @@ export function SelectionList(props: SelectionListProps) {
         {hostSelection.map(itm => {
           return (
             <div
+              key={itm.id}
               className={`hostcomp-listentry ${selectionFocusedElement && itm.id === selectionFocusedElement?.id ? "selected" : ""}`}
               onClick={() => onSelectionClick(itm)}
             >

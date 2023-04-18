@@ -12,6 +12,7 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
             {categorizedEdges.straightLineage.map((category) => {
                 const items = categorizedEdges.categories[category];
                 const categoryTrimmed = getWellKnownIriSubPath(category)
+                if (items.length === 0) return null;
                 return (
                     <div key={category} className='category'>
                         <div className='cat-label' data-ld={category}>{categoryTrimmed}</div>

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { OverlayScrollbarsComponent, OverlayScrollbarsComponentProps } from 'overlayscrollbars-react'
+import React, { useContext, useRef, useState } from 'react'
+import { OverlayScrollbarsComponent, useOverlayScrollbars } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
 import {
@@ -65,6 +65,9 @@ export const OntologyViewContainer = () => {
       lineage: { iris: [], descendants: [] },
       catEdges: { categories: {}, straightLineage: [] }
     })
+
+  const treeviewScrollContainerRef = useRef<HTMLDivElement>(null);
+
   React.useEffect(() => {
     if (containerVisuals !== ContainerVisuals.resultListView) {
       return;
@@ -105,6 +108,42 @@ export const OntologyViewContainer = () => {
     })
   }, [containerVisuals, renameValue]);
 
+  const [initialize, instance] = useOverlayScrollbars({
+    options: {
+      overflow: {
+        x: 'visible',
+        y: 'scroll'
+      }, scrollbars: { autoHide: 'never', }
+    }
+    , defer: true,
+    events: {
+      initialized(instance) {
+        console.log("initialized")
+        const { viewport } = instance.elements();
+        const treeHighlightElement = viewport.getElementsByClassName("tree-entry highlight")?.item(0);
+        if (!treeHighlightElement) {
+          return;
+        }
+        treeHighlightElement.scrollIntoView({ behavior: "auto", block: "center", inline: "end" }); // set scroll offset
+      },
+      updated(instance, onUpdatedArgs) {
+        console.log("updated")
+        const { viewport } = instance.elements();
+        const treeHighlightElement = viewport.getElementsByClassName("tree-entry highlight")?.item(0);
+        if (!treeHighlightElement) {
+          return;
+        }
+        treeHighlightElement.scrollIntoView({ behavior: "auto", block: "center", inline: "end" }); // set scroll offset
+      },
+    }
+  })
+
+  React.useEffect(() => {
+    if (treeviewScrollContainerRef.current) {
+      initialize(treeviewScrollContainerRef.current);
+    }
+  }, [initialize, treeviewScrollContainerRef.current]);
+
   const shortenedTerms = searchResult.map(value =>
     getWellKnownIriSubPath(value)
   )
@@ -141,17 +180,11 @@ export const OntologyViewContainer = () => {
               }}
             >
               <div className='exploration'>
-                <OverlayScrollbarsComponent
+                <div ref={treeviewScrollContainerRef}
                   style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
-                  options={{
-                    overflow: {
-                      x: 'visible',
-                      y: 'scroll'
-                    }, scrollbars: { autoHide: 'never', }
-                  }}
                 >
                   <LineageTreeview exploration={explorationResult} />
-                </OverlayScrollbarsComponent>
+                </div >
                 <OverlayScrollbarsComponent
                   style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
                   options={{
@@ -164,7 +197,6 @@ export const OntologyViewContainer = () => {
                 >
                   <CategorizedEdgesList categorizedEdges={explorationResult.catEdges} />
                 </OverlayScrollbarsComponent>
-                {/* <SectionListView /> */}
               </div>
             </OverlayScrollbarsComponent>
           })

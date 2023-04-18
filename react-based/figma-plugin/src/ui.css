@@ -274,7 +274,8 @@ button[disabled]:focus {
 }
 
 .empty-ontology {
-  margin: 11 20px;
+  padding: 11 20px;
+  height: 88px;
 }
 
 .empty-ontology>p {
@@ -322,7 +323,9 @@ button[disabled]:focus {
   width: 33px;
   height: 16px;
   padding: 0 2px 0 14px;
-  color: rgba(0, 0, 0, 0.8)
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 11px;
+  line-height: 16px;
 }
 
 .result-list .list-entry .add-to-rename {
@@ -344,7 +347,7 @@ button[disabled]:focus {
 .tree-view {
   display: flex;
   flex-direction: column;
-  margin-left: 2em;
+  margin-left: 6px;
   width: fit-content;
 }
 
@@ -370,6 +373,8 @@ button[disabled]:focus {
 .exploration {
   display: flex;
   flex-direction: row;
+  font-size: 11px;
+  line-height: 16px;
 }
 
 .categorized-edges-view {
@@ -384,12 +389,12 @@ button[disabled]:focus {
 }
 
 .categorized-edges-view>.category>.cat-label {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .categorized-edges-view>.category>.edges {
   padding: 0;
-  margin: 0 0 0 2em;
+  margin: 0 0 0 6px;
 }
 
 .categorized-edges-view>.category>.edges>.edge {
