@@ -73,7 +73,7 @@ body {
   flex-direction: column;
 }
 
-.ontology-view-container {
+.ontology-search-container {
   height: 88px;
   padding: 0px 32px;
   box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
@@ -81,10 +81,17 @@ body {
   flex-direction: column;
 }
 
-.ontology-view-container--inner {
-  margin-bottom: 12px;
+.ontology-search-container--inner {
+  /*margin-bottom: 12px;*/
   display: flex;
   flex-direction: row;
+  max-height: 88px;
+}
+
+.ontology-nav-container {
+  height: 88px;
+  padding: 0;
+  box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
 }
 
 .found-term-list {
@@ -338,6 +345,7 @@ button[disabled]:focus {
   display: flex;
   flex-direction: column;
   margin-left: 2em;
+  width: fit-content;
 }
 
 .tree-view .tree-entry {
@@ -375,7 +383,7 @@ button[disabled]:focus {
   flex-direction: column;
 }
 
-.categorized-edges-view>.category>.label {
+.categorized-edges-view>.category>.cat-label {
   opacity: 0.8;
 }
 

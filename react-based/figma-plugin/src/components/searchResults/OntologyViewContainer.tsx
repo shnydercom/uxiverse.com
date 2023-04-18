@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import { OverlayScrollbarsComponent, OverlayScrollbarsComponentProps } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
 import {
@@ -44,8 +44,8 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
 
 const ScrollBarWrapper = ({ children }) => {
   return <OverlayScrollbarsComponent
-    style={{ flex: 1 }}
-    options={{ scrollbars: { autoHide: 'never' } }}
+    style={{ flex: 1, overflowX: 'scroll', overflowY: "hidden" }}
+    options={{ scrollbars: { autoHide: 'never', } }}
   >
     <div className="ontology-view-container--inner">
       {children}
@@ -87,16 +87,19 @@ export const OntologyViewContainer = () => {
     if (!rtGraph) {
       return;
     }
-    const lineage = getLineage(rtGraph, explorationResult.lineageHighlightIRI, false);
-    const catEdges = getCategorizedEdges(rtGraph, explorationResult.lineageHighlightIRI, false);
+    const explorationHighlight = explorationResult.lineageHighlightIRI
+    const lineage = getLineage(rtGraph, explorationHighlight, false);
+    const catEdges = getCategorizedEdges(rtGraph, explorationHighlight, false);
     console.log(lineage);
     console.log(catEdges)
     if (!lineage || !catEdges) {
       return;
     }
+    //formatting for view
+    catEdges.straightLineage = catEdges.straightLineage.reverse();
     setExplorationResult({
       ...explorationResult,
-      lineageHighlightIRI: explorationResult.lineageHighlightIRI,
+      lineageHighlightIRI: explorationHighlight,
       lineage,
       catEdges
     })
@@ -107,7 +110,7 @@ export const OntologyViewContainer = () => {
   )
 
   return (
-    <div className="ontology-view-container">
+    <>
       {match(containerVisuals).when(
         (val) => (val === ContainerVisuals.initialRunEmptyView),
         () => {
@@ -115,25 +118,57 @@ export const OntologyViewContainer = () => {
         }).when(
           (val) => ((val === ContainerVisuals.resultListView) && renameValue),
           () => {
-            return <ScrollBarWrapper>
-              <ResultList
-                typedValue={renameValue!}
-                recommendations={shortenedTerms}
-                iris={searchResult}
-              />
-            </ScrollBarWrapper>
+            return <div className="ontology-search-container">
+              <ScrollBarWrapper>
+                <ResultList
+                  typedValue={renameValue!}
+                  recommendations={shortenedTerms}
+                  iris={searchResult}
+                />
+              </ScrollBarWrapper>
+            </div>
           }
         ).otherwise(
           () => {
-            return <ScrollBarWrapper>
+            return <OverlayScrollbarsComponent
+              className='ontology-nav-container'
+              style={{ flex: 1, height: "inherit" }}
+              options={{
+                overflow: {
+                  x: 'scroll',
+                  y: 'visible'
+                }, scrollbars: { autoHide: 'never', }
+              }}
+            >
               <div className='exploration'>
-                <LineageTreeview exploration={explorationResult} />
-                <CategorizedEdgesList categorizedEdges={explorationResult.catEdges} />
+                <OverlayScrollbarsComponent
+                  style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
+                  options={{
+                    overflow: {
+                      x: 'visible',
+                      y: 'scroll'
+                    }, scrollbars: { autoHide: 'never', }
+                  }}
+                >
+                  <LineageTreeview exploration={explorationResult} />
+                </OverlayScrollbarsComponent>
+                <OverlayScrollbarsComponent
+                  style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
+                  options={{
+                    overflow: {
+                      x: 'visible',
+                      y: 'scroll'
+                    },
+                    scrollbars: { autoHide: "never" }
+                  }}
+                >
+                  <CategorizedEdgesList categorizedEdges={explorationResult.catEdges} />
+                </OverlayScrollbarsComponent>
                 {/* <SectionListView /> */}
               </div>
-            </ScrollBarWrapper>
+            </OverlayScrollbarsComponent>
           })
       }
-    </div>
+    </>
   )
 }

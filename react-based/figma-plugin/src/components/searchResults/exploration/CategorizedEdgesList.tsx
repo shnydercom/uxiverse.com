@@ -14,7 +14,7 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                 const categoryTrimmed = getWellKnownIriSubPath(category)
                 return (
                     <div key={category} className='category'>
-                        <div className='label' data-ld={category}>{categoryTrimmed}</div>
+                        <div className='cat-label' data-ld={category}>{categoryTrimmed}</div>
                         <ul className='edges'>
                             {items.map((item) => {
                                 const itemTrimmed = getWellKnownIriSubPath(item);

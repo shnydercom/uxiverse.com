@@ -1,5 +1,6 @@
-import { CategorizedEdges, RtLdGraph, StringifiedLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
+import { CategorizedEdges, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
 import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES } from "./ontology-globals";
+import { moveElementToEnd } from "./IRIUtils";
 
 export interface ExplorationResult {
     lineageHighlightIRI: string;
@@ -7,9 +8,21 @@ export interface ExplorationResult {
     catEdges: CategorizedEdges;
 }
 
-export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: boolean,) => {
+export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: boolean,): StringifiedLineage | null => {
     const ancestorIri: string = propLineage ? RDFS_SUBPROP_OF : RDFS_SUBCLASS_OF;
-    return getAncestorsSiblingsAndChildren(graph, startIri, ancestorIri, true);
+    const result = getAncestorsSiblingsAndChildren(graph, startIri, ancestorIri, true);
+    if (!result) {
+        return null;
+    }
+    const parent = findParentIRIinLineage(result, startIri);
+    const foundChildIndex = parent?.descendants.findIndex((val) => {
+        return val.iris.includes(startIri);
+    })
+    if ((parent?.descendants?.length ?? 0 > 0) && (foundChildIndex !== undefined)) {
+        moveElementToEnd(parent!.descendants
+            , foundChildIndex)
+    }
+    return result;
 }
 
 export const getCategorizedEdges = (graph: RtLdGraph, startIri: string, propLineage: boolean,) => {
