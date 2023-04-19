@@ -74,7 +74,7 @@ body {
 }
 
 .ontology-search-container {
-  height: 88px;
+  height: 128px;
   padding: 0px 32px;
   box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
   display: flex;
@@ -85,11 +85,11 @@ body {
   /*margin-bottom: 12px;*/
   display: flex;
   flex-direction: row;
-  max-height: 88px;
+  max-height: 128px;
 }
 
 .ontology-nav-container {
-  height: 88px;
+  height: 128px;
   padding: 0;
   box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
 }
@@ -274,8 +274,8 @@ button[disabled]:focus {
 }
 
 .empty-ontology {
-  padding: 11 20px;
-  height: 88px;
+  padding: 30px 34px;
+  height: 128px;
 }
 
 .empty-ontology>p {
@@ -328,14 +328,6 @@ button[disabled]:focus {
   line-height: 16px;
 }
 
-.result-list .list-entry .add-to-rename {
-  display: block;
-  width: 16px;
-  height: 16px;
-  margin-left: 3px;
-  color: rgba(0, 0, 0, 0.8)
-}
-
 .result-list .list-entry .no-match {
   font-weight: normal;
 }
@@ -362,6 +354,7 @@ button[disabled]:focus {
   color: rgba(0, 0, 0, 0.8)
 }
 
+.list-entry button,
 .categorized-edges-view>.category>.edges>.edge button,
 .tree-view .tree-entry button {
   background-color: white;
@@ -375,25 +368,20 @@ button[disabled]:focus {
   align-items: center;
 }
 
-.categorized-edges-view>.category>.edges>.edge .explore-icon:hover,
-.tree-view .tree-entry .explore-icon:hover {
-  background-color: rgba(24, 145, 251, 0.3);
-}
-
+.list-entry button:hover,
 .categorized-edges-view>.category>.edges>.edge button:hover,
 .tree-view .tree-entry button:hover {
   background-color: rgba(24, 145, 251, 0.3);
 }
 
+.list-entry button:hover>button-icon,
 .categorized-edges-view>.category>.edges>.edge>button:hover>.button-icon,
 .tree-view .tree-entry button:hover>.button-icon,
-.button-icon:hover,
-.explore-icon:hover {
+.button-icon:hover {
   opacity: 1;
 }
 
-.button-icon,
-.explore-icon {
+.button-icon {
   opacity: 0;
 }
 

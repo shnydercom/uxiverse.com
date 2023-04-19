@@ -1,4 +1,5 @@
 import { getI18n } from '../../i18n'
+import { uxiverseRootIRI } from '../naming-recommendations/ontology-globals'
 import { MainMachineXSCtx } from './mainMachine'
 
 const i18n = getI18n()
@@ -26,6 +27,8 @@ const initialContext: MainMachineXSCtx = {
     ontologySearch: {
       confirmedRenameParts: [],
       focusedDefinition: '',
+      exploredIRI: uxiverseRootIRI + "Button",
+      isPropSearch: false,
       fullText: getRandomTip(),
     },
     graph: undefined,

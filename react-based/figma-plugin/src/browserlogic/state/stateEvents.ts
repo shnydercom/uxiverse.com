@@ -29,6 +29,13 @@ export interface PluginInputTypingEvent {
     inputValue: string | undefined
 }
 
+
+export interface PluginExplorationEvent {
+    type: 'CHANGE_EXPLORATION'
+    explorationValue: string
+    changePropClassSearch: boolean
+}
+
 export interface PluginNotationToggleEvent {
     type: 'CHANGE_NOTATION'
 }
@@ -81,4 +88,16 @@ export interface NoArgsEvents {
     | "REORDER_PHRASES"
 }
 
-export type AllMainMachineStateEvents = HoverUIElemEnterEvent | HoverDefinitionEnterEvent | FocusSelectionEvent | PluginInputTypingEvent | PluginNotationToggleEvent | PluginUnlinkedDataUpdateEvent | ToggleHostOptionsVisibilityEvent | CopyCompTxtToRenameEvent | HostAppSelectionEvent | HostFetchEvent | NoArgsEvents; 
+export type AllMainMachineStateEvents = HoverUIElemEnterEvent
+    | HoverDefinitionEnterEvent
+    | FocusSelectionEvent
+    | PluginInputTypingEvent
+    | PluginExplorationEvent
+    | PluginNotationToggleEvent
+    | PluginUnlinkedDataUpdateEvent
+    | ToggleHostOptionsVisibilityEvent
+    | CopyCompTxtToRenameEvent
+    | HostAppSelectionEvent
+    | HostFetchEvent
+    | NoArgsEvents;
+

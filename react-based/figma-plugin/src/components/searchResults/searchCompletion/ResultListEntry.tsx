@@ -34,11 +34,15 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   )
   return (
     <div className="list-entry" data-ld={iri} onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>
-      <ExploreIRI className="explore" />
-      {splitpart[0] && <span className="no-match">{startString}</span>}
-      {<span className="match">{centerString}</span>}
-      {splitpart[1] && <span className="no-match">{endString}</span>}
-      <AddToReplaceValue className='add-to-rename' />
+      <button>
+        <ExploreIRI className="button-icon" />
+      </button>
+      <button>
+        {splitpart[0] && <span className="no-match">{startString}</span>}
+        {<span className="match">{centerString}</span>}
+        {splitpart[1] && <span className="no-match">{endString}</span>}
+        <AddToReplaceValue className='button-icon' />
+      </button>
     </div>
   )
 }

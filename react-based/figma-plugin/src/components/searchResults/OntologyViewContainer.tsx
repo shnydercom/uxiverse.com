@@ -25,7 +25,9 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let result = {
     containerVisuals: ContainerVisuals.initialRunEmptyView,
     renameValue: state.context.plugin.renameValue,
-    rtGraph: state.context.plugin.graph
+    rtGraph: state.context.plugin.graph,
+    exploredIRI: state.context.plugin.ontologySearch.exploredIRI,
+    isPropSearch: state.context.plugin.ontologySearch.isPropSearch
   }
   match(state)
     .when(
@@ -56,12 +58,12 @@ const ScrollBarWrapper = ({ children }) => {
 export const OntologyViewContainer = () => {
   //TODO: consume graph from online source
   const globalServices = useContext(GlobalStateContext)
-  const { rtGraph, renameValue, containerVisuals } = useSelector(globalServices.mainService, mainMachineSelector)
+  const { rtGraph, renameValue, containerVisuals, exploredIRI, isPropSearch } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>(
     {
-      lineageHighlightIRI: uxiverseRootIRI + "Button",
+      lineageHighlightIRI: exploredIRI,
       lineage: { iris: [], descendants: [] },
       catEdges: { categories: {}, straightLineage: [] }
     })
@@ -90,11 +92,9 @@ export const OntologyViewContainer = () => {
     if (!rtGraph) {
       return;
     }
-    const explorationHighlight = explorationResult.lineageHighlightIRI
-    const lineage = getLineage(rtGraph, explorationHighlight, false);
-    const catEdges = getCategorizedEdges(rtGraph, explorationHighlight, false);
-    console.log(lineage);
-    console.log(catEdges)
+    const explorationHighlight = exploredIRI;
+    const lineage = getLineage(rtGraph, explorationHighlight, isPropSearch);
+    const catEdges = getCategorizedEdges(rtGraph, explorationHighlight, isPropSearch);
     if (!lineage || !catEdges) {
       return;
     }
@@ -106,7 +106,7 @@ export const OntologyViewContainer = () => {
       lineage,
       catEdges
     })
-  }, [containerVisuals, renameValue]);
+  }, [containerVisuals, exploredIRI]);
 
   const [initialize, instance] = useOverlayScrollbars({
     options: {
@@ -181,12 +181,12 @@ export const OntologyViewContainer = () => {
             >
               <div className='exploration'>
                 <div ref={treeviewScrollContainerRef}
-                  style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
+                  style={{ flex: 1, height: "128px", minWidth: "fit-content" }}
                 >
                   <LineageTreeview exploration={explorationResult} />
                 </div >
                 <OverlayScrollbarsComponent
-                  style={{ flex: 1, height: "88px", minWidth: "fit-content" }}
+                  style={{ flex: 1, height: "128px", minWidth: "fit-content" }}
                   options={{
                     overflow: {
                       x: 'visible',
