@@ -13,8 +13,10 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
     { displayFullValue, isHighlighted }
 ) => {
     return (<div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}>
-        <ExploreIRI />
-        <span>{displayFullValue}</span>
-        <AddToReplaceValue />
+        <ExploreIRI className="explore-icon" />
+        <button>
+            <span>{displayFullValue}</span>
+            <AddToReplaceValue className="button-icon" />
+        </button>
     </div>);
 }

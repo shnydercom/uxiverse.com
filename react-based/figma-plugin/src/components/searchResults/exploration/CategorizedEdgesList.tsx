@@ -1,6 +1,8 @@
 import React from 'react';
 import { CategorizedEdges } from '@uxiverse.com/jsonld-tools';
 import { getWellKnownIriSubPath } from '../../../browserlogic/naming-recommendations/IRIUtils';
+import { ExploreIRI } from '../../../assets/explore-iri';
+import { AddToReplaceValue } from '../../../assets/add-to-replacevalue';
 
 interface Props {
     categorizedEdges: CategorizedEdges;
@@ -20,7 +22,13 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                             {items.map((item) => {
                                 const itemTrimmed = getWellKnownIriSubPath(item);
                                 return (
-                                    <li key={itemTrimmed} className='edge' data-ld={item}>{itemTrimmed}</li>
+                                    <li key={itemTrimmed} className='edge' data-ld={item}>
+                                        <ExploreIRI className="explore-icon" />
+                                        <button>
+                                            <span>{itemTrimmed}</span>
+                                            <AddToReplaceValue className="button-icon" />
+                                        </button>
+                                    </li>
                                 )
                             })}
                         </ul>

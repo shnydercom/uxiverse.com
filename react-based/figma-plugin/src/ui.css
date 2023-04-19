@@ -362,6 +362,42 @@ button[disabled]:focus {
   color: rgba(0, 0, 0, 0.8)
 }
 
+.categorized-edges-view>.category>.edges>.edge button,
+.tree-view .tree-entry button {
+  background-color: white;
+  height: 16px;
+  border: none;
+  padding: 0 0 0 2px;
+  line-height: 16px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.categorized-edges-view>.category>.edges>.edge .explore-icon:hover,
+.tree-view .tree-entry .explore-icon:hover {
+  background-color: rgba(24, 145, 251, 0.3);
+}
+
+.categorized-edges-view>.category>.edges>.edge button:hover,
+.tree-view .tree-entry button:hover {
+  background-color: rgba(24, 145, 251, 0.3);
+}
+
+.categorized-edges-view>.category>.edges>.edge>button:hover>.button-icon,
+.tree-view .tree-entry button:hover>.button-icon,
+.button-icon:hover,
+.explore-icon:hover {
+  opacity: 1;
+}
+
+.button-icon,
+.explore-icon {
+  opacity: 0;
+}
+
+
 .tree-view .tree-entry.highlight {
   text-decoration: underline;
 }
@@ -390,13 +426,17 @@ button[disabled]:focus {
 
 .categorized-edges-view>.category>.cat-label {
   opacity: 0.6;
+  font-size: 9px;
+  margin: 0 0 0 12px;
 }
 
 .categorized-edges-view>.category>.edges {
   padding: 0;
-  margin: 0 0 0 6px;
+  margin: 0;
 }
 
 .categorized-edges-view>.category>.edges>.edge {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
 }
