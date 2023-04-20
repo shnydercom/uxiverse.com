@@ -28,13 +28,18 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
     const mouseLeaveHandler = () => {
         send('HOVER_DEFINITION_EXIT')
     }
-    return (<div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}>
-        <button onClick={exploreClick}>
-            <ExploreIRI className="button-icon" />
-        </button>
-        <button onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
-            <span>{displayFullValue}</span>
-            <AddToReplaceValue className="button-icon" />
-        </button>
-    </div>);
+    return (
+        <div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}
+            onMouseEnter={mouseEnterHandler}
+            onMouseLeave={mouseLeaveHandler}
+        >
+            <button>
+                <span>{displayFullValue}</span>
+                <AddToReplaceValue className="button-icon" />
+            </button>
+            <button onClick={exploreClick}>
+                <ExploreIRI className="button-icon explore-icon" />
+            </button>
+        </div>
+    );
 }

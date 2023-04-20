@@ -118,7 +118,6 @@ export const OntologyViewContainer = () => {
     , defer: true,
     events: {
       initialized(instance) {
-        console.log("initialized")
         const { viewport } = instance.elements();
         const treeHighlightElement = viewport.getElementsByClassName("tree-entry highlight")?.item(0);
         if (!treeHighlightElement) {
@@ -127,7 +126,6 @@ export const OntologyViewContainer = () => {
         treeHighlightElement.scrollIntoView({ behavior: "auto", block: "center", inline: "end" }); // set scroll offset
       },
       updated(instance, onUpdatedArgs) {
-        console.log("updated")
         const { viewport } = instance.elements();
         const treeHighlightElement = viewport.getElementsByClassName("tree-entry highlight")?.item(0);
         if (!treeHighlightElement) {
@@ -139,10 +137,7 @@ export const OntologyViewContainer = () => {
   })
 
   React.useEffect(() => {
-    console.log("newRef")
     if (treeviewScrollContainerRef.current) {
-      console.log("call initialize")
-      console.log(instance())
       initialize(treeviewScrollContainerRef.current);
     }
     return () => instance()?.destroy();

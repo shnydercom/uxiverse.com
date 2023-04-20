@@ -38,13 +38,15 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                             {items.map((item) => {
                                 const itemTrimmed = getWellKnownIriSubPath(item);
                                 return (
-                                    <li key={itemTrimmed} className='edge' data-ld={item}>
-                                        <button onClick={() => { exploreHandler(item) }}>
-                                            <ExploreIRI className="button-icon" />
-                                        </button>
-                                        <button onMouseEnter={() => mouseEnterHandler(item)} onMouseLeave={mouseLeaveHandler}>
+                                    <li key={itemTrimmed} className='edge' data-ld={item}
+                                        onMouseEnter={() => mouseEnterHandler(item)}
+                                        onMouseLeave={mouseLeaveHandler}>
+                                        <button>
                                             <span>{itemTrimmed}</span>
                                             <AddToReplaceValue className="button-icon" />
+                                        </button>
+                                        <button onClick={() => { exploreHandler(item) }}>
+                                            <ExploreIRI className="button-icon explore-icon" />
                                         </button>
                                     </li>
                                 )

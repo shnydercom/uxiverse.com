@@ -148,7 +148,7 @@ body {
 .hostcomp-list-scrollcontainer {
   height: fit-content;
   max-height: 280px;
-  width: 190px;
+  width: 236px;
   border: 1px solid var(--blue);
   outline: 1px solid var(--blue);
   outline-offset: -2px;
@@ -311,11 +311,13 @@ button[disabled]:focus {
   flex-direction: column;
   text-align: start;
   margin-top: 4px;
+  margin-left: 12px;
 }
 
 .result-list .list-entry {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .result-list .list-entry .explore {
@@ -345,7 +347,8 @@ button[disabled]:focus {
 
 .tree-view .tree-entry {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .tree-view .tree-entry svg {
@@ -374,11 +377,18 @@ button[disabled]:focus {
   background-color: rgba(24, 145, 251, 0.3);
 }
 
-.list-entry button:hover>button-icon,
+.list-entry button:hover>.button-icon,
 .categorized-edges-view>.category>.edges>.edge>button:hover>.button-icon,
 .tree-view .tree-entry button:hover>.button-icon,
 .button-icon:hover {
   opacity: 1;
+}
+
+
+.list-entry button:hover+button .explore-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover+button .explore-icon,
+.tree-view .tree-entry button:hover+button .explore-icon {
+  opacity: 0.3;
 }
 
 .button-icon {
@@ -422,10 +432,13 @@ button[disabled]:focus {
 .categorized-edges-view>.category>.edges {
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .categorized-edges-view>.category>.edges>.edge {
   list-style-type: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
