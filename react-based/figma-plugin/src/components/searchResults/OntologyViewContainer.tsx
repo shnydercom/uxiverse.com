@@ -133,15 +133,19 @@ export const OntologyViewContainer = () => {
         if (!treeHighlightElement) {
           return;
         }
-        treeHighlightElement.scrollIntoView({ behavior: "auto", block: "center", inline: "end" }); // set scroll offset
+        treeHighlightElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "end" }); // set scroll offset
       },
     }
   })
 
   React.useEffect(() => {
+    console.log("newRef")
     if (treeviewScrollContainerRef.current) {
+      console.log("call initialize")
+      console.log(instance())
       initialize(treeviewScrollContainerRef.current);
     }
+    return () => instance()?.destroy();
   }, [initialize, treeviewScrollContainerRef.current]);
 
   const shortenedTerms = searchResult.map(value =>

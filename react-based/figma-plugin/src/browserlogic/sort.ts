@@ -1,3 +1,5 @@
+import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
+
 export function sortAlphabeticallyAndFavorStartswith(favoredStart: string): (a: string, b: string) => number {
     const ucFav = favoredStart.toUpperCase()
     return (a, b) => {
@@ -21,4 +23,13 @@ export function sortAlphabeticallyAndFavorStartswith(favoredStart: string): (a: 
         }
         return 0;
     }
+}
+
+export function sortTreeViewSiblings(a: StringifiedLineage, b: StringifiedLineage): number {
+    const aVal = a.iris.join("/");
+    const bVal = b.iris.join("/");
+    if (aVal === bVal) {
+        return 0;
+    }
+    return aVal > bVal ? 1 : -1;
 }

@@ -36,7 +36,7 @@ export function getSingleUxiDefinition(
     ?.fields.find(edge => {
       return edge.type.iri === definitionIRI
     })
-  const value = (foundEdge?.out as RtLdValue)['@v']?.toString() ?? ''
+  const value = (foundEdge?.out as RtLdValue | undefined)?.['@v']?.toString() ?? ''
   return value
 }
 

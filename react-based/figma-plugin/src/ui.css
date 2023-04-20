@@ -399,6 +399,7 @@ button[disabled]:focus {
   flex-direction: row;
   font-size: 11px;
   line-height: 16px;
+  overflow-y: hidden;
 }
 
 .categorized-edges-view {

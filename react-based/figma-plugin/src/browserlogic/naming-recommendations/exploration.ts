@@ -1,6 +1,8 @@
 import { CategorizedEdges, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
 import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES } from "./ontology-globals";
 import { moveElementToEnd } from "./IRIUtils";
+import { featureFlags } from "../featureFlags";
+import { sortTreeViewSiblings } from "../sort";
 
 export interface ExplorationResult {
     lineageHighlightIRI: string;
@@ -18,9 +20,14 @@ export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: bool
     const foundChildIndex = parent?.descendants.findIndex((val) => {
         return val.iris.includes(startIri);
     })
-    if ((parent?.descendants?.length ?? 0 > 0) && (foundChildIndex !== undefined)) {
-        moveElementToEnd(parent!.descendants
-            , foundChildIndex)
+    if (featureFlags.sortTreeViewSiblings) {
+        parent?.descendants.sort(sortTreeViewSiblings)
+    }
+    if (featureFlags.moveTreeHighlightToEnd) {
+        if ((parent?.descendants?.length ?? 0 > 0) && (foundChildIndex !== undefined)) {
+            moveElementToEnd(parent!.descendants
+                , foundChildIndex)
+        }
     }
     return result;
 }
