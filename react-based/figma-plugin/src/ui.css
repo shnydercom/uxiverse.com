@@ -357,13 +357,26 @@ button[disabled]:focus {
   color: rgba(0, 0, 0, 0.8)
 }
 
+.list-entry button span:first-child {
+  padding-left: 4px;
+}
+
+.list-entry button span:last-of-type {
+  padding-right: 4px;
+}
+
+.categorized-edges-view>.category>.edges>.edge .full-value,
+.tree-view .tree-entry .full-value {
+  padding: 0 4px;
+}
+
 .list-entry button,
 .categorized-edges-view>.category>.edges>.edge button,
 .tree-view .tree-entry button {
   background-color: white;
   height: 16px;
   border: none;
-  padding: 0 0 0 2px;
+  padding: 0;
   line-height: 16px;
   font-size: 11px;
   display: flex;

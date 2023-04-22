@@ -42,7 +42,7 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                                         onMouseEnter={() => mouseEnterHandler(item)}
                                         onMouseLeave={mouseLeaveHandler}>
                                         <button>
-                                            <span>{itemTrimmed}</span>
+                                            <span className="full-value">{itemTrimmed}</span>
                                             <AddToReplaceValue className="button-icon" />
                                         </button>
                                         <button onClick={() => { exploreHandler(item) }}>

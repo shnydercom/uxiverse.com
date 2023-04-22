@@ -34,7 +34,7 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
             onMouseLeave={mouseLeaveHandler}
         >
             <button>
-                <span>{displayFullValue}</span>
+                <span className="full-value">{displayFullValue}</span>
                 <AddToReplaceValue className="button-icon" />
             </button>
             <button onClick={exploreClick}>
