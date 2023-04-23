@@ -43,16 +43,28 @@ export interface HostAppElementSearchXSCtx {
 
 export interface OntologySearchXSCtx {
   confirmedRenameParts: string[]
+  /**
+   * the IRI for showing documentation when hovering over an ontology-entry
+   */
   focusedDefinition: string | undefined
+  /**
+   * the IRI that the user investigates by clicking on an "explore"-button
+   */
   exploredIRI: string;
   /**
    * is searching by sub-property or by sub-class
    */
   isPropSearch: boolean;
-  fullText: string | undefined
+  /**
+   * the description text shown as documentation
+   */
+  descriptionText: string | undefined
 }
 
 export interface PluginXSCtx {
+  /**
+   * text at the bottom bar to guide the user. Changed when hovering interactive UI elements
+   */
   tooltip: string
   renameValue: string | undefined
   hostAppSearch: HostAppElementSearchXSCtx
@@ -446,7 +458,7 @@ export const mainMachine =
         const ctxCopy = { ...context }
         ctxCopy.plugin.ontologySearch.focusedDefinition =
           event.focusedDefinition
-        ctxCopy.plugin.ontologySearch.fullText = getSingleUxiDefinition(
+        ctxCopy.plugin.ontologySearch.descriptionText = getSingleUxiDefinition(
           event.focusedDefinition,
           context.plugin.graph ?? createEmptyGraph()
         )

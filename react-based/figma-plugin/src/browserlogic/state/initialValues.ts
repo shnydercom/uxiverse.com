@@ -29,7 +29,7 @@ const initialContext: MainMachineXSCtx = {
       focusedDefinition: '',
       exploredIRI: uxiverseRootIRI + "Button",
       isPropSearch: false,
-      fullText: getRandomTip(),
+      descriptionText: getRandomTip(),
     },
     graph: undefined,
     renameValue: '',

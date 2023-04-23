@@ -7,12 +7,12 @@ import { SingleIRIVisualization } from './SingleIRIVisualization'
 const defintionFullTextSelector:
   | SearchValueSelectorType
   | undefined = state => {
-  return state.context.plugin.ontologySearch.fullText
-}
+    return state.context.plugin.ontologySearch.descriptionText
+  }
 
 export const SingleIRIFullView = () => {
   const globalServices = useContext(GlobalStateContext)
-  const defintionFullText = useSelector(
+  const descriptionText = useSelector(
     globalServices.mainService,
     defintionFullTextSelector
   )
@@ -20,7 +20,7 @@ export const SingleIRIFullView = () => {
     <div className="single-iri-full-view">
       <div className="single-iri-full-view--inner">
         <SingleIRIVisualization />
-        {defintionFullText}
+        {descriptionText}
       </div>
     </div>
   )
