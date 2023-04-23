@@ -703,6 +703,9 @@
 				},
 				{
 					"@id": "uxi:Element"
+				},
+				{
+					"@id": "uxi:UIState"
 				}
 			],
 			"comment": "A property that holds a result, output or status",
@@ -3176,6 +3179,11 @@
 		{
 			"@id": "uxi:result",
 			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:OutcomeProperty"
+				}
+			],
 			"canBeOfType": [
 				{
 					"@id": "uxi:UIDataType"
@@ -3276,6 +3284,11 @@
 		{
 			"@id": "uxi:output",
 			"@type": "Property",
+			"subPropertyOf": [
+				{
+					"@id": "uxi:OutcomeProperty"
+				}
+			],
 			"canBeOfType": {
 				"@id": "schema:Thing"
 			},
