@@ -5,6 +5,7 @@ import { ExploreIRI } from '../../../assets/explore-iri';
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue';
 import { PluginExplorationEvent, HoverDefinitionEnterEvent } from '../../../browserlogic/state/stateEvents';
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider';
+import { CopyIcon } from '../../../assets/copy-icon';
 
 interface Props {
     categorizedEdges: CategorizedEdges;
@@ -47,6 +48,9 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                                         </button>
                                         <button onClick={() => { exploreHandler(item) }}>
                                             <ExploreIRI className="button-icon explore-icon" />
+                                        </button>
+                                        <button className='reordered-button'>
+                                            <CopyIcon className="button-icon copy-icon" />
                                         </button>
                                     </li>
                                 )

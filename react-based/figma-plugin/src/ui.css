@@ -398,9 +398,12 @@ button[disabled]:focus {
 }
 
 
-.list-entry button:hover+button .explore-icon,
-.categorized-edges-view>.category>.edges>.edge>button:hover+button .explore-icon,
-.tree-view .tree-entry button:hover+button .explore-icon {
+.list-entry button:hover~button .explore-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover~button .explore-icon,
+.tree-view .tree-entry button:hover~button .explore-icon,
+.list-entry button:hover~button .copy-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover~button .copy-icon,
+.tree-view .tree-entry button:hover~button .copy-icon {
   opacity: 0.3;
 }
 
@@ -454,4 +457,8 @@ button[disabled]:focus {
   list-style-type: none;
   display: flex;
   flex-direction: row-reverse;
+}
+
+.reordered-button {
+  order: -1;
 }

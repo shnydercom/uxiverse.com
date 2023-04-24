@@ -394,11 +394,16 @@ export const mainMachine =
 
           spacedSlashes: {
             on: {
-              CHANGE_NOTATION: 'spacedDashes',
+              CHANGE_NOTATION: 'spacedCommaEquals',
             },
-
             entry: 'assignSpacedSlashesNotation',
           },
+
+          spacedCommaEquals: {
+            on: {
+              CHANGE_NOTATION: 'spacedDashes',
+            }
+          }
         },
 
         initial: 'spacedDashes',

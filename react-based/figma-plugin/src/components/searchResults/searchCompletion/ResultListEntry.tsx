@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from 'react'
 import { FunctionComponent } from 'react'
 import { ExploreIRI } from '../../../assets/explore-iri'
+import { CopyIcon } from '../../../assets/copy-icon'
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
 
 interface ResultListEntryProps {
@@ -42,6 +43,9 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
       </button>
       <button>
         <ExploreIRI className="button-icon explore-icon" />
+      </button>
+      <button className='reordered-button'>
+        <CopyIcon className="button-icon copy-icon" />
       </button>
     </div>
   )

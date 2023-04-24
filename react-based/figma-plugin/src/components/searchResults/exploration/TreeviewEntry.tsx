@@ -4,6 +4,7 @@ import { ExploreIRI } from "./../../../assets/explore-iri"
 import { AddToReplaceValue } from "./../../../assets/add-to-replacevalue"
 import { GlobalStateContext } from "../../../browserlogic/state/globalStateProvider";
 import { HoverDefinitionEnterEvent, PluginExplorationEvent } from "../../../browserlogic/state/stateEvents";
+import { CopyIcon } from "../../../assets/copy-icon";
 
 export interface TreeviewEntryProps {
     displayFullValue: string;
@@ -39,6 +40,9 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
             </button>
             <button onClick={exploreClick}>
                 <ExploreIRI className="button-icon explore-icon" />
+            </button>
+            <button className='reordered-button'>
+                <CopyIcon className="button-icon copy-icon" />
             </button>
         </div>
     );
