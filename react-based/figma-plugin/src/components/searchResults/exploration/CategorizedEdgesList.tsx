@@ -6,6 +6,7 @@ import { AddToReplaceValue } from '../../../assets/add-to-replacevalue';
 import { PluginExplorationEvent, HoverDefinitionEnterEvent } from '../../../browserlogic/state/stateEvents';
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider';
 import { CopyIcon } from '../../../assets/copy-icon';
+import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard';
 
 interface Props {
     categorizedEdges: CategorizedEdges;
@@ -25,6 +26,9 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
     }
     const mouseLeaveHandler = () => {
         send('HOVER_DEFINITION_EXIT')
+    }
+    const copyButtonHandler = (itemTrimmed: string) => {
+        copyTextToClipboard(itemTrimmed);
     }
     return (
         <div className='categorized-edges-view'>
@@ -49,7 +53,7 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
                                         <button onClick={() => { exploreHandler(item) }}>
                                             <ExploreIRI className="button-icon explore-icon" />
                                         </button>
-                                        <button className='reordered-button'>
+                                        <button className='reordered-button' onClick={() => copyButtonHandler(itemTrimmed)}>
                                             <CopyIcon className="button-icon copy-icon" />
                                         </button>
                                     </li>

@@ -5,6 +5,7 @@ import { AddToReplaceValue } from "./../../../assets/add-to-replacevalue"
 import { GlobalStateContext } from "../../../browserlogic/state/globalStateProvider";
 import { HoverDefinitionEnterEvent, PluginExplorationEvent } from "../../../browserlogic/state/stateEvents";
 import { CopyIcon } from "../../../assets/copy-icon";
+import { copyTextToClipboard } from "../../../browserlogic/copyTextToClipboard";
 
 export interface TreeviewEntryProps {
     displayFullValue: string;
@@ -29,6 +30,9 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
     const mouseLeaveHandler = () => {
         send('HOVER_DEFINITION_EXIT')
     }
+    const copyButtonHandler = () => {
+        copyTextToClipboard(displayFullValue);
+    }
     return (
         <div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}
             onMouseEnter={mouseEnterHandler}
@@ -41,7 +45,7 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
             <button onClick={exploreClick}>
                 <ExploreIRI className="button-icon explore-icon" />
             </button>
-            <button className='reordered-button'>
+            <button className='reordered-button' onClick={copyButtonHandler}>
                 <CopyIcon className="button-icon copy-icon" />
             </button>
         </div>

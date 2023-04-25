@@ -2,6 +2,8 @@ body {
   font: 12px sans-serif;
   text-align: center;
   margin: 0;
+  overflow: hidden;
+  position: relative;
 }
 
 #react-page {
@@ -16,6 +18,16 @@ body {
   /* right: 0;
   bottom: 0;*/
   z-index: 100;
+}
+
+/* used for copying to clipboard in the deprecated document.execCommand way*/
+#doc-exec-dummy {
+  position: absolute;
+  bottom: 0;
+  visibility: visible;
+  max-height: 16px;
+  height: 16px;
+  opacity: 0;
 }
 
 .main-layout {

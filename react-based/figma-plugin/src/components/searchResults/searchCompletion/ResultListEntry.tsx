@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react'
 import { ExploreIRI } from '../../../assets/explore-iri'
 import { CopyIcon } from '../../../assets/copy-icon'
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
+import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard'
 
 interface ResultListEntryProps {
   typedValue: string;
@@ -21,6 +22,9 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   onHoverSearchResult,
   onElemHoverLeave
 }) => {
+  const copyButtonHandler = () => {
+    copyTextToClipboard(displayFullValue);
+  }
   const splitpart = displayFullValue
     .toLowerCase()
     .split(typedValue.toLowerCase())
@@ -44,7 +48,7 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
       <button>
         <ExploreIRI className="button-icon explore-icon" />
       </button>
-      <button className='reordered-button'>
+      <button className='reordered-button' onClick={copyButtonHandler}>
         <CopyIcon className="button-icon copy-icon" />
       </button>
     </div>
