@@ -3,6 +3,7 @@ import { MainMachineXSCtx } from './state/mainMachine'
 export enum AvailableNotations {
   SpacedDashes = 'spaced-dashes',
   SpacedSlashes = 'spaced-slashes',
+  SpacedCommaEquals = 'spaced-comma-equals'
 }
 
 export function handleNotation(

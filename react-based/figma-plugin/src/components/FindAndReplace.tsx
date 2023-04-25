@@ -2,13 +2,11 @@ import React, { MouseEventHandler, useContext, useState } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useSelector } from '@xstate/react'
+import { P, match } from "ts-pattern"
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
 import {
-  FocusSelectorType,
-  HostSelectorType,
-  SearchValueSelectorType,
-  StateMatchSelectorType,
+  MainMachineSelectorArg,
 } from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
 import {
@@ -25,68 +23,66 @@ import { NotationSwitchDashesIcon } from '../assets/notation-switch-dashes'
 import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
+import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
 
 const i18n = getI18n()
 
-const hostSelectionSelector: HostSelectorType = state => {
-  return state.context.host.userSelection
-}
-const selectionFocusedSelector: FocusSelectorType | undefined = state => {
-  return state.context.host.selectionFocusedElement
-}
-
-const hostSearchValueSelector: SearchValueSelectorType | undefined = state => {
-  return state.context.plugin.hostAppSearch.searchValue
-}
-
-const renameValueSelector: SearchValueSelectorType | undefined = state => {
-  return state.context.plugin.renameValue
-}
-const notationIsDashedSelector: StateMatchSelectorType | undefined = state => {
-  return state.matches('notation.spacedDashes')
-}
-
-const navArrowsDisabledSelector: StateMatchSelectorType = state => {
-  if (
-    state.matches('hostSelection.singleRaw') ||
-    state.matches('hostSelection.empty')
-  ) {
-    return true
+const mainMachineSelector = (state: MainMachineSelectorArg) => {
+  //declaration only
+  let hostSelection: HostAppElement[];
+  let selectionFocus: HostAppElement | undefined;
+  let componentSearchValue: string | undefined;
+  let isNavArrowsDisabled: boolean;
+  let isRenameBtnDisabled: boolean;
+  let renameValue: string | undefined;
+  let notation: AvailableNotations
+  //assigning
+  hostSelection = state.context.host.userSelection;
+  selectionFocus = state.context.host.selectionFocusedElement;
+  componentSearchValue = state.context.plugin.hostAppSearch.searchValue;
+  renameValue = state.context.plugin.renameValue;
+  isNavArrowsDisabled = match(state)
+    .when((state) => (state.matches('hostSelection.singleRaw') || state.matches('hostSelection.empty')),
+      () => { return true })
+    .when((state) => (state.matches('hostSelection.multi.raw') && state.context.host.selectionFocusedElement),
+      () => { return true })
+    .otherwise(() => { return false })
+  isRenameBtnDisabled = !selectionFocus;
+  notation = match(state)
+    .when((state) => (state.matches('notation.spacedDashes')),
+      () => { return AvailableNotations.SpacedDashes })
+    .when((state) => (state.matches('notation.spacedSlashes')),
+      () => { return AvailableNotations.SpacedSlashes })
+    .when((state) => (state.matches('notation.spacedCommaEquals')),
+      () => { return AvailableNotations.SpacedCommaEquals })
+    .otherwise(() => {
+      console.error("unknown state for notation")
+      return AvailableNotations.SpacedCommaEquals
+    })
+  return {
+    hostSelection,
+    selectionFocus,
+    componentSearchValue,
+    isNavArrowsDisabled,
+    isRenameBtnDisabled,
+    renameValue,
+    notation
   }
-  if (
-    state.matches('hostSelection.multi.raw') &&
-    state.context.host.selectionFocusedElement
-  ) {
-    return true
-  }
-  return false
 }
 
 export const FindAndReplace = () => {
   const globalServices = useContext(GlobalStateContext)
-  const hostSelection = useSelector(
+  const {
+    hostSelection,
+    selectionFocus,
+    componentSearchValue,
+    isNavArrowsDisabled,
+    isRenameBtnDisabled,
+    renameValue,
+    notation
+  } = useSelector(
     globalServices.mainService,
-    hostSelectionSelector
-  )
-  const selectionFocus = useSelector(
-    globalServices.mainService,
-    selectionFocusedSelector
-  )
-  const componentSearchValue = useSelector(
-    globalServices.mainService,
-    hostSearchValueSelector
-  )
-  const isNavArrowsDisabled = useSelector(
-    globalServices.mainService,
-    navArrowsDisabledSelector
-  )
-  const renameValue = useSelector(
-    globalServices.mainService,
-    renameValueSelector
-  )
-  const isNotationDashed = useSelector(
-    globalServices.mainService,
-    notationIsDashedSelector
+    mainMachineSelector
   )
 
   const { send } = globalServices.mainService
@@ -136,9 +132,7 @@ export const FindAndReplace = () => {
     send({
       type: 'COPY_COMPTXT_TO_RENAMEREPLACE',
       copiedText: componentSearchValue,
-      targetNotation: isNotationDashed
-        ? AvailableNotations.SpacedDashes
-        : AvailableNotations.SpacedSlashes,
+      targetNotation: notation
     } as CopyCompTxtToRenameEvent)
   }
   const onConfirmReplaceClick = () => {
@@ -178,28 +172,25 @@ export const FindAndReplace = () => {
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
   > = event => {
-    switch (event.currentTarget.id) {
-      case HoverableElements.btnPrevComponent:
-        break
-      case HoverableElements.btnNextComponent:
-        break
-      case HoverableElements.inputChangeReplace:
-        break
-      case HoverableElements.inputCompName:
-        break
-      case HoverableElements.btnCompTxtToReplace:
-        break
-      case HoverableElements.btnExecReplace:
-        setIsExecReplaceIconHovered(true)
-        break
-      case HoverableElements.btnToggleNotation:
-        break
-      case HoverableElements.btnClear:
-        break
-      default:
-        return // function returns on any other DOM element id
-    }
-    send({ type: 'HOVER_UI_ELEM_ENTER', payload: event.currentTarget.id })
+    match(event.currentTarget.id).
+      when((id) => {
+        return [
+          HoverableElements.btnPrevComponent,
+          HoverableElements.btnNextComponent,
+          HoverableElements.inputChangeReplace,
+          HoverableElements.inputCompName,
+          HoverableElements.btnCompTxtToReplace,
+          HoverableElements.btnToggleNotation,
+          HoverableElements.btnClear
+        ].includes(id as unknown as HoverableElements);
+      }, (id: HoverableElements) => {
+        send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
+      }).with(HoverableElements.btnExecReplace,
+        (id) => {
+          setIsExecReplaceIconHovered(true);
+          send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
+        }
+      ).run();
   }
 
   const onElemHoverLeave: MouseEventHandler<
@@ -256,6 +247,7 @@ export const FindAndReplace = () => {
 
       <Icon
         name="play"
+        isDisabled={isRenameBtnDisabled}
         iconComponent={execReplaceIcon}
         onClick={onConfirmReplaceClick}
         iconButtonProps={{
@@ -278,11 +270,11 @@ export const FindAndReplace = () => {
       <Icon
         name="alert"
         iconComponent={
-          !isNotationDashed ? (
-            <NotationSwitchDashesIcon />
-          ) : (
-            <NotationSwitchSlashesIcon />
-          )
+          match(notation)
+            .with(AvailableNotations.SpacedDashes, () => <NotationSwitchDashesIcon />)
+            .with(AvailableNotations.SpacedSlashes, () => <NotationSwitchSlashesIcon />)
+            .with(AvailableNotations.SpacedCommaEquals, () => <NotationSwitchCommaEqualsIcon />)
+            .exhaustive()
         }
         onClick={onNotationChange}
         iconButtonProps={{
