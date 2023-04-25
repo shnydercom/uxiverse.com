@@ -10,6 +10,7 @@ import {
 import {
   isAPluginDeselectionBridgeEvent,
   isAPluginFetchBridgeEvent,
+  isAPluginNotifyUserBridgeEvent,
   isAPluginRenameBridgeEvent,
   isAPluginSelectionChangedBridgeEvent,
 } from './figmalogic/pluginBridgeTypeguards'
@@ -93,6 +94,9 @@ if (figma.editorType === 'figma') {
           forwardFetchToPlugin(fetchResult)
         })
         .catch(console.error)
+    }
+    if (isAPluginNotifyUserBridgeEvent(msg)) {
+      figma.notify(msg.messageText, { timeout: 1500 });
     }
     // anti-use case: plugin should be closed manually
     //figma.closePlugin()

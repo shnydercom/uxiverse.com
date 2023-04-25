@@ -5,6 +5,7 @@ import {
   PluginRenameBridgeEvent,
   PluginDeselectionBridgeEvent,
   PluginFetchBridgeEvent,
+  PluginNotifyUserBridgeEvent,
 } from '../communicationInterfaces'
 
 export function isAPluginSelectionChangedBridgeEvent(
@@ -33,4 +34,11 @@ export function isAPluginFetchBridgeEvent(
 ): message is PluginFetchBridgeEvent {
   if (!message) return false
   return message.type === PluginEventTypes.fetchByPlugin
+}
+
+export function isAPluginNotifyUserBridgeEvent(
+  message: PluginBridgeEvent
+): message is PluginNotifyUserBridgeEvent {
+  if (!message) return false
+  return message.type === PluginEventTypes.notifyUserOutsidePlugin
 }

@@ -7,6 +7,7 @@ export enum PluginEventTypes {
   selectionByPlugin = 'selection-by-plugin',
   renameByPlugin = 'rename-by-plugin',
   fetchByPlugin = 'fetch-by-plugin',
+  notifyUserOutsidePlugin = 'notify-user-toast'
 }
 
 export interface HostSelectionChangedBridgeEvent {
@@ -44,11 +45,17 @@ export interface PluginRenameBridgeEvent {
   pluginData: JSON | null
 }
 
+export interface PluginNotifyUserBridgeEvent {
+  type: PluginEventTypes.notifyUserOutsidePlugin;
+  messageText: string;
+}
+
 export type PluginBridgeEvent =
   | PluginSelectionChangedBridgeEvent
   | PluginDeselectionBridgeEvent
   | PluginRenameBridgeEvent
   | PluginFetchBridgeEvent
+  | PluginNotifyUserBridgeEvent
 
 /**
  * the plugin can't catch up with all the new types that will be added to the host app, this is a sort of "supported types"-list

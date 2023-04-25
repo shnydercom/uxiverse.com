@@ -1,4 +1,17 @@
+import { PluginEventTypes, PluginNotifyUserBridgeEvent } from "../communicationInterfaces";
+
 export function copyTextToClipboard(copyText: string) {
+    /**
+     * telling the code.ts to show a toast in the main figma interface. 
+     * External effect without consequences for the plugin
+     */
+    const notifyUserOutsidePlugin = () => {
+        const bridgeEvent: PluginNotifyUserBridgeEvent = {
+            type: PluginEventTypes.notifyUserOutsidePlugin,
+            messageText: `"${copyText}" copied`
+        }
+        parent.postMessage({ pluginMessage: bridgeEvent }, '*');
+    }
     console.log("entering clipboard")
     if (!navigator?.clipboard) {
         //this is a deprecated and hacky method as a fallback
@@ -20,14 +33,14 @@ export function copyTextToClipboard(copyText: string) {
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand('copy');
-
+        notifyUserOutsidePlugin()
     } else {
         navigator.clipboard.writeText(copyText).then(
-            function () {
-                console.log(copyText + "copied to clipboard")
+            () => {
+                notifyUserOutsidePlugin()
             })
             .catch(
-                function () {
+                () => {
                     console.log("couldn't copy " + copyText)
                 });
     }
