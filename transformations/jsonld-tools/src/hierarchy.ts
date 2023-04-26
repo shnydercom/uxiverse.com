@@ -139,28 +139,54 @@ export const getAncestorsSiblingsAndChildren = (graph: RtLdGraph, startIRI: stri
     return result;
 }
 
+export interface EdgeOfAncestorsInputArgs {
+    graph: RtLdGraph;
+    startIRI: string;
+    includeEdgeTypeIRIs: string[];
+    ancestorEdgeIRI: string;
+    includeOutgoingEdges: boolean;
+    includeIncomingEdges: boolean;
+}
 /**
  * gets edges of all ancestors that are not the ancestors themselves as an object of string-arrays
  */
-export const getEdgesOfAncestorsOnly = (graph: RtLdGraph, startIRI: string, typeIri: string, ancestorIri: string): CategorizedEdges | null => {
+export const getEdgesOfAncestorsOnly = (options: EdgeOfAncestorsInputArgs): CategorizedEdges | null => {
+    const { graph, startIRI, includeEdgeTypeIRIs, ancestorEdgeIRI, includeOutgoingEdges, includeIncomingEdges } = options;
     const result: CategorizedEdges = { straightLineage: [], categories: {} };
     let matchedNode = findIdentifiableNode(graph, startIRI)
     if (!matchedNode) return null;
     while (matchedNode) {
         const matchingEdges = matchedNode.fields
-            .filter(compareEdgeTypeIriAnd(typeIri))
-            .filter(compareEdgeNodeIriAnd(matchedNode["@id"], false))
+            .filter(
+                (edge) => includeEdgeTypeIRIs.some(
+                    (iri) => compareEdgeTypeIriAnd(iri)(edge)))
+            .filter(compareEdgeNodeIriAnd(matchedNode["@id"], includeIncomingEdges))
         const newKey: string = matchedNode["@id"];
         result.straightLineage.unshift(matchedNode["@id"])
-        result.categories[newKey] = matchingEdges.map((val) => (val.in as RtLdIdentifiableNode)["@id"])
-        const ancestorEdges = getDirectAncestorEdges([matchedNode], ancestorIri, true);
+        result.categories[newKey] = matchingEdges.map((val) => {
+            const valInId = (val.in as RtLdIdentifiableNode)["@id"];
+            if (valInId === startIRI) {
+                return (val.out as RtLdIdentifiableNode)["@id"]
+            }
+            return valInId
+        }
+        )
+        const ancestorEdges = getDirectAncestorEdges([matchedNode], ancestorEdgeIRI, true);
         if (!ancestorEdges || ancestorEdges.length === 0) {
             //loop end condition
             break;
         }
-        const nextAncestors = ancestorEdges
-            .map((edge) => (edge.out))
-            .filter(isRtLdIdentifiableNode)
+        const nextAncestors: RtLdIdentifiableNode[] = [];
+        if (includeOutgoingEdges) {
+            nextAncestors.push(...ancestorEdges
+                .map((edge) => (edge.out))
+                .filter(isRtLdIdentifiableNode))
+        }
+        if (includeIncomingEdges) {
+            nextAncestors.push(...ancestorEdges
+                .map((edge) => (edge.in))
+                .filter(isRtLdIdentifiableNode))
+        }
         if (nextAncestors.length === 0) {
             //loop end condition
             break;

@@ -108,6 +108,17 @@ describe("should get all ancestors, siblings and direct children as an object of
         const strHierarchy = getAncestorsSiblingsAndChildren(runtimeGraph, isProminentIri, RDFS_SUBPROP_OF, true)
         expect(strHierarchy).not.toBeNull();
         expect(strHierarchy?.iris).not.toContain(isProminentIri)
+        expect(strHierarchy).toEqual(expect.objectContaining(
+            {
+                iris: [uxiverseRootIRI + "SemanticFlag"],
+                descendants: [{
+                    iris: [uxiverseRootIRI + "HierarchyFlag"],
+                    descendants: [{
+                        iris: [isProminentIri],
+                        descendants: []
+                    }]
+                }]
+            }))
     });
     test("should get no ancestors on Property 'settings', as it is not a sub-property", async () => {
         const settingsIri = uxiverseRootIRI + "settings";
@@ -137,7 +148,9 @@ describe("should get all ancestors, siblings and direct children as an object of
     });
 })
 
-
+/**
+ * differently phrased: How does intellisense know the properties of superclasses? With this edges-function
+ */
 describe("should get edges of all ancestors that are not the ancestors themselves as an object of string-arrays", () => {
     const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
     const RDFS_SUBCLASS_OF = "http://www.w3.org/2000/01/rdf-schema#subClassOf";
@@ -160,11 +173,18 @@ describe("should get edges of all ancestors that are not the ancestors themselve
         runtimeGraph = createGraph(uxiverseFlattened);
     });
 
-    test("should write categories and edges for class Button and its ancestors", async () => {
+    test("should write categories for class Button and its ancestors", async () => {
         const buttonIRI = uxiverseRootIRI + "Button";
-        const catEdges = getEdgesOfAncestorsOnly(runtimeGraph, buttonIRI, DOMAIN_INCLUDES, RDFS_SUBCLASS_OF);
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: buttonIRI,
+                ancestorEdgeIRI: RDFS_SUBCLASS_OF,
+                includeEdgeTypeIRIs: [DOMAIN_INCLUDES],
+                includeIncomingEdges: false,
+                includeOutgoingEdges: true
+            });
         expect(catEdges).not.toBeNull();
-        expect(catEdges!.categories[buttonIRI]).toContain("https://uxiverse.com/ontology/triggers");
         const expectedLineage = [
             "https://schema.org/Thing",
             "https://uxiverse.com/ontology/Element",
@@ -175,5 +195,95 @@ describe("should get edges of all ancestors that are not the ancestors themselve
         expect(catEdges!.straightLineage).toEqual(expectedLineage);
         expect(Object.keys(catEdges!.categories).length).toBe(expectedLineage.length);
         expect(Object.keys(catEdges!.categories)).toEqual(expect.arrayContaining(expectedLineage))
+    })
+
+    test("should write edges for class Button and its ancestors", async () => {
+        const buttonIRI = uxiverseRootIRI + "Button";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: buttonIRI,
+                ancestorEdgeIRI: RDFS_SUBCLASS_OF,
+                includeEdgeTypeIRIs: [DOMAIN_INCLUDES],
+                includeIncomingEdges: false,
+                includeOutgoingEdges: true
+            });
+        expect(catEdges).not.toBeNull();
+        expect(catEdges!.categories[buttonIRI]).toContain("https://uxiverse.com/ontology/triggers");
+        expect(catEdges!.categories["https://schema.org/Thing"].length).toBe(0)
+        expect(catEdges!.categories[uxiverseRootIRI + "Element"]).toContain(uxiverseRootIRI + "a11y")
+        expect(catEdges!.categories[uxiverseRootIRI + "UIElement"]).toContain(uxiverseRootIRI + "ariaLabel")
+        expect(catEdges!.categories[uxiverseRootIRI + "AtomUIElement"].length).toBe(0)
+    })
+
+    test("should write categories for property 'triggers' which has no ancestors", async () => {
+        const triggersIRI = uxiverseRootIRI + "triggers";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: triggersIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [RANGE_INCLUDES, DOMAIN_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: false
+            });
+        expect(catEdges).not.toBeNull();
+        const expectedLineage = [
+            triggersIRI
+        ];
+        expect(catEdges!.straightLineage).toEqual(expectedLineage);
+        expect(Object.keys(catEdges!.categories).length).toBe(expectedLineage.length);
+        expect(Object.keys(catEdges!.categories)).toEqual(expect.arrayContaining(expectedLineage))
+    })
+    test("should write edges for property 'triggers' which has no ancestors", async () => {
+        const triggersIRI = uxiverseRootIRI + "triggers";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: triggersIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [RANGE_INCLUDES, DOMAIN_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: false
+            });
+        expect(catEdges).not.toBeNull();
+
+        expect(catEdges!.categories[triggersIRI]).toContain(uxiverseRootIRI + "UserAction");
+        expect(catEdges!.categories[triggersIRI]).toContain(uxiverseRootIRI + "Button");
+        const expectedLineage = [triggersIRI
+        ];
+        expect(catEdges!.straightLineage).toEqual(expectedLineage);
+        expect(Object.keys(catEdges!.categories).length).toBe(expectedLineage.length);
+        expect(Object.keys(catEdges!.categories)).toEqual(expect.arrayContaining(expectedLineage))
+    })
+    test("should write edges for property 'triggers', which semantically match 'domainIncludes/canExistOnType'", async () => {
+        const triggersIRI = uxiverseRootIRI + "triggers";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: triggersIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [DOMAIN_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: false
+            });
+        expect(catEdges).not.toBeNull();
+        expect(catEdges!.categories[triggersIRI]).not.toContain(uxiverseRootIRI + "UserAction");
+        expect(catEdges!.categories[triggersIRI]).toContain(uxiverseRootIRI + "Button");
+    })
+    test("should write edges for property 'triggers', which semantically match 'rangeIncludes/canBeOfType'", async () => {
+        const triggersIRI = uxiverseRootIRI + "triggers";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: triggersIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [RANGE_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: false
+            });
+        expect(catEdges).not.toBeNull();
+        expect(catEdges!.categories[triggersIRI]).toContain(uxiverseRootIRI + "UserAction");
+        expect(catEdges!.categories[triggersIRI]).not.toContain(uxiverseRootIRI + "Button");
     })
 })

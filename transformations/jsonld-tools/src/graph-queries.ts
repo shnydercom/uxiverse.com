@@ -46,9 +46,9 @@ export const compareEdgeTypeIriAnd = (typeIri: string) => {
     }
 }
 
-export const compareEdgeNodeIriAnd = (edgeID: string, filterIn: boolean = false) => {
+export const compareEdgeNodeIriAnd = (edgeID: string, includeIncomingEdges: boolean = false) => {
     return (val: RtLdEdge) => {
-        if (filterIn) {
+        if (includeIncomingEdges) {
             if (!isRtLdIdentifiableNode(val.in)) {
                 return false;
             }
