@@ -380,13 +380,15 @@ button[disabled]:focus {
 .categorized-edges-view>.category>.edges>.edge .full-value,
 .tree-view .tree-entry .full-value {
   padding: 0 4px;
+  text-align: start;
+  max-width: 150px;
 }
 
 .list-entry button,
 .categorized-edges-view>.category>.edges>.edge button,
 .tree-view .tree-entry button {
   background-color: white;
-  height: 16px;
+  min-height: 16px;
   border: none;
   padding: 0;
   line-height: 16px;
@@ -428,6 +430,10 @@ button[disabled]:focus {
   text-decoration: underline;
 }
 
+.tree-view.topmost {
+  padding-right: 8px;
+}
+
 .tree-view.topmost>.tree-entry {
   font-style: italic;
 }
@@ -437,7 +443,8 @@ button[disabled]:focus {
   flex-direction: row;
   font-size: 11px;
   line-height: 16px;
-  overflow-y: hidden;
+  padding: 0 8px 8px 0;
+  /*overflow-y: hidden;*/
 }
 
 .categorized-edges-view {

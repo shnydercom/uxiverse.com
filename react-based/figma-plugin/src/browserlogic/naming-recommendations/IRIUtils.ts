@@ -1,13 +1,17 @@
-import { uxiverseRootIRI } from './ontology-globals'
+import { schemaRootIRI, uxiverseRootIRI } from './ontology-globals'
 
-export const WELL_KNOWN_IRIs: string[] = [uxiverseRootIRI]
+export const VOCAB_IRI = uxiverseRootIRI;
+export const WELL_KNOWN_IRIs: { iri: string; substitute: string }[] = [{ iri: schemaRootIRI, substitute: "schema:" }]
 
 export const getWellKnownIriSubPath = (input: string): string => {
-  const trimmerIRI = WELL_KNOWN_IRIs.find(val => input.startsWith(val))
-  if (!trimmerIRI) {
+  if (input.startsWith(VOCAB_IRI)) {
+    return input.substring(VOCAB_IRI.length)
+  }
+  const trimmer = WELL_KNOWN_IRIs.find(val => input.startsWith(val.iri))
+  if (!trimmer) {
     return input
   }
-  return input.substring(trimmerIRI.length)
+  return `${trimmer.substitute}${input.substring(trimmer.iri.length)}`
 }
 
 
