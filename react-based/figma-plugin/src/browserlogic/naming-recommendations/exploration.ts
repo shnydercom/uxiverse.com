@@ -1,4 +1,4 @@
-import { CategorizedEdges, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
+import { CategorizedEdges, EdgeOfAncestorsInputArgs, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
 import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES } from "./ontology-globals";
 import { moveElementToEnd } from "./IRIUtils";
 import { featureFlags } from "../featureFlags";
@@ -32,8 +32,30 @@ export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: bool
     return result;
 }
 
-export const getCategorizedEdges = (graph: RtLdGraph, startIri: string, propLineage: boolean,) => {
-    const ancestorIri: string = propLineage ? RDFS_SUBPROP_OF : RDFS_SUBCLASS_OF;
-    const typeIri: string = propLineage ? RANGE_INCLUDES : DOMAIN_INCLUDES;
-    return getEdgesOfAncestorsOnly(graph, startIri, typeIri, ancestorIri)
+export const getCategorizedEdges = (graph: RtLdGraph, startIRI: string, propLineage: boolean,) => {
+    let ancestorIri: string;
+    let includeEdgeTypeIRIs: string[];
+    let includeIncomingEdges;
+    let includeOutgoingEdges;
+    if (propLineage) {
+        ancestorIri = RDFS_SUBPROP_OF;
+        includeEdgeTypeIRIs = [RANGE_INCLUDES, DOMAIN_INCLUDES]
+        includeIncomingEdges = true;
+        includeOutgoingEdges = false;
+    } else {
+        ancestorIri = RDFS_SUBCLASS_OF;
+        includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
+        includeIncomingEdges = false;
+        includeOutgoingEdges = true;
+    }
+
+    const options: EdgeOfAncestorsInputArgs = {
+        graph,
+        startIRI,
+        includeEdgeTypeIRIs,
+        includeIncomingEdges,
+        includeOutgoingEdges,
+        ancestorEdgeIRI: ancestorIri
+    }
+    return getEdgesOfAncestorsOnly(options)
 }

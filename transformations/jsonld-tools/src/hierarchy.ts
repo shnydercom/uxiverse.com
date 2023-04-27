@@ -140,15 +140,36 @@ export const getAncestorsSiblingsAndChildren = (graph: RtLdGraph, startIRI: stri
 }
 
 export interface EdgeOfAncestorsInputArgs {
+    /**
+     * the graph that is being searched in
+     */
     graph: RtLdGraph;
+    /**
+     * the IRI of an identifiable Node that is searched for in the graph
+     */
     startIRI: string;
+    /**
+     * includes edges that have a "@type"-IRI matching one of the entries in the array.
+     * 
+     */
     includeEdgeTypeIRIs: string[];
+    /**
+     * the edge "@type"-IRI that is being recursively traversed through
+     * E.g. Sub-Property or Sub-Class in the rdf/rdfs-vocabulary
+     */
     ancestorEdgeIRI: string;
+    /**
+     * whether or not a node on the edges' outgoing side should be used for ancestor traversal
+     */
     includeOutgoingEdges: boolean;
+    /**
+     * whether or not a node on the edges' incoming side should be used for ancestor traversal
+     */
     includeIncomingEdges: boolean;
 }
 /**
- * gets edges of all ancestors that are not the ancestors themselves as an object of string-arrays
+ * gets edges of all ancestors that are not the ancestors themselves as an object of string-arrays.
+ * WARNING: can lead to circular traversal, depending on the graph and input parameters!
  */
 export const getEdgesOfAncestorsOnly = (options: EdgeOfAncestorsInputArgs): CategorizedEdges | null => {
     const { graph, startIRI, includeEdgeTypeIRIs, ancestorEdgeIRI, includeOutgoingEdges, includeIncomingEdges } = options;
