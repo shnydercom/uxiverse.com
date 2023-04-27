@@ -11,15 +11,19 @@ import { ResultList } from './searchCompletion/ResultList'
 import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 import { match } from "ts-pattern"
 import { LineageTreeview } from './exploration/LineageTreeview'
-import { ExplorationResult, getCategorizedEdges, getLineage } from '../../browserlogic/naming-recommendations/exploration'
+import { ExplorationResult, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, getLineage } from '../../browserlogic/naming-recommendations/exploration'
 import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
-import CategorizedEdgesList from './exploration/CategorizedEdgesList'
+import { CategorizedEdgesList } from './exploration/CategorizedEdgesList'
+import { CategorizedEdges } from '@uxiverse.com/jsonld-tools'
+import { getI18n } from '../../i18n'
 
 enum ContainerVisuals {
   initialRunEmptyView = "initial",
   resultListView = "resultlist",
   exploration = "exploration"
 }
+
+const i18n = getI18n();
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let result = {
@@ -65,7 +69,8 @@ export const OntologyViewContainer = () => {
     {
       lineageHighlightIRI: exploredIRI,
       lineage: { iris: [], descendants: [] },
-      catEdges: { categories: {}, straightLineage: [] }
+      catEdges: { categories: {}, straightLineage: [] },
+      otherCatEdges: null
     })
 
   const treeviewScrollContainerRef = useRef<HTMLDivElement>(null);
@@ -94,7 +99,14 @@ export const OntologyViewContainer = () => {
     }
     const explorationHighlight = exploredIRI;
     const lineage = getLineage(rtGraph, explorationHighlight, isPropSearch);
-    const catEdges = getCategorizedEdges(rtGraph, explorationHighlight, isPropSearch);
+    let catEdges, otherCatEdges: CategorizedEdges | null = null;
+    if (!isPropSearch) {
+      catEdges = getCategorizedEdgesForClasses(rtGraph, explorationHighlight);
+      otherCatEdges = null;
+    } else {
+      catEdges = getCategorizedEdgesForPropertyCanExistOnType(rtGraph, explorationHighlight);
+      otherCatEdges = getCategorizedEdgesForPropertyCanBeOfType(rtGraph, explorationHighlight);
+    }
     if (!lineage || !catEdges) {
       return;
     }
@@ -104,7 +116,8 @@ export const OntologyViewContainer = () => {
       ...explorationResult,
       lineageHighlightIRI: explorationHighlight,
       lineage,
-      catEdges
+      catEdges,
+      otherCatEdges
     })
   }, [containerVisuals, exploredIRI]);
 
@@ -146,6 +159,15 @@ export const OntologyViewContainer = () => {
   const shortenedTerms = searchResult.map(value =>
     getWellKnownIriSubPath(value)
   )
+
+  let catEdgesWrapFn: undefined | ((propName: string) => string) = undefined;
+  let otherCatEdgesWrapFn: undefined | ((propName: string) => string) = undefined;
+  if (isPropSearch) {
+    catEdgesWrapFn = i18n.fn_propCanExistOnTypeStr;
+    otherCatEdgesWrapFn = i18n.fn_propIsOfTypeStr;
+  } else {
+    catEdgesWrapFn = i18n.fn_classHasProps
+  }
 
   return (
     <>
@@ -194,7 +216,14 @@ export const OntologyViewContainer = () => {
                     scrollbars: { autoHide: "never" }
                   }}
                 >
-                  <CategorizedEdgesList categorizedEdges={explorationResult.catEdges} />
+                  {explorationResult.catEdges
+                    && <CategorizedEdgesList
+                      categorizedEdges={explorationResult.catEdges}
+                      wrapCategoryFn={catEdgesWrapFn}
+                    />}
+                  {explorationResult.otherCatEdges
+                    && <CategorizedEdgesList categorizedEdges={explorationResult.otherCatEdges}
+                      wrapCategoryFn={otherCatEdgesWrapFn} />}
                 </OverlayScrollbarsComponent>
               </div>
             </OverlayScrollbarsComponent>

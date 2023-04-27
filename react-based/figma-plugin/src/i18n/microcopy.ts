@@ -16,4 +16,7 @@ export const microCopy_EN = {
   prepareNewName: 'Prepare new name',
   emptyOntologyIntro:
     'Start typing in the lower input field, and recommendations will appear here',
+  fn_propCanExistOnTypeStr: (propName: String) => `${propName} can exist on`,
+  fn_propIsOfTypeStr: (propName: String) => `${propName} can be a`,
+  fn_classHasProps: (className: String) => `${className}'s properties`,
 }

@@ -201,12 +201,18 @@ export const getEdgesOfAncestorsOnly = (options: EdgeOfAncestorsInputArgs): Cate
         if (includeOutgoingEdges) {
             nextAncestors.push(...ancestorEdges
                 .map((edge) => (edge.out))
-                .filter(isRtLdIdentifiableNode))
+                .filter(isRtLdIdentifiableNode)
+                .filter((node) =>
+                    !result.straightLineage
+                        .includes(node["@id"])))
         }
         if (includeIncomingEdges) {
             nextAncestors.push(...ancestorEdges
                 .map((edge) => (edge.in))
-                .filter(isRtLdIdentifiableNode))
+                .filter(isRtLdIdentifiableNode)
+                .filter((node) =>
+                    !result.straightLineage
+                        .includes(node["@id"])))
         }
         if (nextAncestors.length === 0) {
             //loop end condition

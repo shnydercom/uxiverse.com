@@ -8,11 +8,12 @@ import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvi
 import { CopyIcon } from '../../../assets/copy-icon';
 import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard';
 
-interface Props {
+export interface CategorizedEdgesListProps {
     categorizedEdges: CategorizedEdges;
+    wrapCategoryFn?: (propName: string) => string
 }
 
-const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
+export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ categorizedEdges, wrapCategoryFn }) => {
     const globalServices = useContext(GlobalStateContext)
     const { send } = globalServices.mainService
     const exploreHandler = (iri: string) => {
@@ -34,7 +35,10 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
         <div className='categorized-edges-view'>
             {categorizedEdges.straightLineage.map((category) => {
                 const items = categorizedEdges.categories[category];
-                const categoryTrimmed = getWellKnownIriSubPath(category)
+                let categoryTrimmed = getWellKnownIriSubPath(category)
+                if (wrapCategoryFn) {
+                    categoryTrimmed = wrapCategoryFn(categoryTrimmed);
+                }
                 if (items.length === 0) return null;
                 return (
                     <div key={category} className='category'>
@@ -66,5 +70,3 @@ const CategorizedEdgesList: React.FC<Props> = ({ categorizedEdges }) => {
         </div>
     );
 };
-
-export default CategorizedEdgesList;

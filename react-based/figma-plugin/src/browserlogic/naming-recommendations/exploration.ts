@@ -7,7 +7,11 @@ import { sortTreeViewSiblings } from "../sort";
 export interface ExplorationResult {
     lineageHighlightIRI: string;
     lineage: StringifiedLineage;
-    catEdges: CategorizedEdges;
+    catEdges: CategorizedEdges | null;
+    /**
+     * if two sections of categorized edges should be separated, this property can be filled
+     */
+    otherCatEdges: CategorizedEdges | null;
 }
 
 export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: boolean,): StringifiedLineage | null => {
@@ -32,24 +36,48 @@ export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: bool
     return result;
 }
 
-export const getCategorizedEdges = (graph: RtLdGraph, startIRI: string, propLineage: boolean,) => {
-    let ancestorIri: string;
-    let includeEdgeTypeIRIs: string[];
-    let includeIncomingEdges;
-    let includeOutgoingEdges;
-    if (propLineage) {
-        ancestorIri = RDFS_SUBPROP_OF;
-        includeEdgeTypeIRIs = [RANGE_INCLUDES, DOMAIN_INCLUDES]
-        includeIncomingEdges = true;
-        includeOutgoingEdges = false;
-    } else {
-        ancestorIri = RDFS_SUBCLASS_OF;
-        includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
-        includeIncomingEdges = false;
-        includeOutgoingEdges = true;
-    }
-
+export const getCategorizedEdgesForClasses = (graph: RtLdGraph, startIRI: string) => {
+    const ancestorIri = RDFS_SUBCLASS_OF;
+    const includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
+    const includeIncomingEdges = false;
+    const includeOutgoingEdges = true;
     const options: EdgeOfAncestorsInputArgs = {
+        graph,
+        startIRI,
+        includeEdgeTypeIRIs,
+        includeIncomingEdges,
+        includeOutgoingEdges,
+        ancestorEdgeIRI: ancestorIri
+    }
+    return getEdgesOfAncestorsOnly(options)
+}
+
+
+export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, startIRI: string) => {
+    // property can exist on type [...]
+    const ancestorIri = RDFS_SUBPROP_OF;
+    const includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
+    const includeIncomingEdges = true;
+    const includeOutgoingEdges = true;
+    const options: EdgeOfAncestorsInputArgs = {
+        graph,
+        startIRI,
+        includeEdgeTypeIRIs,
+        includeIncomingEdges,
+        includeOutgoingEdges,
+        ancestorEdgeIRI: ancestorIri
+    }
+    return getEdgesOfAncestorsOnly(options)
+}
+
+
+export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, startIRI: string) => {
+    // property can be a [...]
+    const ancestorIri = RDFS_SUBPROP_OF;
+    const includeEdgeTypeIRIs = [RANGE_INCLUDES];
+    const includeIncomingEdges = true;
+    const includeOutgoingEdges = true;
+    const options = {
         graph,
         startIRI,
         includeEdgeTypeIRIs,

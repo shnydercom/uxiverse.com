@@ -286,4 +286,19 @@ describe("should get edges of all ancestors that are not the ancestors themselve
         expect(catEdges!.categories[triggersIRI]).toContain(uxiverseRootIRI + "UserAction");
         expect(catEdges!.categories[triggersIRI]).not.toContain(uxiverseRootIRI + "Button");
     })
+    test("regression: should write edges for property 'importance' by 'rangeIncludes/canBeOfType' and 'domainIncludes/canExistOnType' including in and out, which created an infinite loop", async () => {
+        const startIRI = uxiverseRootIRI + "importance";
+        const catEdges = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: startIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [RANGE_INCLUDES, DOMAIN_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: true
+            });
+        expect(catEdges).not.toBeNull();
+        expect(catEdges!.categories[startIRI]).toContain(uxiverseRootIRI + "UserAction");
+        expect(catEdges!.categories[startIRI]).not.toContain(uxiverseRootIRI + "Button");
+    })
 })
