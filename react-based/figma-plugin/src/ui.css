@@ -117,6 +117,7 @@ body {
 }
 
 .single-iri-full-view {
+  line-height: 16px;
   min-height: 88px;
   padding: 12px;
   padding-right: 18px;
