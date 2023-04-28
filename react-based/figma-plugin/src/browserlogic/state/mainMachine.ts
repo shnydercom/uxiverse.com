@@ -41,8 +41,26 @@ export interface HostAppElementSearchXSCtx {
   isOptionsOpen: boolean
 }
 
+/**
+ * stores a full iri along with a shortened or custom version/alias of it,
+ * or if no iri is associatable, stores that as null
+ */
+export interface ShortFormAndIRI {
+  shortForm: string;
+  iri: string | null;
+}
+
+/**
+ * stores syntactic blocks relating to a schema as far as they are known 
+ */
+export interface RenamePartSemantic {
+  type?: ShortFormAndIRI;
+  property?: ShortFormAndIRI;
+  value?: ShortFormAndIRI;
+}
+
 export interface OntologySearchXSCtx {
-  confirmedRenameParts: string[]
+  confirmedRenameParts: RenamePartSemantic[]
   /**
    * the IRI for showing documentation when hovering over an ontology-entry
    */
