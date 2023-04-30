@@ -24,6 +24,7 @@ import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
+import { onReplaceChangeFactory } from './onReplaceChangeFactory'
 
 const i18n = getI18n()
 
@@ -149,16 +150,6 @@ export const FindAndReplace = () => {
     } as PluginNotationToggleEvent)
   }
 
-  const onReplaceChange = (
-    value: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    send({
-      type: 'EDIT_PHRASES',
-      inputValue: event.currentTarget.value,
-    } as PluginInputTypingEvent)
-  }
-
   const onFocusChange: React.FocusEventHandler<HTMLInputElement> = (
     event
   ) => {
@@ -259,7 +250,7 @@ export const FindAndReplace = () => {
       <Input
         placeholder={i18n.prepareNewName}
         onFocus={onFocusChange}
-        onChange={onReplaceChange}
+        onChange={onReplaceChangeFactory(notation, send)}
         icon="swap"
         iconComponent={<RenameIcon />}
         onMouseOver={onElemHover}

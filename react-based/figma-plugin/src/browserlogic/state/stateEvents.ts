@@ -25,8 +25,12 @@ export interface FocusSelectionEvent {
 }
 
 export interface PluginInputTypingEvent {
-    type: 'EDIT_PHRASES'
-    inputValue: string | undefined
+    type: 'EDIT_PHRASES';
+    inputValue: string | undefined;
+    /**
+     * single cursor position in the text, no selection
+     */
+    textCursorPosition: number;
 }
 
 
