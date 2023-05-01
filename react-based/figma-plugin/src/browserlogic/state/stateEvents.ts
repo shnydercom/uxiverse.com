@@ -63,7 +63,20 @@ export interface PluginConfirmPhraseEvent {
 }
 
 export interface PluginEmptySearchPhrasesEvent {
-    type: 'EMPTY_SEARCH_PHRASES';
+    type: 'EMPTY_SEARCH_PHRASE';
+    inputValue: string;
+    /**
+     * for previously confirmed or half-finished phrases
+     */
+    confirmedRenameParts: RenamePartSemantic[];
+    /**
+     * the value at the cursor position which is used for searching
+     */
+    ontologySearchValue: string;
+    /**
+     * the iri to use as the base for the treeview
+     */
+    exploredIRI: string;
 }
 
 export interface PluginSelectPhraseEvent {

@@ -1,8 +1,9 @@
-import { match } from "ts-pattern"
-import { AvailableNotations } from "../browserlogic/notation-handler"
-import { LexerStartEnd, MainMachineXSCtx, RenamePartSemantic } from "../browserlogic/state/mainMachine"
+import { P, match } from "ts-pattern"
+import { AvailableNotations, NOTATIONS_MAIN_DELIMITER_DICT } from "../browserlogic/notation-handler"
+import { LexerStartEnd, RenamePartSemantic } from "../browserlogic/state/mainMachine"
 import { MainMachineSelectorArg } from "../browserlogic/state/moreTypes"
 import { AllMainMachineStateEvents } from "../browserlogic/state/stateEvents"
+import { uxiverseRootIRI } from "../browserlogic/naming-recommendations/ontology-globals"
 
 export const onReplaceChangeFactory = (
     notation: AvailableNotations,
@@ -13,18 +14,62 @@ export const onReplaceChangeFactory = (
         value: string,
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        if (value === "" && state.matches("phraseRecommendations.autoCompleteView")) {
-            send({
-                type: "EMPTY_SEARCH_PHRASES",
-            })
-            return;
-        }
-        if ((event.currentTarget.selectionStart === null)
-            || (event.currentTarget.selectionStart !== event.currentTarget.selectionEnd)) {
+        const { selectionStart } = event.currentTarget;
+        if ((selectionStart === null)
+            || (selectionStart !== event.currentTarget.selectionEnd)) {
             //only handle if cursor position is clear
             return;
         }
-        const confirmedRenameParts = lexLine(value, event.currentTarget.selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
+        if (state.matches("phraseRecommendations.autoCompleteView") && value === "") {
+            send({
+                type: "EMPTY_SEARCH_PHRASE",
+                confirmedRenameParts: [],
+                inputValue: "",
+                ontologySearchValue: "",
+                exploredIRI: uxiverseRootIRI + "Button"
+            })
+            return;
+        }
+        const trimmedValueFront = value.slice(0, selectionStart).trim();
+        const trimmedValueRear = value.slice(selectionStart).trim();
+        const isDelimitedAtFront = trimmedValueFront.endsWith(NOTATIONS_MAIN_DELIMITER_DICT[notation]);
+        const isDelimitedAtRear = trimmedValueRear.startsWith(NOTATIONS_MAIN_DELIMITER_DICT[notation]);
+        if (
+            (trimmedValueFront.length === 0 && trimmedValueRear.length === 0)
+            || (trimmedValueFront.length === 0 && isDelimitedAtRear)
+            || (trimmedValueRear.length === 0 && isDelimitedAtFront)
+            || (isDelimitedAtFront && isDelimitedAtRear)
+        ) {
+            const confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
+            const cursorPosRenamePartIdx = confirmedRenameParts.findIndex((val) => val.relativeCursorPos !== -1);
+            //finds a suggestion for the treeview-exploration
+            const exploredIRI = match(cursorPosRenamePartIdx)
+                .with(-1, () => uxiverseRootIRI + "Button")
+                .when((pIDx) => pIDx >= 0 && (confirmedRenameParts[pIDx].main.iri !== null),
+                    (pIDx) => confirmedRenameParts[pIDx].main.iri!)
+                .when((pIDx) => pIDx >= 0
+                    && (confirmedRenameParts[pIDx].main.iri === null)
+                    && (confirmedRenameParts.find((value) => value.main !== null)?.main?.iri ?? null !== null),
+                    (pIDx) => {
+                        const foundFrontIri = confirmedRenameParts.slice(0, cursorPosRenamePartIdx).reverse().find(
+                            (value) => value.main !== null)?.main?.iri ?? null;
+                        if (foundFrontIri !== null) {
+                            return foundFrontIri;
+                        }
+                        return (confirmedRenameParts.find((value) => value.main !== null)!.main!.iri!)
+                    })
+                .otherwise(() => uxiverseRootIRI + "Button")
+            const ontologySearchValue: string = determineOntologySearchValue(confirmedRenameParts);
+            send({
+                type: "EMPTY_SEARCH_PHRASE",
+                confirmedRenameParts,
+                inputValue: value,
+                ontologySearchValue,
+                exploredIRI
+            })
+            return;
+        }
+        const confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
         const ontologySearchValue: string = determineOntologySearchValue(confirmedRenameParts);
         send({
             type: 'CHANGE_SEARCH_PHRASES',
