@@ -48,7 +48,7 @@ const lexLine = (textValue: string, textCursorPos: number, notation: AvailableNo
         //extra handling for initial state
         if (previousRenameSemantics.length === 0) {
             previousRenameSemantics = [{
-                lexerStartEnd: { start: 0, end: textValue.length }, relativeCursorPos: textCursorPos, value:
+                lexerStartEnd: { start: 0, end: textValue.length }, relativeCursorPos: textCursorPos, main:
                 {
                     shortForm: textValue.replace(replaceRegex, ""),
                     iri: null
@@ -72,7 +72,7 @@ const lexLine = (textValue: string, textCursorPos: number, notation: AvailableNo
             console.log("tokens inner fn")
             // remove whitespace and delimiter
             const cleanedToken = token.replace(replaceRegex, "");
-            let foundRenameSemantics = previousRenameSemantics.find((value) => value.type?.shortForm === cleanedToken || value.property?.shortForm === cleanedToken || value.value?.shortForm === cleanedToken)
+            let foundRenameSemantics = previousRenameSemantics.find((value) => value.type === cleanedToken || value.property === cleanedToken || value.main.shortForm === cleanedToken)
             //find cursor in uncleaned string
             let matchingCursorPosition = textCursorPos <= lexerStartEnd[idx].end && textCursorPos > lexerStartEnd[idx].start ? textCursorPos : -1;
             let localMatchingCursorPosition = matchingCursorPosition === -1 ? -1 : matchingCursorPosition - lexerStartEnd[idx].start;
@@ -93,19 +93,20 @@ const lexLine = (textValue: string, textCursorPos: number, notation: AvailableNo
             let result: RenamePartSemantic = {
                 relativeCursorPos: localMatchingCursorPosition,
                 lexerStartEnd: lexerStartEnd[idx],
+                main: { iri: null, shortForm: "" }
             }
             if (foundRenameSemantics) {
-                const { property, type, value } = foundRenameSemantics;
+                const { property, type, main } = foundRenameSemantics;
                 result = {
                     ...result,
                     property,
                     type,
-                    value
+                    main
                 }
             } else {
                 result = {
                     ...result,
-                    value: { iri: null, shortForm: cleanedToken }
+                    main: { iri: null, shortForm: cleanedToken }
                 }
             }
             return result;
@@ -129,6 +130,6 @@ const determineOntologySearchValue = (renameSemantics: RenamePartSemantic[]): st
     let result: string = "";
     const semanticAtCursor = renameSemantics.find((val) => val.relativeCursorPos !== -1);
     //TODO: include property and type
-    result = semanticAtCursor?.value?.shortForm ?? "";
+    result = semanticAtCursor?.main.shortForm ?? "";
     return result;
 }

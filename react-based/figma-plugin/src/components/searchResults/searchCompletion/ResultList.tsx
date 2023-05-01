@@ -34,6 +34,14 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
     send('HOVER_DEFINITION_EXIT')
   }
 
+  const onConfirmPhraseClick = (iri: string, displayFullValue: string) => {
+    send({
+      type: 'CONFIRM_PHRASE',
+      displayFullValue,
+      iri
+    })
+  }
+
   return (
     <div className="result-list">
       {recommendations.map((fullVal, idx) => {
@@ -47,6 +55,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
             isFocused={false}
             onHoverSearchResult={onHoverSearchResult}
             onElemHoverLeave={onElemHoverLeave}
+            onConfirmPhraseClick={onConfirmPhraseClick}
           />
         )
       })}

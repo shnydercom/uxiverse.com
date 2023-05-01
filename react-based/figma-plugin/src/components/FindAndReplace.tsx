@@ -216,6 +216,7 @@ export const FindAndReplace = () => {
         value={componentSearchValue}
         onSelectionClick={onListEntryClick}
         id={HoverableElements.inputCompName}
+        spellCheck="false"
       />
       <Icon
         name="caret-right"
@@ -260,6 +261,7 @@ export const FindAndReplace = () => {
         onMouseLeave={onElemHoverLeave}
         value={renameValue}
         id={HoverableElements.inputChangeReplace}
+        spellCheck="false"
       />
       <Icon
         name="alert"

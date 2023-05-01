@@ -12,6 +12,7 @@ interface ResultListEntryProps {
   isFocused: boolean;
   onHoverSearchResult: MouseEventHandler<HTMLDivElement>
   onElemHoverLeave: MouseEventHandler<HTMLDivElement>
+  onConfirmPhraseClick: (iri: string, displayFullValue: string) => void;
 }
 
 export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
@@ -20,7 +21,8 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   isFocused,
   iri,
   onHoverSearchResult,
-  onElemHoverLeave
+  onElemHoverLeave,
+  onConfirmPhraseClick
 }) => {
   const copyButtonHandler = () => {
     copyTextToClipboard(displayFullValue);
@@ -39,7 +41,7 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   )
   return (
     <div className="list-entry" data-ld={iri} onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>
-      <button>
+      <button onClick={() => onConfirmPhraseClick(iri, displayFullValue)}>
         {splitpart[0] && <span className="no-match">{startString}</span>}
         {<span className="match">{centerString}</span>}
         {splitpart[1] && <span className="no-match">{endString}</span>}

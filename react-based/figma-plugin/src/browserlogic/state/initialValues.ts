@@ -1,5 +1,6 @@
 import { getI18n } from '../../i18n'
 import { uxiverseRootIRI } from '../naming-recommendations/ontology-globals'
+import { AvailableNotations } from '../notation-handler'
 import { MainMachineXSCtx } from './mainMachine'
 
 const i18n = getI18n()
@@ -25,6 +26,7 @@ const initialContext: MainMachineXSCtx = {
       isOptionsOpen: false,
     },
     ontologySearch: {
+      notation: AvailableNotations.SpacedDashes,
       ontologySearchValue: "",
       confirmedRenameParts: [],
       focusedDefinition: '',

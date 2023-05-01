@@ -57,7 +57,9 @@ export interface PluginChangeSearchPhrasesEvent {
 }
 
 export interface PluginConfirmPhraseEvent {
-    type: 'CONFIRM_PHRASE'
+    type: 'CONFIRM_PHRASE';
+    iri: string;
+    displayFullValue: string;
 }
 
 export interface PluginEmptySearchPhrasesEvent {
@@ -119,7 +121,6 @@ export interface NoArgsEvents {
     | "DELETE_LAST_PHRASE"
     | "ADD_PHRASES"
     | "ADD_UNCONFIRMED_PHRASE"
-    | "CONFIRM_PHRASE"
     | "DELETE_SECONDLAST_PHRASE"
     | "DELETE_MULTI_PHRASE"
     | "DRAG_PHRASE"

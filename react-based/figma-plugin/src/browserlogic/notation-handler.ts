@@ -6,6 +6,12 @@ export enum AvailableNotations {
   SpacedCommaEquals = 'spaced-comma-equals'
 }
 
+export const NOTATIONS_MAIN_DELIMITER_DICT = {
+  [AvailableNotations.SpacedDashes]: "-",
+  [AvailableNotations.SpacedSlashes]: "/",
+  [AvailableNotations.SpacedCommaEquals]: ",",
+} as const;
+
 export function handleNotation(
   xStateContext: MainMachineXSCtx,
   changeTo: AvailableNotations

@@ -13,13 +13,14 @@ import {
 } from './../../communicationInterfaces'
 import { getInitialXStateContextCopy } from './initialValues'
 import { getSingleUxiDefinition } from '../naming-recommendations/search'
-import { AvailableNotations, handleNotation } from '../notation-handler'
+import { AvailableNotations, NOTATIONS_MAIN_DELIMITER_DICT, handleNotation } from '../notation-handler'
 import {
   RtLdGraph,
   createEmptyGraph,
   createGraph,
 } from '@uxiverse.com/jsonld-tools'
-import { AllMainMachineStateEvents, CopyCompTxtToRenameEvent, FocusSelectionEvent, HostAppSelectionEvent, HostFetchEvent, HoverDefinitionEnterEvent, HoverUIElemEnterEvent, PluginChangeSearchPhrasesEvent, PluginEmptySearchPhrasesEvent, PluginExplorationEvent, PluginInputTypingEvent } from "./stateEvents"
+import { AllMainMachineStateEvents, CopyCompTxtToRenameEvent, FocusSelectionEvent, HostAppSelectionEvent, HostFetchEvent, HoverDefinitionEnterEvent, HoverUIElemEnterEvent, PluginChangeSearchPhrasesEvent, PluginConfirmPhraseEvent, PluginEmptySearchPhrasesEvent, PluginExplorationEvent, PluginInputTypingEvent } from "./stateEvents"
+import { match } from 'ts-pattern'
 
 const i18n = getI18n()
 
@@ -54,9 +55,9 @@ export interface ShortFormAndIRI {
  * stores syntactic blocks relating to a schema as far as they are known 
  */
 export interface RenamePartSemantic {
-  type?: ShortFormAndIRI;
-  property?: ShortFormAndIRI;
-  value?: ShortFormAndIRI;
+  type?: string;
+  property?: string;
+  main: ShortFormAndIRI;
   relativeCursorPos: number;
   lexerStartEnd: LexerStartEnd
 }
@@ -80,7 +81,8 @@ export interface OntologySearchXSCtx {
   /**
    * the description text shown as documentation
    */
-  descriptionText: string | undefined
+  descriptionText: string | undefined;
+  notation: AvailableNotations;
 }
 
 export interface PluginXSCtx {
@@ -412,7 +414,8 @@ export const mainMachine =
           spacedCommaEquals: {
             on: {
               CHANGE_NOTATION: 'spacedDashes',
-            }
+            },
+            entry: 'assignCommaEqualsNotation'
           }
         },
 
@@ -465,7 +468,10 @@ export const mainMachine =
 
           autoCompleteView: {
             on: {
-              CONFIRM_PHRASE: "treeAndEdgesView",
+              CONFIRM_PHRASE: {
+                target: "treeAndEdgesView",
+                actions: "confirmAutoCompletePhrase"
+              },
               SELECT_PHRASE: [{
                 target: "treeAndEdgesView",
                 cond: "isPhraseWithIRI"
@@ -587,6 +593,7 @@ export const mainMachine =
           context,
           AvailableNotations.SpacedDashes
         )
+        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedDashes;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       assignSpacedSlashesNotation: context => {
@@ -595,6 +602,16 @@ export const mainMachine =
           context,
           AvailableNotations.SpacedSlashes
         )
+        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedSlashes;
+        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
+      },
+      assignCommaEqualsNotation: context => {
+        const ctxCopy = { ...context }
+        ctxCopy.plugin.renameValue = handleNotation(
+          context,
+          AvailableNotations.SpacedCommaEquals
+        )
+        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedCommaEquals;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
@@ -610,6 +627,26 @@ export const mainMachine =
         const initialContext = getInitialXStateContextCopy();
         ctxCopy.plugin.renameValue = "";
         ctxCopy.plugin.ontologySearch = initialContext.plugin.ontologySearch;
+        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
+      },
+      confirmAutoCompletePhrase: (context, event: PluginConfirmPhraseEvent) => {
+        const { displayFullValue, iri } = event;
+        const ctxCopy = { ...context };
+
+        const { confirmedRenameParts, notation } = ctxCopy.plugin.ontologySearch;
+        const foundRenamePart = confirmedRenameParts.find((val) => val.relativeCursorPos !== -1);
+        if (!foundRenamePart) {
+          console.error("error finding RenamePartSemantic")
+          return;
+        }
+        foundRenamePart.main = { iri, shortForm: displayFullValue };
+        const joinerStr = match(notation)
+          .with(AvailableNotations.SpacedDashes, () => ` ${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
+          .with(AvailableNotations.SpacedSlashes, () => ` ${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
+          .with(AvailableNotations.SpacedCommaEquals, () => `${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
+          .exhaustive()
+        ctxCopy.plugin.renameValue = confirmedRenameParts.map((val) => val.main.shortForm).join(joinerStr)
+        ctxCopy.plugin.ontologySearch.exploredIRI = iri;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
