@@ -28,19 +28,19 @@ const i18n = getI18n();
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let result = {
     containerVisuals: ContainerVisuals.initialRunEmptyView,
-    renameValue: state.context.plugin.renameValue,
+    ontologySearchValue: state.context.plugin.ontologySearch.ontologySearchValue,
     rtGraph: state.context.plugin.graph,
     exploredIRI: state.context.plugin.ontologySearch.exploredIRI,
     isPropSearch: state.context.plugin.ontologySearch.isPropSearch
   }
   match(state)
     .when(
-      (state) => (state.matches("multiPhraseState.filledMultiPhrases.singlePhrase")
-        && !state.context.plugin.renameValue),
+      (state) => (state.matches("phraseRecommendations.treeAndEdgesView")
+        && !state.context.plugin.ontologySearch.ontologySearchValue),
       () => { result.containerVisuals = ContainerVisuals.exploration })
     .when(
-      (state) => (state.matches("multiPhraseState.filledMultiPhrases.singlePhrase")
-        && (state.context.plugin.renameValue?.length ?? 0) > 0),
+      (state) => (state.matches("phraseRecommendations.autoCompleteView")
+        && (state.context.plugin.ontologySearch.ontologySearchValue?.length ?? 0) > 0),
       () => { result.containerVisuals = ContainerVisuals.resultListView })
     .otherwise(() => {
       result.containerVisuals = ContainerVisuals.initialRunEmptyView
@@ -62,7 +62,7 @@ const ScrollBarWrapper = ({ children }) => {
 export const OntologyViewContainer = () => {
   //TODO: consume graph from online source
   const globalServices = useContext(GlobalStateContext)
-  const { rtGraph, renameValue, containerVisuals, exploredIRI, isPropSearch } = useSelector(globalServices.mainService, mainMachineSelector)
+  const { rtGraph, ontologySearchValue, containerVisuals, exploredIRI, isPropSearch } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const [searchResult, setSearchResult] = React.useState<string[]>([])
   const [explorationResult, setExplorationResult] = React.useState<ExplorationResult>(
@@ -79,17 +79,17 @@ export const OntologyViewContainer = () => {
     if (containerVisuals !== ContainerVisuals.resultListView) {
       return;
     }
-    if (!renameValue || !rtGraph) {
+    if (!ontologySearchValue || !rtGraph) {
       setSearchResult([])
       return
     }
-    const definitionNameResult = searchDefinitionNames(renameValue, rtGraph)
+    const definitionNameResult = searchDefinitionNames(ontologySearchValue, rtGraph)
 
     setSearchResult(definitionNameResult)
     return () => {
       setSearchResult([])
     }
-  }, [containerVisuals, renameValue]);
+  }, [containerVisuals, ontologySearchValue]);
   React.useEffect(() => {
     if (containerVisuals !== ContainerVisuals.exploration) {
       return;
@@ -176,12 +176,12 @@ export const OntologyViewContainer = () => {
         () => {
           return <OntologyEmptyState />
         }).when(
-          (val) => ((val === ContainerVisuals.resultListView) && renameValue),
+          (val) => ((val === ContainerVisuals.resultListView) && ontologySearchValue),
           () => {
             return <div className="ontology-search-container">
               <ScrollBarWrapper>
                 <ResultList
-                  typedValue={renameValue!}
+                  typedValue={ontologySearchValue!}
                   recommendations={shortenedTerms}
                   iris={searchResult}
                 />

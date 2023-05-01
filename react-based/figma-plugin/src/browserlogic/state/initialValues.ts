@@ -25,6 +25,7 @@ const initialContext: MainMachineXSCtx = {
       isOptionsOpen: false,
     },
     ontologySearch: {
+      ontologySearchValue: "",
       confirmedRenameParts: [],
       focusedDefinition: '',
       exploredIRI: uxiverseRootIRI + "Button",

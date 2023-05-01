@@ -9,6 +9,7 @@ import {
 import { HostAppElement } from '../../communicationInterfaces'
 import { MainMachineXSCtx } from './mainMachine'
 import { RtLdGraph } from '@uxiverse.com/jsonld-tools'
+import { AllMainMachineStateEvents } from './stateEvents'
 
 export type SelectorType = (
   emitted: State<
@@ -113,15 +114,7 @@ export type GraphSelectorType = (
   >
 ) => RtLdGraph | undefined
 
-export type MainMachineSelectorArg = State<
-  MainMachineXSCtx,
-  AnyEventObject,
-  any,
-  { value: any; context: MainMachineXSCtx },
-  ResolveTypegenMeta<
-    TypegenDisabled,
-    AnyEventObject,
-    BaseActionObject,
-    ServiceMap
-  >
->
+export type MainMachineSelectorArg = State<MainMachineXSCtx, AllMainMachineStateEvents, any, {
+  value: any;
+  context: MainMachineXSCtx;
+}, ResolveTypegenMeta<TypegenDisabled, AllMainMachineStateEvents, BaseActionObject, ServiceMap>>

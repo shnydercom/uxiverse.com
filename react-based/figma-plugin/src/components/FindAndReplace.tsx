@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useContext, useState } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
-import { useSelector } from '@xstate/react'
+import { useActor, useSelector } from '@xstate/react'
 import { P, match } from "ts-pattern"
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
@@ -24,7 +24,7 @@ import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
-import { onReplaceChangeFactory } from './onReplaceChangeFactory'
+import { onReplaceChangeFactory, onSelectionChangeFactory } from './onReplaceChangeFactory'
 
 const i18n = getI18n()
 
@@ -87,6 +87,7 @@ export const FindAndReplace = () => {
   )
 
   const { send } = globalServices.mainService
+  const [state] = useActor(globalServices.mainService);
 
   const [isExecReplaceIconHovered, setIsExecReplaceIconHovered] = useState<
     boolean
@@ -153,11 +154,12 @@ export const FindAndReplace = () => {
   const onFocusChange: React.FocusEventHandler<HTMLInputElement> = (
     event
   ) => {
-    send({
-      type: 'EDIT_PHRASES',
-      inputValue:
-        event.currentTarget.value,
-    } as PluginInputTypingEvent)
+    if (state.matches("phraseRecommendations.initialEmpty")) {
+      send({
+        type: 'SHOW_TREE'
+      })
+      return;
+    }
   }
 
   const onElemHover: MouseEventHandler<
@@ -250,7 +252,8 @@ export const FindAndReplace = () => {
       <Input
         placeholder={i18n.prepareNewName}
         onFocus={onFocusChange}
-        onChange={onReplaceChangeFactory(notation, send)}
+        onChange={onReplaceChangeFactory(notation, send, state)}
+        onSelect={onSelectionChangeFactory(notation, send)}
         icon="swap"
         iconComponent={<RenameIcon />}
         onMouseOver={onElemHover}

@@ -8,6 +8,7 @@ XState events
 import { HostAppElement } from "../../communicationInterfaces"
 import { HoverableElements } from "../../identifiable/HoverableElements"
 import { AvailableNotations } from "../notation-handler"
+import { RenamePartSemantic } from "./mainMachine"
 
 export interface HoverUIElemEnterEvent {
     type: 'HOVER_UI_ELEM_ENTER'
@@ -26,11 +27,6 @@ export interface FocusSelectionEvent {
 
 export interface PluginInputTypingEvent {
     type: 'EDIT_PHRASES';
-    inputValue: string | undefined;
-    /**
-     * single cursor position in the text, no selection
-     */
-    textCursorPosition: number;
 }
 
 
@@ -42,6 +38,46 @@ export interface PluginExplorationEvent {
 
 export interface PluginNotationToggleEvent {
     type: 'CHANGE_NOTATION'
+}
+
+export interface PluginShowTreeEvent {
+    type: 'SHOW_TREE';
+}
+export interface PluginChangeSearchPhrasesEvent {
+    type: 'CHANGE_SEARCH_PHRASES';
+    inputValue: string;
+    /**
+     * for previously confirmed or half-finished phrases
+     */
+    confirmedRenameParts: RenamePartSemantic[];
+    /**
+     * the value at the cursor position which is used for searching
+     */
+    ontologySearchValue: string;
+}
+
+export interface PluginConfirmPhraseEvent {
+    type: 'CONFIRM_PHRASE'
+}
+
+export interface PluginEmptySearchPhrasesEvent {
+    type: 'EMPTY_SEARCH_PHRASES';
+}
+
+export interface PluginSelectPhraseEvent {
+    type: 'SELECT_PHRASE'
+    /**
+     * the value that the input element currently has
+     */
+    inputValue: string | undefined;
+    /**
+     * start position of the cursor, can be same as end position
+     */
+    selectionStart: number;
+    /**
+     * end position of the cursor, can be same as start position
+     */
+    selectionEnd: number;
 }
 
 export interface PluginUnlinkedDataUpdateEvent {
@@ -103,5 +139,11 @@ export type AllMainMachineStateEvents = HoverUIElemEnterEvent
     | CopyCompTxtToRenameEvent
     | HostAppSelectionEvent
     | HostFetchEvent
-    | NoArgsEvents;
+    | NoArgsEvents
+    | PluginShowTreeEvent
+    | PluginChangeSearchPhrasesEvent
+    | PluginConfirmPhraseEvent
+    | PluginChangeSearchPhrasesEvent
+    | PluginEmptySearchPhrasesEvent
+    | PluginSelectPhraseEvent;
 
