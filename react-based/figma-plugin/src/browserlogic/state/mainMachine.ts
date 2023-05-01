@@ -19,7 +19,7 @@ import {
   createEmptyGraph,
   createGraph,
 } from '@uxiverse.com/jsonld-tools'
-import { AllMainMachineStateEvents, CopyCompTxtToRenameEvent, FocusSelectionEvent, HostAppSelectionEvent, HostFetchEvent, HoverDefinitionEnterEvent, HoverUIElemEnterEvent, PluginChangeSearchPhrasesEvent, PluginExplorationEvent, PluginInputTypingEvent } from "./stateEvents"
+import { AllMainMachineStateEvents, CopyCompTxtToRenameEvent, FocusSelectionEvent, HostAppSelectionEvent, HostFetchEvent, HoverDefinitionEnterEvent, HoverUIElemEnterEvent, PluginChangeSearchPhrasesEvent, PluginEmptySearchPhrasesEvent, PluginExplorationEvent, PluginInputTypingEvent } from "./stateEvents"
 
 const i18n = getI18n()
 
@@ -384,10 +384,6 @@ export const mainMachine =
               }
             },
             on: {
-              TRIGGER_TRASH: {
-                target: 'emptyMultiphrases',
-                actions: 'assignTrashReset',
-              },
               DELETE_LAST_PHRASE: {
                 target: 'emptyMultiphrases',
               },
@@ -483,8 +479,14 @@ export const mainMachine =
                 internal: false,
                 actions: "changePhrasesAndReplaceVal"
               },
-
-              EMPTY_SEARCH_PHRASES: "treeAndEdgesView"
+              EMPTY_SEARCH_PHRASES: {
+                target: "treeAndEdgesView",
+                actions: "assignEmptySearchPhrases"
+              },
+              TRIGGER_TRASH: {
+                target: 'treeAndEdgesView',
+                actions: 'assignTrashReset',
+              },
             }
           }
         },
@@ -601,6 +603,13 @@ export const mainMachine =
         ctxCopy.plugin.renameValue = event.inputValue;
         ctxCopy.plugin.ontologySearch.ontologySearchValue = event.ontologySearchValue;
         ctxCopy.plugin.ontologySearch.confirmedRenameParts = event.confirmedRenameParts;
+        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
+      },
+      assignEmptySearchPhrases: (context, event: PluginEmptySearchPhrasesEvent) => {
+        const ctxCopy = { ...context }
+        const initialContext = getInitialXStateContextCopy();
+        ctxCopy.plugin.renameValue = "";
+        ctxCopy.plugin.ontologySearch = initialContext.plugin.ontologySearch;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
