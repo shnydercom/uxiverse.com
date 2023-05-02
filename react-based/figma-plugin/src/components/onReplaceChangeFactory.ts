@@ -1,10 +1,12 @@
-import { P, match } from "ts-pattern"
-import { AvailableNotations, NOTATIONS_MAIN_DELIMITER_DICT } from "../browserlogic/notation-handler"
-import { LexerStartEnd, RenamePartSemantic } from "../browserlogic/state/mainMachine"
+import { match } from "ts-pattern"
+import { AvailableNotations, NOTATIONS_MAIN_DICT } from "../browserlogic/notation-handler"
+import { RenamePartSemantic } from "../browserlogic/state/mainMachine"
 import { MainMachineSelectorArg } from "../browserlogic/state/moreTypes"
 import { AllMainMachineStateEvents } from "../browserlogic/state/stateEvents"
 import { uxiverseRootIRI } from "../browserlogic/naming-recommendations/ontology-globals"
 import { getInitialRenamePartCopy } from "../browserlogic/state/initialValues"
+import { lexLine } from "../browserlogic/naming-recommendations/lexLine"
+import { ReactEventHandler } from "react"
 
 export const onReplaceChangeFactory = (
     notation: AvailableNotations,
@@ -15,6 +17,10 @@ export const onReplaceChangeFactory = (
         value: string,
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
+        console.log("change triggered:")
+        console.log(event)
+        event.stopPropagation();
+        event.preventDefault();
         const { selectionStart } = event.currentTarget;
         if ((selectionStart === null)
             || (selectionStart !== event.currentTarget.selectionEnd)) {
@@ -33,8 +39,8 @@ export const onReplaceChangeFactory = (
         }
         const trimmedValueFront = value.slice(0, selectionStart).trim();
         const trimmedValueRear = value.slice(selectionStart).trim();
-        const isDelimitedAtFront = trimmedValueFront.endsWith(NOTATIONS_MAIN_DELIMITER_DICT[notation]);
-        const isDelimitedAtRear = trimmedValueRear.startsWith(NOTATIONS_MAIN_DELIMITER_DICT[notation]);
+        const isDelimitedAtFront = trimmedValueFront.endsWith(NOTATIONS_MAIN_DICT[notation].mainDelimiter);
+        const isDelimitedAtRear = trimmedValueRear.startsWith(NOTATIONS_MAIN_DICT[notation].mainDelimiter);
         if (
             (trimmedValueFront.length === 0 && trimmedValueRear.length === 0)
             || (trimmedValueFront.length === 0 && isDelimitedAtRear)
@@ -60,7 +66,7 @@ export const onReplaceChangeFactory = (
                         return (confirmedRenameParts.find((value) => value.main !== null)!.main!.iri!)
                     })
                 .otherwise(() => uxiverseRootIRI + "Button")
-            const ontologySearchValue: string = determineOntologySearchValue(confirmedRenameParts);
+            const ontologySearchValue: string = determineOntologySearchValueForReplace(confirmedRenameParts);
             send({
                 type: "EMPTY_SEARCH_PHRASE",
                 confirmedRenameParts,
@@ -71,7 +77,7 @@ export const onReplaceChangeFactory = (
             return;
         }
         const confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
-        const ontologySearchValue: string = determineOntologySearchValue(confirmedRenameParts);
+        const ontologySearchValue: string = determineOntologySearchValueForReplace(confirmedRenameParts);
         send({
             type: 'CHANGE_SEARCH_PHRASES',
             inputValue: value,
@@ -80,99 +86,90 @@ export const onReplaceChangeFactory = (
         })
     }
 
+/** 
+ * Factory for creating selection change handlers
+ * @param send takes the "send" function from xstate, narrowed down for usage
+ * @param state takes the "state" from xstate, retrievable in react through useActor 
+ * @returns an eventhandler-function */
 export const onSelectionChangeFactory = (
     notation: AvailableNotations,
-    /** takes the "send" function from xstate, narrowed down for usage */
-    send: (eventObj: AllMainMachineStateEvents) => void): React.ReactEventHandler<HTMLInputElement> => (
-        event
-    ) => {
-    }
-
-const lexLine = (textValue: string, textCursorPos: number, notation: AvailableNotations, previousRenameSemantics: RenamePartSemantic[]): RenamePartSemantic[] => {
-
-    const lexByMainDelimiter = (tokenWSyntaxRegex: RegExp, replaceRegex: RegExp) => {
-        //extra handling for initial state
-        if (previousRenameSemantics.length === 0) {
-            previousRenameSemantics = [{
-                lexerStartEnd: { start: 0, end: textValue.length }, relativeCursorPos: textCursorPos, main:
-                {
-                    shortForm: textValue.replace(replaceRegex, ""),
-                    iri: null
-                }
-            }]
+    send: (eventObj: AllMainMachineStateEvents) => void,
+    state: MainMachineSelectorArg):
+    ReactEventHandler<HTMLInputElement> =>
+    (event) => {
+        console.log("sel triggered:")
+        console.log(event);
+        const isValidEvent = match(event)
+            .with({ nativeEvent: { type: "selectionchange" } }, (sel) => true)
+            .with({ nativeEvent: { type: "mouseup" } }, (sel) => true)
+            .with({ nativeEvent: { type: "dragend" } }, (sel) => true)
+            .otherwise(() => false)
+        if (!isValidEvent) return;
+        const { selectionStart, selectionEnd, selectionDirection, value } = event.currentTarget;
+        if ((selectionStart === null) || (selectionEnd === null)) {
+            // only handle if cursor position is clear
+            return;
         }
-
-        // operation on the whole string including whitespaces from delimiter to delimiter [" asöädf345 /","  fßd.sa/", "q_wer"]
-        const tokensWSyntax = textValue.match(tokenWSyntaxRegex,) ?? [textValue];
-
-        const lexerStartEnd: LexerStartEnd[] = tokensWSyntax.map((token, idx, array) => {
-            const previousLineLength = array.slice(0, idx).map((str) => {
-                return str.length
-            }).reduce((prev, cur) => prev + cur, 0);
-            return {
-                start: previousLineLength,
-                end: previousLineLength + token.length
+        const replaceRegex = NOTATIONS_MAIN_DICT[notation].syntaxRemover;
+        const isTextRangeSelected = (selectionStart !== selectionEnd);
+        let { confirmedRenameParts, exploredIRI, ontologySearchValue } = state.context.plugin.ontologySearch;
+        confirmedRenameParts.forEach((val, idx) => {
+            const { start, end } = val.lexerStartEnd;
+            if ((selectionStart >= start && selectionStart <= end)) {
+                // start of a selection, or single selection
+                val.relativeCursorPos = selectionStart - start;
+                if (!isTextRangeSelected || selectionDirection === "backward") {
+                    exploredIRI = val.main.iri ?? exploredIRI;
+                    ontologySearchValue = determineOntologySearchValueForSelection(value, start, val.relativeCursorPos, replaceRegex)
+                }
+                return;
             }
+            if (!isTextRangeSelected) {
+                val.relativeCursorPos = -1;
+                return;
+            }
+            if ((selectionStart < start && selectionEnd > end)) {
+                //it's in the middle of a bigger selection
+                val.relativeCursorPos = 0;
+                return;
+            }
+            if (selectionStart < start && selectionEnd <= end) {
+                //end of a selection
+                val.relativeCursorPos = end - selectionEnd;
+                if (selectionDirection !== "backward") {
+                    exploredIRI = val.main.iri ?? exploredIRI;
+                    ontologySearchValue = determineOntologySearchValueForSelection(value, start, val.relativeCursorPos, replaceRegex)
+                }
+                return;
+            }
+            val.relativeCursorPos = -1;
         })
-        return tokensWSyntax.map((token, idx, array) => {
-            console.log("tokens inner fn")
-            // remove whitespace and delimiter
-            const cleanedToken = token.replace(replaceRegex, "");
-            let foundRenameSemantics = previousRenameSemantics.find((value) => value.type === cleanedToken || value.property === cleanedToken || value.main.shortForm === cleanedToken)
-            //find cursor in uncleaned string
-            let matchingCursorPosition = textCursorPos <= lexerStartEnd[idx].end && textCursorPos > lexerStartEnd[idx].start ? textCursorPos : -1;
-            let localMatchingCursorPosition = matchingCursorPosition === -1 ? -1 : matchingCursorPosition - lexerStartEnd[idx].start;
-            if (matchingCursorPosition !== -1) {
-                //find cursor in cleaned string
-                let lookAhead: string = token.slice(localMatchingCursorPosition, localMatchingCursorPosition + 3);
-                lookAhead = lookAhead.replace(/[/\s-]*/, "");
-                if (lookAhead) {
-                    localMatchingCursorPosition = cleanedToken.lastIndexOf(lookAhead);
-                } else {
-                    let lookBehind = token.slice(localMatchingCursorPosition - 3, localMatchingCursorPosition);
-                    lookBehind = lookBehind.replace(/[/\s-]*/, "");
-                    if (lookBehind) {
-                        localMatchingCursorPosition = cleanedToken.indexOf(lookBehind) + lookBehind.length;
-                    }
-                }
-            }
-            let result: RenamePartSemantic = {
-                relativeCursorPos: localMatchingCursorPosition,
-                lexerStartEnd: lexerStartEnd[idx],
-                main: { iri: null, shortForm: "" }
-            }
-            if (foundRenameSemantics) {
-                const { property, type, main } = foundRenameSemantics;
-                result = {
-                    ...result,
-                    property,
-                    type,
-                    main
-                }
-            } else {
-                result = {
-                    ...result,
-                    main: { iri: null, shortForm: cleanedToken }
-                }
-            }
-            return result;
+        if (ontologySearchValue.length !== 0) {
+            send({
+                type: 'SELECT_PHRASE',
+                confirmedRenameParts,
+                ontologySearchValue,
+                exploredIRI,
+                inputValue: value
+            });
+            return;
+        }
+        send({
+            type: 'SELECT_EMPTY_PHRASE',
+            confirmedRenameParts,
+            ontologySearchValue,
+            exploredIRI,
+            inputValue: value
         })
+
     }
 
-    return match(notation)
-        .with(AvailableNotations.SpacedDashes, () => {
-            return lexByMainDelimiter(/-[^-]*|^[^-]+/g, /[/\s-]*/g);
-        })
-        .with(AvailableNotations.SpacedSlashes, () => {
-            return lexByMainDelimiter(/[^\/]*(\/)/g, /[/\s\/]*/g);
-        })
-        .with(AvailableNotations.SpacedCommaEquals, (sel) => {
-            return lexByMainDelimiter(/[^,]*,/g, /[/\s,]*/g);
-        })
-        .exhaustive();
+const determineOntologySearchValueForSelection = (inputStr: string, start: number, relativeCursorPos: number, replaceRegex: RegExp): string => {
+    console.log(relativeCursorPos)
+    return inputStr.slice(start, start + relativeCursorPos).replace(replaceRegex, "").trim();
 }
 
-const determineOntologySearchValue = (renameSemantics: RenamePartSemantic[]): string => {
+const determineOntologySearchValueForReplace = (renameSemantics: RenamePartSemantic[]): string => {
     let result: string = "";
     const semanticAtCursor = renameSemantics.find((val) => val.relativeCursorPos !== -1);
     //TODO: include property and type

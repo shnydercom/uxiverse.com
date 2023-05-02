@@ -85,13 +85,37 @@ export interface PluginSelectPhraseEvent {
      */
     inputValue: string | undefined;
     /**
-     * start position of the cursor, can be same as end position
+     * for previously confirmed or half-finished phrases
      */
-    selectionStart: number;
+    confirmedRenameParts: RenamePartSemantic[];
     /**
-     * end position of the cursor, can be same as start position
+     * the value at the cursor position which is used for searching
      */
-    selectionEnd: number;
+    ontologySearchValue: string;
+    /**
+     * the iri to use as the base for the treeview
+     */
+    exploredIRI: string;
+}
+
+export interface PluginSelectEmptyPhraseEvent {
+    type: 'SELECT_EMPTY_PHRASE'
+    /**
+     * the value that the input element currently has
+     */
+    inputValue: string | undefined;
+    /**
+     * for previously confirmed or half-finished phrases
+     */
+    confirmedRenameParts: RenamePartSemantic[];
+    /**
+     * the value at the cursor position which is used for searching
+     */
+    ontologySearchValue: string;
+    /**
+     * the iri to use as the base for the treeview
+     */
+    exploredIRI: string;
 }
 
 export interface PluginUnlinkedDataUpdateEvent {
@@ -158,5 +182,6 @@ export type AllMainMachineStateEvents = HoverUIElemEnterEvent
     | PluginConfirmPhraseEvent
     | PluginChangeSearchPhrasesEvent
     | PluginEmptySearchPhrasesEvent
-    | PluginSelectPhraseEvent;
+    | PluginSelectPhraseEvent
+    | PluginSelectEmptyPhraseEvent;
 

@@ -10,8 +10,8 @@ export const GlobalStateContext = createContext({
 export const GlobalStateProvider = props => {
   const mainService = useInterpret(mainMachine)
   mainService.onTransition(state => {
-    console.log(state.toStrings())
-    console.log(state.context)
+    /*console.log(state.toStrings())
+    console.log(state.context)*/
   })
   return (
     <GlobalStateContext.Provider value={{ mainService }}>

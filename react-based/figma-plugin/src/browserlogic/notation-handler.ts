@@ -6,10 +6,20 @@ export enum AvailableNotations {
   SpacedCommaEquals = 'spaced-comma-equals'
 }
 
-export const NOTATIONS_MAIN_DELIMITER_DICT = {
-  [AvailableNotations.SpacedDashes]: "-",
-  [AvailableNotations.SpacedSlashes]: "/",
-  [AvailableNotations.SpacedCommaEquals]: ",",
+export const NOTATIONS_MAIN_DICT: {
+  [s: string]: { mainDelimiter: string, syntaxRemover: RegExp }
+} = {
+  [AvailableNotations.SpacedDashes]: {
+    mainDelimiter: "-", syntaxRemover: /[/\s-]*/g
+  },
+  [AvailableNotations.SpacedSlashes]: {
+    mainDelimiter: "/",
+    syntaxRemover: /[/\s\/]*/g
+  },
+  [AvailableNotations.SpacedCommaEquals]: {
+    mainDelimiter: ",",
+    syntaxRemover: /[/\s,]*/g
+  },
 } as const;
 
 export function handleNotation(

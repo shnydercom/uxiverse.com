@@ -12,7 +12,6 @@ import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
 import {
   CopyCompTxtToRenameEvent,
   FocusSelectionEvent,
-  PluginInputTypingEvent,
   PluginNotationToggleEvent,
   PluginUnlinkedDataUpdateEvent,
 } from '../browserlogic/state/stateEvents'
@@ -254,7 +253,7 @@ export const FindAndReplace = () => {
         placeholder={i18n.prepareNewName}
         onFocus={onFocusChange}
         onChange={onReplaceChangeFactory(notation, send, state)}
-        onSelect={onSelectionChangeFactory(notation, send)}
+        onSelect={onSelectionChangeFactory(notation, send, state)}
         icon="swap"
         iconComponent={<RenameIcon />}
         onMouseOver={onElemHover}

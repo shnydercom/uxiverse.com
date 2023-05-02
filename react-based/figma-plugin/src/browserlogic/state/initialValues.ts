@@ -13,7 +13,7 @@ export function getRandomTip(): string {
   ]
 }
 
-const initialRenamePart: RenamePartSemantic = { lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: 0, main: { iri: null, shortForm: "" } };
+const initialRenamePart: RenamePartSemantic = { lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: -1, main: { iri: null, shortForm: "" } };
 
 const initialContext: MainMachineXSCtx = {
   host: {
