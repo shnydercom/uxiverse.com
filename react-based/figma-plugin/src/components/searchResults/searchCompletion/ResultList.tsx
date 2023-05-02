@@ -16,7 +16,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
   iris
 }) => {
   const globalServices = useContext(GlobalStateContext)
-  const { send } = globalServices.mainService
+  const { send } = globalServices.mainService;
   const onHoverSearchResult: MouseEventHandler<HTMLDivElement> = event => {
     send({
       type: 'HOVER_UI_ELEM_ENTER',
@@ -42,6 +42,10 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
     })
   }
 
+  const onExploreClick = (iri: string) => {
+    send({ type: 'CHANGE_EXPLORATION', explorationValue: iri })
+  }
+
   return (
     <div className="result-list">
       {recommendations.map((fullVal, idx) => {
@@ -56,6 +60,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
             onHoverSearchResult={onHoverSearchResult}
             onElemHoverLeave={onElemHoverLeave}
             onConfirmPhraseClick={onConfirmPhraseClick}
+            onExploreClick={onExploreClick}
           />
         )
       })}

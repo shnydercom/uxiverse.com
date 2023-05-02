@@ -31,6 +31,13 @@ export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ cate
     const copyButtonHandler = (itemTrimmed: string) => {
         copyTextToClipboard(itemTrimmed);
     }
+    const confirmPhraseHandler = (iri: string, displayFullValue: string) => {
+        send({
+            type: 'CONFIRM_PHRASE',
+            displayFullValue,
+            iri
+        })
+    }
     return (
         <div className='categorized-edges-view'>
             {categorizedEdges.straightLineage.map((category) => {
@@ -50,7 +57,7 @@ export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ cate
                                     <li key={itemTrimmed} className='edge' data-ld={item}
                                         onMouseEnter={() => mouseEnterHandler(item)}
                                         onMouseLeave={mouseLeaveHandler}>
-                                        <button>
+                                        <button onClick={() => { confirmPhraseHandler(item, itemTrimmed) }}>
                                             <span className="full-value">{itemTrimmed}</span>
                                             <AddToReplaceValue className="button-icon" />
                                         </button>

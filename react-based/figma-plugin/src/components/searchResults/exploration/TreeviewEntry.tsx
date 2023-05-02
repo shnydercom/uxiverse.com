@@ -18,8 +18,9 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
 ) => {
     const globalServices = useContext(GlobalStateContext)
     const { send } = globalServices.mainService
+
     const exploreClick = () => {
-        send({ type: 'CHANGE_EXPLORATION', explorationValue: iri, changePropClassSearch: false } as PluginExplorationEvent)
+        send({ type: 'CHANGE_EXPLORATION', explorationValue: iri } as PluginExplorationEvent)
     }
     const mouseEnterHandler = () => {
         send({
@@ -33,12 +34,19 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
     const copyButtonHandler = () => {
         copyTextToClipboard(displayFullValue);
     }
+    const onConfirmPhraseClick = () => {
+        send({
+            type: 'CONFIRM_PHRASE',
+            displayFullValue,
+            iri
+        })
+    }
     return (
         <div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
         >
-            <button>
+            <button onClick={onConfirmPhraseClick}>
                 <span className="full-value">{displayFullValue}</span>
                 <AddToReplaceValue className="button-icon" />
             </button>

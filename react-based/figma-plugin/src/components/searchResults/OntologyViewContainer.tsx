@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useRef } from 'react'
 import { OverlayScrollbarsComponent, useOverlayScrollbars } from 'overlayscrollbars-react'
 import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
@@ -12,7 +12,6 @@ import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendation
 import { match } from "ts-pattern"
 import { LineageTreeview } from './exploration/LineageTreeview'
 import { ExplorationResult, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, getLineage } from '../../browserlogic/naming-recommendations/exploration'
-import { uxiverseRootIRI } from '../../browserlogic/naming-recommendations/ontology-globals'
 import { CategorizedEdgesList } from './exploration/CategorizedEdgesList'
 import { CategorizedEdges } from '@uxiverse.com/jsonld-tools'
 import { getI18n } from '../../i18n'
@@ -36,7 +35,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   match(state)
     .when(
       (state) => (state.matches("phraseRecommendations.treeAndEdgesView")
-        && !state.context.plugin.ontologySearch.ontologySearchValue),
+        /*&& !state.context.plugin.ontologySearch.ontologySearchValue*/),
       () => { result.containerVisuals = ContainerVisuals.exploration })
     .when(
       (state) => (state.matches("phraseRecommendations.autoCompleteView")

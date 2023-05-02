@@ -28,7 +28,7 @@ const initialContext: MainMachineXSCtx = {
     ontologySearch: {
       notation: AvailableNotations.SpacedDashes,
       ontologySearchValue: "",
-      confirmedRenameParts: [],
+      confirmedRenameParts: [{ lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: 0, main: { iri: null, shortForm: "" } }],
       focusedDefinition: '',
       exploredIRI: uxiverseRootIRI + "Button",
       isPropSearch: false,

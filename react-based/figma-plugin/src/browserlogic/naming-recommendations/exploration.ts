@@ -1,5 +1,5 @@
 import { CategorizedEdges, EdgeOfAncestorsInputArgs, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
-import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES } from "./ontology-globals";
+import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES, RDF_PROPERTY } from "./ontology-globals";
 import { moveElementToEnd } from "./IRIUtils";
 import { featureFlags } from "../featureFlags";
 import { sortTreeViewSiblings } from "../sort";
@@ -86,4 +86,13 @@ export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, star
         ancestorEdgeIRI: ancestorIri
     }
     return getEdgesOfAncestorsOnly(options)
+}
+
+
+export function isIRIaProperty(graph: RtLdGraph, iri: string): boolean {
+    const foundIdentifiableNode = graph.identifiableNodes
+        .find(node => {
+            return (node['@id'] ?? '') === `${iri}`
+        })
+    return foundIdentifiableNode?.["@t"]?.iri === RDF_PROPERTY
 }

@@ -13,6 +13,7 @@ interface ResultListEntryProps {
   onHoverSearchResult: MouseEventHandler<HTMLDivElement>
   onElemHoverLeave: MouseEventHandler<HTMLDivElement>
   onConfirmPhraseClick: (iri: string, displayFullValue: string) => void;
+  onExploreClick: (iri: string) => void;
 }
 
 export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
@@ -22,7 +23,8 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   iri,
   onHoverSearchResult,
   onElemHoverLeave,
-  onConfirmPhraseClick
+  onConfirmPhraseClick,
+  onExploreClick
 }) => {
   const copyButtonHandler = () => {
     copyTextToClipboard(displayFullValue);
@@ -47,7 +49,7 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
         {splitpart[1] && <span className="no-match">{endString}</span>}
         <AddToReplaceValue className='button-icon' />
       </button>
-      <button>
+      <button onClick={() => onExploreClick(iri)}>
         <ExploreIRI className="button-icon explore-icon" />
       </button>
       <button className='reordered-button' onClick={copyButtonHandler}>

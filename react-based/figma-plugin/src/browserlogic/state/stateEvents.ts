@@ -33,7 +33,6 @@ export interface PluginInputTypingEvent {
 export interface PluginExplorationEvent {
     type: 'CHANGE_EXPLORATION'
     explorationValue: string
-    changePropClassSearch: boolean
 }
 
 export interface PluginNotationToggleEvent {
