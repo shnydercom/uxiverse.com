@@ -4,6 +4,7 @@ import { LexerStartEnd, RenamePartSemantic } from "../browserlogic/state/mainMac
 import { MainMachineSelectorArg } from "../browserlogic/state/moreTypes"
 import { AllMainMachineStateEvents } from "../browserlogic/state/stateEvents"
 import { uxiverseRootIRI } from "../browserlogic/naming-recommendations/ontology-globals"
+import { getInitialRenamePartCopy } from "../browserlogic/state/initialValues"
 
 export const onReplaceChangeFactory = (
     notation: AvailableNotations,
@@ -23,7 +24,7 @@ export const onReplaceChangeFactory = (
         if (state.matches("phraseRecommendations.autoCompleteView") && value === "") {
             send({
                 type: "EMPTY_SEARCH_PHRASE",
-                confirmedRenameParts: [],
+                confirmedRenameParts: [getInitialRenamePartCopy()],
                 inputValue: "",
                 ontologySearchValue: "",
                 exploredIRI: uxiverseRootIRI + "Button"

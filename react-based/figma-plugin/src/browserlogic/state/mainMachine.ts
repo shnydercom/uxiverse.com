@@ -11,7 +11,7 @@ import {
   PluginRenameBridgeEvent,
   PluginSelectionChangedBridgeEvent,
 } from './../../communicationInterfaces'
-import { getInitialXStateContextCopy } from './initialValues'
+import { getInitialRenamePartCopy, getInitialXStateContextCopy } from './initialValues'
 import { getSingleUxiDefinition } from '../naming-recommendations/search'
 import { AvailableNotations, NOTATIONS_MAIN_DELIMITER_DICT, handleNotation } from '../notation-handler'
 import {
@@ -647,6 +647,11 @@ export const mainMachine =
         const ctxCopy = { ...context }
         ctxCopy.plugin.renameValue = event.inputValue;
         ctxCopy.plugin.ontologySearch.exploredIRI = event.exploredIRI;
+        if (!ctxCopy.plugin.graph) {
+          return;
+        }
+        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, event.exploredIRI);
+        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp;
         ctxCopy.plugin.ontologySearch.ontologySearchValue = event.ontologySearchValue;
         ctxCopy.plugin.ontologySearch.confirmedRenameParts = event.confirmedRenameParts;
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
@@ -663,15 +668,19 @@ export const mainMachine =
         const foundRenamePart = confirmedRenameParts[foundRenamePartIdx];
         foundRenamePart.main = { iri, shortForm: displayFullValue };
         foundRenamePart.relativeCursorPos = -1;
+        const newEmptyPart = getInitialRenamePartCopy();
+        newEmptyPart.relativeCursorPos = 0;
+        newEmptyPart.lexerStartEnd = { start: foundRenamePart.lexerStartEnd.end, end: foundRenamePart.lexerStartEnd.end };
+        confirmedRenameParts.splice(foundRenamePartIdx + 1, 0, newEmptyPart);
         const joinerStr = match(notation)
           .with(AvailableNotations.SpacedDashes, () => ` ${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
           .with(AvailableNotations.SpacedSlashes, () => ` ${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
           .with(AvailableNotations.SpacedCommaEquals, () => `${NOTATIONS_MAIN_DELIMITER_DICT[notation]} `)
           .exhaustive()
         ctxCopy.plugin.renameValue = confirmedRenameParts.map((val, idx) => {
-          if (idx === foundRenamePartIdx) {
+          /*if (idx === foundRenamePartIdx) {
             return val.main.shortForm + joinerStr
-          }
+          }*/
           return val.main.shortForm
         }).join(joinerStr)
         if (!ctxCopy.plugin.graph) {

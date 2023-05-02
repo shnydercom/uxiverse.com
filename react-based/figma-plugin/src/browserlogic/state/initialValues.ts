@@ -1,7 +1,7 @@
 import { getI18n } from '../../i18n'
 import { uxiverseRootIRI } from '../naming-recommendations/ontology-globals'
 import { AvailableNotations } from '../notation-handler'
-import { MainMachineXSCtx } from './mainMachine'
+import { MainMachineXSCtx, RenamePartSemantic } from './mainMachine'
 
 const i18n = getI18n()
 
@@ -12,6 +12,8 @@ export function getRandomTip(): string {
     Math.round(Math.random() * generalFigmaUserTips.length)
   ]
 }
+
+const initialRenamePart: RenamePartSemantic = { lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: 0, main: { iri: null, shortForm: "" } };
 
 const initialContext: MainMachineXSCtx = {
   host: {
@@ -28,7 +30,7 @@ const initialContext: MainMachineXSCtx = {
     ontologySearch: {
       notation: AvailableNotations.SpacedDashes,
       ontologySearchValue: "",
-      confirmedRenameParts: [{ lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: 0, main: { iri: null, shortForm: "" } }],
+      confirmedRenameParts: [initialRenamePart],
       focusedDefinition: '',
       exploredIRI: uxiverseRootIRI + "Button",
       isPropSearch: false,
@@ -42,4 +44,8 @@ const initialContext: MainMachineXSCtx = {
 
 export function getInitialXStateContextCopy(): MainMachineXSCtx {
   return JSON.parse(JSON.stringify(initialContext))
+}
+
+export function getInitialRenamePartCopy(): RenamePartSemantic {
+  return JSON.parse(JSON.stringify(initialRenamePart))
 }
