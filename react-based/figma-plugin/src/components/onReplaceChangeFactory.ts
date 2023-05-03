@@ -17,11 +17,27 @@ export const onReplaceChangeFactory = (
         value: string,
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        const { selectionStart } = event.currentTarget;
+        let { selectionStart } = event.currentTarget;
         if ((selectionStart === null)
             || (selectionStart !== event.currentTarget.selectionEnd)) {
             //only handle if cursor position is clear
             return;
+        }
+        if (
+            event.nativeEvent.type === "input"
+            && (event.nativeEvent as InputEvent).data === NOTATIONS_MAIN_DICT[notation].mainDelimiter
+        ) {
+            // confirm the topmost phrase in autocomplete-suggestions when pressing the notation's main delimiter
+            const valueFront = value.substring(0, selectionStart - 1).trim();
+            const valueRear = value.substring(selectionStart, undefined).trim();
+            const notationSyntaxToken = match(notation)
+                .with(AvailableNotations.SpacedCommaEquals, (sel) => `${NOTATIONS_MAIN_DICT[sel].mainDelimiter} `)
+                .with(AvailableNotations.SpacedDashes, (sel) => ` ${NOTATIONS_MAIN_DICT[sel].mainDelimiter} `)
+                .with(AvailableNotations.SpacedSlashes, (sel) => ` ${NOTATIONS_MAIN_DICT[sel].mainDelimiter} `)
+                .exhaustive();
+            // note: if re-using value and selectionStart turns out to be buggy, extract to individual variables
+            value = `${valueFront}${notationSyntaxToken}${valueRear}`;
+            selectionStart = valueFront.length + notationSyntaxToken.length;
         }
         if (state.matches("phraseRecommendations.autoCompleteView") && value === "") {
             const initialConfirmedRenamePart = getInitialRenamePartCopy();
