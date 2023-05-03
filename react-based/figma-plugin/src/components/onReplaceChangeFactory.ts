@@ -1,5 +1,5 @@
 import { match } from "ts-pattern"
-import { AvailableNotations, NOTATIONS_MAIN_DICT } from "../browserlogic/notation-handler"
+import { AvailableNotations, NOTATIONS_MAIN_DICT, handleNotation } from "../browserlogic/notation-handler"
 import { RenamePartSemantic } from "../browserlogic/state/mainMachine"
 import { MainMachineSelectorArg } from "../browserlogic/state/moreTypes"
 import { AllMainMachineStateEvents } from "../browserlogic/state/stateEvents"
@@ -17,10 +17,6 @@ export const onReplaceChangeFactory = (
         value: string,
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        console.log("change triggered:")
-        console.log(event)
-        event.stopPropagation();
-        event.preventDefault();
         const { selectionStart } = event.currentTarget;
         if ((selectionStart === null)
             || (selectionStart !== event.currentTarget.selectionEnd)) {
@@ -28,9 +24,11 @@ export const onReplaceChangeFactory = (
             return;
         }
         if (state.matches("phraseRecommendations.autoCompleteView") && value === "") {
+            const initialConfirmedRenamePart = getInitialRenamePartCopy();
+            initialConfirmedRenamePart.relativeCursorPos = 0;
             send({
                 type: "EMPTY_SEARCH_PHRASE",
-                confirmedRenameParts: [getInitialRenamePartCopy()],
+                confirmedRenameParts: [initialConfirmedRenamePart],
                 inputValue: "",
                 ontologySearchValue: "",
                 exploredIRI: uxiverseRootIRI + "Button"
@@ -47,7 +45,7 @@ export const onReplaceChangeFactory = (
             || (trimmedValueRear.length === 0 && isDelimitedAtFront)
             || (isDelimitedAtFront && isDelimitedAtRear)
         ) {
-            const confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
+            let confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
             const cursorPosRenamePartIdx = confirmedRenameParts.findIndex((val) => val.relativeCursorPos !== -1);
             //finds a suggestion for the treeview-exploration
             const exploredIRI = match(cursorPosRenamePartIdx)
@@ -67,6 +65,11 @@ export const onReplaceChangeFactory = (
                     })
                 .otherwise(() => uxiverseRootIRI + "Button")
             const ontologySearchValue: string = determineOntologySearchValueForReplace(confirmedRenameParts);
+            if (!value) {
+                const initialConfirmedRenamePart = getInitialRenamePartCopy();
+                initialConfirmedRenamePart.relativeCursorPos = 0;
+                confirmedRenameParts = [initialConfirmedRenamePart]
+            }
             send({
                 type: "EMPTY_SEARCH_PHRASE",
                 confirmedRenameParts,
@@ -76,7 +79,31 @@ export const onReplaceChangeFactory = (
             })
             return;
         }
-        const confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
+        let confirmedRenameParts = lexLine(value, selectionStart, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
+        const ontologySearchValue: string = determineOntologySearchValueForReplace(confirmedRenameParts);
+        if (!value) {
+            const initialConfirmedRenamePart = getInitialRenamePartCopy();
+            initialConfirmedRenamePart.relativeCursorPos = 0;
+            confirmedRenameParts = [initialConfirmedRenamePart]
+        }
+        send({
+            type: 'CHANGE_SEARCH_PHRASES',
+            inputValue: value,
+            confirmedRenameParts,
+            ontologySearchValue
+        })
+    }
+
+export const onOverwriteReplaceClickFactory = (
+    notation: AvailableNotations,
+    /** takes the "send" function from xstate, narrowed down for usage */
+    send: (eventObj: AllMainMachineStateEvents) => void,
+    /** takes the "state" from xstate, retrievable in react through useActor */
+    state: MainMachineSelectorArg) => (
+        componentSearchValue: string | undefined,
+    ) => {
+        const value = handleNotation(componentSearchValue, notation) ?? "";
+        const confirmedRenameParts = lexLine(value, value.length, notation, state.context.plugin.ontologySearch.confirmedRenameParts);
         const ontologySearchValue: string = determineOntologySearchValueForReplace(confirmedRenameParts);
         send({
             type: 'CHANGE_SEARCH_PHRASES',
@@ -97,8 +124,6 @@ export const onSelectionChangeFactory = (
     state: MainMachineSelectorArg):
     ReactEventHandler<HTMLInputElement> =>
     (event) => {
-        console.log("sel triggered:")
-        console.log(event);
         const isValidEvent = match(event)
             .with({ nativeEvent: { type: "selectionchange" } }, (sel) => true)
             .with({ nativeEvent: { type: "mouseup" } }, (sel) => true)
@@ -165,7 +190,6 @@ export const onSelectionChangeFactory = (
     }
 
 const determineOntologySearchValueForSelection = (inputStr: string, start: number, relativeCursorPos: number, replaceRegex: RegExp): string => {
-    console.log(relativeCursorPos)
     return inputStr.slice(start, start + relativeCursorPos).replace(replaceRegex, "").trim();
 }
 

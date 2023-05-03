@@ -23,7 +23,7 @@ import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
-import { onReplaceChangeFactory, onSelectionChangeFactory } from './onReplaceChangeFactory'
+import { onOverwriteReplaceClickFactory, onReplaceChangeFactory, onSelectionChangeFactory } from './onReplaceChangeFactory'
 
 const i18n = getI18n()
 
@@ -129,13 +129,7 @@ export const FindAndReplace = () => {
       focusedElement: nextElement,
     } as FocusSelectionEvent)
   }
-  const onOverwriteReplaceClick = () => {
-    send({
-      type: 'COPY_COMPTXT_TO_RENAMEREPLACE',
-      copiedText: componentSearchValue,
-      targetNotation: notation
-    } as CopyCompTxtToRenameEvent)
-  }
+  const onOverwriteReplaceClick = onOverwriteReplaceClickFactory(notation, send, state);
   const onConfirmReplaceClick = () => {
     send({ type: 'UPDATE_UNLINKED_DATA' } as PluginUnlinkedDataUpdateEvent)
   }
@@ -230,7 +224,7 @@ export const FindAndReplace = () => {
 
       <Icon
         name="caret-down"
-        onClick={onOverwriteReplaceClick}
+        onClick={() => { onOverwriteReplaceClick(componentSearchValue) }}
         iconButtonProps={{
           onMouseOver: onElemHover,
           onMouseLeave: onElemHoverLeave,

@@ -33,7 +33,6 @@ export const lexLine = (
             }
         })
         return tokensWSyntax.map((token, idx, array) => {
-            console.log("tokens inner fn")
             // remove whitespace and delimiter
             const cleanedToken = token.replace(replaceRegex, "");
             let foundRenameSemantics = previousRenameSemantics.find((value) => value.type === cleanedToken || value.property === cleanedToken || value.main.shortForm === cleanedToken)

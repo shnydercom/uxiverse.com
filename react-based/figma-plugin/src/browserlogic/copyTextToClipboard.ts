@@ -12,7 +12,6 @@ export function copyTextToClipboard(copyText: string) {
         }
         parent.postMessage({ pluginMessage: bridgeEvent }, '*');
     }
-    console.log("entering clipboard")
     if (!navigator?.clipboard) {
         //this is a deprecated and hacky method as a fallback
         let range: Range = document.createRange();
