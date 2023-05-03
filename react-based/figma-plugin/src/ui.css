@@ -413,9 +413,9 @@ button[disabled]:focus {
 }
 
 
-.list-entry button:hover~button .explore-icon,
-.categorized-edges-view>.category>.edges>.edge>button:hover~button .explore-icon,
-.tree-view .tree-entry button:hover~button .explore-icon,
+.list-entry button:hover~button .extra-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover~button .extra-icon,
+.tree-view .tree-entry button:hover~button .extra-icon,
 .list-entry button:hover~button .copy-icon,
 .categorized-edges-view>.category>.edges>.edge>button:hover~button .copy-icon,
 .tree-view .tree-entry button:hover~button .copy-icon {

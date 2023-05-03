@@ -46,12 +46,12 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
         >
-            <button onClick={onConfirmPhraseClick}>
-                <span className="full-value">{displayFullValue}</span>
-                <AddToReplaceValue className="button-icon" />
-            </button>
             <button onClick={exploreClick}>
-                <ExploreIRI className="button-icon explore-icon" />
+                <span className="full-value">{displayFullValue}</span>
+                <ExploreIRI className="button-icon" />
+            </button>
+            <button onClick={onConfirmPhraseClick}>
+                <AddToReplaceValue className="button-icon extra-icon" />
             </button>
             <button className='reordered-button' onClick={copyButtonHandler}>
                 <CopyIcon className="button-icon copy-icon" />

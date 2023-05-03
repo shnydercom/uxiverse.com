@@ -57,12 +57,12 @@ export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ cate
                                     <li key={itemTrimmed} className='edge' data-ld={item}
                                         onMouseEnter={() => mouseEnterHandler(item)}
                                         onMouseLeave={mouseLeaveHandler}>
-                                        <button onClick={() => { confirmPhraseHandler(item, itemTrimmed) }}>
-                                            <span className="full-value">{itemTrimmed}</span>
-                                            <AddToReplaceValue className="button-icon" />
-                                        </button>
                                         <button onClick={() => { exploreHandler(item) }}>
-                                            <ExploreIRI className="button-icon explore-icon" />
+                                            <span className="full-value">{itemTrimmed}</span>
+                                            <ExploreIRI className="button-icon" />
+                                        </button>
+                                        <button onClick={() => { confirmPhraseHandler(item, itemTrimmed) }}>
+                                            <AddToReplaceValue className="button-icon extra-icon" />
                                         </button>
                                         <button className='reordered-button' onClick={() => copyButtonHandler(itemTrimmed)}>
                                             <CopyIcon className="button-icon copy-icon" />
