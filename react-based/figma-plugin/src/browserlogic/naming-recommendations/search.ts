@@ -24,6 +24,7 @@ export function searchDefinitionNames(
     })
     .map((val) => val.substring(searchTrimmer.length))
     .sort(sortAlphabeticallyAndFavorStartswith(searchValue))
+    .map((val) => searchTrimmer + val)
 }
 
 export function getSingleUxiDefinition(

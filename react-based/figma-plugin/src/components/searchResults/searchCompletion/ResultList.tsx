@@ -18,6 +18,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
   const globalServices = useContext(GlobalStateContext)
   const { send } = globalServices.mainService;
   const onHoverSearchResult: MouseEventHandler<HTMLDivElement> = event => {
+    console.log("hovering")
     send({
       type: 'HOVER_UI_ELEM_ENTER',
       payload: event.currentTarget.id,

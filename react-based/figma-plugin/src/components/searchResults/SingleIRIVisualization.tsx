@@ -7,8 +7,8 @@ import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendation
 const focusedDefinitionSelector:
   | SearchValueSelectorType
   | undefined = state => {
-  return state.context.plugin.ontologySearch.focusedDefinition
-}
+    return state.context.plugin.ontologySearch.focusedDefinition
+  }
 
 export const SingleIRIVisualization = () => {
   const globalServices = useContext(GlobalStateContext)
@@ -16,7 +16,7 @@ export const SingleIRIVisualization = () => {
     globalServices.mainService,
     focusedDefinitionSelector
   )
-  let visualizationDataURL: string = ''
+  let visualizationDataURL: string | undefined = ''
   if (focusedDefinition) {
     try {
       visualizationDataURL = String(
@@ -24,10 +24,13 @@ export const SingleIRIVisualization = () => {
           focusedDefinition
         )}.svg`).default
       )
-    } catch (error) {}
+    } catch (error) {
+      visualizationDataURL = undefined
+    }
   }
+  const classNameAddition = !visualizationDataURL && 'gone';
   return (
-    <div className={`iri-visualization ${!visualizationDataURL && 'gone'}`}>
+    <div className={`iri-visualization ${classNameAddition}`}>
       <div className="iri-visualization--inner">
         <img src={visualizationDataURL} alt="IRI visualization icon" />
       </div>
