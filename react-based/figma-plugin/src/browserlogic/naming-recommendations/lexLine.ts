@@ -81,10 +81,10 @@ export const lexLine = (
             return lexByMainDelimiter(/-[^-]*|^[^-]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
         })
         .with(AvailableNotations.SpacedSlashes, (sel) => {
-            return lexByMainDelimiter(/[^\/]*(\/)/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
+            return lexByMainDelimiter(/\/[^\/]*|^[^\/]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
         })
         .with(AvailableNotations.SpacedCommaEquals, (sel) => {
-            return lexByMainDelimiter(/[^,]*,/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
+            return lexByMainDelimiter(/,[^,]*|^[^,]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
         })
         .exhaustive();
 }
