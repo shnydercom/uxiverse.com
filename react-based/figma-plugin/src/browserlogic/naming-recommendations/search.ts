@@ -11,17 +11,18 @@ export function searchDefinitionNames(
   searchValue: string,
   rtGraph: RtLdGraph
 ): string[] {
+  let searchTrimmer: string = uxiverseRootIRI;
   return rtGraph.identifiableNodes
     .map(rtNode => rtNode['@id'])
     .filter(filteredVal => {
       let searchScope: string = ''
-      let searchTrimmer: string = uxiverseRootIRI
       if (!filteredVal.startsWith(searchTrimmer)) {
         return false
       }
       searchScope = filteredVal.substring(searchTrimmer.length)
       return searchScope.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
     })
+    .map((val) => val.substring(searchTrimmer.length))
     .sort(sortAlphabeticallyAndFavorStartswith(searchValue))
 }
 
