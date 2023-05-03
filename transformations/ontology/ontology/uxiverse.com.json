@@ -2347,7 +2347,7 @@
 					"@id": "uxi:AtomUIElement"
 				}
 			],
-			"comment": "A TextField is a UI element that allows Text to be entered. This may be a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web.",
+			"comment": "A TextField is a UI element that allows Text to be entered. This text may be entered via a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web.",
 			"label": "text field"
 		},
 		{
