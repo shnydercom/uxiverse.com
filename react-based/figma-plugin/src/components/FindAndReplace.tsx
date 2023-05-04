@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext, useState } from 'react'
+import React, { MouseEventHandler, useContext, useEffect, useRef, useState } from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useActor, useSelector } from '@xstate/react'
@@ -10,7 +10,6 @@ import {
 } from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
 import {
-  CopyCompTxtToRenameEvent,
   FocusSelectionEvent,
   PluginNotationToggleEvent,
   PluginUnlinkedDataUpdateEvent,
@@ -24,8 +23,13 @@ import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
 import { onOverwriteReplaceClickFactory, onReplaceChangeFactory, onSelectionChangeFactory } from './onReplaceChangeFactory'
+import { RenamePartSemantic } from '../browserlogic/state/mainMachine'
 
 const i18n = getI18n()
+
+const findFocusPosition = (rpss: RenamePartSemantic[]): number => {
+  return rpss.find((val) => val.relativeCursorPos !== -1)?.relativeCursorPos ?? -1
+}
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
   //declaration only
@@ -35,7 +39,8 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let isNavArrowsDisabled: boolean;
   let isRenameBtnDisabled: boolean;
   let renameValue: string | undefined;
-  let notation: AvailableNotations
+  let notation: AvailableNotations;
+  let replaceInputRefocusPosition: number;
   //assigning
   hostSelection = state.context.host.userSelection;
   selectionFocus = state.context.host.selectionFocusedElement;
@@ -59,6 +64,16 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
       console.error("unknown state for notation")
       return AvailableNotations.SpacedCommaEquals
     })
+  if (state.transitions.length > 0) {
+    replaceInputRefocusPosition = match(state.transitions[0])
+      .with({ eventType: "CONFIRM_PHRASE" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
+      .with({ eventType: "CHANGE_EXPLORATION" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
+      .with({ eventType: "CHANGE_SEARCH_PHRASES" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
+      .otherwise(() => -1)
+  } else {
+    replaceInputRefocusPosition = -1;
+  }
+  console.log(replaceInputRefocusPosition)
   return {
     hostSelection,
     selectionFocus,
@@ -66,7 +81,8 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
     isNavArrowsDisabled,
     isRenameBtnDisabled,
     renameValue,
-    notation
+    notation,
+    replaceInputRefocusPosition
   }
 }
 
@@ -79,7 +95,8 @@ export const FindAndReplace = () => {
     isNavArrowsDisabled,
     isRenameBtnDisabled,
     renameValue,
-    notation
+    notation,
+    replaceInputRefocusPosition
   } = useSelector(
     globalServices.mainService,
     mainMachineSelector
@@ -88,6 +105,13 @@ export const FindAndReplace = () => {
   const { send } = globalServices.mainService
   const [state] = useActor(globalServices.mainService);
 
+  const replaceInputRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    if (replaceInputRefocusPosition !== -1 && replaceInputRef.current) {
+      replaceInputRef.current.setSelectionRange(replaceInputRefocusPosition, replaceInputRefocusPosition);
+      replaceInputRef.current.focus()
+    }
+  }, [replaceInputRefocusPosition]);
   const [isExecReplaceIconHovered, setIsExecReplaceIconHovered] = useState<
     boolean
   >(false)
@@ -244,6 +268,7 @@ export const FindAndReplace = () => {
         }}
       />
       <Input
+        ref={replaceInputRef}
         placeholder={i18n.prepareNewName}
         onFocus={onFocusChange}
         onChange={onReplaceChangeFactory(notation, send, state)}
