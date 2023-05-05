@@ -11,18 +11,38 @@ import {
   PluginRenameBridgeEvent,
   PluginSelectionChangedBridgeEvent,
 } from './../../communicationInterfaces'
-import { getInitialRenamePartCopy, getInitialXStateContextCopy } from './initialValues'
+import {
+  getInitialRenamePartCopy,
+  getInitialXStateContextCopy,
+} from './initialValues'
 import { getSingleUxiDefinition } from '../naming-recommendations/search'
-import { AvailableNotations, NOTATIONS_MAIN_DICT, handleNotation } from '../notation-handler'
+import {
+  AvailableNotations,
+  NOTATIONS_MAIN_DICT,
+  handleNotation,
+} from '../notation-handler'
 import {
   RtLdGraph,
   createEmptyGraph,
   createGraph,
 } from '@uxiverse.com/jsonld-tools'
-import { AllMainMachineStateEvents, CopyCompTxtToRenameEvent, FocusSelectionEvent, HostAppSelectionEvent, HostFetchEvent, HoverDefinitionEnterEvent, HoverUIElemEnterEvent, PluginChangeSearchPhrasesEvent, PluginConfirmPhraseEvent, PluginEmptySearchPhrasesEvent, PluginExplorationEvent, PluginInputTypingEvent, PluginSelectPhraseEvent } from "./stateEvents"
+import {
+  AllMainMachineStateEvents,
+  CopyCompTxtToRenameEvent,
+  FocusSelectionEvent,
+  HostAppSelectionEvent,
+  HostFetchEvent,
+  HoverDefinitionEnterEvent,
+  HoverUIElemEnterEvent,
+  PluginChangeSearchPhrasesEvent,
+  PluginConfirmPhraseEvent,
+  PluginEmptySearchPhrasesEvent,
+  PluginExplorationEvent,
+  PluginInputTypingEvent,
+  PluginSelectPhraseEvent,
+} from './stateEvents'
 import { match } from 'ts-pattern'
 import { isIRIaProperty } from '../naming-recommendations/exploration'
-import { lexLine } from '../naming-recommendations/lexLine'
 
 const i18n = getI18n()
 
@@ -49,25 +69,28 @@ export interface HostAppElementSearchXSCtx {
  * or if no iri is associatable, stores that as null
  */
 export interface ShortFormAndIRI {
-  shortForm: string;
-  iri: string | null;
+  shortForm: string
+  iri: string | null
 }
 
 /**
- * stores syntactic blocks relating to a schema as far as they are known 
+ * stores syntactic blocks relating to a schema as far as they are known
  */
 export interface RenamePartSemantic {
-  type?: string;
-  property?: string;
-  main: ShortFormAndIRI;
-  relativeCursorPos: number;
+  type?: string
+  property?: string
+  main: ShortFormAndIRI
+  relativeCursorPos: number
   lexerStartEnd: LexerStartEnd
 }
 
-export interface LexerStartEnd { start: number, end: number }
+export interface LexerStartEnd {
+  start: number
+  end: number
+}
 export interface OntologySearchXSCtx {
-  confirmedRenameParts: RenamePartSemantic[];
-  ontologySearchValue: string;
+  confirmedRenameParts: RenamePartSemantic[]
+  ontologySearchValue: string
   /**
    * the IRI for showing documentation when hovering over an ontology-entry
    */
@@ -75,16 +98,16 @@ export interface OntologySearchXSCtx {
   /**
    * the IRI that the user investigates by clicking on an "explore"-button
    */
-  exploredIRI: string;
+  exploredIRI: string
   /**
    * is searching by sub-property or by sub-class
    */
-  isPropSearch: boolean;
+  isPropSearch: boolean
   /**
    * the description text shown as documentation
    */
-  descriptionText: string | undefined;
-  notation: AvailableNotations;
+  descriptionText: string | undefined
+  notation: AvailableNotations
 }
 
 export interface PluginXSCtx {
@@ -345,9 +368,9 @@ export const mainMachine =
                   },
 
                   CHANGE_EXPLORATION: {
-                    target: "singlePhrase",
-                    actions: "changeExploration"
-                  }
+                    target: 'singlePhrase',
+                    actions: 'changeExploration',
+                  },
                 },
               },
 
@@ -369,7 +392,7 @@ export const mainMachine =
 
                   DRAG_PHRASE: {
                     target: 'draggingPhrase',
-                  }
+                  },
                 },
               },
 
@@ -383,9 +406,9 @@ export const mainMachine =
                   REORDER_PHRASES: {
                     cond: 'VALID_DROPTARGET',
                     target: 'multiPhrase',
-                  }
+                  },
                 },
-              }
+              },
             },
             on: {
               DELETE_LAST_PHRASE: {
@@ -417,8 +440,8 @@ export const mainMachine =
             on: {
               CHANGE_NOTATION: 'spacedDashes',
             },
-            entry: 'assignCommaEqualsNotation'
-          }
+            entry: 'assignCommaEqualsNotation',
+          },
         },
 
         initial: 'spacedDashes',
@@ -450,66 +473,66 @@ export const mainMachine =
         states: {
           initialEmpty: {
             on: {
-              SHOW_TREE: "treeAndEdgesView",
+              SHOW_TREE: 'treeAndEdgesView',
               CHANGE_SEARCH_PHRASES: {
-                target: "autoCompleteView",
-                actions: "changePhrasesAndReplaceVal"
-              }
-            }
+                target: 'autoCompleteView',
+                actions: 'changePhrasesAndReplaceVal',
+              },
+            },
           },
 
           treeAndEdgesView: {
             on: {
               CHANGE_SEARCH_PHRASES: {
-                target: "autoCompleteView",
-                actions: "changePhrasesAndReplaceVal"
+                target: 'autoCompleteView',
+                actions: 'changePhrasesAndReplaceVal',
               },
 
               CONFIRM_PHRASE: {
-                target: "treeAndEdgesView",
+                target: 'treeAndEdgesView',
                 internal: false,
-                actions: "confirmPhrase"
+                actions: 'confirmPhrase',
               },
 
               EMPTY_SEARCH_PHRASE: {
-                target: "treeAndEdgesView",
-                actions: "assignEmptySearchPhrases"
+                target: 'treeAndEdgesView',
+                actions: 'assignEmptySearchPhrases',
               },
 
               CHANGE_EXPLORATION: {
-                target: "treeAndEdgesView",
+                target: 'treeAndEdgesView',
                 internal: false,
-                actions: "changeExploration"
+                actions: 'changeExploration',
               },
 
               SELECT_EMPTY_PHRASE: {
-                target: "treeAndEdgesView",
-                internal: false
+                target: 'treeAndEdgesView',
+                internal: false,
               },
 
               SELECT_PHRASE: {
-                target: "autoCompleteView",
-                actions: "assignPhraseSelection"
-              }
-            }
+                target: 'autoCompleteView',
+                actions: 'assignPhraseSelection',
+              },
+            },
           },
 
           autoCompleteView: {
             on: {
               CONFIRM_PHRASE: {
-                target: "treeAndEdgesView",
-                actions: "confirmPhrase"
+                target: 'treeAndEdgesView',
+                actions: 'confirmPhrase',
               },
 
               CHANGE_SEARCH_PHRASES: {
-                target: "autoCompleteView",
+                target: 'autoCompleteView',
                 internal: false,
-                actions: "changePhrasesAndReplaceVal"
+                actions: 'changePhrasesAndReplaceVal',
               },
 
               EMPTY_SEARCH_PHRASE: {
-                target: "treeAndEdgesView",
-                actions: "assignEmptySearchPhrases"
+                target: 'treeAndEdgesView',
+                actions: 'assignEmptySearchPhrases',
               },
 
               TRIGGER_TRASH: {
@@ -518,23 +541,23 @@ export const mainMachine =
               },
 
               CHANGE_EXPLORATION: {
-                target: "treeAndEdgesView",
-                actions: "changeExploration"
+                target: 'treeAndEdgesView',
+                actions: 'changeExploration',
               },
 
-              SELECT_EMPTY_PHRASE: "treeAndEdgesView",
+              SELECT_EMPTY_PHRASE: 'treeAndEdgesView',
 
               SELECT_PHRASE: {
-                target: "autoCompleteView",
+                target: 'autoCompleteView',
                 internal: true,
-                actions: "assignPhraseSelection"
-              }
-            }
-          }
+                actions: 'assignPhraseSelection',
+              },
+            },
+          },
         },
 
-        initial: "initialEmpty"
-      }
+        initial: 'initialEmpty',
+      },
     },
   }).withConfig({
     actions: {
@@ -629,7 +652,7 @@ export const mainMachine =
           ctxCopy.plugin.renameValue,
           AvailableNotations.SpacedDashes
         )
-        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedDashes;
+        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedDashes
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       assignSpacedSlashesNotation: context => {
@@ -638,7 +661,8 @@ export const mainMachine =
           ctxCopy.plugin.renameValue,
           AvailableNotations.SpacedSlashes
         )
-        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedSlashes;
+        ctxCopy.plugin.ontologySearch.notation =
+          AvailableNotations.SpacedSlashes
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       assignCommaEqualsNotation: context => {
@@ -647,66 +671,105 @@ export const mainMachine =
           ctxCopy.plugin.renameValue,
           AvailableNotations.SpacedCommaEquals
         )
-        ctxCopy.plugin.ontologySearch.notation = AvailableNotations.SpacedCommaEquals;
+        ctxCopy.plugin.ontologySearch.notation =
+          AvailableNotations.SpacedCommaEquals
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
-      changePhrasesAndReplaceVal: (context, event: PluginChangeSearchPhrasesEvent) => {
+      changePhrasesAndReplaceVal: (
+        context,
+        event: PluginChangeSearchPhrasesEvent
+      ) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.renameValue = event.inputValue;
-        ctxCopy.plugin.ontologySearch.ontologySearchValue = event.ontologySearchValue;
-        ctxCopy.plugin.ontologySearch.confirmedRenameParts = event.confirmedRenameParts;
+        ctxCopy.plugin.renameValue = event.inputValue
+        ctxCopy.plugin.ontologySearch.ontologySearchValue =
+          event.ontologySearchValue
+        ctxCopy.plugin.ontologySearch.confirmedRenameParts =
+          event.confirmedRenameParts
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
-      assignEmptySearchPhrases: (context, event: PluginEmptySearchPhrasesEvent) => {
+      assignEmptySearchPhrases: (
+        context,
+        event: PluginEmptySearchPhrasesEvent
+      ) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.renameValue = event.inputValue;
-        ctxCopy.plugin.ontologySearch.exploredIRI = event.exploredIRI;
+        ctxCopy.plugin.renameValue = event.inputValue
+        ctxCopy.plugin.ontologySearch.exploredIRI = event.exploredIRI
         if (!ctxCopy.plugin.graph) {
-          return;
+          return
         }
-        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, event.exploredIRI);
-        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp;
-        ctxCopy.plugin.ontologySearch.ontologySearchValue = event.ontologySearchValue;
-        ctxCopy.plugin.ontologySearch.confirmedRenameParts = event.confirmedRenameParts;
+        const isIriProp = isIRIaProperty(
+          ctxCopy.plugin.graph,
+          event.exploredIRI
+        )
+        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp
+        ctxCopy.plugin.ontologySearch.ontologySearchValue =
+          event.ontologySearchValue
+        ctxCopy.plugin.ontologySearch.confirmedRenameParts =
+          event.confirmedRenameParts
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       assignPhraseSelection: (context, event: PluginSelectPhraseEvent) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.renameValue = event.inputValue;
-        ctxCopy.plugin.ontologySearch.exploredIRI = event.exploredIRI;
+        ctxCopy.plugin.renameValue = event.inputValue
+        ctxCopy.plugin.ontologySearch.exploredIRI = event.exploredIRI
         if (!ctxCopy.plugin.graph) {
-          return;
+          return
         }
-        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, event.exploredIRI);
-        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp;
-        ctxCopy.plugin.ontologySearch.ontologySearchValue = event.ontologySearchValue;
-        ctxCopy.plugin.ontologySearch.confirmedRenameParts = event.confirmedRenameParts;
+        const isIriProp = isIRIaProperty(
+          ctxCopy.plugin.graph,
+          event.exploredIRI
+        )
+        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp
+        ctxCopy.plugin.ontologySearch.ontologySearchValue =
+          event.ontologySearchValue
+        ctxCopy.plugin.ontologySearch.confirmedRenameParts =
+          event.confirmedRenameParts
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       confirmPhrase: (context, event: PluginConfirmPhraseEvent) => {
-        const { displayFullValue, iri } = event;
-        const ctxCopy = { ...context };
-        const { confirmedRenameParts, notation } = ctxCopy.plugin.ontologySearch;
-        const foundRenamePartIdx = confirmedRenameParts.findIndex((val) => val.relativeCursorPos !== -1);
+        const { displayFullValue, iri } = event
+        const ctxCopy = { ...context }
+        const { confirmedRenameParts, notation } = ctxCopy.plugin.ontologySearch
+        const foundRenamePartIdx = confirmedRenameParts.findIndex(
+          val => val.relativeCursorPos !== -1
+        )
         if (foundRenamePartIdx === -1) {
           console.log(context)
-          console.error("error finding RenamePartSemantic")
-          return;
+          console.error('error finding RenamePartSemantic')
+          return
         }
-        const foundRenamePart = confirmedRenameParts[foundRenamePartIdx];
-        foundRenamePart.main = { iri, shortForm: displayFullValue };
-        foundRenamePart.relativeCursorPos = -1;
-        const newEmptyPart = getInitialRenamePartCopy();
-        newEmptyPart.relativeCursorPos = 0;
-        newEmptyPart.lexerStartEnd = { start: foundRenamePart.lexerStartEnd.end, end: foundRenamePart.lexerStartEnd.end };
-        const spliceLength = confirmedRenameParts.filter((val) => val.relativeCursorPos !== -1).length;
-        confirmedRenameParts.splice(foundRenamePartIdx + spliceLength + 1, 0, newEmptyPart);
+        const foundRenamePart = confirmedRenameParts[foundRenamePartIdx]
+        foundRenamePart.main = { iri, shortForm: displayFullValue }
+        foundRenamePart.relativeCursorPos = -1
+        const newEmptyPart = getInitialRenamePartCopy()
+        newEmptyPart.lexerStartEnd = {
+          start: foundRenamePart.lexerStartEnd.end,
+          end: foundRenamePart.lexerStartEnd.end,
+        }
+        const spliceLength = confirmedRenameParts.filter(
+          val => val.relativeCursorPos !== -1
+        ).length
+        confirmedRenameParts.splice(
+          foundRenamePartIdx + spliceLength + 1,
+          0,
+          newEmptyPart
+        )
         const joinerStr = match(notation)
-          .with(AvailableNotations.SpacedDashes, () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `)
-          .with(AvailableNotations.SpacedSlashes, () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `)
-          .with(AvailableNotations.SpacedCommaEquals, () => `${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `)
+          .with(
+            AvailableNotations.SpacedDashes,
+            () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
+          )
+          .with(
+            AvailableNotations.SpacedSlashes,
+            () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
+          )
+          .with(
+            AvailableNotations.SpacedCommaEquals,
+            () => `${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
+          )
           .exhaustive()
+        newEmptyPart.relativeCursorPos = joinerStr.length
         const newRenameValueParts = confirmedRenameParts.map((val, idx) => {
           /*if (idx === foundRenamePartIdx) {
             return val.main.shortForm + joinerStr
@@ -714,17 +777,22 @@ export const mainMachine =
           return val.main.shortForm
         })
         const newRenameValue = newRenameValueParts.join(joinerStr)
-        ctxCopy.plugin.renameValue = newRenameValue;
+        ctxCopy.plugin.renameValue = newRenameValue
         if (!ctxCopy.plugin.graph) {
-          return;
+          return
         }
-        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, iri);
-        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp;
-        ctxCopy.plugin.ontologySearch.exploredIRI = iri;
+        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, iri)
+        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp
+        ctxCopy.plugin.ontologySearch.exploredIRI = iri
         // mutate to set correct token start and end values
         newRenameValueParts.forEach((val, idx) => {
-          const prevStrLength = newRenameValueParts.slice(0, idx).join(joinerStr).length;
-          confirmedRenameParts[idx].lexerStartEnd = { start: prevStrLength, end: prevStrLength + val.length + joinerStr.length }
+          const prevStrLength = newRenameValueParts
+            .slice(0, idx)
+            .join(joinerStr).length
+          confirmedRenameParts[idx].lexerStartEnd = {
+            start: prevStrLength,
+            end: prevStrLength + val.length + joinerStr.length,
+          }
         })
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
@@ -745,12 +813,15 @@ export const mainMachine =
       },
       changeExploration: (context, event: PluginExplorationEvent) => {
         const ctxCopy = { ...context }
-        ctxCopy.plugin.ontologySearch.exploredIRI = event.explorationValue;
+        ctxCopy.plugin.ontologySearch.exploredIRI = event.explorationValue
         if (!ctxCopy.plugin.graph) {
-          return;
+          return
         }
-        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, event.explorationValue);
-        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp;
+        const isIriProp = isIRIaProperty(
+          ctxCopy.plugin.graph,
+          event.explorationValue
+        )
+        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
       assignUnlinkedData: context => {
@@ -833,8 +904,8 @@ export const mainMachine =
     },
     services: {
       checkForFigmaDocMessages: (context, event) => send => {
-        const pfn = (resolve, reject) => { }
-        const result = new Promise(pfn);
+        const pfn = (resolve, reject) => {}
+        const result = new Promise(pfn)
         /** that's "onmessage" on the figma api: */
         onmessage = event => {
           const plMsg = event.data.pluginMessage

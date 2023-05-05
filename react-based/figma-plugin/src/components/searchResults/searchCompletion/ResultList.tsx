@@ -2,23 +2,25 @@ import React, { MouseEventHandler, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import { ResultListEntry } from './ResultListEntry'
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider'
-import { HoverUIElemEnterEvent, HoverDefinitionEnterEvent } from '../../../browserlogic/state/stateEvents'
+import {
+  HoverUIElemEnterEvent,
+  HoverDefinitionEnterEvent,
+} from '../../../browserlogic/state/stateEvents'
 
 export interface ResultListProps {
   typedValue: string
-  recommendations: string[],
+  recommendations: string[]
   iris: string[]
 }
 
 export const ResultList: FunctionComponent<ResultListProps> = ({
   typedValue,
   recommendations,
-  iris
+  iris,
 }) => {
   const globalServices = useContext(GlobalStateContext)
-  const { send } = globalServices.mainService;
+  const { send } = globalServices.mainService
   const onHoverSearchResult: MouseEventHandler<HTMLDivElement> = event => {
-    console.log("hovering")
     send({
       type: 'HOVER_UI_ELEM_ENTER',
       payload: event.currentTarget.id,
@@ -39,7 +41,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
     send({
       type: 'CONFIRM_PHRASE',
       displayFullValue,
-      iri
+      iri,
     })
   }
 
@@ -50,7 +52,7 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
   return (
     <div className="result-list">
       {recommendations.map((fullVal, idx) => {
-        const iri = iris[idx];
+        const iri = iris[idx]
         return (
           <ResultListEntry
             key={`rli-${idx}`}

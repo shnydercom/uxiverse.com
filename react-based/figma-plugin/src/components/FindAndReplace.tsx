@@ -1,13 +1,17 @@
-import React, { MouseEventHandler, useContext, useEffect, useRef, useState } from 'react'
+import React, {
+  MouseEventHandler,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Icon, Input } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useActor, useSelector } from '@xstate/react'
-import { P, match } from "ts-pattern"
+import { P, match } from 'ts-pattern'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
 import { HostAppElement } from '../communicationInterfaces'
-import {
-  MainMachineSelectorArg,
-} from '../browserlogic/state/moreTypes'
+import { MainMachineSelectorArg } from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
 import {
   FocusSelectionEvent,
@@ -22,58 +26,103 @@ import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
 import { AvailableNotations } from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
-import { onOverwriteReplaceClickFactory, onReplaceChangeFactory, onSelectionChangeFactory } from './onReplaceChangeFactory'
+import {
+  onOverwriteReplaceClickFactory,
+  onReplaceChangeFactory,
+  onSelectionChangeFactory,
+} from './onReplaceChangeFactory'
 import { RenamePartSemantic } from '../browserlogic/state/mainMachine'
 
 const i18n = getI18n()
 
 const findFocusPosition = (rpss: RenamePartSemantic[]): number => {
-  return rpss.find((val) => val.relativeCursorPos !== -1)?.relativeCursorPos ?? -1
+  const rps = [...rpss].reverse().find(val => val.relativeCursorPos !== -1)
+  if (!rps) {
+    return -1
+  }
+  return rps.relativeCursorPos + rps.lexerStartEnd.start
 }
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
   //declaration only
-  let hostSelection: HostAppElement[];
-  let selectionFocus: HostAppElement | undefined;
-  let componentSearchValue: string | undefined;
-  let isNavArrowsDisabled: boolean;
-  let isRenameBtnDisabled: boolean;
-  let renameValue: string | undefined;
-  let notation: AvailableNotations;
-  let replaceInputRefocusPosition: number;
+  let hostSelection: HostAppElement[]
+  let selectionFocus: HostAppElement | undefined
+  let componentSearchValue: string | undefined
+  let isNavArrowsDisabled: boolean
+  let isRenameBtnDisabled: boolean
+  let renameValue: string | undefined
+  let notation: AvailableNotations
+  let replaceInputRefocusPosition: number
   //assigning
-  hostSelection = state.context.host.userSelection;
-  selectionFocus = state.context.host.selectionFocusedElement;
-  componentSearchValue = state.context.plugin.hostAppSearch.searchValue;
-  renameValue = state.context.plugin.renameValue;
+  hostSelection = state.context.host.userSelection
+  selectionFocus = state.context.host.selectionFocusedElement
+  componentSearchValue = state.context.plugin.hostAppSearch.searchValue
+  renameValue = state.context.plugin.renameValue
   isNavArrowsDisabled = match(state)
-    .when((state) => (state.matches('hostSelection.singleRaw') || state.matches('hostSelection.empty')),
-      () => { return true })
-    .when((state) => (state.matches('hostSelection.multi.raw') && state.context.host.selectionFocusedElement),
-      () => { return true })
-    .otherwise(() => { return false })
-  isRenameBtnDisabled = !selectionFocus;
-  notation = match(state)
-    .when((state) => (state.matches('notation.spacedDashes')),
-      () => { return AvailableNotations.SpacedDashes })
-    .when((state) => (state.matches('notation.spacedSlashes')),
-      () => { return AvailableNotations.SpacedSlashes })
-    .when((state) => (state.matches('notation.spacedCommaEquals')),
-      () => { return AvailableNotations.SpacedCommaEquals })
+    .when(
+      state =>
+        state.matches('hostSelection.singleRaw') ||
+        state.matches('hostSelection.empty'),
+      () => {
+        return true
+      }
+    )
+    .when(
+      state =>
+        state.matches('hostSelection.multi.raw') &&
+        state.context.host.selectionFocusedElement,
+      () => {
+        return true
+      }
+    )
     .otherwise(() => {
-      console.error("unknown state for notation")
+      return false
+    })
+  isRenameBtnDisabled = !selectionFocus
+  notation = match(state)
+    .when(
+      state => state.matches('notation.spacedDashes'),
+      () => {
+        return AvailableNotations.SpacedDashes
+      }
+    )
+    .when(
+      state => state.matches('notation.spacedSlashes'),
+      () => {
+        return AvailableNotations.SpacedSlashes
+      }
+    )
+    .when(
+      state => state.matches('notation.spacedCommaEquals'),
+      () => {
+        return AvailableNotations.SpacedCommaEquals
+      }
+    )
+    .otherwise(() => {
+      console.error('unknown state for notation')
       return AvailableNotations.SpacedCommaEquals
     })
   if (state.transitions.length > 0) {
     replaceInputRefocusPosition = match(state.transitions[0])
-      .with({ eventType: "CONFIRM_PHRASE" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
-      .with({ eventType: "CHANGE_EXPLORATION" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
-      .with({ eventType: "CHANGE_SEARCH_PHRASES" }, () => findFocusPosition(state.context.plugin.ontologySearch.confirmedRenameParts))
+      .with({ eventType: 'CONFIRM_PHRASE' }, () =>
+        findFocusPosition(
+          state.context.plugin.ontologySearch.confirmedRenameParts
+        )
+      )
+      .with({ eventType: 'CHANGE_EXPLORATION' }, () =>
+        findFocusPosition(
+          state.context.plugin.ontologySearch.confirmedRenameParts
+        )
+      )
+      .with({ eventType: 'CHANGE_SEARCH_PHRASES' }, () =>
+        findFocusPosition(
+          state.context.plugin.ontologySearch.confirmedRenameParts
+        )
+      )
       .otherwise(() => -1)
   } else {
-    replaceInputRefocusPosition = -1;
+    replaceInputRefocusPosition = -1
   }
-  console.log(replaceInputRefocusPosition)
   return {
     hostSelection,
     selectionFocus,
@@ -82,7 +131,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
     isRenameBtnDisabled,
     renameValue,
     notation,
-    replaceInputRefocusPosition
+    replaceInputRefocusPosition,
   }
 }
 
@@ -96,22 +145,26 @@ export const FindAndReplace = () => {
     isRenameBtnDisabled,
     renameValue,
     notation,
-    replaceInputRefocusPosition
-  } = useSelector(
-    globalServices.mainService,
-    mainMachineSelector
-  )
+    replaceInputRefocusPosition,
+  } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const { send } = globalServices.mainService
-  const [state] = useActor(globalServices.mainService);
+  const [state] = useActor(globalServices.mainService)
 
   const replaceInputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    if (replaceInputRefocusPosition !== -1 && replaceInputRef.current) {
-      replaceInputRef.current.setSelectionRange(replaceInputRefocusPosition, replaceInputRefocusPosition);
+    if (
+      replaceInputRefocusPosition !== -1 &&
+      replaceInputRef.current &&
+      document.activeElement !== replaceInputRef.current //checks if input doesn't have focus
+    ) {
+      replaceInputRef.current.setSelectionRange(
+        replaceInputRefocusPosition,
+        replaceInputRefocusPosition
+      )
       replaceInputRef.current.focus()
     }
-  }, [replaceInputRefocusPosition]);
+  }, [replaceInputRefocusPosition])
   const [isExecReplaceIconHovered, setIsExecReplaceIconHovered] = useState<
     boolean
   >(false)
@@ -153,14 +206,18 @@ export const FindAndReplace = () => {
       focusedElement: nextElement,
     } as FocusSelectionEvent)
   }
-  const onOverwriteReplaceClick = onOverwriteReplaceClickFactory(notation, send, state);
+  const onOverwriteReplaceClick = onOverwriteReplaceClickFactory(
+    notation,
+    send,
+    state
+  )
   const onConfirmReplaceClick = () => {
     send({ type: 'UPDATE_UNLINKED_DATA' } as PluginUnlinkedDataUpdateEvent)
   }
 
   //input fields
 
-  const onSearchChange = () => { }
+  const onSearchChange = () => {}
 
   const onNotationChange = () => {
     send({
@@ -168,39 +225,40 @@ export const FindAndReplace = () => {
     } as PluginNotationToggleEvent)
   }
 
-  const onFocusChange: React.FocusEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    if (state.matches("phraseRecommendations.initialEmpty")) {
+  const onFocusChange: React.FocusEventHandler<HTMLInputElement> = event => {
+    if (state.matches('phraseRecommendations.initialEmpty')) {
       send({
-        type: 'SHOW_TREE'
+        type: 'SHOW_TREE',
       })
-      return;
+      return
     }
   }
 
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
   > = event => {
-    match(event.currentTarget.id).
-      when((id) => {
-        return [
-          HoverableElements.btnPrevComponent,
-          HoverableElements.btnNextComponent,
-          HoverableElements.inputChangeReplace,
-          HoverableElements.inputCompName,
-          HoverableElements.btnCompTxtToReplace,
-          HoverableElements.btnToggleNotation,
-          HoverableElements.btnClear
-        ].includes(id as unknown as HoverableElements);
-      }, (id: HoverableElements) => {
-        send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
-      }).with(HoverableElements.btnExecReplace,
-        (id) => {
-          setIsExecReplaceIconHovered(true);
+    match(event.currentTarget.id)
+      .when(
+        id => {
+          return [
+            HoverableElements.btnPrevComponent,
+            HoverableElements.btnNextComponent,
+            HoverableElements.inputChangeReplace,
+            HoverableElements.inputCompName,
+            HoverableElements.btnCompTxtToReplace,
+            HoverableElements.btnToggleNotation,
+            HoverableElements.btnClear,
+          ].includes((id as unknown) as HoverableElements)
+        },
+        (id: HoverableElements) => {
           send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
         }
-      ).run();
+      )
+      .with(HoverableElements.btnExecReplace, id => {
+        setIsExecReplaceIconHovered(true)
+        send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
+      })
+      .run()
   }
 
   const onElemHoverLeave: MouseEventHandler<
@@ -248,7 +306,9 @@ export const FindAndReplace = () => {
 
       <Icon
         name="caret-down"
-        onClick={() => { onOverwriteReplaceClick(componentSearchValue) }}
+        onClick={() => {
+          onOverwriteReplaceClick(componentSearchValue)
+        }}
         iconButtonProps={{
           onMouseOver: onElemHover,
           onMouseLeave: onElemHoverLeave,
@@ -283,13 +343,17 @@ export const FindAndReplace = () => {
       />
       <Icon
         name="alert"
-        iconComponent={
-          match(notation)
-            .with(AvailableNotations.SpacedDashes, () => <NotationSwitchDashesIcon />)
-            .with(AvailableNotations.SpacedSlashes, () => <NotationSwitchSlashesIcon />)
-            .with(AvailableNotations.SpacedCommaEquals, () => <NotationSwitchCommaEqualsIcon />)
-            .exhaustive()
-        }
+        iconComponent={match(notation)
+          .with(AvailableNotations.SpacedDashes, () => (
+            <NotationSwitchDashesIcon />
+          ))
+          .with(AvailableNotations.SpacedSlashes, () => (
+            <NotationSwitchSlashesIcon />
+          ))
+          .with(AvailableNotations.SpacedCommaEquals, () => (
+            <NotationSwitchCommaEqualsIcon />
+          ))
+          .exhaustive()}
         onClick={onNotationChange}
         iconButtonProps={{
           onMouseOver: onElemHover,
