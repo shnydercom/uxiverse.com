@@ -793,6 +793,10 @@ export const mainMachine =
             start: prevStrLength,
             end: prevStrLength + val.length + joinerStr.length,
           }
+          if (idx === 0) {
+            confirmedRenameParts[idx].lexerStartEnd.end =
+              prevStrLength + val.length
+          }
         })
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
