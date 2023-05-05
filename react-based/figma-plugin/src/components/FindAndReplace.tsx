@@ -35,12 +35,15 @@ import { RenamePartSemantic } from '../browserlogic/state/mainMachine'
 
 const i18n = getI18n()
 
-const findFocusPosition = (rpss: RenamePartSemantic[]): number => {
-  const rps = [...rpss].reverse().find(val => val.relativeCursorPos !== -1)
-  if (!rps) {
-    return -1
+const findFocusPosition = (rpss: RenamePartSemantic[]): [number, number] => {
+  const rpsEnd = [...rpss].reverse().find(val => val.relativeCursorPos !== -1)
+  const rpsStart = rpss.find(val => val.relativeCursorPos !== -1)
+  if (!rpsEnd || !rpsStart) {
+    return [-1, -1]
   }
-  return rps.relativeCursorPos + rps.lexerStartEnd.start
+  return [
+    rpsStart.relativeCursorPos + rpsStart.lexerStartEnd.start,
+    rpsEnd.relativeCursorPos + rpsEnd.lexerStartEnd.start]
 }
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
@@ -52,7 +55,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let isRenameBtnDisabled: boolean
   let renameValue: string | undefined
   let notation: AvailableNotations
-  let replaceInputRefocusPosition: number
+  let replaceInputRefocusPosition: [number, number]
   //assigning
   hostSelection = state.context.host.userSelection
   selectionFocus = state.context.host.selectionFocusedElement
@@ -99,7 +102,6 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
       }
     )
     .otherwise(() => {
-      console.error('unknown state for notation')
       return AvailableNotations.SpacedCommaEquals
     })
   if (state.transitions.length > 0) {
@@ -131,11 +133,11 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
       )
       .otherwise(sel => {
         //console.log('otherwise: ' + sel.eventType)
-        return -1
+        return [-1, -1]
       })
   } else {
     //console.log('else')
-    replaceInputRefocusPosition = -1
+    replaceInputRefocusPosition = [-1, -1]
   }
   return {
     hostSelection,
@@ -169,20 +171,20 @@ export const FindAndReplace = () => {
   useEffect(() => {
     // handles clicks outside the input element
     if (
-      replaceInputRefocusPosition !== -1 &&
+      replaceInputRefocusPosition[0] !== -1 &&
       replaceInputRef.current &&
       document.activeElement !== replaceInputRef.current //checks if input doesn't have focus
     ) {
       replaceInputRef.current.setSelectionRange(
-        replaceInputRefocusPosition,
-        replaceInputRefocusPosition
+        replaceInputRefocusPosition[0],
+        replaceInputRefocusPosition[1]
       )
       replaceInputRef.current.focus()
       return
     }
     //handles selection-events while typing (not losing focus) after programmatic focus and value change
     if (
-      replaceInputRefocusPosition !== -1 &&
+      replaceInputRefocusPosition[0] !== -1 &&
       replaceInputRef.current &&
       document.activeElement === replaceInputRef.current &&
       [
@@ -195,8 +197,8 @@ export const FindAndReplace = () => {
       ].includes(state.transitions[0].eventType)
     ) {
       replaceInputRef.current.setSelectionRange(
-        replaceInputRefocusPosition,
-        replaceInputRefocusPosition
+        replaceInputRefocusPosition[0],
+        replaceInputRefocusPosition[1]
       )
       replaceInputRef.current.focus()
       return
@@ -254,7 +256,7 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => {}
+  const onSearchChange = () => { }
 
   const onNotationChange = () => {
     send({
