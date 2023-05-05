@@ -740,21 +740,9 @@ export const mainMachine =
           return
         }
         const foundRenamePart = confirmedRenameParts[foundRenamePartIdx]
+        const isCursorAtLastPart =
+          foundRenamePartIdx === confirmedRenameParts.length - 1
         foundRenamePart.main = { iri, shortForm: displayFullValue }
-        foundRenamePart.relativeCursorPos = -1
-        const newEmptyPart = getInitialRenamePartCopy()
-        newEmptyPart.lexerStartEnd = {
-          start: foundRenamePart.lexerStartEnd.end,
-          end: foundRenamePart.lexerStartEnd.end,
-        }
-        const spliceLength = confirmedRenameParts.filter(
-          val => val.relativeCursorPos !== -1
-        ).length
-        confirmedRenameParts.splice(
-          foundRenamePartIdx + spliceLength + 1,
-          0,
-          newEmptyPart
-        )
         const joinerStr = match(notation)
           .with(
             AvailableNotations.SpacedDashes,
@@ -769,7 +757,27 @@ export const mainMachine =
             () => `${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
           )
           .exhaustive()
-        newEmptyPart.relativeCursorPos = joinerStr.length
+        if (isCursorAtLastPart) {
+          foundRenamePart.relativeCursorPos = -1
+          const newEmptyPart = getInitialRenamePartCopy()
+          newEmptyPart.lexerStartEnd = {
+            start: foundRenamePart.lexerStartEnd.end,
+            end: foundRenamePart.lexerStartEnd.end,
+          }
+          const spliceLength = confirmedRenameParts.filter(
+            val => val.relativeCursorPos !== -1
+          ).length
+          confirmedRenameParts.splice(
+            foundRenamePartIdx + spliceLength + 1,
+            0,
+            newEmptyPart
+          )
+          newEmptyPart.relativeCursorPos = joinerStr.length
+        } else {
+          foundRenamePart.relativeCursorPos =
+            foundRenamePart.lexerStartEnd.end -
+            foundRenamePart.lexerStartEnd.start
+        }
         const newRenameValueParts = confirmedRenameParts.map((val, idx) => {
           /*if (idx === foundRenamePartIdx) {
             return val.main.shortForm + joinerStr
@@ -796,6 +804,11 @@ export const mainMachine =
           if (idx === 0) {
             confirmedRenameParts[idx].lexerStartEnd.end =
               prevStrLength + val.length
+          }
+          if (idx === foundRenamePartIdx) {
+            confirmedRenameParts[idx].relativeCursorPos =
+              confirmedRenameParts[idx].lexerStartEnd.end -
+              confirmedRenameParts[idx].lexerStartEnd.start
           }
         })
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)

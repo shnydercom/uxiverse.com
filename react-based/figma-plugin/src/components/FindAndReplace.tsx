@@ -119,8 +119,22 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
           state.context.plugin.ontologySearch.confirmedRenameParts
         )
       )
-      .otherwise(() => -1)
+      .with({ eventType: 'EMPTY_SEARCH_PHRASE' }, () =>
+        findFocusPosition(
+          state.context.plugin.ontologySearch.confirmedRenameParts
+        )
+      )
+      .with({ eventType: 'SELECT_EMPTY_PHRASE' }, () =>
+        findFocusPosition(
+          state.context.plugin.ontologySearch.confirmedRenameParts
+        )
+      )
+      .otherwise(sel => {
+        //console.log('otherwise: ' + sel.eventType)
+        return -1
+      })
   } else {
+    //console.log('else')
     replaceInputRefocusPosition = -1
   }
   return {
@@ -153,6 +167,7 @@ export const FindAndReplace = () => {
 
   const replaceInputRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
+    // handles clicks outside the input element
     if (
       replaceInputRefocusPosition !== -1 &&
       replaceInputRef.current &&
@@ -163,6 +178,28 @@ export const FindAndReplace = () => {
         replaceInputRefocusPosition
       )
       replaceInputRef.current.focus()
+      return
+    }
+    //handles selection-events while typing (not losing focus) after programmatic focus and value change
+    if (
+      replaceInputRefocusPosition !== -1 &&
+      replaceInputRef.current &&
+      document.activeElement === replaceInputRef.current &&
+      [
+        //'CONFIRM_PHRASE',
+        //'CHANGE_EXPLORATION',
+        //'CHANGE_SEARCH_PHRASES',
+        'EMPTY_SEARCH_PHRASE',
+        'SELECT_EMPTY_PHRASE',
+        'SELECT_PHRASE',
+      ].includes(state.transitions[0].eventType)
+    ) {
+      replaceInputRef.current.setSelectionRange(
+        replaceInputRefocusPosition,
+        replaceInputRefocusPosition
+      )
+      replaceInputRef.current.focus()
+      return
     }
   }, [replaceInputRefocusPosition])
   const [isExecReplaceIconHovered, setIsExecReplaceIconHovered] = useState<
