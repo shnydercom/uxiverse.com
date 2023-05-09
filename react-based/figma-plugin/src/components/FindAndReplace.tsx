@@ -259,6 +259,7 @@ export const FindAndReplace = () => {
   const onSearchChange = () => { }
 
   const onNotationChange = () => {
+    console.log(state.context.host.selectionFocusedElement)
     send({
       type: 'CHANGE_NOTATION',
     } as PluginNotationToggleEvent)
@@ -382,6 +383,7 @@ export const FindAndReplace = () => {
       />
       <Icon
         name="alert"
+        isDisabled={!state.can({ type: "CHANGE_NOTATION" })}
         iconComponent={match(notation)
           .with(AvailableNotations.SpacedDashes, () => (
             <NotationSwitchDashesIcon />

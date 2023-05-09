@@ -15,9 +15,34 @@ import {
   isAPluginSelectionChangedBridgeEvent,
 } from './figmalogic/pluginBridgeTypeguards'
 
+const determineIsInstanceOfAVariant = (singleSelection: SceneNode): boolean => {
+  if (singleSelection.type !== "INSTANCE") { return false }
+  if (singleSelection.componentProperties) {
+    const object = singleSelection.componentProperties
+    for (const key in singleSelection.componentProperties) {
+      if (Object.prototype.hasOwnProperty.call(object, key)) {
+        const element = object[key];
+        if (element.type === "VARIANT") {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+const determineIsComponentInVariant = (singleSelection: SceneNode): boolean => {
+  if (singleSelection.type !== "COMPONENT") { return false }
+  if ((singleSelection.parent?.type === "COMPONENT_SET")
+    && singleSelection.parent?.componentPropertyDefinitions) {
+    return true;
+  }
+  return false;
+}
+
 const forwardFigmaSelectionToPlugin = (
   isSelectionUnavailable: boolean
-) => () => {
+) => (): void => {
   const { selection } = figma.currentPage
   if (!selection.length) {
     const selChangeObj: HostSelectionChangedBridgeEvent = {
@@ -29,11 +54,25 @@ const forwardFigmaSelectionToPlugin = (
     return
   }
   const selectionAsHostAppelements: HostAppElement[] = selection.map(
-    ({ id, name, type }) => {
+    (singleElemInSelection) => {
+      const { id, name, type } = singleElemInSelection;
       if (TypeEquivalentsKeys.some(val => type === val)) {
-        return { id, name, type: type as HostAppElementTypeEquivalents }
+        return {
+          id, name, type: type as HostAppElementTypeEquivalents,
+          elementFigmaContext: {
+            isComponentInVariant: determineIsComponentInVariant(singleElemInSelection),
+            isInstanceOfAVariant: determineIsInstanceOfAVariant(singleElemInSelection),
+            isAComponentSet: type === "COMPONENT_SET" ? true : false,
+          }
+        }
       }
-      return { id, name, type: 'UNSUPPORTED' }
+      return {
+        id, name, type: 'UNSUPPORTED', elementFigmaContext: {
+          isComponentInVariant: false,
+          isInstanceOfAVariant: false,
+          isAComponentSet: false,
+        }
+      }
     }
   )
   const selChangeObj: HostSelectionChangedBridgeEvent = {
@@ -68,6 +107,7 @@ if (figma.editorType === 'figma') {
   // posted message.
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
+      delete msg.selectedNode.elementFigmaContext;
       figma.currentPage.selection = [msg.selectedNode as SceneNode]
       figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
     }
@@ -75,6 +115,7 @@ if (figma.editorType === 'figma') {
       figma.currentPage.selection = []
     }
     if (isAPluginRenameBridgeEvent(msg)) {
+      delete msg.selectedNode.elementFigmaContext;
       figma.currentPage.selection = [msg.selectedNode as SceneNode]
       const nodeToBeChanged = figma.currentPage.selection[0]
       nodeToBeChanged.name = msg.newName

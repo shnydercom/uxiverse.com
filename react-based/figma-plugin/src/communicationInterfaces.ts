@@ -131,4 +131,11 @@ export interface HostAppElement {
   id: string
   name: string
   type: HostAppElementTypeEquivalents
+  elementFigmaContext?: ElementFigmaContextProperties;
+}
+
+export interface ElementFigmaContextProperties {
+  isComponentInVariant: boolean;
+  isInstanceOfAVariant: boolean;
+  isAComponentSet: boolean;
 }
