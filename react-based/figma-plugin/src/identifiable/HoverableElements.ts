@@ -8,4 +8,6 @@ export enum HoverableElements {
   btnClear = 'btn-clear',
   btnToggleNotation = 'btn-toggle-notation',
   foundTerm = 'found-term',
+  copyTerm = 'copy-term',
+  addTerm = 'add-term'
 }

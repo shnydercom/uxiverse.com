@@ -4,8 +4,9 @@ import { ExploreIRI } from '../../../assets/explore-iri'
 import { CopyIcon } from '../../../assets/copy-icon'
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
 import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard'
+import { MouseEnterExitHandlers } from '../hoverHandlers'
 
-interface ResultListEntryProps {
+interface ResultListEntryProps extends MouseEnterExitHandlers {
   typedValue: string;
   displayFullValue: string;
   iri: string;
@@ -24,7 +25,11 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   onHoverSearchResult,
   onElemHoverLeave,
   onConfirmPhraseClick,
-  onExploreClick
+  onExploreClick,
+  onAddToInputMouseEnter,
+  onCopyMouseEnter,
+  onExploreMouseEnter,
+  onMouseLeave
 }) => {
   const copyButtonHandler = () => {
     copyTextToClipboard(displayFullValue);
@@ -43,16 +48,16 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   )
   return (
     <div className="list-entry" data-ld={iri} onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>
-      <button onClick={() => onExploreClick(iri)}>
+      <button onClick={() => onExploreClick(iri)} onMouseEnter={onExploreMouseEnter} onMouseLeave={onMouseLeave}>
         {splitpart[0] && <span className="no-match">{startString}</span>}
         {<span className="match">{centerString}</span>}
         {splitpart[1] && <span className="no-match">{endString}</span>}
-        <ExploreIRI className="button-icon" />
+        {/*<ExploreIRI className="button-icon" />*/}
       </button>
-      <button onClick={() => onConfirmPhraseClick(iri, displayFullValue)}>
+      <button onClick={() => onConfirmPhraseClick(iri, displayFullValue)} onMouseEnter={onAddToInputMouseEnter} onMouseLeave={onMouseLeave}>
         <AddToReplaceValue className='button-icon extra-icon' />
       </button>
-      <button className='reordered-button' onClick={copyButtonHandler}>
+      <button className='reordered-button' onClick={copyButtonHandler} onMouseEnter={onCopyMouseEnter} onMouseLeave={onMouseLeave}>
         <CopyIcon className="button-icon copy-icon" />
       </button>
     </div>

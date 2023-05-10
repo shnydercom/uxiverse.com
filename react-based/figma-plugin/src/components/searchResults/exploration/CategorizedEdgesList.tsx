@@ -7,6 +7,7 @@ import { PluginExplorationEvent, HoverDefinitionEnterEvent } from '../../../brow
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider';
 import { CopyIcon } from '../../../assets/copy-icon';
 import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard';
+import { onMouseEnterExitHandlerFactory } from '../hoverHandlers';
 
 export interface CategorizedEdgesListProps {
     categorizedEdges: CategorizedEdges;
@@ -38,6 +39,12 @@ export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ cate
             iri
         })
     }
+    const {
+        onAddToInputMouseEnter,
+        onCopyMouseEnter,
+        onExploreMouseEnter,
+        onMouseLeave
+    } = onMouseEnterExitHandlerFactory(send)
     return (
         <div className='categorized-edges-view'>
             {categorizedEdges.straightLineage.map((category) => {
@@ -57,14 +64,14 @@ export const CategorizedEdgesList: React.FC<CategorizedEdgesListProps> = ({ cate
                                     <li key={itemTrimmed} className='edge' data-ld={item}
                                         onMouseEnter={() => mouseEnterHandler(item)}
                                         onMouseLeave={mouseLeaveHandler}>
-                                        <button onClick={() => { exploreHandler(item) }}>
+                                        <button onClick={() => { exploreHandler(item) }} onMouseEnter={onExploreMouseEnter} onMouseLeave={onMouseLeave}>
                                             <span className="full-value">{itemTrimmed}</span>
-                                            <ExploreIRI className="button-icon" />
+                                            {/*<ExploreIRI className="button-icon" />*/}
                                         </button>
-                                        <button onClick={() => { confirmPhraseHandler(item, itemTrimmed) }}>
+                                        <button onClick={() => { confirmPhraseHandler(item, itemTrimmed) }} onMouseEnter={onAddToInputMouseEnter} onMouseLeave={onMouseLeave}>
                                             <AddToReplaceValue className="button-icon extra-icon" />
                                         </button>
-                                        <button className='reordered-button' onClick={() => copyButtonHandler(itemTrimmed)}>
+                                        <button className='reordered-button' onClick={() => copyButtonHandler(itemTrimmed)} onMouseEnter={onCopyMouseEnter} onMouseLeave={onMouseLeave}>
                                             <CopyIcon className="button-icon copy-icon" />
                                         </button>
                                     </li>

@@ -6,6 +6,7 @@ import { GlobalStateContext } from "../../../browserlogic/state/globalStateProvi
 import { HoverDefinitionEnterEvent, PluginExplorationEvent } from "../../../browserlogic/state/stateEvents";
 import { CopyIcon } from "../../../assets/copy-icon";
 import { copyTextToClipboard } from "../../../browserlogic/copyTextToClipboard";
+import { onMouseEnterExitHandlerFactory } from "../hoverHandlers";
 
 export interface TreeviewEntryProps {
     displayFullValue: string;
@@ -41,19 +42,27 @@ export const TreeviewEntry: FunctionComponent<TreeviewEntryProps> = (
             iri
         })
     }
+
+    const {
+        onAddToInputMouseEnter,
+        onCopyMouseEnter,
+        onExploreMouseEnter,
+        onMouseLeave
+    } = onMouseEnterExitHandlerFactory(send)
+
     return (
         <div className={`tree-entry ${isHighlighted ? "highlight" : ""}`}
             onMouseEnter={mouseEnterHandler}
             onMouseLeave={mouseLeaveHandler}
         >
-            <button onClick={exploreClick}>
+            <button onClick={exploreClick} onMouseEnter={onExploreMouseEnter} onMouseLeave={onMouseLeave}>
                 <span className="full-value">{displayFullValue}</span>
-                <ExploreIRI className="button-icon" />
+                {/*<ExploreIRI className="button-icon" />*/}
             </button>
-            <button onClick={onConfirmPhraseClick}>
+            <button onClick={onConfirmPhraseClick} onMouseEnter={onAddToInputMouseEnter} onMouseLeave={onMouseLeave}>
                 <AddToReplaceValue className="button-icon extra-icon" />
             </button>
-            <button className='reordered-button' onClick={copyButtonHandler}>
+            <button className='reordered-button' onClick={copyButtonHandler} onMouseEnter={onCopyMouseEnter} onMouseLeave={onMouseLeave}>
                 <CopyIcon className="button-icon copy-icon" />
             </button>
         </div>
