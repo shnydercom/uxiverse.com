@@ -24,6 +24,8 @@ body {
 #doc-exec-dummy {
   position: absolute;
   bottom: 0;
+  left: 16px;
+  user-select: none;
   visibility: visible;
   max-height: 16px;
   height: 16px;
@@ -305,7 +307,13 @@ button[disabled]:focus {
   width: 18px;
 }
 
-.tooltip-bar .icon-button {
+.tooltip-bar .trash-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.tooltip-bar .help-btn {
   position: absolute;
   bottom: 0;
   right: 0;

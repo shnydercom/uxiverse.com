@@ -11,6 +11,7 @@ const mappingMap: Map<HoverableElements, string> = new Map([
   [HoverableElements.btnCompTxtToReplace, i18n.tooltipAppendOrigName],
   [HoverableElements.btnExecReplace, i18n.tooltipReplaceInCanvas],
   [HoverableElements.btnClear, i18n.tooltipClearName],
+  [HoverableElements.btnHelp, i18n.tooltipHelp],
   [HoverableElements.btnToggleNotation, i18n.tooltipChangeNotation],
   [HoverableElements.foundTerm, i18n.tooltipExploreButton],
   [HoverableElements.addTerm, i18n.tooltipAddToReplaceInputButton],

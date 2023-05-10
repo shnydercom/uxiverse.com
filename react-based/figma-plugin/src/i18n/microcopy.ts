@@ -11,6 +11,7 @@ export const microCopy_EN = {
   tooltipExploreButton: 'find related children, siblings and properties',
   tooltipAddToReplaceInputButton: 'change term at text cursor',
   tooltipCopyTermButton: 'copy this term to the clipboard',
+  tooltipHelp: 'open help',
   figmaTip001:
     'TIP: use "⌘ + ⏎" to select all child-layers of your current selection (AltGr + ⏎ on Windows)',
   figmaTip002:

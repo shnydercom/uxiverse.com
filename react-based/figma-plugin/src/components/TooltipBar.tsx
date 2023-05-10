@@ -24,6 +24,8 @@ export function TooltipBar(props: TooltipBarProps) {
     switch (event.currentTarget.id) {
       case HoverableElements.btnClear:
         break
+      case HoverableElements.btnHelp:
+        break
       default:
         return // function returns on any other DOM element id
     }
@@ -34,16 +36,32 @@ export function TooltipBar(props: TooltipBarProps) {
   > = event => {
     send('HOVER_UI_ELEM_EXIT')
   }
+
+  const onHelpClick = () => {
+
+  }
   return (
     <div className="tooltip-bar">
       <span>{tooltipText ?? ' '}</span>
       <Icon
+        className='trash-btn'
         name="trash"
         onClick={onDeleteClick}
         iconButtonProps={{
           onMouseOver: onElemHover,
           onMouseLeave: onElemHoverLeave,
           id: HoverableElements.btnClear,
+        }}
+      />
+      <Icon
+        className='help-btn'
+        name="visible"
+        onClick={onHelpClick}
+        iconComponent={<span>?</span>}
+        iconButtonProps={{
+          onMouseOver: onElemHover,
+          onMouseLeave: onElemHoverLeave,
+          id: HoverableElements.btnHelp,
         }}
       />
     </div>
