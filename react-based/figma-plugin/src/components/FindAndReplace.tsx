@@ -32,6 +32,7 @@ import {
   onSelectionChangeFactory,
 } from './onReplaceChangeFactory'
 import { RenamePartSemantic } from '../browserlogic/state/mainMachine'
+import { evalAndSendNotationChange } from '../browserlogic/state/generalSenders'
 
 const i18n = getI18n()
 
@@ -213,10 +214,13 @@ export const FindAndReplace = () => {
     <PreRenameIcon />
   )
 
+  /** list of figma components in figma gets clicked */
   const onListEntryClick = (focusedElement: HostAppElement) => {
     send({ type: 'SELECT_FOCUS', focusedElement } as FocusSelectionEvent)
+    evalAndSendNotationChange(send, focusedElement, state, undefined)
   }
 
+  /** triggers selection of previous component inside figma */
   const onPreviousClick = () => {
     let currentSelectionIndex = hostSelection.findIndex(
       val => val.id === selectionFocus?.id
@@ -230,7 +234,10 @@ export const FindAndReplace = () => {
       type: 'SELECT_FOCUS',
       focusedElement: previousElement,
     } as FocusSelectionEvent)
+    evalAndSendNotationChange(send, previousElement, state, undefined)
   }
+
+  /** triggers selection of next component inside figma */
   const onNextClick = () => {
     let currentSelectionIndex = hostSelection.findIndex(
       val => val.id === selectionFocus?.id
@@ -244,7 +251,9 @@ export const FindAndReplace = () => {
       type: 'SELECT_FOCUS',
       focusedElement: nextElement,
     } as FocusSelectionEvent)
+    evalAndSendNotationChange(send, nextElement, state, undefined)
   }
+
   const onOverwriteReplaceClick = onOverwriteReplaceClickFactory(
     notation,
     send,

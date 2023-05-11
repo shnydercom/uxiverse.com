@@ -154,6 +154,7 @@ export interface NoArgsEvents {
     | "UPDATE_LINKED_DATA"
     | "HOVER_UI_ELEM_EXIT"
     | "TRIGGER_TRASH"
+    | "FORCE_SPACED_COMMA_EQUALS"
 }
 
 export type AllMainMachineStateEvents = HoverUIElemEnterEvent
