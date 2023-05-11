@@ -9,7 +9,7 @@ const generalFigmaUserTips: string[] = [i18n.figmaTip001, i18n.figmaTip002]
 
 export function getRandomTip(): string {
   return generalFigmaUserTips[
-    Math.round(Math.random() * generalFigmaUserTips.length)
+    Math.round(Math.random() * (generalFigmaUserTips.length - 1))
   ]
 }
 
