@@ -154,15 +154,6 @@ export interface NoArgsEvents {
     | "UPDATE_LINKED_DATA"
     | "HOVER_UI_ELEM_EXIT"
     | "TRIGGER_TRASH"
-    | "DELETE_LAST_PHRASE"
-    | "ADD_PHRASES"
-    | "ADD_UNCONFIRMED_PHRASE"
-    | "DELETE_SECONDLAST_PHRASE"
-    | "DELETE_MULTI_PHRASE"
-    | "DRAG_PHRASE"
-    | "IGNORE"
-    | "DELETED_LAST_PHRASE"
-    | "REORDER_PHRASES"
 }
 
 export type AllMainMachineStateEvents = HoverUIElemEnterEvent
@@ -180,7 +171,6 @@ export type AllMainMachineStateEvents = HoverUIElemEnterEvent
     | PluginShowTreeEvent
     | PluginChangeSearchPhrasesEvent
     | PluginConfirmPhraseEvent
-    | PluginChangeSearchPhrasesEvent
     | PluginEmptySearchPhrasesEvent
     | PluginSelectPhraseEvent
     | PluginSelectEmptyPhraseEvent;
