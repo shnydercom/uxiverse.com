@@ -745,20 +745,6 @@ export const mainMachine =
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
-      overwriteMultiPhrase: (context, event: CopyCompTxtToRenameEvent) => {
-        const ctxCopy = { ...context }
-        ctxCopy.plugin.renameValue = event.copiedText ?? undefined
-        ctxCopy.plugin.renameValue = handleNotation(
-          ctxCopy.plugin.renameValue,
-          event.targetNotation
-        )
-        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
-      },
-      editMultiPhrase: (context, event: PluginInputTypingEvent) => {
-        const ctxCopy = { ...context }
-        //ctxCopy.plugin.renameValue = event.inputValue ?? undefined
-        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
-      },
       changeExploration: (context, event: PluginExplorationEvent) => {
         const ctxCopy = { ...context }
         ctxCopy.plugin.ontologySearch.exploredIRI = event.explorationValue
@@ -777,7 +763,12 @@ export const mainMachine =
           context.host.selectionFocusedElement &&
           context.plugin.renameValue
         ) {
-          const newName = context.plugin.renameValue
+          const { notation } = context.plugin.ontologySearch;
+          const delimiter = NOTATIONS_MAIN_DICT[notation].mainDelimiter;
+          let newName = context.plugin.renameValue;
+          // use case: cleans up delimiters at the end and start
+          newName = newName.replace(new RegExp(`^(\\s*${delimiter}\\s*)*`), "");
+          newName = newName.replace(new RegExp(`(\\s*${delimiter}\\s*)*$`), "");
           const focusedElement = context.host.selectionFocusedElement
           //change in plugin-statemachine
           const ctxCopy = { ...context }
