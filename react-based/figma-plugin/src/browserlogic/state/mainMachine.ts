@@ -19,6 +19,7 @@ import { getSingleUxiDefinition } from '../naming-recommendations/search'
 import {
   AvailableNotations,
   NOTATIONS_MAIN_DICT,
+  determineJoinerTokens,
   handleNotation,
 } from '../notation-handler'
 import {
@@ -78,7 +79,7 @@ export interface ShortFormAndIRI {
  * stores syntactic blocks relating to a schema as far as they are known
  */
 export interface RenamePartSemantic {
-  type?: string
+  value?: string
   property?: string
   main: ShortFormAndIRI
   relativeCursorPos: number
@@ -670,6 +671,7 @@ export const mainMachine =
           console.error('error finding RenamePartSemantic')
           return
         }
+
         const foundRenamePart = confirmedRenameParts[foundRenamePartIdx]
         const isCursorAtLastPart =
           foundRenamePartIdx === confirmedRenameParts.length - 1
@@ -688,6 +690,21 @@ export const mainMachine =
             () => `${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
           )
           .exhaustive()
+        // start handling for secondary tokens
+        const joinerTokens = determineJoinerTokens(notation, confirmedRenameParts, context.plugin.renameValue)
+        const joinerStrDynmic = (index: number) => {
+          if (joinerTokens.length <= 1) {
+            return joinerStr;
+          }
+          return joinerTokens[index];
+        }
+        const joinerReducer = (prev, cur, idx) => {
+          if (idx === 0) {
+            return prev + cur;
+          }
+          return `${prev}${joinerStrDynmic(idx)}${cur}`
+        }
+        // end extra handling for secondary tokens
         if (isCursorAtLastPart) {
           foundRenamePart.relativeCursorPos = -1
           const newEmptyPart = getInitialRenamePartCopy()
@@ -703,7 +720,7 @@ export const mainMachine =
             0,
             newEmptyPart
           )
-          newEmptyPart.relativeCursorPos = joinerStr.length
+          newEmptyPart.relativeCursorPos = joinerStrDynmic(foundRenamePartIdx).length//joinerStr.length
         } else {
           foundRenamePart.relativeCursorPos =
             foundRenamePart.lexerStartEnd.end -
@@ -715,7 +732,7 @@ export const mainMachine =
           }*/
           return val.main.shortForm
         })
-        const newRenameValue = newRenameValueParts.join(joinerStr)
+        const newRenameValue = newRenameValueParts.reduce(joinerReducer, "")//.join(joinerStr)
         ctxCopy.plugin.renameValue = newRenameValue
         if (!ctxCopy.plugin.graph) {
           return
@@ -727,10 +744,11 @@ export const mainMachine =
         newRenameValueParts.forEach((val, idx) => {
           const prevStrLength = newRenameValueParts
             .slice(0, idx)
-            .join(joinerStr).length
+            .reduce(joinerReducer, "").length
+          //.join(joinerStr).length
           confirmedRenameParts[idx].lexerStartEnd = {
             start: prevStrLength,
-            end: prevStrLength + val.length + joinerStr.length,
+            end: prevStrLength + val.length + joinerStrDynmic(idx).length,
           }
           if (idx === 0) {
             confirmedRenameParts[idx].lexerStartEnd.end =

@@ -191,11 +191,11 @@ export const OntologyViewContainer = () => {
           () => {
             return <OverlayScrollbarsComponent
               className='ontology-nav-container'
-              style={{ flex: 1, height: "inherit" }}
+              style={{ flex: 1, height: "128px" }}
               options={{
                 overflow: {
                   x: 'scroll',
-                  y: 'visible'
+                  y: 'hidden'
                 }, scrollbars: { autoHide: 'never', }
               }}
             >

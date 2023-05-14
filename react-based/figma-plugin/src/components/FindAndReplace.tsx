@@ -268,7 +268,6 @@ export const FindAndReplace = () => {
   const onSearchChange = () => { }
 
   const onNotationChange = () => {
-    console.log(state.context.host.selectionFocusedElement)
     send({
       type: 'CHANGE_NOTATION',
     } as PluginNotationToggleEvent)

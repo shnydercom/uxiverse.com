@@ -8,7 +8,7 @@ export const lexLine = (
     notation: AvailableNotations,
     previousRenameSemantics: RenamePartSemantic[]
 ): RenamePartSemantic[] => {
-    const lexByMainDelimiter = (tokenWSyntaxRegex: RegExp, replaceRegex: RegExp) => {
+    const lexByMainDelimiter = (tokenWSyntaxRegex: RegExp, replaceRegex: RegExp): RenamePartSemantic[] => {
         //extra handling for initial state
         if (previousRenameSemantics.length === 0) {
             previousRenameSemantics = [{
@@ -35,7 +35,7 @@ export const lexLine = (
         return tokensWSyntax.map((token, idx, array) => {
             // remove whitespace and delimiter
             const cleanedToken = token.replace(replaceRegex, "");
-            let foundRenameSemantics = previousRenameSemantics.find((value) => value.type === cleanedToken || value.property === cleanedToken || value.main.shortForm === cleanedToken)
+            let foundRenameSemantics = previousRenameSemantics.find((value) => value.value === cleanedToken || value.property === cleanedToken || value.main.shortForm === cleanedToken)
             //find cursor in uncleaned string
             let matchingCursorPosition = textCursorPos <= lexerStartEnd[idx].end && textCursorPos > lexerStartEnd[idx].start ? textCursorPos : -1;
             let localMatchingCursorPosition = matchingCursorPosition === -1 ? -1 : matchingCursorPosition - lexerStartEnd[idx].start;
@@ -59,11 +59,11 @@ export const lexLine = (
                 main: { iri: null, shortForm: "" }
             }
             if (foundRenameSemantics) {
-                const { property, type, main } = foundRenameSemantics;
+                const { property, value, main } = foundRenameSemantics;
                 result = {
                     ...result,
                     property,
-                    type,
+                    value,
                     main
                 }
             } else {
@@ -72,8 +72,40 @@ export const lexLine = (
                     main: { iri: null, shortForm: cleanedToken }
                 }
             }
+
+            console.log(result)
             return result;
         })
+    }
+
+    const lexBySecondaryDelimiter = (input: RenamePartSemantic[]): RenamePartSemantic[] => {
+        const secondaryDelimiter = "=";
+        const rv: RenamePartSemantic[] = []
+        input.forEach((rpsVal) => {
+            const splitShortForm = rpsVal.main.shortForm.split(secondaryDelimiter);
+            //use case: ignore both no secondary delimiters and more than 1 secondary delimiter
+            if (splitShortForm.length !== 2) {
+                rv.push(rpsVal)
+                return;
+            }
+            const frontRPS: RenamePartSemantic = JSON.parse(JSON.stringify(rpsVal));
+            const rearRPS: RenamePartSemantic = JSON.parse(JSON.stringify(rpsVal));
+            const rearStrLength: number = splitShortForm[1].length + secondaryDelimiter.length;
+            frontRPS.lexerStartEnd.end = rearRPS.lexerStartEnd.start = rearRPS.lexerStartEnd.end - rearStrLength;
+            frontRPS.property = frontRPS.main.shortForm = splitShortForm[0];
+            rearRPS.value = rearRPS.main.shortForm = splitShortForm[1];
+            if (rpsVal.relativeCursorPos !== -1) {
+                if (rpsVal.relativeCursorPos < rearRPS.lexerStartEnd.end - rearStrLength) {
+                    rearRPS.relativeCursorPos = -1;
+                } else {
+                    frontRPS.relativeCursorPos = -1;
+                    rearRPS.relativeCursorPos += rearRPS.lexerStartEnd.end - rearStrLength;
+                }
+            }
+            rv.push(frontRPS, rearRPS)
+        })
+        console.log(rv)
+        return rv;
     }
 
     return match(notation)
@@ -84,7 +116,7 @@ export const lexLine = (
             return lexByMainDelimiter(/\/[^\/]*|^[^\/]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
         })
         .with(AvailableNotations.SpacedCommaEquals, (sel) => {
-            return lexByMainDelimiter(/,[^,]*|^[^,]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover);
+            return lexBySecondaryDelimiter(lexByMainDelimiter(/,[^,]*|^[^,]+/g, NOTATIONS_MAIN_DICT[sel].syntaxRemover));
         })
         .exhaustive();
 }

@@ -291,6 +291,7 @@ button[disabled]:focus {
 .empty-ontology {
   padding: 30px 34px;
   height: 128px;
+  box-shadow: rgb(230 230 230) 0px 1px 0px 0px;
 }
 
 .empty-ontology>p {

@@ -12,6 +12,8 @@ import { getInitialRenamePartCopy } from '../browserlogic/state/initialValues'
 import { lexLine } from '../browserlogic/naming-recommendations/lexLine'
 import { ReactEventHandler } from 'react'
 
+const secondaryDelimiter = "=";
+
 export const onReplaceChangeFactory = (
   notation: AvailableNotations,
   /** takes the "send" function from xstate, narrowed down for usage */
@@ -20,6 +22,7 @@ export const onReplaceChangeFactory = (
   state: MainMachineSelectorArg
 ) => (value: string, event: React.ChangeEvent<HTMLInputElement>) => {
   event.preventDefault();
+  console.log("onreplace")
   let { selectionStart } = event.currentTarget
   if (
     selectionStart === null ||
@@ -28,6 +31,10 @@ export const onReplaceChangeFactory = (
     //only handle if cursor position is clear
     return
   }
+  const isHandlingSecondaryDelimiter =
+    notation === AvailableNotations.SpacedCommaEquals
+    && event.nativeEvent.type === 'input'
+    && (event.nativeEvent as InputEvent).data === secondaryDelimiter;
   if (
     event.nativeEvent.type === 'input' &&
     (event.nativeEvent as InputEvent).data ===
@@ -70,7 +77,7 @@ export const onReplaceChangeFactory = (
   const trimmedValueRear = value.slice(selectionStart).trim()
   const isDelimitedAtFront = trimmedValueFront.endsWith(
     NOTATIONS_MAIN_DICT[notation].mainDelimiter
-  )
+  ) || (isHandlingSecondaryDelimiter && trimmedValueFront.endsWith(secondaryDelimiter))
   const isDelimitedAtRear = trimmedValueRear.startsWith(
     NOTATIONS_MAIN_DICT[notation].mainDelimiter
   )
@@ -121,9 +128,9 @@ export const onReplaceChangeFactory = (
         }
       )
       .otherwise(() => uxiverseRootIRI + 'Button')
-    const ontologySearchValue: string = determineOntologySearchValueForReplace(
-      confirmedRenameParts
-    )
+    const ontologySearchValue: string = isHandlingSecondaryDelimiter
+      ? ""
+      : determineOntologySearchValueForReplace(confirmedRenameParts)
     if (!value) {
       const initialConfirmedRenamePart = getInitialRenamePartCopy()
       initialConfirmedRenamePart.relativeCursorPos = 0

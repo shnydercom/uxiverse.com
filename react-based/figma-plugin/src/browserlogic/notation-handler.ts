@@ -1,4 +1,5 @@
 import { match } from 'ts-pattern';
+import { RenamePartSemantic } from './state/mainMachine';
 
 export enum AvailableNotations {
   SpacedDashes = 'spaced-dashes',
@@ -35,4 +36,22 @@ export function handleNotation(
     NOTATIONS_MAIN_DICT[changeTo].syntaxReplacer,
     replacerVal
   )
+}
+
+export function determineJoinerTokens(notation: AvailableNotations, confirmedRenameParts: RenamePartSemantic[], prevRenameValue: string | undefined): string[] {
+  let result: string[] = [""];
+  //determine start token used when secondary is available
+  if (notation === AvailableNotations.SpacedCommaEquals) {
+    if (!prevRenameValue) {
+      return result;
+    }
+    const joinerTokens = confirmedRenameParts.map((rps, idx) => {
+      if (idx === 0) {
+        return "";
+      }
+      return prevRenameValue[rps.lexerStartEnd.start];
+    })
+    result = joinerTokens;
+  }
+  return result;
 }
