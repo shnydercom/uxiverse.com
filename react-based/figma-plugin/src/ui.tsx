@@ -9,7 +9,7 @@ import './ui.css'
 import { PluginMainLayout } from './PluginMainLayout'
 import { GlobalStateProvider } from './browserlogic/state/globalStateProvider'
 
-export interface FigmaPluginRootProps { }
+export interface FigmaPluginRootProps {}
 
 const FigmaPluginRoot = (props: FigmaPluginRootProps) => {
   return (

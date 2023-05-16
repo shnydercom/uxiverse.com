@@ -7,8 +7,8 @@ import { SingleIRIVisualization } from './SingleIRIVisualization'
 const defintionFullTextSelector:
   | SearchValueSelectorType
   | undefined = state => {
-    return state.context.plugin.ontologySearch.descriptionText
-  }
+  return state.context.plugin.ontologySearch.descriptionText
+}
 
 export const SingleIRIFullView = () => {
   const globalServices = useContext(GlobalStateContext)

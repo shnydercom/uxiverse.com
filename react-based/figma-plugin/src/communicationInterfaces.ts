@@ -21,7 +21,7 @@ export interface HostSelectionChangedBridgeEvent {
 
 export interface HostFetchSuccessfulBridgeEvent {
   type: HostEventTypes.fetchSuccessful
-  result: Object
+  result: Record<string, any>
 }
 
 export interface PluginSelectionChangedBridgeEvent {

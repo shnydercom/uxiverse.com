@@ -13,7 +13,11 @@ export function getRandomTip(): string {
   ]
 }
 
-const initialRenamePart: RenamePartSemantic = { lexerStartEnd: { start: 0, end: 0 }, relativeCursorPos: -1, main: { iri: null, shortForm: "" } };
+const initialRenamePart: RenamePartSemantic = {
+  lexerStartEnd: { start: 0, end: 0 },
+  relativeCursorPos: -1,
+  main: { iri: null, shortForm: '' },
+}
 
 const initialContext: MainMachineXSCtx = {
   host: {
@@ -29,10 +33,10 @@ const initialContext: MainMachineXSCtx = {
     },
     ontologySearch: {
       notation: AvailableNotations.SpacedDashes,
-      ontologySearchValue: "",
+      ontologySearchValue: '',
       confirmedRenameParts: [initialRenamePart],
       focusedDefinition: '',
-      exploredIRI: uxiverseRootIRI + "Button",
+      exploredIRI: uxiverseRootIRI + 'Button',
       isPropSearch: false,
       descriptionText: getRandomTip(),
     },

@@ -15,7 +15,7 @@ const mappingMap: Map<HoverableElements, string> = new Map([
   [HoverableElements.btnToggleNotation, i18n.tooltipChangeNotation],
   [HoverableElements.foundTerm, i18n.tooltipExploreButton],
   [HoverableElements.addTerm, i18n.tooltipAddToReplaceInputButton],
-  [HoverableElements.copyTerm, i18n.tooltipCopyTermButton]
+  [HoverableElements.copyTerm, i18n.tooltipCopyTermButton],
 ])
 
 export function compIdToTooltip(compId: HoverableElements): string {

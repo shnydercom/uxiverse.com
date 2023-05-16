@@ -337,7 +337,7 @@ const determineOntologySearchValueForSelection = (
 const determineOntologySearchValueForReplace = (
   renameSemantics: RenamePartSemantic[]
 ): string => {
-  let result: string = ''
+  let result = ''
   const semanticAtCursor = renameSemantics.find(
     val => val.relativeCursorPos !== -1
   )

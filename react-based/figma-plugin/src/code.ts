@@ -98,7 +98,7 @@ const forwardFigmaSelectionToPlugin = (
   figma.ui.postMessage(selChangeObj)
 }
 
-const forwardFetchToPlugin = (returnObj: Object) => {
+const forwardFetchToPlugin = (returnObj: Record<string, any>) => {
   const fetchSuccessfulMsg: HostFetchSuccessfulBridgeEvent = {
     type: HostEventTypes.fetchSuccessful,
     result: returnObj,

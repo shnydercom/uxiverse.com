@@ -16,7 +16,7 @@ export type SelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -31,7 +31,7 @@ export type HostSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -46,7 +46,7 @@ export type FocusSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -61,7 +61,7 @@ export type StateMatchSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -76,7 +76,7 @@ export type SearchValueSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -90,7 +90,7 @@ export type IsOpenSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -104,7 +104,7 @@ export type GraphSelectorType = (
     MainMachineXSCtx,
     AnyEventObject,
     any,
-    { value: any; context: MainMachineXSCtx },
+    { value: any, context: MainMachineXSCtx },
     ResolveTypegenMeta<
       TypegenDisabled,
       AnyEventObject,
@@ -114,7 +114,18 @@ export type GraphSelectorType = (
   >
 ) => RtLdGraph | undefined
 
-export type MainMachineSelectorArg = State<MainMachineXSCtx, AllMainMachineStateEvents, any, {
-  value: any;
-  context: MainMachineXSCtx;
-}, ResolveTypegenMeta<TypegenDisabled, AllMainMachineStateEvents, BaseActionObject, ServiceMap>>
+export type MainMachineSelectorArg = State<
+  MainMachineXSCtx,
+  AllMainMachineStateEvents,
+  any,
+  {
+    value: any,
+    context: MainMachineXSCtx,
+  },
+  ResolveTypegenMeta<
+    TypegenDisabled,
+    AllMainMachineStateEvents,
+    BaseActionObject,
+    ServiceMap
+  >
+>

@@ -9,14 +9,17 @@ const tooltipTextSelector: SelectorType = state => {
   return state.context.plugin.tooltip
 }
 
-export interface TooltipBarProps { }
+export interface TooltipBarProps {}
 
 export function TooltipBar(props: TooltipBarProps) {
   const globalServices = useContext(GlobalStateContext)
-  const tooltipText = useSelector(globalServices.mainService, tooltipTextSelector)
+  const tooltipText = useSelector(
+    globalServices.mainService,
+    tooltipTextSelector
+  )
   const { send } = globalServices.mainService
   const onDeleteClick = () => {
-    send({ type: "TRIGGER_TRASH" })
+    send({ type: 'TRIGGER_TRASH' })
   }
   const onElemHover: MouseEventHandler<
     HTMLButtonElement | HTMLInputElement
@@ -37,14 +40,12 @@ export function TooltipBar(props: TooltipBarProps) {
     send('HOVER_UI_ELEM_EXIT')
   }
 
-  const onHelpClick = () => {
-
-  }
+  const onHelpClick = () => {}
   return (
     <div className="tooltip-bar">
       <span>{tooltipText ?? ' '}</span>
       <Icon
-        className='trash-btn'
+        className="trash-btn"
         name="trash"
         onClick={onDeleteClick}
         iconButtonProps={{
@@ -54,7 +55,7 @@ export function TooltipBar(props: TooltipBarProps) {
         }}
       />
       <Icon
-        className='help-btn'
+        className="help-btn"
         name="visible"
         onClick={onHelpClick}
         iconComponent={<span>?</span>}

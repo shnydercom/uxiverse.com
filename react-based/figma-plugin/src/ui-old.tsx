@@ -6,7 +6,7 @@ import { Text, Input, Title, Button } from 'react-figma-plugin-ds'
 import 'react-figma-plugin-ds/figma-plugin-ds.css'
 import './ui.css'
 
-import OtherApp from "./App";
+import OtherApp from './App'
 
 declare function require(path: string): string
 
@@ -55,7 +55,7 @@ class App extends React.Component<{}, { value: string }> {
         <Button isSecondary onClick={this.onCancel}>
           Cancel
         </Button>
-        <OtherApp/>
+        <OtherApp />
       </div>
     )
   }

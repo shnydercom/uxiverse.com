@@ -15,7 +15,7 @@ export function searchDefinitionNames(
   return rtGraph.identifiableNodes
     .map(rtNode => rtNode['@id'])
     .filter(filteredVal => {
-      let searchScope: string = ''
+      let searchScope = ''
       if (!filteredVal.startsWith(searchTrimmer)) {
         return false
       }

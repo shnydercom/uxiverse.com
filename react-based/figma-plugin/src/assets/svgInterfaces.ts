@@ -1,3 +1,3 @@
 export interface SVGInterface {
-    className?: string;
+  className?: string;
 }
