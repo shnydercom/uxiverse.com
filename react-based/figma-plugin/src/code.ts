@@ -16,28 +16,34 @@ import {
 } from './figmalogic/pluginBridgeTypeguards'
 
 const determineIsInstanceOfAVariant = (singleSelection: SceneNode): boolean => {
-  if (singleSelection.type !== "INSTANCE") { return false }
+  if (singleSelection.type !== 'INSTANCE') {
+    return false
+  }
   if (singleSelection.componentProperties) {
     const object = singleSelection.componentProperties
     for (const key in singleSelection.componentProperties) {
       if (Object.prototype.hasOwnProperty.call(object, key)) {
-        const element = object[key];
-        if (element.type === "VARIANT") {
-          return true;
+        const element = object[key]
+        if (element.type === 'VARIANT') {
+          return true
         }
       }
     }
   }
-  return false;
+  return false
 }
 
 const determineIsComponentInVariant = (singleSelection: SceneNode): boolean => {
-  if (singleSelection.type !== "COMPONENT") { return false }
-  if ((singleSelection.parent?.type === "COMPONENT_SET")
-    && singleSelection.parent?.componentPropertyDefinitions) {
-    return true;
+  if (singleSelection.type !== 'COMPONENT') {
+    return false
   }
-  return false;
+  if (
+    singleSelection.parent?.type === 'COMPONENT_SET' &&
+    singleSelection.parent?.componentPropertyDefinitions
+  ) {
+    return true
+  }
+  return false
 }
 
 const forwardFigmaSelectionToPlugin = (
@@ -54,24 +60,33 @@ const forwardFigmaSelectionToPlugin = (
     return
   }
   const selectionAsHostAppelements: HostAppElement[] = selection.map(
-    (singleElemInSelection) => {
-      const { id, name, type } = singleElemInSelection;
+    singleElemInSelection => {
+      const { id, name, type } = singleElemInSelection
       if (TypeEquivalentsKeys.some(val => type === val)) {
         return {
-          id, name, type: type as HostAppElementTypeEquivalents,
+          id,
+          name,
+          type: type as HostAppElementTypeEquivalents,
           elementFigmaContext: {
-            isComponentInVariant: determineIsComponentInVariant(singleElemInSelection),
-            isInstanceOfAVariant: determineIsInstanceOfAVariant(singleElemInSelection),
-            isAComponentSet: type === "COMPONENT_SET" ? true : false,
-          }
+            isComponentInVariant: determineIsComponentInVariant(
+              singleElemInSelection
+            ),
+            isInstanceOfAVariant: determineIsInstanceOfAVariant(
+              singleElemInSelection
+            ),
+            isAComponentSet: type === 'COMPONENT_SET' ? true : false,
+          },
         }
       }
       return {
-        id, name, type: 'UNSUPPORTED', elementFigmaContext: {
+        id,
+        name,
+        type: 'UNSUPPORTED',
+        elementFigmaContext: {
           isComponentInVariant: false,
           isInstanceOfAVariant: false,
           isAComponentSet: false,
-        }
+        },
       }
     }
   )
@@ -107,7 +122,7 @@ if (figma.editorType === 'figma') {
   // posted message.
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
-      delete msg.selectedNode.elementFigmaContext;
+      delete msg.selectedNode.elementFigmaContext
       figma.currentPage.selection = [msg.selectedNode as SceneNode]
       figma.viewport.scrollAndZoomIntoView(figma.currentPage.selection)
     }
@@ -115,7 +130,7 @@ if (figma.editorType === 'figma') {
       figma.currentPage.selection = []
     }
     if (isAPluginRenameBridgeEvent(msg)) {
-      delete msg.selectedNode.elementFigmaContext;
+      delete msg.selectedNode.elementFigmaContext
       figma.currentPage.selection = [msg.selectedNode as SceneNode]
       const nodeToBeChanged = figma.currentPage.selection[0]
       nodeToBeChanged.name = msg.newName
@@ -137,7 +152,7 @@ if (figma.editorType === 'figma') {
         .catch(console.error)
     }
     if (isAPluginNotifyUserBridgeEvent(msg)) {
-      figma.notify(msg.messageText, { timeout: 1500 });
+      figma.notify(msg.messageText, { timeout: 1500 })
     }
     // anti-use case: plugin should be closed manually
     //figma.closePlugin()
@@ -154,42 +169,13 @@ if (figma.editorType === 'figma') {
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
   figma.ui.onmessage = msg => {
-    // One way of distinguishing between different types of messages sent from
-    // your HTML page is to use an object with a "type" property like this.
-    if (msg.type === 'create-shapes') {
-      const numberOfShapes = msg.count
-      const nodes: SceneNode[] = []
-      for (let i = 0; i < numberOfShapes; i++) {
-        const shape = figma.createShapeWithText()
-        // You can set shapeType to one of: 'SQUARE' | 'ELLIPSE' | 'ROUNDED_RECTANGLE' | 'DIAMOND' | 'TRIANGLE_UP' | 'TRIANGLE_DOWN' | 'PARALLELOGRAM_RIGHT' | 'PARALLELOGRAM_LEFT'
-        shape.shapeType = 'ROUNDED_RECTANGLE'
-        shape.x = i * (shape.width + 200)
-        shape.fills = [{ type: 'SOLID', color: { r: 1, g: 0.5, b: 0 } }]
-        figma.currentPage.appendChild(shape)
-        nodes.push(shape)
-      }
-
-      for (let i = 0; i < numberOfShapes - 1; i++) {
-        const connector = figma.createConnector()
-        connector.strokeWeight = 8
-
-        connector.connectorStart = {
-          endpointNodeId: nodes[i].id,
-          magnet: 'AUTO',
-        }
-
-        connector.connectorEnd = {
-          endpointNodeId: nodes[i + 1].id,
-          magnet: 'AUTO',
-        }
-      }
-
-      figma.currentPage.selection = nodes
-      figma.viewport.scrollAndZoomIntoView(nodes)
+    if (isAPluginFetchBridgeEvent(msg)) {
+      fetch(msg.url)
+        .then(async res => {
+          const fetchResult = await res.json()
+          forwardFetchToPlugin(fetchResult)
+        })
+        .catch(console.error)
     }
-
-    // Make sure to close the plugin when you're done. Otherwise the plugin will
-    // keep running, which shows the cancel button at the bottom of the screen.
-    figma.closePlugin()
   }
 }
