@@ -20,9 +20,9 @@ export const onReplaceChangeFactory = (
   send: (eventObj: AllMainMachineStateEvents) => void,
   /** takes the "state" from xstate, retrievable in react through useActor */
   state: MainMachineSelectorArg
-) => (value: string, event: React.ChangeEvent<HTMLInputElement>) => {
+) => (event: React.ChangeEvent<HTMLTextAreaElement>) => {
   event.preventDefault()
-  let { selectionStart } = event.currentTarget
+  let { value, selectionStart } = event.currentTarget
   if (
     selectionStart === null ||
     selectionStart !== event.currentTarget.selectionEnd
@@ -35,9 +35,10 @@ export const onReplaceChangeFactory = (
     event.nativeEvent.type === 'input' &&
     (event.nativeEvent as InputEvent).data === secondaryDelimiter
   if (
-    event.nativeEvent.type === 'input' &&
-    (event.nativeEvent as InputEvent).data ===
-      NOTATIONS_MAIN_DICT[notation].mainDelimiter
+    (event.nativeEvent.type === 'input' &&
+      (event.nativeEvent as InputEvent).data ===
+        NOTATIONS_MAIN_DICT[notation].mainDelimiter) ||
+    (event.nativeEvent as InputEvent).inputType === 'insertLineBreak'
   ) {
     // confirm the topmost phrase in autocomplete-suggestions when pressing the notation's main delimiter
     const valueFront = value.substring(0, selectionStart - 1).trim()
@@ -201,7 +202,7 @@ export const onSelectionChangeFactory = (
   notation: AvailableNotations,
   send: (eventObj: AllMainMachineStateEvents) => void,
   state: MainMachineSelectorArg
-): ReactEventHandler<HTMLInputElement> => event => {
+): ReactEventHandler<HTMLTextAreaElement> => event => {
   event.preventDefault()
   const isValidEvent = match(event)
     .with({ nativeEvent: { type: 'selectionchange' } }, sel => true)

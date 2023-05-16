@@ -42,9 +42,9 @@ body {
   background: #f3f3f3;
   padding: 6px 0;
   display: grid;
-  height: 88px;
+  min-height: 88px;
   grid-template-columns: 32px 1fr 32px;
-  grid-template-rows: 32px 12px 32px;
+  grid-template-rows: 32px 12px min-content;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
@@ -78,6 +78,45 @@ body {
 
 .find-and-replace :nth-child(7) {
   grid-area: 3 / 3 / 4 / 4;
+}
+
+/*
+* css-only growing textarea:
+* https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
+*/
+.grow-wrap {
+  display: grid;
+  min-height: min-content;
+}
+.grow-wrap .preview-overlay {
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+.textarea.replace-name,
+.grow-wrap .preview-overlay {
+  grid-area: 1 / 1 / 2 / 2;
+  resize: none;
+  overflow: hidden;
+  min-height: 12px;
+  font: inherit;
+  font-size: 11px;
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-neg-xsmall);
+  line-height: 16px;
+
+  border: 1px solid var(--black1);
+  border-radius: var(--border-radius-small);
+  padding: 6px var(--size-xxxsmall) 6px var(--size-xxsmall);
+  text-align: start;
+}
+
+.textarea.replace-name:active,
+.textarea.replace-name:focus {
+  color: var(--black);
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
 }
 
 .ontology-results {

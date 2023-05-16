@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { Icon, Input } from 'react-figma-plugin-ds'
+import { Icon, Input, Textarea } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useActor, useSelector } from '@xstate/react'
 import { P, match } from 'ts-pattern'
@@ -42,10 +42,11 @@ const findFocusPosition = (rpss: RenamePartSemantic[]): [number, number] => {
   if (!rpsEnd || !rpsStart) {
     return [-1, -1]
   }
-  return [
+  const result: [number, number] = [
     rpsStart.relativeCursorPos + rpsStart.lexerStartEnd.start,
     rpsEnd.relativeCursorPos + rpsEnd.lexerStartEnd.start,
   ]
+  return result
 }
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
@@ -167,7 +168,7 @@ export const FindAndReplace = () => {
   const { send } = globalServices.mainService
   const [state] = useActor(globalServices.mainService)
 
-  const replaceInputRef = useRef<HTMLInputElement>(null)
+  const replaceInputRef = useRef<HTMLTextAreaElement>(null)
   useEffect(() => {
     // handles clicks outside the input element
     if (
@@ -272,7 +273,7 @@ export const FindAndReplace = () => {
     } as PluginNotationToggleEvent)
   }
 
-  const onFocusChange: React.FocusEventHandler<HTMLInputElement> = event => {
+  const onFocusChange: React.FocusEventHandler<HTMLTextAreaElement> = event => {
     if (state.matches('phraseRecommendations.initialEmpty')) {
       send({
         type: 'SHOW_TREE',
@@ -282,7 +283,7 @@ export const FindAndReplace = () => {
   }
 
   const onElemHover: MouseEventHandler<
-    HTMLButtonElement | HTMLInputElement
+    HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement
   > = event => {
     match(event.currentTarget.id)
       .when(
@@ -309,7 +310,7 @@ export const FindAndReplace = () => {
   }
 
   const onElemHoverLeave: MouseEventHandler<
-    HTMLButtonElement | HTMLInputElement
+    HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement
   > = event => {
     if (isExecReplaceIconHovered) {
       setIsExecReplaceIconHovered(false)
@@ -374,20 +375,23 @@ export const FindAndReplace = () => {
           id: HoverableElements.btnExecReplace,
         }}
       />
-      <Input
-        ref={replaceInputRef}
-        placeholder={i18n.prepareNewName}
-        onFocus={onFocusChange}
-        onChange={onReplaceChangeFactory(notation, send, state)}
-        onSelect={onSelectionChangeFactory(notation, send, state)}
-        icon="swap"
-        iconComponent={<RenameIcon />}
-        onMouseOver={onElemHover}
-        onMouseLeave={onElemHoverLeave}
-        value={renameValue}
-        id={HoverableElements.inputChangeReplace}
-        spellCheck="false"
-      />
+      <div className="grow-wrap">
+        <textarea
+          className="textarea replace-name"
+          rows={1}
+          ref={replaceInputRef}
+          placeholder={i18n.prepareNewName}
+          onFocus={onFocusChange}
+          onChange={onReplaceChangeFactory(notation, send, state)}
+          onSelect={onSelectionChangeFactory(notation, send, state)}
+          onMouseOver={onElemHover}
+          onMouseLeave={onElemHoverLeave}
+          value={renameValue}
+          id={HoverableElements.inputChangeReplace}
+          spellCheck="false"
+        />
+        <div className="preview-overlay">{renameValue}</div>
+      </div>
       <Icon
         name="alert"
         isDisabled={!state.can({ type: 'CHANGE_NOTATION' })}
