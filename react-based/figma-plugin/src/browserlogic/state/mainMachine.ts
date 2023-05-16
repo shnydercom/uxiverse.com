@@ -224,11 +224,11 @@ export const mainMachine =
                 actions: 'assignHostUserSelection',
               },
 
-              HOST_INTERACTION_SELECT_SINGLE: "singleRaw"
+              HOST_INTERACTION_SELECT_SINGLE: 'singleRaw',
             },
 
             invoke: {
-              src: 'checkForFigmaDocMessages'
+              src: 'checkForFigmaDocMessages',
             },
           },
 
@@ -347,7 +347,7 @@ export const mainMachine =
           spacedDashes: {
             on: {
               CHANGE_NOTATION: 'spacedSlashes',
-              FORCE_SPACED_COMMA_EQUALS: "spacedCommaEquals"
+              FORCE_SPACED_COMMA_EQUALS: 'spacedCommaEquals',
             },
 
             entry: 'assignSpacedDashesNotation',
@@ -355,12 +355,15 @@ export const mainMachine =
 
           spacedSlashes: {
             on: {
-              CHANGE_NOTATION: [{
-                target: "spacedDashes",
-                cond: "isComponentSetOrInstanceOfVariant"
-              }, "spacedCommaEquals"],
+              CHANGE_NOTATION: [
+                {
+                  target: 'spacedDashes',
+                  cond: 'isComponentSetOrInstanceOfVariant',
+                },
+                'spacedCommaEquals',
+              ],
 
-              FORCE_SPACED_COMMA_EQUALS: "spacedCommaEquals"
+              FORCE_SPACED_COMMA_EQUALS: 'spacedCommaEquals',
             },
             entry: 'assignSpacedSlashesNotation',
           },
@@ -369,7 +372,7 @@ export const mainMachine =
             on: {
               CHANGE_NOTATION: {
                 target: 'spacedDashes',
-                cond: "isComponentNotInVariantGuard"
+                cond: 'isComponentNotInVariantGuard',
               },
             },
             entry: 'assignCommaEqualsNotation',
@@ -691,16 +694,20 @@ export const mainMachine =
           )
           .exhaustive()
         // start handling for secondary tokens
-        const joinerTokens = determineJoinerTokens(notation, confirmedRenameParts, context.plugin.renameValue)
+        const joinerTokens = determineJoinerTokens(
+          notation,
+          confirmedRenameParts,
+          context.plugin.renameValue
+        )
         const joinerStrDynmic = (index: number) => {
           if (joinerTokens.length <= 1) {
-            return joinerStr;
+            return joinerStr
           }
-          return joinerTokens[index];
+          return joinerTokens[index] ?? ''
         }
         const joinerReducer = (prev, cur, idx) => {
           if (idx === 0) {
-            return prev + cur;
+            return prev + cur
           }
           return `${prev}${joinerStrDynmic(idx)}${cur}`
         }
@@ -720,7 +727,9 @@ export const mainMachine =
             0,
             newEmptyPart
           )
-          newEmptyPart.relativeCursorPos = joinerStrDynmic(foundRenamePartIdx).length//joinerStr.length
+          newEmptyPart.relativeCursorPos = joinerStrDynmic(
+            foundRenamePartIdx
+          ).length //joinerStr.length
         } else {
           foundRenamePart.relativeCursorPos =
             foundRenamePart.lexerStartEnd.end -
@@ -732,7 +741,7 @@ export const mainMachine =
           }*/
           return val.main.shortForm
         })
-        const newRenameValue = newRenameValueParts.reduce(joinerReducer, "")//.join(joinerStr)
+        const newRenameValue = newRenameValueParts.reduce(joinerReducer, '') //.join(joinerStr)
         ctxCopy.plugin.renameValue = newRenameValue
         if (!ctxCopy.plugin.graph) {
           return
@@ -744,7 +753,7 @@ export const mainMachine =
         newRenameValueParts.forEach((val, idx) => {
           const prevStrLength = newRenameValueParts
             .slice(0, idx)
-            .reduce(joinerReducer, "").length
+            .reduce(joinerReducer, '').length
           //.join(joinerStr).length
           confirmedRenameParts[idx].lexerStartEnd = {
             start: prevStrLength,
@@ -781,12 +790,12 @@ export const mainMachine =
           context.host.selectionFocusedElement &&
           context.plugin.renameValue
         ) {
-          const { notation } = context.plugin.ontologySearch;
-          const delimiter = NOTATIONS_MAIN_DICT[notation].mainDelimiter;
-          let newName = context.plugin.renameValue;
+          const { notation } = context.plugin.ontologySearch
+          const delimiter = NOTATIONS_MAIN_DICT[notation].mainDelimiter
+          let newName = context.plugin.renameValue
           // use case: cleans up delimiters at the end and start
-          newName = newName.replace(new RegExp(`^(\\s*${delimiter}\\s*)*`), "");
-          newName = newName.replace(new RegExp(`(\\s*${delimiter}\\s*)*$`), "");
+          newName = newName.replace(new RegExp(`^(\\s*${delimiter}\\s*)*`), '')
+          newName = newName.replace(new RegExp(`(\\s*${delimiter}\\s*)*$`), '')
           const focusedElement = context.host.selectionFocusedElement
           //change in plugin-statemachine
           const ctxCopy = { ...context }
@@ -859,23 +868,23 @@ export const mainMachine =
         )
       },
       isComponentNotInVariantGuard: (context, event) => {
-        return (
-          !(context.host.selectionFocusedElement?.elementFigmaContext?.isComponentInVariant ?? false)
+        return !(
+          context.host.selectionFocusedElement?.elementFigmaContext
+            ?.isComponentInVariant ?? false
         )
       },
       isComponentSetOrInstanceOfVariant: (context, event) => {
-        const figmaContext = context.host.selectionFocusedElement?.elementFigmaContext;
+        const figmaContext =
+          context.host.selectionFocusedElement?.elementFigmaContext
         if (!figmaContext) {
-          return false;
+          return false
         }
-        return (
-          figmaContext.isAComponentSet || figmaContext.isInstanceOfAVariant
-        )
+        return figmaContext.isAComponentSet || figmaContext.isInstanceOfAVariant
       },
     },
     services: {
       checkForFigmaDocMessages: (context, event) => send => {
-        const pfn = (resolve, reject) => { }
+        const pfn = (resolve, reject) => {}
         const result = new Promise(pfn)
         /** that's "onmessage" on the figma api: */
         onmessage = event => {
@@ -912,7 +921,12 @@ export const mainMachine =
                 userSelection: plMsg.selection,
                 focusedElement: plMsg.selection[0],
               } as HostAppSelectionEvent)
-              evalAndSendNotationChange(send, plMsg.selection[0], undefined, context)
+              evalAndSendNotationChange(
+                send,
+                plMsg.selection[0],
+                undefined,
+                context
+              )
               break
             case HostEventTypes.fetchSuccessful:
               if (plMsg.result) {

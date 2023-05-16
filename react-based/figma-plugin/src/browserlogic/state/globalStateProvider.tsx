@@ -11,10 +11,10 @@ export const GlobalStateProvider = props => {
   const mainService = useInterpret(mainMachine)
   mainService.onTransition(state => {
     /*console.log(state.toStrings())
-    //console.log(JSON.stringify(state.transitions))*/
+    //console.log(JSON.stringify(state.transitions))
     console.log(
       JSON.stringify(state.context.plugin.ontologySearch.confirmedRenameParts)
-    )
+    )*/
   })
   return (
     <GlobalStateContext.Provider value={{ mainService }}>

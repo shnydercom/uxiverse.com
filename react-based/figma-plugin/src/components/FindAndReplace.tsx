@@ -44,7 +44,8 @@ const findFocusPosition = (rpss: RenamePartSemantic[]): [number, number] => {
   }
   return [
     rpsStart.relativeCursorPos + rpsStart.lexerStartEnd.start,
-    rpsEnd.relativeCursorPos + rpsEnd.lexerStartEnd.start]
+    rpsEnd.relativeCursorPos + rpsEnd.lexerStartEnd.start,
+  ]
 }
 
 const mainMachineSelector = (state: MainMachineSelectorArg) => {
@@ -133,11 +134,9 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
         )
       )
       .otherwise(sel => {
-        //console.log('otherwise: ' + sel.eventType)
         return [-1, -1]
       })
   } else {
-    //console.log('else')
     replaceInputRefocusPosition = [-1, -1]
   }
   return {
@@ -265,7 +264,7 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => { }
+  const onSearchChange = () => {}
 
   const onNotationChange = () => {
     send({
@@ -391,7 +390,7 @@ export const FindAndReplace = () => {
       />
       <Icon
         name="alert"
-        isDisabled={!state.can({ type: "CHANGE_NOTATION" })}
+        isDisabled={!state.can({ type: 'CHANGE_NOTATION' })}
         iconComponent={match(notation)
           .with(AvailableNotations.SpacedDashes, () => (
             <NotationSwitchDashesIcon />

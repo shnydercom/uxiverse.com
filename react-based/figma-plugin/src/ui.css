@@ -49,19 +49,19 @@ body {
   grid-row-gap: 0px;
 }
 
-.find-and-replace> :nth-child(1) {
+.find-and-replace > :nth-child(1) {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.find-and-replace> :nth-child(2) {
+.find-and-replace > :nth-child(2) {
   grid-area: 1 / 2 / 2 / 3;
 }
 
-.find-and-replace> :nth-child(3) {
+.find-and-replace > :nth-child(3) {
   grid-area: 1 / 3 / 2 / 4;
 }
 
-.find-and-replace> :nth-child(4) {
+.find-and-replace > :nth-child(4) {
   grid-area: 2 / 2 / 3 / 3;
 
   height: 12px;
@@ -250,7 +250,7 @@ body {
   background-color: var(--color-bg-hover, #e5e5e5);
 }
 
-.auto-complete #input-comp-name:hover+.select-chevron {
+.auto-complete #input-comp-name:hover + .select-chevron {
   display: flex;
   border-left: 1px solid rgb(245, 245, 245);
 
@@ -267,7 +267,7 @@ body {
 }
 
 .auto-complete .select-chevron:active,
-.auto-complete #input-comp-name:focus+.select-chevron {
+.auto-complete #input-comp-name:focus + .select-chevron {
   border-color: var(--blue);
   background-color: var(--blue);
   fill: white;
@@ -294,7 +294,7 @@ button[disabled]:focus {
   box-shadow: rgb(230 230 230) 0px 1px 0px 0px;
 }
 
-.empty-ontology>p {
+.empty-ontology > p {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -376,7 +376,7 @@ button[disabled]:focus {
 .tree-view .tree-entry svg {
   height: 16px;
   width: 16px;
-  color: rgba(0, 0, 0, 0.8)
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .list-entry button span:first-child {
@@ -387,7 +387,7 @@ button[disabled]:focus {
   padding-right: 4px;
 }
 
-.categorized-edges-view>.category>.edges>.edge .full-value,
+.categorized-edges-view > .category > .edges > .edge .full-value,
 .tree-view .tree-entry .full-value {
   padding: 0 4px;
   text-align: start;
@@ -395,7 +395,7 @@ button[disabled]:focus {
 }
 
 .list-entry button,
-.categorized-edges-view>.category>.edges>.edge button,
+.categorized-edges-view > .category > .edges > .edge button,
 .tree-view .tree-entry button {
   background-color: white;
   min-height: 16px;
@@ -409,25 +409,41 @@ button[disabled]:focus {
 }
 
 .list-entry button:hover,
-.categorized-edges-view>.category>.edges>.edge button:hover,
+.categorized-edges-view > .category > .edges > .edge button:hover,
 .tree-view .tree-entry button:hover {
   background-color: rgba(24, 145, 251, 0.3);
 }
 
-.list-entry button:hover>.button-icon,
-.categorized-edges-view>.category>.edges>.edge>button:hover>.button-icon,
-.tree-view .tree-entry button:hover>.button-icon,
+.list-entry button:hover > .button-icon,
+.categorized-edges-view
+  > .category
+  > .edges
+  > .edge
+  > button:hover
+  > .button-icon,
+.tree-view .tree-entry button:hover > .button-icon,
 .button-icon:hover {
   opacity: 1;
 }
 
-
-.list-entry button:hover~button .extra-icon,
-.categorized-edges-view>.category>.edges>.edge>button:hover~button .extra-icon,
-.tree-view .tree-entry button:hover~button .extra-icon,
-.list-entry button:hover~button .copy-icon,
-.categorized-edges-view>.category>.edges>.edge>button:hover~button .copy-icon,
-.tree-view .tree-entry button:hover~button .copy-icon {
+.list-entry button:hover ~ button .extra-icon,
+.categorized-edges-view
+  > .category
+  > .edges
+  > .edge
+  > button:hover
+  ~ button
+  .extra-icon,
+.tree-view .tree-entry button:hover ~ button .extra-icon,
+.list-entry button:hover ~ button .copy-icon,
+.categorized-edges-view
+  > .category
+  > .edges
+  > .edge
+  > button:hover
+  ~ button
+  .copy-icon,
+.tree-view .tree-entry button:hover ~ button .copy-icon {
   opacity: 0.3;
 }
 
@@ -435,16 +451,16 @@ button[disabled]:focus {
   opacity: 0;
 }
 
-
 .tree-view .tree-entry.highlight {
   text-decoration: underline;
 }
 
 .tree-view.topmost {
   padding-right: 8px;
+  padding-bottom: 8px;
 }
 
-.tree-view.topmost>.tree-entry {
+.tree-view.topmost > .tree-entry {
   font-style: italic;
 }
 
@@ -453,7 +469,7 @@ button[disabled]:focus {
   flex-direction: row;
   font-size: 11px;
   line-height: 16px;
-  padding: 0 8px 8px 0;
+  padding: 0; /* 8px 8px 0;*/
   /*overflow-y: hidden;*/
 }
 
@@ -461,20 +477,21 @@ button[disabled]:focus {
   display: flex;
   flex-direction: column;
   text-align: start;
+  padding-bottom: 8px;
 }
 
-.categorized-edges-view>.category {
+.categorized-edges-view > .category {
   display: flex;
   flex-direction: column;
 }
 
-.categorized-edges-view>.category>.cat-label {
+.categorized-edges-view > .category > .cat-label {
   opacity: 0.6;
   font-size: 9px;
   margin: 0 0 0 12px;
 }
 
-.categorized-edges-view>.category>.edges {
+.categorized-edges-view > .category > .edges {
   padding: 0;
   margin: 0;
   display: flex;
@@ -482,7 +499,7 @@ button[disabled]:focus {
   align-items: flex-start;
 }
 
-.categorized-edges-view>.category>.edges>.edge {
+.categorized-edges-view > .category > .edges > .edge {
   list-style-type: none;
   display: flex;
   flex-direction: row-reverse;

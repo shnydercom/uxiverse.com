@@ -12,7 +12,7 @@ import { getInitialRenamePartCopy } from '../browserlogic/state/initialValues'
 import { lexLine } from '../browserlogic/naming-recommendations/lexLine'
 import { ReactEventHandler } from 'react'
 
-const secondaryDelimiter = "=";
+const secondaryDelimiter = '='
 
 export const onReplaceChangeFactory = (
   notation: AvailableNotations,
@@ -21,8 +21,7 @@ export const onReplaceChangeFactory = (
   /** takes the "state" from xstate, retrievable in react through useActor */
   state: MainMachineSelectorArg
 ) => (value: string, event: React.ChangeEvent<HTMLInputElement>) => {
-  event.preventDefault();
-  console.log("onreplace")
+  event.preventDefault()
   let { selectionStart } = event.currentTarget
   if (
     selectionStart === null ||
@@ -32,13 +31,13 @@ export const onReplaceChangeFactory = (
     return
   }
   const isHandlingSecondaryDelimiter =
-    notation === AvailableNotations.SpacedCommaEquals
-    && event.nativeEvent.type === 'input'
-    && (event.nativeEvent as InputEvent).data === secondaryDelimiter;
+    notation === AvailableNotations.SpacedCommaEquals &&
+    event.nativeEvent.type === 'input' &&
+    (event.nativeEvent as InputEvent).data === secondaryDelimiter
   if (
     event.nativeEvent.type === 'input' &&
     (event.nativeEvent as InputEvent).data ===
-    NOTATIONS_MAIN_DICT[notation].mainDelimiter
+      NOTATIONS_MAIN_DICT[notation].mainDelimiter
   ) {
     // confirm the topmost phrase in autocomplete-suggestions when pressing the notation's main delimiter
     const valueFront = value.substring(0, selectionStart - 1).trim()
@@ -75,9 +74,10 @@ export const onReplaceChangeFactory = (
   }
   const trimmedValueFront = value.slice(0, selectionStart).trim()
   const trimmedValueRear = value.slice(selectionStart).trim()
-  const isDelimitedAtFront = trimmedValueFront.endsWith(
-    NOTATIONS_MAIN_DICT[notation].mainDelimiter
-  ) || (isHandlingSecondaryDelimiter && trimmedValueFront.endsWith(secondaryDelimiter))
+  const isDelimitedAtFront =
+    trimmedValueFront.endsWith(NOTATIONS_MAIN_DICT[notation].mainDelimiter) ||
+    (isHandlingSecondaryDelimiter &&
+      trimmedValueFront.endsWith(secondaryDelimiter))
   const isDelimitedAtRear = trimmedValueRear.startsWith(
     NOTATIONS_MAIN_DICT[notation].mainDelimiter
   )
@@ -129,7 +129,7 @@ export const onReplaceChangeFactory = (
       )
       .otherwise(() => uxiverseRootIRI + 'Button')
     const ontologySearchValue: string = isHandlingSecondaryDelimiter
-      ? ""
+      ? ''
       : determineOntologySearchValueForReplace(confirmedRenameParts)
     if (!value) {
       const initialConfirmedRenamePart = getInitialRenamePartCopy()
@@ -202,7 +202,7 @@ export const onSelectionChangeFactory = (
   send: (eventObj: AllMainMachineStateEvents) => void,
   state: MainMachineSelectorArg
 ): ReactEventHandler<HTMLInputElement> => event => {
-  event.preventDefault();
+  event.preventDefault()
   const isValidEvent = match(event)
     .with({ nativeEvent: { type: 'selectionchange' } }, sel => true)
     .with({ nativeEvent: { type: 'mouseup' } }, sel => true)
@@ -242,7 +242,7 @@ export const onSelectionChangeFactory = (
       'SELECT_PHRASE',
     ].includes(state.transitions[0].eventType) &&
     confirmedRenameParts[confirmedRenameParts.length - 1].relativeCursorPos ===
-    -1 &&
+      -1 &&
     selectionStartValidated === value.length
   ) {
     const cursorPosRenamePartIdx = confirmedRenameParts.findIndex(
@@ -262,6 +262,9 @@ export const onSelectionChangeFactory = (
       val.relativeCursorPos = selectionStartValidated - start
       if (!isTextRangeSelected || selectionDirection === 'backward') {
         exploredIRI = val.main.iri ?? exploredIRI
+        if (start !== 0 && val.relativeCursorPos === 0) {
+          return
+        }
         ontologySearchValue = determineOntologySearchValueForSelection(
           value,
           start,
@@ -280,9 +283,11 @@ export const onSelectionChangeFactory = (
       val.relativeCursorPos = -1
       return
     }
-    if (selectionStartValidated < start
-      && selectionEndValidated > start
-      && selectionEndValidated <= end) {
+    if (
+      selectionStartValidated < start &&
+      selectionEndValidated > start &&
+      selectionEndValidated <= end
+    ) {
       //end of a selection
       val.relativeCursorPos = end - selectionEndValidated
       if (selectionDirection !== 'backward') {
