@@ -42,6 +42,7 @@ const initialContext: MainMachineXSCtx = {
     },
     graph: undefined,
     renameValue: '',
+    previewValue: '',
     tooltip: i18n.tooltipDefault,
   },
 }

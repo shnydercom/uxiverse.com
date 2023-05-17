@@ -40,11 +40,16 @@ import {
   PluginEmptySearchPhrasesEvent,
   PluginExplorationEvent,
   PluginInputTypingEvent,
+  PluginNotationTogglePreviewEvent,
   PluginSelectPhraseEvent,
 } from './stateEvents'
 import { match } from 'ts-pattern'
 import { isIRIaProperty } from '../naming-recommendations/exploration'
-import { evalAndSendNotationChange } from './generalSenders'
+import { evalAndSendNotationChange, evalPluginConfirm } from './generalSenders'
+import {
+  isComponentNotInVariantGuard,
+  isComponentSetOrInstanceOfVariant,
+} from './generalGuards'
 
 const i18n = getI18n()
 
@@ -118,6 +123,7 @@ export interface PluginXSCtx {
    */
   tooltip: string
   renameValue: string | undefined
+  previewValue: string | undefined
   hostAppSearch: HostAppElementSearchXSCtx
   ontologySearch: OntologySearchXSCtx
   graph: RtLdGraph | undefined
@@ -131,7 +137,7 @@ export interface MainMachineXSCtx {
 export const mainMachine =
   /** @xstate-layout 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-WXH9Fhf2OAw6e-99hfQdEkOkd1sZFOD0BkRYfMAR7AFHmPceFUKNwBEOvDem+oFj015E7A+7sD0YqFEsvjhxDQhBII5yMKBCrC6Mkcxyz7jLDkNc1eFWkc75HsA0ee8t4pbc9T3xRcJkeKGWAYA+-KBkKzVmShh9QlHx1o7bGc88hKZkQ5Svi8L53Mv6OVfdwJnL0J7ZtEPLfcPHfPfWPcNI-d2ZQdACACAD4M-C-K-C3ToE1G3CQKXPNa1AtO1F-HlNjJke0akVCdCa4R6dCKsMCGpGpbYS4F0RLVkDfEjWvKAxvXfZvOAtpBApAlAsANA1AS-HgJNFNZMCgdNbAnNW3fAm1Igw7Eg3mMglkJfKg7DZ0WggBLINwBg7YByMsLITCR7fLZHSA+vaA3gzteAxBRA5A1A8-UQq-TuNQXBMQVQG-O-B-PgEfZ+QnaxVQsydQygpgmgkafYRKGKUbMSNON0PFXLMAwDTfTgqw7gmAg-LnMAXnEQy-VmJgaJGUNwjwrw2-e-e+Pwp-AIlDFQ-JDiRxXifmL9RKEVAIBeWkWpGkRIKkJIBaBmPIrIoJNvCIIicgZwy-WAHgTuBMcxDNdgKcRDAQVPG+O+TPGEGoozII+wbYKOPZQ4OaLFNYSI+wM0J1LiJISpGsLiDIfo+8QYolEYsYsgCYuAHgCEFEMQMER-Z-ZQonewJkPYzwOkeWJkY4qsLOAsVOIsIpTwETZnNae414uSRoIgD4CAMYwYqY9mJQTQLRR+ciH4zY1+f42YQEhsYEw4sEnQ4vRsXcVOSgsVRwPwO47gB468VE9EzE142AKod2Jw9AngHE4xW3Ak74qo34wIvJBAZwFwUsBIMVKyVCLiKscsJdBIc5C4dYZ0Vk0gdk1aTkyAbk9A3k0wRBAUlwngKEO-CQIkwzEk7YmUkneU64QaCncsOfUaF0AWDUkIN0TIRKW43LAY5Ejk9ANEo0pEk0+gUMKAKAd2QYlREQAQMQdmSQO07PZ0s410pUj0m0YWBCU4Y4HiJYD3XU9AfUyoQ0jEqMlw3kiAWM+MxBRMmQTUMLZMTMuU7MxU90lUr0syGHIs1hWOX9L0EM9AlE8Mrk2syYxEtk14q0m07TEomQTw1uW0iU4k2FECPMGtKCZYTkB6TIfMjXFkOk0yQ8HYf1YMmcoY7Aas40usucvUhc4UzQAHB+EKdgZJZYok2XXcqOGWCsZ0FYesE8vmeIc8xCHIRHG8+cicsMiMms+Cp88cy0lczwjc-w-8pKeLGWN0VkVkOtfMsSBeatQPBIAPRwcsysugB8283ktCsQ1mRUTULC6o2XEsTiJFPmLiddQSL0iOFkIcisIII8Gi0Mg0qcyMlC2cpiq-N823FENw+-J-cU7C4g0kkkOU0bHIGsdwV9I0Qi4SzU44e6B7BEv6Z2VaBmWSZmWqZQKENQKQMxOY9gAQTUP8CQAQBMP2e07cticSQWN0U2Zo8WABSWZk80bwT6TIfILCP4BgeAUYAUKUuFAAWjmBtHSpnnsw8GxmuJWFHgWgIFaHICDDSpAiyqJjrHtC9W1LrHaNMIRNKu4HKFWgYGYCjBaDasqoXFSBSlWF6kggCHaNzDSBKtKHKuvGqDqAaCaB6rKD6q6jqTiCCBWH0qZBdEskGogt-mpFGppHGsdlkj7GWpsUJn2D5hw2OCSEcAyD5gbAVlyysp7G3UlGWnOpmAGqJnMmXGyD8B8COtpFuBeppjes8gUg2n+i+sQFSExi8A0OwzdAek9KurBMWDWESjmkOJnhOs2hVmhrVnsthoOEnijgggGjXB4iSBsnmGthrCZByjmmatcnBrc1vDdnNLj0+tqNJLEpNDxi2HOH5kPF4jpqXWZKmhngcl4nYNoFJuqv2EPH0MYMYOpBJEznlpDHMPrkbkvwgFJp+t-3zHmCSArCn2FvOG1p1z3T105zAFJqFgdCXzJgvL5htBnnzAYMEyODzDqXhNAN1ogPm2PSkUwBkTkWW0VuaPi2WG5FKXNkG0QApxZEMOcEuEPG5FBrMNZwsNDvI1sP4J7VphjXpUx2ZVJujhcCWFdsSndpOIQG5AWGlhniZrQi5BtpRzDsPWW2o1Wxg15q2OlNYRZHQiOHtmMNiAqWuBZH4yOByGFosqDrzu127sLpsoeDwhhEeFQEQUgEVtZBrRMlSEekmkupzDEjLQSlMxxlHI7GSNm1tpAx7u80qz8yUWx3dlJrhwRr6ibGLHlhnlSwXiSnNspBSBlhAIfuDpr111fsqFKwBXK3fuq02wa0Nr5sdJMOPumiyGdHPtSwQh4vMgenWGvNzqPyfvXrAwoz7tPXWxqzqwwcPpJDcDEg+gnsyG91Gmw2MiRUapiq8Ggf-SobZwLtoevAx2+0C0QR-q4r8BgkuGODMgSEuyqSLKyk2GdHvtEYJXEfgY3uyN5350F2F3wFF3kdZGGupA9V8DTgEquqXglTVzqR6K7ssK7x4P3wqqwelJivtGuI1LMjLDSBSkyEWB9tSBpArEQg8bSK8cyMeLIHb23wyObyrvpqCf3FiBqXn3zC-gAOWDQmAPiaeTSe71gKLvVSgBP1wEGJ-tzCdWyGnmnh9TWHyajiXwbWKbXxEZZzEfzvKa4MqbvOSIEMcOENePkZVpXBiDOIKs6cKZ6aAPXySNgdSOGfSNGbkgN0GIKMaAjuMwCuOwxgmgYPOw8EpDmiEj40YJ2HcGLOXpgdXpDq2cSZsINLYCIAab8bhTEph06MYL-i5HnxNC9TLB4mxiXF0ZwHkt8eHv+YvtmDmgXmnwuFQiLDWAkoQs6SePvBeJNKNscfsCPCjjAf2OuBlTgpfNxarOkuQtpbrNJspCrEpBcHRdsfWDcZxZcMnKQsfNnLNI9imfQPkbqpMnljARJA2BIoX19I2DMpXl5cv35enNkrgGDRGKNtejqXd0-zQkuFVP5k4lThjnWHiJzoRPhcQvVaZdnIbNQDjITOmb+YNmxhPNJAVeHPWFhefIrMkvpYFYYv9d+cRZ3N1b6iBq1KNcEsjiMicSWHMnmHityCAA */
   createMachine<MainMachineXSCtx, AllMainMachineStateEvents>({
-    /** @xstate-layout N4IgpgJg5mDOIC5QFsCGBLAdgOgPaYBdcAbXKAT2zGQAcDyBiACQHkA1AUQCUB9AEQ4AxAJIA5YQBVhLUTw6iJ3ANoAGALqJQNXLHQF0+TSAAeiAIwBOAGzZLF+xbMAWAOxmArJ-cAaEOUTuThbYnioq7mZWFi5O7hYAvvG+aFh4hCRklLA0YADG6ABm6LnM7Nz8QmKS0rIcABqSqhpIINq6+oYtpggATGZm2G49rpZWKh4q1r7+CLEAzNg9YSpzFuFWri7DickYOMRYANaQfKgEqADK5wRg2ACumAeYxxAMAMJcHACCijwAMmIANIcPj8H5fJpGNp6AyYIzdOZmFwhFzuFQ9DY9HoADjmUWm5gsgVsuKskTMiLmcxcCSSIBS+yOJzOl2utweTxeDAAqgAFPg-Dg8bmiAGiYGggUSCHqKE6GGdUDdLbYZZq9XjAkIMzY2KLNGWFZmMLRJw7el7bCc5nnK5nW7W16fACyZX+QJBYOlkJa0I6cK6iERyPcqPRmJxeIsWsNCyspPRsTiVg25oZVqZEFOtrZGeekB5-MF7vFnqlMuaWnl-vhAT1ZJ67iWSP68asMbWA3jeMTnmsqbp6aIJH0NGwEDABVQd2IBFKnF43OEcj+HGdcgUyllvursNr2ustgc9mcbi8Pj8iGGyLmaPG1mxuLcsTTluHs-QY+yeUKxXn5SXFc1zkBoJB9Kt2j3QNen6QYzGvUZxjRCwnBjCJVWWSIYipCJsVfVIAAsdAIC4wGIPJ-SoWh6FKC4JB4MRFC4L43ikGQeAuDhV1YnhnW5P4pHA1pd0VExECcSZbCsRt+ncR8rECbEXC1YY8WwaJ+kRSZYl1fCcCI2ASLIijYWwZAZ30Wj6M47i2NkEUvjYL5hD+L4ACEOCEv0oKVcTLCkmSPHkxTlMvXo5gk7BpNkrZqVicI9OwAyjPI3JKPMj8GAkLhhAAcVy8psq+C4mC8kSA182Z-MiQK5OxBSnCUlSejWWw+gxNxsT7KxEuS0jUvSiz0CshjN2Y1iag4riOB4i4xFy1cysg0TugsHotSpJZ1LkqI5gxCxsW03riP6kz8DMobsAAJ1QAB3EbGO4Fi7Km2zeP4wTtwghUKrEhAXCidS4tRRsyRUbEVMRYIKVvW96qRW9jsM060tMjL9Guu6GBsmb6MEFg3m5C4lp+-d+nCODVOxNbbwbSHXGwOGXDxKwqQU3EkZSs6cHR9BMfu1g6NGpjnsmnHZvmxavuE5bfu6cn3Eppw5mpnpafglSnGVwZwbcFQghUGlnE5lHBo-bBYDuAAjUi50F+jHvGl7xfoviBOEEma2g+CFNsZZAgfaIXFCmZG0i8J6t1CKaUbE3jNR87eYt63bZGgQXc9ny-opVq1ViLFQmjMKC4GMIlOk4OFNjwdLT6+OzYxy2bbAOcXZ4fHCeJ6XvJW8xUQWcYlK1vponB1Di6cYZGafHEw+p5W44GtHLqb1P7eFp6JvYtu5tEBbPO78qybB7AlINeq8WVjXi727FVSpVFlaDslF+5i7zdXluGGdL5RG5L4-h-AAJo8AkCwfKq4eDrxYLyOyXdKwy1Jt7eMN4LBxWxPBSeOoQ5XjVl2J8h1AgqArj1GuhETr11MroTAUByJcCxuvF2k0HJORcu5A+CCe5yyDNTAKEQgr1RCipLqyIJKCOxEsNEcRX4JxwNQ2hYB6ECxYELR2ott7TQlnvKWnCj7QRTMiamDgoZs3WmFPazNsBOBTCeax4QaRzBkZReRdCGEqIdmNdRsg25u0+ro2WZN0QbSxE4KKutLBOB9gDHoiVMC4GuFQmgqBcjMlgAROA7wmC-wKjwUQLBpR2Uzr3WYhtT6NiNDqFWRIcEIFWC1VUHhlYYKsFsdEsT4lnESck1J6TYAMHxlwN4QoLi8hYp6N4LBnQ-zkAARX-n8eBcoAnQQkoY8piJKnU1DBtVEd84hdQUp4LE6IXDtISedbI3SIAXGIKgNJGS3hZL3kKPJBSahFO4SUtZaINm4i2TUlWLg9keDmGXbsMMzmdIuUklJ1zbn3L6Y87JLz8k-HeWYfxSDKrwRWFFMMGDJ54jiHMDaSlggRS6saUMGDHFkJwHE85ciYWQBuXc3p-SWCDOGaMoZoIJlTK+LM+ZiydzLOxUsOM+LnBqwUmgjaa1gi6nqq4JSLhB6nLpdgBlUKmVXLeLgZAaAOAAEc7ioGIIip5OTXlopkB8smEq8VogJTK4lG1WaGMatJcIGIeiokSgUFuuQCIsHSKQCgdobjYCwDCc1I1BAcAkI8ji3I3hDIuBcQQ-F7XQRVqEmqQQR4tNBTUo2VjljdmpAHDVuxUg0AIjdWAii8gGuQGATAEAdWwGjZgWNxAODUUYCVFgAB1UBnwOFLKxX9PoAxVj2CVRJYhoLx4zAOjYJdxC1ha0mAOWtOB62NubbkVt7bO3+m7TG-Q5qB10EYEi55U0viDKYDwXkTBmKcRFd9L2lVZ2MwcIusIrN9YxjJHfawfqMSeAkU2MwiVD13OPaejtXbsAECumAMAXwO0cGgHANg6AwD3QfTkziz7k3vs-Rwb9iDf1-RpMEJYFauo4mVjUyIqxy3on1qqrq9UEMNqQ1wFthqz1oYw1hnDEA8MwFgIR4j7wZAiC4OuKjxVJ2iunfLeCCwo5qvqlEDBRcZgUh1IsVExpJ6wcvoJo9ImT1idQxe9DmHsO4fw-Joj901ywJAeRl9b6P0aZzdiyYd9JgLtVRSVwq7zBYgGGtNEWxhjWBXXZ4Tom23OdhN2yT7mZOeYUyRq1Qp6i8j+Jy21ohQvZys1YuK7gVYdTQXF7U8FFahjRLtfWYMa0WjrUJptDmUPnty65qTHm5PFexpo+ivmJAgPU5xWrOmwjqWwVpdEa1HwxkNorfb4R3DSRpmtDLw2sviZc-l6TsmCPedm29Zbmmf1Z26PDKK5TGn1QBntGMxpkQTGIeMRsUc8KasQxdxz2Wxv4G7dOIg+raDkRuDNiZogVNqeCytw+YqGP2EWGqeMTZ9MxkdXeZdhtwas3cOd5DTnYeYHh3cRHBqaAo7AGj0rT7AvPdo1w-cjUVCM2WKliKVJohoUaoscuAMtlJn6+mSH9OYdoYR7gJH7OW6c4ewt-z3xefY5e3Rt7iBGOE5YyT9jZOCddRNBEFYAM0F05GwztXLONds45zN7KeUCq8CKiVVbZuCfMeA6x0nYUc42GY-BNwLN+4u8uzluH2B1ea+9w90jZW6gVaq4U3H2mQ9MaJxH63UfC0hANHESIRIaVJ+h1d8b6evfa5m23PXQXqPB-+qH0vVvqRoUfOpMIlgcXDCUvBiHQ2VdN9Ty35HbeHtt2ez3-hIQOstRki1FCbXnDoTQQDLW9Uw4oScaZagd6HqeK3t4ubHFJbG4F7mgnNV+F1Qak1YuzMbDswUszNVNVQIRIOkOJCceAFoBkKdejboAAWmGC1HgIWGPBQOPAE01XwCIHDRmFe2KQQPMV9jVTCCxFZgl36ESkwIyAoCojvWgNN3+jMRmEah6EJyfH-zkgpQoLDUyAthyHyCKFyDoOKViGCGOwnzVSRHBkNi1EalCQM2pAOkNgkSxESkdGzFZHtCEM+Sng1F0OcBjFRGRDDBlUcENgUlUMzHUMjXZEeEzC0LJlvBJBiHsEmCqUsw7GsTCXREIWwQBgsPzCzBZGsLzBeHsOgn2Xvl2TijxAlQ7FDBJDxHJEpAUMSnfFHDCL-Ta1ZhCHVD2nDGO2O1SNwBHE-HHEnGnFnAyIY0YPMEOgwlxGsRcIAKBSKJKK-D4N-EEK0xgPEmpFVGkibD6Ca10wvFMwkRyNxFDCCEaJaRiU1TriXlEmf0yJUhNCilJBakOhaUmDmP3SSgoUWJwEv3oCqOVBqN6BakVmiiRBpH1lDCnz2IWLfl5lOLNz6CBhiBBmO2NAhmLkmEB1JFBR9miFp3mIOOeMuhululeP+gBkGHYxByJGS3OOGC2kairVnRjmIXP0ThXhThbhhNrxvDDCpFBRTGcHbGLibEVmZmpHRH6CWBxBxLkSwAUSURhLGDvgcS2HZgKMl3MVvnUm2PCApDiAiEhXo2WJnTa1vDREZi9RaWBIXk1W1WcWZUCIRRhK2FJSBUZgambGqS2FBL2NVK6VhVZU1O6PoOpmFwwUbAOjQUjkRFJTWhCAOk+MSIcAlLNMgCRyNVNXNQgNwM+UiHrHKXCGXWpV+JmDzSY3XS3RpE8EV0tEDQIGDVDSwMyGsJhPwJmAMRH2A2VjzQklIT2NTPTO4IjVzCvXQHNS1PONREVk3Q9TQWJQeIGxwHLJDUrPIGCNIFQAnAgA5KbFPirWcCOxpVLXjG42ISTMOhBQb1Gy7RzLa2pggwrTr3njNGn3s2T0Z0vV7WvX7UHXrLA0cI0kNg0jWFpMXLd2uzc1uyK280JI6xJHgj9X40nhTBjEiWCAGIpFZkaUnm3L2OV1d1VxcwXy11R2fKtOKVwi8OA2XSCCpDAyCCimpAMx20SNBMSCAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QFsCGBLAdgOgPaYBdcAbXKAT2zGQAcDyBiACQHkA1AUQCUB9AEQ4AxAJIA5YQBVhLUTw6iJ3ANoAGALqJQNXLHQF0+TSAAeiAIwBOAGzZLF+xbMAWAOxmArJ-cAaEOUTuThbYnioq7mZWFi5O7hYAvvG+aFh4hCRklLA0YADG6ABm6LnM7Nz8QmKS0rIcABqSqhpIINq6+oYtpggATGZm2G49rpZWKh4q1r7+CLEAzNg9YSpzFuFWri7DickYOMRYANaQfKgEqADK5wRg2ACumAeYxxAMAMJcHACCijwAMmIANIcPj8H5fJpGNp6AyYIzdOZmFwhFzuFQ9DY9HoADjmUWm5gsgVsuKskTMiLmcxcCSSIBS+yOJzOl2utweTxeDAAqgAFPg-Dg8bmiAGiYGggUSCHqKE6GGdUDdLbYZZq9XjAkIMzY2KLNGWFZmMLRJw7el7bCc5nnK5nW7W16fACyZX+QJBYOlkJa0I6cK6iERyPcqPRmJxeIsWsNCyspPRsTiVg25oZVqZEFOtrZGeekB5-MF7vFnqlMuaWnl-vhAT1ZJ67iWSP68asMbWA3jeMTnmsqbp6aIJH0NGwEDABVQd2IBFKnF43OEcj+HGdcgUyllvursNr2ustgc9mcbi8Pj8iGGyLmaPG1mxuLcsTTluHs-QY+yeUKxXn5SXFc1zkBoJB9Kt2j3QNen6QYzGvUZxjRCwnBjCJVWWSIYipCJsVfVIAAsdAIC4wGIPJ-SoWh6FKC4JB4MRFC4L43ikGQeAuDhV1YnhnW5P4pHA1pd0VExECcSZbCsRt+ncR8rECbEXC1YY8WwaJ+kRSZYl1fCcCI2ASLIijYSouhGFYOiGM3ZjWJqDiuI4HiLjEABxVchL9KClSDewpJkjx5MU5TL16Fw1IU7EFPClwVFiwI9OwAyjPI3JKOQGd9Fo+jOO4tjZBFL42C+YQ-i+AAhDhPJEgMfNmSx-IiQKouClS5gk7BpNkrZqVicJEuS0jUvSzL0AYCQuGEVzXPKCavguJhqsg0TuicBrIgCuSWqcJSVJ6NZbD6DE3GxPsrAG4ihpM-BsAyj9suspiWPyhy8o4tyPO3CCFVqsSEAsHotSpJZ1LkqI5gxCxsW0i7DKutLTLu-RsAAJ1QAB3B7GO4Z77Nypz6L4gThCWn79xcKJ1N61FGzJFRsTa9acNvKKkVvWGUuunAkfQVGMYYfGeMEFg3m5C5SZraD+nCODVOxAHbwbNrXGwFnwpTKlIrmDn4ZGj8+cxyz6Ox2yXsFnKPqqr7hOW37uml9xZacOZ5Z6RX4JUpxncGem3BUII4scM1B0tQbjIRm6eewWA7gAI1IucjcenG7PY83eP4wTra8lbzAxR3jTCQIH2iFwQpmRsOvCKLdXamlGx18O9eRmP47AROWCsgRzYl7y-opA61ViLFQmjUKR4GMIlOksuFIbkPCMupvEdG6O44TgXHKFkWxd73PtVRBZxiUr2+mienUPHpxhlVp8cUr+Xncb4aV-11uN6Tk3cbTreLdEdyraVhtmTKWdNsBKQNFFPEzsPbjwhtiVUVJUTO1LmSZ+XNbqr3fu3BgzoviiG5F8P4fwACaPAJAsGmquHgScWC8nyuLbONV9yRCUqrCwvVsTwWvjqcuV43ZdifNDQIKgZ7nQXvpJeL8bq6EwFAciXB+ZJ3NvZQqxVSoVUAXKW2+4XbBA2k1LaCkdp8N6KdZEEkWrYiWGiOI6CI44FkfIsAijDad2NjZb+sh04uX-p9IBOc7aIBTMieWDhEQcLxIDUKENwrYCcCmE8CTwg0m1hIpKUiMFOIUUo9xydTZ41-hnYme8gnanREDLEThOq+0sGtY60lEqYFwNcUy2RUC5GZLAAicB3hMHwTNHgogWDSnyqU-cElQmNiNDqPRoYgYA2CEhZ2XCrBbHRE0lpZw2k0A6V0npsAGDCy4G8IUFxeQsU9G8Fgzo8FyAAIqEL+IwgJzDoKTPAdMxEsz5bzJiaiBBcRToKU8FidELhNmtJkbszpEALjEFQN03pbx+n-yFMM0ZNRxnQTklMtE7VTr0xQpfGYLtETgJ2lYYGyEn7pOaVCxxMLIDwsRQcvpAz0UjJ+FiswrydFSxsRhXUp5hVeCBqdAYBKIjLDLvTHokLtnQr2XChFSLDnHNORxC5pzQTXNuV8B5TyXnaJAXVeCKxOphi4dfPEcQ5gLP2hSqKrglKxV4Qqyi7TYVvFwMgNAHAACOdxUDEEOSijlQyuVjKYfys1SChVrRiOFHENIgZUv0VwokLsoplyRIlAo7dcgERYOkUgFA7Q3GwFgGEIaHqCA4BIFFHFuRvFORcC4gh+LYrqi7apG0ghnzWXMOKWoaQDAkmEbs1Ji4QvSTQAiaNYAuLyL65AYBMAQEVZgWAVbMA1uIBwaijAFosAAOrkM+Foncsa-p9ElQ4XUupJ3DpJYgKGNgJ2iLWF7SYA5dipHnYu5duRV3rs3f6Hd1b9AhsPeZdlaKHJfBOUwHgvImDMU4sa69prb2wVWPYR9E6qX+xjGSBB1gehbBBdYpsZhEqAcRcB0DG6t07oICjMAYAvgbo4NAOAbB0BgExuGhDnEkNNrQxhjgWHvqSzqjSYISxljxibLXUxkRVjxLCEsExLhTpRXowuxjXAV1+rA6x7A7HOPcYgLxmAsABNCfeDIEQXB1ySfmle2Tfd7bwQWGp+miTM0xkRAgyj0rr40egYZoDJmQNmZYxByzHGuM8b4w5wTmM1z0LIWJ5DqH0Oee7f3SYCDJgEddRSVwr7tRYgGADNEWxhjWBfTF4zpm12JdhGxlLNm7P8cy-BwZ9ReR-BYMxaNfKcO+f9vE3q7gXbHQ4TV-ojYURonBv7Oms7-04AY0uuLzHwPdeS9ZtL9nHOY3TtliQZCPOcWKzNlQ6leFaXRADR8MY4qO2++Edw0kFYAzawdjr5mktWdS7Z9Ll3N5vXu154Bcm-qs06tMjwlKKYQxjMaZEExRHjEbLXPCc6jMg-i5147+Ad3TiID62g5Ebgw+uaIVz7nCsPZjdNxACnFhqhUziZ26mlgLDvKI4dsUoHuGB0xhLlPt3YBp7gOnNAGdgCZ6iwZeWJPs+k498S0NVbLGa+1Kk0Q0I7UWNPCmvykw7YtAB0nMuKcWcV8r1XMObu5e+Pl+HeuEA86U5O06AvqQxn2sEQlkxpXUnBtLw7suXd3Fp76lX7c1eDYmlNGavA5oLT9wHvnwe1MhcPEp+Cbg8RrIW3H0HXWqcK6T0rlP7vBsieG3UUb43uUyHz35QPoii+C5jAOkIBo4iRCJFwtJu3sD7ad2Dk7rvm9p5h9d50OWCtSd74pwvqmh+hWaupMIlhzXDCUnRknsXa9y+p43t3K-Bvp195zpH3QmohHgk2Br8F7Be2H+hDhCmL2KKSuFCejDjAAN0ywkDAGMAIDeAIlQDkTgFn0gMyyYHQAgAnEwGcxZ2EDc03081Q0+DYGEA4FPT9zPlsBinjGNFPDJHtVCmdmklVmGFDB2h2hxHALACgKExgLgIQKQPs1QJ4PQMwOwKG05UxXYl5BILIIoJfx8yvFEVYNWGPziipVWC1FPh6HARQk1najkh1G4N4PRn4PgMQOQJ3RoDQKEywCgGYGEAEGII4FIPIMoKpVVj02kko1bASRq2vnphCChlDHlmhjWWJzpGaQnHgBaAZBNVf0QAAFphgtQUiFhjxEQ3Z-stJHxEp8AiAy0ZhvN95UiYkFIfYwgdp0QIg5J5V0kCiMgKAzJ6AEilD-dokZhODecnxoo5ICV8jS1Mho4ch8gihcg2j95Yhgh-sz83UJcR0mDdQfYnwoY4prEsREpHRsxWR7RJiykb4NQjjnAYxURkQwxIgIgiQ-Ng4Z9tiWQK12RHhMx9iWFbwSQYh7BJg9FUQzAOwEkal0RhFeEKYtjMwdjHi8wXhXicUoZEEAVeookVgOxQwSQ8RyRKRqRaQZ93xRwYS6oyiZhPDRdGwhgVhKNsT7ccBcTPxxxJxpxZx8S-otgYwDcp52oog1gYo9NEoaSvxRjfwJjsNEjZhqRVRpImw+gFs-MLwZgdRdC0RcR2CUIog1l6iZ8w5pFfpAl9xCTlDJJuwooiRkJ7B7FKJqBzImTlROj+EiRUd+gy5v1QwL8NTMkHFMEPwrTuc+gqYk0mx-tjQGZx5JhcdcRrENh30Z4zTX5kY0Z0YvT-cKZBhBcCdjS4obTehAj4knxaMkQAZRFozI4sF1524EyJ8bwwwqRh0UxnB2xx5-TBgkF0RVsgTCzHF7Ccl4zhT2ixgEFUkqM5J-s4hTFgZyM1ki4KQ4gIgPU+4dToI9SEBbx0JaD7BwZHANCZylVYVTg1UEyWSYklIEFbVAjLBQwtgpc6UtlPUmUVVWU4AEz5ZnsuFGwoYOEa5ERxUAZgiT51Y7BKT0x6Ut0RjlU6d-Ug0Q1YiSiylIh6xplwgxdQigzSVdRFN30v0aRPA7d0wC0CAi0S1CjMhHiEyFyQkj8i4CNJgVhbiqTsAcK8Khjy1cwoN0AQ09yMzURHZP0qVUk7UXSaK6Li0GLyBITSBUAJwIAEy55wFp1nA-sp9TFrctNJ1MLoYPBp8aK5949ncINiKaswiyL1iCcy4Yga9ycF969mKYMj02LSN3iNJA43AuSqRTKjsLMIc+todMsyzP8SR4JKN9Nr4Uxh8GoJSKQqV0dr5qL0xNLr9E9k96cH8hMEzcJATJ0xcggqRSMghOpqQJcPt0SLyZ8bDRC+DYCLChD7zuzSiAj4JJ530wUqRxgorLRirTDzDBCrCRDTCMCsD10bKmClhAV31hFkwgc51bCzCyqOrhDWrMt7CEyvZqlhhVTYoMRVh4xtDBrvz4w-trAxrEggA */
     context: getInitialXStateContextCopy(),
 
     schema: {
@@ -350,7 +356,7 @@ export const mainMachine =
               FORCE_SPACED_COMMA_EQUALS: 'spacedCommaEquals',
             },
 
-            entry: 'assignSpacedDashesNotation',
+            entry: ['assignSpacedDashesNotation', 'changeNotationPreview'],
           },
 
           spacedSlashes: {
@@ -365,7 +371,7 @@ export const mainMachine =
 
               FORCE_SPACED_COMMA_EQUALS: 'spacedCommaEquals',
             },
-            entry: 'assignSpacedSlashesNotation',
+            entry: ['assignSpacedSlashesNotation', 'changeNotationPreview'],
           },
 
           spacedCommaEquals: {
@@ -375,7 +381,7 @@ export const mainMachine =
                 cond: 'isComponentNotInVariantGuard',
               },
             },
-            entry: 'assignCommaEqualsNotation',
+            entry: ['assignCommaEqualsNotation', 'changeNotationPreview'],
           },
         },
 
@@ -457,6 +463,7 @@ export const mainMachine =
               CONFIRM_PHRASE: {
                 target: 'treeAndEdgesView',
                 actions: 'confirmPhrase',
+                internal: false,
               },
 
               CHANGE_SEARCH_PHRASES: {
@@ -492,6 +499,31 @@ export const mainMachine =
         },
 
         initial: 'initialEmpty',
+      },
+
+      previewTextChanges: {
+        states: {
+          previewHidden: {
+            on: {
+              CONFIRM_PHRASE_PREVIEW: {
+                target: 'previewing',
+                actions: 'confirmPhrasePreview',
+              },
+              CHANGE_NOTATION_PREVIEW: {
+                target: 'previewing',
+                actions: 'changeNotationPreview',
+              },
+            },
+          },
+
+          previewing: {
+            on: {
+              HIDE_PREVIEW: 'previewHidden',
+            },
+          },
+        },
+
+        initial: 'previewHidden',
       },
     },
   }).withConfig({
@@ -662,113 +694,51 @@ export const mainMachine =
           event.confirmedRenameParts
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
-      confirmPhrase: (context, event: PluginConfirmPhraseEvent) => {
-        const { displayFullValue, iri } = event
-        const ctxCopy = { ...context }
-        const { confirmedRenameParts, notation } = ctxCopy.plugin.ontologySearch
-        const foundRenamePartIdx = confirmedRenameParts.findIndex(
-          val => val.relativeCursorPos !== -1
-        )
-        if (foundRenamePartIdx === -1) {
-          console.log(context)
-          console.error('error finding RenamePartSemantic')
-          return
-        }
+      confirmPhrase: assign((context, event: PluginConfirmPhraseEvent) => {
+        const ctxCopy = evalPluginConfirm(context, event)
+        return ctxCopy
+      }),
 
-        const foundRenamePart = confirmedRenameParts[foundRenamePartIdx]
-        const isCursorAtLastPart =
-          foundRenamePartIdx === confirmedRenameParts.length - 1
-        foundRenamePart.main = { iri, shortForm: displayFullValue }
-        const joinerStr = match(notation)
-          .with(
-            AvailableNotations.SpacedDashes,
-            () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
+      confirmPhrasePreview: (context, event: PluginConfirmPhraseEvent) => {
+        const ctxPreview = evalPluginConfirm(context, event)
+        const previewValue = ctxPreview.plugin.renameValue
+        const ctxCopy = { ...context }
+        ctxCopy.plugin.previewValue = previewValue
+        assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
+      },
+      changeNotationPreview: (
+        context,
+        event: PluginNotationTogglePreviewEvent
+      ) => {
+        const renameValue = context.plugin.renameValue ?? ''
+        const previewValue = match(context.plugin.ontologySearch.notation)
+          .with(AvailableNotations.SpacedCommaEquals, () => {
+            if (isComponentNotInVariantGuard(context)) {
+              return handleNotation(
+                renameValue,
+                AvailableNotations.SpacedDashes
+              )
+            }
+            return renameValue
+          })
+          .with(AvailableNotations.SpacedDashes, () =>
+            handleNotation(renameValue, AvailableNotations.SpacedSlashes)
           )
-          .with(
-            AvailableNotations.SpacedSlashes,
-            () => ` ${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
-          )
-          .with(
-            AvailableNotations.SpacedCommaEquals,
-            () => `${NOTATIONS_MAIN_DICT[notation].mainDelimiter} `
-          )
+          .with(AvailableNotations.SpacedSlashes, () => {
+            if (isComponentSetOrInstanceOfVariant(context)) {
+              return handleNotation(
+                renameValue,
+                AvailableNotations.SpacedDashes
+              )
+            }
+            return handleNotation(
+              renameValue,
+              AvailableNotations.SpacedCommaEquals
+            )
+          })
           .exhaustive()
-        // start handling for secondary tokens
-        const joinerTokens = determineJoinerTokens(
-          notation,
-          confirmedRenameParts,
-          context.plugin.renameValue
-        )
-        const joinerStrDynmic = (index: number) => {
-          if (joinerTokens.length <= 1) {
-            return joinerStr
-          }
-          return joinerTokens[index] ?? ''
-        }
-        const joinerReducer = (prev, cur, idx) => {
-          if (idx === 0) {
-            return prev + cur
-          }
-          return `${prev}${joinerStrDynmic(idx)}${cur}`
-        }
-        // end extra handling for secondary tokens
-        if (isCursorAtLastPart) {
-          foundRenamePart.relativeCursorPos = -1
-          const newEmptyPart = getInitialRenamePartCopy()
-          newEmptyPart.lexerStartEnd = {
-            start: foundRenamePart.lexerStartEnd.end,
-            end: foundRenamePart.lexerStartEnd.end,
-          }
-          const spliceLength = confirmedRenameParts.filter(
-            val => val.relativeCursorPos !== -1
-          ).length
-          confirmedRenameParts.splice(
-            foundRenamePartIdx + spliceLength + 1,
-            0,
-            newEmptyPart
-          )
-          newEmptyPart.relativeCursorPos = joinerStrDynmic(
-            foundRenamePartIdx
-          ).length //joinerStr.length
-        } else {
-          foundRenamePart.relativeCursorPos =
-            foundRenamePart.lexerStartEnd.end -
-            foundRenamePart.lexerStartEnd.start
-        }
-        const newRenameValueParts = confirmedRenameParts.map((val, idx) => {
-          /*if (idx === foundRenamePartIdx) {
-            return val.main.shortForm + joinerStr
-          }*/
-          return val.main.shortForm
-        })
-        const newRenameValue = newRenameValueParts.reduce(joinerReducer, '') //.join(joinerStr)
-        ctxCopy.plugin.renameValue = newRenameValue
-        if (!ctxCopy.plugin.graph) {
-          return
-        }
-        const isIriProp = isIRIaProperty(ctxCopy.plugin.graph, iri)
-        ctxCopy.plugin.ontologySearch.isPropSearch = isIriProp
-        ctxCopy.plugin.ontologySearch.exploredIRI = iri
-        // mutate to set correct token start and end values
-        newRenameValueParts.forEach((val, idx) => {
-          const prevStrLength = newRenameValueParts
-            .slice(0, idx)
-            .reduce(joinerReducer, '').length
-          //.join(joinerStr).length
-          confirmedRenameParts[idx].lexerStartEnd = {
-            start: prevStrLength,
-            end: prevStrLength + val.length + joinerStrDynmic(idx).length,
-          }
-          if (idx === 0) {
-            confirmedRenameParts[idx].lexerStartEnd.end =
-              prevStrLength + val.length
-          }
-          if (idx === foundRenamePartIdx) {
-            confirmedRenameParts[idx].relativeCursorPos =
-              confirmedRenameParts[idx].lexerStartEnd.end -
-              confirmedRenameParts[idx].lexerStartEnd.start
-          }
-        })
+        const ctxCopy = { ...context }
+        ctxCopy.plugin.previewValue = previewValue
         assign<MainMachineXSCtx, FocusSelectionEvent>(ctxCopy)
       },
 
@@ -867,20 +837,8 @@ export const mainMachine =
           val => val.id !== (event as HostAppSelectionEvent).userSelection[0].id
         )
       },
-      isComponentNotInVariantGuard: (context, event) => {
-        return !(
-          context.host.selectionFocusedElement?.elementFigmaContext
-            ?.isComponentInVariant ?? false
-        )
-      },
-      isComponentSetOrInstanceOfVariant: (context, event) => {
-        const figmaContext =
-          context.host.selectionFocusedElement?.elementFigmaContext
-        if (!figmaContext) {
-          return false
-        }
-        return figmaContext.isAComponentSet || figmaContext.isInstanceOfAVariant
-      },
+      isComponentNotInVariantGuard: isComponentNotInVariantGuard,
+      isComponentSetOrInstanceOfVariant: isComponentSetOrInstanceOfVariant,
     },
     services: {
       checkForFigmaDocMessages: (context, event) => send => {

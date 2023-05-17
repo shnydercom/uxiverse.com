@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import simplediff from 'simple-text-diff'
 import { Icon, Input, Textarea } from 'react-figma-plugin-ds'
 import { HoverableElements } from '../identifiable/HoverableElements'
 import { useActor, useSelector } from '@xstate/react'
@@ -24,7 +25,10 @@ import { PreRenameIcon } from '../assets/pre-rename-icon'
 import { NotationSwitchDashesIcon } from '../assets/notation-switch-dashes'
 import { NotationSwitchSlashesIcon } from '../assets/notation-switch-slashes'
 import { getI18n } from '../i18n'
-import { AvailableNotations } from '../browserlogic/notation-handler'
+import {
+  AvailableNotations,
+  NOTATIONS_MAIN_DICT,
+} from '../browserlogic/notation-handler'
 import { NotationSwitchCommaEqualsIcon } from '../assets/notation-switch-comma-equals'
 import {
   onOverwriteReplaceClickFactory,
@@ -56,14 +60,18 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let componentSearchValue: string | undefined
   let isNavArrowsDisabled: boolean
   let isRenameBtnDisabled: boolean
+  let isPreviewingReplaceText: boolean
   let renameValue: string | undefined
+  let previewValue: string | undefined
   let notation: AvailableNotations
   let replaceInputRefocusPosition: [number, number]
   //assigning
+  isPreviewingReplaceText = state.matches('previewTextChanges.previewing')
   hostSelection = state.context.host.userSelection
   selectionFocus = state.context.host.selectionFocusedElement
   componentSearchValue = state.context.plugin.hostAppSearch.searchValue
   renameValue = state.context.plugin.renameValue
+  previewValue = state.context.plugin.previewValue
   isNavArrowsDisabled = match(state)
     .when(
       state =>
@@ -146,7 +154,9 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
     componentSearchValue,
     isNavArrowsDisabled,
     isRenameBtnDisabled,
+    isPreviewingReplaceText,
     renameValue,
+    previewValue,
     notation,
     replaceInputRefocusPosition,
   }
@@ -160,7 +170,9 @@ export const FindAndReplace = () => {
     componentSearchValue,
     isNavArrowsDisabled,
     isRenameBtnDisabled,
+    isPreviewingReplaceText,
     renameValue,
+    previewValue,
     notation,
     replaceInputRefocusPosition,
   } = useSelector(globalServices.mainService, mainMachineSelector)
@@ -294,7 +306,6 @@ export const FindAndReplace = () => {
             HoverableElements.inputChangeReplace,
             HoverableElements.inputCompName,
             HoverableElements.btnCompTxtToReplace,
-            HoverableElements.btnToggleNotation,
             HoverableElements.btnClear,
           ].includes((id as unknown) as HoverableElements)
         },
@@ -302,6 +313,10 @@ export const FindAndReplace = () => {
           send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
         }
       )
+      .with(HoverableElements.btnToggleNotation, id => {
+        send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
+        send({ type: 'CHANGE_NOTATION_PREVIEW' })
+      })
       .with(HoverableElements.btnExecReplace, id => {
         setIsExecReplaceIconHovered(true)
         send({ type: 'HOVER_UI_ELEM_ENTER', payload: id })
@@ -316,7 +331,17 @@ export const FindAndReplace = () => {
       setIsExecReplaceIconHovered(false)
     }
     send('HOVER_UI_ELEM_EXIT')
+    send({ type: 'HIDE_PREVIEW' })
   }
+
+  const previewOverlayText = isPreviewingReplaceText
+    ? simplediff.diffPatchBySeparator(
+        renameValue ?? '',
+        previewValue ?? '',
+        NOTATIONS_MAIN_DICT[notation].mainDelimiter
+      ).after
+    : renameValue ?? ''
+
   return (
     <div className="find-and-replace">
       <Icon
@@ -375,7 +400,9 @@ export const FindAndReplace = () => {
           id: HoverableElements.btnExecReplace,
         }}
       />
-      <div className="grow-wrap">
+      <div
+        className={`grow-wrap ${isPreviewingReplaceText ? 'previewing' : ''}`}
+      >
         <textarea
           className="textarea replace-name"
           rows={1}
@@ -390,7 +417,10 @@ export const FindAndReplace = () => {
           id={HoverableElements.inputChangeReplace}
           spellCheck="false"
         />
-        <div className="preview-overlay">{renameValue}</div>
+        <div
+          className="preview-overlay"
+          dangerouslySetInnerHTML={{ __html: previewOverlayText }}
+        ></div>
       </div>
       <Icon
         name="alert"

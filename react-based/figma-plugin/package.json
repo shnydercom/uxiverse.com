@@ -26,12 +26,13 @@
     "overlayscrollbars": "^2.0.0",
     "overlayscrollbars-react": "^0.5.0",
     "react-figma-plugin-ds": "git+https://github.com/shnydercom/react-figma-plugin-ds.git",
+    "simple-text-diff": "^1.7.0",
     "ts-pattern": "^4.2.2",
     "xstate": "^4.33.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.0",
     "@figma/plugin-typings": "^1.47.0",
+    "@types/jest": "^29.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^1.13.0",

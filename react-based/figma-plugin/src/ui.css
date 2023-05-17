@@ -92,6 +92,20 @@ body {
   white-space: pre-wrap;
   visibility: hidden;
 }
+.grow-wrap.previewing > .preview-overlay {
+  visibility: visible;
+  background-color: var(--white);
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
+.preview-overlay ins {
+  background-color: rgba(24, 145, 251, 0.3);
+}
+
+.grow-wrap.previewing > .textarea.replace-name {
+  opacity: 0;
+}
 .textarea.replace-name,
 .grow-wrap .preview-overlay {
   grid-area: 1 / 1 / 2 / 2;
@@ -100,11 +114,11 @@ body {
   min-height: 12px;
   font: inherit;
   font-size: 11px;
-  font-size: var(--font-size-xsmall);
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--font-letter-spacing-neg-xsmall);
   line-height: 16px;
 
+  margin: 1px 0 1px 0;
   border: 1px solid var(--black1);
   border-radius: var(--border-radius-small);
   padding: 6px var(--size-xxxsmall) 6px var(--size-xxsmall);

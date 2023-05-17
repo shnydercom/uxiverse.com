@@ -2,9 +2,7 @@ import React, { MouseEventHandler, useContext } from 'react'
 import { FunctionComponent } from 'react'
 import { ResultListEntry } from './ResultListEntry'
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider'
-import {
-  HoverDefinitionEnterEvent,
-} from '../../../browserlogic/state/stateEvents'
+import { HoverDefinitionEnterEvent } from '../../../browserlogic/state/stateEvents'
 import { onMouseEnterExitHandlerFactory } from '../hoverHandlers'
 
 export interface ResultListProps {
@@ -33,11 +31,14 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
   }
 
   const onConfirmPhraseClick = (iri: string, displayFullValue: string) => {
-    send({
-      type: 'CONFIRM_PHRASE',
-      displayFullValue,
-      iri,
-    })
+    send([
+      { type: 'HIDE_PREVIEW' },
+      {
+        type: 'CONFIRM_PHRASE',
+        displayFullValue,
+        iri,
+      },
+    ])
   }
 
   const onExploreClick = (iri: string) => {

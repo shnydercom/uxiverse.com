@@ -7,14 +7,14 @@ import { copyTextToClipboard } from '../../../browserlogic/copyTextToClipboard'
 import { MouseEnterExitHandlers } from '../hoverHandlers'
 
 interface ResultListEntryProps extends MouseEnterExitHandlers {
-  typedValue: string;
-  displayFullValue: string;
-  iri: string;
-  isFocused: boolean;
+  typedValue: string
+  displayFullValue: string
+  iri: string
+  isFocused: boolean
   onHoverSearchResult: MouseEventHandler<HTMLDivElement>
   onElemHoverLeave: MouseEventHandler<HTMLDivElement>
-  onConfirmPhraseClick: (iri: string, displayFullValue: string) => void;
-  onExploreClick: (iri: string) => void;
+  onConfirmPhraseClick: (iri: string, displayFullValue: string) => void
+  onExploreClick: (iri: string) => void
 }
 
 export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
@@ -29,10 +29,10 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
   onAddToInputMouseEnter,
   onCopyMouseEnter,
   onExploreMouseEnter,
-  onMouseLeave
+  onMouseLeave,
 }) => {
   const copyButtonHandler = () => {
-    copyTextToClipboard(displayFullValue);
+    copyTextToClipboard(displayFullValue)
   }
   const splitpart = displayFullValue
     .toLowerCase()
@@ -47,17 +47,35 @@ export const ResultListEntry: FunctionComponent<ResultListEntryProps> = ({
     splitpart[0].length + typedValue.length
   )
   return (
-    <div className="list-entry" data-ld={iri} onMouseEnter={onHoverSearchResult} onMouseLeave={onElemHoverLeave}>
-      <button onClick={() => onExploreClick(iri)} onMouseEnter={onExploreMouseEnter} onMouseLeave={onMouseLeave}>
+    <div
+      className="list-entry"
+      data-ld={iri}
+      onMouseEnter={onHoverSearchResult}
+      onMouseLeave={onElemHoverLeave}
+    >
+      <button
+        onClick={() => onExploreClick(iri)}
+        onMouseEnter={onExploreMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         {splitpart[0] && <span className="no-match">{startString}</span>}
         {<span className="match">{centerString}</span>}
         {splitpart[1] && <span className="no-match">{endString}</span>}
         {/*<ExploreIRI className="button-icon" />*/}
       </button>
-      <button onClick={() => onConfirmPhraseClick(iri, displayFullValue)} onMouseEnter={onAddToInputMouseEnter} onMouseLeave={onMouseLeave}>
-        <AddToReplaceValue className='button-icon extra-icon' />
+      <button
+        onClick={() => onConfirmPhraseClick(iri, displayFullValue)}
+        onMouseEnter={() => onAddToInputMouseEnter(displayFullValue, iri)}
+        onMouseLeave={onMouseLeave}
+      >
+        <AddToReplaceValue className="button-icon extra-icon" />
       </button>
-      <button className='reordered-button' onClick={copyButtonHandler} onMouseEnter={onCopyMouseEnter} onMouseLeave={onMouseLeave}>
+      <button
+        className="reordered-button"
+        onClick={copyButtonHandler}
+        onMouseEnter={onCopyMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         <CopyIcon className="button-icon copy-icon" />
       </button>
     </div>
