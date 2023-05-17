@@ -1,6 +1,6 @@
 {
   "name": "@uxiverse.com/jsonld-tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tools to handle jsonld as ontologies, metadata and data",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -23,5 +23,11 @@
   },
   "dependencies": {
     "ts-pattern": "^4.2.2"
-  }
+  },
+  "files": [
+    "**/*.js",
+    "!**/*.test.ts",
+    "!**/*.test.d.ts",
+    "!**/*.test.js"
+  ]
 }
