@@ -1,13 +1,12 @@
 {
   "name": "@uxiverse.com/jsonld-tools",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "tools to handle jsonld as ontologies, metadata and data",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/cjs/index.d.ts",
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "yarn tsc",
@@ -28,8 +27,8 @@
     "ts-pattern": "^4.2.2"
   },
   "files": [
-    "lib/*.js",
-    "lib/*.d.ts",
+    "**/*.js",
+    "**/*.d.ts",
     "!**/*.test.ts",
     "!**/*.test.d.ts",
     "!**/*.test.js"
