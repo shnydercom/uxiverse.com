@@ -11,7 +11,7 @@ import { HoverableElements } from '../identifiable/HoverableElements'
 import { useActor, useSelector } from '@xstate/react'
 import { P, match } from 'ts-pattern'
 import { CompAutocomplete } from './hostcomp-selection/comp-autocomplete'
-import { HostAppElement } from '../communicationInterfaces'
+import { HostAppElement, PluginChangeFindCompBridgeEvent, PluginEventTypes, PluginFetchBridgeEvent } from '../communicationInterfaces'
 import { MainMachineSelectorArg } from '../browserlogic/state/moreTypes'
 import { GlobalStateContext } from '../browserlogic/state/globalStateProvider'
 import {
@@ -277,7 +277,15 @@ export const FindAndReplace = () => {
 
   //input fields
 
-  const onSearchChange = () => {}
+  const onSearchChange = (value) => {
+    if (!value) {
+      value = "";
+    }
+    send({
+      type: 'CHANGE_COMP_SEARCH',
+      searchVal: value
+    })
+  }
 
   const onNotationChange = () => {
     send({
@@ -336,10 +344,10 @@ export const FindAndReplace = () => {
 
   const previewOverlayText = isPreviewingReplaceText
     ? simplediff.diffPatchBySeparator(
-        renameValue ?? '',
-        previewValue ?? '',
-        NOTATIONS_MAIN_DICT[notation].mainDelimiter
-      ).after
+      renameValue ?? '',
+      previewValue ?? '',
+      NOTATIONS_MAIN_DICT[notation].mainDelimiter
+    ).after
     : renameValue ?? ''
 
   return (

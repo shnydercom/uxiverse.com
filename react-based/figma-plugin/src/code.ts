@@ -8,6 +8,7 @@ import {
   TypeEquivalentsKeys,
 } from './communicationInterfaces'
 import {
+  isAPluginChangeFindCompBridgeEvent,
   isAPluginDeselectionBridgeEvent,
   isAPluginFetchBridgeEvent,
   isAPluginNotifyUserBridgeEvent,
@@ -121,6 +122,11 @@ if (figma.editorType === 'figma') {
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
+    if (isAPluginChangeFindCompBridgeEvent(msg)) {
+      const searchResult = figma.currentPage.findAll((node) => node.name.includes(msg.searchText));
+      figma.currentPage.selection = searchResult;
+      return;
+    }
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
       delete msg.selectedNode.elementFigmaContext
       figma.currentPage.selection = [msg.selectedNode as SceneNode]

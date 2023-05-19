@@ -6,6 +6,7 @@ import {
   PluginDeselectionBridgeEvent,
   PluginFetchBridgeEvent,
   PluginNotifyUserBridgeEvent,
+  PluginChangeFindCompBridgeEvent,
 } from '../communicationInterfaces'
 
 export function isAPluginSelectionChangedBridgeEvent(
@@ -41,4 +42,11 @@ export function isAPluginNotifyUserBridgeEvent(
 ): message is PluginNotifyUserBridgeEvent {
   if (!message) return false
   return message.type === PluginEventTypes.notifyUserOutsidePlugin
+}
+
+export function isAPluginChangeFindCompBridgeEvent(
+  message: PluginBridgeEvent
+): message is PluginChangeFindCompBridgeEvent {
+  if (!message) return false;
+  return message.type === PluginEventTypes.changeFindCompByPlugin;
 }

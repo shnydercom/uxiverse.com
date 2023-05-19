@@ -125,6 +125,11 @@ export interface PluginSelectEmptyPhraseEvent {
   exploredIRI: string
 }
 
+export interface PluginChangeCompSearchEvent {
+  type: 'CHANGE_COMP_SEARCH',
+  searchVal: string;
+}
+
 export interface PluginUnlinkedDataUpdateEvent {
   type: 'UPDATE_UNLINKED_DATA'
 }
@@ -141,10 +146,10 @@ export interface CopyCompTxtToRenameEvent {
 
 export interface HostAppSelectionEvent {
   type:
-    | 'HOST_INTERACTION_SELECT_MULTI'
-    | 'HOST_INTERACTION_SELECT_SINGLE'
-    | 'HOST_DESELECT'
-    | 'HOST_SELECTION_UNAVAILABE'
+  | 'HOST_INTERACTION_SELECT_MULTI'
+  | 'HOST_INTERACTION_SELECT_SINGLE'
+  | 'HOST_DESELECT'
+  | 'HOST_SELECTION_UNAVAILABE'
   userSelection: HostAppElement[]
   focusedElement: HostAppElement | undefined
 }
@@ -156,14 +161,14 @@ export interface HostFetchEvent {
 
 export interface NoArgsEvents {
   type:
-    | 'HOVER_DEFINITION_EXIT'
-    | 'CREATE_LINKED_DATA'
-    | 'REMOVE_LINKED_DATA'
-    | 'UPDATE_LINKED_DATA'
-    | 'HOVER_UI_ELEM_EXIT'
-    | 'TRIGGER_TRASH'
-    | 'FORCE_SPACED_COMMA_EQUALS'
-    | 'HIDE_PREVIEW'
+  | 'HOVER_DEFINITION_EXIT'
+  | 'CREATE_LINKED_DATA'
+  | 'REMOVE_LINKED_DATA'
+  | 'UPDATE_LINKED_DATA'
+  | 'HOVER_UI_ELEM_EXIT'
+  | 'TRIGGER_TRASH'
+  | 'FORCE_SPACED_COMMA_EQUALS'
+  | 'HIDE_PREVIEW'
 }
 
 export type AllMainMachineStateEvents =
@@ -187,3 +192,4 @@ export type AllMainMachineStateEvents =
   | PluginSelectEmptyPhraseEvent
   | PluginConfirmPhrasePreviewEvent
   | PluginNotationTogglePreviewEvent
+  | PluginChangeCompSearchEvent
