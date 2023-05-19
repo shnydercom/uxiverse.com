@@ -1,6 +1,7 @@
 import {
   HostAppElement,
   HostAppElementTypeEquivalents,
+  HostCompSearchDoneEvent,
   HostEventTypes,
   HostFetchSuccessfulBridgeEvent,
   HostSelectionChangedBridgeEvent,
@@ -121,10 +122,24 @@ if (figma.editorType === 'figma') {
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
+  let latestSearchText: string; //unfortunately the search isn't async or can't be cancelled, so some statefulness here
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginChangeFindCompBridgeEvent(msg)) {
-      const searchResult = figma.currentPage.findAll((node) => node.name.includes(msg.searchText));
-      figma.currentPage.selection = searchResult;
+      latestSearchText = msg.searchText;
+      const handleSearch = async (asyncSearchParam: string) => {
+        const searchResultNodes = figma.currentPage.findAll(
+          (node) => node.name.toLowerCase().includes(asyncSearchParam.trim().toLowerCase()));
+        return { searchResultNodes, asyncSearchParam };
+      }
+      handleSearch(msg.searchText).then((searchResult) => {
+        if (searchResult.asyncSearchParam === latestSearchText) {
+          const msgDone: HostCompSearchDoneEvent = {
+            type: HostEventTypes.compSearchDone
+          }
+          figma.ui.postMessage(msgDone)
+          figma.currentPage.selection = searchResult.searchResultNodes;
+        }
+      })
       return;
     }
     if (isAPluginSelectionChangedBridgeEvent(msg)) {

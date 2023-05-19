@@ -1,6 +1,7 @@
 export enum HostEventTypes {
   selectionChanged = 'selectionChanged',
   fetchSuccessful = 'fetchSuccessful',
+  compSearchDone = "compSearchDone"
 }
 export enum PluginEventTypes {
   deselectByPlugin = 'deselect-by-plugin',
@@ -23,6 +24,10 @@ export interface HostSelectionChangedBridgeEvent {
 export interface HostFetchSuccessfulBridgeEvent {
   type: HostEventTypes.fetchSuccessful
   result: Record<string, any>
+}
+
+export interface HostCompSearchDoneEvent {
+  type: HostEventTypes.compSearchDone
 }
 
 export interface PluginSelectionChangedBridgeEvent {

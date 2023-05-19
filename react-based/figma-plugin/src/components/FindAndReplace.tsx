@@ -65,6 +65,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   let previewValue: string | undefined
   let notation: AvailableNotations
   let replaceInputRefocusPosition: [number, number]
+  let isSearchingComps: boolean;
   //assigning
   isPreviewingReplaceText = state.matches('previewTextChanges.previewing')
   hostSelection = state.context.host.userSelection
@@ -148,6 +149,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
   } else {
     replaceInputRefocusPosition = [-1, -1]
   }
+  isSearchingComps = state.matches("compSearchInHostPage.unfinishedSearch")
   return {
     hostSelection,
     selectionFocus,
@@ -159,6 +161,7 @@ const mainMachineSelector = (state: MainMachineSelectorArg) => {
     previewValue,
     notation,
     replaceInputRefocusPosition,
+    isSearchingComps
   }
 }
 
@@ -175,6 +178,7 @@ export const FindAndReplace = () => {
     previewValue,
     notation,
     replaceInputRefocusPosition,
+    isSearchingComps
   } = useSelector(globalServices.mainService, mainMachineSelector)
 
   const { send } = globalServices.mainService
@@ -363,6 +367,7 @@ export const FindAndReplace = () => {
         }}
       />
       <CompAutocomplete
+        className={isSearchingComps ? "is-searching" : ""}
         placeholder={i18n.findAndSelect}
         onChange={onSearchChange}
         onMouseOver={onElemHover}

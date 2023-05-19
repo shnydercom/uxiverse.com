@@ -169,6 +169,7 @@ export interface NoArgsEvents {
   | 'TRIGGER_TRASH'
   | 'FORCE_SPACED_COMMA_EQUALS'
   | 'HIDE_PREVIEW'
+  | 'COMP_SEARCH_DONE'
 }
 
 export type AllMainMachineStateEvents =

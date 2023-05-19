@@ -10,9 +10,9 @@ export const GlobalStateContext = createContext({
 export const GlobalStateProvider = props => {
   const mainService = useInterpret(mainMachine)
   mainService.onTransition(state => {
-    /*console.log(state.toStrings())
+    //console.log(state.toStrings())
     //console.log(JSON.stringify(state.transitions))
-    console.log(
+    /*console.log(
       JSON.stringify(state.context.plugin.ontologySearch.confirmedRenameParts)
     )*/
   })
