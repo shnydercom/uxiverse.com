@@ -339,6 +339,8 @@ body {
 
 .auto-complete .is-searching {
   box-shadow: inset rgb(76 184 234) 0px 1px 5px 2px;
+  transition: all 0ms;
+  transition-delay: 100ms;
 }
 
 button:disabled,

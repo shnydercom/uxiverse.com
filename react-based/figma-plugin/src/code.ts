@@ -126,6 +126,14 @@ if (figma.editorType === 'figma') {
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginChangeFindCompBridgeEvent(msg)) {
       latestSearchText = msg.searchText;
+      if (latestSearchText === "") {
+        const msgDone: HostCompSearchDoneEvent = {
+          type: HostEventTypes.compSearchDone
+        }
+        figma.ui.postMessage(msgDone)
+        figma.currentPage.selection = [];
+        return;
+      }
       const handleSearch = async (asyncSearchParam: string) => {
         const searchResultNodes = figma.currentPage.findAll(
           (node) => node.name.toLowerCase().includes(asyncSearchParam.trim().toLowerCase()));

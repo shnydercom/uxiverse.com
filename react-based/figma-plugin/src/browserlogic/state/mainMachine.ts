@@ -547,7 +547,7 @@ export const mainMachine =
               CHANGE_COMP_SEARCH: {
                 target: "unfinishedSearch",
                 actions: "assignChangeCompSearch",
-                internal: true
+                internal: false
               }
             }
           }
@@ -823,13 +823,12 @@ export const mainMachine =
           ...context
         }
         ctxCopy.plugin.hostAppSearch.searchValue = event.searchVal;
-        if (event.searchVal) {
-          const bridgeEvent: PluginChangeFindCompBridgeEvent = {
-            type: PluginEventTypes.changeFindCompByPlugin,
-            searchText: event.searchVal
-          }
-          parent.postMessage({ pluginMessage: bridgeEvent }, '*')
+        const bridgeEvent: PluginChangeFindCompBridgeEvent = {
+          type: PluginEventTypes.changeFindCompByPlugin,
+          searchText: event.searchVal
         }
+        parent.postMessage({ pluginMessage: bridgeEvent }, '*')
+
         return ctxCopy
       }),
       assignTrashReset: assign(context => {
