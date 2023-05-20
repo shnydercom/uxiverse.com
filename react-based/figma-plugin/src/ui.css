@@ -406,6 +406,12 @@ button[disabled]:focus {
   margin-left: 12px;
 }
 
+.result-list .empty-state {
+  text-align: center;
+  font-style: italic;
+  color: #c4c4c4;
+}
+
 .result-list .list-entry {
   display: flex;
   flex-direction: row-reverse;

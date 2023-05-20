@@ -23,4 +23,5 @@ export const microCopy_EN = {
   fn_propCanExistOnTypeStr: (propName: string) => `${propName} can exist on`,
   fn_propIsOfTypeStr: (propName: string) => `${propName} can be a`,
   fn_classHasProps: (className: string) => `${className}'s properties`,
+  fn_ontologyTermNotFound: (term: string) => `could not find "${term}"`
 }

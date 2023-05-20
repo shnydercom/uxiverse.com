@@ -4,6 +4,10 @@ import { ResultListEntry } from './ResultListEntry'
 import { GlobalStateContext } from '../../../browserlogic/state/globalStateProvider'
 import { HoverDefinitionEnterEvent } from '../../../browserlogic/state/stateEvents'
 import { onMouseEnterExitHandlerFactory } from '../hoverHandlers'
+import { getI18n } from '../../../i18n'
+
+
+const i18n = getI18n()
 
 export interface ResultListProps {
   typedValue: string
@@ -49,6 +53,8 @@ export const ResultList: FunctionComponent<ResultListProps> = ({
 
   return (
     <div className="result-list">
+      {recommendations.length === 0 &&
+        <div className='empty-state'>{i18n.fn_ontologyTermNotFound(typedValue)}</div>}
       {recommendations.map((fullVal, idx) => {
         const iri = iris[idx]
         return (
