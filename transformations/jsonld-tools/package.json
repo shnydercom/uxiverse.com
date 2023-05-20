@@ -1,6 +1,6 @@
 {
   "name": "@uxiverse.com/jsonld-tools",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "tools to handle jsonld as ontologies, metadata and data",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "build": "yarn tsc",
-    "buildcjs": "tsc -p tsconfig-cjs.json"
+    "buildcjs": "tsc -p tsconfig-cjs.json",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
