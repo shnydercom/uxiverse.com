@@ -1,5 +1,5 @@
 import { JsonLdProcessor, NodeObject } from "jsonld";
-import { createGraph } from "./createGraph";
+import { createEmptyGraph, createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
 import { RtLdGraph } from "./graphInterfaces";
 
@@ -7,19 +7,8 @@ const findDuplicates = (arr: string[]) =>
   arr.filter((item, index) => arr.indexOf(item) !== index);
 
 describe("given empty input object", () => {
-  test("then should return empty output object", async () => {
-    expect(createGraph({})).toStrictEqual({});
-  });
-});
-describe("given flattened json-ld without blank nodes and no language specifics", () => {
-  test("takes an empty POJO and returns an empty POJO", async () => {
-    expect(createGraph({})).toStrictEqual({});
-  });
-});
-
-describe("given flattened json-ld including blank nodes and no language specifics", () => {
-  test("takes an empty POJO and returns an empty POJO", () => {
-    expect(createGraph({})).toStrictEqual({});
+  test("then should return empty rtLDGraph", async () => {
+    expect(createGraph({})).toStrictEqual(createEmptyGraph());
   });
 });
 

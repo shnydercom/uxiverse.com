@@ -120,7 +120,31 @@ export const createGraph = (flattenedJsonLd: JsonLdObj, context?: Object) => {
                         newNode.fields.push(newEdge);
                         resultGraph.collections.values.push(newValue)
                     })
-                }).otherwise((otherValue) => {
+                })
+                .with(P.array(P.string), (valueEntries) => {
+                    valueEntries.forEach((valueEntry) => {
+                        const newValue: RtLdValue = {
+                            "@v": valueEntry
+                        }
+                        let existingType = resultGraph.collections.types
+                            .find((eType) => eType.iri === nodeKey);
+                        if (!existingType) {
+                            existingType = { iri: nodeKey, nodes: [], values: [] }
+                            resultGraph.collections.types.push(existingType)
+                        }
+                        existingType.values.push(newValue)
+                        const newEdge: RtLdEdge = {
+                            in: newNode,
+                            out: newValue,
+                            type: existingType
+                        }
+                        newValue.edge = newEdge;
+                        newNode.fields.push(newEdge);
+                        resultGraph.collections.values.push(newValue)
+                    })
+
+                })
+                .otherwise((otherValue) => {
                     console.log('unhandled ld node key input:')
                     console.dir(otherValue)
                 });

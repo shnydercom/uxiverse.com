@@ -288,17 +288,29 @@ describe("should get edges of all ancestors that are not the ancestors themselve
     })
     test("regression: should write edges for property 'importance' by 'rangeIncludes/canBeOfType' and 'domainIncludes/canExistOnType' including in and out, which created an infinite loop", async () => {
         const startIRI = uxiverseRootIRI + "importance";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdgesRangeIncludes = getEdgesOfAncestorsOnly(
             {
                 graph: runtimeGraph,
                 startIRI: startIRI,
                 ancestorEdgeIRI: RDFS_SUBPROP_OF,
-                includeEdgeTypeIRIs: [RANGE_INCLUDES, DOMAIN_INCLUDES],
+                includeEdgeTypeIRIs: [RANGE_INCLUDES],
                 includeIncomingEdges: true,
                 includeOutgoingEdges: true
             });
-        expect(catEdges).not.toBeNull();
-        expect(catEdges!.categories[startIRI]).toContain(uxiverseRootIRI + "UserAction");
-        expect(catEdges!.categories[startIRI]).not.toContain(uxiverseRootIRI + "Button");
+        expect(catEdgesRangeIncludes).not.toBeNull();
+        expect(catEdgesRangeIncludes!.categories[startIRI]).toContain(uxiverseRootIRI + "IssueSeverityType");
+        expect(catEdgesRangeIncludes!.categories[startIRI]).not.toContain(uxiverseRootIRI + "Button");
+        const catEdgesDomainIncludes = getEdgesOfAncestorsOnly(
+            {
+                graph: runtimeGraph,
+                startIRI: startIRI,
+                ancestorEdgeIRI: RDFS_SUBPROP_OF,
+                includeEdgeTypeIRIs: [DOMAIN_INCLUDES],
+                includeIncomingEdges: true,
+                includeOutgoingEdges: true
+            });
+        expect(catEdgesDomainIncludes).not.toBeNull();
+        expect(catEdgesDomainIncludes!.categories[startIRI]).toContain(uxiverseRootIRI + "UIElement");
+        expect(catEdgesDomainIncludes!.categories[startIRI]).not.toContain(uxiverseRootIRI + "Button");
     })
 })

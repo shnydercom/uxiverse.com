@@ -16,7 +16,8 @@
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
     "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology#,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
     "build": "yarn build:jsld && yarn build:combine && yarn build:dts",
-    "serve": "http-server -p 4321 --cors -c2"
+    "serve": "http-server -p 4321 --cors -c2",
+    "flattenSchema": "ts-node ./scripts/flattenSchema.ts"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.0",

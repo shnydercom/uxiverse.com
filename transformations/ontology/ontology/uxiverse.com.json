@@ -176,7 +176,7 @@
 				}
 			],
 			"comment": "The root class for all validators. They take in an uxi:input, evaluate it and create a uxi:result, which should be a boolean by default",
-			"label": "side effect handler",
+			"label": "validator",
 			"inTagList": [
 				"uxi:Developer-Tag"
 			]
