@@ -1,24 +1,13 @@
-import { flatten } from "jsonld";
+import { JsonLdProcessor } from "jsonld";
 import fs from "fs";
 import * as ontologyJSONLDfile from "./../ontology/uxiverse.com.json"
 
 export const flattenSchemaAndSaveToAssets = async () => {
-    const flattenedDestination = "./ontology/uxiverse.com.json-flattened.json";
-    const ontologyFlattened = await flatten(
+    const flattenedDestination = "./ontology/uxiverse.com-flattened.json";
+    const ontologyFlattened = await JsonLdProcessor.flatten(
         ontologyJSONLDfile as any,
-        {},
-        {
-            base: '',
-            // @ts-ignore
-            compactArrays: false,
-            // typescript @types for jsonld haven't been updated, @ts-ignore
-            compactToRelative: false
-        }
-        , (err) => {
-            console.error(err)
-        });
+        {});
     fs.writeFileSync(flattenedDestination, JSON.stringify(ontologyFlattened, undefined, 2), { flag: "w" });
-
 }
 
 flattenSchemaAndSaveToAssets();
