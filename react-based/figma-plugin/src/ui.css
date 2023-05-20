@@ -87,6 +87,7 @@ body {
 .grow-wrap {
   display: grid;
   min-height: min-content;
+  max-height: 200px;
 }
 
 .grow-wrap .preview-overlay {

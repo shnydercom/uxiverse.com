@@ -16,7 +16,7 @@ export const microCopy_EN = {
     'TIP: use "⌘ + ⏎" to select all child-layers of your current selection (AltGr + ⏎ on Windows)',
   figmaTip002:
     'TIP: use "Shift + ⏎ to select the parents of all selected layers" ',
-  findAndSelect: 'Find and select',
+  findAndSelect: 'Find layers',
   prepareNewName: 'Prepare new name',
   emptyOntologyIntro:
     'Start typing in the lower input field, and recommendations will appear here',
