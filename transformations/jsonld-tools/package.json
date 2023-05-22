@@ -1,6 +1,6 @@
 {
   "name": "@uxiverse.com/jsonld-tools",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "tools to handle jsonld as ontologies, metadata and data",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
