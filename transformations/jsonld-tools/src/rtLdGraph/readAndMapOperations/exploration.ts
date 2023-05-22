@@ -1,8 +1,10 @@
-import { CategorizedEdges, EdgeOfAncestorsInputArgs, RtLdGraph, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "@uxiverse.com/jsonld-tools";
-import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES, RDF_PROPERTY } from "./ontology-globals";
-import { moveElementToEnd } from "./IRIUtils";
-import { featureFlags } from "../featureFlags";
-import { sortTreeViewSiblings } from "../sort";
+
+import { CategorizedEdges, EdgeOfAncestorsInputArgs, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "../createOperations";
+import { RtLdGraph } from "../../graphInterfaces";
+import { moveElementToEnd } from "../../IRIUtils";
+import { LDGraphProcessingFeatureFlags } from "../../featureFlags";
+import { RDFS_SUBPROP_OF, RDFS_SUBCLASS_OF, DOMAIN_INCLUDES, RANGE_INCLUDES, RDF_PROPERTY } from "../../ontology-globals";
+import { sortTreeViewSiblings } from "../../sort";
 
 export interface ExplorationResult {
     lineageHighlightIRI: string;
@@ -14,7 +16,7 @@ export interface ExplorationResult {
     otherCatEdges: CategorizedEdges | null;
 }
 
-export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: boolean,): StringifiedLineage | null => {
+export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: boolean, featureFlags: LDGraphProcessingFeatureFlags): StringifiedLineage | null => {
     const ancestorIri: string = propLineage ? RDFS_SUBPROP_OF : RDFS_SUBCLASS_OF;
     const result = getAncestorsSiblingsAndChildren(graph, startIri, ancestorIri, true);
     if (!result) {
@@ -36,7 +38,7 @@ export const getLineage = (graph: RtLdGraph, startIri: string, propLineage: bool
     return result;
 }
 
-export const getCategorizedEdgesForClasses = (graph: RtLdGraph, startIRI: string) => {
+export const getCategorizedEdgesForClasses = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
     const ancestorIri = RDFS_SUBCLASS_OF;
     const includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
     const includeIncomingEdges = false;
@@ -53,7 +55,7 @@ export const getCategorizedEdgesForClasses = (graph: RtLdGraph, startIRI: string
 }
 
 
-export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, startIRI: string) => {
+export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
     // property can exist on type [...]
     const ancestorIri = RDFS_SUBPROP_OF;
     const includeEdgeTypeIRIs = [DOMAIN_INCLUDES];
@@ -71,7 +73,7 @@ export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, s
 }
 
 
-export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, startIRI: string) => {
+export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
     // property can be a [...]
     const ancestorIri = RDFS_SUBPROP_OF;
     const includeEdgeTypeIRIs = [RANGE_INCLUDES];

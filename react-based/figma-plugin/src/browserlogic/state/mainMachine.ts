@@ -17,7 +17,6 @@ import {
   getInitialRenamePartCopy,
   getInitialXStateContextCopy,
 } from './initialValues'
-import { getSingleUxiDefinition } from '../naming-recommendations/search'
 import {
   AvailableNotations,
   NOTATIONS_MAIN_DICT,
@@ -28,6 +27,8 @@ import {
   RtLdGraph,
   createEmptyGraph,
   createGraph,
+  getSingleUxiDefinition,
+  isIRIaProperty,
 } from '@uxiverse.com/jsonld-tools'
 import {
   AllMainMachineStateEvents,
@@ -47,7 +48,6 @@ import {
   PluginSelectPhraseEvent,
 } from './stateEvents'
 import { match } from 'ts-pattern'
-import { isIRIaProperty } from '../naming-recommendations/exploration'
 import { evalAndSendNotationChange, evalPluginConfirm } from './generalSenders'
 import {
   isComponentNotInVariantGuard,

@@ -2,13 +2,13 @@ import { useSelector } from '@xstate/react'
 import React, { useContext } from 'react'
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { SearchValueSelectorType } from '../../browserlogic/state/moreTypes'
-import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
+import { getWellKnownIriSubPath } from '@uxiverse.com/jsonld-tools'
 
 const focusedDefinitionSelector:
   | SearchValueSelectorType
   | undefined = state => {
-  return state.context.plugin.ontologySearch.focusedDefinition
-}
+    return state.context.plugin.ontologySearch.focusedDefinition
+  }
 
 export const SingleIRIVisualization = () => {
   const globalServices = useContext(GlobalStateContext)

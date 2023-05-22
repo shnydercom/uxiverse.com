@@ -1,6 +1,6 @@
-import { getDirectAncestorEdges, getChildrenEdges, findIdentifiableNode, compareEdgeTypeIriAnd, compareEdgeNodeIriAnd } from "./graph-queries";
-import { RtLdGraph, RtLdIdentifiableNode } from "./graphInterfaces"
-import { isRtLdIdentifiableNode } from "./typeguards";
+import { getDirectAncestorEdges, getChildrenEdges, findIdentifiableNode, compareEdgeTypeIriAnd, compareEdgeNodeIriAnd } from "../../graph-queries";
+import { RtLdGraph, RtLdIdentifiableNode } from "../../graphInterfaces"
+import { isRtLdIdentifiableNode } from "../../typeguards";
 
 export interface StringifiedLineage {
     iris: string[];

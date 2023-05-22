@@ -7,10 +7,10 @@ import {
 import { RenamePartSemantic } from '../browserlogic/state/mainMachine'
 import { MainMachineSelectorArg } from '../browserlogic/state/moreTypes'
 import { AllMainMachineStateEvents } from '../browserlogic/state/stateEvents'
-import { uxiverseRootIRI } from '../browserlogic/naming-recommendations/ontology-globals'
 import { getInitialRenamePartCopy } from '../browserlogic/state/initialValues'
 import { lexLine } from '../browserlogic/naming-recommendations/lexLine'
 import { ReactEventHandler } from 'react'
+import { uxiverseRootIRI } from '@uxiverse.com/jsonld-tools'
 
 const secondaryDelimiter = '='
 
@@ -37,7 +37,7 @@ export const onReplaceChangeFactory = (
   if (
     (event.nativeEvent.type === 'input' &&
       (event.nativeEvent as InputEvent).data ===
-        NOTATIONS_MAIN_DICT[notation].mainDelimiter) ||
+      NOTATIONS_MAIN_DICT[notation].mainDelimiter) ||
     (event.nativeEvent as InputEvent).inputType === 'insertLineBreak'
   ) {
     // confirm the topmost phrase in autocomplete-suggestions when pressing the notation's main delimiter
@@ -243,7 +243,7 @@ export const onSelectionChangeFactory = (
       'SELECT_PHRASE',
     ].includes(state.transitions[0].eventType) &&
     confirmedRenameParts[confirmedRenameParts.length - 1].relativeCursorPos ===
-      -1 &&
+    -1 &&
     selectionStartValidated === value.length
   ) {
     const cursorPosRenamePartIdx = confirmedRenameParts.findIndex(

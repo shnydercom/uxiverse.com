@@ -1,10 +1,8 @@
 import { FunctionComponent } from "react";
-import { ExplorationResult } from "../../../browserlogic/naming-recommendations/exploration";
 import { TreeView, TreeViewProps } from "./TreeView";
-import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
+import { ExplorationResult, StringifiedLineage, getWellKnownIriSubPath } from "@uxiverse.com/jsonld-tools";
 import React from "react";
 import { TreeviewEntryProps } from "./TreeviewEntry";
-import { getWellKnownIriSubPath } from "../../../browserlogic/naming-recommendations/IRIUtils";
 
 interface LineageTreeviewProps {
     exploration: ExplorationResult;

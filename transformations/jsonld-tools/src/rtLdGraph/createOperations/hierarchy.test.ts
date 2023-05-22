@@ -1,7 +1,7 @@
 import { JsonLdProcessor, NodeObject } from "jsonld";
 import { createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
-import { RtLdGraph } from "./graphInterfaces";
+import { RtLdGraph } from "./../../graphInterfaces";
 import { getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "./hierarchy";
 
 describe("should get all ancestors, siblings and direct children as an object of IRIs", () => {

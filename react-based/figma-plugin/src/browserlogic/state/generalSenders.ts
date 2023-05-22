@@ -1,6 +1,6 @@
 import { match } from 'ts-pattern'
 import { HostAppElement } from '../../communicationInterfaces'
-import { isIRIaProperty } from '../naming-recommendations/exploration'
+import { isIRIaProperty } from '@uxiverse.com/jsonld-tools'
 import {
   AvailableNotations,
   NOTATIONS_MAIN_DICT,
@@ -34,7 +34,7 @@ export function evalAndSendNotationChange(
     (ctx.isAComponentSet || ctx.isInstanceOfAVariant) &&
     (state?.matches('notation.spacedCommaEquals') ||
       context?.plugin.ontologySearch.notation ===
-        AvailableNotations.SpacedCommaEquals)
+      AvailableNotations.SpacedCommaEquals)
   ) {
     send({
       type: 'CHANGE_NOTATION',

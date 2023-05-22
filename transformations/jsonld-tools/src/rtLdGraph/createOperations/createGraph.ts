@@ -1,6 +1,6 @@
 import { JsonLdObj } from "jsonld/jsonld-spec"
 import { match, P } from "ts-pattern"
-import { RtLdEdge, RtLdGraph, RtLdIdentifiableNode, RtLdValue } from "./graphInterfaces"
+import { RtLdEdge, RtLdGraph, RtLdIdentifiableNode, RtLdValue } from "../../graphInterfaces"
 
 export const createEmptyGraph = () => {
     const result: RtLdGraph = {

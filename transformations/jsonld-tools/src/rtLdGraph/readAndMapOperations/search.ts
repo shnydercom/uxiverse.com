@@ -1,11 +1,7 @@
-import {
-  RtLdGraph,
-  RtLdValue,
-  RtLdIdentifiableNode,
-  isRtLdIdentifiableNode,
-} from '@uxiverse.com/jsonld-tools'
-import { sortAlphabeticallyAndFavorStartswith } from '../sort'
-import { definitionIRI, uxiverseRootIRI } from './ontology-globals'
+import { sortAlphabeticallyAndFavorStartswith } from '@uxiverse.com/jsonld-tools/src/sort'
+import { definitionIRI, uxiverseRootIRI } from '@uxiverse.com/jsonld-tools/src/ontology-globals'
+import { RtLdGraph, RtLdValue, RtLdIdentifiableNode } from '../../graphInterfaces';
+import { isRtLdIdentifiableNode } from '../../typeguards';
 
 export function searchDefinitionNames(
   searchValue: string,

@@ -3,3 +3,5 @@ export const featureFlags = {
   moveTreeHighlightToEnd: false,
   sortTreeViewSiblings: true,
 }
+
+export type LDGraphProcessingFeatureFlags = typeof featureFlags;

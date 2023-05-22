@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { CategorizedEdges } from '@uxiverse.com/jsonld-tools'
-import { getWellKnownIriSubPath } from '../../../browserlogic/naming-recommendations/IRIUtils'
+import { CategorizedEdges, getWellKnownIriSubPath } from '@uxiverse.com/jsonld-tools'
 import { ExploreIRI } from '../../../assets/explore-iri'
 import { AddToReplaceValue } from '../../../assets/add-to-replacevalue'
 import {

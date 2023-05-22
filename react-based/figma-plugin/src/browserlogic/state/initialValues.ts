@@ -1,5 +1,5 @@
+import { uxiverseRootIRI } from '@uxiverse.com/jsonld-tools'
 import { getI18n } from '../../i18n'
-import { uxiverseRootIRI } from '../naming-recommendations/ontology-globals'
 import { AvailableNotations } from '../notation-handler'
 import { MainMachineXSCtx, RenamePartSemantic } from './mainMachine'
 

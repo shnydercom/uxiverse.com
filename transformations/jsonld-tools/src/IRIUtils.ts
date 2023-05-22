@@ -1,4 +1,4 @@
-import { schemaRootIRI, uxiverseRootIRI } from './ontology-globals'
+import { uxiverseRootIRI, schemaRootIRI } from "./ontology-globals"
 
 export const VOCAB_IRI = uxiverseRootIRI
 export const WELL_KNOWN_IRIs: { iri: string, substitute: string }[] = [

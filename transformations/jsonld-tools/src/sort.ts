@@ -1,4 +1,4 @@
-import { StringifiedLineage } from '@uxiverse.com/jsonld-tools'
+import { StringifiedLineage } from "./rtLdGraph"
 
 export function sortAlphabeticallyAndFavorStartswith(
   favoredStart: string

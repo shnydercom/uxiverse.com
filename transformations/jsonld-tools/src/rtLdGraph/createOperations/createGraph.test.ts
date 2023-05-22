@@ -1,7 +1,7 @@
 import { JsonLdProcessor, NodeObject } from "jsonld";
 import { createEmptyGraph, createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
-import { RtLdGraph } from "./graphInterfaces";
+import { RtLdGraph } from "../../graphInterfaces";
 
 const findDuplicates = (arr: string[]) =>
   arr.filter((item, index) => arr.indexOf(item) !== index);

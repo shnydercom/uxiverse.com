@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from 'react'
 import { OverlayScrollbarsComponent, useOverlayScrollbars } from 'overlayscrollbars-react'
-import { searchDefinitionNames } from '../../browserlogic/naming-recommendations/search'
 import { useSelector } from '@xstate/react'
 import {
   MainMachineSelectorArg,
@@ -8,12 +7,10 @@ import {
 import { GlobalStateContext } from '../../browserlogic/state/globalStateProvider'
 import { OntologyEmptyState } from './OntologyEmptyState'
 import { ResultList } from './searchCompletion/ResultList'
-import { getWellKnownIriSubPath } from '../../browserlogic/naming-recommendations/IRIUtils'
 import { match } from "ts-pattern"
 import { LineageTreeview } from './exploration/LineageTreeview'
-import { ExplorationResult, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, getLineage } from '../../browserlogic/naming-recommendations/exploration'
 import { CategorizedEdgesList } from './exploration/CategorizedEdgesList'
-import { CategorizedEdges } from '@uxiverse.com/jsonld-tools'
+import { CategorizedEdges, ExplorationResult, featureFlags, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, getLineage, getWellKnownIriSubPath, searchDefinitionNames } from '@uxiverse.com/jsonld-tools'
 import { getI18n } from '../../i18n'
 
 enum ContainerVisuals {
@@ -97,7 +94,7 @@ export const OntologyViewContainer = () => {
       return;
     }
     const explorationHighlight = exploredIRI;
-    const lineage = getLineage(rtGraph, explorationHighlight, isPropSearch);
+    const lineage = getLineage(rtGraph, explorationHighlight, isPropSearch, featureFlags);
     let catEdges, otherCatEdges: CategorizedEdges | null = null;
     if (!isPropSearch) {
       catEdges = getCategorizedEdgesForClasses(rtGraph, explorationHighlight);
