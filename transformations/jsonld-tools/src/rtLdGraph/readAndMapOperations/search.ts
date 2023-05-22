@@ -1,13 +1,13 @@
-import { sortAlphabeticallyAndFavorStartswith } from '@uxiverse.com/jsonld-tools/src/sort'
-import { definitionIRI, uxiverseRootIRI } from '@uxiverse.com/jsonld-tools/src/ontology-globals'
 import { RtLdGraph, RtLdValue, RtLdIdentifiableNode } from '../../graphInterfaces';
+import { definitionIRI, uxiverseRootIRI } from '../../ontology-globals';
+import { sortAlphabeticallyAndFavorStartswith } from '../../sort';
 import { isRtLdIdentifiableNode } from '../../typeguards';
 
 export function searchDefinitionNames(
   searchValue: string,
-  rtGraph: RtLdGraph
+  rtGraph: RtLdGraph,
+  searchTrimmer: string = uxiverseRootIRI
 ): string[] {
-  let searchTrimmer: string = uxiverseRootIRI;
   return rtGraph.identifiableNodes
     .map(rtNode => rtNode['@id'])
     .filter(filteredVal => {
