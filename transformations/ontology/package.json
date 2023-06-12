@@ -12,7 +12,7 @@
     "initmonorepo": "mkdir ./cli-gen",
     "build:downloadschema": "yarn ts-node ./buildsteps/downloadSchemaNT.ts",
     "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/uxiverse.com.jsonld",
-    "build:jsld": "jsonld format ./ontology/uxiverse.com.jsonld --nquads > ./cli-gen/uxiverse-ontology.nt",
+    "build:jsld": "jsonld format ./ontology/uxiverse.com.json --nquads > ./cli-gen/uxiverse-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
     "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology#,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
     "build": "yarn build:jsld && yarn build:combine && yarn build:dts",

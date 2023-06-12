@@ -1,5 +1,8 @@
 {
-  "files": ["./typings.d.ts", "./figma.d.ts"],
+  "files": [
+    "./typings.d.ts",
+    "./figma.d.ts"
+  ],
   "compilerOptions": {
     "jsx": "react",
     "esModuleInterop": true,
@@ -8,5 +11,13 @@
     "strict": true,
     "noImplicitAny": false
   },
-  "exclude": ["./node_modules"]
+  "exclude": [
+    "./node_modules"
+  ],
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "nodenext",
+    }
+  }
 }
