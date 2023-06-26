@@ -122,33 +122,36 @@ if (figma.editorType === 'figma') {
   // Calls to "parent.postMessage" from within the HTML page will trigger this
   // callback. The callback will be passed the "pluginMessage" property of the
   // posted message.
-  let latestSearchText: string; //unfortunately the search isn't async or can't be cancelled, so some statefulness here
+  let latestSearchText: string //unfortunately the search isn't async or can't be cancelled, so some statefulness here
   figma.ui.onmessage = (msg: PluginBridgeEvent) => {
     if (isAPluginChangeFindCompBridgeEvent(msg)) {
-      latestSearchText = msg.searchText;
-      if (latestSearchText === "") {
+      latestSearchText = msg.searchText
+      if (latestSearchText === '') {
         const msgDone: HostCompSearchDoneEvent = {
-          type: HostEventTypes.compSearchDone
+          type: HostEventTypes.compSearchDone,
         }
         figma.ui.postMessage(msgDone)
-        figma.currentPage.selection = [];
-        return;
+        figma.currentPage.selection = []
+        return
       }
       const handleSearch = async (asyncSearchParam: string) => {
-        const searchResultNodes = figma.currentPage.findAll(
-          (node) => node.name.toLowerCase().includes(asyncSearchParam.trim().toLowerCase()));
-        return { searchResultNodes, asyncSearchParam };
+        const searchResultNodes = figma.currentPage.findAll(node =>
+          node.name
+            .toLowerCase()
+            .includes(asyncSearchParam.trim().toLowerCase())
+        )
+        return { searchResultNodes, asyncSearchParam }
       }
-      handleSearch(msg.searchText).then((searchResult) => {
+      handleSearch(msg.searchText).then(searchResult => {
         if (searchResult.asyncSearchParam === latestSearchText) {
           const msgDone: HostCompSearchDoneEvent = {
-            type: HostEventTypes.compSearchDone
+            type: HostEventTypes.compSearchDone,
           }
           figma.ui.postMessage(msgDone)
-          figma.currentPage.selection = searchResult.searchResultNodes;
+          figma.currentPage.selection = searchResult.searchResultNodes
         }
       })
-      return;
+      return
     }
     if (isAPluginSelectionChangedBridgeEvent(msg)) {
       delete msg.selectedNode.elementFigmaContext
@@ -173,7 +176,14 @@ if (figma.editorType === 'figma') {
         )
     }
     if (isAPluginFetchBridgeEvent(msg)) {
-      fetch(msg.url)
+      const requestHeaders: HeadersInit = {
+        'Cache-Control': 'no-cache',
+        Accept: 'application/json',
+        'Accept-Encoding': 'gzip, deflate, br',
+      }
+      fetch(msg.url, {
+        headers: requestHeaders,
+      })
         .then(async res => {
           const fetchResult = await res.json()
           forwardFetchToPlugin(fetchResult)

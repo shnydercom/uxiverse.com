@@ -534,26 +534,26 @@ export const mainMachine =
           finishedSearch: {
             on: {
               CHANGE_COMP_SEARCH: {
-                target: "unfinishedSearch",
-                actions: "assignChangeCompSearch"
+                target: 'unfinishedSearch',
+                actions: 'assignChangeCompSearch',
               },
-            }
+            },
           },
 
           unfinishedSearch: {
             on: {
-              COMP_SEARCH_DONE: "finishedSearch",
+              COMP_SEARCH_DONE: 'finishedSearch',
 
               CHANGE_COMP_SEARCH: {
-                target: "unfinishedSearch",
-                actions: "assignChangeCompSearch",
-                internal: false
-              }
-            }
-          }
+                target: 'unfinishedSearch',
+                actions: 'assignChangeCompSearch',
+                internal: false,
+              },
+            },
+          },
         },
 
-        initial: "finishedSearch"
+        initial: 'finishedSearch',
       },
     },
   }).withConfig({
@@ -562,7 +562,7 @@ export const mainMachine =
         const fetchLocation: string =
           process.env.NODE_ENV === 'development'
             ? 'http://localhost:4321/ontology/uxiverse.com-flattened.json'
-            : 'https://uxiverse.com/ontology?format=jsonld-flattened'
+            : 'https://uxiverse.com/api/masterdata/uxiverse-flattened'
         const bridgeEvent: PluginFetchBridgeEvent = {
           type: PluginEventTypes.fetchByPlugin,
           url: fetchLocation,
@@ -818,19 +818,21 @@ export const mainMachine =
           parent.postMessage({ pluginMessage: bridgeEvent }, '*')
         }
       },
-      assignChangeCompSearch: assign((context, event: PluginChangeCompSearchEvent) => {
-        const ctxCopy = {
-          ...context
-        }
-        ctxCopy.plugin.hostAppSearch.searchValue = event.searchVal;
-        const bridgeEvent: PluginChangeFindCompBridgeEvent = {
-          type: PluginEventTypes.changeFindCompByPlugin,
-          searchText: event.searchVal
-        }
-        parent.postMessage({ pluginMessage: bridgeEvent }, '*')
+      assignChangeCompSearch: assign(
+        (context, event: PluginChangeCompSearchEvent) => {
+          const ctxCopy = {
+            ...context,
+          }
+          ctxCopy.plugin.hostAppSearch.searchValue = event.searchVal
+          const bridgeEvent: PluginChangeFindCompBridgeEvent = {
+            type: PluginEventTypes.changeFindCompByPlugin,
+            searchText: event.searchVal,
+          }
+          parent.postMessage({ pluginMessage: bridgeEvent }, '*')
 
-        return ctxCopy
-      }),
+          return ctxCopy
+        }
+      ),
       assignTrashReset: assign(context => {
         const ctxCopy: Partial<MainMachineXSCtx> = {
           ...getInitialXStateContextCopy(),
@@ -854,7 +856,8 @@ export const mainMachine =
           ...context,
         }
         ctxCopy.host.selectionFocusedElement = undefined
-        ctxCopy.plugin.hostAppSearch.searchValue = ctxCopy.plugin.hostAppSearch.searchValue
+        ctxCopy.plugin.hostAppSearch.searchValue =
+          ctxCopy.plugin.hostAppSearch.searchValue
         ctxCopy.host.userSelection
         return ctxCopy
       }),
@@ -885,7 +888,7 @@ export const mainMachine =
     },
     services: {
       checkForFigmaDocMessages: (context, event) => send => {
-        const pfn = (resolve, reject) => { }
+        const pfn = (resolve, reject) => {}
         const result = new Promise(pfn)
         /** that's "onmessage" on the figma api: */
         onmessage = event => {
@@ -941,7 +944,7 @@ export const mainMachine =
               send({
                 type: 'COMP_SEARCH_DONE',
               })
-              break;
+              break
             default:
               break
           }
