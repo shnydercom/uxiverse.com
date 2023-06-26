@@ -1,3 +1,10 @@
+# running Uxiverse Plugin in development
+- run `yarn`
+- the package 'react-figma-plugin-ds' is a git dependency (relies on specific PR). Search for the folder in node_modules and run `yarn && yarn build && yarn build-styles` there. That should be suffise until the PR is merged
+- run `yarn start`
+
+
+
 # Create React Figma Plugin
 
 Create React Figma Plugin with no build configuration.

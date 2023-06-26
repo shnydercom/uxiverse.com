@@ -42,7 +42,7 @@ type EmployeeRoleLeaf<TContent, TProperty extends string> = EmployeeRoleBase & {
 export type EmployeeRole<TContent = never, TProperty extends string = never> = EmployeeRoleLeaf<TContent, TProperty>;
 
 interface LinkRoleBase extends RoleBase {
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /** Indicates the relationship type of a Web link. */
     "schema:linkRelationship"?: SchemaValue<Text, "schema:linkRelationship">;
@@ -94,7 +94,7 @@ interface RoleBase extends ThingBase {
     /**
      * A position played, performed or filled by a person or organization, as part of an organization. For example, an athlete in a SportsTeam might play in the position named 'Quarterback'.
      *
-     * @deprecated Consider using {@link https://schema.org/roleName https://schema.org/roleName} instead.
+     * @deprecated Consider using https://schema.org/roleName instead.
      */
     "schema:namedPosition"?: SchemaValue<Text | URL, "schema:namedPosition">;
     /** A role played, performed or filled by a person or organization. For example, the team of creators for a comic book might fill the roles named 'inker', 'penciller', and 'letterer'; or an athlete in a SportsTeam might play in the position named 'Quarterback'. */
@@ -130,7 +130,7 @@ interface _3DModelBase extends MediaObjectBase {
 interface _3DModelLeaf extends _3DModelBase {
     "@type": "schema:3DModel";
 }
-/** A 3D model represents some kind of 3D content, which may have [[encoding]]s in one or more [[MediaObject]]s. Many 3D formats are available (e.g. see {@link https://en.wikipedia.org/wiki/Category:3D_graphics_file_formats Wikipedia}); specific encoding formats can be represented using the [[encodingFormat]] property applied to the relevant [[MediaObject]]. For the case of a single file published after Zip compression, the convention of appending '+zip' to the [[encodingFormat]] can be used. Geospatial, AR/VR, artistic/animation, gaming, engineering and scientific content can all be represented using [[3DModel]]. */
+/** A 3D model represents some kind of 3D content, which may have {@link https://schema.org/encoding encoding}s in one or more {@link https://schema.org/MediaObject MediaObject}s. Many 3D formats are available (e.g. see {@link https://en.wikipedia.org/wiki/Category:3D_graphics_file_formats Wikipedia}); specific encoding formats can be represented using the {@link https://schema.org/encodingFormat encodingFormat} property applied to the relevant {@link https://schema.org/MediaObject MediaObject}. For the case of a single file published after Zip compression, the convention of appending '+zip' to the {@link https://schema.org/encodingFormat encodingFormat} can be used. Geospatial, AR/VR, artistic/animation, gaming, engineering and scientific content can all be represented using {@link https://schema.org/3DModel 3DModel}. */
 export type _3DModel = _3DModelLeaf;
 
 interface AboutPageLeaf extends WebPageBase {
@@ -160,30 +160,30 @@ interface AcceptActionLeaf extends ActionBase {
  * The act of committing to/adopting an object.
  *
  * Related actions:
- * - [[RejectAction]]: The antonym of AcceptAction.
+ * - {@link https://schema.org/RejectAction RejectAction}: The antonym of AcceptAction.
  */
 export type AcceptAction = AcceptActionLeaf;
 
 interface AccommodationBase extends PlaceBase {
-    /** Category of an [[Accommodation]], following real estate conventions e.g. RESO (see {@link https://ddwiki.reso.org/display/DDW17/PropertySubType+Field PropertySubType}, and {@link https://ddwiki.reso.org/display/DDW17/PropertyType+Field PropertyType} fields for suggested values). */
+    /** Category of an {@link https://schema.org/Accommodation Accommodation}, following real estate conventions e.g. RESO (see {@link https://ddwiki.reso.org/display/DDW17/PropertySubType+Field PropertySubType}, and {@link https://ddwiki.reso.org/display/DDW17/PropertyType+Field PropertyType} fields for suggested values). */
     "schema:accommodationCategory"?: SchemaValue<Text, "schema:accommodationCategory">;
-    /** A floorplan of some [[Accommodation]]. */
+    /** A floorplan of some {@link https://schema.org/Accommodation Accommodation}. */
     "schema:accommodationFloorPlan"?: SchemaValue<FloorPlan | IdReference, "schema:accommodationFloorPlan">;
     /** An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs. */
     "schema:amenityFeature"?: SchemaValue<LocationFeatureSpecification | IdReference, "schema:amenityFeature">;
-    /** The floor level for an [[Accommodation]] in a multi-storey building. Since counting systems {@link https://en.wikipedia.org/wiki/Storey#Consecutive_number_floor_designations vary internationally}, the local system should be used where possible. */
+    /** The floor level for an {@link https://schema.org/Accommodation Accommodation} in a multi-storey building. Since counting systems {@link https://en.wikipedia.org/wiki/Storey#Consecutive_number_floor_designations vary internationally}, the local system should be used where possible. */
     "schema:floorLevel"?: SchemaValue<Text, "schema:floorLevel">;
     /** The size of the accommodation, e.g. in square meter or squarefoot. Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard */
     "schema:floorSize"?: SchemaValue<QuantitativeValue | IdReference, "schema:floorSize">;
-    /** Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property. */
+    /** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
     "schema:leaseLength"?: SchemaValue<Duration | QuantitativeValue | IdReference, "schema:leaseLength">;
-    /** The total integer number of bathrooms in a some [[Accommodation]], following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also [[numberOfRooms]]. */
+    /** The total integer number of bathrooms in a some {@link https://schema.org/Accommodation Accommodation}, following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also {@link https://schema.org/numberOfRooms numberOfRooms}. */
     "schema:numberOfBathroomsTotal"?: SchemaValue<Integer, "schema:numberOfBathroomsTotal">;
-    /** The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]]. */
+    /** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
     "schema:numberOfBedrooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfBedrooms">;
-    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an [[Accommodation]]. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
+    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
     "schema:numberOfFullBathrooms"?: SchemaValue<Number, "schema:numberOfFullBathrooms">;
-    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an [[Accommodation]]. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
+    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
     "schema:numberOfPartialBathrooms"?: SchemaValue<Number, "schema:numberOfPartialBathrooms">;
     /** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
     "schema:numberOfRooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfRooms">;
@@ -191,9 +191,9 @@ interface AccommodationBase extends PlaceBase {
     "schema:permittedUsage"?: SchemaValue<Text, "schema:permittedUsage">;
     /** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
     "schema:petsAllowed"?: SchemaValue<Boolean | Text, "schema:petsAllowed">;
-    /** A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate. */
+    /** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
     "schema:tourBookingPage"?: SchemaValue<URL, "schema:tourBookingPage">;
-    /** The year an [[Accommodation]] was constructed. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/YearBuilt+Field YearBuilt field in RESO}. */
+    /** The year an {@link https://schema.org/Accommodation Accommodation} was constructed. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/YearBuilt+Field YearBuilt field in RESO}. */
     "schema:yearBuilt"?: SchemaValue<Number, "schema:yearBuilt">;
 }
 interface AccommodationLeaf extends AccommodationBase {
@@ -212,7 +212,7 @@ interface AccountingServiceLeaf extends FinancialServiceBase {
 /**
  * Accountancy business.
  *
- * As a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
  */
 export type AccountingService = AccountingServiceLeaf | string;
 
@@ -274,7 +274,7 @@ interface ActionAccessSpecificationBase extends ThingBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.
      *
-     * See also [[ineligibleRegion]].
+     * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
      */
     "schema:eligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:eligibleRegion">;
     /** An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it. */
@@ -282,7 +282,7 @@ interface ActionAccessSpecificationBase extends ThingBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
      *
-     * See also [[eligibleRegion]].
+     * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
      */
     "schema:ineligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:ineligibleRegion">;
     /** Indicates if use of the media require a subscription (either paid or free). Allowed values are `true` or `false` (note that an earlier version had 'yes', 'no'). */
@@ -327,7 +327,7 @@ export type AdultEntertainment = AdultEntertainmentLeaf | string;
 interface AdvertiserContentArticleLeaf extends ArticleBase {
     "@type": "schema:AdvertiserContentArticle";
 }
-/** An [[Article]] that an external entity has paid to place or to produce to its specifications. Includes {@link https://en.wikipedia.org/wiki/Advertorial advertorials}, sponsored content, native advertising and other paid content. */
+/** An {@link https://schema.org/Article Article} that an external entity has paid to place or to produce to its specifications. Includes {@link https://en.wikipedia.org/wiki/Advertorial advertorials}, sponsored content, native advertising and other paid content. */
 export type AdvertiserContentArticle = AdvertiserContentArticleLeaf;
 
 interface AggregateOfferBase extends OfferBase {
@@ -349,7 +349,7 @@ interface AggregateOfferBase extends OfferBase {
     "schema:lowPrice"?: SchemaValue<Number | Text, "schema:lowPrice">;
     /** The number of offers for the product. */
     "schema:offerCount"?: SchemaValue<Integer, "schema:offerCount">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
 }
 interface AggregateOfferLeaf extends AggregateOfferBase {
@@ -358,7 +358,7 @@ interface AggregateOfferLeaf extends AggregateOfferBase {
 /**
  * When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.
  *
- * Note: AggregateOffers are normally expected to associate multiple offers that all share the same defined [[businessFunction]] value, or default to {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell} if businessFunction is not explicitly defined.
+ * Note: AggregateOffers are normally expected to associate multiple offers that all share the same defined {@link https://schema.org/businessFunction businessFunction} value, or default to http://purl.org/goodrelations/v1#Sell if businessFunction is not explicitly defined.
  */
 export type AggregateOffer = AggregateOfferLeaf;
 
@@ -436,7 +436,7 @@ interface AlignmentObjectLeaf extends AlignmentObjectBase {
 /**
  * An intangible item that describes an alignment between a learning resource and a node in an educational framework.
  *
- * Should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource [[teaches]] or [[assesses]] a competency.
+ * Should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource {@link https://schema.org/teaches teaches} or {@link https://schema.org/assesses assesses} a competency.
  */
 export type AlignmentObject = AlignmentObjectLeaf;
 
@@ -467,7 +467,7 @@ export type AmusementPark = AmusementParkLeaf | string;
 interface AnalysisNewsArticleLeaf extends NewsArticleBase {
     "@type": "schema:AnalysisNewsArticle";
 }
-/** An AnalysisNewsArticle is a [[NewsArticle]] that, while based on factual reporting, incorporates the expertise of the author/producer, offering interpretations and conclusions. */
+/** An AnalysisNewsArticle is a {@link https://schema.org/NewsArticle NewsArticle} that, while based on factual reporting, incorporates the expertise of the author/producer, offering interpretations and conclusions. */
 export type AnalysisNewsArticle = AnalysisNewsArticleLeaf;
 
 interface AnatomicalStructureBase extends MedicalEntityBase {
@@ -547,15 +547,15 @@ interface ApartmentLeaf extends ApartmentBase {
 export type Apartment = ApartmentLeaf | string;
 
 interface ApartmentComplexBase extends ResidenceBase {
-    /** Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]]. */
+    /** Indicates the total (available plus unavailable) number of accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAvailableAccommodationUnits numberOfAvailableAccommodationUnits}. */
     "schema:numberOfAccommodationUnits"?: SchemaValue<QuantitativeValue | IdReference, "schema:numberOfAccommodationUnits">;
-    /** Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]]. */
+    /** Indicates the number of available accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAccommodationUnits numberOfAccommodationUnits}. */
     "schema:numberOfAvailableAccommodationUnits"?: SchemaValue<QuantitativeValue | IdReference, "schema:numberOfAvailableAccommodationUnits">;
-    /** The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]]. */
+    /** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
     "schema:numberOfBedrooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfBedrooms">;
     /** Indicates whether pets are allowed to enter the accommodation or lodging business. More detailed information can be put in a text value. */
     "schema:petsAllowed"?: SchemaValue<Boolean | Text, "schema:petsAllowed">;
-    /** A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate. */
+    /** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
     "schema:tourBookingPage"?: SchemaValue<URL, "schema:tourBookingPage">;
 }
 interface ApartmentComplexLeaf extends ApartmentComplexBase {
@@ -568,7 +568,7 @@ interface APIReferenceBase extends TechArticleBase {
     /**
      * Library file name e.g., mscorlib.dll, system.web.dll.
      *
-     * @deprecated Consider using {@link https://schema.org/executableLibraryName https://schema.org/executableLibraryName} instead.
+     * @deprecated Consider using https://schema.org/executableLibraryName instead.
      */
     "schema:assembly"?: SchemaValue<Text, "schema:assembly">;
     /** Associated product/technology version. e.g., .NET Framework 4.5. */
@@ -599,7 +599,7 @@ interface ApplyActionLeaf extends ActionBase {
  * The act of registering to an organization/service without the guarantee to receive it.
  *
  * Related actions:
- * - [[RegisterAction]]: Unlike RegisterAction, ApplyAction has no guarantees that the application will be accepted.
+ * - {@link https://schema.org/RegisterAction RegisterAction}: Unlike RegisterAction, ApplyAction has no guarantees that the application will be accepted.
  */
 export type ApplyAction = ApplyActionLeaf;
 
@@ -616,7 +616,7 @@ interface AquariumLeaf extends CivicStructureBase {
 export type Aquarium = AquariumLeaf | string;
 
 interface ArchiveComponentBase extends CreativeWorkBase {
-    /** [[ArchiveOrganization]] that holds, keeps or maintains the [[ArchiveComponent]]. */
+    /** {@link https://schema.org/ArchiveOrganization ArchiveOrganization} that holds, keeps or maintains the {@link https://schema.org/ArchiveComponent ArchiveComponent}. */
     "schema:holdingArchive"?: SchemaValue<ArchiveOrganization | IdReference, "schema:holdingArchive">;
     /** Current location of the item. */
     "schema:itemLocation"?: SchemaValue<Place | PostalAddress | Text | IdReference, "schema:itemLocation">;
@@ -628,7 +628,7 @@ interface ArchiveComponentLeaf extends ArchiveComponentBase {
 export type ArchiveComponent = ArchiveComponentLeaf;
 
 interface ArchiveOrganizationBase extends LocalBusinessBase {
-    /** Collection, {@link https://en.wikipedia.org/wiki/Fonds fonds}, or item held, kept or maintained by an [[ArchiveOrganization]]. */
+    /** Collection, {@link https://en.wikipedia.org/wiki/Fonds fonds}, or item held, kept or maintained by an {@link https://schema.org/ArchiveOrganization ArchiveOrganization}. */
     "schema:archiveHeld"?: SchemaValue<ArchiveComponent | IdReference, "schema:archiveHeld">;
 }
 interface ArchiveOrganizationLeaf extends ArchiveOrganizationBase {
@@ -666,7 +666,7 @@ interface ArticleBase extends CreativeWorkBase {
     "schema:articleBody"?: SchemaValue<Text, "schema:articleBody">;
     /** Articles may belong to one or more 'sections' in a magazine or newspaper, such as Sports, Lifestyle, etc. */
     "schema:articleSection"?: SchemaValue<Text, "schema:articleSection">;
-    /** For an [[Article]], typically a [[NewsArticle]], the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc. */
+    /** For an {@link https://schema.org/Article Article}, typically a {@link https://schema.org/NewsArticle NewsArticle}, the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc. */
     "schema:backstory"?: SchemaValue<CreativeWork | Text | IdReference, "schema:backstory">;
     /** The page on which the work ends; for example "138" or "xvi". */
     "schema:pageEnd"?: SchemaValue<Integer | Text, "schema:pageEnd">;
@@ -681,11 +681,11 @@ interface ArticleBase extends CreativeWorkBase {
      *
      * 1.) _id-value_ URL references - uses _id-value_ of an element in the page being annotated. The simplest use of _speakable_ has (potentially relative) URL values, referencing identified sections of the document concerned.
      *
-     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the [[cssSelector]] property.
+     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the {@link https://schema.org/cssSelector cssSelector} property.
      *
-     * 3.) XPaths - addresses content via XPaths (assuming an XML view of the content). Use the [[xpath]] property.
+     * 3.) XPaths - addresses content via XPaths (assuming an XML view of the content). Use the {@link https://schema.org/xpath xpath} property.
      *
-     * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, [[SpeakableSpecification]] which is defined to be a possible value of the _speakable_ property.
+     * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, {@link https://schema.org/SpeakableSpecification SpeakableSpecification} which is defined to be a possible value of the _speakable_ property.
      */
     "schema:speakable"?: SchemaValue<SpeakableSpecification | URL | IdReference, "schema:speakable">;
     /** The number of words in the text of the Article. */
@@ -712,14 +712,14 @@ interface AskActionLeaf extends AskActionBase {
  * The act of posing a question / favor to someone.
  *
  * Related actions:
- * - [[ReplyAction]]: Appears generally as a response to AskAction.
+ * - {@link https://schema.org/ReplyAction ReplyAction}: Appears generally as a response to AskAction.
  */
 export type AskAction = AskActionLeaf;
 
 interface AskPublicNewsArticleLeaf extends NewsArticleBase {
     "@type": "schema:AskPublicNewsArticle";
 }
-/** A [[NewsArticle]] expressing an open call by a [[NewsMediaOrganization]] asking the public for input, insights, clarifications, anecdotes, documentation, etc., on an issue, for reporting purposes. */
+/** A {@link https://schema.org/NewsArticle NewsArticle} expressing an open call by a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} asking the public for input, insights, clarifications, anecdotes, documentation, etc., on an issue, for reporting purposes. */
 export type AskPublicNewsArticle = AskPublicNewsArticleLeaf;
 
 interface AssessActionLeaf extends ActionBase {
@@ -743,7 +743,7 @@ export type Atlas = AtlasLeaf;
 interface AtomUIElementLeaf extends UIElementBase {
     "@type": "uxi:AtomUIElement";
 }
-/** An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: {@link https://atomicdesign.bradfrost.com https://atomicdesign.bradfrost.com} */
+/** An Atom UI element is the smallest element as understood by the Atomic Design Methodology. Atoms can't be broken down any further, so these UI elements constitute the smallest building block: https://atomicdesign.bradfrost.com */
 export type AtomUIElement = AtomUIElementLeaf | Avatar | Button | Checkbox | Datepicker | Heading | Icon | InputElement | Label | Link | Radiobutton | Shape | Subheading | Subtitle | Switch | Textfield | Timepicker | Title;
 
 interface AttorneyLeaf extends LocalBusinessBase {
@@ -752,7 +752,7 @@ interface AttorneyLeaf extends LocalBusinessBase {
 /**
  * Professional service: Attorney.
  *
- * This type is deprecated - [[LegalService]] is more inclusive and less ambiguous.
+ * This type is deprecated - {@link https://schema.org/LegalService LegalService} is more inclusive and less ambiguous.
  */
 export type Attorney = AttorneyLeaf | string;
 
@@ -781,9 +781,9 @@ interface AudiobookLeaf extends AudiobookBase {
 export type Audiobook = AudiobookLeaf;
 
 interface AudioObjectBase extends MediaObjectBase {
-    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]]. */
+    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
     "schema:caption"?: SchemaValue<MediaObject | Text | IdReference, "schema:caption">;
-    /** Represents textual captioning from a [[MediaObject]], e.g. text of a 'meme'. */
+    /** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
     "schema:embeddedTextCaption"?: SchemaValue<Text, "schema:embeddedTextCaption">;
     /** If this MediaObject is an AudioObject or VideoObject, the transcript of that object. */
     "schema:transcript"?: SchemaValue<Text, "schema:transcript">;
@@ -797,7 +797,7 @@ export type AudioObject = AudioObjectLeaf | Audiobook | AudioObjectSnapshot;
 interface AudioObjectSnapshotLeaf extends AudioObjectBase {
     "@type": "schema:AudioObjectSnapshot";
 }
-/** A specific and exact (byte-for-byte) version of an [[AudioObject]]. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
+/** A specific and exact (byte-for-byte) version of an {@link https://schema.org/AudioObject AudioObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type AudioObjectSnapshot = AudioObjectSnapshotLeaf;
 
 interface AuthorizeActionBase extends ActionBase {
@@ -881,7 +881,7 @@ export type BackAction = BackActionLeaf;
 interface BackgroundNewsArticleLeaf extends NewsArticleBase {
     "@type": "schema:BackgroundNewsArticle";
 }
-/** A [[NewsArticle]] providing historical context, definition and detail on a specific topic (aka "explainer" or "backgrounder"). For example, an in-depth article or frequently-asked-questions ({@link https://en.wikipedia.org/wiki/FAQ FAQ}) document on topics such as Climate Change or the European Union. Other kinds of background material from a non-news setting are often described using [[Book]] or [[Article]], in particular [[ScholarlyArticle]]. See also [[NewsArticle]] for related vocabulary from a learning/education perspective. */
+/** A {@link https://schema.org/NewsArticle NewsArticle} providing historical context, definition and detail on a specific topic (aka "explainer" or "backgrounder"). For example, an in-depth article or frequently-asked-questions ({@link https://en.wikipedia.org/wiki/FAQ FAQ}) document on topics such as Climate Change or the European Union. Other kinds of background material from a non-news setting are often described using {@link https://schema.org/Book Book} or {@link https://schema.org/Article Article}, in particular {@link https://schema.org/ScholarlyArticle ScholarlyArticle}. See also {@link https://schema.org/NewsArticle NewsArticle} for related vocabulary from a learning/education perspective. */
 export type BackgroundNewsArticle = BackgroundNewsArticleLeaf;
 
 interface BakeryLeaf extends FoodEstablishmentBase {
@@ -953,7 +953,7 @@ interface BedDetailsBase extends ThingBase {
 interface BedDetailsLeaf extends BedDetailsBase {
     "@type": "schema:BedDetails";
 }
-/** An entity holding detailed information about the available bed types, e.g. the quantity of twin beds for a hotel room. For the single case of just one bed of a certain type, you can use bed directly with a text. See also [[BedType]] (under development). */
+/** An entity holding detailed information about the available bed types, e.g. the quantity of twin beds for a hotel room. For the single case of just one bed of a certain type, you can use bed directly with a text. See also {@link https://schema.org/BedType BedType} (under development). */
 export type BedDetails = BedDetailsLeaf;
 
 interface BedTypeLeaf extends QualitativeValueBase {
@@ -969,7 +969,7 @@ interface BefriendActionLeaf extends ActionBase {
  * The act of forming a personal connection with someone (object) mutually/bidirectionally/symmetrically.
  *
  * Related actions:
- * - [[FollowAction]]: Unlike FollowAction, BefriendAction implies that the connection is reciprocal.
+ * - {@link https://schema.org/FollowAction FollowAction}: Unlike FollowAction, BefriendAction implies that the connection is reciprocal.
  */
 export type BefriendAction = BefriendActionLeaf;
 
@@ -1021,9 +1021,9 @@ interface BlogBase extends CreativeWorkBase {
     /** A posting that is part of this blog. */
     "schema:blogPost"?: SchemaValue<BlogPosting | IdReference, "schema:blogPost">;
     /**
-     * Indicates a post that is part of a [[Blog]]. Note that historically, what we term a "Blog" was once known as a "weblog", and that what we term a "BlogPosting" is now often colloquially referred to as a "blog".
+     * Indicates a post that is part of a {@link https://schema.org/Blog Blog}. Note that historically, what we term a "Blog" was once known as a "weblog", and that what we term a "BlogPosting" is now often colloquially referred to as a "blog".
      *
-     * @deprecated Consider using {@link https://schema.org/blogPost https://schema.org/blogPost} instead.
+     * @deprecated Consider using https://schema.org/blogPost instead.
      */
     "schema:blogPosts"?: SchemaValue<BlogPosting | IdReference, "schema:blogPosts">;
     /** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
@@ -1032,7 +1032,7 @@ interface BlogBase extends CreativeWorkBase {
 interface BlogLeaf extends BlogBase {
     "@type": "schema:Blog";
 }
-/** A {@link https://en.wikipedia.org/wiki/Blog blog}, sometimes known as a "weblog". Note that the individual posts ([[BlogPosting]]s) in a [[Blog]] are often colloqually referred to by the same term. */
+/** A {@link https://en.wikipedia.org/wiki/Blog blog}, sometimes known as a "weblog". Note that the individual posts ({@link https://schema.org/BlogPosting BlogPosting}s) in a {@link https://schema.org/Blog Blog} are often colloqually referred to by the same term. */
 export type Blog = BlogLeaf;
 
 interface BlogPostingLeaf extends SocialMediaPostingBase {
@@ -1059,7 +1059,7 @@ interface BoatReservationLeaf extends ReservationBase {
 /**
  * A reservation for boat travel.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type BoatReservation = BoatReservationLeaf;
 
@@ -1178,7 +1178,7 @@ interface BorrowActionLeaf extends BorrowActionBase {
  * The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.
  *
  * Related actions:
- * - [[LendAction]]: Reciprocal of BorrowAction.
+ * - {@link https://schema.org/LendAction LendAction}: Reciprocal of BorrowAction.
  */
 export type BorrowAction = BorrowActionLeaf;
 
@@ -1216,7 +1216,7 @@ interface BreadcrumbListLeaf extends ItemListBase {
 /**
  * A BreadcrumbList is an ItemList consisting of a chain of linked Web pages, typically described using at least their URL and their name, and typically ending with the current page.
  *
- * The [[position]] property is used to reconstruct the order of the items in a BreadcrumbList The convention is that a breadcrumb list has an [[itemListOrder]] of [[ItemListOrderAscending]] (lower values listed first), and that the first items in this list correspond to the "top" or beginning of the breadcrumb trail, e.g. with a site or section homepage. The specific values of 'position' are not assigned meaning for a BreadcrumbList, but they should be integers, e.g. beginning with '1' for the first item in the list.
+ * The {@link https://schema.org/position position} property is used to reconstruct the order of the items in a BreadcrumbList The convention is that a breadcrumb list has an {@link https://schema.org/itemListOrder itemListOrder} of {@link https://schema.org/ItemListOrderAscending ItemListOrderAscending} (lower values listed first), and that the first items in this list correspond to the "top" or beginning of the breadcrumb trail, e.g. with a site or section homepage. The specific values of 'position' are not assigned meaning for a BreadcrumbList, but they should be integers, e.g. beginning with '1' for the first item in the list.
  */
 export type BreadcrumbList = BreadcrumbListLeaf;
 
@@ -1286,7 +1286,7 @@ interface BroadcastServiceBase extends ServiceBase {
     /**
      * The area within which users can expect to reach the broadcast service.
      *
-     * @deprecated Consider using {@link https://schema.org/serviceArea https://schema.org/serviceArea} instead.
+     * @deprecated Consider using https://schema.org/serviceArea instead.
      */
     "schema:area"?: SchemaValue<Place | IdReference, "schema:area">;
     /** The media network(s) whose content is broadcast on this station. */
@@ -1303,7 +1303,7 @@ interface BroadcastServiceBase extends ServiceBase {
     "schema:callSign"?: SchemaValue<Text, "schema:callSign">;
     /** A broadcast channel of a broadcast service. */
     "schema:hasBroadcastChannel"?: SchemaValue<BroadcastChannel | IdReference, "schema:hasBroadcastChannel">;
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /** A broadcast service to which the broadcast service may belong to such as regional variations of a national channel. */
     "schema:parentService"?: SchemaValue<BroadcastService | IdReference, "schema:parentService">;
@@ -1355,10 +1355,10 @@ interface BusinessEntityTypeLeaf extends EnumerationBase {
  * A business entity type is a conceptual entity representing the legal form, the size, the main line of business, the position in the value chain, or any combination thereof, of an organization or business person.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#Business http://purl.org/goodrelations/v1#Business}
- * - {@link http://purl.org/goodrelations/v1#Enduser http://purl.org/goodrelations/v1#Enduser}
- * - {@link http://purl.org/goodrelations/v1#PublicInstitution http://purl.org/goodrelations/v1#PublicInstitution}
- * - {@link http://purl.org/goodrelations/v1#Reseller http://purl.org/goodrelations/v1#Reseller}
+ * - http://purl.org/goodrelations/v1#Business
+ * - http://purl.org/goodrelations/v1#Enduser
+ * - http://purl.org/goodrelations/v1#PublicInstitution
+ * - http://purl.org/goodrelations/v1#Reseller
  */
 export type BusinessEntityType = BusinessEntityTypeLeaf;
 
@@ -1375,14 +1375,14 @@ interface BusinessFunctionLeaf extends EnumerationBase {
  * The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through the offer. Typical are sell, rental or lease, maintenance or repair, manufacture / produce, recycle / dispose, engineering / construction, or installation. Proprietary specifications of access rights are also instances of this class.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#ConstructionInstallation http://purl.org/goodrelations/v1#ConstructionInstallation}
- * - {@link http://purl.org/goodrelations/v1#Dispose http://purl.org/goodrelations/v1#Dispose}
- * - {@link http://purl.org/goodrelations/v1#LeaseOut http://purl.org/goodrelations/v1#LeaseOut}
- * - {@link http://purl.org/goodrelations/v1#Maintain http://purl.org/goodrelations/v1#Maintain}
- * - {@link http://purl.org/goodrelations/v1#ProvideService http://purl.org/goodrelations/v1#ProvideService}
- * - {@link http://purl.org/goodrelations/v1#Repair http://purl.org/goodrelations/v1#Repair}
- * - {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell}
- * - {@link http://purl.org/goodrelations/v1#Buy http://purl.org/goodrelations/v1#Buy}
+ * - http://purl.org/goodrelations/v1#ConstructionInstallation
+ * - http://purl.org/goodrelations/v1#Dispose
+ * - http://purl.org/goodrelations/v1#LeaseOut
+ * - http://purl.org/goodrelations/v1#Maintain
+ * - http://purl.org/goodrelations/v1#ProvideService
+ * - http://purl.org/goodrelations/v1#Repair
+ * - http://purl.org/goodrelations/v1#Sell
+ * - http://purl.org/goodrelations/v1#Buy
  */
 export type BusinessFunction = BusinessFunctionLeaf;
 
@@ -1393,9 +1393,9 @@ interface BusOrCoachBase extends VehicleBase {
      * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]]
-     * - Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}
+     * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:roofLoad"?: SchemaValue<QuantitativeValue | IdReference, "schema:roofLoad">;
 }
@@ -1411,7 +1411,7 @@ interface BusReservationLeaf extends ReservationBase {
 /**
  * A reservation for bus travel.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type BusReservation = BusReservationLeaf;
 
@@ -1459,13 +1459,13 @@ interface BuyActionBase extends TradeActionBase {
     /**
      * 'vendor' is an earlier term for 'seller'.
      *
-     * @deprecated Consider using {@link https://schema.org/seller https://schema.org/seller} instead.
+     * @deprecated Consider using https://schema.org/seller instead.
      */
     "schema:vendor"?: SchemaValue<Organization | Person | IdReference, "schema:vendor">;
     /**
      * The warranty promise(s) included in the offer.
      *
-     * @deprecated Consider using {@link https://schema.org/warranty https://schema.org/warranty} instead.
+     * @deprecated Consider using https://schema.org/warranty instead.
      */
     "schema:warrantyPromise"?: SchemaValue<WarrantyPromise | IdReference, "schema:warrantyPromise">;
 }
@@ -1493,7 +1493,7 @@ interface CampgroundLeaf extends CampgroundBase {
     "@type": "schema:Campground";
 }
 /**
- * A camping site, campsite, or [[Campground]] is a place used for overnight stay in the outdoors, typically containing individual [[CampingPitch]] locations.
+ * A camping site, campsite, or {@link https://schema.org/Campground Campground} is a place used for overnight stay in the outdoors, typically containing individual {@link https://schema.org/CampingPitch CampingPitch} locations.
  *
  * In British English a campsite is an area, usually divided into a number of pitches, where people can camp overnight using tents or camper vans or caravans; this British English use of the word is synonymous with the American English expression campground. In American English the term campsite generally means an area where an individual, family, group, or military unit can pitch a tent or park a camper; a campground may contain many campsites (Source: Wikipedia see {@link https://en.wikipedia.org/wiki/Campsite https://en.wikipedia.org/wiki/Campsite}).
  *
@@ -1505,7 +1505,7 @@ interface CampingPitchLeaf extends AccommodationBase {
     "@type": "schema:CampingPitch";
 }
 /**
- * A [[CampingPitch]] is an individual place for overnight stay in the outdoors, typically being part of a larger camping site, or [[Campground]].
+ * A {@link https://schema.org/CampingPitch CampingPitch} is an individual place for overnight stay in the outdoors, typically being part of a larger camping site, or {@link https://schema.org/Campground Campground}.
  *
  * In British English a campsite, or campground, is an area, usually divided into a number of pitches, where people can camp overnight using tents or camper vans or caravans; this British English use of the word is synonymous with the American English expression campground. In American English the term campsite generally means an area where an individual, family, group, or military unit can pitch a tent or park a camper; a campground may contain many campsites. (Source: Wikipedia see {@link https://en.wikipedia.org/wiki/Campsite https://en.wikipedia.org/wiki/Campsite}).
  *
@@ -1526,7 +1526,7 @@ interface CancelActionLeaf extends PlanActionBase {
  * The act of asserting that a future event/action is no longer going to happen.
  *
  * Related actions:
- * - [[ConfirmAction]]: The antonym of CancelAction.
+ * - {@link https://schema.org/ConfirmAction ConfirmAction}: The antonym of CancelAction.
  */
 export type CancelAction = CancelActionLeaf;
 
@@ -1537,9 +1537,9 @@ interface CarBase extends VehicleBase {
      * The permitted total weight of cargo and installations (e.g. a roof rack) on top of the vehicle.
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]]
-     * - Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}
+     * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:roofLoad"?: SchemaValue<QuantitativeValue | IdReference, "schema:roofLoad">;
 }
@@ -1570,7 +1570,7 @@ export type Casino = CasinoLeaf | string;
 interface CategoryCodeBase extends DefinedTermBase {
     /** A short textual code that uniquely identifies the value. */
     "schema:codeValue"?: SchemaValue<Text, "schema:codeValue">;
-    /** A [[CategoryCodeSet]] that contains this category code. */
+    /** A {@link https://schema.org/CategoryCodeSet CategoryCodeSet} that contains this category code. */
     "schema:inCodeSet"?: SchemaValue<CategoryCodeSet | URL | IdReference, "schema:inCodeSet">;
 }
 interface CategoryCodeLeaf extends CategoryCodeBase {
@@ -1598,9 +1598,9 @@ export type CatholicChurch = CatholicChurchLeaf | string;
 interface CDCPMDRecordBase extends ThingBase {
     /** collectiondate - Date for which patient counts are reported. */
     "schema:cvdCollectionDate"?: SchemaValue<DateTime | Text, "schema:cvdCollectionDate">;
-    /** Name of the County of the NHSN facility that this data record applies to. Use [[cvdFacilityId]] to identify the facility. To provide other details, [[healthcareReportingData]] can be used on a [[Hospital]] entry. */
+    /** Name of the County of the NHSN facility that this data record applies to. Use {@link https://schema.org/cvdFacilityId cvdFacilityId} to identify the facility. To provide other details, {@link https://schema.org/healthcareReportingData healthcareReportingData} can be used on a {@link https://schema.org/Hospital Hospital} entry. */
     "schema:cvdFacilityCounty"?: SchemaValue<Text, "schema:cvdFacilityCounty">;
-    /** Identifier of the NHSN facility that this data record applies to. Use [[cvdFacilityCounty]] to indicate the county. To provide other details, [[healthcareReportingData]] can be used on a [[Hospital]] entry. */
+    /** Identifier of the NHSN facility that this data record applies to. Use {@link https://schema.org/cvdFacilityCounty cvdFacilityCounty} to indicate the county. To provide other details, {@link https://schema.org/healthcareReportingData healthcareReportingData} can be used on a {@link https://schema.org/Hospital Hospital} entry. */
     "schema:cvdFacilityId"?: SchemaValue<Text, "schema:cvdFacilityId">;
     /** numbeds - HOSPITAL INPATIENT BEDS: Inpatient beds, including all staffed, licensed, and overflow (surge) beds used for inpatients. */
     "schema:cvdNumBeds"?: SchemaValue<Number, "schema:cvdNumBeds">;
@@ -1688,9 +1688,9 @@ interface CheckInActionLeaf extends CommunicateActionBase {
  * The act of an agent communicating (service provider, social media, etc) their arrival by registering/confirming for a previously reserved service (e.g. flight check in) or at a place (e.g. hotel), possibly resulting in a result (boarding pass, etc).
  *
  * Related actions:
- * - [[CheckOutAction]]: The antonym of CheckInAction.
- * - [[ArriveAction]]: Unlike ArriveAction, CheckInAction implies that the agent is informing/confirming the start of a previously reserved service.
- * - [[ConfirmAction]]: Unlike ConfirmAction, CheckInAction implies that the agent is informing/confirming the _start_ of a previously reserved service rather than its validity/existence.
+ * - {@link https://schema.org/CheckOutAction CheckOutAction}: The antonym of CheckInAction.
+ * - {@link https://schema.org/ArriveAction ArriveAction}: Unlike ArriveAction, CheckInAction implies that the agent is informing/confirming the start of a previously reserved service.
+ * - {@link https://schema.org/ConfirmAction ConfirmAction}: Unlike ConfirmAction, CheckInAction implies that the agent is informing/confirming the _start_ of a previously reserved service rather than its validity/existence.
  */
 export type CheckInAction = CheckInActionLeaf;
 
@@ -1701,9 +1701,9 @@ interface CheckOutActionLeaf extends CommunicateActionBase {
  * The act of an agent communicating (service provider, social media, etc) their departure of a previously reserved service (e.g. flight check in) or place (e.g. hotel).
  *
  * Related actions:
- * - [[CheckInAction]]: The antonym of CheckOutAction.
- * - [[DepartAction]]: Unlike DepartAction, CheckOutAction implies that the agent is informing/confirming the end of a previously reserved service.
- * - [[CancelAction]]: Unlike CancelAction, CheckOutAction implies that the agent is informing/confirming the end of a previously reserved service.
+ * - {@link https://schema.org/CheckInAction CheckInAction}: The antonym of CheckOutAction.
+ * - {@link https://schema.org/DepartAction DepartAction}: Unlike DepartAction, CheckOutAction implies that the agent is informing/confirming the end of a previously reserved service.
+ * - {@link https://schema.org/CancelAction CancelAction}: Unlike CancelAction, CheckOutAction implies that the agent is informing/confirming the end of a previously reserved service.
  */
 export type CheckOutAction = CheckOutActionLeaf;
 
@@ -1745,7 +1745,7 @@ interface ChooseActionBase extends ActionBase {
     /**
      * A sub property of object. The options subject to this action.
      *
-     * @deprecated Consider using {@link https://schema.org/actionOption https://schema.org/actionOption} instead.
+     * @deprecated Consider using https://schema.org/actionOption instead.
      */
     "schema:option"?: SchemaValue<Text | Thing | IdReference, "schema:option">;
 }
@@ -1796,20 +1796,20 @@ interface CivicStructureLeaf extends CivicStructureBase {
 export type CivicStructure = CivicStructureLeaf | Airport | Aquarium | Beach | BoatTerminal | Bridge | BusStation | BusStop | Campground | Cemetery | Crematorium | EducationalOrganization | EventVenue | FireStation | GovernmentBuilding | Hospital | MovieTheater | Museum | MusicVenue | Park | ParkingFacility | PerformingArtsTheater | PlaceOfWorship | Playground | PoliceStation | PublicToilet | RVPark | StadiumOrArena | SubwayStation | TaxiStand | TrainStation | Zoo | string;
 
 interface ClaimBase extends CreativeWorkBase {
-    /** Indicates an occurence of a [[Claim]] in some [[CreativeWork]]. */
+    /** Indicates an occurence of a {@link https://schema.org/Claim Claim} in some {@link https://schema.org/CreativeWork CreativeWork}. */
     "schema:appearance"?: SchemaValue<CreativeWork | IdReference, "schema:appearance">;
-    /** For a [[Claim]] interpreted from [[MediaObject]] content sed to indicate a claim contained, implied or refined from the content of a [[MediaObject]]. */
+    /** For a {@link https://schema.org/Claim Claim} interpreted from {@link https://schema.org/MediaObject MediaObject} content sed to indicate a claim contained, implied or refined from the content of a {@link https://schema.org/MediaObject MediaObject}. */
     "schema:claimInterpreter"?: SchemaValue<Organization | Person | IdReference, "schema:claimInterpreter">;
-    /** Indicates the first known occurence of a [[Claim]] in some [[CreativeWork]]. */
+    /** Indicates the first known occurence of a {@link https://schema.org/Claim Claim} in some {@link https://schema.org/CreativeWork CreativeWork}. */
     "schema:firstAppearance"?: SchemaValue<CreativeWork | IdReference, "schema:firstAppearance">;
 }
 interface ClaimLeaf extends ClaimBase {
     "@type": "schema:Claim";
 }
 /**
- * A [[Claim]] in Schema.org represents a specific, factually-oriented claim that could be the [[itemReviewed]] in a [[ClaimReview]]. The content of a claim can be summarized with the [[text]] property. Variations on well known claims can have their common identity indicated via [[sameAs]] links, and summarized with a [[name]]. Ideally, a [[Claim]] description includes enough contextual information to minimize the risk of ambiguity or inclarity. In practice, many claims are better understood in the context in which they appear or the interpretations provided by claim reviews.
+ * A {@link https://schema.org/Claim Claim} in Schema.org represents a specific, factually-oriented claim that could be the {@link https://schema.org/itemReviewed itemReviewed} in a {@link https://schema.org/ClaimReview ClaimReview}. The content of a claim can be summarized with the {@link https://schema.org/text text} property. Variations on well known claims can have their common identity indicated via {@link https://schema.org/sameAs sameAs} links, and summarized with a {@link https://schema.org/name name}. Ideally, a {@link https://schema.org/Claim Claim} description includes enough contextual information to minimize the risk of ambiguity or inclarity. In practice, many claims are better understood in the context in which they appear or the interpretations provided by claim reviews.
  *
- * Beyond [[ClaimReview]], the Claim type can be associated with related creative works - for example a [[ScholarlyArticle]] or [[Question]] might be [[about]] some [[Claim]].
+ * Beyond {@link https://schema.org/ClaimReview ClaimReview}, the Claim type can be associated with related creative works - for example a {@link https://schema.org/ScholarlyArticle ScholarlyArticle} or {@link https://schema.org/Question Question} might be {@link https://schema.org/about about} some {@link https://schema.org/Claim Claim}.
  *
  * At this time, Schema.org does not define any types of relationship between claims. This is a natural area for future exploration.
  */
@@ -1847,7 +1847,7 @@ interface ClipBase extends CreativeWorkBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** Position of the clip within an ordered group of clips. */
@@ -1857,7 +1857,7 @@ interface ClipBase extends CreativeWorkBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** The end time of the clip expressed as the number of seconds from the beginning of the work. */
@@ -1908,7 +1908,7 @@ interface CodeLeaf extends CreativeWorkBase {
 export type Code = CodeLeaf;
 
 interface CollectionBase extends CreativeWorkBase {
-    /** The number of items in the [[Collection]]. */
+    /** The number of items in the {@link https://schema.org/Collection Collection}. */
     "schema:collectionSize"?: SchemaValue<Integer, "schema:collectionSize">;
 }
 interface CollectionLeaf extends CollectionBase {
@@ -2016,7 +2016,7 @@ interface CommentBase extends CreativeWorkBase {
 interface CommentLeaf extends CommentBase {
     "@type": "schema:Comment";
 }
-/** A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the [[text]] property, and its topic via [[about]], properties shared with all CreativeWorks. */
+/** A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the {@link https://schema.org/text text} property, and its topic via {@link https://schema.org/about about}, properties shared with all CreativeWorks. */
 export type Comment = CommentLeaf | Answer | CorrectionComment | Question;
 
 interface CommentActionBase extends CommunicateActionBase {
@@ -2032,12 +2032,12 @@ export type CommentAction = CommentActionLeaf | UICommentAction;
 interface CommunicateActionBase extends ActionBase {
     /** The subject matter of the content. */
     "schema:about"?: SchemaValue<Thing | IdReference, "schema:about">;
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /**
      * A sub property of instrument. The language used on this action.
      *
-     * @deprecated Consider using {@link https://schema.org/inLanguage https://schema.org/inLanguage} instead.
+     * @deprecated Consider using https://schema.org/inLanguage instead.
      */
     "schema:language"?: SchemaValue<Language | IdReference, "schema:language">;
     /** A sub property of participant. The participant who is at the receiving end of the action. */
@@ -2053,16 +2053,16 @@ interface CompleteDataFeedLeaf extends DataFeedBase {
     "@type": "schema:CompleteDataFeed";
 }
 /**
- * A [[CompleteDataFeed]] is a [[DataFeed]] whose standard representation includes content for every item currently in the feed.
+ * A {@link https://schema.org/CompleteDataFeed CompleteDataFeed} is a {@link https://schema.org/DataFeed DataFeed} whose standard representation includes content for every item currently in the feed.
  *
  * This is the equivalent of Atom's element as defined in Feed Paging and Archiving {@link https://tools.ietf.org/html/rfc5005 RFC 5005}, For example (and as defined for Atom), when using data from a feed that represents a collection of items that varies over time (e.g. "Top Twenty Records") there is no need to have newer entries mixed in alongside older, obsolete entries. By marking this feed as a CompleteDataFeed, old entries can be safely discarded when the feed is refreshed, since we can assume the feed has provided descriptions for all current items.
  */
 export type CompleteDataFeed = CompleteDataFeedLeaf;
 
 interface CompoundPriceSpecificationBase extends PriceSpecificationBase {
-    /** This property links to all [[UnitPriceSpecification]] nodes that apply in parallel for the [[CompoundPriceSpecification]] node. */
+    /** This property links to all {@link https://schema.org/UnitPriceSpecification UnitPriceSpecification} nodes that apply in parallel for the {@link https://schema.org/CompoundPriceSpecification CompoundPriceSpecification} node. */
     "schema:priceComponent"?: SchemaValue<UnitPriceSpecification | IdReference, "schema:priceComponent">;
-    /** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the [[priceType]] property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
+    /** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the {@link https://schema.org/priceType priceType} property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
     "schema:priceType"?: SchemaValue<PriceTypeEnumeration | Text | IdReference, "schema:priceType">;
 }
 interface CompoundPriceSpecificationLeaf extends CompoundPriceSpecificationBase {
@@ -2074,7 +2074,7 @@ export type CompoundPriceSpecification = CompoundPriceSpecificationLeaf;
 interface ComputerLanguageLeaf extends ThingBase {
     "@type": "schema:ComputerLanguage";
 }
-/** This type covers computer programming languages such as Scheme and Lisp, as well as other language-like computer representations. Natural languages are best represented with the [[Language]] type. */
+/** This type covers computer programming languages such as Scheme and Lisp, as well as other language-like computer representations. Natural languages are best represented with the {@link https://schema.org/Language Language} type. */
 export type ComputerLanguage = ComputerLanguageLeaf;
 
 interface ComputerStoreLeaf extends LocalBusinessBase {
@@ -2090,14 +2090,14 @@ interface ConfirmActionLeaf extends InformActionBase {
  * The act of notifying someone that a future event/action is going to happen as expected.
  *
  * Related actions:
- * - [[CancelAction]]: The antonym of ConfirmAction.
+ * - {@link https://schema.org/CancelAction CancelAction}: The antonym of ConfirmAction.
  */
 export type ConfirmAction = ConfirmActionLeaf | UIConfirmAction;
 
 interface ConsortiumLeaf extends OrganizationBase {
     "@type": "schema:Consortium";
 }
-/** A Consortium is a membership [[Organization]] whose members are typically Organizations. */
+/** A Consortium is a membership {@link https://schema.org/Organization Organization} whose members are typically Organizations. */
 export type Consortium = ConsortiumLeaf | string;
 
 interface ConstraintLeaf extends ElementBase {
@@ -2127,7 +2127,7 @@ export type ContactPage = ContactPageLeaf;
 interface ContactPointBase extends ThingBase {
     /** The geographic area where a service or offered item is provided. */
     "schema:areaServed"?: SchemaValue<AdministrativeArea | GeoShape | Place | Text | IdReference, "schema:areaServed">;
-    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[inLanguage]] */
+    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage} */
     "schema:availableLanguage"?: SchemaValue<Language | Text | IdReference, "schema:availableLanguage">;
     /** An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers). */
     "schema:contactOption"?: SchemaValue<ContactPointOption | IdReference, "schema:contactOption">;
@@ -2144,7 +2144,7 @@ interface ContactPointBase extends ThingBase {
     /**
      * The geographic area where the service is provided.
      *
-     * @deprecated Consider using {@link https://schema.org/areaServed https://schema.org/areaServed} instead.
+     * @deprecated Consider using https://schema.org/areaServed instead.
      */
     "schema:serviceArea"?: SchemaValue<AdministrativeArea | GeoShape | Place | IdReference, "schema:serviceArea">;
     /** The telephone number. */
@@ -2221,7 +2221,7 @@ interface ConversationLeaf extends CreativeWorkBase {
 export type Conversation = ConversationLeaf;
 
 interface ConverterBase extends ElementBase {
-    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be {@link https://schema.org/Date https://schema.org/Date} or {@link https://schema.org/DateTime https://schema.org/DateTime}. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
+    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
     "uxi:inputRange"?: SchemaValue<Thing | UIDataType | IdReference, "uxi:inputRange">;
     /** A result is an outcome property that's immediately evaluated. It can be used to tell the user what consequences their actions will have. E.g. the result in a currency calculator app, completed user profile data as a result of editing, or a fulfilled workflow after performing a sequence of tasks (before submitting). Technically, results should be treated as immediate/synchronous outcomes, compare with uxi:output for side-effects/asynchronous handling. */
     "uxi:result"?: SchemaValue<Thing | UIDataType | IdReference, "uxi:result">;
@@ -2259,7 +2259,7 @@ export type Corporation = CorporationLeaf | string;
 interface CorrectionCommentLeaf extends CommentBase {
     "@type": "schema:CorrectionComment";
 }
-/** A [[comment]] that corrects [[CreativeWork]]. */
+/** A {@link https://schema.org/comment comment} that corrects {@link https://schema.org/CreativeWork CreativeWork}. */
 export type CorrectionComment = CorrectionCommentLeaf;
 
 interface CountryLeaf extends PlaceBase {
@@ -2269,9 +2269,9 @@ interface CountryLeaf extends PlaceBase {
 export type Country = CountryLeaf | string;
 
 interface CourseBase extends CreativeWorkBase, LearningResourceBase {
-    /** The identifier for the [[Course]] used by the course [[provider]] (e.g. CS101 or 6.001). */
+    /** The identifier for the {@link https://schema.org/Course Course} used by the course {@link https://schema.org/provider provider} (e.g. CS101 or 6.001). */
     "schema:courseCode"?: SchemaValue<Text, "schema:courseCode">;
-    /** Requirements for taking the Course. May be completion of another [[Course]] or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using [[AlignmentObject]]. */
+    /** Requirements for taking the Course. May be completion of another {@link https://schema.org/Course Course} or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using {@link https://schema.org/AlignmentObject AlignmentObject}. */
     "schema:coursePrerequisites"?: SchemaValue<AlignmentObject | Course | Text | IdReference, "schema:coursePrerequisites">;
     /** A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program. */
     "schema:educationalCredentialAwarded"?: SchemaValue<EducationalOccupationalCredential | Text | URL | IdReference, "schema:educationalCredentialAwarded">;
@@ -2289,17 +2289,17 @@ interface CourseLeaf extends CourseBase {
 export type Course = CourseLeaf;
 
 interface CourseInstanceBase extends EventBase {
-    /** The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. {@link https://ceds.ed.gov/element/001311#Asynchronous https://ceds.ed.gov/element/001311#Asynchronous} ). */
+    /** The medium or means of delivery of the course instance or the mode of study, either as a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or as a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ). */
     "schema:courseMode"?: SchemaValue<Text | URL, "schema:courseMode">;
     /** The amount of work expected of students taking the course, often provided as a figure per week or per month, and may be broken down by type. For example, "2 hours of lectures, 1 hour of lab work and 3 hours of independent study per week". */
     "schema:courseWorkload"?: SchemaValue<Text, "schema:courseWorkload">;
-    /** A person assigned to instruct or provide instructional assistance for the [[CourseInstance]]. */
+    /** A person assigned to instruct or provide instructional assistance for the {@link https://schema.org/CourseInstance CourseInstance}. */
     "schema:instructor"?: SchemaValue<Person | IdReference, "schema:instructor">;
 }
 interface CourseInstanceLeaf extends CourseInstanceBase {
     "@type": "schema:CourseInstance";
 }
-/** An instance of a [[Course]] which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students. */
+/** An instance of a {@link https://schema.org/Course Course} which is distinct from other instances because it is offered at a different time or location or through different media or modes of study or to a specific section of students. */
 export type CourseInstance = CourseInstanceLeaf;
 
 interface CourthouseLeaf extends CivicStructureBase {
@@ -2317,7 +2317,7 @@ export type CoverArt = CoverArtLeaf | ComicCoverArt;
 interface CovidTestingFacilityLeaf extends MedicalClinicBase {
     "@type": "schema:CovidTestingFacility";
 }
-/** A CovidTestingFacility is a [[MedicalClinic]] where testing for the COVID-19 Coronavirus disease is available. If the facility is being made available from an established [[Pharmacy]], [[Hotel]], or other non-medical organization, multiple types can be listed. This makes it easier to re-use existing schema.org information about that place e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable. */
+/** A CovidTestingFacility is a {@link https://schema.org/MedicalClinic MedicalClinic} where testing for the COVID-19 Coronavirus disease is available. If the facility is being made available from an established {@link https://schema.org/Pharmacy Pharmacy}, {@link https://schema.org/Hotel Hotel}, or other non-medical organization, multiple types can be listed. This makes it easier to re-use existing schema.org information about that place e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable. */
 export type CovidTestingFacility = CovidTestingFacilityLeaf | string;
 
 interface CreateActionLeaf extends ActionBase {
@@ -2329,7 +2329,7 @@ export type CreateAction = CreateActionLeaf | CookAction | DrawAction | FilmActi
 interface CreativeWorkBase extends ThingBase {
     /** The subject matter of the content. */
     "schema:about"?: SchemaValue<Thing | IdReference, "schema:about">;
-    /** An abstract is a short description that summarizes a [[CreativeWork]]. */
+    /** An abstract is a short description that summarizes a {@link https://schema.org/CreativeWork CreativeWork}. */
     "schema:abstract"?: SchemaValue<Text, "schema:abstract">;
     /** Indicates that the resource is compatible with the referenced accessibility API ({@link http://www.w3.org/wiki/WebSchemas/Accessibility WebSchemas wiki lists possible values}). */
     "schema:accessibilityAPI"?: SchemaValue<Text, "schema:accessibilityAPI">;
@@ -2353,7 +2353,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:aggregateRating"?: SchemaValue<AggregateRating | IdReference, "schema:aggregateRating">;
     /** A secondary title of the CreativeWork. */
     "schema:alternativeHeadline"?: SchemaValue<Text, "schema:alternativeHeadline">;
-    /** Indicates a page or other link involved in archival of a [[CreativeWork]]. In the case of [[MediaReview]], the items in a [[MediaReviewItem]] may often become inaccessible, but be archived by archival, journalistic, activist, or law enforcement organizations. In such cases, the referenced page may not directly publish the content. */
+    /** Indicates a page or other link involved in archival of a {@link https://schema.org/CreativeWork CreativeWork}. In the case of {@link https://schema.org/MediaReview MediaReview}, the items in a {@link https://schema.org/MediaReviewItem MediaReviewItem} may often become inaccessible, but be archived by archival, journalistic, activist, or law enforcement organizations. In such cases, the referenced page may not directly publish the content. */
     "schema:archivedAt"?: SchemaValue<URL | WebPage | IdReference, "schema:archivedAt">;
     /** The item being described is intended to assess the competency or learning outcome defined by the referenced term. */
     "schema:assesses"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:assesses">;
@@ -2370,7 +2370,7 @@ interface CreativeWorkBase extends ThingBase {
     /**
      * Awards won by or for this item.
      *
-     * @deprecated Consider using {@link https://schema.org/award https://schema.org/award} instead.
+     * @deprecated Consider using https://schema.org/award instead.
      */
     "schema:awards"?: SchemaValue<Text, "schema:awards">;
     /** Fictional person connected with a creative work. */
@@ -2382,7 +2382,7 @@ interface CreativeWorkBase extends ThingBase {
     /** The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere. */
     "schema:commentCount"?: SchemaValue<Integer, "schema:commentCount">;
     /**
-     * Conditions that affect the availability of, or method(s) of access to, an item. Typically used for real world items such as an [[ArchiveComponent]] held by an [[ArchiveOrganization]]. This property is not suitable for use as a general Web access control mechanism. It is expressed only in natural language.
+     * Conditions that affect the availability of, or method(s) of access to, an item. Typically used for real world items such as an {@link https://schema.org/ArchiveComponent ArchiveComponent} held by an {@link https://schema.org/ArchiveOrganization ArchiveOrganization}. This property is not suitable for use as a general Web access control mechanism. It is expressed only in natural language.
      *
      * For example "Available by appointment from the Reading Room" or "Accessible only from logged-in accounts ".
      */
@@ -2401,12 +2401,12 @@ interface CreativeWorkBase extends ThingBase {
     "schema:copyrightNotice"?: SchemaValue<Text, "schema:copyrightNotice">;
     /** The year during which the claimed copyright for the CreativeWork was first asserted. */
     "schema:copyrightYear"?: SchemaValue<Number, "schema:copyrightYear">;
-    /** Indicates a correction to a [[CreativeWork]], either via a [[CorrectionComment]], textually or in another document. */
+    /** Indicates a correction to a {@link https://schema.org/CreativeWork CreativeWork}, either via a {@link https://schema.org/CorrectionComment CorrectionComment}, textually or in another document. */
     "schema:correction"?: SchemaValue<CorrectionComment | Text | URL | IdReference, "schema:correction">;
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
@@ -2426,11 +2426,11 @@ interface CreativeWorkBase extends ThingBase {
     /** A link to the page containing the comments of the CreativeWork. */
     "schema:discussionUrl"?: SchemaValue<URL, "schema:discussionUrl">;
     /**
-     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) [[identifier]] representing a specific edit / edition for a work of film or television.
+     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing a specific edit / edition for a work of film or television.
      *
-     * For example, the motion picture known as "Ghostbusters" whose [[titleEIDR]] is "10.5240/7EC7-228A-510A-053E-CBB8-J", has several edits e.g. "10.5240/1F2A-E1C5-680A-14C6-E76B-I" and "10.5240/8A35-3BEE-6497-5D12-9E4F-3".
+     * For example, the motion picture known as "Ghostbusters" whose {@link https://schema.org/titleEIDR titleEIDR} is "10.5240/7EC7-228A-510A-053E-CBB8-J", has several edits e.g. "10.5240/1F2A-E1C5-680A-14C6-E76B-I" and "10.5240/8A35-3BEE-6497-5D12-9E4F-3".
      *
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * Since schema.org types like {@link https://schema.org/Movie Movie} and {@link https://schema.org/TVEpisode TVEpisode} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
      */
     "schema:editEIDR"?: SchemaValue<Text | URL, "schema:editEIDR">;
     /** Specifies the Person who edited the CreativeWork. */
@@ -2438,7 +2438,7 @@ interface CreativeWorkBase extends ThingBase {
     /**
      * An alignment to an established educational framework.
      *
-     * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource [[teaches]] or [[assesses]] a competency.
+     * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource {@link https://schema.org/teaches teaches} or {@link https://schema.org/assesses assesses} a competency.
      */
     "schema:educationalAlignment"?: SchemaValue<AlignmentObject | IdReference, "schema:educationalAlignment">;
     /** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
@@ -2450,7 +2450,7 @@ interface CreativeWorkBase extends ThingBase {
     /**
      * Media type typically expressed using a MIME format (see {@link http://www.iana.org/assignments/media-types/media-types.xhtml IANA site} and {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types MDN reference}) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).
      *
-     * In cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.
+     * In cases where a {@link https://schema.org/CreativeWork CreativeWork} has several media type representations, {@link https://schema.org/encoding encoding} can be used to indicate each {@link https://schema.org/MediaObject MediaObject} alongside particular {@link https://schema.org/encodingFormat encodingFormat} information.
      *
      * Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.
      */
@@ -2458,17 +2458,17 @@ interface CreativeWorkBase extends ThingBase {
     /**
      * A media object that encodes this CreativeWork.
      *
-     * @deprecated Consider using {@link https://schema.org/encoding https://schema.org/encoding} instead.
+     * @deprecated Consider using https://schema.org/encoding instead.
      */
     "schema:encodings"?: SchemaValue<MediaObject | IdReference, "schema:encodings">;
     /** A creative work that this work is an example/instance/realization/derivation of. */
     "schema:exampleOfWork"?: SchemaValue<CreativeWork | IdReference, "schema:exampleOfWork">;
-    /** Date the content expires and is no longer useful or available. For example a [[VideoObject]] or [[NewsArticle]] whose availability or relevance is time-limited, or a [[ClaimReview]] fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date. */
+    /** Date the content expires and is no longer useful or available. For example a {@link https://schema.org/VideoObject VideoObject} or {@link https://schema.org/NewsArticle NewsArticle} whose availability or relevance is time-limited, or a {@link https://schema.org/ClaimReview ClaimReview} fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date. */
     "schema:expires"?: SchemaValue<Date, "schema:expires">;
     /**
      * Media type, typically MIME format (see {@link http://www.iana.org/assignments/media-types/media-types.xhtml IANA site}) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.
      *
-     * @deprecated Consider using {@link https://schema.org/encodingFormat https://schema.org/encodingFormat} instead.
+     * @deprecated Consider using https://schema.org/encodingFormat instead.
      */
     "schema:fileFormat"?: SchemaValue<Text | URL, "schema:fileFormat">;
     /** A person or organization that supports (sponsors) something through some kind of financial contribution. */
@@ -2479,22 +2479,22 @@ interface CreativeWorkBase extends ThingBase {
     "schema:hasPart"?: SchemaValue<CreativeWork | IdReference, "schema:hasPart">;
     /** Headline of the article. */
     "schema:headline"?: SchemaValue<Text, "schema:headline">;
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /** The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used. */
     "schema:interactionStatistic"?: SchemaValue<InteractionCounter | IdReference, "schema:interactionStatistic">;
     /** The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'. */
     "schema:interactivityType"?: SchemaValue<Text, "schema:interactivityType">;
-    /** Used to indicate a specific claim contained, implied, translated or refined from the content of a [[MediaObject]] or other [[CreativeWork]]. The interpreting party can be indicated using [[claimInterpreter]]. */
+    /** Used to indicate a specific claim contained, implied, translated or refined from the content of a {@link https://schema.org/MediaObject MediaObject} or other {@link https://schema.org/CreativeWork CreativeWork}. The interpreting party can be indicated using {@link https://schema.org/claimInterpreter claimInterpreter}. */
     "schema:interpretedAsClaim"?: SchemaValue<Claim | IdReference, "schema:interpretedAsClaim">;
     /** A flag to signal that the item, event, or place is accessible for free. */
     "schema:isAccessibleForFree"?: SchemaValue<Boolean, "schema:isAccessibleForFree">;
     /** A resource from which this work is derived or from which it is a modification or adaption. */
     "schema:isBasedOn"?: SchemaValue<CreativeWork | Product | URL | IdReference, "schema:isBasedOn">;
     /**
-     * A resource that was used in the creation of this resource. This term can be repeated for multiple sources. For example, {@link http://example.com/great-multiplication-intro.html http://example.com/great-multiplication-intro.html}.
+     * A resource that was used in the creation of this resource. This term can be repeated for multiple sources. For example, http://example.com/great-multiplication-intro.html.
      *
-     * @deprecated Consider using {@link https://schema.org/isBasedOn https://schema.org/isBasedOn} instead.
+     * @deprecated Consider using https://schema.org/isBasedOn instead.
      */
     "schema:isBasedOnUrl"?: SchemaValue<CreativeWork | Product | URL | IdReference, "schema:isBasedOnUrl">;
     /** Indicates whether this content is family friendly. */
@@ -2511,7 +2511,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:locationCreated"?: SchemaValue<Place | IdReference, "schema:locationCreated">;
     /** Indicates the primary entity described in some page or other CreativeWork. */
     "schema:mainEntity"?: SchemaValue<Thing | IdReference, "schema:mainEntity">;
-    /** A maintainer of a [[Dataset]], software package ([[SoftwareApplication]]), or other [[Project]]. A maintainer is a [[Person]] or [[Organization]] that manages contributions to, and/or publication of, some (typically complex) artifact. It is common for distributions of software and data to be based on "upstream" sources. When [[maintainer]] is applied to a specific version of something e.g. a particular version or packaging of a [[Dataset]], it is always possible that the upstream source has a different maintainer. The [[isBasedOn]] property can be used to indicate such relationships between datasets to make the different maintenance roles clear. Similarly in the case of software, a package may have dedicated maintainers working on integration into software distributions such as Ubuntu, as well as upstream maintainers of the underlying work. */
+    /** A maintainer of a {@link https://schema.org/Dataset Dataset}, software package ({@link https://schema.org/SoftwareApplication SoftwareApplication}), or other {@link https://schema.org/Project Project}. A maintainer is a {@link https://schema.org/Person Person} or {@link https://schema.org/Organization Organization} that manages contributions to, and/or publication of, some (typically complex) artifact. It is common for distributions of software and data to be based on "upstream" sources. When {@link https://schema.org/maintainer maintainer} is applied to a specific version of something e.g. a particular version or packaging of a {@link https://schema.org/Dataset Dataset}, it is always possible that the upstream source has a different maintainer. The {@link https://schema.org/isBasedOn isBasedOn} property can be used to indicate such relationships between datasets to make the different maintenance roles clear. Similarly in the case of software, a package may have dedicated maintainers working on integration into software distributions such as Ubuntu, as well as upstream maintainers of the underlying work. */
     "schema:maintainer"?: SchemaValue<Organization | Person | IdReference, "schema:maintainer">;
     /** A material that something is made from, e.g. leather, wool, cotton, paper. */
     "schema:material"?: SchemaValue<Product | Text | URL | IdReference, "schema:material">;
@@ -2519,7 +2519,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:materialExtent"?: SchemaValue<QuantitativeValue | Text | IdReference, "schema:materialExtent">;
     /** Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept. */
     "schema:mentions"?: SchemaValue<Thing | IdReference, "schema:mentions">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /** A pattern that something has, for example 'polka dot', 'striped', 'Canadian flag'. Values are typically expressed as text, although links to controlled value schemes are also supported. */
     "schema:pattern"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:pattern">;
@@ -2536,9 +2536,9 @@ interface CreativeWorkBase extends ThingBase {
     /** The publishing division which published the comic. */
     "schema:publisherImprint"?: SchemaValue<Organization | IdReference, "schema:publisherImprint">;
     /**
-     * The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].
+     * The publishingPrinciples property indicates (typically via {@link https://schema.org/URL URL}) a document describing the editorial principles of an {@link https://schema.org/Organization Organization} (or individual e.g. a {@link https://schema.org/Person Person} writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a {@link https://schema.org/CreativeWork CreativeWork} (e.g. {@link https://schema.org/NewsArticle NewsArticle}) the principles are those of the party primarily responsible for the creation of the {@link https://schema.org/CreativeWork CreativeWork}.
      *
-     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.
+     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
      */
     "schema:publishingPrinciples"?: SchemaValue<CreativeWork | URL | IdReference, "schema:publishingPrinciples">;
     /** The Event where the CreativeWork was recorded. The CreativeWork may capture all or part of the event. */
@@ -2550,22 +2550,22 @@ interface CreativeWorkBase extends ThingBase {
     /**
      * Review of the item.
      *
-     * @deprecated Consider using {@link https://schema.org/review https://schema.org/review} instead.
+     * @deprecated Consider using https://schema.org/review instead.
      */
     "schema:reviews"?: SchemaValue<Review | IdReference, "schema:reviews">;
     /** Indicates (by URL or string) a particular version of a schema used in some CreativeWork. This property was created primarily to indicate the use of a specific schema.org release, e.g. `10.0` as a simple string, or more explicitly via URL, `https://schema.org/docs/releases.html#v10.0`. There may be situations in which other schemas might usefully be referenced this way, e.g. `http://dublincore.org/specifications/dublin-core/dces/1999-07-02/` but this has not been carefully explored in the community. */
     "schema:schemaVersion"?: SchemaValue<Text | URL, "schema:schemaVersion">;
-    /** Indicates the date on which the current structured data was generated / published. Typically used alongside [[sdPublisher]] */
+    /** Indicates the date on which the current structured data was generated / published. Typically used alongside {@link https://schema.org/sdPublisher sdPublisher} */
     "schema:sdDatePublished"?: SchemaValue<Date, "schema:sdDatePublished">;
     /** A license document that applies to this structured data, typically indicated by URL. */
     "schema:sdLicense"?: SchemaValue<CreativeWork | URL | IdReference, "schema:sdLicense">;
-    /** Indicates the party responsible for generating and publishing the current structured data markup, typically in cases where the structured data is derived automatically from existing published content but published on a different site. For example, student projects and open data initiatives often re-publish existing content with more explicitly structured metadata. The [[sdPublisher]] property helps make such practices more explicit. */
+    /** Indicates the party responsible for generating and publishing the current structured data markup, typically in cases where the structured data is derived automatically from existing published content but published on a different site. For example, student projects and open data initiatives often re-publish existing content with more explicitly structured metadata. The {@link https://schema.org/sdPublisher sdPublisher} property helps make such practices more explicit. */
     "schema:sdPublisher"?: SchemaValue<Organization | Person | IdReference, "schema:sdPublisher">;
-    /** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured [[SizeSpecification]]; in other cases, the [[width]], [[height]], [[depth]] and [[weight]] properties may be more applicable. */
+    /** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured {@link https://schema.org/SizeSpecification SizeSpecification}; in other cases, the {@link https://schema.org/width width}, {@link https://schema.org/height height}, {@link https://schema.org/depth depth} and {@link https://schema.org/weight weight} properties may be more applicable. */
     "schema:size"?: SchemaValue<DefinedTerm | QuantitativeValue | SizeSpecification | Text | IdReference, "schema:size">;
     /** The Organization on whose behalf the creator was working. */
     "schema:sourceOrganization"?: SchemaValue<Organization | IdReference, "schema:sourceOrganization">;
-    /** The "spatial" property can be used in cases when more specific properties (e.g. [[locationCreated]], [[spatialCoverage]], [[contentLocation]]) are not known to be appropriate. */
+    /** The "spatial" property can be used in cases when more specific properties (e.g. {@link https://schema.org/locationCreated locationCreated}, {@link https://schema.org/spatialCoverage spatialCoverage}, {@link https://schema.org/contentLocation contentLocation}) are not known to be appropriate. */
     "schema:spatial"?: SchemaValue<Place | IdReference, "schema:spatial">;
     /** The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York. */
     "schema:spatialCoverage"?: SchemaValue<Place | IdReference, "schema:spatialCoverage">;
@@ -2573,7 +2573,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:sponsor"?: SchemaValue<Organization | Person | IdReference, "schema:sponsor">;
     /** The item being described is intended to help a person learn the competency or learning outcome defined by the referenced term. */
     "schema:teaches"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:teaches">;
-    /** The "temporal" property can be used in cases where more specific properties (e.g. [[temporalCoverage]], [[dateCreated]], [[dateModified]], [[datePublished]]) are not known to be appropriate. */
+    /** The "temporal" property can be used in cases where more specific properties (e.g. {@link https://schema.org/temporalCoverage temporalCoverage}, {@link https://schema.org/dateCreated dateCreated}, {@link https://schema.org/dateModified dateModified}, {@link https://schema.org/datePublished datePublished}) are not known to be appropriate. */
     "schema:temporal"?: SchemaValue<DateTime | Text, "schema:temporal">;
     /**
      * The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in {@link https://en.wikipedia.org/wiki/ISO_8601#Time_intervals ISO 8601 time interval format}. In the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written "2011/2012"). Other forms of content e.g. ScholarlyArticle, Book, TVSeries or TVEpisode may indicate their temporalCoverage in broader terms - textually or via well-known URL. Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via "1939/1945".
@@ -2594,7 +2594,7 @@ interface CreativeWorkBase extends ThingBase {
     /** The typical expected age range, e.g. '7-9', '11-'. */
     "schema:typicalAgeRange"?: SchemaValue<Text, "schema:typicalAgeRange">;
     /**
-     * The schema.org [[usageInfo]] property indicates further information about a [[CreativeWork]]. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.
+     * The schema.org {@link https://schema.org/usageInfo usageInfo} property indicates further information about a {@link https://schema.org/CreativeWork CreativeWork}. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.
      *
      * This property can be used alongside the license property which indicates license(s) applicable to some piece of content. The usageInfo property can provide information about other licensing options, e.g. acquiring commercial usage rights for an image that is also available under non-commercial creative commons licenses.
      */
@@ -2626,7 +2626,7 @@ interface CreativeWorkSeasonBase extends CreativeWorkBase {
     /**
      * An episode of a TV/radio series or season.
      *
-     * @deprecated Consider using {@link https://schema.org/episode https://schema.org/episode} instead.
+     * @deprecated Consider using https://schema.org/episode instead.
      */
     "schema:episodes"?: SchemaValue<Episode | IdReference, "schema:episodes">;
     /** The number of episodes in this season or series. */
@@ -2660,9 +2660,9 @@ interface CreativeWorkSeriesLeaf extends CreativeWorkSeriesBase {
     "@type": "schema:CreativeWorkSeries";
 }
 /**
- * A CreativeWorkSeries in schema.org is a group of related items, typically but not necessarily of the same kind. CreativeWorkSeries are usually organized into some order, often chronological. Unlike [[ItemList]] which is a general purpose data structure for lists of things, the emphasis with CreativeWorkSeries is on published materials (written e.g. books and periodicals, or media such as tv, radio and games).
+ * A CreativeWorkSeries in schema.org is a group of related items, typically but not necessarily of the same kind. CreativeWorkSeries are usually organized into some order, often chronological. Unlike {@link https://schema.org/ItemList ItemList} which is a general purpose data structure for lists of things, the emphasis with CreativeWorkSeries is on published materials (written e.g. books and periodicals, or media such as tv, radio and games).
  *
- * Specific subtypes are available for describing [[TVSeries]], [[RadioSeries]], [[MovieSeries]], [[BookSeries]], [[Periodical]] and [[VideoGameSeries]]. In each case, the [[hasPart]] / [[isPartOf]] properties can be used to relate the CreativeWorkSeries to its parts. The general CreativeWorkSeries type serves largely just to organize these more specific and practical subtypes.
+ * Specific subtypes are available for describing {@link https://schema.org/TVSeries TVSeries}, {@link https://schema.org/RadioSeries RadioSeries}, {@link https://schema.org/MovieSeries MovieSeries}, {@link https://schema.org/BookSeries BookSeries}, {@link https://schema.org/Periodical Periodical} and {@link https://schema.org/VideoGameSeries VideoGameSeries}. In each case, the {@link https://schema.org/hasPart hasPart} / {@link https://schema.org/isPartOf isPartOf} properties can be used to relate the CreativeWorkSeries to its parts. The general CreativeWorkSeries type serves largely just to organize these more specific and practical subtypes.
  *
  * It is common for properties applicable to an item from the series to be usefully applied to the containing group. Schema.org attempts to anticipate some of these cases, but publishers should be free to apply properties of the series parts to the series as a whole wherever they seem appropriate.
  */
@@ -2677,12 +2677,12 @@ interface CreditCardLeaf extends CreditCardBase {
  * A card payment method of a particular brand or name. Used to mark up a particular payment method and/or the financial product/service that supplies the card account.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#AmericanExpress http://purl.org/goodrelations/v1#AmericanExpress}
- * - {@link http://purl.org/goodrelations/v1#DinersClub http://purl.org/goodrelations/v1#DinersClub}
- * - {@link http://purl.org/goodrelations/v1#Discover http://purl.org/goodrelations/v1#Discover}
- * - {@link http://purl.org/goodrelations/v1#JCB http://purl.org/goodrelations/v1#JCB}
- * - {@link http://purl.org/goodrelations/v1#MasterCard http://purl.org/goodrelations/v1#MasterCard}
- * - {@link http://purl.org/goodrelations/v1#VISA http://purl.org/goodrelations/v1#VISA}
+ * - http://purl.org/goodrelations/v1#AmericanExpress
+ * - http://purl.org/goodrelations/v1#DinersClub
+ * - http://purl.org/goodrelations/v1#Discover
+ * - http://purl.org/goodrelations/v1#JCB
+ * - http://purl.org/goodrelations/v1#MasterCard
+ * - http://purl.org/goodrelations/v1#VISA
  */
 export type CreditCard = CreditCardLeaf;
 
@@ -2695,7 +2695,7 @@ export type Crematorium = CrematoriumLeaf | string;
 interface CriticReviewLeaf extends ReviewBase {
     "@type": "schema:CriticReview";
 }
-/** A [[CriticReview]] is a more specialized form of Review written or published by a source that is recognized for its reviewing activities. These can include online columns, travel and food guides, TV and radio shows, blogs and other independent Web sites. [[CriticReview]]s are typically more in-depth and professionally written. For simpler, casually written user/visitor/viewer/customer reviews, it is more appropriate to use the [[UserReview]] type. Review aggregator sites such as Metacritic already separate out the site's user reviews from selected critic reviews that originate from third-party sources. */
+/** A {@link https://schema.org/CriticReview CriticReview} is a more specialized form of Review written or published by a source that is recognized for its reviewing activities. These can include online columns, travel and food guides, TV and radio shows, blogs and other independent Web sites. {@link https://schema.org/CriticReview CriticReview}s are typically more in-depth and professionally written. For simpler, casually written user/visitor/viewer/customer reviews, it is more appropriate to use the {@link https://schema.org/UserReview UserReview} type. Review aggregator sites such as Metacritic already separate out the site's user reviews from selected critic reviews that originate from third-party sources. */
 export type CriticReview = CriticReviewLeaf | ReviewNewsArticle;
 
 /** Text representing a CSS selector. */
@@ -2723,13 +2723,13 @@ interface DataCatalogBase extends CreativeWorkBase {
     /** A dataset contained in this catalog. */
     "schema:dataset"?: SchemaValue<Dataset | IdReference, "schema:dataset">;
     /**
-     * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
+     * A technique or technology used in a {@link https://schema.org/Dataset Dataset} (or {@link https://schema.org/DataDownload DataDownload}, {@link https://schema.org/DataCatalog DataCatalog}), corresponding to the method used for measuring the corresponding variable(s) (described using {@link https://schema.org/variableMeasured variableMeasured}). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
      *
-     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
+     * For example, if {@link https://schema.org/variableMeasured variableMeasured} is: molecule concentration, {@link https://schema.org/measurementTechnique measurementTechnique} could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
      *
-     * If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
+     * If the {@link https://schema.org/variableMeasured variableMeasured} is "depression rating", the {@link https://schema.org/measurementTechnique measurementTechnique} could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
      *
-     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].
+     * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}.
      */
     "schema:measurementTechnique"?: SchemaValue<Text | URL, "schema:measurementTechnique">;
 }
@@ -2741,13 +2741,13 @@ export type DataCatalog = DataCatalogLeaf;
 
 interface DataDownloadBase extends MediaObjectBase {
     /**
-     * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
+     * A technique or technology used in a {@link https://schema.org/Dataset Dataset} (or {@link https://schema.org/DataDownload DataDownload}, {@link https://schema.org/DataCatalog DataCatalog}), corresponding to the method used for measuring the corresponding variable(s) (described using {@link https://schema.org/variableMeasured variableMeasured}). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
      *
-     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
+     * For example, if {@link https://schema.org/variableMeasured variableMeasured} is: molecule concentration, {@link https://schema.org/measurementTechnique measurementTechnique} could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
      *
-     * If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
+     * If the {@link https://schema.org/variableMeasured variableMeasured} is "depression rating", the {@link https://schema.org/measurementTechnique measurementTechnique} could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
      *
-     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].
+     * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}.
      */
     "schema:measurementTechnique"?: SchemaValue<Text | URL, "schema:measurementTechnique">;
 }
@@ -2787,13 +2787,13 @@ interface DatasetBase extends CreativeWorkBase {
     /**
      * A data catalog which contains this dataset.
      *
-     * @deprecated Consider using {@link https://schema.org/includedInDataCatalog https://schema.org/includedInDataCatalog} instead.
+     * @deprecated Consider using https://schema.org/includedInDataCatalog instead.
      */
     "schema:catalog"?: SchemaValue<DataCatalog | IdReference, "schema:catalog">;
     /**
      * The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).
      *
-     * @deprecated Consider using {@link https://schema.org/temporalCoverage https://schema.org/temporalCoverage} instead.
+     * @deprecated Consider using https://schema.org/temporalCoverage instead.
      */
     "schema:datasetTimeInterval"?: SchemaValue<DateTime, "schema:datasetTimeInterval">;
     /** A downloadable form of this dataset, at a specific location, in a specific format. */
@@ -2801,7 +2801,7 @@ interface DatasetBase extends CreativeWorkBase {
     /**
      * A data catalog which contains this dataset (this property was previously 'catalog', preferred name is now 'includedInDataCatalog').
      *
-     * @deprecated Consider using {@link https://schema.org/includedInDataCatalog https://schema.org/includedInDataCatalog} instead.
+     * @deprecated Consider using https://schema.org/includedInDataCatalog instead.
      */
     "schema:includedDataCatalog"?: SchemaValue<DataCatalog | IdReference, "schema:includedDataCatalog">;
     /** A data catalog which contains this dataset. */
@@ -2809,13 +2809,13 @@ interface DatasetBase extends CreativeWorkBase {
     /** The International Standard Serial Number (ISSN) that identifies this serial publication. You can repeat this property to identify different formats of, or the linking ISSN (ISSN-L) for, this serial publication. */
     "schema:issn"?: SchemaValue<Text, "schema:issn">;
     /**
-     * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
+     * A technique or technology used in a {@link https://schema.org/Dataset Dataset} (or {@link https://schema.org/DataDownload DataDownload}, {@link https://schema.org/DataCatalog DataCatalog}), corresponding to the method used for measuring the corresponding variable(s) (described using {@link https://schema.org/variableMeasured variableMeasured}). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
      *
-     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
+     * For example, if {@link https://schema.org/variableMeasured variableMeasured} is: molecule concentration, {@link https://schema.org/measurementTechnique measurementTechnique} could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
      *
-     * If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
+     * If the {@link https://schema.org/variableMeasured variableMeasured} is "depression rating", the {@link https://schema.org/measurementTechnique measurementTechnique} could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
      *
-     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].
+     * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}.
      */
     "schema:measurementTechnique"?: SchemaValue<Text | URL, "schema:measurementTechnique">;
     /** The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. */
@@ -2845,7 +2845,7 @@ interface DatedMoneySpecificationLeaf extends DatedMoneySpecificationBase {
     "@type": "schema:DatedMoneySpecification";
 }
 /**
- * A DatedMoneySpecification represents monetary values with optional start and end dates. For example, this could represent an employee's salary over a specific period of time. __Note:__ This type has been superseded by [[MonetaryAmount]] use of that type is recommended
+ * A DatedMoneySpecification represents monetary values with optional start and end dates. For example, this could represent an employee's salary over a specific period of time. __Note:__ This type has been superseded by {@link https://schema.org/MonetaryAmount MonetaryAmount} use of that type is recommended
  *
  * @deprecated Use MonetaryAmount instead.
  */
@@ -2863,7 +2863,7 @@ interface DayOfWeekLeaf extends EnumerationBase {
 /**
  * The day of the week, e.g. used to specify to which day the opening hours of an OpeningHoursSpecification refer.
  *
- * Originally, URLs from {@link http://purl.org/goodrelations/v1 GoodRelations} were used (for [[Monday]], [[Tuesday]], [[Wednesday]], [[Thursday]], [[Friday]], [[Saturday]], [[Sunday]] plus a special entry for [[PublicHolidays]]); these have now been integrated directly into schema.org.
+ * Originally, URLs from {@link http://purl.org/goodrelations/v1 GoodRelations} were used (for {@link https://schema.org/Monday Monday}, {@link https://schema.org/Tuesday Tuesday}, {@link https://schema.org/Wednesday Wednesday}, {@link https://schema.org/Thursday Thursday}, {@link https://schema.org/Friday Friday}, {@link https://schema.org/Saturday Saturday}, {@link https://schema.org/Sunday Sunday} plus a special entry for {@link https://schema.org/PublicHolidays PublicHolidays}); these have now been integrated directly into schema.org.
  */
 export type DayOfWeek = "https://schema.org/Friday" | "schema:Friday" | "https://schema.org/Monday" | "schema:Monday" | "https://schema.org/PublicHolidays" | "schema:PublicHolidays" | "https://schema.org/Saturday" | "schema:Saturday" | "https://schema.org/Sunday" | "schema:Sunday" | "https://schema.org/Thursday" | "schema:Thursday" | "https://schema.org/Tuesday" | "schema:Tuesday" | "https://schema.org/Wednesday" | "schema:Wednesday" | DayOfWeekLeaf;
 
@@ -2930,9 +2930,9 @@ interface DefinedRegionLeaf extends DefinedRegionBase {
 export type DefinedRegion = DefinedRegionLeaf;
 
 interface DefinedTermBase extends ThingBase {
-    /** A [[DefinedTermSet]] that contains this term. */
+    /** A {@link https://schema.org/DefinedTermSet DefinedTermSet} that contains this term. */
     "schema:inDefinedTermSet"?: SchemaValue<DefinedTermSet | URL | IdReference, "schema:inDefinedTermSet">;
-    /** A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]] */
+    /** A code that identifies this {@link https://schema.org/DefinedTerm DefinedTerm} within a {@link https://schema.org/DefinedTermSet DefinedTermSet} */
     "schema:termCode"?: SchemaValue<Text, "schema:termCode">;
 }
 interface DefinedTermLeaf extends DefinedTermBase {
@@ -2965,13 +2965,13 @@ interface DeliveryChargeSpecificationBase extends PriceSpecificationBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.
      *
-     * See also [[ineligibleRegion]].
+     * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
      */
     "schema:eligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:eligibleRegion">;
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
      *
-     * See also [[eligibleRegion]].
+     * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
      */
     "schema:ineligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:ineligibleRegion">;
 }
@@ -3004,31 +3004,31 @@ interface DeliveryMethodLeaf extends EnumerationBase {
  * A delivery method is a standardized procedure for transferring the product or service to the destination of fulfillment chosen by the customer. Delivery methods are characterized by the means of transportation used, and by the organization or group that is the contracting party for the sending organization or person.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#DeliveryModeDirectDownload http://purl.org/goodrelations/v1#DeliveryModeDirectDownload}
- * - {@link http://purl.org/goodrelations/v1#DeliveryModeFreight http://purl.org/goodrelations/v1#DeliveryModeFreight}
- * - {@link http://purl.org/goodrelations/v1#DeliveryModeMail http://purl.org/goodrelations/v1#DeliveryModeMail}
- * - {@link http://purl.org/goodrelations/v1#DeliveryModeOwnFleet http://purl.org/goodrelations/v1#DeliveryModeOwnFleet}
- * - {@link http://purl.org/goodrelations/v1#DeliveryModePickUp http://purl.org/goodrelations/v1#DeliveryModePickUp}
- * - {@link http://purl.org/goodrelations/v1#DHL http://purl.org/goodrelations/v1#DHL}
- * - {@link http://purl.org/goodrelations/v1#FederalExpress http://purl.org/goodrelations/v1#FederalExpress}
- * - {@link http://purl.org/goodrelations/v1#UPS http://purl.org/goodrelations/v1#UPS}
+ * - http://purl.org/goodrelations/v1#DeliveryModeDirectDownload
+ * - http://purl.org/goodrelations/v1#DeliveryModeFreight
+ * - http://purl.org/goodrelations/v1#DeliveryModeMail
+ * - http://purl.org/goodrelations/v1#DeliveryModeOwnFleet
+ * - http://purl.org/goodrelations/v1#DeliveryModePickUp
+ * - http://purl.org/goodrelations/v1#DHL
+ * - http://purl.org/goodrelations/v1#FederalExpress
+ * - http://purl.org/goodrelations/v1#UPS
  */
 export type DeliveryMethod = "https://schema.org/LockerDelivery" | "schema:LockerDelivery" | "https://schema.org/OnSitePickup" | "schema:OnSitePickup" | "https://schema.org/ParcelService" | "schema:ParcelService" | DeliveryMethodLeaf;
 
 interface DeliveryTimeSettingsBase extends ThingBase {
     /** The total delay between the receipt of the order and the goods reaching the final customer. */
     "schema:deliveryTime"?: SchemaValue<ShippingDeliveryTime | IdReference, "schema:deliveryTime">;
-    /** This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings. */
+    /** This can be marked 'true' to indicate that some published {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} or {@link https://schema.org/ShippingRateSettings ShippingRateSettings} are intended to apply to all {@link https://schema.org/OfferShippingDetails OfferShippingDetails} published by the same merchant, when referenced by a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings}) or shippingLabel (for {@link https://schema.org/ShippingRateSettings ShippingRateSettings}), since this property is for use with unlabelled settings. */
     "schema:isUnlabelledFallback"?: SchemaValue<Boolean, "schema:isUnlabelledFallback">;
     /** indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges. */
     "schema:shippingDestination"?: SchemaValue<DefinedRegion | IdReference, "schema:shippingDestination">;
-    /** Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference). */
+    /** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
     "schema:transitTimeLabel"?: SchemaValue<Text, "schema:transitTimeLabel">;
 }
 interface DeliveryTimeSettingsLeaf extends DeliveryTimeSettingsBase {
     "@type": "schema:DeliveryTimeSettings";
 }
-/** A DeliveryTimeSettings represents re-usable pieces of shipping information, relating to timing. It is designed for publication on an URL that may be referenced via the [[shippingSettingsLink]] property of a [[OfferShippingDetails]]. Several occurrences can be published, distinguished (and identified/referenced) by their different values for [[transitTimeLabel]]. */
+/** A DeliveryTimeSettings represents re-usable pieces of shipping information, relating to timing. It is designed for publication on an URL that may be referenced via the {@link https://schema.org/shippingSettingsLink shippingSettingsLink} property of a {@link https://schema.org/OfferShippingDetails OfferShippingDetails}. Several occurrences can be published, distinguished (and identified/referenced) by their different values for {@link https://schema.org/transitTimeLabel transitTimeLabel}. */
 export type DeliveryTimeSettings = DeliveryTimeSettingsLeaf;
 
 interface DemandBase extends ThingBase {
@@ -3048,7 +3048,7 @@ interface DemandBase extends ThingBase {
     "schema:availableAtOrFrom"?: SchemaValue<Place | IdReference, "schema:availableAtOrFrom">;
     /** The delivery method(s) available for this offer. */
     "schema:availableDeliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "schema:availableDeliveryMethod">;
-    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell}. */
+    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
     "schema:businessFunction"?: SchemaValue<BusinessFunction | IdReference, "schema:businessFunction">;
     /** The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. */
     "schema:deliveryLeadTime"?: SchemaValue<QuantitativeValue | IdReference, "schema:deliveryLeadTime">;
@@ -3061,12 +3061,12 @@ interface DemandBase extends ThingBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.
      *
-     * See also [[ineligibleRegion]].
+     * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
      */
     "schema:eligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:eligibleRegion">;
     /** The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount. */
     "schema:eligibleTransactionVolume"?: SchemaValue<PriceSpecification | IdReference, "schema:eligibleTransactionVolume">;
-    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The [[gtin]] property generalizes the earlier [[gtin8]], [[gtin12]], [[gtin13]], and [[gtin14]] properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct [[gtin]] value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
+    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The {@link https://schema.org/gtin gtin} property generalizes the earlier {@link https://schema.org/gtin8 gtin8}, {@link https://schema.org/gtin12 gtin12}, {@link https://schema.org/gtin13 gtin13}, and {@link https://schema.org/gtin14 gtin14} properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct {@link https://schema.org/gtin gtin} value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
     "schema:gtin"?: SchemaValue<Text, "schema:gtin">;
     /** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
     "schema:gtin12"?: SchemaValue<Text, "schema:gtin12">;
@@ -3076,19 +3076,19 @@ interface DemandBase extends ThingBase {
     "schema:gtin14"?: SchemaValue<Text, "schema:gtin14">;
     /** The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
     "schema:gtin8"?: SchemaValue<Text, "schema:gtin8">;
-    /** This links to a node or nodes indicating the exact quantity of the products included in an [[Offer]] or [[ProductCollection]]. */
+    /** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
     "schema:includesObject"?: SchemaValue<TypeAndQuantityNode | IdReference, "schema:includesObject">;
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
      *
-     * See also [[eligibleRegion]].
+     * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
      */
     "schema:ineligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:ineligibleRegion">;
     /** The current approximate inventory level for the item or items. */
     "schema:inventoryLevel"?: SchemaValue<QuantitativeValue | IdReference, "schema:inventoryLevel">;
     /** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
     "schema:itemCondition"?: SchemaValue<OfferItemCondition | IdReference, "schema:itemCondition">;
-    /** An item being offered (or demanded). The transactional nature of the offer or demand is documented using [[businessFunction]], e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An item being offered (or demanded). The transactional nature of the offer or demand is documented using {@link https://schema.org/businessFunction businessFunction}, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:itemOffered"?: SchemaValue<AggregateOffer | CreativeWork | Event | MenuItem | Product | Service | Trip | IdReference, "schema:itemOffered">;
     /** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
     "schema:mpn"?: SchemaValue<Text, "schema:mpn">;
@@ -3407,7 +3407,7 @@ interface DrugBase extends SubstanceBase {
     /**
      * Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD).
      *
-     * @deprecated Consider using {@link https://schema.org/clinicalPharmacology https://schema.org/clinicalPharmacology} instead.
+     * @deprecated Consider using https://schema.org/clinicalPharmacology instead.
      */
     "schema:clincalPharmacology"?: SchemaValue<Text, "schema:clincalPharmacology">;
     /** Description of the absorption and elimination of drugs, including their concentration (pharmacokinetics, pK) and biological effects (pharmacodynamics, pD). */
@@ -3482,7 +3482,7 @@ interface DrugCostBase extends MedicalEntityBase {
     "schema:applicableLocation"?: SchemaValue<AdministrativeArea | IdReference, "schema:applicableLocation">;
     /** The category of cost, such as wholesale, retail, reimbursement cap, etc. */
     "schema:costCategory"?: SchemaValue<DrugCostCategory | IdReference, "schema:costCategory">;
-    /** The currency (in 3-letter of the drug cost. See: {@link http://en.wikipedia.org/wiki/ISO_4217 http://en.wikipedia.org/wiki/ISO_4217}. */
+    /** The currency (in 3-letter of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. */
     "schema:costCurrency"?: SchemaValue<Text, "schema:costCurrency">;
     /** Additional details to capture the origin of the cost data. For example, 'Medicare Part B'. */
     "schema:costOrigin"?: SchemaValue<Text, "schema:costOrigin">;
@@ -3600,7 +3600,7 @@ interface EducationalOccupationalProgramBase extends ThingBase {
     "schema:dayOfWeek"?: SchemaValue<DayOfWeek | IdReference, "schema:dayOfWeek">;
     /** A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program. */
     "schema:educationalCredentialAwarded"?: SchemaValue<EducationalOccupationalCredential | Text | URL | IdReference, "schema:educationalCredentialAwarded">;
-    /** Similar to courseMode, The medium or means of delivery of the program as a whole. The value may either be a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or a URL reference to a term from a controlled vocabulary (e.g. {@link https://ceds.ed.gov/element/001311#Asynchronous https://ceds.ed.gov/element/001311#Asynchronous} ). */
+    /** Similar to courseMode, The medium or means of delivery of the program as a whole. The value may either be a text label (e.g. "online", "onsite" or "blended"; "synchronous" or "asynchronous"; "full-time" or "part-time") or a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ). */
     "schema:educationalProgramMode"?: SchemaValue<Text | URL, "schema:educationalProgramMode">;
     /** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
     "schema:endDate"?: SchemaValue<Date | DateTime, "schema:endDate">;
@@ -3620,7 +3620,7 @@ interface EducationalOccupationalProgramBase extends ThingBase {
     "schema:occupationalCategory"?: SchemaValue<CategoryCode | Text | IdReference, "schema:occupationalCategory">;
     /** A description of the qualification, award, certificate, diploma or other occupational credential awarded as a consequence of successful completion of this course or program. */
     "schema:occupationalCredentialAwarded"?: SchemaValue<EducationalOccupationalCredential | Text | URL | IdReference, "schema:occupationalCredentialAwarded">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /** Prerequisites for enrolling in the program. */
     "schema:programPrerequisites"?: SchemaValue<AlignmentObject | Course | EducationalOccupationalCredential | Text | IdReference, "schema:programPrerequisites">;
@@ -3705,7 +3705,7 @@ interface ElementBase extends ThingBase {
     /** A property that holds the navigation on a UI element, e.g. menu, settings */
     "uxi:NavigationProperty"?: SchemaValue<Element | IdReference, "uxi:NavigationProperty">;
     /** A property that holds a result, output or status */
-    "uxi:OutcomeProperty"?: SchemaValue<Element | Thing | UIDataType | IdReference, "uxi:OutcomeProperty">;
+    "uxi:OutcomeProperty"?: SchemaValue<Element | Thing | UIDataType | UIState | IdReference, "uxi:OutcomeProperty">;
 }
 interface ElementLeaf extends ElementBase {
     "@type": "uxi:Element";
@@ -3752,7 +3752,7 @@ export type EmployerAggregateRating = EmployerAggregateRatingLeaf;
 interface EmployerReviewLeaf extends ReviewBase {
     "@type": "schema:EmployerReview";
 }
-/** An [[EmployerReview]] is a review of an [[Organization]] regarding its role as an employer, written by a current or former employee of that organization. */
+/** An {@link https://schema.org/EmployerReview EmployerReview} is a review of an {@link https://schema.org/Organization Organization} regarding its role as an employer, written by a current or former employee of that organization. */
 export type EmployerReview = EmployerReviewLeaf;
 
 interface EmploymentAgencyLeaf extends LocalBusinessBase {
@@ -3781,9 +3781,9 @@ interface EndorsementRatingLeaf extends RatingBase {
     "@type": "schema:EndorsementRating";
 }
 /**
- * An EndorsementRating is a rating that expresses some level of endorsement, for example inclusion in a "critic's pick" blog, a "Like" or "+1" on a social network. It can be considered the [[result]] of an [[EndorseAction]] in which the [[object]] of the action is rated positively by some [[agent]]. As is common elsewhere in schema.org, it is sometimes more useful to describe the results of such an action without explicitly describing the [[Action]].
+ * An EndorsementRating is a rating that expresses some level of endorsement, for example inclusion in a "critic's pick" blog, a "Like" or "+1" on a social network. It can be considered the {@link https://schema.org/result result} of an {@link https://schema.org/EndorseAction EndorseAction} in which the {@link https://schema.org/object object} of the action is rated positively by some {@link https://schema.org/agent agent}. As is common elsewhere in schema.org, it is sometimes more useful to describe the results of such an action without explicitly describing the {@link https://schema.org/Action Action}.
  *
- * An [[EndorsementRating]] may be part of a numeric scale or organized system, but this is not required: having an explicit type for indicating a positive, endorsement rating is particularly useful in the absence of numeric scales as it helps consumers understand that the rating is broadly positive.
+ * An {@link https://schema.org/EndorsementRating EndorsementRating} may be part of a numeric scale or organized system, but this is not required: having an explicit type for indicating a positive, endorsement rating is particularly useful in the absence of numeric scales as it helps consumers understand that the rating is broadly positive.
  */
 export type EndorsementRating = EndorsementRatingLeaf;
 
@@ -3824,15 +3824,15 @@ interface EngineSpecificationBase extends ThingBase {
      * The volume swept by all of the pistons inside the cylinders of an internal combustion engine in a single movement.
      *
      * Typical unit code(s): CMQ for cubic centimeter, LTR for liters, INQ for cubic inches
-     * - Note 1: You can link to information about how the given value has been determined using the [[valueReference]] property.
-     * - Note 2: You can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
+     * - Note 2: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:engineDisplacement"?: SchemaValue<QuantitativeValue | IdReference, "schema:engineDisplacement">;
     /**
      * The power of the vehicle's engine. Typical unit code(s): KWT for kilowatt, BHP for brake horsepower, N12 for metric horsepower (PS, with 1 PS = 735,49875 W)
      * - Note 1: There are many different ways of measuring an engine's power. For an overview, see {@link http://en.wikipedia.org/wiki/Horsepower#Engine_power_test_codes http://en.wikipedia.org/wiki/Horsepower#Engine_power_test_codes}.
-     * - Note 2: You can link to information about how the given value has been determined using the [[valueReference]] property.
-     * - Note 3: You can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 2: You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
+     * - Note 3: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:enginePower"?: SchemaValue<QuantitativeValue | IdReference, "schema:enginePower">;
     /** The type of engine or engines powering the vehicle. */
@@ -3843,8 +3843,8 @@ interface EngineSpecificationBase extends ThingBase {
      * The torque (turning force) of the vehicle's engine.
      *
      * Typical unit code(s): NU for newton metre (N m), F17 for pound-force per foot, or F48 for pound-force per inch
-     * - Note 1: You can link to information about how the given value has been determined (e.g. reference RPM) using the [[valueReference]] property.
-     * - Note 2: You can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can link to information about how the given value has been determined (e.g. reference RPM) using the {@link https://schema.org/valueReference valueReference} property.
+     * - Note 2: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:torque"?: SchemaValue<QuantitativeValue | IdReference, "schema:torque">;
 }
@@ -3868,7 +3868,7 @@ interface EntryPointBase extends ThingBase {
     /**
      * An application that can complete the request.
      *
-     * @deprecated Consider using {@link https://schema.org/actionApplication https://schema.org/actionApplication} instead.
+     * @deprecated Consider using https://schema.org/actionApplication instead.
      */
     "schema:application"?: SchemaValue<SoftwareApplication | IdReference, "schema:application">;
     /** The supported content type(s) for an EntryPoint response. */
@@ -3902,7 +3902,7 @@ interface EpisodeBase extends CreativeWorkBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
@@ -3910,7 +3910,7 @@ interface EpisodeBase extends CreativeWorkBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
@@ -3964,7 +3964,7 @@ interface EventBase extends ThingBase {
     /**
      * A person attending the event.
      *
-     * @deprecated Consider using {@link https://schema.org/attendee https://schema.org/attendee} instead.
+     * @deprecated Consider using https://schema.org/attendee instead.
      */
     "schema:attendees"?: SchemaValue<Organization | Person | IdReference, "schema:attendees">;
     /** An intended audience, i.e. a group for whom something was created. */
@@ -3983,13 +3983,13 @@ interface EventBase extends ThingBase {
     "schema:endDate"?: SchemaValue<Date | DateTime, "schema:endDate">;
     /** The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix. */
     "schema:eventAttendanceMode"?: SchemaValue<EventAttendanceModeEnumeration | IdReference, "schema:eventAttendanceMode">;
-    /** Associates an [[Event]] with a [[Schedule]]. There are circumstances where it is preferable to share a schedule for a series of repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An [[Event]] that is associated with a [[Schedule]] using this property should not have [[startDate]] or [[endDate]] properties. These are instead defined within the associated [[Schedule]], this avoids any ambiguity for clients using the data. The property might have repeated values to specify different schedules, e.g. for different months or seasons. */
+    /** Associates an {@link https://schema.org/Event Event} with a {@link https://schema.org/Schedule Schedule}. There are circumstances where it is preferable to share a schedule for a series of repeating events rather than data on the individual events themselves. For example, a website or application might prefer to publish a schedule for a weekly gym class rather than provide data on every event. A schedule could be processed by applications to add forthcoming events to a calendar. An {@link https://schema.org/Event Event} that is associated with a {@link https://schema.org/Schedule Schedule} using this property should not have {@link https://schema.org/startDate startDate} or {@link https://schema.org/endDate endDate} properties. These are instead defined within the associated {@link https://schema.org/Schedule Schedule}, this avoids any ambiguity for clients using the data. The property might have repeated values to specify different schedules, e.g. for different months or seasons. */
     "schema:eventSchedule"?: SchemaValue<Schedule | IdReference, "schema:eventSchedule">;
     /** An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled. */
     "schema:eventStatus"?: SchemaValue<EventStatusType | IdReference, "schema:eventStatus">;
     /** A person or organization that supports (sponsors) something through some kind of financial contribution. */
     "schema:funder"?: SchemaValue<Organization | Person | IdReference, "schema:funder">;
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /** A flag to signal that the item, event, or place is accessible for free. */
     "schema:isAccessibleForFree"?: SchemaValue<Boolean, "schema:isAccessibleForFree">;
@@ -3997,11 +3997,11 @@ interface EventBase extends ThingBase {
     "schema:location"?: SchemaValue<Place | PostalAddress | Text | VirtualLocation | IdReference, "schema:location">;
     /** The total number of individuals that may attend an event or venue. */
     "schema:maximumAttendeeCapacity"?: SchemaValue<Integer, "schema:maximumAttendeeCapacity">;
-    /** The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OfflineEventAttendanceMode]] (or the offline aspects, in the case of a [[MixedEventAttendanceMode]]). */
+    /** The maximum physical attendee capacity of an {@link https://schema.org/Event Event} whose {@link https://schema.org/eventAttendanceMode eventAttendanceMode} is {@link https://schema.org/OfflineEventAttendanceMode OfflineEventAttendanceMode} (or the offline aspects, in the case of a {@link https://schema.org/MixedEventAttendanceMode MixedEventAttendanceMode}). */
     "schema:maximumPhysicalAttendeeCapacity"?: SchemaValue<Integer, "schema:maximumPhysicalAttendeeCapacity">;
-    /** The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). */
+    /** The maximum physical attendee capacity of an {@link https://schema.org/Event Event} whose {@link https://schema.org/eventAttendanceMode eventAttendanceMode} is {@link https://schema.org/OnlineEventAttendanceMode OnlineEventAttendanceMode} (or the online aspects, in the case of a {@link https://schema.org/MixedEventAttendanceMode MixedEventAttendanceMode}). */
     "schema:maximumVirtualAttendeeCapacity"?: SchemaValue<Integer, "schema:maximumVirtualAttendeeCapacity">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /** An organizer of an Event. */
     "schema:organizer"?: SchemaValue<Organization | Person | IdReference, "schema:organizer">;
@@ -4010,7 +4010,7 @@ interface EventBase extends ThingBase {
     /**
      * The main performer or performers of the event—for example, a presenter, musician, or actor.
      *
-     * @deprecated Consider using {@link https://schema.org/performer https://schema.org/performer} instead.
+     * @deprecated Consider using https://schema.org/performer instead.
      */
     "schema:performers"?: SchemaValue<Organization | Person | IdReference, "schema:performers">;
     /** Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated. */
@@ -4030,7 +4030,7 @@ interface EventBase extends ThingBase {
     /**
      * Events that are a part of this event. For example, a conference event includes many presentations, each subEvents of the conference.
      *
-     * @deprecated Consider using {@link https://schema.org/subEvent https://schema.org/subEvent} instead.
+     * @deprecated Consider using https://schema.org/subEvent instead.
      */
     "schema:subEvents"?: SchemaValue<Event | IdReference, "schema:subEvents">;
     /** An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent. */
@@ -4047,7 +4047,7 @@ interface EventBase extends ThingBase {
 interface EventLeaf extends EventBase {
     "@type": "schema:Event";
 }
-/** An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the [[offers]] property. Repeated events may be structured as separate Event objects. */
+/** An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the {@link https://schema.org/offers offers} property. Repeated events may be structured as separate Event objects. */
 export type Event = EventLeaf | BusinessEvent | ChildrensEvent | ComedyEvent | CourseInstance | DanceEvent | DeliveryEvent | EducationEvent | EventSeries | ExhibitionEvent | Festival | FoodEvent | Hackathon | LiteraryEvent | MusicEvent | PublicationEvent | SaleEvent | ScreeningEvent | SocialEvent | SportsEvent | TheaterEvent | UserInteraction | VisualArtsEvent;
 
 interface EventAttendanceModeEnumerationLeaf extends EnumerationBase {
@@ -4062,7 +4062,7 @@ interface EventReservationLeaf extends ReservationBase {
 /**
  * A reservation for an event like a concert, sporting event, or lecture.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type EventReservation = EventReservationLeaf;
 
@@ -4072,11 +4072,11 @@ interface EventSeriesLeaf extends EventSeriesBase {
     "@type": "schema:EventSeries";
 }
 /**
- * A series of [[Event]]s. Included events can relate with the series using the [[superEvent]] property.
+ * A series of {@link https://schema.org/Event Event}s. Included events can relate with the series using the {@link https://schema.org/superEvent superEvent} property.
  *
- * An EventSeries is a collection of events that share some unifying characteristic. For example, "The Olympic Games" is a series, which is repeated regularly. The "2012 London Olympics" can be presented both as an [[Event]] in the series "Olympic Games", and as an [[EventSeries]] that included a number of sporting competitions as Events.
+ * An EventSeries is a collection of events that share some unifying characteristic. For example, "The Olympic Games" is a series, which is repeated regularly. The "2012 London Olympics" can be presented both as an {@link https://schema.org/Event Event} in the series "Olympic Games", and as an {@link https://schema.org/EventSeries EventSeries} that included a number of sporting competitions as Events.
  *
- * The nature of the association between the events in an [[EventSeries]] can vary, but typical examples could include a thematic event series (e.g. topical meetups or classes), or a series of regular events that share a location, attendee group and/or organizers.
+ * The nature of the association between the events in an {@link https://schema.org/EventSeries EventSeries} can vary, but typical examples could include a thematic event series (e.g. topical meetups or classes), or a series of regular events that share a location, attendee group and/or organizers.
  *
  * EventSeries has been defined as a kind of Event to make it easy for publishers to use it in an Event context without worrying about which kinds of series are really event-like enough to call an Event. In general an EventSeries may seem more Event-like when the period of time is compact and when aspects such as location are fixed, but it may also sometimes prove useful to describe a longer-term series as an Event.
  */
@@ -4116,7 +4116,7 @@ interface ExerciseActionBase extends PlayActionBase {
     /**
      * A sub property of location. The course where this action was taken.
      *
-     * @deprecated Consider using {@link https://schema.org/exerciseCourse https://schema.org/exerciseCourse} instead.
+     * @deprecated Consider using https://schema.org/exerciseCourse instead.
      */
     "schema:course"?: SchemaValue<Place | IdReference, "schema:course">;
     /** A sub property of instrument. The diet used in this action. */
@@ -4195,7 +4195,7 @@ export type ExpandedState = ExpandedStateLeaf;
 interface FAQPageLeaf extends WebPageBase {
     "@type": "schema:FAQPage";
 }
-/** A [[FAQPage]] is a [[WebPage]] presenting one or more "{@link https://en.wikipedia.org/wiki/FAQ Frequently asked questions}" (see also [[QAPage]]). */
+/** A {@link https://schema.org/FAQPage FAQPage} is a {@link https://schema.org/WebPage WebPage} presenting one or more "{@link https://en.wikipedia.org/wiki/FAQ Frequently asked questions}" (see also {@link https://schema.org/QAPage QAPage}). */
 export type FAQPage = FAQPageLeaf;
 
 interface FastFoodRestaurantLeaf extends FoodEstablishmentBase {
@@ -4259,7 +4259,7 @@ interface FindActionLeaf extends ActionBase {
  * The act of finding an object.
  *
  * Related actions:
- * - [[SearchAction]]: FindAction is generally lead by a SearchAction, but not necessarily.
+ * - {@link https://schema.org/SearchAction SearchAction}: FindAction is generally lead by a SearchAction, but not necessarily.
  */
 export type FindAction = FindActionLeaf | CheckAction | DiscoverAction | TrackAction;
 
@@ -4291,7 +4291,7 @@ interface FlightBase extends TripBase {
     /**
      * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
      *
-     * @deprecated Consider using {@link https://schema.org/provider https://schema.org/provider} instead.
+     * @deprecated Consider using https://schema.org/provider instead.
      */
     "schema:carrier"?: SchemaValue<Organization | IdReference, "schema:carrier">;
     /** The airport where the flight originates. */
@@ -4335,7 +4335,7 @@ interface FlightReservationLeaf extends FlightReservationBase {
 /**
  * A reservation for air travel.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type FlightReservation = FlightReservationLeaf;
 
@@ -4357,17 +4357,17 @@ interface FloorPlanBase extends ThingBase {
     "schema:isPlanForApartment"?: SchemaValue<Accommodation | IdReference, "schema:isPlanForApartment">;
     /** A schematic image showing the floorplan layout. */
     "schema:layoutImage"?: SchemaValue<ImageObject | URL | IdReference, "schema:layoutImage">;
-    /** Indicates the total (available plus unavailable) number of accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAvailableAccommodationUnits]]. */
+    /** Indicates the total (available plus unavailable) number of accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAvailableAccommodationUnits numberOfAvailableAccommodationUnits}. */
     "schema:numberOfAccommodationUnits"?: SchemaValue<QuantitativeValue | IdReference, "schema:numberOfAccommodationUnits">;
-    /** Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]]. */
+    /** Indicates the number of available accommodation units in an {@link https://schema.org/ApartmentComplex ApartmentComplex}, or the number of accommodation units for a specific {@link https://schema.org/FloorPlan FloorPlan} (within its specific {@link https://schema.org/ApartmentComplex ApartmentComplex}). See also {@link https://schema.org/numberOfAccommodationUnits numberOfAccommodationUnits}. */
     "schema:numberOfAvailableAccommodationUnits"?: SchemaValue<QuantitativeValue | IdReference, "schema:numberOfAvailableAccommodationUnits">;
-    /** The total integer number of bathrooms in a some [[Accommodation]], following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also [[numberOfRooms]]. */
+    /** The total integer number of bathrooms in a some {@link https://schema.org/Accommodation Accommodation}, following real estate conventions as {@link https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field documented in RESO}: "The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.". See also {@link https://schema.org/numberOfRooms numberOfRooms}. */
     "schema:numberOfBathroomsTotal"?: SchemaValue<Integer, "schema:numberOfBathroomsTotal">;
-    /** The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]]. */
+    /** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
     "schema:numberOfBedrooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfBedrooms">;
-    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an [[Accommodation]]. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
+    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
     "schema:numberOfFullBathrooms"?: SchemaValue<Number, "schema:numberOfFullBathrooms">;
-    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an [[Accommodation]]. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
+    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
     "schema:numberOfPartialBathrooms"?: SchemaValue<Number, "schema:numberOfPartialBathrooms">;
     /** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
     "schema:numberOfRooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfRooms">;
@@ -4377,7 +4377,7 @@ interface FloorPlanBase extends ThingBase {
 interface FloorPlanLeaf extends FloorPlanBase {
     "@type": "schema:FloorPlan";
 }
-/** A FloorPlan is an explicit representation of a collection of similar accommodations, allowing the provision of common information (room counts, sizes, layout diagrams) and offers for rental or sale. In typical use, some [[ApartmentComplex]] has an [[accommodationFloorPlan]] which is a [[FloorPlan]]. A FloorPlan is always in the context of a particular place, either a larger [[ApartmentComplex]] or a single [[Apartment]]. The visual/spatial aspects of a floor plan (i.e. room layout, {@link https://en.wikipedia.org/wiki/Floor_plan see wikipedia}) can be indicated using [[image]]. */
+/** A FloorPlan is an explicit representation of a collection of similar accommodations, allowing the provision of common information (room counts, sizes, layout diagrams) and offers for rental or sale. In typical use, some {@link https://schema.org/ApartmentComplex ApartmentComplex} has an {@link https://schema.org/accommodationFloorPlan accommodationFloorPlan} which is a {@link https://schema.org/FloorPlan FloorPlan}. A FloorPlan is always in the context of a particular place, either a larger {@link https://schema.org/ApartmentComplex ApartmentComplex} or a single {@link https://schema.org/Apartment Apartment}. The visual/spatial aspects of a floor plan (i.e. room layout, {@link https://en.wikipedia.org/wiki/Floor_plan see wikipedia}) can be indicated using {@link https://schema.org/image image}. */
 export type FloorPlan = FloorPlanLeaf;
 
 interface FloristLeaf extends LocalBusinessBase {
@@ -4409,11 +4409,11 @@ interface FollowActionLeaf extends FollowActionBase {
  * The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates polled from.
  *
  * Related actions:
- * - [[BefriendAction]]: Unlike BefriendAction, FollowAction implies that the connection is _not_ necessarily reciprocal.
- * - [[SubscribeAction]]: Unlike SubscribeAction, FollowAction implies that the follower acts as an active agent constantly/actively polling for updates.
- * - [[RegisterAction]]: Unlike RegisterAction, FollowAction implies that the agent is interested in continuing receiving updates from the object.
- * - [[JoinAction]]: Unlike JoinAction, FollowAction implies that the agent is interested in getting updates from the object.
- * - [[TrackAction]]: Unlike TrackAction, FollowAction refers to the polling of updates of all aspects of animate objects rather than the location of inanimate objects (e.g. you track a package, but you don't follow it).
+ * - {@link https://schema.org/BefriendAction BefriendAction}: Unlike BefriendAction, FollowAction implies that the connection is _not_ necessarily reciprocal.
+ * - {@link https://schema.org/SubscribeAction SubscribeAction}: Unlike SubscribeAction, FollowAction implies that the follower acts as an active agent constantly/actively polling for updates.
+ * - {@link https://schema.org/RegisterAction RegisterAction}: Unlike RegisterAction, FollowAction implies that the agent is interested in continuing receiving updates from the object.
+ * - {@link https://schema.org/JoinAction JoinAction}: Unlike JoinAction, FollowAction implies that the agent is interested in getting updates from the object.
+ * - {@link https://schema.org/TrackAction TrackAction}: Unlike TrackAction, FollowAction refers to the polling of updates of all aspects of animate objects rather than the location of inanimate objects (e.g. you track a package, but you don't follow it).
  */
 export type FollowAction = FollowActionLeaf;
 
@@ -4425,7 +4425,7 @@ interface FoodEstablishmentBase extends LocalBusinessBase {
     /**
      * Either the actual menu as a structured representation, as text, or a URL of the menu.
      *
-     * @deprecated Consider using {@link https://schema.org/hasMenu https://schema.org/hasMenu} instead.
+     * @deprecated Consider using https://schema.org/hasMenu instead.
      */
     "schema:menu"?: SchemaValue<Menu | Text | URL | IdReference, "schema:menu">;
     /** The cuisine of the restaurant. */
@@ -4493,7 +4493,7 @@ interface FundingAgencyLeaf extends OrganizationBase {
     "@type": "schema:FundingAgency";
 }
 /**
- * A FundingAgency is an organization that implements one or more [[FundingScheme]]s and manages the granting process (via [[Grant]]s, typically [[MonetaryGrant]]s). A funding agency is not always required for grant funding, e.g. philanthropic giving, corporate sponsorship etc.
+ * A FundingAgency is an organization that implements one or more {@link https://schema.org/FundingScheme FundingScheme}s and manages the granting process (via {@link https://schema.org/Grant Grant}s, typically {@link https://schema.org/MonetaryGrant MonetaryGrant}s). A funding agency is not always required for grant funding, e.g. philanthropic giving, corporate sponsorship etc.
  *
  * Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Foundation...
  */
@@ -4502,7 +4502,7 @@ export type FundingAgency = FundingAgencyLeaf | string;
 interface FundingSchemeLeaf extends OrganizationBase {
     "@type": "schema:FundingScheme";
 }
-/** A FundingScheme combines organizational, project and policy aspects of grant-based funding that sets guidelines, principles and mechanisms to support other kinds of projects and activities. Funding is typically organized via [[Grant]] funding. Examples of funding schemes: Swiss Priority Programmes (SPPs); EU Framework 7 (FP7); Horizon 2020; the NIH-R01 Grant Program; Wellcome institutional strategic support fund. For large scale public sector funding, the management and administration of grant awards is often handled by other, dedicated, organizations - [[FundingAgency]]s such as ERC, REA, ... */
+/** A FundingScheme combines organizational, project and policy aspects of grant-based funding that sets guidelines, principles and mechanisms to support other kinds of projects and activities. Funding is typically organized via {@link https://schema.org/Grant Grant} funding. Examples of funding schemes: Swiss Priority Programmes (SPPs); EU Framework 7 (FP7); Horizon 2020; the NIH-R01 Grant Program; Wellcome institutional strategic support fund. For large scale public sector funding, the management and administration of grant awards is often handled by other, dedicated, organizations - {@link https://schema.org/FundingAgency FundingAgency}s such as ERC, REA, ... */
 export type FundingScheme = FundingSchemeLeaf | string;
 
 interface FurnitureStoreLeaf extends LocalBusinessBase {
@@ -4696,8 +4696,8 @@ interface GiveActionLeaf extends GiveActionBase {
  * The act of transferring ownership of an object to a destination. Reciprocal of TakeAction.
  *
  * Related actions:
- * - [[TakeAction]]: Reciprocal of GiveAction.
- * - [[SendAction]]: Unlike SendAction, GiveAction implies that ownership is being transferred (e.g. I may send my laptop to you, but that doesn't mean I'm giving it to you).
+ * - {@link https://schema.org/TakeAction TakeAction}: Reciprocal of GiveAction.
+ * - {@link https://schema.org/SendAction SendAction}: Unlike SendAction, GiveAction implies that ownership is being transferred (e.g. I may send my laptop to you, but that doesn't mean I'm giving it to you).
  */
 export type GiveAction = GiveActionLeaf;
 
@@ -4750,7 +4750,7 @@ interface GovernmentServiceLeaf extends GovernmentServiceBase {
 export type GovernmentService = GovernmentServiceLeaf;
 
 interface GrantBase extends ThingBase {
-    /** Indicates an item funded or sponsored through a [[Grant]]. */
+    /** Indicates an item funded or sponsored through a {@link https://schema.org/Grant Grant}. */
     "schema:fundedItem"?: SchemaValue<Thing | IdReference, "schema:fundedItem">;
     /** A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
     "schema:sponsor"?: SchemaValue<Organization | Person | IdReference, "schema:sponsor">;
@@ -4759,11 +4759,11 @@ interface GrantLeaf extends GrantBase {
     "@type": "schema:Grant";
 }
 /**
- * A grant, typically financial or otherwise quantifiable, of resources. Typically a [[funder]] sponsors some [[MonetaryAmount]] to an [[Organization]] or [[Person]], sometimes not necessarily via a dedicated or long-lived [[Project]], resulting in one or more outputs, or [[fundedItem]]s. For financial sponsorship, indicate the [[funder]] of a [[MonetaryGrant]]. For non-financial support, indicate [[sponsor]] of [[Grant]]s of resources (e.g. office space).
+ * A grant, typically financial or otherwise quantifiable, of resources. Typically a {@link https://schema.org/funder funder} sponsors some {@link https://schema.org/MonetaryAmount MonetaryAmount} to an {@link https://schema.org/Organization Organization} or {@link https://schema.org/Person Person}, sometimes not necessarily via a dedicated or long-lived {@link https://schema.org/Project Project}, resulting in one or more outputs, or {@link https://schema.org/fundedItem fundedItem}s. For financial sponsorship, indicate the {@link https://schema.org/funder funder} of a {@link https://schema.org/MonetaryGrant MonetaryGrant}. For non-financial support, indicate {@link https://schema.org/sponsor sponsor} of {@link https://schema.org/Grant Grant}s of resources (e.g. office space).
  *
- * Grants support activities directed towards some agreed collective goals, often but not always organized as [[Project]]s. Long-lived projects are sometimes sponsored by a variety of grants over time, but it is also common for a project to be associated with a single grant.
+ * Grants support activities directed towards some agreed collective goals, often but not always organized as {@link https://schema.org/Project Project}s. Long-lived projects are sometimes sponsored by a variety of grants over time, but it is also common for a project to be associated with a single grant.
  *
- * The amount of a [[Grant]] is represented using [[amount]] as a [[MonetaryAmount]].
+ * The amount of a {@link https://schema.org/Grant Grant} is represented using {@link https://schema.org/amount amount} as a {@link https://schema.org/MonetaryAmount MonetaryAmount}.
  */
 export type Grant = GrantLeaf | MonetaryGrant;
 
@@ -4792,7 +4792,7 @@ interface GuideBase extends CreativeWorkBase {
 interface GuideLeaf extends GuideBase {
     "@type": "schema:Guide";
 }
-/** [[Guide]] is a page or article that recommend specific products or services, or aspects of a thing for a user to consider. A [[Guide]] may represent a Buying Guide and detail aspects of products or services for a user to consider. A [[Guide]] may represent a Product Guide and recommend specific products or services. A [[Guide]] may represent a Ranked List and recommend specific products or services with ranking. */
+/** {@link https://schema.org/Guide Guide} is a page or article that recommend specific products or services, or aspects of a thing for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Buying Guide and detail aspects of products or services for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Product Guide and recommend specific products or services. A {@link https://schema.org/Guide Guide} may represent a Ranked List and recommend specific products or services with ranking. */
 export type Guide = GuideLeaf;
 
 interface HackathonLeaf extends EventBase {
@@ -4834,7 +4834,7 @@ export type HealthAndBeautyBusiness = HealthAndBeautyBusinessLeaf | BeautySalon 
 interface HealthAspectEnumerationLeaf extends EnumerationBase {
     "@type": "schema:HealthAspectEnumeration";
 }
-/** HealthAspectEnumeration enumerates several aspects of health content online, each of which might be described using [[hasHealthAspect]] and [[HealthTopicContent]]. */
+/** HealthAspectEnumeration enumerates several aspects of health content online, each of which might be described using {@link https://schema.org/hasHealthAspect hasHealthAspect} and {@link https://schema.org/HealthTopicContent HealthTopicContent}. */
 export type HealthAspectEnumeration = "https://schema.org/AllergiesHealthAspect" | "schema:AllergiesHealthAspect" | "https://schema.org/BenefitsHealthAspect" | "schema:BenefitsHealthAspect" | "https://schema.org/CausesHealthAspect" | "schema:CausesHealthAspect" | "https://schema.org/ContagiousnessHealthAspect" | "schema:ContagiousnessHealthAspect" | "https://schema.org/EffectivenessHealthAspect" | "schema:EffectivenessHealthAspect" | "https://schema.org/GettingAccessHealthAspect" | "schema:GettingAccessHealthAspect" | "https://schema.org/HowItWorksHealthAspect" | "schema:HowItWorksHealthAspect" | "https://schema.org/HowOrWhereHealthAspect" | "schema:HowOrWhereHealthAspect" | "https://schema.org/IngredientsHealthAspect" | "schema:IngredientsHealthAspect" | "https://schema.org/LivingWithHealthAspect" | "schema:LivingWithHealthAspect" | "https://schema.org/MayTreatHealthAspect" | "schema:MayTreatHealthAspect" | "https://schema.org/MisconceptionsHealthAspect" | "schema:MisconceptionsHealthAspect" | "https://schema.org/OverviewHealthAspect" | "schema:OverviewHealthAspect" | "https://schema.org/PatientExperienceHealthAspect" | "schema:PatientExperienceHealthAspect" | "https://schema.org/PregnancyHealthAspect" | "schema:PregnancyHealthAspect" | "https://schema.org/PreventionHealthAspect" | "schema:PreventionHealthAspect" | "https://schema.org/PrognosisHealthAspect" | "schema:PrognosisHealthAspect" | "https://schema.org/RelatedTopicsHealthAspect" | "schema:RelatedTopicsHealthAspect" | "https://schema.org/RisksOrComplicationsHealthAspect" | "schema:RisksOrComplicationsHealthAspect" | "https://schema.org/SafetyHealthAspect" | "schema:SafetyHealthAspect" | "https://schema.org/ScreeningHealthAspect" | "schema:ScreeningHealthAspect" | "https://schema.org/SeeDoctorHealthAspect" | "schema:SeeDoctorHealthAspect" | "https://schema.org/SelfCareHealthAspect" | "schema:SelfCareHealthAspect" | "https://schema.org/SideEffectsHealthAspect" | "schema:SideEffectsHealthAspect" | "https://schema.org/StagesHealthAspect" | "schema:StagesHealthAspect" | "https://schema.org/SymptomsHealthAspect" | "schema:SymptomsHealthAspect" | "https://schema.org/TreatmentsHealthAspect" | "schema:TreatmentsHealthAspect" | "https://schema.org/TypesHealthAspect" | "schema:TypesHealthAspect" | "https://schema.org/UsageOrScheduleHealthAspect" | "schema:UsageOrScheduleHealthAspect" | HealthAspectEnumerationLeaf;
 
 interface HealthClubBase extends LocalBusinessBase, LocalBusinessBase {
@@ -4918,13 +4918,13 @@ interface HealthPlanNetworkLeaf extends HealthPlanNetworkBase {
 export type HealthPlanNetwork = HealthPlanNetworkLeaf;
 
 interface HealthTopicContentBase extends CreativeWorkBase {
-    /** Indicates the aspect or aspects specifically addressed in some [[HealthTopicContent]]. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects. */
+    /** Indicates the aspect or aspects specifically addressed in some {@link https://schema.org/HealthTopicContent HealthTopicContent}. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects. */
     "schema:hasHealthAspect"?: SchemaValue<HealthAspectEnumeration | IdReference, "schema:hasHealthAspect">;
 }
 interface HealthTopicContentLeaf extends HealthTopicContentBase {
     "@type": "schema:HealthTopicContent";
 }
-/** [[HealthTopicContent]] is [[WebContent]] that is about some aspect of a health topic, e.g. a condition, its symptoms or treatments. Such content may be comprised of several parts or sections and use different types of media. Multiple instances of [[WebContent]] (and hence [[HealthTopicContent]]) can be related using [[hasPart]] / [[isPartOf]] where there is some kind of content hierarchy, and their content described with [[about]] and [[mentions]] e.g. building upon the existing [[MedicalCondition]] vocabulary. */
+/** {@link https://schema.org/HealthTopicContent HealthTopicContent} is {@link https://schema.org/WebContent WebContent} that is about some aspect of a health topic, e.g. a condition, its symptoms or treatments. Such content may be comprised of several parts or sections and use different types of media. Multiple instances of {@link https://schema.org/WebContent WebContent} (and hence {@link https://schema.org/HealthTopicContent HealthTopicContent}) can be related using {@link https://schema.org/hasPart hasPart} / {@link https://schema.org/isPartOf isPartOf} where there is some kind of content hierarchy, and their content described with {@link https://schema.org/about about} and {@link https://schema.org/mentions mentions} e.g. building upon the existing {@link https://schema.org/MedicalCondition MedicalCondition} vocabulary. */
 export type HealthTopicContent = HealthTopicContentLeaf;
 
 interface HighSchoolLeaf extends EducationalOrganizationBase {
@@ -4951,9 +4951,9 @@ interface HomeAndConstructionBusinessLeaf extends LocalBusinessBase {
 /**
  * A construction business.
  *
- * A HomeAndConstructionBusiness is a [[LocalBusiness]] that provides services around homes and buildings.
+ * A HomeAndConstructionBusiness is a {@link https://schema.org/LocalBusiness LocalBusiness} that provides services around homes and buildings.
  *
- * As a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
  */
 export type HomeAndConstructionBusiness = HomeAndConstructionBusinessLeaf | Electrician | GeneralContractor | HousePainter | HVACBusiness | Locksmith | MovingCompany | Plumber | RoofingContractor | string;
 
@@ -4966,7 +4966,7 @@ export type HomeGoodsStore = HomeGoodsStoreLeaf | string;
 interface HospitalBase extends CivicStructureBase, MedicalOrganizationBase, LocalBusinessBase {
     /** A medical service available from this provider. */
     "schema:availableService"?: SchemaValue<MedicalProcedure | MedicalTest | MedicalTherapy | IdReference, "schema:availableService">;
-    /** Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]]. */
+    /** Indicates data describing a hospital, e.g. a CDC {@link https://schema.org/CDCPMDRecord CDCPMDRecord} or as some kind of {@link https://schema.org/Dataset Dataset}. */
     "schema:healthcareReportingData"?: SchemaValue<CDCPMDRecord | Dataset | IdReference, "schema:healthcareReportingData">;
     /** A medical specialty of the provider. */
     "schema:medicalSpecialty"?: SchemaValue<MedicalSpecialty | IdReference, "schema:medicalSpecialty">;
@@ -5047,7 +5047,7 @@ interface HowToBase extends CreativeWorkBase {
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *
-     * @deprecated Consider using {@link https://schema.org/step https://schema.org/step} instead.
+     * @deprecated Consider using https://schema.org/step instead.
      */
     "schema:steps"?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "schema:steps">;
     /** A sub-property of instrument. A supply consumed when performing instructions or a direction. */
@@ -5103,7 +5103,7 @@ interface HowToSectionBase extends ListItemBase, CreativeWorkBase, ItemListBase 
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *
-     * @deprecated Consider using {@link https://schema.org/step https://schema.org/step} instead.
+     * @deprecated Consider using https://schema.org/step instead.
      */
     "schema:steps"?: SchemaValue<CreativeWork | ItemList | Text | IdReference, "schema:steps">;
 }
@@ -5154,27 +5154,27 @@ export type HVACBusiness = HVACBusinessLeaf | string;
 interface HyperTocBase extends CreativeWorkBase {
     /** A media object that encodes this CreativeWork. This property is a synonym for encoding. */
     "schema:associatedMedia"?: SchemaValue<MediaObject | IdReference, "schema:associatedMedia">;
-    /** Indicates a [[HyperTocEntry]] in a [[HyperToc]]. */
+    /** Indicates a {@link https://schema.org/HyperTocEntry HyperTocEntry} in a {@link https://schema.org/HyperToc HyperToc}. */
     "schema:tocEntry"?: SchemaValue<HyperTocEntry | IdReference, "schema:tocEntry">;
 }
 interface HyperTocLeaf extends HyperTocBase {
     "@type": "schema:HyperToc";
 }
-/** A HyperToc represents a hypertext table of contents for complex media objects, such as [[VideoObject]], [[AudioObject]]. Items in the table of contents are indicated using the [[tocEntry]] property, and typed [[HyperTocEntry]]. For cases where the same larger work is split into multiple files, [[associatedMedia]] can be used on individual [[HyperTocEntry]] items. */
+/** A HyperToc represents a hypertext table of contents for complex media objects, such as {@link https://schema.org/VideoObject VideoObject}, {@link https://schema.org/AudioObject AudioObject}. Items in the table of contents are indicated using the {@link https://schema.org/tocEntry tocEntry} property, and typed {@link https://schema.org/HyperTocEntry HyperTocEntry}. For cases where the same larger work is split into multiple files, {@link https://schema.org/associatedMedia associatedMedia} can be used on individual {@link https://schema.org/HyperTocEntry HyperTocEntry} items. */
 export type HyperToc = HyperTocLeaf;
 
 interface HyperTocEntryBase extends CreativeWorkBase {
     /** A media object that encodes this CreativeWork. This property is a synonym for encoding. */
     "schema:associatedMedia"?: SchemaValue<MediaObject | IdReference, "schema:associatedMedia">;
-    /** A [[HyperTocEntry]] can have a [[tocContinuation]] indicated, which is another [[HyperTocEntry]] that would be the default next item to play or render. */
+    /** A {@link https://schema.org/HyperTocEntry HyperTocEntry} can have a {@link https://schema.org/tocContinuation tocContinuation} indicated, which is another {@link https://schema.org/HyperTocEntry HyperTocEntry} that would be the default next item to play or render. */
     "schema:tocContinuation"?: SchemaValue<HyperTocEntry | IdReference, "schema:tocContinuation">;
-    /** Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a [[HyperTocEntry]]. */
+    /** Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a {@link https://schema.org/HyperTocEntry HyperTocEntry}. */
     "schema:utterances"?: SchemaValue<Text, "schema:utterances">;
 }
 interface HyperTocEntryLeaf extends HyperTocEntryBase {
     "@type": "schema:HyperTocEntry";
 }
-/** A HyperToEntry is an item within a [[HyperToc]], which represents a hypertext table of contents for complex media objects, such as [[VideoObject]], [[AudioObject]]. The media object itself is indicated using [[associatedMedia]]. Each section of interest within that content can be described with a [[HyperTocEntry]], with associated [[startOffset]] and [[endOffset]]. When several entries are all from the same file, [[associatedMedia]] is used on the overarching [[HyperTocEntry]]; if the content has been split into multiple files, they can be referenced using [[associatedMedia]] on each [[HyperTocEntry]]. */
+/** A HyperToEntry is an item within a {@link https://schema.org/HyperToc HyperToc}, which represents a hypertext table of contents for complex media objects, such as {@link https://schema.org/VideoObject VideoObject}, {@link https://schema.org/AudioObject AudioObject}. The media object itself is indicated using {@link https://schema.org/associatedMedia associatedMedia}. Each section of interest within that content can be described with a {@link https://schema.org/HyperTocEntry HyperTocEntry}, with associated {@link https://schema.org/startOffset startOffset} and {@link https://schema.org/endOffset endOffset}. When several entries are all from the same file, {@link https://schema.org/associatedMedia associatedMedia} is used on the overarching {@link https://schema.org/HyperTocEntry HyperTocEntry}; if the content has been split into multiple files, they can be referenced using {@link https://schema.org/associatedMedia associatedMedia} on each {@link https://schema.org/HyperTocEntry HyperTocEntry}. */
 export type HyperTocEntry = HyperTocEntryLeaf;
 
 interface IceCreamShopLeaf extends FoodEstablishmentBase {
@@ -5208,9 +5208,9 @@ interface ImageGalleryLeaf extends WebPageBase {
 export type ImageGallery = ImageGalleryLeaf;
 
 interface ImageObjectBase extends MediaObjectBase {
-    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]]. */
+    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
     "schema:caption"?: SchemaValue<MediaObject | Text | IdReference, "schema:caption">;
-    /** Represents textual captioning from a [[MediaObject]], e.g. text of a 'meme'. */
+    /** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
     "schema:embeddedTextCaption"?: SchemaValue<Text, "schema:embeddedTextCaption">;
     /** exif data for this object. */
     "schema:exifData"?: SchemaValue<PropertyValue | Text | IdReference, "schema:exifData">;
@@ -5228,7 +5228,7 @@ export type ImageObject = ImageObjectLeaf | Barcode | ImageObjectSnapshot;
 interface ImageObjectSnapshotLeaf extends ImageObjectBase {
     "@type": "schema:ImageObjectSnapshot";
 }
-/** A specific and exact (byte-for-byte) version of an [[ImageObject]]. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata (e.g. XMP, EXIF) the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
+/** A specific and exact (byte-for-byte) version of an {@link https://schema.org/ImageObject ImageObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata (e.g. XMP, EXIF) the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type ImageObjectSnapshot = ImageObjectSnapshotLeaf;
 
 interface ImagingTestBase extends MedicalTestBase {
@@ -5287,7 +5287,11 @@ interface InformActionLeaf extends InformActionBase {
 /** The act of notifying someone of information pertinent to them, with no expectation of a response. */
 export type InformAction = InformActionLeaf | ConfirmAction | RsvpAction;
 
-interface InputElementLeaf extends UIElementBase {
+interface InputElementBase extends UIElementBase {
+    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
+    "uxi:inputRange"?: SchemaValue<Thing | UIDataType | IdReference, "uxi:inputRange">;
+}
+interface InputElementLeaf extends InputElementBase {
     "@type": "uxi:InputElement";
 }
 /** An InputElement is a UI element that helps users enter data. Some input elementss like date-pickers or color-pickers might be made up of other inputs, e.g. to navigate to a date in a calendar or enter a hsv color value. The term can also refer to data going in, in general */
@@ -5339,7 +5343,7 @@ interface InteractionCounterBase extends ThingBase {
     "schema:endTime"?: SchemaValue<DateTime | Time, "schema:endTime">;
     /** The WebSite or SoftwareApplication where the interactions took place. */
     "schema:interactionService"?: SchemaValue<SoftwareApplication | WebSite | IdReference, "schema:interactionService">;
-    /** The Action representing the type of interaction. For up votes, +1s, etc. use [[LikeAction]]. For down votes use [[DislikeAction]]. Otherwise, use the most specific Action. */
+    /** The Action representing the type of interaction. For up votes, +1s, etc. use {@link https://schema.org/LikeAction LikeAction}. For down votes use {@link https://schema.org/DislikeAction DislikeAction}. Otherwise, use the most specific Action. */
     "schema:interactionType"?: SchemaValue<Action | IdReference, "schema:interactionType">;
     /** The location of, for example, where an event is happening, where an organization is located, or where an action takes place. */
     "schema:location"?: SchemaValue<Place | PostalAddress | Text | VirtualLocation | IdReference, "schema:location">;
@@ -5408,7 +5412,7 @@ interface InvoiceBase extends ThingBase {
     /**
      * The date that payment is due.
      *
-     * @deprecated Consider using {@link https://schema.org/paymentDueDate https://schema.org/paymentDueDate} instead.
+     * @deprecated Consider using https://schema.org/paymentDueDate instead.
      */
     "schema:paymentDue"?: SchemaValue<DateTime, "schema:paymentDue">;
     /** The date that payment is due. */
@@ -5464,7 +5468,7 @@ interface ItemListLeaf extends ItemListBase {
     "@type": "schema:ItemList";
 }
 /** A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. Not to be confused with HTML lists, which are often used only for formatting. */
-export type ItemList = "https://uxiverse.com/ontology#Copywriter-Tag" | "uxi:Copywriter-Tag" | "https://uxiverse.com/ontology#Designer-Tag" | "uxi:Designer-Tag" | "https://uxiverse.com/ontology#Developer-Tag" | "uxi:Developer-Tag" | "https://uxiverse.com/ontology#Tags" | "uxi:Tags" | ItemListLeaf | BreadcrumbList | HowToSection | HowToStep | OfferCatalog;
+export type ItemList = "https://uxiverse.com/ontology/Copywriter-Tag" | "uxi:Copywriter-Tag" | "https://uxiverse.com/ontology/Designer-Tag" | "uxi:Designer-Tag" | "https://uxiverse.com/ontology/Developer-Tag" | "uxi:Developer-Tag" | "https://uxiverse.com/ontology/Tags" | "uxi:Tags" | ItemListLeaf | BreadcrumbList | HowToSection | HowToStep | OfferCatalog;
 
 interface ItemListOrderTypeLeaf extends EnumerationBase {
     "@type": "schema:ItemListOrderType";
@@ -5494,12 +5498,12 @@ interface JobPostingBase extends ThingBase {
     /**
      * Description of benefits associated with the job.
      *
-     * @deprecated Consider using {@link https://schema.org/jobBenefits https://schema.org/jobBenefits} instead.
+     * @deprecated Consider using https://schema.org/jobBenefits instead.
      */
     "schema:benefits"?: SchemaValue<Text, "schema:benefits">;
     /** Publication date of an online listing. */
     "schema:datePosted"?: SchemaValue<Date | DateTime, "schema:datePosted">;
-    /** Indicates whether an [[url]] that is associated with a [[JobPosting]] enables direct application for the job, via the posting website. A job posting is considered to have directApply of [[True]] if an application process for the specified job can be directly initiated via the url(s) given (noting that e.g. multiple internet domains might nevertheless be involved at an implementation level). A value of [[False]] is appropriate if there is no clear path to applying directly online for the specified job, navigating directly from the JobPosting url(s) supplied. */
+    /** Indicates whether an {@link https://schema.org/url url} that is associated with a {@link https://schema.org/JobPosting JobPosting} enables direct application for the job, via the posting website. A job posting is considered to have directApply of {@link https://schema.org/True True} if an application process for the specified job can be directly initiated via the url(s) given (noting that e.g. multiple internet domains might nevertheless be involved at an implementation level). A value of {@link https://schema.org/False False} is appropriate if there is no clear path to applying directly online for the specified job, navigating directly from the JobPosting url(s) supplied. */
     "schema:directApply"?: SchemaValue<Boolean, "schema:directApply">;
     /** Educational background needed for the position or Occupation. */
     "schema:educationRequirements"?: SchemaValue<EducationalOccupationalCredential | Text | IdReference, "schema:educationRequirements">;
@@ -5513,7 +5517,7 @@ interface JobPostingBase extends ThingBase {
     "schema:employmentUnit"?: SchemaValue<Organization | IdReference, "schema:employmentUnit">;
     /** An estimated salary for a job posting or occupation, based on a variety of variables including, but not limited to industry, job title, and location. Estimated salaries are often computed by outside organizations rather than the hiring organization, who may not have committed to the estimated value. */
     "schema:estimatedSalary"?: SchemaValue<MonetaryAmount | MonetaryAmountDistribution | Number | IdReference, "schema:estimatedSalary">;
-    /** Indicates whether a [[JobPosting]] will accept experience (as indicated by [[OccupationalExperienceRequirements]]) in place of its formal educational qualifications (as indicated by [[educationRequirements]]). If true, indicates that satisfying one of these requirements is sufficient. */
+    /** Indicates whether a {@link https://schema.org/JobPosting JobPosting} will accept experience (as indicated by {@link https://schema.org/OccupationalExperienceRequirements OccupationalExperienceRequirements}) in place of its formal educational qualifications (as indicated by {@link https://schema.org/educationRequirements educationRequirements}). If true, indicates that satisfying one of these requirements is sufficient. */
     "schema:experienceInPlaceOfEducation"?: SchemaValue<Boolean, "schema:experienceInPlaceOfEducation">;
     /** Description of skills and experience needed for the position or Occupation. */
     "schema:experienceRequirements"?: SchemaValue<OccupationalExperienceRequirements | Text | IdReference, "schema:experienceRequirements">;
@@ -5524,7 +5528,7 @@ interface JobPostingBase extends ThingBase {
     /**
      * Description of bonus and commission compensation aspects of the job.
      *
-     * @deprecated Consider using {@link https://schema.org/incentiveCompensation https://schema.org/incentiveCompensation} instead.
+     * @deprecated Consider using https://schema.org/incentiveCompensation instead.
      */
     "schema:incentives"?: SchemaValue<Text, "schema:incentives">;
     /** The industry associated with the job position. */
@@ -5589,9 +5593,9 @@ interface JoinActionLeaf extends JoinActionBase {
  * An agent joins an event/group with participants/friends at a location.
  *
  * Related actions:
- * - [[RegisterAction]]: Unlike RegisterAction, JoinAction refers to joining a group/team of people.
- * - [[SubscribeAction]]: Unlike SubscribeAction, JoinAction does not imply that you'll be receiving updates.
- * - [[FollowAction]]: Unlike FollowAction, JoinAction does not imply that you'll be polling for updates.
+ * - {@link https://schema.org/RegisterAction RegisterAction}: Unlike RegisterAction, JoinAction refers to joining a group/team of people.
+ * - {@link https://schema.org/SubscribeAction SubscribeAction}: Unlike SubscribeAction, JoinAction does not imply that you'll be receiving updates.
+ * - {@link https://schema.org/FollowAction FollowAction}: Unlike FollowAction, JoinAction does not imply that you'll be polling for updates.
  */
 export type JoinAction = JoinActionLeaf;
 
@@ -5642,7 +5646,7 @@ export type LandmarksOrHistoricalBuildings = LandmarksOrHistoricalBuildingsLeaf 
 interface LanguageLeaf extends ThingBase {
     "@type": "schema:Language";
 }
-/** Natural languages such as Spanish, Tamil, Hindi, English, etc. Formal language code tags expressed in {@link https://en.wikipedia.org/wiki/IETF_language_tag BCP 47} can be used via the [[alternateName]] property. The Language type previously also covered programming languages such as Scheme and Lisp, which are now best represented using [[ComputerLanguage]]. */
+/** Natural languages such as Spanish, Tamil, Hindi, English, etc. Formal language code tags expressed in {@link https://en.wikipedia.org/wiki/IETF_language_tag BCP 47} can be used via the {@link https://schema.org/alternateName alternateName} property. The Language type previously also covered programming languages such as Scheme and Lisp, which are now best represented using {@link https://schema.org/ComputerLanguage ComputerLanguage}. */
 export type Language = LanguageLeaf;
 
 interface LearningResourceBase extends CreativeWorkBase {
@@ -5653,7 +5657,7 @@ interface LearningResourceBase extends CreativeWorkBase {
     /**
      * An alignment to an established educational framework.
      *
-     * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource [[teaches]] or [[assesses]] a competency.
+     * This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource {@link https://schema.org/teaches teaches} or {@link https://schema.org/assesses assesses} a competency.
      */
     "schema:educationalAlignment"?: SchemaValue<AlignmentObject | IdReference, "schema:educationalAlignment">;
     /** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
@@ -5669,11 +5673,11 @@ interface LearningResourceLeaf extends LearningResourceBase {
     "@type": "schema:LearningResource";
 }
 /**
- * The LearningResource type can be used to indicate [[CreativeWork]]s (whether physical or digital) that have a particular and explicit orientation towards learning, education, skill acquisition, and other educational purposes.
+ * The LearningResource type can be used to indicate {@link https://schema.org/CreativeWork CreativeWork}s (whether physical or digital) that have a particular and explicit orientation towards learning, education, skill acquisition, and other educational purposes.
  *
- * [[LearningResource]] is expected to be used as an addition to a primary type such as [[Book]], [[VideoObject]], [[Product]] etc.
+ * {@link https://schema.org/LearningResource LearningResource} is expected to be used as an addition to a primary type such as {@link https://schema.org/Book Book}, {@link https://schema.org/VideoObject VideoObject}, {@link https://schema.org/Product Product} etc.
  *
- * [[EducationEvent]] serves a similar purpose for event-like things (e.g. a [[Trip]]). A [[LearningResource]] may be created as a result of an [[EducationEvent]], for example by recording one.
+ * {@link https://schema.org/EducationEvent EducationEvent} serves a similar purpose for event-like things (e.g. a {@link https://schema.org/Trip Trip}). A {@link https://schema.org/LearningResource LearningResource} may be created as a result of an {@link https://schema.org/EducationEvent EducationEvent}, for example by recording one.
  */
 export type LearningResource = LearningResourceLeaf | Course | Quiz;
 
@@ -5688,8 +5692,8 @@ interface LeaveActionLeaf extends LeaveActionBase {
  * An agent leaves an event / group with participants/friends at a location.
  *
  * Related actions:
- * - [[JoinAction]]: The antonym of LeaveAction.
- * - [[UnRegisterAction]]: Unlike UnRegisterAction, LeaveAction implies leaving a group/team of people rather than a service.
+ * - {@link https://schema.org/JoinAction JoinAction}: The antonym of LeaveAction.
+ * - {@link https://schema.org/UnRegisterAction UnRegisterAction}: Unlike UnRegisterAction, LeaveAction implies leaving a group/team of people rather than a service.
  */
 export type LeaveAction = LeaveActionLeaf;
 
@@ -5705,7 +5709,7 @@ interface LegalServiceLeaf extends LocalBusinessBase {
 /**
  * A LegalService is a business that provides legally-oriented services, advice and representation, e.g. law firms.
  *
- * As a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
  */
 export type LegalService = LegalServiceLeaf | Attorney | Notary | string;
 
@@ -5776,7 +5780,7 @@ interface LendActionLeaf extends LendActionBase {
  * The act of providing an object under an agreement that it will be returned at a later date. Reciprocal of BorrowAction.
  *
  * Related actions:
- * - [[BorrowAction]]: Reciprocal of LendAction.
+ * - {@link https://schema.org/BorrowAction BorrowAction}: Reciprocal of LendAction.
  */
 export type LendAction = LendActionLeaf;
 
@@ -5789,7 +5793,7 @@ export type Library = LibraryLeaf | string;
 interface LibrarySystemLeaf extends OrganizationBase {
     "@type": "schema:LibrarySystem";
 }
-/** A [[LibrarySystem]] is a collaborative system amongst several libraries. */
+/** A {@link https://schema.org/LibrarySystem LibrarySystem} is a collaborative system amongst several libraries. */
 export type LibrarySystem = LibrarySystemLeaf | string;
 
 interface LifestyleModificationLeaf extends MedicalEntityBase {
@@ -5867,7 +5871,7 @@ interface LiveBlogPostingBase extends SocialMediaPostingBase {
 interface LiveBlogPostingLeaf extends LiveBlogPostingBase {
     "@type": "schema:LiveBlogPosting";
 }
-/** A [[LiveBlogPosting]] is a [[BlogPosting]] intended to provide a rolling textual coverage of an ongoing event through continuous updates. */
+/** A {@link https://schema.org/LiveBlogPosting LiveBlogPosting} is a {@link https://schema.org/BlogPosting BlogPosting} intended to provide a rolling textual coverage of an ongoing event through continuous updates. */
 export type LiveBlogPosting = LiveBlogPostingLeaf;
 
 interface LoadingStateLeaf extends ElementBase {
@@ -5908,9 +5912,9 @@ export type LoanOrCredit = LoanOrCreditLeaf | CreditCard | MortgageLoan;
 
 interface LocalBusinessBase extends OrganizationBase, PlaceBase {
     /**
-     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)[[branch]].
+     * The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical){@link https://schema.org/branch branch}.
      *
-     * @deprecated Consider using {@link https://schema.org/parentOrganization https://schema.org/parentOrganization} instead.
+     * @deprecated Consider using https://schema.org/parentOrganization instead.
      */
     "schema:branchOf"?: SchemaValue<Organization | IdReference, "schema:branchOf">;
     /**
@@ -5963,7 +5967,7 @@ interface LodgingBusinessBase extends LocalBusinessBase {
     "schema:amenityFeature"?: SchemaValue<LocationFeatureSpecification | IdReference, "schema:amenityFeature">;
     /** An intended audience, i.e. a group for whom something was created. */
     "schema:audience"?: SchemaValue<Audience | IdReference, "schema:audience">;
-    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[inLanguage]] */
+    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage} */
     "schema:availableLanguage"?: SchemaValue<Language | Text | IdReference, "schema:availableLanguage">;
     /** The earliest someone may check into a lodging establishment. */
     "schema:checkinTime"?: SchemaValue<DateTime | Time, "schema:checkinTime">;
@@ -6129,7 +6133,7 @@ export type MediaGallery = MediaGalleryLeaf | ImageGallery | VideoGallery;
 interface MediaManipulationRatingEnumerationLeaf extends EnumerationBase {
     "@type": "schema:MediaManipulationRatingEnumeration";
 }
-/** Codes for use with the [[mediaAuthenticityCategory]] property, indicating the authenticity of a media object (in the context of how it was published or shared). In general these codes are not mutually exclusive, although some combinations (such as 'original' versus 'transformed', 'edited' and 'staged') would be contradictory if applied in the same [[MediaReview]]. Note that the application of these codes is with regard to a piece of media shared or published in a particular context. */
+/** Codes for use with the {@link https://schema.org/mediaAuthenticityCategory mediaAuthenticityCategory} property, indicating the authenticity of a media object (in the context of how it was published or shared). In general these codes are not mutually exclusive, although some combinations (such as 'original' versus 'transformed', 'edited' and 'staged') would be contradictory if applied in the same {@link https://schema.org/MediaReview MediaReview}. Note that the application of these codes is with regard to a piece of media shared or published in a particular context. */
 export type MediaManipulationRatingEnumeration = "https://schema.org/DecontextualizedContent" | "schema:DecontextualizedContent" | "https://schema.org/EditedOrCroppedContent" | "schema:EditedOrCroppedContent" | "https://schema.org/OriginalMediaContent" | "schema:OriginalMediaContent" | "https://schema.org/SatireOrParodyContent" | "schema:SatireOrParodyContent" | "https://schema.org/StagedContent" | "schema:StagedContent" | "https://schema.org/TransformedContent" | "schema:TransformedContent" | MediaManipulationRatingEnumerationLeaf;
 
 interface MediaObjectBase extends CreativeWorkBase {
@@ -6150,7 +6154,7 @@ interface MediaObjectBase extends CreativeWorkBase {
     /**
      * Media type typically expressed using a MIME format (see {@link http://www.iana.org/assignments/media-types/media-types.xhtml IANA site} and {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types MDN reference}) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).
      *
-     * In cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.
+     * In cases where a {@link https://schema.org/CreativeWork CreativeWork} has several media type representations, {@link https://schema.org/encoding encoding} can be used to indicate each {@link https://schema.org/MediaObject MediaObject} alongside particular {@link https://schema.org/encodingFormat encodingFormat} information.
      *
      * Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.
      */
@@ -6166,10 +6170,10 @@ interface MediaObjectBase extends CreativeWorkBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
      *
-     * See also [[eligibleRegion]].
+     * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
      */
     "schema:ineligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:ineligibleRegion">;
-    /** Used to indicate a specific claim contained, implied, translated or refined from the content of a [[MediaObject]] or other [[CreativeWork]]. The interpreting party can be indicated using [[claimInterpreter]]. */
+    /** Used to indicate a specific claim contained, implied, translated or refined from the content of a {@link https://schema.org/MediaObject MediaObject} or other {@link https://schema.org/CreativeWork CreativeWork}. The interpreting party can be indicated using {@link https://schema.org/claimInterpreter claimInterpreter}. */
     "schema:interpretedAsClaim"?: SchemaValue<Claim | IdReference, "schema:interpretedAsClaim">;
     /** Player type required—for example, Flash or Silverlight. */
     "schema:playerType"?: SchemaValue<Text, "schema:playerType">;
@@ -6207,25 +6211,25 @@ export type MediaPartAction = MediaPartActionLeaf | AnnotateAction | MarkAction;
 interface MediaReviewBase extends ReviewBase {
     /** Indicates a MediaManipulationRatingEnumeration classification of a media object (in the context of how it was published or shared). */
     "schema:mediaAuthenticityCategory"?: SchemaValue<MediaManipulationRatingEnumeration | IdReference, "schema:mediaAuthenticityCategory">;
-    /** Describes, in a [[MediaReview]] when dealing with [[DecontextualizedContent]], background information that can contribute to better interpretation of the [[MediaObject]]. */
+    /** Describes, in a {@link https://schema.org/MediaReview MediaReview} when dealing with {@link https://schema.org/DecontextualizedContent DecontextualizedContent}, background information that can contribute to better interpretation of the {@link https://schema.org/MediaObject MediaObject}. */
     "schema:originalMediaContextDescription"?: SchemaValue<Text, "schema:originalMediaContextDescription">;
-    /** Link to the page containing an original version of the content, or directly to an online copy of the original [[MediaObject]] content, e.g. video file. */
+    /** Link to the page containing an original version of the content, or directly to an online copy of the original {@link https://schema.org/MediaObject MediaObject} content, e.g. video file. */
     "schema:originalMediaLink"?: SchemaValue<MediaObject | URL | WebPage | IdReference, "schema:originalMediaLink">;
 }
 interface MediaReviewLeaf extends MediaReviewBase {
     "@type": "schema:MediaReview";
 }
-/** A [[MediaReview]] is a more specialized form of Review dedicated to the evaluation of media content online, typically in the context of fact-checking and misinformation. For more general reviews of media in the broader sense, use [[UserReview]], [[CriticReview]] or other [[Review]] types. This definition is a work in progress. While the [[MediaManipulationRatingEnumeration]] list reflects significant community review amongst fact-checkers and others working to combat misinformation, the specific structures for representing media objects, their versions and publication context, is still evolving. Similarly, best practices for the relationship between [[MediaReview]] and [[ClaimReview]] markup has not yet been finalized. */
+/** A {@link https://schema.org/MediaReview MediaReview} is a more specialized form of Review dedicated to the evaluation of media content online, typically in the context of fact-checking and misinformation. For more general reviews of media in the broader sense, use {@link https://schema.org/UserReview UserReview}, {@link https://schema.org/CriticReview CriticReview} or other {@link https://schema.org/Review Review} types. This definition is a work in progress. While the {@link https://schema.org/MediaManipulationRatingEnumeration MediaManipulationRatingEnumeration} list reflects significant community review amongst fact-checkers and others working to combat misinformation, the specific structures for representing media objects, their versions and publication context, is still evolving. Similarly, best practices for the relationship between {@link https://schema.org/MediaReview MediaReview} and {@link https://schema.org/ClaimReview ClaimReview} markup has not yet been finalized. */
 export type MediaReview = MediaReviewLeaf;
 
 interface MediaReviewItemBase extends CreativeWorkBase {
-    /** In the context of a [[MediaReview]], indicates specific media item(s) that are grouped using a [[MediaReviewItem]]. */
+    /** In the context of a {@link https://schema.org/MediaReview MediaReview}, indicates specific media item(s) that are grouped using a {@link https://schema.org/MediaReviewItem MediaReviewItem}. */
     "schema:mediaItemAppearance"?: SchemaValue<MediaObject | IdReference, "schema:mediaItemAppearance">;
 }
 interface MediaReviewItemLeaf extends MediaReviewItemBase {
     "@type": "schema:MediaReviewItem";
 }
-/** Represents an item or group of closely related items treated as a unit for the sake of evaluation in a [[MediaReview]]. Authorship etc. apply to the items rather than to the curation/grouping or reviewing party. */
+/** Represents an item or group of closely related items treated as a unit for the sake of evaluation in a {@link https://schema.org/MediaReview MediaReview}. Authorship etc. apply to the items rather than to the curation/grouping or reviewing party. */
 export type MediaReviewItem = MediaReviewItemLeaf;
 
 interface MediaSubscriptionBase extends ThingBase {
@@ -6688,7 +6692,7 @@ interface MedicalWebPageBase extends WebPageBase {
     /**
      * An aspect of medical practice that is considered on the page, such as 'diagnosis', 'treatment', 'causes', 'prognosis', 'etiology', 'epidemiology', etc.
      *
-     * @deprecated Consider using {@link https://schema.org/mainContentOfPage https://schema.org/mainContentOfPage} instead.
+     * @deprecated Consider using https://schema.org/mainContentOfPage instead.
      */
     "schema:aspect"?: SchemaValue<Text, "schema:aspect">;
     /** Medical audience for page. */
@@ -6739,7 +6743,7 @@ interface MenuItemBase extends ThingBase {
     "schema:menuAddOn"?: SchemaValue<MenuItem | MenuSection | IdReference, "schema:menuAddOn">;
     /** Nutrition information about the recipe or menu item. */
     "schema:nutrition"?: SchemaValue<NutritionInformation | IdReference, "schema:nutrition">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /** Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc. */
     "schema:suitableForDiet"?: SchemaValue<RestrictedDiet | IdReference, "schema:suitableForDiet">;
@@ -6772,16 +6776,16 @@ interface MerchantReturnPolicyBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
      *
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. {@link https://schema.org/width https://schema.org/width}, {@link https://schema.org/color https://schema.org/color}, {@link https://schema.org/gtin13 https://schema.org/gtin13}, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      */
     "schema:additionalProperty"?: SchemaValue<PropertyValue | IdReference, "schema:additionalProperty">;
     /** The type of return fees if the product is returned due to customer remorse. */
     "schema:customerRemorseReturnFees"?: SchemaValue<ReturnFeesEnumeration | IdReference, "schema:customerRemorseReturnFees">;
     /** The method (from an enumeration) by which the customer obtains a return shipping label for a product returned due to customer remorse. */
     "schema:customerRemorseReturnLabelSource"?: SchemaValue<ReturnLabelSourceEnumeration | IdReference, "schema:customerRemorseReturnLabelSource">;
-    /** The amount of shipping costs if a product is returned due to customer remorse. Applicable when property [[customerRemorseReturnFees]] equals [[ReturnShippingFees]]. */
+    /** The amount of shipping costs if a product is returned due to customer remorse. Applicable when property {@link https://schema.org/customerRemorseReturnFees customerRemorseReturnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
     "schema:customerRemorseReturnShippingFeesAmount"?: SchemaValue<MonetaryAmount | IdReference, "schema:customerRemorseReturnShippingFeesAmount">;
-    /** Are in-store returns offered? (for more advanced return methods use the [[returnMethod]] property) */
+    /** Are in-store returns offered? (for more advanced return methods use the {@link https://schema.org/returnMethod returnMethod} property) */
     "schema:inStoreReturnsOffered"?: SchemaValue<Boolean, "schema:inStoreReturnsOffered">;
     /** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
     "schema:itemCondition"?: SchemaValue<OfferItemCondition | IdReference, "schema:itemCondition">;
@@ -6789,15 +6793,15 @@ interface MerchantReturnPolicyBase extends ThingBase {
     "schema:itemDefectReturnFees"?: SchemaValue<ReturnFeesEnumeration | IdReference, "schema:itemDefectReturnFees">;
     /** The method (from an enumeration) by which the customer obtains a return shipping label for a defect product. */
     "schema:itemDefectReturnLabelSource"?: SchemaValue<ReturnLabelSourceEnumeration | IdReference, "schema:itemDefectReturnLabelSource">;
-    /** Amount of shipping costs for defect product returns. Applicable when property [[itemDefectReturnFees]] equals [[ReturnShippingFees]]. */
+    /** Amount of shipping costs for defect product returns. Applicable when property {@link https://schema.org/itemDefectReturnFees itemDefectReturnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
     "schema:itemDefectReturnShippingFeesAmount"?: SchemaValue<MonetaryAmount | IdReference, "schema:itemDefectReturnShippingFeesAmount">;
-    /** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the [[returnPolicyCategory]] property is specified as [[MerchantReturnFiniteReturnWindow]]. */
+    /** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the {@link https://schema.org/returnPolicyCategory returnPolicyCategory} property is specified as {@link https://schema.org/MerchantReturnFiniteReturnWindow MerchantReturnFiniteReturnWindow}. */
     "schema:merchantReturnDays"?: SchemaValue<Date | DateTime | Integer, "schema:merchantReturnDays">;
     /** Specifies a Web page or service by URL, for product returns. */
     "schema:merchantReturnLink"?: SchemaValue<URL, "schema:merchantReturnLink">;
     /** A refund type, from an enumerated list. */
     "schema:refundType"?: SchemaValue<RefundTypeEnumeration | IdReference, "schema:refundType">;
-    /** Use [[MonetaryAmount]] to specify a fixed restocking fee for product returns, or use [[Number]] to specify a percentage of the product price paid by the customer. */
+    /** Use {@link https://schema.org/MonetaryAmount MonetaryAmount} to specify a fixed restocking fee for product returns, or use {@link https://schema.org/Number Number} to specify a percentage of the product price paid by the customer. */
     "schema:restockingFee"?: SchemaValue<MonetaryAmount | Number | IdReference, "schema:restockingFee">;
     /** The type of return fees for purchased products (for any return reason) */
     "schema:returnFees"?: SchemaValue<ReturnFeesEnumeration | IdReference, "schema:returnFees">;
@@ -6807,23 +6811,23 @@ interface MerchantReturnPolicyBase extends ThingBase {
     "schema:returnMethod"?: SchemaValue<ReturnMethodEnumeration | IdReference, "schema:returnMethod">;
     /** Specifies an applicable return policy (from an enumeration). */
     "schema:returnPolicyCategory"?: SchemaValue<MerchantReturnEnumeration | IdReference, "schema:returnPolicyCategory">;
-    /** The country where the product has to be sent to for returns, for example "Ireland" using the [[name]] property of [[Country]]. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. Note that this can be different from the country where the product was originally shipped from or sent too. */
+    /** The country where the product has to be sent to for returns, for example "Ireland" using the {@link https://schema.org/name name} property of {@link https://schema.org/Country Country}. You can also provide the two-letter {@link http://en.wikipedia.org/wiki/ISO_3166-1 ISO 3166-1 alpha-2 country code}. Note that this can be different from the country where the product was originally shipped from or sent too. */
     "schema:returnPolicyCountry"?: SchemaValue<Country | Text | IdReference, "schema:returnPolicyCountry">;
     /** Seasonal override of a return policy. */
     "schema:returnPolicySeasonalOverride"?: SchemaValue<MerchantReturnPolicySeasonalOverride | IdReference, "schema:returnPolicySeasonalOverride">;
-    /** Amount of shipping costs for product returns (for any reason). Applicable when property [[returnFees]] equals [[ReturnShippingFees]]. */
+    /** Amount of shipping costs for product returns (for any reason). Applicable when property {@link https://schema.org/returnFees returnFees} equals {@link https://schema.org/ReturnShippingFees ReturnShippingFees}. */
     "schema:returnShippingFeesAmount"?: SchemaValue<MonetaryAmount | IdReference, "schema:returnShippingFeesAmount">;
 }
 interface MerchantReturnPolicyLeaf extends MerchantReturnPolicyBase {
     "@type": "schema:MerchantReturnPolicy";
 }
-/** A MerchantReturnPolicy provides information about product return policies associated with an [[Organization]], [[Product]], or [[Offer]]. */
+/** A MerchantReturnPolicy provides information about product return policies associated with an {@link https://schema.org/Organization Organization}, {@link https://schema.org/Product Product}, or {@link https://schema.org/Offer Offer}. */
 export type MerchantReturnPolicy = MerchantReturnPolicyLeaf;
 
 interface MerchantReturnPolicySeasonalOverrideBase extends ThingBase {
     /** The end date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
     "schema:endDate"?: SchemaValue<Date | DateTime, "schema:endDate">;
-    /** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the [[returnPolicyCategory]] property is specified as [[MerchantReturnFiniteReturnWindow]]. */
+    /** Specifies either a fixed return date or the number of days (from the delivery date) that a product can be returned. Used when the {@link https://schema.org/returnPolicyCategory returnPolicyCategory} property is specified as {@link https://schema.org/MerchantReturnFiniteReturnWindow MerchantReturnFiniteReturnWindow}. */
     "schema:merchantReturnDays"?: SchemaValue<Date | DateTime | Integer, "schema:merchantReturnDays">;
     /** Specifies an applicable return policy (from an enumeration). */
     "schema:returnPolicyCategory"?: SchemaValue<MerchantReturnEnumeration | IdReference, "schema:returnPolicyCategory">;
@@ -6945,8 +6949,8 @@ interface MonetaryAmountBase extends ThingBase {
     "schema:validThrough"?: SchemaValue<Date | DateTime, "schema:validThrough">;
     /**
      * The value of the quantitative value or property value node.
-     * - For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.
-     * - For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
+     * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
+     * - For {@link https://schema.org/PropertyValue PropertyValue}, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      */
@@ -6955,7 +6959,7 @@ interface MonetaryAmountBase extends ThingBase {
 interface MonetaryAmountLeaf extends MonetaryAmountBase {
     "@type": "schema:MonetaryAmount";
 }
-/** A monetary value or range. This type can be used to describe an amount of money such as $50 USD, or a range as in describing a bank account being suitable for a balance between £1,000 and £1,000,000 GBP, or the value of a salary, etc. It is recommended to use [[PriceSpecification]] Types to describe the price of an Offer, Invoice, etc. */
+/** A monetary value or range. This type can be used to describe an amount of money such as $50 USD, or a range as in describing a bank account being suitable for a balance between £1,000 and £1,000,000 GBP, or the value of a salary, etc. It is recommended to use {@link https://schema.org/PriceSpecification PriceSpecification} Types to describe the price of an Offer, Invoice, etc. */
 export type MonetaryAmount = MonetaryAmountLeaf;
 
 interface MonetaryAmountDistributionBase extends QuantitativeValueDistributionBase {
@@ -7067,7 +7071,7 @@ interface MoveActionLeaf extends MoveActionBase {
  * The act of an agent relocating to a place.
  *
  * Related actions:
- * - [[TransferAction]]: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object.
+ * - {@link https://schema.org/TransferAction TransferAction}: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object.
  */
 export type MoveAction = MoveActionLeaf | ArriveAction | DepartAction | TravelAction;
 
@@ -7077,13 +7081,13 @@ interface MovieBase extends CreativeWorkBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
@@ -7093,7 +7097,7 @@ interface MovieBase extends CreativeWorkBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
@@ -7105,11 +7109,11 @@ interface MovieBase extends CreativeWorkBase {
     /** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
     "schema:subtitleLanguage"?: SchemaValue<Language | Text | IdReference, "schema:subtitleLanguage">;
     /**
-     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing at the most general/abstract level, a work of film or television.
      *
-     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See {@link https://schema.org/editEIDR editEIDR}.
      *
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * Since schema.org types like {@link https://schema.org/Movie Movie} and {@link https://schema.org/TVEpisode TVEpisode} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
      */
     "schema:titleEIDR"?: SchemaValue<Text | URL, "schema:titleEIDR">;
     /** The trailer of a movie or tv/radio series, season, episode, etc. */
@@ -7139,7 +7143,7 @@ interface MovieSeriesBase extends CreativeWorkSeriesBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
@@ -7147,7 +7151,7 @@ interface MovieSeriesBase extends CreativeWorkSeriesBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** The composer of the soundtrack. */
@@ -7283,7 +7287,7 @@ interface MusicGroupBase extends OrganizationBase {
     /**
      * A collection of music albums.
      *
-     * @deprecated Consider using {@link https://schema.org/album https://schema.org/album} instead.
+     * @deprecated Consider using https://schema.org/album instead.
      */
     "schema:albums"?: SchemaValue<MusicAlbum | IdReference, "schema:albums">;
     /** Genre of the creative work, broadcast channel or group. */
@@ -7291,7 +7295,7 @@ interface MusicGroupBase extends OrganizationBase {
     /**
      * A member of a music group—for example, John, Paul, George, or Ringo.
      *
-     * @deprecated Consider using {@link https://schema.org/member https://schema.org/member} instead.
+     * @deprecated Consider using https://schema.org/member instead.
      */
     "schema:musicGroupMember"?: SchemaValue<Person | IdReference, "schema:musicGroupMember">;
     /** A music recording (track)—usually a single song. If an ItemList is given, the list should contain items of type MusicRecording. */
@@ -7299,7 +7303,7 @@ interface MusicGroupBase extends OrganizationBase {
     /**
      * A music recording (track)—usually a single song.
      *
-     * @deprecated Consider using {@link https://schema.org/track https://schema.org/track} instead.
+     * @deprecated Consider using https://schema.org/track instead.
      */
     "schema:tracks"?: SchemaValue<MusicRecording | IdReference, "schema:tracks">;
 }
@@ -7317,7 +7321,7 @@ interface MusicPlaylistBase extends CreativeWorkBase {
     /**
      * A music recording (track)—usually a single song.
      *
-     * @deprecated Consider using {@link https://schema.org/track https://schema.org/track} instead.
+     * @deprecated Consider using https://schema.org/track instead.
      */
     "schema:tracks"?: SchemaValue<MusicRecording | IdReference, "schema:tracks">;
 }
@@ -7411,9 +7415,9 @@ export type NavigationBar = NavigationBarLeaf;
 
 interface NerveBase extends AnatomicalStructureBase {
     /**
-     * The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].
+     * The branches that delineate from the nerve bundle. Not to be confused with {@link https://schema.org/branchOf branchOf}.
      *
-     * @deprecated Consider using {@link https://schema.org/arterialBranch https://schema.org/arterialBranch} instead.
+     * @deprecated Consider using https://schema.org/arterialBranch instead.
      */
     "schema:branch"?: SchemaValue<AnatomicalStructure | IdReference, "schema:branch">;
     /** The neurological pathway extension that involves muscle control. */
@@ -7433,7 +7437,7 @@ interface NewsArticleBase extends ArticleBase {
     /**
      * A {@link https://en.wikipedia.org/wiki/Dateline dateline} is a brief piece of text included in news articles that describes where and when the story was written or filed though the date is often omitted. Sometimes only a placename is provided.
      *
-     * Structured representations of dateline-related information can also be expressed more explicitly using [[locationCreated]] (which represents where a work was created e.g. where a news report was written). For location depicted or described in the content, use [[contentLocation]].
+     * Structured representations of dateline-related information can also be expressed more explicitly using {@link https://schema.org/locationCreated locationCreated} (which represents where a work was created e.g. where a news report was written). For location depicted or described in the content, use {@link https://schema.org/contentLocation contentLocation}.
      *
      * Dateline summaries are oriented more towards human readers than towards automated processing, and can vary substantially. Some examples: "BEIRUT, Lebanon, June 2.", "Paris, France", "December 19, 2017 11:43AM Reporting from Washington", "Beijing/Moscow", "QUEZON CITY, Philippines".
      */
@@ -7458,27 +7462,27 @@ interface NewsArticleLeaf extends NewsArticleBase {
 export type NewsArticle = NewsArticleLeaf | AnalysisNewsArticle | AskPublicNewsArticle | BackgroundNewsArticle | OpinionNewsArticle | ReportageNewsArticle | ReviewNewsArticle;
 
 interface NewsMediaOrganizationBase extends OrganizationBase {
-    /** For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
+    /** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
     "schema:actionableFeedbackPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:actionableFeedbackPolicy">;
-    /** For an [[Organization]] (e.g. [[NewsMediaOrganization]]), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
+    /** For an {@link https://schema.org/Organization Organization} (e.g. {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
     "schema:correctionsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:correctionsPolicy">;
-    /** Statement on diversity policy by an [[Organization]] e.g. a [[NewsMediaOrganization]]. For a [[NewsMediaOrganization]], a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
+    /** Statement on diversity policy by an {@link https://schema.org/Organization Organization} e.g. a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}. For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
     "schema:diversityPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:diversityPolicy">;
-    /** For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
+    /** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
     "schema:diversityStaffingReport"?: SchemaValue<Article | URL | IdReference, "schema:diversityStaffingReport">;
-    /** Statement about ethics policy, e.g. of a [[NewsMediaOrganization]] regarding journalistic and publishing practices, or of a [[Restaurant]], a page describing food source policies. In the case of a [[NewsMediaOrganization]], an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
+    /** Statement about ethics policy, e.g. of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} regarding journalistic and publishing practices, or of a {@link https://schema.org/Restaurant Restaurant}, a page describing food source policies. In the case of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
     "schema:ethicsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:ethicsPolicy">;
-    /** For a [[NewsMediaOrganization]], a link to the masthead page or a page listing top editorial management. */
+    /** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a link to the masthead page or a page listing top editorial management. */
     "schema:masthead"?: SchemaValue<CreativeWork | URL | IdReference, "schema:masthead">;
-    /** For a [[NewsMediaOrganization]], a statement on coverage priorities, including any public agenda or stance on issues. */
+    /** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement on coverage priorities, including any public agenda or stance on issues. */
     "schema:missionCoveragePrioritiesPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:missionCoveragePrioritiesPolicy">;
-    /** For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement explaining when authors of articles are not named in bylines. */
+    /** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement explaining when authors of articles are not named in bylines. */
     "schema:noBylinesPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:noBylinesPolicy">;
-    /** For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the [[funder]] is also available and can be used to make basic funder information machine-readable. */
+    /** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the {@link https://schema.org/funder funder} is also available and can be used to make basic funder information machine-readable. */
     "schema:ownershipFundingInfo"?: SchemaValue<AboutPage | CreativeWork | Text | URL | IdReference, "schema:ownershipFundingInfo">;
-    /** For an [[Organization]] (typically a [[NewsMediaOrganization]]), a statement about policy on use of unnamed sources and the decision process required. */
+    /** For an {@link https://schema.org/Organization Organization} (typically a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement about policy on use of unnamed sources and the decision process required. */
     "schema:unnamedSourcesPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:unnamedSourcesPolicy">;
-    /** Disclosure about verification and fact-checking processes for a [[NewsMediaOrganization]] or other fact-checking [[Organization]]. */
+    /** Disclosure about verification and fact-checking processes for a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other fact-checking {@link https://schema.org/Organization Organization}. */
     "schema:verificationFactCheckingPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:verificationFactCheckingPolicy">;
 }
 interface NewsMediaOrganizationLeaf extends NewsMediaOrganizationBase {
@@ -7572,21 +7576,21 @@ interface NutritionInformationLeaf extends NutritionInformationBase {
 export type NutritionInformation = NutritionInformationLeaf;
 
 interface ObservationBase extends ThingBase {
-    /** A marginOfError for an [[Observation]]. */
+    /** A marginOfError for an {@link https://schema.org/Observation Observation}. */
     "schema:marginOfError"?: SchemaValue<QuantitativeValue | IdReference, "schema:marginOfError">;
-    /** The measuredProperty of an [[Observation]], either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as {@link https://www.gs1.org/voc/?show=properties GS1's}. */
+    /** The measuredProperty of an {@link https://schema.org/Observation Observation}, either a schema.org property, a property from other RDF-compatible systems e.g. W3C RDF Data Cube, or schema.org extensions such as {@link https://www.gs1.org/voc/?show=properties GS1's}. */
     "schema:measuredProperty"?: SchemaValue<Property | IdReference, "schema:measuredProperty">;
-    /** The measuredValue of an [[Observation]]. */
+    /** The measuredValue of an {@link https://schema.org/Observation Observation}. */
     "schema:measuredValue"?: SchemaValue<DataType | IdReference, "schema:measuredValue">;
-    /** The observationDate of an [[Observation]]. */
+    /** The observationDate of an {@link https://schema.org/Observation Observation}. */
     "schema:observationDate"?: SchemaValue<DateTime, "schema:observationDate">;
-    /** The observedNode of an [[Observation]], often a [[StatisticalPopulation]]. */
+    /** The observedNode of an {@link https://schema.org/Observation Observation}, often a {@link https://schema.org/StatisticalPopulation StatisticalPopulation}. */
     "schema:observedNode"?: SchemaValue<StatisticalPopulation | IdReference, "schema:observedNode">;
 }
 interface ObservationLeaf extends ObservationBase {
     "@type": "schema:Observation";
 }
-/** Instances of the class [[Observation]] are used to specify observations about an entity (which may or may not be an instance of a [[StatisticalPopulation]]), at a particular time. The principal properties of an [[Observation]] are [[observedNode]], [[measuredProperty]], [[measuredValue]] (or [[median]], etc.) and [[observationDate]] ([[measuredProperty]] properties can, but need not always, be W3C RDF Data Cube "measure properties", as in the {@link https://www.w3.org/TR/vocab-data-cube/#dsd-example lifeExpectancy example}). See also [[StatisticalPopulation]], and the {@link /docs/data-and-datasets.html data and datasets} overview for more details. */
+/** Instances of the class {@link https://schema.org/Observation Observation} are used to specify observations about an entity (which may or may not be an instance of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation}), at a particular time. The principal properties of an {@link https://schema.org/Observation Observation} are {@link https://schema.org/observedNode observedNode}, {@link https://schema.org/measuredProperty measuredProperty}, {@link https://schema.org/measuredValue measuredValue} (or {@link https://schema.org/median median}, etc.) and {@link https://schema.org/observationDate observationDate} ({@link https://schema.org/measuredProperty measuredProperty} properties can, but need not always, be W3C RDF Data Cube "measure properties", as in the {@link https://www.w3.org/TR/vocab-data-cube/#dsd-example lifeExpectancy example}). See also {@link https://schema.org/StatisticalPopulation StatisticalPopulation}, and the {@link /docs/data-and-datasets.html data and datasets} overview for more details. */
 export type Observation = ObservationLeaf;
 
 interface OccupationBase extends ThingBase {
@@ -7624,7 +7628,7 @@ interface OccupationalExperienceRequirementsBase extends ThingBase {
 interface OccupationalExperienceRequirementsLeaf extends OccupationalExperienceRequirementsBase {
     "@type": "schema:OccupationalExperienceRequirements";
 }
-/** Indicates employment-related experience requirements, e.g. [[monthsOfExperience]]. */
+/** Indicates employment-related experience requirements, e.g. {@link https://schema.org/monthsOfExperience monthsOfExperience}. */
 export type OccupationalExperienceRequirements = OccupationalExperienceRequirementsLeaf;
 
 interface OccupationalTherapyLeaf extends MedicalTherapyBase {
@@ -7660,7 +7664,7 @@ interface OfferBase extends ThingBase {
     "schema:availableAtOrFrom"?: SchemaValue<Place | IdReference, "schema:availableAtOrFrom">;
     /** The delivery method(s) available for this offer. */
     "schema:availableDeliveryMethod"?: SchemaValue<DeliveryMethod | IdReference, "schema:availableDeliveryMethod">;
-    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell}. */
+    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
     "schema:businessFunction"?: SchemaValue<BusinessFunction | IdReference, "schema:businessFunction">;
     /** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
     "schema:category"?: SchemaValue<PhysicalActivityCategory | Text | Thing | URL | IdReference, "schema:category">;
@@ -7675,12 +7679,12 @@ interface OfferBase extends ThingBase {
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.
      *
-     * See also [[ineligibleRegion]].
+     * See also {@link https://schema.org/ineligibleRegion ineligibleRegion}.
      */
     "schema:eligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:eligibleRegion">;
     /** The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount. */
     "schema:eligibleTransactionVolume"?: SchemaValue<PriceSpecification | IdReference, "schema:eligibleTransactionVolume">;
-    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The [[gtin]] property generalizes the earlier [[gtin8]], [[gtin12]], [[gtin13]], and [[gtin14]] properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct [[gtin]] value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
+    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The {@link https://schema.org/gtin gtin} property generalizes the earlier {@link https://schema.org/gtin8 gtin8}, {@link https://schema.org/gtin12 gtin12}, {@link https://schema.org/gtin13 gtin13}, and {@link https://schema.org/gtin14 gtin14} properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct {@link https://schema.org/gtin gtin} value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
     "schema:gtin"?: SchemaValue<Text, "schema:gtin">;
     /** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
     "schema:gtin12"?: SchemaValue<Text, "schema:gtin12">;
@@ -7694,21 +7698,21 @@ interface OfferBase extends ThingBase {
     "schema:hasMeasurement"?: SchemaValue<QuantitativeValue | IdReference, "schema:hasMeasurement">;
     /** Specifies a MerchantReturnPolicy that may be applicable. */
     "schema:hasMerchantReturnPolicy"?: SchemaValue<MerchantReturnPolicy | IdReference, "schema:hasMerchantReturnPolicy">;
-    /** This links to a node or nodes indicating the exact quantity of the products included in an [[Offer]] or [[ProductCollection]]. */
+    /** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
     "schema:includesObject"?: SchemaValue<TypeAndQuantityNode | IdReference, "schema:includesObject">;
     /**
      * The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.
      *
-     * See also [[eligibleRegion]].
+     * See also {@link https://schema.org/eligibleRegion eligibleRegion}.
      */
     "schema:ineligibleRegion"?: SchemaValue<GeoShape | Place | Text | IdReference, "schema:ineligibleRegion">;
     /** The current approximate inventory level for the item or items. */
     "schema:inventoryLevel"?: SchemaValue<QuantitativeValue | IdReference, "schema:inventoryLevel">;
     /** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
     "schema:itemCondition"?: SchemaValue<OfferItemCondition | IdReference, "schema:itemCondition">;
-    /** An item being offered (or demanded). The transactional nature of the offer or demand is documented using [[businessFunction]], e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An item being offered (or demanded). The transactional nature of the offer or demand is documented using {@link https://schema.org/businessFunction businessFunction}, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:itemOffered"?: SchemaValue<AggregateOffer | CreativeWork | Event | MenuItem | Product | Service | Trip | IdReference, "schema:itemOffered">;
-    /** Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property. */
+    /** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
     "schema:leaseLength"?: SchemaValue<Duration | QuantitativeValue | IdReference, "schema:leaseLength">;
     /** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
     "schema:mpn"?: SchemaValue<Text, "schema:mpn">;
@@ -7718,14 +7722,14 @@ interface OfferBase extends ThingBase {
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
      *
      * Usage guidelines:
-     * - Use the [[priceCurrency]] property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
+     * - Use the {@link https://schema.org/priceCurrency priceCurrency} property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      * - Note that both {@link http://www.w3.org/TR/xhtml-rdfa-primer/#using-the-content-attribute RDFa} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      */
     "schema:price"?: SchemaValue<Number | Text, "schema:price">;
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.
+     * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
      *
      * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR".
      */
@@ -7739,14 +7743,14 @@ interface OfferBase extends ThingBase {
     /**
      * Review of the item.
      *
-     * @deprecated Consider using {@link https://schema.org/review https://schema.org/review} instead.
+     * @deprecated Consider using https://schema.org/review instead.
      */
     "schema:reviews"?: SchemaValue<Review | IdReference, "schema:reviews">;
     /** An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. */
     "schema:seller"?: SchemaValue<Organization | Person | IdReference, "schema:seller">;
     /** The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer. */
     "schema:serialNumber"?: SchemaValue<Text, "schema:serialNumber">;
-    /** Indicates information about the shipping policies and options associated with an [[Offer]]. */
+    /** Indicates information about the shipping policies and options associated with an {@link https://schema.org/Offer Offer}. */
     "schema:shippingDetails"?: SchemaValue<OfferShippingDetails | IdReference, "schema:shippingDetails">;
     /** The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers. */
     "schema:sku"?: SchemaValue<Text, "schema:sku">;
@@ -7763,7 +7767,7 @@ interface OfferLeaf extends OfferBase {
 /**
  * An offer to transfer some rights to an item or to provide a service — for example, an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.
  *
- * Note: As the [[businessFunction]] property, which identifies the form of offer (e.g. sell, lease, repair, dispose), defaults to {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell}; an Offer without a defined businessFunction value can be assumed to be an offer to sell.
+ * Note: As the {@link https://schema.org/businessFunction businessFunction} property, which identifies the form of offer (e.g. sell, lease, repair, dispose), defaults to http://purl.org/goodrelations/v1#Sell; an Offer without a defined businessFunction value can be assumed to be an offer to sell.
  *
  * For {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GTIN}-related fields, see {@link http://www.gs1.org/barcodes/support/check_digit_calculator Check Digit calculator} and {@link http://www.gs1us.org/resources/standards/gtin-validation-guide validation guide} from {@link http://www.gs1.org/ GS1}.
  */
@@ -7778,13 +7782,13 @@ export type OfferCatalog = OfferCatalogLeaf;
 interface OfferForLeaseLeaf extends OfferBase {
     "@type": "schema:OfferForLease";
 }
-/** An [[OfferForLease]] in Schema.org represents an [[Offer]] to lease out something, i.e. an [[Offer]] whose [[businessFunction]] is {@link http://purl.org/goodrelations/v1#LeaseOut. lease out}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
+/** An {@link https://schema.org/OfferForLease OfferForLease} in Schema.org represents an {@link https://schema.org/Offer Offer} to lease out something, i.e. an {@link https://schema.org/Offer Offer} whose {@link https://schema.org/businessFunction businessFunction} is {@link http://purl.org/goodrelations/v1#LeaseOut. lease out}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
 export type OfferForLease = OfferForLeaseLeaf;
 
 interface OfferForPurchaseLeaf extends OfferBase {
     "@type": "schema:OfferForPurchase";
 }
-/** An [[OfferForPurchase]] in Schema.org represents an [[Offer]] to sell something, i.e. an [[Offer]] whose [[businessFunction]] is {@link http://purl.org/goodrelations/v1#Sell. sell}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
+/** An {@link https://schema.org/OfferForPurchase OfferForPurchase} in Schema.org represents an {@link https://schema.org/Offer Offer} to sell something, i.e. an {@link https://schema.org/Offer Offer} whose {@link https://schema.org/businessFunction businessFunction} is {@link http://purl.org/goodrelations/v1#Sell. sell}. See {@link https://en.wikipedia.org/wiki/GoodRelations Good Relations} for background on the underlying concepts. */
 export type OfferForPurchase = OfferForPurchaseLeaf;
 
 interface OfferItemConditionLeaf extends EnumerationBase {
@@ -7796,17 +7800,17 @@ export type OfferItemCondition = "https://schema.org/DamagedCondition" | "schema
 interface OfferShippingDetailsBase extends ThingBase {
     /** The total delay between the receipt of the order and the goods reaching the final customer. */
     "schema:deliveryTime"?: SchemaValue<ShippingDeliveryTime | IdReference, "schema:deliveryTime">;
-    /** Indicates when shipping to a particular [[shippingDestination]] is not available. */
+    /** Indicates when shipping to a particular {@link https://schema.org/shippingDestination shippingDestination} is not available. */
     "schema:doesNotShip"?: SchemaValue<Boolean, "schema:doesNotShip">;
     /** indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges. */
     "schema:shippingDestination"?: SchemaValue<DefinedRegion | IdReference, "schema:shippingDestination">;
-    /** Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference). */
+    /** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/ShippingRateSettings ShippingRateSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
     "schema:shippingLabel"?: SchemaValue<Text, "schema:shippingLabel">;
-    /** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate. */
+    /** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the {@link https://schema.org/MonetaryAmount MonetaryAmount}) are most appropriate. */
     "schema:shippingRate"?: SchemaValue<MonetaryAmount | IdReference, "schema:shippingRate">;
-    /** Link to a page containing [[ShippingRateSettings]] and [[DeliveryTimeSettings]] details. */
+    /** Link to a page containing {@link https://schema.org/ShippingRateSettings ShippingRateSettings} and {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} details. */
     "schema:shippingSettingsLink"?: SchemaValue<URL, "schema:shippingSettingsLink">;
-    /** Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference). */
+    /** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
     "schema:transitTimeLabel"?: SchemaValue<Text, "schema:transitTimeLabel">;
 }
 interface OfferShippingDetailsLeaf extends OfferShippingDetailsBase {
@@ -7857,9 +7861,9 @@ interface OpeningHoursSpecificationLeaf extends OpeningHoursSpecificationBase {
 /**
  * A structured value providing information about the opening hours of a place or a certain service inside a place.
  *
- * The place is __open__ if the [[opens]] property is specified, and __closed__ otherwise.
+ * The place is __open__ if the {@link https://schema.org/opens opens} property is specified, and __closed__ otherwise.
  *
- * If the value for the [[closes]] property is less than the value for the [[opens]] property then the hour range is assumed to span over the next day.
+ * If the value for the {@link https://schema.org/closes closes} property is less than the value for the {@link https://schema.org/opens opens} property then the hour range is assumed to span over the next day.
  */
 export type OpeningHoursSpecification = OpeningHoursSpecificationLeaf;
 
@@ -7878,7 +7882,7 @@ export type OpenState = OpenStateLeaf;
 interface OpinionNewsArticleLeaf extends NewsArticleBase {
     "@type": "schema:OpinionNewsArticle";
 }
-/** An [[OpinionNewsArticle]] is a [[NewsArticle]] that primarily expresses opinions rather than journalistic reporting of news and events. For example, a [[NewsArticle]] consisting of a column or [[Blog]]/[[BlogPosting]] entry in the Opinions section of a news publication. */
+/** An {@link https://schema.org/OpinionNewsArticle OpinionNewsArticle} is a {@link https://schema.org/NewsArticle NewsArticle} that primarily expresses opinions rather than journalistic reporting of news and events. For example, a {@link https://schema.org/NewsArticle NewsArticle} consisting of a column or {@link https://schema.org/Blog Blog}/{@link https://schema.org/BlogPosting BlogPosting} entry in the Opinions section of a news publication. */
 export type OpinionNewsArticle = OpinionNewsArticleLeaf;
 
 interface OpticianLeaf extends LocalBusinessBase {
@@ -7913,7 +7917,7 @@ interface OrderBase extends ThingBase {
     /**
      * 'merchant' is an out-dated term for 'seller'.
      *
-     * @deprecated Consider using {@link https://schema.org/seller https://schema.org/seller} instead.
+     * @deprecated Consider using https://schema.org/seller instead.
      */
     "schema:merchant"?: SchemaValue<Organization | Person | IdReference, "schema:merchant">;
     /** Date order was placed. */
@@ -7931,7 +7935,7 @@ interface OrderBase extends ThingBase {
     /**
      * The date that payment is due.
      *
-     * @deprecated Consider using {@link https://schema.org/paymentDueDate https://schema.org/paymentDueDate} instead.
+     * @deprecated Consider using https://schema.org/paymentDueDate instead.
      */
     "schema:paymentDue"?: SchemaValue<DateTime, "schema:paymentDue">;
     /** The date that payment is due. */
@@ -7988,11 +7992,11 @@ export type OrderStatus = "https://schema.org/OrderCancelled" | "schema:OrderCan
 interface OrganismUIElementLeaf extends UIElementBase {
     "@type": "uxi:OrganismUIElement";
 }
-/** An Organism as understood by the Atomic Design Methodology: {@link https://atomicdesign.bradfrost.com https://atomicdesign.bradfrost.com} */
+/** An Organism as understood by the Atomic Design Methodology: https://atomicdesign.bradfrost.com */
 export type OrganismUIElement = OrganismUIElementLeaf | Card | Footer | Header | Section;
 
 interface OrganizationBase extends ThingBase {
-    /** For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
+    /** For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} or other news-related {@link https://schema.org/Organization Organization}, a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication. */
     "schema:actionableFeedbackPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:actionableFeedbackPolicy">;
     /** Physical address of the item. */
     "schema:address"?: SchemaValue<PostalAddress | Text | IdReference, "schema:address">;
@@ -8007,7 +8011,7 @@ interface OrganizationBase extends ThingBase {
     /**
      * Awards won by or for this item.
      *
-     * @deprecated Consider using {@link https://schema.org/award https://schema.org/award} instead.
+     * @deprecated Consider using https://schema.org/award instead.
      */
     "schema:awards"?: SchemaValue<Text, "schema:awards">;
     /** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
@@ -8017,18 +8021,18 @@ interface OrganizationBase extends ThingBase {
     /**
      * A contact point for a person or organization.
      *
-     * @deprecated Consider using {@link https://schema.org/contactPoint https://schema.org/contactPoint} instead.
+     * @deprecated Consider using https://schema.org/contactPoint instead.
      */
     "schema:contactPoints"?: SchemaValue<ContactPoint | IdReference, "schema:contactPoints">;
-    /** For an [[Organization]] (e.g. [[NewsMediaOrganization]]), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
+    /** For an {@link https://schema.org/Organization Organization} (e.g. {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement describing (in news media, the newsroom’s) disclosure and correction policy for errors. */
     "schema:correctionsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:correctionsPolicy">;
     /** A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe. */
     "schema:department"?: SchemaValue<Organization | IdReference, "schema:department">;
     /** The date that this organization was dissolved. */
     "schema:dissolutionDate"?: SchemaValue<Date, "schema:dissolutionDate">;
-    /** Statement on diversity policy by an [[Organization]] e.g. a [[NewsMediaOrganization]]. For a [[NewsMediaOrganization]], a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
+    /** Statement on diversity policy by an {@link https://schema.org/Organization Organization} e.g. a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}. For a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, a statement describing the newsroom’s diversity policy on both staffing and sources, typically providing staffing data. */
     "schema:diversityPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:diversityPolicy">;
-    /** For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
+    /** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a report on staffing diversity issues. In a news context this might be for example ASNE or RTDNA (US) reports, or self-reported. */
     "schema:diversityStaffingReport"?: SchemaValue<Article | URL | IdReference, "schema:diversityStaffingReport">;
     /** The Dun & Bradstreet DUNS number for identifying an organization or business person. */
     "schema:duns"?: SchemaValue<Text, "schema:duns">;
@@ -8039,17 +8043,17 @@ interface OrganizationBase extends ThingBase {
     /**
      * People working for this organization.
      *
-     * @deprecated Consider using {@link https://schema.org/employee https://schema.org/employee} instead.
+     * @deprecated Consider using https://schema.org/employee instead.
      */
     "schema:employees"?: SchemaValue<Person | IdReference, "schema:employees">;
-    /** Statement about ethics policy, e.g. of a [[NewsMediaOrganization]] regarding journalistic and publishing practices, or of a [[Restaurant]], a page describing food source policies. In the case of a [[NewsMediaOrganization]], an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
+    /** Statement about ethics policy, e.g. of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization} regarding journalistic and publishing practices, or of a {@link https://schema.org/Restaurant Restaurant}, a page describing food source policies. In the case of a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}, an ethicsPolicy is typically a statement describing the personal, organizational, and corporate standards of behavior expected by the organization. */
     "schema:ethicsPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:ethicsPolicy">;
     /** Upcoming or past event associated with this place, organization, or action. */
     "schema:event"?: SchemaValue<Event | IdReference, "schema:event">;
     /**
      * Upcoming or past events associated with this place or organization.
      *
-     * @deprecated Consider using {@link https://schema.org/event https://schema.org/event} instead.
+     * @deprecated Consider using https://schema.org/event instead.
      */
     "schema:events"?: SchemaValue<Event | IdReference, "schema:events">;
     /** The fax number. */
@@ -8059,7 +8063,7 @@ interface OrganizationBase extends ThingBase {
     /**
      * A person who founded this organization.
      *
-     * @deprecated Consider using {@link https://schema.org/founder https://schema.org/founder} instead.
+     * @deprecated Consider using https://schema.org/founder instead.
      */
     "schema:founders"?: SchemaValue<Person | IdReference, "schema:founders">;
     /** The date that this organization was founded. */
@@ -8082,9 +8086,9 @@ interface OrganizationBase extends ThingBase {
     "schema:interactionStatistic"?: SchemaValue<InteractionCounter | IdReference, "schema:interactionStatistic">;
     /** The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place. */
     "schema:isicV4"?: SchemaValue<Text, "schema:isicV4">;
-    /** Of a [[Person]], and less typically of an [[Organization]], to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or [[JobPosting]] descriptions. */
+    /** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or {@link https://schema.org/JobPosting JobPosting} descriptions. */
     "schema:knowsAbout"?: SchemaValue<Text | Thing | URL | IdReference, "schema:knowsAbout">;
-    /** Of a [[Person]], and less typically of an [[Organization]], to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
+    /** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
     "schema:knowsLanguage"?: SchemaValue<Language | Text | IdReference, "schema:knowsLanguage">;
     /** The official name of the organization, e.g. the registered company name. */
     "schema:legalName"?: SchemaValue<Text, "schema:legalName">;
@@ -8103,7 +8107,7 @@ interface OrganizationBase extends ThingBase {
     /**
      * A member of this organization.
      *
-     * @deprecated Consider using {@link https://schema.org/member https://schema.org/member} instead.
+     * @deprecated Consider using https://schema.org/member instead.
      */
     "schema:members"?: SchemaValue<Organization | Person | IdReference, "schema:members">;
     /** The North American Industry Classification System (NAICS) code for a particular organization or business person. */
@@ -8112,16 +8116,16 @@ interface OrganizationBase extends ThingBase {
     "schema:nonprofitStatus"?: SchemaValue<NonprofitType | IdReference, "schema:nonprofitStatus">;
     /** The number of employees in an organization e.g. business. */
     "schema:numberOfEmployees"?: SchemaValue<QuantitativeValue | IdReference, "schema:numberOfEmployees">;
-    /** For an [[Organization]] (often but not necessarily a [[NewsMediaOrganization]]), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the [[funder]] is also available and can be used to make basic funder information machine-readable. */
+    /** For an {@link https://schema.org/Organization Organization} (often but not necessarily a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a description of organizational ownership structure; funding and grants. In a news/media setting, this is with particular reference to editorial independence. Note that the {@link https://schema.org/funder funder} is also available and can be used to make basic funder information machine-readable. */
     "schema:ownershipFundingInfo"?: SchemaValue<AboutPage | CreativeWork | Text | URL | IdReference, "schema:ownershipFundingInfo">;
     /** Products owned by the organization or person. */
     "schema:owns"?: SchemaValue<OwnershipInfo | Product | IdReference, "schema:owns">;
-    /** The larger organization that this organization is a [[subOrganization]] of, if any. */
+    /** The larger organization that this organization is a {@link https://schema.org/subOrganization subOrganization} of, if any. */
     "schema:parentOrganization"?: SchemaValue<Organization | IdReference, "schema:parentOrganization">;
     /**
-     * The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].
+     * The publishingPrinciples property indicates (typically via {@link https://schema.org/URL URL}) a document describing the editorial principles of an {@link https://schema.org/Organization Organization} (or individual e.g. a {@link https://schema.org/Person Person} writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a {@link https://schema.org/CreativeWork CreativeWork} (e.g. {@link https://schema.org/NewsArticle NewsArticle}) the principles are those of the party primarily responsible for the creation of the {@link https://schema.org/CreativeWork CreativeWork}.
      *
-     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.
+     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
      */
     "schema:publishingPrinciples"?: SchemaValue<CreativeWork | URL | IdReference, "schema:publishingPrinciples">;
     /** A review of the item. */
@@ -8129,7 +8133,7 @@ interface OrganizationBase extends ThingBase {
     /**
      * Review of the item.
      *
-     * @deprecated Consider using {@link https://schema.org/review https://schema.org/review} instead.
+     * @deprecated Consider using https://schema.org/review instead.
      */
     "schema:reviews"?: SchemaValue<Review | IdReference, "schema:reviews">;
     /** A pointer to products or services sought by the organization or person (demand). */
@@ -8137,7 +8141,7 @@ interface OrganizationBase extends ThingBase {
     /**
      * The geographic area where the service is provided.
      *
-     * @deprecated Consider using {@link https://schema.org/areaServed https://schema.org/areaServed} instead.
+     * @deprecated Consider using https://schema.org/areaServed instead.
      */
     "schema:serviceArea"?: SchemaValue<AdministrativeArea | GeoShape | Place | IdReference, "schema:serviceArea">;
     /** A slogan or motto associated with the item. */
@@ -8150,7 +8154,7 @@ interface OrganizationBase extends ThingBase {
     "schema:taxID"?: SchemaValue<Text, "schema:taxID">;
     /** The telephone number. */
     "schema:telephone"?: SchemaValue<Text, "schema:telephone">;
-    /** For an [[Organization]] (typically a [[NewsMediaOrganization]]), a statement about policy on use of unnamed sources and the decision process required. */
+    /** For an {@link https://schema.org/Organization Organization} (typically a {@link https://schema.org/NewsMediaOrganization NewsMediaOrganization}), a statement about policy on use of unnamed sources and the decision process required. */
     "schema:unnamedSourcesPolicy"?: SchemaValue<CreativeWork | URL | IdReference, "schema:unnamedSourcesPolicy">;
     /** The Value-added Tax ID of the organization or person. */
     "schema:vatID"?: SchemaValue<Text, "schema:vatID">;
@@ -8225,7 +8229,7 @@ interface ParcelDeliveryBase extends ThingBase {
     /**
      * 'carrier' is an out-dated term indicating the 'provider' for parcel delivery and flights.
      *
-     * @deprecated Consider using {@link https://schema.org/provider https://schema.org/provider} instead.
+     * @deprecated Consider using https://schema.org/provider instead.
      */
     "schema:carrier"?: SchemaValue<Organization | IdReference, "schema:carrier">;
     /** Destination address. */
@@ -8368,15 +8372,15 @@ interface PaymentMethodLeaf extends EnumerationBase {
  * A payment method is a standardized procedure for transferring the monetary amount for a purchase. Payment methods are characterized by the legal and technical structures used, and by the organization or group carrying out the transaction.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#ByBankTransferInAdvance http://purl.org/goodrelations/v1#ByBankTransferInAdvance}
- * - {@link http://purl.org/goodrelations/v1#ByInvoice http://purl.org/goodrelations/v1#ByInvoice}
- * - {@link http://purl.org/goodrelations/v1#Cash http://purl.org/goodrelations/v1#Cash}
- * - {@link http://purl.org/goodrelations/v1#CheckInAdvance http://purl.org/goodrelations/v1#CheckInAdvance}
- * - {@link http://purl.org/goodrelations/v1#COD http://purl.org/goodrelations/v1#COD}
- * - {@link http://purl.org/goodrelations/v1#DirectDebit http://purl.org/goodrelations/v1#DirectDebit}
- * - {@link http://purl.org/goodrelations/v1#GoogleCheckout http://purl.org/goodrelations/v1#GoogleCheckout}
- * - {@link http://purl.org/goodrelations/v1#PayPal http://purl.org/goodrelations/v1#PayPal}
- * - {@link http://purl.org/goodrelations/v1#PaySwarm http://purl.org/goodrelations/v1#PaySwarm}
+ * - http://purl.org/goodrelations/v1#ByBankTransferInAdvance
+ * - http://purl.org/goodrelations/v1#ByInvoice
+ * - http://purl.org/goodrelations/v1#Cash
+ * - http://purl.org/goodrelations/v1#CheckInAdvance
+ * - http://purl.org/goodrelations/v1#COD
+ * - http://purl.org/goodrelations/v1#DirectDebit
+ * - http://purl.org/goodrelations/v1#GoogleCheckout
+ * - http://purl.org/goodrelations/v1#PayPal
+ * - http://purl.org/goodrelations/v1#PaySwarm
  */
 export type PaymentMethod = PaymentMethodLeaf | PaymentCard;
 
@@ -8486,7 +8490,7 @@ interface PersonBase extends ThingBase {
     /**
      * Awards won by or for this item.
      *
-     * @deprecated Consider using {@link https://schema.org/award https://schema.org/award} instead.
+     * @deprecated Consider using https://schema.org/award instead.
      */
     "schema:awards"?: SchemaValue<Text, "schema:awards">;
     /** Date of birth. */
@@ -8504,7 +8508,7 @@ interface PersonBase extends ThingBase {
     /**
      * A colleague of the person.
      *
-     * @deprecated Consider using {@link https://schema.org/colleague https://schema.org/colleague} instead.
+     * @deprecated Consider using https://schema.org/colleague instead.
      */
     "schema:colleagues"?: SchemaValue<Person | IdReference, "schema:colleagues">;
     /** A contact point for a person or organization. */
@@ -8512,7 +8516,7 @@ interface PersonBase extends ThingBase {
     /**
      * A contact point for a person or organization.
      *
-     * @deprecated Consider using {@link https://schema.org/contactPoint https://schema.org/contactPoint} instead.
+     * @deprecated Consider using https://schema.org/contactPoint instead.
      */
     "schema:contactPoints"?: SchemaValue<ContactPoint | IdReference, "schema:contactPoints">;
     /** Date of death. */
@@ -8531,7 +8535,7 @@ interface PersonBase extends ThingBase {
     "schema:follows"?: SchemaValue<Person | IdReference, "schema:follows">;
     /** A person or organization that supports (sponsors) something through some kind of financial contribution. */
     "schema:funder"?: SchemaValue<Organization | Person | IdReference, "schema:funder">;
-    /** Gender of something, typically a [[Person]], but possibly also fictional characters, animals, etc. While {@link https://schema.org/Male https://schema.org/Male} and {@link https://schema.org/Female https://schema.org/Female} may be used, text strings are also acceptable for people who do not identify as a binary gender. The [[gender]] property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender [[SportsTeam]] can be indicated with a text value of "Mixed". */
+    /** Gender of something, typically a {@link https://schema.org/Person Person}, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The {@link https://schema.org/gender gender} property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender {@link https://schema.org/SportsTeam SportsTeam} can be indicated with a text value of "Mixed". */
     "schema:gender"?: SchemaValue<GenderType | Text | IdReference, "schema:gender">;
     /** Given name. In the U.S., the first name of a Person. */
     "schema:givenName"?: SchemaValue<Text, "schema:givenName">;
@@ -8561,9 +8565,9 @@ interface PersonBase extends ThingBase {
     "schema:jobTitle"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:jobTitle">;
     /** The most generic bi-directional social/work relation. */
     "schema:knows"?: SchemaValue<Person | IdReference, "schema:knows">;
-    /** Of a [[Person]], and less typically of an [[Organization]], to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or [[JobPosting]] descriptions. */
+    /** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or {@link https://schema.org/JobPosting JobPosting} descriptions. */
     "schema:knowsAbout"?: SchemaValue<Text | Thing | URL | IdReference, "schema:knowsAbout">;
-    /** Of a [[Person]], and less typically of an [[Organization]], to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
+    /** Of a {@link https://schema.org/Person Person}, and less typically of an {@link https://schema.org/Organization Organization}, to indicate a known language. We do not distinguish skill levels or reading/writing/speaking/signing here. Use language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. */
     "schema:knowsLanguage"?: SchemaValue<Language | Text | IdReference, "schema:knowsLanguage">;
     /** A pointer to products or services offered by the organization or person. */
     "schema:makesOffer"?: SchemaValue<Offer | IdReference, "schema:makesOffer">;
@@ -8582,15 +8586,15 @@ interface PersonBase extends ThingBase {
     /**
      * A parents of the person.
      *
-     * @deprecated Consider using {@link https://schema.org/parent https://schema.org/parent} instead.
+     * @deprecated Consider using https://schema.org/parent instead.
      */
     "schema:parents"?: SchemaValue<Person | IdReference, "schema:parents">;
     /** Event that this person is a performer or participant in. */
     "schema:performerIn"?: SchemaValue<Event | IdReference, "schema:performerIn">;
     /**
-     * The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].
+     * The publishingPrinciples property indicates (typically via {@link https://schema.org/URL URL}) a document describing the editorial principles of an {@link https://schema.org/Organization Organization} (or individual e.g. a {@link https://schema.org/Person Person} writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a {@link https://schema.org/CreativeWork CreativeWork} (e.g. {@link https://schema.org/NewsArticle NewsArticle}) the principles are those of the party primarily responsible for the creation of the {@link https://schema.org/CreativeWork CreativeWork}.
      *
-     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.
+     * While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a {@link https://schema.org/funder funder}) can be expressed using schema.org terminology.
      */
     "schema:publishingPrinciples"?: SchemaValue<CreativeWork | URL | IdReference, "schema:publishingPrinciples">;
     /** The most generic familial relation. */
@@ -8602,7 +8606,7 @@ interface PersonBase extends ThingBase {
     /**
      * A sibling of the person.
      *
-     * @deprecated Consider using {@link https://schema.org/sibling https://schema.org/sibling} instead.
+     * @deprecated Consider using https://schema.org/sibling instead.
      */
     "schema:siblings"?: SchemaValue<Person | IdReference, "schema:siblings">;
     /** A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event. */
@@ -8708,7 +8712,7 @@ interface PlaceBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
      *
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. {@link https://schema.org/width https://schema.org/width}, {@link https://schema.org/color https://schema.org/color}, {@link https://schema.org/gtin13 https://schema.org/gtin13}, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      */
     "schema:additionalProperty"?: SchemaValue<PropertyValue | IdReference, "schema:additionalProperty">;
     /** Physical address of the item. */
@@ -8720,13 +8724,13 @@ interface PlaceBase extends ThingBase {
     /**
      * A short textual code (also called "store code") that uniquely identifies a place of business. The code is typically assigned by the parentOrganization and used in structured URLs.
      *
-     * For example, in the URL {@link http://www.starbucks.co.uk/store-locator/etc/detail/3047 http://www.starbucks.co.uk/store-locator/etc/detail/3047} the code "3047" is a branchCode for a particular branch.
+     * For example, in the URL http://www.starbucks.co.uk/store-locator/etc/detail/3047 the code "3047" is a branchCode for a particular branch.
      */
     "schema:branchCode"?: SchemaValue<Text, "schema:branchCode">;
     /**
      * The basic containment relation between a place and one that contains it.
      *
-     * @deprecated Consider using {@link https://schema.org/containedInPlace https://schema.org/containedInPlace} instead.
+     * @deprecated Consider using https://schema.org/containedInPlace instead.
      */
     "schema:containedIn"?: SchemaValue<Place | IdReference, "schema:containedIn">;
     /** The basic containment relation between a place and one that contains it. */
@@ -8738,7 +8742,7 @@ interface PlaceBase extends ThingBase {
     /**
      * Upcoming or past events associated with this place or organization.
      *
-     * @deprecated Consider using {@link https://schema.org/event https://schema.org/event} instead.
+     * @deprecated Consider using https://schema.org/event instead.
      */
     "schema:events"?: SchemaValue<Event | IdReference, "schema:events">;
     /** The fax number. */
@@ -8767,7 +8771,7 @@ interface PlaceBase extends ThingBase {
     "schema:geoWithin"?: SchemaValue<GeospatialGeometry | Place | IdReference, "schema:geoWithin">;
     /** The {@link http://www.gs1.org/gln Global Location Number} (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations. */
     "schema:globalLocationNumber"?: SchemaValue<Text, "schema:globalLocationNumber">;
-    /** Indicates whether some facility (e.g. [[FoodEstablishment]], [[CovidTestingFacility]]) offers a service that can be used by driving through in a car. In the case of [[CovidTestingFacility]] such facilities could potentially help with social distancing from other potentially-infected users. */
+    /** Indicates whether some facility (e.g. {@link https://schema.org/FoodEstablishment FoodEstablishment}, {@link https://schema.org/CovidTestingFacility CovidTestingFacility}) offers a service that can be used by driving through in a car. In the case of {@link https://schema.org/CovidTestingFacility CovidTestingFacility} such facilities could potentially help with social distancing from other potentially-infected users. */
     "schema:hasDriveThroughService"?: SchemaValue<Boolean, "schema:hasDriveThroughService">;
     /** A URL to a map of the place. */
     "schema:hasMap"?: SchemaValue<Map | URL | IdReference, "schema:hasMap">;
@@ -8784,13 +8788,13 @@ interface PlaceBase extends ThingBase {
     /**
      * A URL to a map of the place.
      *
-     * @deprecated Consider using {@link https://schema.org/hasMap https://schema.org/hasMap} instead.
+     * @deprecated Consider using https://schema.org/hasMap instead.
      */
     "schema:map"?: SchemaValue<URL, "schema:map">;
     /**
      * A URL to a map of the place.
      *
-     * @deprecated Consider using {@link https://schema.org/hasMap https://schema.org/hasMap} instead.
+     * @deprecated Consider using https://schema.org/hasMap instead.
      */
     "schema:maps"?: SchemaValue<URL, "schema:maps">;
     /** The total number of individuals that may attend an event or venue. */
@@ -8802,17 +8806,17 @@ interface PlaceBase extends ThingBase {
     /**
      * Photographs of this place.
      *
-     * @deprecated Consider using {@link https://schema.org/photo https://schema.org/photo} instead.
+     * @deprecated Consider using https://schema.org/photo instead.
      */
     "schema:photos"?: SchemaValue<ImageObject | Photograph | IdReference, "schema:photos">;
-    /** A flag to signal that the [[Place]] is open to public visitors. If this property is omitted there is no assumed default boolean value */
+    /** A flag to signal that the {@link https://schema.org/Place Place} is open to public visitors. If this property is omitted there is no assumed default boolean value */
     "schema:publicAccess"?: SchemaValue<Boolean, "schema:publicAccess">;
     /** A review of the item. */
     "schema:review"?: SchemaValue<Review | IdReference, "schema:review">;
     /**
      * Review of the item.
      *
-     * @deprecated Consider using {@link https://schema.org/review https://schema.org/review} instead.
+     * @deprecated Consider using https://schema.org/review instead.
      */
     "schema:reviews"?: SchemaValue<Review | IdReference, "schema:reviews">;
     /** A slogan or motto associated with the item. */
@@ -8822,12 +8826,12 @@ interface PlaceBase extends ThingBase {
     /**
      * The special opening hours of a certain place.
      *
-     * Use this to explicitly override general opening hours brought in scope by [[openingHoursSpecification]] or [[openingHours]].
+     * Use this to explicitly override general opening hours brought in scope by {@link https://schema.org/openingHoursSpecification openingHoursSpecification} or {@link https://schema.org/openingHours openingHours}.
      */
     "schema:specialOpeningHoursSpecification"?: SchemaValue<OpeningHoursSpecification | IdReference, "schema:specialOpeningHoursSpecification">;
     /** The telephone number. */
     "schema:telephone"?: SchemaValue<Text, "schema:telephone">;
-    /** A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate. */
+    /** A page providing information on how to book a tour of some {@link https://schema.org/Place Place}, such as an {@link https://schema.org/Accommodation Accommodation} or {@link https://schema.org/ApartmentComplex ApartmentComplex} in a real estate setting, as well as other kinds of tours as appropriate. */
     "schema:tourBookingPage"?: SchemaValue<URL, "schema:tourBookingPage">;
 }
 interface PlaceLeaf extends PlaceBase {
@@ -8861,7 +8865,7 @@ export type PlanAction = PlanActionLeaf | CancelAction | ReserveAction | Schedul
 interface PlayLeaf extends CreativeWorkBase {
     "@type": "schema:Play";
 }
-/** A play is a form of literature, usually consisting of dialogue between characters, intended for theatrical performance rather than just reading. Note: A performance of a Play would be a [[TheaterEvent]] or [[BroadcastEvent]] - the _Play_ being the [[workPerformed]]. */
+/** A play is a form of literature, usually consisting of dialogue between characters, intended for theatrical performance rather than just reading. Note: A performance of a Play would be a {@link https://schema.org/TheaterEvent TheaterEvent} or {@link https://schema.org/BroadcastEvent BroadcastEvent} - the _Play_ being the {@link https://schema.org/workPerformed workPerformed}. */
 export type Play = PlayLeaf;
 
 interface PlayActionBase extends ActionBase {
@@ -8877,8 +8881,8 @@ interface PlayActionLeaf extends PlayActionBase {
  * The act of playing/exercising/training/performing for enjoyment, leisure, recreation, Competition or exercise.
  *
  * Related actions:
- * - [[ListenAction]]: Unlike ListenAction (which is under ConsumeAction), PlayAction refers to performing for an audience or at an event, rather than consuming music.
- * - [[WatchAction]]: Unlike WatchAction (which is under ConsumeAction), PlayAction refers to showing/displaying for an audience or at an event, rather than consuming visual content.
+ * - {@link https://schema.org/ListenAction ListenAction}: Unlike ListenAction (which is under ConsumeAction), PlayAction refers to performing for an audience or at an event, rather than consuming music.
+ * - {@link https://schema.org/WatchAction WatchAction}: Unlike WatchAction (which is under ConsumeAction), PlayAction refers to showing/displaying for an audience or at an event, rather than consuming visual content.
  */
 export type PlayAction = PlayActionLeaf | ExerciseAction | PerformAction;
 
@@ -8961,13 +8965,13 @@ export type PostalAddress = PostalAddressLeaf;
 interface PostalCodeRangeSpecificationBase extends ThingBase {
     /** First postal code in a range (included). */
     "schema:postalCodeBegin"?: SchemaValue<Text, "schema:postalCodeBegin">;
-    /** Last postal code in the range (included). Needs to be after [[postalCodeBegin]]. */
+    /** Last postal code in the range (included). Needs to be after {@link https://schema.org/postalCodeBegin postalCodeBegin}. */
     "schema:postalCodeEnd"?: SchemaValue<Text, "schema:postalCodeEnd">;
 }
 interface PostalCodeRangeSpecificationLeaf extends PostalCodeRangeSpecificationBase {
     "@type": "schema:PostalCodeRangeSpecification";
 }
-/** Indicates a range of postalcodes, usually defined as the set of valid codes between [[postalCodeBegin]] and [[postalCodeEnd]], inclusively. */
+/** Indicates a range of postalcodes, usually defined as the set of valid codes between {@link https://schema.org/postalCodeBegin postalCodeBegin} and {@link https://schema.org/postalCodeEnd postalCodeEnd}, inclusively. */
 export type PostalCodeRangeSpecification = PostalCodeRangeSpecificationLeaf;
 
 interface PosterLeaf extends CreativeWorkBase {
@@ -9037,14 +9041,14 @@ interface PriceSpecificationBase extends ThingBase {
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
      *
      * Usage guidelines:
-     * - Use the [[priceCurrency]] property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
+     * - Use the {@link https://schema.org/priceCurrency priceCurrency} property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      * - Note that both {@link http://www.w3.org/TR/xhtml-rdfa-primer/#using-the-content-attribute RDFa} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      */
     "schema:price"?: SchemaValue<Number | Text, "schema:price">;
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.
+     * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
      *
      * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR".
      */
@@ -9059,7 +9063,7 @@ interface PriceSpecificationBase extends ThingBase {
 interface PriceSpecificationLeaf extends PriceSpecificationBase {
     "@type": "schema:PriceSpecification";
 }
-/** A structured value representing a price or price range. Typically, only the subclasses of this type are used for markup. It is recommended to use [[MonetaryAmount]] to describe independent amounts of money such as a salary, credit card limits, etc. */
+/** A structured value representing a price or price range. Typically, only the subclasses of this type are used for markup. It is recommended to use {@link https://schema.org/MonetaryAmount MonetaryAmount} to describe independent amounts of money such as a salary, credit card limits, etc. */
 export type PriceSpecification = PriceSpecificationLeaf | CompoundPriceSpecification | DeliveryChargeSpecification | PaymentChargeSpecification | UnitPriceSpecification;
 
 interface PriceTypeEnumerationLeaf extends EnumerationBase {
@@ -9072,7 +9076,7 @@ interface ProductBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
      *
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. {@link https://schema.org/width https://schema.org/width}, {@link https://schema.org/color https://schema.org/color}, {@link https://schema.org/gtin13 https://schema.org/gtin13}, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      */
     "schema:additionalProperty"?: SchemaValue<PropertyValue | IdReference, "schema:additionalProperty">;
     /** The overall rating, based on a collection of reviews or ratings, of the item. */
@@ -9084,7 +9088,7 @@ interface ProductBase extends ThingBase {
     /**
      * Awards won by or for this item.
      *
-     * @deprecated Consider using {@link https://schema.org/award https://schema.org/award} instead.
+     * @deprecated Consider using https://schema.org/award instead.
      */
     "schema:awards"?: SchemaValue<Text, "schema:awards">;
     /** The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person. */
@@ -9095,19 +9099,19 @@ interface ProductBase extends ThingBase {
     "schema:color"?: SchemaValue<Text, "schema:color">;
     /** The place where the product was assembled. */
     "schema:countryOfAssembly"?: SchemaValue<Text, "schema:countryOfAssembly">;
-    /** The place where the item (typically [[Product]]) was last processed and tested before importation. */
+    /** The place where the item (typically {@link https://schema.org/Product Product}) was last processed and tested before importation. */
     "schema:countryOfLastProcessing"?: SchemaValue<Text, "schema:countryOfLastProcessing">;
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
     "schema:countryOfOrigin"?: SchemaValue<Country | IdReference, "schema:countryOfOrigin">;
     /** The depth of the item. */
     "schema:depth"?: SchemaValue<Distance | QuantitativeValue | IdReference, "schema:depth">;
-    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The [[gtin]] property generalizes the earlier [[gtin8]], [[gtin12]], [[gtin13]], and [[gtin14]] properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct [[gtin]] value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
+    /** A Global Trade Item Number ({@link https://www.gs1.org/standards/id-keys/gtin GTIN}). GTINs identify trade items, including products and services, using numeric identification codes. The {@link https://schema.org/gtin gtin} property generalizes the earlier {@link https://schema.org/gtin8 gtin8}, {@link https://schema.org/gtin12 gtin12}, {@link https://schema.org/gtin13 gtin13}, and {@link https://schema.org/gtin14 gtin14} properties. The GS1 {@link https://www.gs1.org/standards/Digital-Link/ digital link specifications} express GTINs as URLs. A correct {@link https://schema.org/gtin gtin} value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a "GS1 Digital Link" URL based on such a string. The numeric component should also have a {@link https://www.gs1.org/services/check-digit-calculator valid GS1 check digit} and meet the other rules for valid GTINs. See also {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1's GTIN Summary} and {@link https://en.wikipedia.org/wiki/Global_Trade_Item_Number Wikipedia} for more details. Left-padding of the gtin values is not required or encouraged. */
     "schema:gtin"?: SchemaValue<Text, "schema:gtin">;
     /** The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items. See {@link http://www.gs1.org/barcodes/technical/idkeys/gtin GS1 GTIN Summary} for more details. */
     "schema:gtin12"?: SchemaValue<Text, "schema:gtin12">;
@@ -9125,7 +9129,7 @@ interface ProductBase extends ThingBase {
     "schema:hasMerchantReturnPolicy"?: SchemaValue<MerchantReturnPolicy | IdReference, "schema:hasMerchantReturnPolicy">;
     /** The height of the item. */
     "schema:height"?: SchemaValue<Distance | QuantitativeValue | IdReference, "schema:height">;
-    /** Indicates the [[productGroupID]] for a [[ProductGroup]] that this product [[isVariantOf]]. */
+    /** Indicates the {@link https://schema.org/productGroupID productGroupID} for a {@link https://schema.org/ProductGroup ProductGroup} that this product {@link https://schema.org/isVariantOf isVariantOf}. */
     "schema:inProductGroupWithID"?: SchemaValue<Text, "schema:inProductGroupWithID">;
     /** A pointer to another product (or multiple products) for which this product is an accessory or spare part. */
     "schema:isAccessoryOrSparePartFor"?: SchemaValue<Product | IdReference, "schema:isAccessoryOrSparePartFor">;
@@ -9135,7 +9139,7 @@ interface ProductBase extends ThingBase {
     "schema:isRelatedTo"?: SchemaValue<Product | Service | IdReference, "schema:isRelatedTo">;
     /** A pointer to another, functionally similar product (or multiple products). */
     "schema:isSimilarTo"?: SchemaValue<Product | Service | IdReference, "schema:isSimilarTo">;
-    /** Indicates the kind of product that this is a variant of. In the case of [[ProductModel]], this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a [[ProductGroup]], the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with [[ProductGroup]], this property can apply to any [[Product]] included in the group. */
+    /** Indicates the kind of product that this is a variant of. In the case of {@link https://schema.org/ProductModel ProductModel}, this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a {@link https://schema.org/ProductGroup ProductGroup}, the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with {@link https://schema.org/ProductGroup ProductGroup}, this property can apply to any {@link https://schema.org/Product Product} included in the group. */
     "schema:isVariantOf"?: SchemaValue<ProductGroup | ProductModel | IdReference, "schema:isVariantOf">;
     /** A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns. */
     "schema:itemCondition"?: SchemaValue<OfferItemCondition | IdReference, "schema:itemCondition">;
@@ -9149,9 +9153,9 @@ interface ProductBase extends ThingBase {
     "schema:model"?: SchemaValue<ProductModel | Text | IdReference, "schema:model">;
     /** The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers. */
     "schema:mpn"?: SchemaValue<Text, "schema:mpn">;
-    /** Indicates the {@link https://en.wikipedia.org/wiki/NATO_Stock_Number NATO stock number} (nsn) of a [[Product]]. */
+    /** Indicates the {@link https://en.wikipedia.org/wiki/NATO_Stock_Number NATO stock number} (nsn) of a {@link https://schema.org/Product Product}. */
     "schema:nsn"?: SchemaValue<Text, "schema:nsn">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /** A pattern that something has, for example 'polka dot', 'striped', 'Canadian flag'. Values are typically expressed as text, although links to controlled value schemes are also supported. */
     "schema:pattern"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:pattern">;
@@ -9168,10 +9172,10 @@ interface ProductBase extends ThingBase {
     /**
      * Review of the item.
      *
-     * @deprecated Consider using {@link https://schema.org/review https://schema.org/review} instead.
+     * @deprecated Consider using https://schema.org/review instead.
      */
     "schema:reviews"?: SchemaValue<Review | IdReference, "schema:reviews">;
-    /** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured [[SizeSpecification]]; in other cases, the [[width]], [[height]], [[depth]] and [[weight]] properties may be more applicable. */
+    /** A standardized size of a product or creative work, specified either through a simple textual string (for example 'XL', '32Wx34L'), a QuantitativeValue with a unitCode, or a comprehensive and structured {@link https://schema.org/SizeSpecification SizeSpecification}; in other cases, the {@link https://schema.org/width width}, {@link https://schema.org/height height}, {@link https://schema.org/depth depth} and {@link https://schema.org/weight weight} properties may be more applicable. */
     "schema:size"?: SchemaValue<DefinedTerm | QuantitativeValue | SizeSpecification | Text | IdReference, "schema:size">;
     /** The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers. */
     "schema:sku"?: SchemaValue<Text, "schema:sku">;
@@ -9189,35 +9193,35 @@ interface ProductLeaf extends ProductBase {
 export type Product = ProductLeaf | IndividualProduct | ProductCollection | ProductGroup | ProductModel | SomeProducts | Vehicle;
 
 interface ProductCollectionBase extends CollectionBase, ProductBase {
-    /** This links to a node or nodes indicating the exact quantity of the products included in an [[Offer]] or [[ProductCollection]]. */
+    /** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
     "schema:includesObject"?: SchemaValue<TypeAndQuantityNode | IdReference, "schema:includesObject">;
 }
 interface ProductCollectionLeaf extends ProductCollectionBase {
     "@type": "schema:ProductCollection";
 }
-/** A set of products (either [[ProductGroup]]s or specific variants) that are listed together e.g. in an [[Offer]]. */
+/** A set of products (either {@link https://schema.org/ProductGroup ProductGroup}s or specific variants) that are listed together e.g. in an {@link https://schema.org/Offer Offer}. */
 export type ProductCollection = ProductCollectionLeaf;
 
 interface ProductGroupBase extends ProductBase {
-    /** Indicates a [[Product]] that is a member of this [[ProductGroup]] (or [[ProductModel]]). */
+    /** Indicates a {@link https://schema.org/Product Product} that is a member of this {@link https://schema.org/ProductGroup ProductGroup} (or {@link https://schema.org/ProductModel ProductModel}). */
     "schema:hasVariant"?: SchemaValue<Product | IdReference, "schema:hasVariant">;
     /** Indicates a textual identifier for a ProductGroup. */
     "schema:productGroupID"?: SchemaValue<Text, "schema:productGroupID">;
-    /** Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs. */
+    /** Indicates the property or properties by which the variants in a {@link https://schema.org/ProductGroup ProductGroup} vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs. */
     "schema:variesBy"?: SchemaValue<DefinedTerm | Text | IdReference, "schema:variesBy">;
 }
 interface ProductGroupLeaf extends ProductGroupBase {
     "@type": "schema:ProductGroup";
 }
 /**
- * A ProductGroup represents a group of [[Product]]s that vary only in certain well-described ways, such as by [[size]], [[color]], [[material]] etc.
+ * A ProductGroup represents a group of {@link https://schema.org/Product Product}s that vary only in certain well-described ways, such as by {@link https://schema.org/size size}, {@link https://schema.org/color color}, {@link https://schema.org/material material} etc.
  *
- * While a ProductGroup itself is not directly offered for sale, the various varying products that it represents can be. The ProductGroup serves as a prototype or template, standing in for all of the products who have an [[isVariantOf]] relationship to it. As such, properties (including additional types) can be applied to the ProductGroup to represent characteristics shared by each of the (possibly very many) variants. Properties that reference a ProductGroup are not included in this mechanism; neither are the following specific properties [[variesBy]], [[hasVariant]], [[url]].
+ * While a ProductGroup itself is not directly offered for sale, the various varying products that it represents can be. The ProductGroup serves as a prototype or template, standing in for all of the products who have an {@link https://schema.org/isVariantOf isVariantOf} relationship to it. As such, properties (including additional types) can be applied to the ProductGroup to represent characteristics shared by each of the (possibly very many) variants. Properties that reference a ProductGroup are not included in this mechanism; neither are the following specific properties {@link https://schema.org/variesBy variesBy}, {@link https://schema.org/hasVariant hasVariant}, {@link https://schema.org/url url}.
  */
 export type ProductGroup = ProductGroupLeaf;
 
 interface ProductModelBase extends ProductBase {
-    /** Indicates the kind of product that this is a variant of. In the case of [[ProductModel]], this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a [[ProductGroup]], the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with [[ProductGroup]], this property can apply to any [[Product]] included in the group. */
+    /** Indicates the kind of product that this is a variant of. In the case of {@link https://schema.org/ProductModel ProductModel}, this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a {@link https://schema.org/ProductGroup ProductGroup}, the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with {@link https://schema.org/ProductGroup ProductGroup}, this property can apply to any {@link https://schema.org/Product Product} included in the group. */
     "schema:isVariantOf"?: SchemaValue<ProductGroup | ProductModel | IdReference, "schema:isVariantOf">;
     /** A pointer from a previous, often discontinued variant of the product to its newer variant. */
     "schema:predecessorOf"?: SchemaValue<ProductModel | IdReference, "schema:predecessorOf">;
@@ -9236,7 +9240,7 @@ interface ProfessionalServiceLeaf extends LocalBusinessBase {
 /**
  * Original definition: "provider of professional services."
  *
- * The general [[ProfessionalService]] type for local businesses was deprecated due to confusion with [[Service]]. For reference, the types that it included were: [[Dentist]], [[AccountingService]], [[Attorney]], [[Notary]], as well as types for several kinds of [[HomeAndConstructionBusiness]]: [[Electrician]], [[GeneralContractor]], [[HousePainter]], [[Locksmith]], [[Plumber]], [[RoofingContractor]]. [[LegalService]] was introduced as a more inclusive supertype of [[Attorney]].
+ * The general {@link https://schema.org/ProfessionalService ProfessionalService} type for local businesses was deprecated due to confusion with {@link https://schema.org/Service Service}. For reference, the types that it included were: {@link https://schema.org/Dentist Dentist}, {@link https://schema.org/AccountingService AccountingService}, {@link https://schema.org/Attorney Attorney}, {@link https://schema.org/Notary Notary}, as well as types for several kinds of {@link https://schema.org/HomeAndConstructionBusiness HomeAndConstructionBusiness}: {@link https://schema.org/Electrician Electrician}, {@link https://schema.org/GeneralContractor GeneralContractor}, {@link https://schema.org/HousePainter HousePainter}, {@link https://schema.org/Locksmith Locksmith}, {@link https://schema.org/Plumber Plumber}, {@link https://schema.org/RoofingContractor RoofingContractor}. {@link https://schema.org/LegalService LegalService} was introduced as a more inclusive supertype of {@link https://schema.org/Attorney Attorney}.
  */
 export type ProfessionalService = ProfessionalServiceLeaf | string;
 
@@ -9254,7 +9258,7 @@ interface ProgramMembershipBase extends ThingBase {
     /**
      * A member of this organization.
      *
-     * @deprecated Consider using {@link https://schema.org/member https://schema.org/member} instead.
+     * @deprecated Consider using https://schema.org/member instead.
      */
     "schema:members"?: SchemaValue<Organization | Person | IdReference, "schema:members">;
     /** A unique identifier for the membership. */
@@ -9273,13 +9277,13 @@ export type ProgramMembership = ProgramMembershipLeaf;
 interface ProjectLeaf extends OrganizationBase {
     "@type": "schema:Project";
 }
-/** An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim. Use properties from [[Organization]], [[subOrganization]]/[[parentOrganization]] to indicate project sub-structures. */
+/** An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim. Use properties from {@link https://schema.org/Organization Organization}, {@link https://schema.org/subOrganization subOrganization}/{@link https://schema.org/parentOrganization parentOrganization} to indicate project sub-structures. */
 export type Project = ProjectLeaf | FundingAgency | ResearchProject | string;
 
 interface PronounceableTextBase extends Partial<IdReference> {
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
-    /** Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /\u02C8hju\u02D0st\u0259n/. */
+    /** Representation of a text {@link https://schema.org/textValue textValue} using the specified {@link https://schema.org/speechToTextMarkup speechToTextMarkup}. For example the city name of Houston in IPA: /\u02C8hju\u02D0st\u0259n/. */
     "schema:phoneticText"?: SchemaValue<Text, "schema:phoneticText">;
     /** Form of markup used. eg. {@link https://www.w3.org/TR/speech-synthesis11 SSML} or {@link https://www.wikidata.org/wiki/Property:P898 IPA}. */
     "schema:speechToTextMarkup"?: SchemaValue<Text, "schema:speechToTextMarkup">;
@@ -9312,13 +9316,13 @@ interface PropertyValueBase extends ThingBase {
     /** The upper value of some characteristic or property. */
     "schema:maxValue"?: SchemaValue<Number, "schema:maxValue">;
     /**
-     * A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
+     * A technique or technology used in a {@link https://schema.org/Dataset Dataset} (or {@link https://schema.org/DataDownload DataDownload}, {@link https://schema.org/DataCatalog DataCatalog}), corresponding to the method used for measuring the corresponding variable(s) (described using {@link https://schema.org/variableMeasured variableMeasured}). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.
      *
-     * For example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
+     * For example, if {@link https://schema.org/variableMeasured variableMeasured} is: molecule concentration, {@link https://schema.org/measurementTechnique measurementTechnique} could be: "mass spectrometry" or "nmr spectroscopy" or "colorimetry" or "immunofluorescence".
      *
-     * If the [[variableMeasured]] is "depression rating", the [[measurementTechnique]] could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
+     * If the {@link https://schema.org/variableMeasured variableMeasured} is "depression rating", the {@link https://schema.org/measurementTechnique measurementTechnique} could be "Zung Scale" or "HAM-D" or "Beck Depression Inventory".
      *
-     * If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].
+     * If there are several {@link https://schema.org/variableMeasured variableMeasured} properties recorded for some given data object, use a {@link https://schema.org/PropertyValue PropertyValue} for each {@link https://schema.org/variableMeasured variableMeasured} and attach the corresponding {@link https://schema.org/measurementTechnique measurementTechnique}.
      */
     "schema:measurementTechnique"?: SchemaValue<Text | URL, "schema:measurementTechnique">;
     /** The lower value of some characteristic or property. */
@@ -9331,8 +9335,8 @@ interface PropertyValueBase extends ThingBase {
     "schema:unitText"?: SchemaValue<Text, "schema:unitText">;
     /**
      * The value of the quantitative value or property value node.
-     * - For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.
-     * - For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
+     * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
+     * - For {@link https://schema.org/PropertyValue PropertyValue}, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      */
@@ -9400,7 +9404,7 @@ interface PublicationEventBase extends EventBase {
     /**
      * A flag to signal that the item, event, or place is accessible for free.
      *
-     * @deprecated Consider using {@link https://schema.org/isAccessibleForFree https://schema.org/isAccessibleForFree} instead.
+     * @deprecated Consider using https://schema.org/isAccessibleForFree instead.
      */
     "schema:free"?: SchemaValue<Boolean, "schema:free">;
     /** An agent associated with the publication event. */
@@ -9476,7 +9480,7 @@ interface QualitativeValueBase extends EnumerationBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
      *
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. {@link https://schema.org/width https://schema.org/width}, {@link https://schema.org/color https://schema.org/color}, {@link https://schema.org/gtin13 https://schema.org/gtin13}, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      */
     "schema:additionalProperty"?: SchemaValue<PropertyValue | IdReference, "schema:additionalProperty">;
     /** This ordering relation for qualitative values indicates that the subject is equal to the object. */
@@ -9504,7 +9508,7 @@ interface QuantitativeValueBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
      *
-     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. {@link https://schema.org/width https://schema.org/width}, {@link https://schema.org/color https://schema.org/color}, {@link https://schema.org/gtin13 https://schema.org/gtin13}, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
+     * Note: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.
      */
     "schema:additionalProperty"?: SchemaValue<PropertyValue | IdReference, "schema:additionalProperty">;
     /** The upper value of some characteristic or property. */
@@ -9517,8 +9521,8 @@ interface QuantitativeValueBase extends ThingBase {
     "schema:unitText"?: SchemaValue<Text, "schema:unitText">;
     /**
      * The value of the quantitative value or property value node.
-     * - For [[QuantitativeValue]] and [[MonetaryAmount]], the recommended type for values is 'Number'.
-     * - For [[PropertyValue]], it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
+     * - For {@link https://schema.org/QuantitativeValue QuantitativeValue} and {@link https://schema.org/MonetaryAmount MonetaryAmount}, the recommended type for values is 'Number'.
+     * - For {@link https://schema.org/PropertyValue PropertyValue}, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      */
@@ -9587,7 +9591,7 @@ interface QuotationBase extends CreativeWorkBase {
 interface QuotationLeaf extends QuotationBase {
     "@type": "schema:Quotation";
 }
-/** A quotation. Often but not necessarily from some written work, attributable to a real world author and - if associated with a fictional character - to any fictional Person. Use [[isBasedOn]] to link to source/origin. The [[recordedIn]] property can be used to reference a Quotation from an [[Event]]. */
+/** A quotation. Often but not necessarily from some written work, attributable to a real world author and - if associated with a fictional character - to any fictional Person. Use {@link https://schema.org/isBasedOn isBasedOn} to link to source/origin. The {@link https://schema.org/recordedIn recordedIn} property can be used to reference a Quotation from an {@link https://schema.org/Event Event}. */
 export type Quotation = QuotationLeaf;
 
 interface QuoteActionLeaf extends TradeActionBase {
@@ -9648,7 +9652,7 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** A season that is part of the media series. */
@@ -9658,7 +9662,7 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** An episode of a tv, radio or game media within a series or season. */
@@ -9666,7 +9670,7 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
     /**
      * An episode of a TV/radio series or season.
      *
-     * @deprecated Consider using {@link https://schema.org/episode https://schema.org/episode} instead.
+     * @deprecated Consider using https://schema.org/episode instead.
      */
     "schema:episodes"?: SchemaValue<Episode | IdReference, "schema:episodes">;
     /** The composer of the soundtrack. */
@@ -9680,13 +9684,13 @@ interface RadioSeriesBase extends CreativeWorkSeriesBase {
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/containsSeason https://schema.org/containsSeason} instead.
+     * @deprecated Consider using https://schema.org/containsSeason instead.
      */
     "schema:season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "schema:season">;
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/season https://schema.org/season} instead.
+     * @deprecated Consider using https://schema.org/season instead.
      */
     "schema:seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "schema:seasons">;
     /** The trailer of a movie or tv/radio series, season, episode, etc. */
@@ -9709,7 +9713,7 @@ interface RatingBase extends ThingBase {
     "schema:author"?: SchemaValue<Organization | Person | IdReference, "schema:author">;
     /** The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed. */
     "schema:bestRating"?: SchemaValue<Number | Text, "schema:bestRating">;
-    /** A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using [[ClaimReview]]. */
+    /** A short explanation (e.g. one to two sentences) providing background context and other information that led to the conclusion expressed in the rating. This is particularly applicable to ratings associated with "fact check" markup using {@link https://schema.org/ClaimReview ClaimReview}. */
     "schema:ratingExplanation"?: SchemaValue<Text, "schema:ratingExplanation">;
     /**
      * The rating for the content.
@@ -9751,13 +9755,13 @@ export type RealEstateAgent = RealEstateAgentLeaf | string;
 interface RealEstateListingBase extends WebPageBase {
     /** Publication date of an online listing. */
     "schema:datePosted"?: SchemaValue<Date | DateTime, "schema:datePosted">;
-    /** Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property. */
+    /** Length of the lease for some {@link https://schema.org/Accommodation Accommodation}, either particular to some {@link https://schema.org/Offer Offer} or in some cases intrinsic to the property. */
     "schema:leaseLength"?: SchemaValue<Duration | QuantitativeValue | IdReference, "schema:leaseLength">;
 }
 interface RealEstateListingLeaf extends RealEstateListingBase {
     "@type": "schema:RealEstateListing";
 }
-/** A [[RealEstateListing]] is a listing that describes one or more real-estate [[Offer]]s (whose [[businessFunction]] is typically to lease out, or to sell). The [[RealEstateListing]] type itself represents the overall listing, as manifested in some [[WebPage]]. */
+/** A {@link https://schema.org/RealEstateListing RealEstateListing} is a listing that describes one or more real-estate {@link https://schema.org/Offer Offer}s (whose {@link https://schema.org/businessFunction businessFunction} is typically to lease out, or to sell). The {@link https://schema.org/RealEstateListing RealEstateListing} type itself represents the overall listing, as manifested in some {@link https://schema.org/WebPage WebPage}. */
 export type RealEstateListing = RealEstateListingLeaf;
 
 interface ReceiveActionBase extends TransferActionBase {
@@ -9773,8 +9777,8 @@ interface ReceiveActionLeaf extends ReceiveActionBase {
  * The act of physically/electronically taking delivery of an object that has been transferred from an origin to a destination. Reciprocal of SendAction.
  *
  * Related actions:
- * - [[SendAction]]: The reciprocal of ReceiveAction.
- * - [[TakeAction]]: Unlike TakeAction, ReceiveAction does not imply that the ownership has been transfered (e.g. I can receive a package, but it does not mean the package is now mine).
+ * - {@link https://schema.org/SendAction SendAction}: The reciprocal of ReceiveAction.
+ * - {@link https://schema.org/TakeAction TakeAction}: Unlike TakeAction, ReceiveAction does not imply that the ownership has been transfered (e.g. I can receive a package, but it does not mean the package is now mine).
  */
 export type ReceiveAction = ReceiveActionLeaf;
 
@@ -9786,7 +9790,7 @@ interface RecipeBase extends HowToBase {
     /**
      * A single ingredient used in the recipe, e.g. sugar, flour or garlic.
      *
-     * @deprecated Consider using {@link https://schema.org/recipeIngredient https://schema.org/recipeIngredient} instead.
+     * @deprecated Consider using https://schema.org/recipeIngredient instead.
      */
     "schema:ingredients"?: SchemaValue<Text, "schema:ingredients">;
     /** Nutrition information about the recipe or menu item. */
@@ -9807,7 +9811,7 @@ interface RecipeBase extends HowToBase {
 interface RecipeLeaf extends RecipeBase {
     "@type": "schema:Recipe";
 }
-/** A recipe. For dietary restrictions covered by the recipe, a few common restrictions are enumerated via [[suitableForDiet]]. The [[keywords]] property can also be used to add more detail. */
+/** A recipe. For dietary restrictions covered by the recipe, a few common restrictions are enumerated via {@link https://schema.org/suitableForDiet suitableForDiet}. The {@link https://schema.org/keywords keywords} property can also be used to add more detail. */
 export type Recipe = RecipeLeaf;
 
 interface RecommendationBase extends ReviewBase {
@@ -9817,7 +9821,7 @@ interface RecommendationBase extends ReviewBase {
 interface RecommendationLeaf extends RecommendationBase {
     "@type": "schema:Recommendation";
 }
-/** [[Recommendation]] is a type of [[Review]] that suggests or proposes something as the best option or best course of action. Recommendations may be for products or services, or other concrete things, as in the case of a ranked list or product guide. A [[Guide]] may list multiple recommendations for different categories. For example, in a [[Guide]] about which TVs to buy, the author may have several [[Recommendation]]s. */
+/** {@link https://schema.org/Recommendation Recommendation} is a type of {@link https://schema.org/Review Review} that suggests or proposes something as the best option or best course of action. Recommendations may be for products or services, or other concrete things, as in the case of a ranked list or product guide. A {@link https://schema.org/Guide Guide} may list multiple recommendations for different categories. For example, in a {@link https://schema.org/Guide Guide} about which TVs to buy, the author may have several {@link https://schema.org/Recommendation Recommendation}s. */
 export type Recommendation = RecommendationLeaf;
 
 interface RecommendedDoseScheduleLeaf extends DoseScheduleBase {
@@ -9863,9 +9867,9 @@ interface RegisterActionLeaf extends ActionBase {
  * The act of registering to be a user of a service, product or web page.
  *
  * Related actions:
- * - [[JoinAction]]: Unlike JoinAction, RegisterAction implies you are registering to be a user of a service, _not_ a group/team of people.
+ * - {@link https://schema.org/JoinAction JoinAction}: Unlike JoinAction, RegisterAction implies you are registering to be a user of a service, _not_ a group/team of people.
  * - [FollowAction]]: Unlike FollowAction, RegisterAction doesn't imply that the agent is expecting to poll for updates from the object.
- * - [[SubscribeAction]]: Unlike SubscribeAction, RegisterAction doesn't imply that the agent is expecting updates from the object.
+ * - {@link https://schema.org/SubscribeAction SubscribeAction}: Unlike SubscribeAction, RegisterAction doesn't imply that the agent is expecting updates from the object.
  */
 export type RegisterAction = RegisterActionLeaf;
 
@@ -9876,7 +9880,7 @@ interface RejectActionLeaf extends ActionBase {
  * The act of rejecting to/adopting an object.
  *
  * Related actions:
- * - [[AcceptAction]]: The antonym of RejectAction.
+ * - {@link https://schema.org/AcceptAction AcceptAction}: The antonym of RejectAction.
  */
 export type RejectAction = RejectActionLeaf;
 
@@ -9950,10 +9954,10 @@ interface ReplyActionLeaf extends ReplyActionBase {
     "@type": "schema:ReplyAction";
 }
 /**
- * The act of responding to a question/message asked/sent by the object. Related to [[AskAction]]
+ * The act of responding to a question/message asked/sent by the object. Related to {@link https://schema.org/AskAction AskAction}
  *
  * Related actions:
- * - [[AskAction]]: Appears generally as an origin of a ReplyAction.
+ * - {@link https://schema.org/AskAction AskAction}: Appears generally as an origin of a ReplyAction.
  */
 export type ReplyAction = ReplyActionLeaf | UIReplyAction;
 
@@ -9971,13 +9975,13 @@ interface ReportageNewsArticleLeaf extends NewsArticleBase {
     "@type": "schema:ReportageNewsArticle";
 }
 /**
- * The [[ReportageNewsArticle]] type is a subtype of [[NewsArticle]] representing news articles which are the result of journalistic news reporting conventions.
+ * The {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle} type is a subtype of {@link https://schema.org/NewsArticle NewsArticle} representing news articles which are the result of journalistic news reporting conventions.
  *
- * In practice many news publishers produce a wide variety of article types, many of which might be considered a [[NewsArticle]] but not a [[ReportageNewsArticle]]. For example, opinion pieces, reviews, analysis, sponsored or satirical articles, or articles that combine several of these elements.
+ * In practice many news publishers produce a wide variety of article types, many of which might be considered a {@link https://schema.org/NewsArticle NewsArticle} but not a {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle}. For example, opinion pieces, reviews, analysis, sponsored or satirical articles, or articles that combine several of these elements.
  *
- * The [[ReportageNewsArticle]] type is based on a stricter ideal for "news" as a work of journalism, with articles based on factual information either observed or verified by the author, or reported and verified from knowledgeable sources. This often includes perspectives from multiple viewpoints on a particular issue (distinguishing news reports from public relations or propaganda). News reports in the [[ReportageNewsArticle]] sense de-emphasize the opinion of the author, with commentary and value judgements typically expressed elsewhere.
+ * The {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle} type is based on a stricter ideal for "news" as a work of journalism, with articles based on factual information either observed or verified by the author, or reported and verified from knowledgeable sources. This often includes perspectives from multiple viewpoints on a particular issue (distinguishing news reports from public relations or propaganda). News reports in the {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle} sense de-emphasize the opinion of the author, with commentary and value judgements typically expressed elsewhere.
  *
- * A [[ReportageNewsArticle]] which goes deeper into analysis can also be marked with an additional type of [[AnalysisNewsArticle]].
+ * A {@link https://schema.org/ReportageNewsArticle ReportageNewsArticle} which goes deeper into analysis can also be marked with an additional type of {@link https://schema.org/AnalysisNewsArticle AnalysisNewsArticle}.
  */
 export type ReportageNewsArticle = ReportageNewsArticleLeaf;
 
@@ -10009,7 +10013,7 @@ interface ReservationBase extends ThingBase {
     /**
      * 'bookingAgent' is an out-dated term indicating a 'broker' that serves as a booking agent.
      *
-     * @deprecated Consider using {@link https://schema.org/broker https://schema.org/broker} instead.
+     * @deprecated Consider using https://schema.org/broker instead.
      */
     "schema:bookingAgent"?: SchemaValue<Organization | Person | IdReference, "schema:bookingAgent">;
     /** The date and time the reservation was booked. */
@@ -10019,7 +10023,7 @@ interface ReservationBase extends ThingBase {
     /** The date and time the reservation was modified. */
     "schema:modifiedTime"?: SchemaValue<DateTime, "schema:modifiedTime">;
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.
+     * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
      *
      * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR".
      */
@@ -10053,7 +10057,7 @@ interface ReservationLeaf extends ReservationBase {
 /**
  * Describes a reservation for travel, dining or an event. Some reservations require tickets.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, restaurant reservations, flights, or rental cars, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, restaurant reservations, flights, or rental cars, use {@link https://schema.org/Offer Offer}.
  */
 export type Reservation = ReservationLeaf | BoatReservation | BusReservation | EventReservation | FlightReservation | FoodEstablishmentReservation | LodgingReservation | RentalCarReservation | ReservationPackage | TaxiReservation | TrainReservation;
 
@@ -10080,7 +10084,7 @@ interface ReserveActionLeaf extends PlanActionBase {
  * Reserving a concrete object.
  *
  * Related actions:
- * - [[ScheduleAction]]: Unlike ScheduleAction, ReserveAction reserves concrete objects (e.g. a table, a hotel) towards a time slot / spatial allocation.
+ * - {@link https://schema.org/ScheduleAction ScheduleAction}: Unlike ScheduleAction, ReserveAction reserves concrete objects (e.g. a table, a hotel) towards a time slot / spatial allocation.
  */
 export type ReserveAction = ReserveActionLeaf;
 
@@ -10091,7 +10095,7 @@ interface ReservoirLeaf extends PlaceBase {
 export type Reservoir = ReservoirLeaf | string;
 
 interface ResidenceBase extends PlaceBase {
-    /** A floorplan of some [[Accommodation]]. */
+    /** A floorplan of some {@link https://schema.org/Accommodation Accommodation}. */
     "schema:accommodationFloorPlan"?: SchemaValue<FloorPlan | IdReference, "schema:accommodationFloorPlan">;
 }
 interface ResidenceLeaf extends ResidenceBase {
@@ -10163,23 +10167,23 @@ interface ReturnMethodEnumerationLeaf extends EnumerationBase {
 export type ReturnMethodEnumeration = "https://schema.org/ReturnAtKiosk" | "schema:ReturnAtKiosk" | "https://schema.org/ReturnByMail" | "schema:ReturnByMail" | "https://schema.org/ReturnInStore" | "schema:ReturnInStore" | ReturnMethodEnumerationLeaf;
 
 interface ReviewBase extends CreativeWorkBase {
-    /** An associated [[ClaimReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[relatedClaimReview]] would be used on [[MediaReview]]. */
+    /** An associated {@link https://schema.org/ClaimReview ClaimReview}, related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case {@link https://schema.org/relatedMediaReview relatedMediaReview} would commonly be used on a {@link https://schema.org/ClaimReview ClaimReview}, while {@link https://schema.org/relatedClaimReview relatedClaimReview} would be used on {@link https://schema.org/MediaReview MediaReview}. */
     "schema:associatedClaimReview"?: SchemaValue<Review | IdReference, "schema:associatedClaimReview">;
-    /** An associated [[MediaReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[relatedClaimReview]] would be used on [[MediaReview]]. */
+    /** An associated {@link https://schema.org/MediaReview MediaReview}, related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case {@link https://schema.org/relatedMediaReview relatedMediaReview} would commonly be used on a {@link https://schema.org/ClaimReview ClaimReview}, while {@link https://schema.org/relatedClaimReview relatedClaimReview} would be used on {@link https://schema.org/MediaReview MediaReview}. */
     "schema:associatedMediaReview"?: SchemaValue<Review | IdReference, "schema:associatedMediaReview">;
-    /** An associated [[Review]]. */
+    /** An associated {@link https://schema.org/Review Review}. */
     "schema:associatedReview"?: SchemaValue<Review | IdReference, "schema:associatedReview">;
     /** The item that is being reviewed/rated. */
     "schema:itemReviewed"?: SchemaValue<Thing | IdReference, "schema:itemReviewed">;
-    /** Indicates, in the context of a [[Review]] (e.g. framed as 'pro' vs 'con' considerations), negative considerations - either as unstructured text, or a list. */
+    /** Indicates, in the context of a {@link https://schema.org/Review Review} (e.g. framed as 'pro' vs 'con' considerations), negative considerations - either as unstructured text, or a list. */
     "schema:negativeNotes"?: SchemaValue<ItemList | ListItem | Text | WebContent | IdReference, "schema:negativeNotes">;
-    /** Indicates, in the context of a [[Review]] (e.g. framed as 'pro' vs 'con' considerations), positive considerations - either as unstructured text, or a list. */
+    /** Indicates, in the context of a {@link https://schema.org/Review Review} (e.g. framed as 'pro' vs 'con' considerations), positive considerations - either as unstructured text, or a list. */
     "schema:positiveNotes"?: SchemaValue<ItemList | ListItem | Text | WebContent | IdReference, "schema:positiveNotes">;
     /** This Review or Rating is relevant to this part or facet of the itemReviewed. */
     "schema:reviewAspect"?: SchemaValue<Text, "schema:reviewAspect">;
     /** The actual body of the review. */
     "schema:reviewBody"?: SchemaValue<Text, "schema:reviewBody">;
-    /** The rating given in this review. Note that reviews can themselves be rated. The `reviewRating` applies to rating given by the review. The [[aggregateRating]] property applies to the review itself, as a creative work. */
+    /** The rating given in this review. Note that reviews can themselves be rated. The `reviewRating` applies to rating given by the review. The {@link https://schema.org/aggregateRating aggregateRating} property applies to the review itself, as a creative work. */
     "schema:reviewRating"?: SchemaValue<Rating | IdReference, "schema:reviewRating">;
 }
 interface ReviewLeaf extends ReviewBase {
@@ -10203,7 +10207,7 @@ interface ReviewNewsArticleBase extends ReviewBase, NewsArticleBase {
 interface ReviewNewsArticleLeaf extends ReviewNewsArticleBase {
     "@type": "schema:ReviewNewsArticle";
 }
-/** A [[NewsArticle]] and [[CriticReview]] providing a professional critic's assessment of a service, product, performance, or artistic or literary work. */
+/** A {@link https://schema.org/NewsArticle NewsArticle} and {@link https://schema.org/CriticReview CriticReview} providing a professional critic's assessment of a service, product, performance, or artistic or literary work. */
 export type ReviewNewsArticle = ReviewNewsArticleLeaf;
 
 interface RiverBodyOfWaterLeaf extends PlaceBase {
@@ -10263,7 +10267,7 @@ export type SaleEvent = SaleEventLeaf;
 interface SatiricalArticleLeaf extends ArticleBase {
     "@type": "schema:SatiricalArticle";
 }
-/** An [[Article]] whose content is primarily {@link https://en.wikipedia.org/wiki/Satire [satirical]} in nature, i.e. unlikely to be literally true. A satirical article is sometimes but not necessarily also a [[NewsArticle]]. [[ScholarlyArticle]]s are also sometimes satirized. */
+/** An {@link https://schema.org/Article Article} whose content is primarily {@link https://schema.org/satirical satirical}(https://en.wikipedia.org/wiki/Satire) in nature, i.e. unlikely to be literally true. A satirical article is sometimes but not necessarily also a {@link https://schema.org/NewsArticle NewsArticle}. {@link https://schema.org/ScholarlyArticle ScholarlyArticle}s are also sometimes satirized. */
 export type SatiricalArticle = SatiricalArticleLeaf;
 
 interface SaveActionLeaf extends UIActionBase {
@@ -10273,11 +10277,11 @@ interface SaveActionLeaf extends UIActionBase {
 export type SaveAction = SaveActionLeaf;
 
 interface ScheduleBase extends ThingBase {
-    /** Defines the day(s) of the week on which a recurring [[Event]] takes place. May be specified using either [[DayOfWeek]], or alternatively [[Text]] conforming to iCal's syntax for byDay recurrence rules. */
+    /** Defines the day(s) of the week on which a recurring {@link https://schema.org/Event Event} takes place. May be specified using either {@link https://schema.org/DayOfWeek DayOfWeek}, or alternatively {@link https://schema.org/Text Text} conforming to iCal's syntax for byDay recurrence rules. */
     "schema:byDay"?: SchemaValue<DayOfWeek | Text | IdReference, "schema:byDay">;
-    /** Defines the month(s) of the year on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-12. January is 1. */
+    /** Defines the month(s) of the year on which a recurring {@link https://schema.org/Event Event} takes place. Specified as an {@link https://schema.org/Integer Integer} between 1-12. January is 1. */
     "schema:byMonth"?: SchemaValue<Integer, "schema:byMonth">;
-    /** Defines the day(s) of the month on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-31. */
+    /** Defines the day(s) of the month on which a recurring {@link https://schema.org/Event Event} takes place. Specified as an {@link https://schema.org/Integer Integer} between 1-31. */
     "schema:byMonthDay"?: SchemaValue<Integer, "schema:byMonthDay">;
     /** Defines the week(s) of the month on which a recurring Event takes place. Specified as an Integer between 1-5. For clarity, byMonthWeek is best used in conjunction with byDay to indicate concepts like the first and third Mondays of a month. */
     "schema:byMonthWeek"?: SchemaValue<Integer, "schema:byMonthWeek">;
@@ -10291,13 +10295,13 @@ interface ScheduleBase extends ThingBase {
      * Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions.
      */
     "schema:endTime"?: SchemaValue<DateTime | Time, "schema:endTime">;
-    /** Defines a [[Date]] or [[DateTime]] during which a scheduled [[Event]] will not take place. The property allows exceptions to a [[Schedule]] to be specified. If an exception is specified as a [[DateTime]] then only the event that would have started at that specific date and time should be excluded from the schedule. If an exception is specified as a [[Date]] then any event that is scheduled for that 24 hour period should be excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event. */
+    /** Defines a {@link https://schema.org/Date Date} or {@link https://schema.org/DateTime DateTime} during which a scheduled {@link https://schema.org/Event Event} will not take place. The property allows exceptions to a {@link https://schema.org/Schedule Schedule} to be specified. If an exception is specified as a {@link https://schema.org/DateTime DateTime} then only the event that would have started at that specific date and time should be excluded from the schedule. If an exception is specified as a {@link https://schema.org/Date Date} then any event that is scheduled for that 24 hour period should be excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event. */
     "schema:exceptDate"?: SchemaValue<Date | DateTime, "schema:exceptDate">;
-    /** Defines the number of times a recurring [[Event]] will take place */
+    /** Defines the number of times a recurring {@link https://schema.org/Event Event} will take place */
     "schema:repeatCount"?: SchemaValue<Integer, "schema:repeatCount">;
-    /** Defines the frequency at which [[Event]]s will occur according to a schedule [[Schedule]]. The intervals between events should be defined as a [[Duration]] of time. */
+    /** Defines the frequency at which {@link https://schema.org/Event Event}s will occur according to a schedule {@link https://schema.org/Schedule Schedule}. The intervals between events should be defined as a {@link https://schema.org/Duration Duration} of time. */
     "schema:repeatFrequency"?: SchemaValue<Duration | Text | IdReference, "schema:repeatFrequency">;
-    /** Indicates the timezone for which the time(s) indicated in the [[Schedule]] are given. The value provided should be among those listed in the IANA Time Zone Database. */
+    /** Indicates the timezone for which the time(s) indicated in the {@link https://schema.org/Schedule Schedule} are given. The value provided should be among those listed in the IANA Time Zone Database. */
     "schema:scheduleTimezone"?: SchemaValue<Text, "schema:scheduleTimezone">;
     /** The start date and time of the item (in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}). */
     "schema:startDate"?: SchemaValue<Date | DateTime, "schema:startDate">;
@@ -10311,7 +10315,7 @@ interface ScheduleBase extends ThingBase {
 interface ScheduleLeaf extends ScheduleBase {
     "@type": "schema:Schedule";
 }
-/** A schedule defines a repeating time period used to describe a regularly occurring [[Event]]. At a minimum a schedule will specify [[repeatFrequency]] which describes the interval between occurences of the event. Additional information can be provided to specify the schedule more precisely. This includes identifying the day(s) of the week or month when the recurring event will take place, in addition to its start and end time. Schedules may also have start and end dates to indicate when they are active, e.g. to define a limited calendar of events. */
+/** A schedule defines a repeating time period used to describe a regularly occurring {@link https://schema.org/Event Event}. At a minimum a schedule will specify {@link https://schema.org/repeatFrequency repeatFrequency} which describes the interval between occurences of the event. Additional information can be provided to specify the schedule more precisely. This includes identifying the day(s) of the week or month when the recurring event will take place, in addition to its start and end time. Schedules may also have start and end dates to indicate when they are active, e.g. to define a limited calendar of events. */
 export type Schedule = ScheduleLeaf;
 
 interface ScheduleActionLeaf extends PlanActionBase {
@@ -10321,7 +10325,7 @@ interface ScheduleActionLeaf extends PlanActionBase {
  * Scheduling future actions, events, or tasks.
  *
  * Related actions:
- * - [[ReserveAction]]: Unlike ReserveAction, ScheduleAction allocates future actions (e.g. an event, a task, etc) towards a time slot / spatial allocation.
+ * - {@link https://schema.org/ReserveAction ReserveAction}: Unlike ReserveAction, ScheduleAction allocates future actions (e.g. an event, a task, etc) towards a time slot / spatial allocation.
  */
 export type ScheduleAction = ScheduleActionLeaf;
 
@@ -10392,7 +10396,7 @@ interface SearchActionLeaf extends SearchActionBase {
  * The act of searching for an object.
  *
  * Related actions:
- * - [[FindAction]]: SearchAction generally leads to a FindAction, but not necessarily.
+ * - {@link https://schema.org/FindAction FindAction}: SearchAction generally leads to a FindAction, but not necessarily.
  */
 export type SearchAction = SearchActionLeaf;
 
@@ -10447,7 +10451,7 @@ interface SeekToActionBase extends ActionBase {
 interface SeekToActionLeaf extends SeekToActionBase {
     "@type": "schema:SeekToAction";
 }
-/** This is the [[Action]] of navigating to a specific [[startOffset]] timestamp within a [[VideoObject]], typically represented with a URL template structure. */
+/** This is the {@link https://schema.org/Action Action} of navigating to a specific {@link https://schema.org/startOffset startOffset} timestamp within a {@link https://schema.org/VideoObject VideoObject}, typically represented with a URL template structure. */
 export type SeekToAction = SeekToActionLeaf;
 
 interface SelfStorageLeaf extends LocalBusinessBase {
@@ -10462,7 +10466,7 @@ interface SellActionBase extends TradeActionBase {
     /**
      * The warranty promise(s) included in the offer.
      *
-     * @deprecated Consider using {@link https://schema.org/warranty https://schema.org/warranty} instead.
+     * @deprecated Consider using https://schema.org/warranty instead.
      */
     "schema:warrantyPromise"?: SchemaValue<WarrantyPromise | IdReference, "schema:warrantyPromise">;
 }
@@ -10483,15 +10487,15 @@ interface SendActionLeaf extends SendActionBase {
 }
 /**
  * The act of physically/electronically dispatching an object for transfer from an origin to a destination.Related actions:
- * - [[ReceiveAction]]: The reciprocal of SendAction.
- * - [[GiveAction]]: Unlike GiveAction, SendAction does not imply the transfer of ownership (e.g. I can send you my laptop, but I'm not necessarily giving it to you).
+ * - {@link https://schema.org/ReceiveAction ReceiveAction}: The reciprocal of SendAction.
+ * - {@link https://schema.org/GiveAction GiveAction}: Unlike GiveAction, SendAction does not imply the transfer of ownership (e.g. I can send you my laptop, but I'm not necessarily giving it to you).
  */
 export type SendAction = SendActionLeaf;
 
 interface SeriesLeaf extends ThingBase {
     "@type": "schema:Series";
 }
-/** A Series in schema.org is a group of related items, typically but not necessarily of the same kind. See also [[CreativeWorkSeries]], [[EventSeries]]. */
+/** A Series in schema.org is a group of related items, typically but not necessarily of the same kind. See also {@link https://schema.org/CreativeWorkSeries CreativeWorkSeries}, {@link https://schema.org/EventSeries EventSeries}. */
 export type Series = SeriesLeaf | CreativeWorkSeries | EventSeries;
 
 interface ServiceBase extends ThingBase {
@@ -10521,12 +10525,12 @@ interface ServiceBase extends ThingBase {
     "schema:isSimilarTo"?: SchemaValue<Product | Service | IdReference, "schema:isSimilarTo">;
     /** An associated logo. */
     "schema:logo"?: SchemaValue<ImageObject | URL | IdReference, "schema:logo">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
     /**
      * The tangible thing generated by the service, e.g. a passport, permit, etc.
      *
-     * @deprecated Consider using {@link https://schema.org/serviceOutput https://schema.org/serviceOutput} instead.
+     * @deprecated Consider using https://schema.org/serviceOutput instead.
      */
     "schema:produces"?: SchemaValue<Thing | IdReference, "schema:produces">;
     /** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
@@ -10538,13 +10542,13 @@ interface ServiceBase extends ThingBase {
     /**
      * The geographic area where the service is provided.
      *
-     * @deprecated Consider using {@link https://schema.org/areaServed https://schema.org/areaServed} instead.
+     * @deprecated Consider using https://schema.org/areaServed instead.
      */
     "schema:serviceArea"?: SchemaValue<AdministrativeArea | GeoShape | Place | IdReference, "schema:serviceArea">;
     /**
      * The audience eligible for this service.
      *
-     * @deprecated Consider using {@link https://schema.org/audience https://schema.org/audience} instead.
+     * @deprecated Consider using https://schema.org/audience instead.
      */
     "schema:serviceAudience"?: SchemaValue<Audience | IdReference, "schema:serviceAudience">;
     /** The tangible thing generated by the service, e.g. a passport, permit, etc. */
@@ -10563,7 +10567,7 @@ interface ServiceLeaf extends ServiceBase {
 export type Service = ServiceLeaf | BroadcastService | CableOrSatelliteService | FinancialProduct | FoodService | GovernmentService | Taxi | TaxiService | WebAPI;
 
 interface ServiceChannelBase extends ThingBase {
-    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[inLanguage]] */
+    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage} */
     "schema:availableLanguage"?: SchemaValue<Language | Text | IdReference, "schema:availableLanguage">;
     /** Estimated processing time for the service using this channel. */
     "schema:processingTime"?: SchemaValue<Duration | IdReference, "schema:processingTime">;
@@ -10607,7 +10611,7 @@ export type SheetMusic = SheetMusicLeaf;
 interface ShippingDeliveryTimeBase extends ThingBase {
     /** Days of the week when the merchant typically operates, indicated via opening hours markup. */
     "schema:businessDays"?: SchemaValue<OpeningHoursSpecification | IdReference, "schema:businessDays">;
-    /** Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the [[ShippingRateSettings]] publication pattern. The time is indicated using the ISO-8601 Time format, e.g. "23:30:00-05:00" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC). */
+    /** Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the {@link https://schema.org/ShippingRateSettings ShippingRateSettings} publication pattern. The time is indicated using the ISO-8601 Time format, e.g. "23:30:00-05:00" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC). */
     "schema:cutoffTime"?: SchemaValue<Time, "schema:cutoffTime">;
     /** The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY). This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates. */
     "schema:handlingTime"?: SchemaValue<QuantitativeValue | IdReference, "schema:handlingTime">;
@@ -10621,23 +10625,23 @@ interface ShippingDeliveryTimeLeaf extends ShippingDeliveryTimeBase {
 export type ShippingDeliveryTime = ShippingDeliveryTimeLeaf;
 
 interface ShippingRateSettingsBase extends ThingBase {
-    /** Indicates when shipping to a particular [[shippingDestination]] is not available. */
+    /** Indicates when shipping to a particular {@link https://schema.org/shippingDestination shippingDestination} is not available. */
     "schema:doesNotShip"?: SchemaValue<Boolean, "schema:doesNotShip">;
-    /** A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]]. */
+    /** A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with {@link https://schema.org/shippingSettingsLink shippingSettingsLink} matching this {@link https://schema.org/ShippingRateSettings ShippingRateSettings}. */
     "schema:freeShippingThreshold"?: SchemaValue<DeliveryChargeSpecification | MonetaryAmount | IdReference, "schema:freeShippingThreshold">;
-    /** This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings. */
+    /** This can be marked 'true' to indicate that some published {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings} or {@link https://schema.org/ShippingRateSettings ShippingRateSettings} are intended to apply to all {@link https://schema.org/OfferShippingDetails OfferShippingDetails} published by the same merchant, when referenced by a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for {@link https://schema.org/DeliveryTimeSettings DeliveryTimeSettings}) or shippingLabel (for {@link https://schema.org/ShippingRateSettings ShippingRateSettings}), since this property is for use with unlabelled settings. */
     "schema:isUnlabelledFallback"?: SchemaValue<Boolean, "schema:isUnlabelledFallback">;
     /** indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges. */
     "schema:shippingDestination"?: SchemaValue<DefinedRegion | IdReference, "schema:shippingDestination">;
-    /** Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference). */
+    /** Label to match an {@link https://schema.org/OfferShippingDetails OfferShippingDetails} with a {@link https://schema.org/ShippingRateSettings ShippingRateSettings} (within the context of a {@link https://schema.org/shippingSettingsLink shippingSettingsLink} cross-reference). */
     "schema:shippingLabel"?: SchemaValue<Text, "schema:shippingLabel">;
-    /** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate. */
+    /** The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the {@link https://schema.org/MonetaryAmount MonetaryAmount}) are most appropriate. */
     "schema:shippingRate"?: SchemaValue<MonetaryAmount | IdReference, "schema:shippingRate">;
 }
 interface ShippingRateSettingsLeaf extends ShippingRateSettingsBase {
     "@type": "schema:ShippingRateSettings";
 }
-/** A ShippingRateSettings represents re-usable pieces of shipping information. It is designed for publication on an URL that may be referenced via the [[shippingSettingsLink]] property of an [[OfferShippingDetails]]. Several occurrences can be published, distinguished and matched (i.e. identified/referenced) by their different values for [[shippingLabel]]. */
+/** A ShippingRateSettings represents re-usable pieces of shipping information. It is designed for publication on an URL that may be referenced via the {@link https://schema.org/shippingSettingsLink shippingSettingsLink} property of an {@link https://schema.org/OfferShippingDetails OfferShippingDetails}. Several occurrences can be published, distinguished and matched (i.e. identified/referenced) by their different values for {@link https://schema.org/shippingLabel shippingLabel}. */
 export type ShippingRateSettings = ShippingRateSettingsLeaf;
 
 interface ShoeStoreLeaf extends LocalBusinessBase {
@@ -10659,7 +10663,7 @@ interface ShortStoryLeaf extends CreativeWorkBase {
 export type ShortStory = ShortStoryLeaf;
 
 interface SideEffectHandlerBase extends ElementBase {
-    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be {@link https://schema.org/Date https://schema.org/Date} or {@link https://schema.org/DateTime https://schema.org/DateTime}. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
+    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
     "uxi:inputRange"?: SchemaValue<Thing | UIDataType | IdReference, "uxi:inputRange">;
     /** The input trigger validator can be used with side-effect handlers, so that they only trigger when the input is valid. */
     "uxi:inputTriggerValidator"?: SchemaValue<Validator | IdReference, "uxi:inputTriggerValidator">;
@@ -10723,7 +10727,7 @@ interface SizeSpecificationBase extends QualitativeValueBase {
 interface SizeSpecificationLeaf extends SizeSpecificationBase {
     "@type": "schema:SizeSpecification";
 }
-/** Size related properties of a product, typically a size code ([[name]]) and optionally a [[sizeSystem]], [[sizeGroup]], and product measurements ([[hasMeasurement]]). In addition, the intended audience can be defined through [[suggestedAge]], [[suggestedGender]], and suggested body measurements ([[suggestedMeasurement]]). */
+/** Size related properties of a product, typically a size code ({@link https://schema.org/name name}) and optionally a {@link https://schema.org/sizeSystem sizeSystem}, {@link https://schema.org/sizeGroup sizeGroup}, and product measurements ({@link https://schema.org/hasMeasurement hasMeasurement}). In addition, the intended audience can be defined through {@link https://schema.org/suggestedAge suggestedAge}, {@link https://schema.org/suggestedGender suggestedGender}, and suggested body measurements ({@link https://schema.org/suggestedMeasurement suggestedMeasurement}). */
 export type SizeSpecification = SizeSpecificationLeaf;
 
 interface SizeSystemEnumerationLeaf extends EnumerationBase {
@@ -10778,7 +10782,7 @@ interface SoftwareApplicationBase extends CreativeWorkBase {
     /**
      * Device required to run the application. Used in cases where a specific make/model is required to run the application.
      *
-     * @deprecated Consider using {@link https://schema.org/availableOnDevice https://schema.org/availableOnDevice} instead.
+     * @deprecated Consider using https://schema.org/availableOnDevice instead.
      */
     "schema:device"?: SchemaValue<Text, "schema:device">;
     /** If the file can be downloaded, URL to download the binary. */
@@ -10802,7 +10806,7 @@ interface SoftwareApplicationBase extends CreativeWorkBase {
     /**
      * Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).
      *
-     * @deprecated Consider using {@link https://schema.org/softwareRequirements https://schema.org/softwareRequirements} instead.
+     * @deprecated Consider using https://schema.org/softwareRequirements instead.
      */
     "schema:requirements"?: SchemaValue<Text | URL, "schema:requirements">;
     /** A link to a screenshot image of the app. */
@@ -10836,7 +10840,7 @@ interface SoftwareSourceCodeBase extends CreativeWorkBase {
     /**
      * Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).
      *
-     * @deprecated Consider using {@link https://schema.org/runtimePlatform https://schema.org/runtimePlatform} instead.
+     * @deprecated Consider using https://schema.org/runtimePlatform instead.
      */
     "schema:runtime"?: SchemaValue<Text, "schema:runtime">;
     /** Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0). */
@@ -10844,7 +10848,7 @@ interface SoftwareSourceCodeBase extends CreativeWorkBase {
     /**
      * What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
      *
-     * @deprecated Consider using {@link https://schema.org/codeSampleType https://schema.org/codeSampleType} instead.
+     * @deprecated Consider using https://schema.org/codeSampleType instead.
      */
     "schema:sampleType"?: SchemaValue<Text, "schema:sampleType">;
     /** Target Operating System / Product to which the code applies. If applies to several versions, just the product name can be used. */
@@ -10883,19 +10887,19 @@ interface SortedStateLeaf extends ElementBase {
 export type SortedState = SortedStateLeaf;
 
 interface SpeakableSpecificationBase extends ThingBase {
-    /** A CSS selector, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
+    /** A CSS selector, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
     "schema:cssSelector"?: SchemaValue<CssSelectorType, "schema:cssSelector">;
-    /** An XPath, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
+    /** An XPath, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
     "schema:xpath"?: SchemaValue<XPathType, "schema:xpath">;
 }
 interface SpeakableSpecificationLeaf extends SpeakableSpecificationBase {
     "@type": "schema:SpeakableSpecification";
 }
-/** A SpeakableSpecification indicates (typically via [[xpath]] or [[cssSelector]]) sections of a document that are highlighted as particularly [[speakable]]. Instances of this type are expected to be used primarily as values of the [[speakable]] property. */
+/** A SpeakableSpecification indicates (typically via {@link https://schema.org/xpath xpath} or {@link https://schema.org/cssSelector cssSelector}) sections of a document that are highlighted as particularly {@link https://schema.org/speakable speakable}. Instances of this type are expected to be used primarily as values of the {@link https://schema.org/speakable speakable} property. */
 export type SpeakableSpecification = SpeakableSpecificationLeaf;
 
 interface SpecialAnnouncementBase extends CreativeWorkBase {
-    /** Indicates a specific [[CivicStructure]] or [[LocalBusiness]] associated with the SpecialAnnouncement. For example, a specific testing facility or business with special opening hours. For a larger geographic region like a quarantine of an entire region, use [[spatialCoverage]]. */
+    /** Indicates a specific {@link https://schema.org/CivicStructure CivicStructure} or {@link https://schema.org/LocalBusiness LocalBusiness} associated with the SpecialAnnouncement. For example, a specific testing facility or business with special opening hours. For a larger geographic region like a quarantine of an entire region, use {@link https://schema.org/spatialCoverage spatialCoverage}. */
     "schema:announcementLocation"?: SchemaValue<CivicStructure | LocalBusiness | IdReference, "schema:announcementLocation">;
     /** A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy. */
     "schema:category"?: SchemaValue<PhysicalActivityCategory | Text | Thing | URL | IdReference, "schema:category">;
@@ -10903,13 +10907,13 @@ interface SpecialAnnouncementBase extends CreativeWorkBase {
     "schema:datePosted"?: SchemaValue<Date | DateTime, "schema:datePosted">;
     /** Information about disease prevention. */
     "schema:diseasePreventionInfo"?: SchemaValue<URL | WebContent | IdReference, "schema:diseasePreventionInfo">;
-    /** Statistical information about the spread of a disease, either as [[WebContent]], or described directly as a [[Dataset]], or the specific [[Observation]]s in the dataset. When a [[WebContent]] URL is provided, the page indicated might also contain more such markup. */
+    /** Statistical information about the spread of a disease, either as {@link https://schema.org/WebContent WebContent}, or described directly as a {@link https://schema.org/Dataset Dataset}, or the specific {@link https://schema.org/Observation Observation}s in the dataset. When a {@link https://schema.org/WebContent WebContent} URL is provided, the page indicated might also contain more such markup. */
     "schema:diseaseSpreadStatistics"?: SchemaValue<Dataset | Observation | URL | WebContent | IdReference, "schema:diseaseSpreadStatistics">;
-    /** Information about getting tested (for a [[MedicalCondition]]), e.g. in the context of a pandemic. */
+    /** Information about getting tested (for a {@link https://schema.org/MedicalCondition MedicalCondition}), e.g. in the context of a pandemic. */
     "schema:gettingTestedInfo"?: SchemaValue<URL | WebContent | IdReference, "schema:gettingTestedInfo">;
     /** governmentBenefitsInfo provides information about government benefits associated with a SpecialAnnouncement. */
     "schema:governmentBenefitsInfo"?: SchemaValue<GovernmentService | IdReference, "schema:governmentBenefitsInfo">;
-    /** Indicates a page with news updates and guidelines. This could often be (but is not required to be) the main page containing [[SpecialAnnouncement]] markup on a site. */
+    /** Indicates a page with news updates and guidelines. This could often be (but is not required to be) the main page containing {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement} markup on a site. */
     "schema:newsUpdatesAndGuidelines"?: SchemaValue<URL | WebContent | IdReference, "schema:newsUpdatesAndGuidelines">;
     /** Information about public transport closures. */
     "schema:publicTransportClosuresInfo"?: SchemaValue<URL | WebContent | IdReference, "schema:publicTransportClosuresInfo">;
@@ -10936,17 +10940,17 @@ interface SpecialAnnouncementLeaf extends SpecialAnnouncementBase {
  *
  * Several kinds of information can be provided:
  *
- * We encourage the provision of "name", "text", "datePosted", "expires" (if appropriate), "category" and "url" as a simple baseline. It is important to provide a value for "category" where possible, most ideally as a well known URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "{@link https://en.wikipedia.org/w/index.php?title=2019-20%5C%5C_coronavirus%5C%5C_pandemic%22 https://en.wikipedia.org/w/index.php?title=2019-20\\_coronavirus\\_pandemic"} or "{@link https://www.wikidata.org/wiki/Q81068910%22 https://www.wikidata.org/wiki/Q81068910"}.
+ * We encourage the provision of "name", "text", "datePosted", "expires" (if appropriate), "category" and "url" as a simple baseline. It is important to provide a value for "category" where possible, most ideally as a well known URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "https://en.wikipedia.org/w/index.php?title=2019-20\_coronavirus\_pandemic" or "https://www.wikidata.org/wiki/Q81068910".
  *
- * For many of the possible properties, values can either be simple links or an inline description, depending on whether a summary is available. For a link, provide just the URL of the appropriate page as the property's value. For an inline description, use a [[WebContent]] type, and provide the url as a property of that, alongside at least a simple "[[text]]" summary of the page. It is unlikely that a single SpecialAnnouncement will need all of the possible properties simultaneously.
+ * For many of the possible properties, values can either be simple links or an inline description, depending on whether a summary is available. For a link, provide just the URL of the appropriate page as the property's value. For an inline description, use a {@link https://schema.org/WebContent WebContent} type, and provide the url as a property of that, alongside at least a simple "{@link https://schema.org/text text}" summary of the page. It is unlikely that a single SpecialAnnouncement will need all of the possible properties simultaneously.
  *
- * We expect that in many cases the page referenced might contain more specialized structured data, e.g. contact info, [[openingHours]], [[Event]], [[FAQPage]] etc. By linking to those pages from a [[SpecialAnnouncement]] you can help make it clearer that the events are related to the situation (e.g. Coronavirus) indicated by the [[category]] property of the [[SpecialAnnouncement]].
+ * We expect that in many cases the page referenced might contain more specialized structured data, e.g. contact info, {@link https://schema.org/openingHours openingHours}, {@link https://schema.org/Event Event}, {@link https://schema.org/FAQPage FAQPage} etc. By linking to those pages from a {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement} you can help make it clearer that the events are related to the situation (e.g. Coronavirus) indicated by the {@link https://schema.org/category category} property of the {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement}.
  *
- * Many [[SpecialAnnouncement]]s will relate to particular regions and to identifiable local organizations. Use [[spatialCoverage]] for the region, and [[announcementLocation]] to indicate specific [[LocalBusiness]]es and [[CivicStructure]]s. If the announcement affects both a particular region and a specific location (for example, a library closure that serves an entire region), use both [[spatialCoverage]] and [[announcementLocation]].
+ * Many {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement}s will relate to particular regions and to identifiable local organizations. Use {@link https://schema.org/spatialCoverage spatialCoverage} for the region, and {@link https://schema.org/announcementLocation announcementLocation} to indicate specific {@link https://schema.org/LocalBusiness LocalBusiness}es and {@link https://schema.org/CivicStructure CivicStructure}s. If the announcement affects both a particular region and a specific location (for example, a library closure that serves an entire region), use both {@link https://schema.org/spatialCoverage spatialCoverage} and {@link https://schema.org/announcementLocation announcementLocation}.
  *
- * The [[about]] property can be used to indicate entities that are the focus of the announcement. We now recommend using [[about]] only for representing non-location entities (e.g. a [[Course]] or a [[RadioStation]]). For places, use [[announcementLocation]] and [[spatialCoverage]]. Consumers of this markup should be aware that the initial design encouraged the use of /about for locations too.
+ * The {@link https://schema.org/about about} property can be used to indicate entities that are the focus of the announcement. We now recommend using {@link https://schema.org/about about} only for representing non-location entities (e.g. a {@link https://schema.org/Course Course} or a {@link https://schema.org/RadioStation RadioStation}). For places, use {@link https://schema.org/announcementLocation announcementLocation} and {@link https://schema.org/spatialCoverage spatialCoverage}. Consumers of this markup should be aware that the initial design encouraged the use of /about for locations too.
  *
- * The basic content of [[SpecialAnnouncement]] is similar to that of an {@link https://en.wikipedia.org/wiki/RSS RSS} or {@link https://en.wikipedia.org/wiki/Atom_(Web_standard) Atom} feed. For publishers without such feeds, basic feed-like information can be shared by posting [[SpecialAnnouncement]] updates in a page, e.g. using JSON-LD. For sites with Atom/RSS functionality, you can point to a feed with the [[webFeed]] property. This can be a simple URL, or an inline [[DataFeed]] object, with [[encodingFormat]] providing media type information e.g. "application/rss+xml" or "application/atom+xml".
+ * The basic content of {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement} is similar to that of an {@link https://en.wikipedia.org/wiki/RSS RSS} or {@link https://en.wikipedia.org/wiki/Atom_(Web_standard) Atom} feed. For publishers without such feeds, basic feed-like information can be shared by posting {@link https://schema.org/SpecialAnnouncement SpecialAnnouncement} updates in a page, e.g. using JSON-LD. For sites with Atom/RSS functionality, you can point to a feed with the {@link https://schema.org/webFeed webFeed} property. This can be a simple URL, or an inline {@link https://schema.org/DataFeed DataFeed} object, with {@link https://schema.org/encodingFormat encodingFormat} providing media type information e.g. "application/rss+xml" or "application/atom+xml".
  */
 export type SpecialAnnouncement = SpecialAnnouncementLeaf;
 
@@ -11005,7 +11009,7 @@ interface SportsTeamBase extends SportsOrganizationBase {
     "schema:athlete"?: SchemaValue<Person | IdReference, "schema:athlete">;
     /** A person that acts in a coaching role for a sports team. */
     "schema:coach"?: SchemaValue<Person | IdReference, "schema:coach">;
-    /** Gender of something, typically a [[Person]], but possibly also fictional characters, animals, etc. While {@link https://schema.org/Male https://schema.org/Male} and {@link https://schema.org/Female https://schema.org/Female} may be used, text strings are also acceptable for people who do not identify as a binary gender. The [[gender]] property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender [[SportsTeam]] can be indicated with a text value of "Mixed". */
+    /** Gender of something, typically a {@link https://schema.org/Person Person}, but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The {@link https://schema.org/gender gender} property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender {@link https://schema.org/SportsTeam SportsTeam} can be indicated with a text value of "Mixed". */
     "schema:gender"?: SchemaValue<GenderType | Text | IdReference, "schema:gender">;
 }
 interface SportsTeamLeaf extends SportsTeamBase {
@@ -11049,21 +11053,21 @@ export type State = StateLeaf | string;
 interface StatementLeaf extends CreativeWorkBase {
     "@type": "schema:Statement";
 }
-/** A statement about something, for example a fun or interesting fact. If known, the main entity this statement is about, can be indicated using mainEntity. For more formal claims (e.g. in Fact Checking), consider using [[Claim]] instead. Use the [[text]] property to capture the text of the statement. */
+/** A statement about something, for example a fun or interesting fact. If known, the main entity this statement is about, can be indicated using mainEntity. For more formal claims (e.g. in Fact Checking), consider using {@link https://schema.org/Claim Claim} instead. Use the {@link https://schema.org/text text} property to capture the text of the statement. */
 export type Statement = StatementLeaf;
 
 interface StatisticalPopulationBase extends ThingBase {
-    /** Indicates a property used as a constraint to define a [[StatisticalPopulation]] with respect to the set of entities corresponding to an indicated type (via [[populationType]]). */
+    /** Indicates a property used as a constraint to define a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} with respect to the set of entities corresponding to an indicated type (via {@link https://schema.org/populationType populationType}). */
     "schema:constrainingProperty"?: SchemaValue<Integer, "schema:constrainingProperty">;
-    /** Indicates the number of constraints (not counting [[populationType]]) defined for a particular [[StatisticalPopulation]]. This helps applications understand if they have access to a sufficiently complete description of a [[StatisticalPopulation]]. */
+    /** Indicates the number of constraints (not counting {@link https://schema.org/populationType populationType}) defined for a particular {@link https://schema.org/StatisticalPopulation StatisticalPopulation}. This helps applications understand if they have access to a sufficiently complete description of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation}. */
     "schema:numConstraints"?: SchemaValue<Integer, "schema:numConstraints">;
-    /** Indicates the populationType common to all members of a [[StatisticalPopulation]]. */
+    /** Indicates the populationType common to all members of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation}. */
     "schema:populationType"?: SchemaValue<Class | IdReference, "schema:populationType">;
 }
 interface StatisticalPopulationLeaf extends StatisticalPopulationBase {
     "@type": "schema:StatisticalPopulation";
 }
-/** A StatisticalPopulation is a set of instances of a certain given type that satisfy some set of constraints. The property [[populationType]] is used to specify the type. Any property that can be used on instances of that type can appear on the statistical population. For example, a [[StatisticalPopulation]] representing all [[Person]]s with a [[homeLocation]] of East Podunk California, would be described by applying the appropriate [[homeLocation]] and [[populationType]] properties to a [[StatisticalPopulation]] item that stands for that set of people. The properties [[numConstraints]] and [[constrainingProperty]] are used to specify which of the populations properties are used to specify the population. Note that the sense of "population" used here is the general sense of a statistical population, and does not imply that the population consists of people. For example, a [[populationType]] of [[Event]] or [[NewsArticle]] could be used. See also [[Observation]], and the {@link /docs/data-and-datasets.html data and datasets} overview for more details. */
+/** A StatisticalPopulation is a set of instances of a certain given type that satisfy some set of constraints. The property {@link https://schema.org/populationType populationType} is used to specify the type. Any property that can be used on instances of that type can appear on the statistical population. For example, a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} representing all {@link https://schema.org/Person Person}s with a {@link https://schema.org/homeLocation homeLocation} of East Podunk California, would be described by applying the appropriate {@link https://schema.org/homeLocation homeLocation} and {@link https://schema.org/populationType populationType} properties to a {@link https://schema.org/StatisticalPopulation StatisticalPopulation} item that stands for that set of people. The properties {@link https://schema.org/numConstraints numConstraints} and {@link https://schema.org/constrainingProperty constrainingProperty} are used to specify which of the populations properties are used to specify the population. Note that the sense of "population" used here is the general sense of a statistical population, and does not imply that the population consists of people. For example, a {@link https://schema.org/populationType populationType} of {@link https://schema.org/Event Event} or {@link https://schema.org/NewsArticle NewsArticle} could be used. See also {@link https://schema.org/Observation Observation}, and the {@link /docs/data-and-datasets.html data and datasets} overview for more details. */
 export type StatisticalPopulation = StatisticalPopulationLeaf;
 
 interface StatusEnumerationLeaf extends EnumerationBase {
@@ -11121,9 +11125,9 @@ interface SubscribeActionLeaf extends ActionBase {
  * The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates pushed to.
  *
  * Related actions:
- * - [[FollowAction]]: Unlike FollowAction, SubscribeAction implies that the subscriber acts as a passive agent being constantly/actively pushed for updates.
- * - [[RegisterAction]]: Unlike RegisterAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.
- * - [[JoinAction]]: Unlike JoinAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.
+ * - {@link https://schema.org/FollowAction FollowAction}: Unlike FollowAction, SubscribeAction implies that the subscriber acts as a passive agent being constantly/actively pushed for updates.
+ * - {@link https://schema.org/RegisterAction RegisterAction}: Unlike RegisterAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.
+ * - {@link https://schema.org/JoinAction JoinAction}: Unlike JoinAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.
  */
 export type SubscribeAction = SubscribeActionLeaf;
 
@@ -11240,8 +11244,8 @@ interface TakeActionLeaf extends TransferActionBase {
  * The act of gaining ownership of an object from an origin. Reciprocal of GiveAction.
  *
  * Related actions:
- * - [[GiveAction]]: The reciprocal of TakeAction.
- * - [[ReceiveAction]]: Unlike ReceiveAction, TakeAction implies that ownership has been transfered.
+ * - {@link https://schema.org/GiveAction GiveAction}: The reciprocal of TakeAction.
+ * - {@link https://schema.org/ReceiveAction ReceiveAction}: Unlike ReceiveAction, TakeAction implies that ownership has been transfered.
  */
 export type TakeAction = TakeActionLeaf;
 
@@ -11275,7 +11279,7 @@ interface TaxiReservationLeaf extends TaxiReservationBase {
 /**
  * A reservation for a taxi.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type TaxiReservation = TaxiReservationLeaf;
 
@@ -11352,7 +11356,7 @@ export type TextDigitalDocument = TextDigitalDocumentLeaf;
 interface TextfieldLeaf extends UIElementBase {
     "@type": "uxi:Textfield";
 }
-/** A TextField is a UI element that allows Text to be entered. This may be a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web. */
+/** A TextField is a UI element that allows Text to be entered. This text may be entered via a physical or virtual keyboard, or voice input. Which additional features like bold/italic text, size etc are offered depends on each application's individual requirements. Then these Elements might be referred to as Richtext, Editor or TextArea. Enabling Markdown-editing also gains wider adoption on the web. */
 export type Textfield = TextfieldLeaf;
 
 interface TextTypeBase extends ElementBase {
@@ -11410,9 +11414,9 @@ interface ThingBase extends Partial<IdReference> {
     "schema:description"?: SchemaValue<Text, "schema:description">;
     /** A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation. */
     "schema:disambiguatingDescription"?: SchemaValue<Text, "schema:disambiguatingDescription">;
-    /** The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See {@link /docs/datamodel.html#identifierBg background notes} for more details. */
+    /** The identifier property represents any kind of identifier for any kind of {@link https://schema.org/Thing Thing}, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See {@link /docs/datamodel.html#identifierBg background notes} for more details. */
     "schema:identifier"?: SchemaValue<PropertyValue | Text | URL | IdReference, "schema:identifier">;
-    /** An image of the item. This can be a [[URL]] or a fully described [[ImageObject]]. */
+    /** An image of the item. This can be a {@link https://schema.org/URL URL} or a fully described {@link https://schema.org/ImageObject ImageObject}. */
     "schema:image"?: SchemaValue<ImageObject | URL | IdReference, "schema:image">;
     /** Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See {@link /docs/datamodel.html#mainEntityBackground background notes} for details. */
     "schema:mainEntityOfPage"?: SchemaValue<CreativeWork | URL | IdReference, "schema:mainEntityOfPage">;
@@ -11445,7 +11449,7 @@ interface TicketBase extends ThingBase {
     /** The organization issuing the ticket or permit. */
     "schema:issuedBy"?: SchemaValue<Organization | IdReference, "schema:issuedBy">;
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.
+     * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
      *
      * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR".
      */
@@ -11520,7 +11524,7 @@ interface TouchDownActionLeaf extends UIActionBase {
 export type TouchDownAction = TouchDownActionLeaf;
 
 interface TouristAttractionBase extends PlaceBase {
-    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[inLanguage]] */
+    /** A language someone may use with or at the item, service or place. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/inLanguage inLanguage} */
     "schema:availableLanguage"?: SchemaValue<Language | Text | IdReference, "schema:availableLanguage">;
     /** Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc. */
     "schema:touristType"?: SchemaValue<Audience | Text | IdReference, "schema:touristType">;
@@ -11528,7 +11532,7 @@ interface TouristAttractionBase extends PlaceBase {
 interface TouristAttractionLeaf extends TouristAttractionBase {
     "@type": "schema:TouristAttraction";
 }
-/** A tourist attraction. In principle any Thing can be a [[TouristAttraction]], from a [[Mountain]] and [[LandmarksOrHistoricalBuildings]] to a [[LocalBusiness]]. This Type can be used on its own to describe a general [[TouristAttraction]], or be used as an [[additionalType]] to add tourist attraction properties to any other type. (See examples below) */
+/** A tourist attraction. In principle any Thing can be a {@link https://schema.org/TouristAttraction TouristAttraction}, from a {@link https://schema.org/Mountain Mountain} and {@link https://schema.org/LandmarksOrHistoricalBuildings LandmarksOrHistoricalBuildings} to a {@link https://schema.org/LocalBusiness LocalBusiness}. This Type can be used on its own to describe a general {@link https://schema.org/TouristAttraction TouristAttraction}, or be used as an {@link https://schema.org/additionalType additionalType} to add tourist attraction properties to any other type. (See examples below) */
 export type TouristAttraction = TouristAttractionLeaf | string;
 
 interface TouristDestinationBase extends PlaceBase {
@@ -11540,7 +11544,7 @@ interface TouristDestinationBase extends PlaceBase {
 interface TouristDestinationLeaf extends TouristDestinationBase {
     "@type": "schema:TouristDestination";
 }
-/** A tourist destination. In principle any [[Place]] can be a [[TouristDestination]] from a [[City]], Region or [[Country]] to an [[AmusementPark]] or [[Hotel]]. This Type can be used on its own to describe a general [[TouristDestination]], or be used as an [[additionalType]] to add tourist relevant properties to any other [[Place]]. A [[TouristDestination]] is defined as a [[Place]] that contains, or is colocated with, one or more [[TouristAttraction]]s, often linked by a similar theme or interest to a particular [[touristType]]. The {@link http://www2.unwto.org/ UNWTO} defines Destination (main destination of a tourism trip) as the place visited that is central to the decision to take the trip. (See examples below). */
+/** A tourist destination. In principle any {@link https://schema.org/Place Place} can be a {@link https://schema.org/TouristDestination TouristDestination} from a {@link https://schema.org/City City}, Region or {@link https://schema.org/Country Country} to an {@link https://schema.org/AmusementPark AmusementPark} or {@link https://schema.org/Hotel Hotel}. This Type can be used on its own to describe a general {@link https://schema.org/TouristDestination TouristDestination}, or be used as an {@link https://schema.org/additionalType additionalType} to add tourist relevant properties to any other {@link https://schema.org/Place Place}. A {@link https://schema.org/TouristDestination TouristDestination} is defined as a {@link https://schema.org/Place Place} that contains, or is colocated with, one or more {@link https://schema.org/TouristAttraction TouristAttraction}s, often linked by a similar theme or interest to a particular {@link https://schema.org/touristType touristType}. The {@link http://www2.unwto.org/ UNWTO} defines Destination (main destination of a tourism trip) as the place visited that is central to the decision to take the trip. (See examples below). */
 export type TouristDestination = TouristDestinationLeaf | string;
 
 interface TouristInformationCenterLeaf extends LocalBusinessBase {
@@ -11556,7 +11560,7 @@ interface TouristTripBase extends TripBase {
 interface TouristTripLeaf extends TouristTripBase {
     "@type": "schema:TouristTrip";
 }
-/** A tourist trip. A created itinerary of visits to one or more places of interest ([[TouristAttraction]]/[[TouristDestination]]) often linked by a similar theme, geographic area, or interest to a particular [[touristType]]. The {@link http://www2.unwto.org/ UNWTO} defines tourism trip as the Trip taken by visitors. (See examples below). */
+/** A tourist trip. A created itinerary of visits to one or more places of interest ({@link https://schema.org/TouristAttraction TouristAttraction}/{@link https://schema.org/TouristDestination TouristDestination}) often linked by a similar theme, geographic area, or interest to a particular {@link https://schema.org/touristType touristType}. The {@link http://www2.unwto.org/ UNWTO} defines tourism trip as the Trip taken by visitors. (See examples below). */
 export type TouristTrip = TouristTripLeaf;
 
 interface ToyStoreLeaf extends LocalBusinessBase {
@@ -11576,8 +11580,8 @@ interface TrackActionLeaf extends TrackActionBase {
  * An agent tracks an object for updates.
  *
  * Related actions:
- * - [[FollowAction]]: Unlike FollowAction, TrackAction refers to the interest on the location of innanimates objects.
- * - [[SubscribeAction]]: Unlike SubscribeAction, TrackAction refers to the interest on the location of innanimate objects.
+ * - {@link https://schema.org/FollowAction FollowAction}: Unlike FollowAction, TrackAction refers to the interest on the location of innanimates objects.
+ * - {@link https://schema.org/SubscribeAction SubscribeAction}: Unlike SubscribeAction, TrackAction refers to the interest on the location of innanimate objects.
  */
 export type TrackAction = TrackActionLeaf;
 
@@ -11586,14 +11590,14 @@ interface TradeActionBase extends ActionBase {
      * The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes.
      *
      * Usage guidelines:
-     * - Use the [[priceCurrency]] property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
+     * - Use the {@link https://schema.org/priceCurrency priceCurrency} property (with standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR") instead of including {@link http://en.wikipedia.org/wiki/Dollar_sign#Currencies_that_use_the_dollar_or_peso_sign ambiguous symbols} such as '$' in the value.
      * - Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
      * - Note that both {@link http://www.w3.org/TR/xhtml-rdfa-primer/#using-the-content-attribute RDFa} and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
      * - Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
      */
     "schema:price"?: SchemaValue<Number | Text, "schema:price">;
     /**
-     * The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.
+     * The currency of the price, or a price component when attached to {@link https://schema.org/PriceSpecification PriceSpecification} and its subtypes.
      *
      * Use standard formats: {@link http://en.wikipedia.org/wiki/ISO_4217 ISO 4217 currency format} e.g. "USD"; {@link https://en.wikipedia.org/wiki/List_of_cryptocurrencies Ticker symbol} for cryptocurrencies e.g. "BTC"; well known names for {@link https://en.wikipedia.org/wiki/Local_exchange_trading_system Local Exchange Tradings Systems} (LETS) and other currency types e.g. "Ithaca HOUR".
      */
@@ -11613,7 +11617,7 @@ interface TrainReservationLeaf extends ReservationBase {
 /**
  * A reservation for train travel.
  *
- * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].
+ * Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use {@link https://schema.org/Offer Offer}.
  */
 export type TrainReservation = TrainReservationLeaf;
 
@@ -11694,15 +11698,15 @@ interface TripBase extends ThingBase {
     "schema:arrivalTime"?: SchemaValue<DateTime | Time, "schema:arrivalTime">;
     /** The expected departure time. */
     "schema:departureTime"?: SchemaValue<DateTime | Time, "schema:departureTime">;
-    /** Destination(s) ( [[Place]] ) that make up a trip. For a trip where destination order is important use [[ItemList]] to specify that order (see examples). */
+    /** Destination(s) ( {@link https://schema.org/Place Place} ) that make up a trip. For a trip where destination order is important use {@link https://schema.org/ItemList ItemList} to specify that order (see examples). */
     "schema:itinerary"?: SchemaValue<ItemList | Place | IdReference, "schema:itinerary">;
-    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use [[businessFunction]] to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a [[Demand]]. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
+    /** An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, perform a service, or give away tickets to an event. Use {@link https://schema.org/businessFunction businessFunction} to indicate the kind of transaction offered, i.e. sell, lease, etc. This property can also be used to describe a {@link https://schema.org/Demand Demand}. While this property is listed as expected on a number of common types, it can be used in others. In that case, using a second type, such as Product or a subtype of Product, can clarify the nature of the offer. */
     "schema:offers"?: SchemaValue<Demand | Offer | IdReference, "schema:offers">;
-    /** Identifies that this [[Trip]] is a subTrip of another Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
+    /** Identifies that this {@link https://schema.org/Trip Trip} is a subTrip of another Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
     "schema:partOfTrip"?: SchemaValue<Trip | IdReference, "schema:partOfTrip">;
     /** The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. */
     "schema:provider"?: SchemaValue<Organization | Person | IdReference, "schema:provider">;
-    /** Identifies a [[Trip]] that is a subTrip of this Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
+    /** Identifies a {@link https://schema.org/Trip Trip} that is a subTrip of this Trip. For example Day 1, Day 2, etc. of a multi-day trip. */
     "schema:subTrip"?: SchemaValue<Trip | IdReference, "schema:subTrip">;
 }
 interface TripLeaf extends TripBase {
@@ -11715,7 +11719,7 @@ interface TVClipBase extends ClipBase {
     /**
      * The TV series to which this episode or season belongs.
      *
-     * @deprecated Consider using {@link https://schema.org/partOfSeries https://schema.org/partOfSeries} instead.
+     * @deprecated Consider using https://schema.org/partOfSeries instead.
      */
     "schema:partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "schema:partOfTVSeries">;
 }
@@ -11729,7 +11733,7 @@ interface TVEpisodeBase extends EpisodeBase {
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
@@ -11737,17 +11741,17 @@ interface TVEpisodeBase extends EpisodeBase {
     /**
      * The TV series to which this episode or season belongs.
      *
-     * @deprecated Consider using {@link https://schema.org/partOfSeries https://schema.org/partOfSeries} instead.
+     * @deprecated Consider using https://schema.org/partOfSeries instead.
      */
     "schema:partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "schema:partOfTVSeries">;
     /** Languages in which subtitles/captions are available, in {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard format}. */
     "schema:subtitleLanguage"?: SchemaValue<Language | Text | IdReference, "schema:subtitleLanguage">;
     /**
-     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) [[identifier]] representing at the most general/abstract level, a work of film or television.
+     * An {@link https://eidr.org/ EIDR} (Entertainment Identifier Registry) {@link https://schema.org/identifier identifier} representing at the most general/abstract level, a work of film or television.
      *
-     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See [[editEIDR]].
+     * For example, the motion picture known as "Ghostbusters" has a titleEIDR of "10.5240/7EC7-228A-510A-053E-CBB8-J". This title (or work) may have several variants, which EIDR calls "edits". See {@link https://schema.org/editEIDR editEIDR}.
      *
-     * Since schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.
+     * Since schema.org types like {@link https://schema.org/Movie Movie} and {@link https://schema.org/TVEpisode TVEpisode} can be used for both works and their multiple expressions, it is possible to use {@link https://schema.org/titleEIDR titleEIDR} alone (for a general description), or alongside {@link https://schema.org/editEIDR editEIDR} for a more edit-specific description.
      */
     "schema:titleEIDR"?: SchemaValue<Text | URL, "schema:titleEIDR">;
 }
@@ -11761,7 +11765,7 @@ interface TVSeasonBase extends CreativeWorkSeasonBase, CreativeWorkBase {
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
@@ -11769,7 +11773,7 @@ interface TVSeasonBase extends CreativeWorkSeasonBase, CreativeWorkBase {
     /**
      * The TV series to which this episode or season belongs.
      *
-     * @deprecated Consider using {@link https://schema.org/partOfSeries https://schema.org/partOfSeries} instead.
+     * @deprecated Consider using https://schema.org/partOfSeries instead.
      */
     "schema:partOfTVSeries"?: SchemaValue<TVSeries | IdReference, "schema:partOfTVSeries">;
 }
@@ -11785,7 +11789,7 @@ interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** A season that is part of the media series. */
@@ -11793,7 +11797,7 @@ interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
-     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of [[CreativeWork]] it is difficult to provide fully general guidance, and properties such as [[contentLocation]] and [[locationCreated]] may be more applicable.
+     * In the case of TV and movie, this would be the country of the principle offices of the production company or individual responsible for the movie. For other kinds of {@link https://schema.org/CreativeWork CreativeWork} it is difficult to provide fully general guidance, and properties such as {@link https://schema.org/contentLocation contentLocation} and {@link https://schema.org/locationCreated locationCreated} may be more applicable.
      *
      * In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.
      */
@@ -11803,7 +11807,7 @@ interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** An episode of a tv, radio or game media within a series or season. */
@@ -11811,7 +11815,7 @@ interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
     /**
      * An episode of a TV/radio series or season.
      *
-     * @deprecated Consider using {@link https://schema.org/episode https://schema.org/episode} instead.
+     * @deprecated Consider using https://schema.org/episode instead.
      */
     "schema:episodes"?: SchemaValue<Episode | IdReference, "schema:episodes">;
     /** The composer of the soundtrack. */
@@ -11825,13 +11829,13 @@ interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/containsSeason https://schema.org/containsSeason} instead.
+     * @deprecated Consider using https://schema.org/containsSeason instead.
      */
     "schema:season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "schema:season">;
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/season https://schema.org/season} instead.
+     * @deprecated Consider using https://schema.org/season instead.
      */
     "schema:seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "schema:seasons">;
     /** The trailer of a movie or tv/radio series, season, episode, etc. */
@@ -11846,7 +11850,7 @@ export type TVSeries = TVSeriesLeaf;
 interface TypeAndQuantityNodeBase extends ThingBase {
     /** The quantity of the goods included in the offer. */
     "schema:amountOfThisGood"?: SchemaValue<Number, "schema:amountOfThisGood">;
-    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is {@link http://purl.org/goodrelations/v1#Sell http://purl.org/goodrelations/v1#Sell}. */
+    /** The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell. */
     "schema:businessFunction"?: SchemaValue<BusinessFunction | IdReference, "schema:businessFunction">;
     /** The product that this structured value is referring to. */
     "schema:typeOfGood"?: SchemaValue<Product | Service | IdReference, "schema:typeOfGood">;
@@ -11874,7 +11878,7 @@ interface UICommentActionBase extends CommentActionBase, UICommunicateActionBase
 interface UICommentActionLeaf extends UICommentActionBase {
     "@type": "uxi:UICommentAction";
 }
-/** A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends {@link https://schema.org/CommentAction https://schema.org/CommentAction} to add more User Interface-specific features. */
+/** A Comment Action describes the act of creating a comment about a subject. UICommunicateActions have these properties: 'agent' (commentator), 'about' (the comment's topic), recipient (if another commentator is mentioned). Extends https://schema.org/CommentAction to add more User Interface-specific features. */
 export type UICommentAction = UICommentActionLeaf;
 
 interface UICommunicateActionBase extends CommunicateActionBase, UIActionBase {
@@ -11882,7 +11886,7 @@ interface UICommunicateActionBase extends CommunicateActionBase, UIActionBase {
 interface UICommunicateActionLeaf extends UICommunicateActionBase {
     "@type": "uxi:UICommunicateAction";
 }
-/** Actions where two users exchange information, e.g. UICommentAction, UIReplyAction, UIReactAction. Extends {@link https://schema.org/CommunicateAction https://schema.org/CommunicateAction} to add properties specific to user interfaces. */
+/** Actions where two users exchange information, e.g. UICommentAction, UIReplyAction, UIReactAction. Extends https://schema.org/CommunicateAction to add properties specific to user interfaces. */
 export type UICommunicateAction = UICommunicateActionLeaf | UICommentAction | UIReactAction | UIReplyAction;
 
 interface UIConfirmActionBase extends InformActionBase, UIActionBase {
@@ -11890,13 +11894,13 @@ interface UIConfirmActionBase extends InformActionBase, UIActionBase {
 interface UIConfirmActionLeaf extends UIConfirmActionBase {
     "@type": "uxi:UIConfirmAction";
 }
-/** A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected. Extends {@link https://schema.org/ConfirmAction https://schema.org/ConfirmAction}, which should be used if the confirmation happens offline. */
+/** A user action to confirm a prompt from the application. Can be used next to a dismiss-button on a banner, notification or modal, but also the answer to a RSVP. Notifies that a future event/action is going to happen as expected. Extends https://schema.org/ConfirmAction, which should be used if the confirmation happens offline. */
 export type UIConfirmAction = UIConfirmActionLeaf;
 
 interface UIDataTypeLeaf extends ElementBase {
     "@type": "uxi:UIDataType";
 }
-/** The root class for all UI DataTypes. E.g. on/off -> true/false in the case of BooleanType. Formally extends {@link https://schema.org/DataType https://schema.org/DataType}, but support can't be 100% guaranteed. */
+/** The root class for all UI DataTypes. E.g. on/off -> true/false in the case of BooleanType. Formally extends https://schema.org/DataType, but support can't be 100% guaranteed. */
 export type UIDataType = UIDataTypeLeaf | BooleanType | ColorCodeType | MediaDataType | NumericType | TextType;
 
 interface UIDeleteActionBase extends UpdateActionBase, UIActionBase {
@@ -11904,7 +11908,7 @@ interface UIDeleteActionBase extends UpdateActionBase, UIActionBase {
 interface UIDeleteActionLeaf extends UIDeleteActionBase {
     "@type": "uxi:UIDeleteAction";
 }
-/** A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative. Extends {@link https://schema.org/DeleteAction https://schema.org/DeleteAction}, to design flows like confirm-before-delete more easily. */
+/** A user action to edit content or a group of items by removing an item. Often requires users to confirm the deletion, or is a hidden feature to prevent users from accidentally deleting. UX ranges from swiping-to-delete over trashcan-buttons to dragging into a trashbin. Consider offering archiving content as an alternative. Extends https://schema.org/DeleteAction, to design flows like confirm-before-delete more easily. */
 export type UIDeleteAction = UIDeleteActionLeaf;
 
 interface UIDownloadActionLeaf extends UIActionBase {
@@ -11928,7 +11932,7 @@ interface UIElementBase extends ElementBase {
     "uxi:highlight"?: SchemaValue<UIElement | IdReference, "uxi:highlight">;
     /** Importance is a property on an UI Element to order elements toward the user. The order expresses a fixed significance over other elements. When issues happen in the application, Error notifications should get highest importance, followed by Warnings, and Alerts. */
     "uxi:importance"?: SchemaValue<IssueSeverityType | IdReference, "uxi:importance">;
-    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be {@link https://schema.org/Date https://schema.org/Date} or {@link https://schema.org/DateTime https://schema.org/DateTime}. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
+    /** The input range defines the type(s) of data which a uxi:UIElement can consume. This can be used to choose UIElements automatically. E.g. in the case of a date picker this could be https://schema.org/Date or https://schema.org/DateTime. For the (sub-)uxi:UIElement for selecting a year inside that date picker, a uxi:UIPropertyValueSpecification could be used to narrow down the selection. Also useful for converting, sending or receiving data. */
     "uxi:inputRange"?: SchemaValue<Thing | UIDataType | IdReference, "uxi:inputRange">;
     /** The input trigger validator can be used with side-effect handlers, so that they only trigger when the input is valid. */
     "uxi:inputTriggerValidator"?: SchemaValue<Validator | IdReference, "uxi:inputTriggerValidator">;
@@ -11998,7 +12002,7 @@ interface UIReactActionBase extends ActionBase, UICommunicateActionBase {
 interface UIReactActionLeaf extends UIReactActionBase {
     "@type": "uxi:UIReactAction";
 }
-/** A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends {@link https://schema.org/ReactAction https://schema.org/ReactAction} to add more user interface-related features. */
+/** A UIReactAction is the act of responding instinctively and emotionally to an object, expressing a sentiment. The user experience of your applications will hopefully lead to such reactions. Extends https://schema.org/ReactAction to add more user interface-related features. */
 export type UIReactAction = UIReactActionLeaf;
 
 interface UIReplyActionBase extends ReplyActionBase, UICommunicateActionBase {
@@ -12006,13 +12010,13 @@ interface UIReplyActionBase extends ReplyActionBase, UICommunicateActionBase {
 interface UIReplyActionLeaf extends UIReplyActionBase {
     "@type": "uxi:UIReplyAction";
 }
-/** A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from {@link https://schema.org/ReplyAction https://schema.org/ReplyAction}, but the user interface needs more details. */
+/** A UIReplyAction is similar to a UICommentAction, and refers to the act of responding to a question/message asked/sent by the object. Derived from https://schema.org/ReplyAction, but the user interface needs more details. */
 export type UIReplyAction = UIReplyActionLeaf;
 
 interface UIStackLeaf extends ElementBase {
     "@type": "uxi:UIStack";
 }
-/** UIStack is an approach to interface design that includes non-ideal states. These can happen through user interaction or for technical reasons. It includes layers of state, and has been authored by Scott Hurff: {@link https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack} */
+/** UIStack is an approach to interface design that includes non-ideal states. These can happen through user interaction or for technical reasons. It includes layers of state, and has been authored by Scott Hurff: https://www.scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack/#theuistack */
 export type UIStack = UIStackLeaf | BlankState | ErrorState | IdealState | LoadingState | PartialState;
 
 interface UIStateLeaf extends ElementBase {
@@ -12024,7 +12028,7 @@ export type UIState = UIStateLeaf | UIElementState | UserActionState;
 interface UITableLeaf extends ContainerUIElementBase {
     "@type": "uxi:UITable";
 }
-/** A UI Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows. UITables need more properties than {@link https://schema.org/Table https://schema.org/Table} provides to function, so it's not extending from the schema.org type. */
+/** A UI Table is a Container that shows other UI elements in rows and columns. This would be true for a grid as well, but the elements in tables are organized by their row and column, whereas in grids are independent. ColumnHeaders can be used for sorting, filtering, and Rowheaders for marking rows. UITables need more properties than https://schema.org/Table provides to function, so it's not extending from the schema.org type. */
 export type UITable = UITableLeaf;
 
 interface UKNonprofitTypeLeaf extends EnumerationBase {
@@ -12054,7 +12058,7 @@ interface UnitPriceSpecificationBase extends PriceSpecificationBase {
     "schema:billingStart"?: SchemaValue<Number, "schema:billingStart">;
     /** Identifies a price component (for example, a line item on an invoice), part of the total price for an offer. */
     "schema:priceComponentType"?: SchemaValue<PriceComponentTypeEnumeration | IdReference, "schema:priceComponentType">;
-    /** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the [[priceType]] property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
+    /** Defines the type of a price specified for an offered product, for example a list price, a (temporary) sale price or a manufacturer suggested retail price. If multiple prices are specified for an offer the {@link https://schema.org/priceType priceType} property can be used to identify the type of each such specified price. The value of priceType can be specified as a value from enumeration PriceTypeEnumeration or as a free form text string for price types that are not already predefined in PriceTypeEnumeration. */
     "schema:priceType"?: SchemaValue<PriceTypeEnumeration | Text | IdReference, "schema:priceType">;
     /** The reference quantity for which a certain price applies, e.g. 1 EUR per 4 kWh of electricity. This property is a replacement for unitOfMeasurement for the advanced cases where the price does not relate to a standard unit. */
     "schema:referenceQuantity"?: SchemaValue<QuantitativeValue | IdReference, "schema:referenceQuantity">;
@@ -12076,8 +12080,8 @@ interface UnRegisterActionLeaf extends ActionBase {
  * The act of un-registering from a service.
  *
  * Related actions:
- * - [[RegisterAction]]: antonym of UnRegisterAction.
- * - [[LeaveAction]]: Unlike LeaveAction, UnRegisterAction implies that you are unregistering from a service you werer previously registered, rather than leaving a team/group of people.
+ * - {@link https://schema.org/RegisterAction RegisterAction}: antonym of UnRegisterAction.
+ * - {@link https://schema.org/LeaveAction LeaveAction}: Unlike LeaveAction, UnRegisterAction implies that you are unregistering from a service you werer previously registered, rather than leaving a team/group of people.
  */
 export type UnRegisterAction = UnRegisterActionLeaf;
 
@@ -12091,7 +12095,7 @@ interface UpdateActionBase extends ActionBase {
     /**
      * A sub property of object. The collection target of the action.
      *
-     * @deprecated Consider using {@link https://schema.org/targetCollection https://schema.org/targetCollection} instead.
+     * @deprecated Consider using https://schema.org/targetCollection instead.
      */
     "schema:collection"?: SchemaValue<Thing | IdReference, "schema:collection">;
     /** A sub property of object. The collection target of the action. */
@@ -12140,7 +12144,7 @@ interface UserBlocksLeaf extends EventBase {
     "@type": "schema:UserBlocks";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12150,7 +12154,7 @@ interface UserCheckinsLeaf extends EventBase {
     "@type": "schema:UserCheckins";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12172,7 +12176,7 @@ interface UserCommentsLeaf extends UserCommentsBase {
     "@type": "schema:UserComments";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12182,7 +12186,7 @@ interface UserDownloadsLeaf extends EventBase {
     "@type": "schema:UserDownloads";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12192,7 +12196,7 @@ interface UserInteractionLeaf extends EventBase {
     "@type": "schema:UserInteraction";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12202,7 +12206,7 @@ interface UserLikesLeaf extends EventBase {
     "@type": "schema:UserLikes";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12212,7 +12216,7 @@ interface UserPageVisitsLeaf extends EventBase {
     "@type": "schema:UserPageVisits";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12222,7 +12226,7 @@ interface UserPlaysLeaf extends EventBase {
     "@type": "schema:UserPlays";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12232,7 +12236,7 @@ interface UserPlusOnesLeaf extends EventBase {
     "@type": "schema:UserPlusOnes";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12241,14 +12245,14 @@ export type UserPlusOnes = UserPlusOnesLeaf;
 interface UserReviewLeaf extends ReviewBase {
     "@type": "schema:UserReview";
 }
-/** A review created by an end-user (e.g. consumer, purchaser, attendee etc.), in contrast with [[CriticReview]]. */
+/** A review created by an end-user (e.g. consumer, purchaser, attendee etc.), in contrast with {@link https://schema.org/CriticReview CriticReview}. */
 export type UserReview = UserReviewLeaf;
 
 interface UserTweetsLeaf extends EventBase {
     "@type": "schema:UserTweets";
 }
 /**
- * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].
+ * UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use {@link https://schema.org/Action Action}-based vocabulary, alongside types such as {@link https://schema.org/Comment Comment}.
  *
  * @deprecated Use InteractionCounter instead.
  */
@@ -12275,7 +12279,7 @@ interface VehicleBase extends ProductBase {
      * The time needed to accelerate the vehicle from a given start velocity to a given target velocity.
      *
      * Typical unit code(s): SEC for seconds
-     * - Note: There are unfortunately no standard unit codes for seconds/0..100 km/h or seconds/0..60 mph. Simply use "SEC" for seconds and indicate the velocities in the [[name]] of the [[QuantitativeValue]], or use [[valueReference]] with a [[QuantitativeValue]] of 0..60 mph or 0..100 km/h to specify the reference speeds.
+     * - Note: There are unfortunately no standard unit codes for seconds/0..100 km/h or seconds/0..60 mph. Simply use "SEC" for seconds and indicate the velocities in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue}, or use {@link https://schema.org/valueReference valueReference} with a {@link https://schema.org/QuantitativeValue QuantitativeValue} of 0..60 mph or 0..100 km/h to specify the reference speeds.
      */
     "schema:accelerationTime"?: SchemaValue<QuantitativeValue | IdReference, "schema:accelerationTime">;
     /** Indicates the design and body style of the vehicle (e.g. station wagon, hatchback, etc.). */
@@ -12287,7 +12291,7 @@ interface VehicleBase extends ProductBase {
      *
      * Typical unit code(s): LTR for liters, FTQ for cubic foot/feet
      *
-     * Note: You can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * Note: You can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:cargoVolume"?: SchemaValue<QuantitativeValue | IdReference, "schema:cargoVolume">;
     /** The date of the first registration of the vehicle with the respective public authorities. */
@@ -12304,16 +12308,16 @@ interface VehicleBase extends ProductBase {
     "schema:fuelCapacity"?: SchemaValue<QuantitativeValue | IdReference, "schema:fuelCapacity">;
     /**
      * The amount of fuel consumed for traveling a particular distance or temporal duration with the given vehicle (e.g. liters per 100 km).
-     * - Note 1: There are unfortunately no standard unit codes for liters per 100 km. Use [[unitText]] to indicate the unit of measurement, e.g. L/100 km.
-     * - Note 2: There are two ways of indicating the fuel consumption, [[fuelConsumption]] (e.g. 8 liters per 100 km) and [[fuelEfficiency]] (e.g. 30 miles per gallon). They are reciprocal.
-     * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use [[valueReference]] to link the value for the fuel consumption to another value.
+     * - Note 1: There are unfortunately no standard unit codes for liters per 100 km. Use {@link https://schema.org/unitText unitText} to indicate the unit of measurement, e.g. L/100 km.
+     * - Note 2: There are two ways of indicating the fuel consumption, {@link https://schema.org/fuelConsumption fuelConsumption} (e.g. 8 liters per 100 km) and {@link https://schema.org/fuelEfficiency fuelEfficiency} (e.g. 30 miles per gallon). They are reciprocal.
+     * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use {@link https://schema.org/valueReference valueReference} to link the value for the fuel consumption to another value.
      */
     "schema:fuelConsumption"?: SchemaValue<QuantitativeValue | IdReference, "schema:fuelConsumption">;
     /**
      * The distance traveled per unit of fuel used; most commonly miles per gallon (mpg) or kilometers per liter (km/L).
-     * - Note 1: There are unfortunately no standard unit codes for miles per gallon or kilometers per liter. Use [[unitText]] to indicate the unit of measurement, e.g. mpg or km/L.
-     * - Note 2: There are two ways of indicating the fuel consumption, [[fuelConsumption]] (e.g. 8 liters per 100 km) and [[fuelEfficiency]] (e.g. 30 miles per gallon). They are reciprocal.
-     * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use [[valueReference]] to link the value for the fuel economy to another value.
+     * - Note 1: There are unfortunately no standard unit codes for miles per gallon or kilometers per liter. Use {@link https://schema.org/unitText unitText} to indicate the unit of measurement, e.g. mpg or km/L.
+     * - Note 2: There are two ways of indicating the fuel consumption, {@link https://schema.org/fuelConsumption fuelConsumption} (e.g. 8 liters per 100 km) and {@link https://schema.org/fuelEfficiency fuelEfficiency} (e.g. 30 miles per gallon). They are reciprocal.
+     * - Note 3: Often, the absolute value is useful only when related to driving speed ("at 80 km/h") or usage pattern ("city traffic"). You can use {@link https://schema.org/valueReference valueReference} to link the value for the fuel economy to another value.
      */
     "schema:fuelEfficiency"?: SchemaValue<QuantitativeValue | IdReference, "schema:fuelEfficiency">;
     /** The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle. */
@@ -12360,10 +12364,10 @@ interface VehicleBase extends ProductBase {
      * The permitted weight of passengers and cargo, EXCLUDING the weight of the empty vehicle.
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: Many databases specify the permitted TOTAL weight instead, which is the sum of [[weight]] and [[payload]]
-     * - Note 2: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 3: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].
-     * - Note 4: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: Many databases specify the permitted TOTAL weight instead, which is the sum of {@link https://schema.org/weight weight} and {@link https://schema.org/payload payload}
+     * - Note 2: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 3: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
+     * - Note 4: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:payload"?: SchemaValue<QuantitativeValue | IdReference, "schema:payload">;
     /** The date of production of the item, e.g. vehicle. */
@@ -12377,12 +12381,12 @@ interface VehicleBase extends ProductBase {
      */
     "schema:seatingCapacity"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:seatingCapacity">;
     /**
-     * The speed range of the vehicle. If the vehicle is powered by an engine, the upper limit of the speed range (indicated by [[maxValue]] should be the maximum speed achievable under regular conditions.
+     * The speed range of the vehicle. If the vehicle is powered by an engine, the upper limit of the speed range (indicated by {@link https://schema.org/maxValue maxValue} should be the maximum speed achievable under regular conditions.
      *
      * Typical unit code(s): KMH for km/h, HM for mile per hour (0.447 04 m/s), KNT for knot
      *
-     * *Note 1: Use [[minValue]] and [[maxValue]] to indicate the range. Typically, the minimal value is zero.
-     * - Note 2: There are many different ways of measuring the speed range. You can link to information about how the given value has been determined using the [[valueReference]] property.
+     * *Note 1: Use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate the range. Typically, the minimal value is zero.
+     * - Note 2: There are many different ways of measuring the speed range. You can link to information about how the given value has been determined using the {@link https://schema.org/valueReference valueReference} property.
      */
     "schema:speed"?: SchemaValue<QuantitativeValue | IdReference, "schema:speed">;
     /** The position of the steering wheel or similar device (mostly for cars). */
@@ -12391,18 +12395,18 @@ interface VehicleBase extends ProductBase {
      * The permitted vertical load (TWR) of a trailer attached to the vehicle. Also referred to as Tongue Load Rating (TLR) or Vertical Load Rating (VLR)
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].
-     * - Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
+     * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:tongueWeight"?: SchemaValue<QuantitativeValue | IdReference, "schema:tongueWeight">;
     /**
      * The permitted weight of a trailer attached to the vehicle.
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].
-     * - Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
+     * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:trailerWeight"?: SchemaValue<QuantitativeValue | IdReference, "schema:trailerWeight">;
     /** A short text indicating the configuration of the vehicle, e.g. '5dr hatchback ST 2.5 MT 225 hp' or 'limited edition'. */
@@ -12431,9 +12435,9 @@ interface VehicleBase extends ProductBase {
      * The permitted total weight of the loaded vehicle, including passengers and cargo and the weight of the empty vehicle.
      *
      * Typical unit code(s): KGM for kilogram, LBR for pound
-     * - Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.
-     * - Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].
-     * - Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.
+     * - Note 1: You can indicate additional information in the {@link https://schema.org/name name} of the {@link https://schema.org/QuantitativeValue QuantitativeValue} node.
+     * - Note 2: You may also link to a {@link https://schema.org/QualitativeValue QualitativeValue} node that provides additional information using {@link https://schema.org/valueReference valueReference}.
+     * - Note 3: Note that you can use {@link https://schema.org/minValue minValue} and {@link https://schema.org/maxValue maxValue} to indicate ranges.
      */
     "schema:weightTotal"?: SchemaValue<QuantitativeValue | IdReference, "schema:weightTotal">;
     /**
@@ -12487,7 +12491,7 @@ interface VideoGameBase extends SoftwareApplicationBase, GameBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** Cheat codes to the game. */
@@ -12497,7 +12501,7 @@ interface VideoGameBase extends SoftwareApplicationBase, GameBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** The electronic systems used to play {@link http://en.wikipedia.org/wiki/Category:Video_game_platforms video games}. */
@@ -12531,7 +12535,7 @@ interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
     /** A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage). */
@@ -12545,7 +12549,7 @@ interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
     /** An episode of a tv, radio or game media within a series or season. */
@@ -12553,7 +12557,7 @@ interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
     /**
      * An episode of a TV/radio series or season.
      *
-     * @deprecated Consider using {@link https://schema.org/episode https://schema.org/episode} instead.
+     * @deprecated Consider using https://schema.org/episode instead.
      */
     "schema:episodes"?: SchemaValue<Episode | IdReference, "schema:episodes">;
     /** An item is an object within the game world that can be collected by a player or, occasionally, a non-player character. */
@@ -12579,13 +12583,13 @@ interface VideoGameSeriesBase extends CreativeWorkSeriesBase {
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/containsSeason https://schema.org/containsSeason} instead.
+     * @deprecated Consider using https://schema.org/containsSeason instead.
      */
     "schema:season"?: SchemaValue<CreativeWorkSeason | URL | IdReference, "schema:season">;
     /**
      * A season in a media series.
      *
-     * @deprecated Consider using {@link https://schema.org/season https://schema.org/season} instead.
+     * @deprecated Consider using https://schema.org/season instead.
      */
     "schema:seasons"?: SchemaValue<CreativeWorkSeason | IdReference, "schema:seasons">;
     /** The trailer of a movie or tv/radio series, season, episode, etc. */
@@ -12603,20 +12607,20 @@ interface VideoObjectBase extends MediaObjectBase {
     /**
      * An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/actor https://schema.org/actor} instead.
+     * @deprecated Consider using https://schema.org/actor instead.
      */
     "schema:actors"?: SchemaValue<Person | IdReference, "schema:actors">;
-    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]]. */
+    /** The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the {@link https://schema.org/encodingFormat encodingFormat}. */
     "schema:caption"?: SchemaValue<MediaObject | Text | IdReference, "schema:caption">;
     /** A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip. */
     "schema:director"?: SchemaValue<Person | IdReference, "schema:director">;
     /**
      * A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.
      *
-     * @deprecated Consider using {@link https://schema.org/director https://schema.org/director} instead.
+     * @deprecated Consider using https://schema.org/director instead.
      */
     "schema:directors"?: SchemaValue<Person | IdReference, "schema:directors">;
-    /** Represents textual captioning from a [[MediaObject]], e.g. text of a 'meme'. */
+    /** Represents textual captioning from a {@link https://schema.org/MediaObject MediaObject}, e.g. text of a 'meme'. */
     "schema:embeddedTextCaption"?: SchemaValue<Text, "schema:embeddedTextCaption">;
     /** The composer of the soundtrack. */
     "schema:musicBy"?: SchemaValue<MusicGroup | Person | IdReference, "schema:musicBy">;
@@ -12638,7 +12642,7 @@ export type VideoObject = VideoObjectLeaf | VideoObjectSnapshot;
 interface VideoObjectSnapshotLeaf extends VideoObjectBase {
     "@type": "schema:VideoObjectSnapshot";
 }
-/** A specific and exact (byte-for-byte) version of a [[VideoObject]]. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
+/** A specific and exact (byte-for-byte) version of a {@link https://schema.org/VideoObject VideoObject}. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren't represented in their actual content, do not affect this notion of identity. */
 export type VideoObjectSnapshot = VideoObjectSnapshotLeaf;
 
 interface ViewActionLeaf extends ConsumeActionBase {
@@ -12685,7 +12689,7 @@ interface VisualArtworkBase extends CreativeWorkBase {
     /**
      * A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.
      *
-     * @deprecated Consider using {@link https://schema.org/artworkSurface https://schema.org/artworkSurface} instead.
+     * @deprecated Consider using https://schema.org/artworkSurface instead.
      */
     "schema:surface"?: SchemaValue<Text | URL, "schema:surface">;
     /** The width of the item. */
@@ -12750,9 +12754,9 @@ interface WarrantyScopeLeaf extends EnumerationBase {
  * A range of of services that will be provided to a customer free of charge in case of a defect or malfunction of a product.
  *
  * Commonly used values:
- * - {@link http://purl.org/goodrelations/v1#Labor-BringIn http://purl.org/goodrelations/v1#Labor-BringIn}
- * - {@link http://purl.org/goodrelations/v1#PartsAndLabor-BringIn http://purl.org/goodrelations/v1#PartsAndLabor-BringIn}
- * - {@link http://purl.org/goodrelations/v1#PartsAndLabor-PickUp http://purl.org/goodrelations/v1#PartsAndLabor-PickUp}
+ * - http://purl.org/goodrelations/v1#Labor-BringIn
+ * - http://purl.org/goodrelations/v1#PartsAndLabor-BringIn
+ * - http://purl.org/goodrelations/v1#PartsAndLabor-PickUp
  */
 export type WarrantyScope = WarrantyScopeLeaf;
 
@@ -12815,7 +12819,7 @@ export type WebApplication = WebApplicationLeaf;
 interface WebContentLeaf extends CreativeWorkBase {
     "@type": "schema:WebContent";
 }
-/** WebContent is a type representing all [[WebPage]], [[WebSite]] and [[WebPageElement]] content. It is sometimes the case that detailed distinctions between Web pages, sites and their parts is not always important or obvious. The [[WebContent]] type makes it easier to describe Web-addressable content without requiring such distinctions to always be stated. (The intent is that the existing types [[WebPage]], [[WebSite]] and [[WebPageElement]] will eventually be declared as subtypes of [[WebContent]]). */
+/** WebContent is a type representing all {@link https://schema.org/WebPage WebPage}, {@link https://schema.org/WebSite WebSite} and {@link https://schema.org/WebPageElement WebPageElement} content. It is sometimes the case that detailed distinctions between Web pages, sites and their parts is not always important or obvious. The {@link https://schema.org/WebContent WebContent} type makes it easier to describe Web-addressable content without requiring such distinctions to always be stated. (The intent is that the existing types {@link https://schema.org/WebPage WebPage}, {@link https://schema.org/WebSite WebSite} and {@link https://schema.org/WebPageElement WebPageElement} will eventually be declared as subtypes of {@link https://schema.org/WebContent WebContent}). */
 export type WebContent = WebContentLeaf | HealthTopicContent;
 
 interface WebPageBase extends CreativeWorkBase {
@@ -12836,7 +12840,7 @@ interface WebPageBase extends CreativeWorkBase {
     /**
      * The most significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.
      *
-     * @deprecated Consider using {@link https://schema.org/significantLink https://schema.org/significantLink} instead.
+     * @deprecated Consider using https://schema.org/significantLink instead.
      */
     "schema:significantLinks"?: SchemaValue<URL, "schema:significantLinks">;
     /**
@@ -12846,11 +12850,11 @@ interface WebPageBase extends CreativeWorkBase {
      *
      * 1.) _id-value_ URL references - uses _id-value_ of an element in the page being annotated. The simplest use of _speakable_ has (potentially relative) URL values, referencing identified sections of the document concerned.
      *
-     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the [[cssSelector]] property.
+     * 2.) CSS Selectors - addresses content in the annotated page, eg. via class attribute. Use the {@link https://schema.org/cssSelector cssSelector} property.
      *
-     * 3.) XPaths - addresses content via XPaths (assuming an XML view of the content). Use the [[xpath]] property.
+     * 3.) XPaths - addresses content via XPaths (assuming an XML view of the content). Use the {@link https://schema.org/xpath xpath} property.
      *
-     * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, [[SpeakableSpecification]] which is defined to be a possible value of the _speakable_ property.
+     * For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this we define a supporting type, {@link https://schema.org/SpeakableSpecification SpeakableSpecification} which is defined to be a possible value of the _speakable_ property.
      */
     "schema:speakable"?: SchemaValue<SpeakableSpecification | URL | IdReference, "schema:speakable">;
     /** One of the domain specialities to which this web page's content applies. */
@@ -12863,9 +12867,9 @@ interface WebPageLeaf extends WebPageBase {
 export type WebPage = WebPageLeaf | AboutPage | CheckoutPage | CollectionPage | ContactPage | FAQPage | ItemPage | MedicalWebPage | ProfilePage | QAPage | RealEstateListing | SearchResultsPage;
 
 interface WebPageElementBase extends CreativeWorkBase {
-    /** A CSS selector, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
+    /** A CSS selector, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
     "schema:cssSelector"?: SchemaValue<CssSelectorType, "schema:cssSelector">;
-    /** An XPath, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
+    /** An XPath, e.g. of a {@link https://schema.org/SpeakableSpecification SpeakableSpecification} or {@link https://schema.org/WebPageElement WebPageElement}. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element". */
     "schema:xpath"?: SchemaValue<XPathType, "schema:xpath">;
 }
 interface WebPageElementLeaf extends WebPageElementBase {
@@ -12953,12 +12957,12 @@ interface WPSideBarLeaf extends WebPageElementBase {
 export type WPSideBar = WPSideBarLeaf;
 
 interface WriteActionBase extends ActionBase {
-    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also [[availableLanguage]]. */
+    /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
     /**
      * A sub property of instrument. The language used on this action.
      *
-     * @deprecated Consider using {@link https://schema.org/inLanguage https://schema.org/inLanguage} instead.
+     * @deprecated Consider using https://schema.org/inLanguage instead.
      */
     "schema:language"?: SchemaValue<Language | IdReference, "schema:language">;
 }

@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10H23V11H22V21H23V22H20V21H21V11H20V10Z" fill="black" />
+    <circle cx="2" cy="2" r="1.5" transform="matrix(-1 0 0 1 10 8)" stroke="black" />
+    <circle cx="2" cy="2" r="1.5" transform="matrix(-1 0 0 1 12 19)" stroke="black" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M10 12.5C11.5741 15.4192 15.6727 15.112 17 15H19V18H17C15.1182 17.919 14.1361 18.1557 12.5 19L11.5 18C12.0231 17.3751 13.1365 16.9148 14.2256 16.5944C12.1946 16.1101 10.0021 15.1017 9 13L10 12.5Z"
+        fill="black" />
+</svg>

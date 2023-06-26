@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="21" y="29" width="2" height="1" transform="rotate(-90 21 29)" fill="black" fill-opacity="0.8"/>
+<rect x="7" y="24" width="1" height="2" transform="rotate(-90 7 24)" fill="black" fill-opacity="0.8"/>
+<rect x="17" y="28" width="1" height="1" transform="rotate(-90 17 28)" fill="black" fill-opacity="0.8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15 24V27H18V26H17V25H18V24H15Z" fill="black" fill-opacity="0.8"/>
+<rect x="13" y="24" width="2" height="1" transform="rotate(-90 13 24)" fill="black" fill-opacity="0.8"/>
+<rect x="19" y="27" width="3" height="3" transform="rotate(-90 19 27)" fill="black" fill-opacity="0.8"/>
+<path d="M22 9.5C22 10.3284 21.3284 11 20.5 11C19.6716 11 19 10.3284 19 9.5C19 8.67157 19.6716 8 20.5 8C21.3284 8 22 8.67157 22 9.5Z" fill="black" fill-opacity="0.8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 5V17H25.5V5H6.5ZM24.5 6H7.5V10.5H11.5L20.6667 16H24.5V6Z" fill="black" fill-opacity="0.8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5 27L14 27L14 24L10.5 24L10.5 25L8.5 25L8.5 24L5 24L5 27Z" fill="black" fill-opacity="0.8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24 24H23V27H27V24H26V25H24V24Z" fill="black" fill-opacity="0.8"/>
+</svg>

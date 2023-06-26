@@ -1,6 +1,6 @@
 {
   "name": "uxiverse.com",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "description": "Linked Data User Interfaces",
   "main": "index.js",
   "repository": "https://github.com/shnydercom/uxiverse.com.git",
@@ -12,9 +12,15 @@
     "react-based/*"
   ],
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "@types/jest": "^29.0.5",
+    "cross-env": "^7.0.3",
+    "jest": "^29.0.5",
+    "lerna": "^3.22.1",
+    "ts-jest": "^29.0.5"
   },
   "scripts": {
+    "jestplugin": "jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules yarn jest",
     "story": "lerna run storybook --stream",
     "libbuild": "lerna run libbuild --stream",
     "prestart": "yarn libbuild",

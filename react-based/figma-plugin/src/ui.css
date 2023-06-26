@@ -1,5 +1,570 @@
 body {
   font: 12px sans-serif;
   text-align: center;
-  margin: 12px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+#react-page {
+  height: 100%;
+}
+
+#react-portal {
+  position: absolute;
+  display: flex;
+  top: 37px;
+  left: 32px;
+  /* right: 0;
+  bottom: 0;*/
+  z-index: 100;
+}
+
+/* used for copying to clipboard in the deprecated document.execCommand way*/
+#doc-exec-dummy {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  user-select: none;
+  visibility: visible;
+  max-height: 16px;
+  height: 16px;
+  opacity: 0;
+}
+
+.main-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.find-and-replace {
+  background: #f3f3f3;
+  padding: 6px 0;
+  display: grid;
+  min-height: 88px;
+  grid-template-columns: 32px 1fr 32px;
+  grid-template-rows: 32px 12px min-content;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.find-and-replace> :nth-child(1) {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.find-and-replace> :nth-child(2) {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.find-and-replace> :nth-child(3) {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.find-and-replace> :nth-child(4) {
+  grid-area: 2 / 2 / 3 / 3;
+
+  height: 12px;
+  width: 100%;
+}
+
+.find-and-replace :nth-child(5) {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.find-and-replace :nth-child(6) {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.find-and-replace :nth-child(7) {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
+/*
+* css-only growing textarea:
+* https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
+*/
+.grow-wrap {
+  display: grid;
+  min-height: min-content;
+  max-height: 200px;
+}
+
+.grow-wrap .preview-overlay {
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+.grow-wrap.previewing>.preview-overlay {
+  visibility: visible;
+  background-color: var(--white);
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.preview-overlay ins {
+  background-color: rgba(24, 145, 251, 0.3);
+}
+
+.grow-wrap.previewing>.textarea.replace-name {
+  opacity: 0;
+}
+
+.textarea.replace-name,
+.grow-wrap .preview-overlay {
+  grid-area: 1 / 1 / 2 / 2;
+  resize: none;
+  overflow: hidden;
+  min-height: 12px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-neg-xsmall);
+  line-height: 16px;
+
+  margin: 1px 0 1px 0;
+  border: 1px solid var(--black1);
+  border-radius: var(--border-radius-small);
+  padding: 6px var(--size-xxxsmall) 6px var(--size-xxsmall);
+  text-align: start;
+}
+
+.textarea.replace-name:active,
+.textarea.replace-name:focus {
+  color: var(--black);
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.ontology-results {
+  flex: 1;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ontology-search-container {
+  height: 128px;
+  padding: 0px 32px;
+  box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ontology-search-container--inner {
+  /*margin-bottom: 12px;*/
+  display: flex;
+  flex-direction: row;
+  max-height: 128px;
+}
+
+.ontology-nav-container {
+  height: 128px;
+  padding: 0;
+  box-shadow: rgb(230, 230, 230) 0px 1px 0px 0px;
+}
+
+.found-term-list {
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 50%;
+  text-align: start;
+}
+
+.single-iri-full-view {
+  line-height: 16px;
+  min-height: 88px;
+  padding: 12px;
+  padding-right: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.single-iri-full-view--inner {
+  text-align: justify;
+  height: min-content;
+  color: #333333;
+}
+
+.iri-visualization {
+  height: 64px;
+  width: 64px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.iri-visualization--inner {
+  height: 32px;
+  width: 32px;
+
+  /* for testing: */
+  font-size: 8px;
+}
+
+.tooltip-bar {
+  padding: 2px;
+  font-size: 12px;
+  background: #f3f3f3;
+  position: relative;
+}
+
+.hostcomp-list-scrollcontainer {
+  height: fit-content;
+  max-height: 280px;
+  width: 236px;
+  border: 1px solid var(--blue);
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.hostcomp-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.hostcomp-listentry {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  align-items: center;
+}
+
+.hostcomp-listentry:hover {
+  outline: 1px solid var(--blue);
+}
+
+.hostcomp-listentry.selected,
+.hostcomp-listentry:active {
+  background-color: var(--color-bg-selected, #daebf7);
+  border-color: transparent;
+}
+
+.hostcomp-listentry-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  user-select: none;
+}
+
+.icon--text:before {
+  content: 'T';
+}
+
+.icon--vector:before {
+  content: 'Vect';
+}
+
+.icon--rectangle:before {
+  content: ' ';
+  border: 1px solid grey;
+  height: 8px;
+  width: 12px;
+}
+
+.icon-reposition {
+  background-position: 0;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.auto-complete .icon-reposition {
+  position: absolute;
+  top: -1px;
+}
+
+.auto-complete {
+  position: relative;
+}
+
+.auto-complete .select-chevron {
+  /* is only visible on hover/interaction: https://www.figma.com/file/Gj9iMcTbFbHrFq1ZWbDBuyc9/UI2%3A-Figma's-Design-System?node-id=0-7815&t=YI5bkIX9ugb7vepn-4*/
+  display: none;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  height: 28px;
+  width: 24px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-left: none;
+  border-color: rgb(245, 245, 245);
+  color: var(--fg-select-chevron-hover);
+  fill: var(--fg-select-chevron-hover);
+  visibility: visible;
+  background-color: var(--color-bg-hover, #e5e5e5);
+}
+
+.auto-complete #input-comp-name:hover+.select-chevron {
+  display: flex;
+  border-left: 1px solid rgb(245, 245, 245);
+
+  background-color: white;
+}
+
+.auto-complete .select-chevron:hover {
+  display: flex;
+  background-color: rgb(245, 245, 245);
+}
+
+.auto-complete:hover #input-comp-name:not(:hover) {
+  border: 1px solid var(--black1);
+}
+
+.auto-complete .select-chevron:active,
+.auto-complete #input-comp-name:focus+.select-chevron {
+  border-color: var(--blue);
+  background-color: var(--blue);
+  fill: white;
+  color: white;
+}
+
+
+.auto-complete .select-chevron {
+  background: #ffffff00;
+  border: 0px;
+}
+
+.auto-complete .is-searching {
+  box-shadow: inset rgb(76 184 234) 0px 1px 5px 2px;
+  transition: all 0ms;
+  transition-delay: 100ms;
+}
+
+button:disabled,
+button[disabled],
+button[disabled]:hover,
+button[disabled]:focus {
+  border-color: transparent;
+  outline-color: transparent;
+  background: none;
+  opacity: 0.3;
+}
+
+.input .icon {
+  opacity: 1;
+}
+
+.empty-ontology {
+  padding: 30px 34px;
+  height: 128px;
+  box-shadow: rgb(230 230 230) 0px 1px 0px 0px;
+}
+
+.empty-ontology>p {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #c4c4c4;
+  text-align: justify;
+}
+
+.tooltip-bar .icon-button,
+.tooltip-bar .icon-button .icon {
+  height: 18px;
+  width: 18px;
+}
+
+.tooltip-bar .trash-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.tooltip-bar .help-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.tooltip-bar .icon-button .icon {
+  background-position: -9px -8px;
+}
+
+.gone {
+  display: none;
+}
+
+.result-list {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  margin-top: 4px;
+  margin-left: 12px;
+}
+
+.result-list .empty-state {
+  text-align: center;
+  font-style: italic;
+  color: #c4c4c4;
+}
+
+.result-list .list-entry {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.result-list .list-entry .explore {
+  display: block;
+  width: 33px;
+  height: 16px;
+  padding: 0 2px 0 14px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.result-list .list-entry .no-match {
+  font-weight: normal;
+}
+
+.result-list .list-entry .match {
+  font-weight: bold;
+}
+
+.tree-view {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6px;
+  width: fit-content;
+}
+
+.tree-view .tree-entry {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.tree-view .tree-entry svg {
+  height: 16px;
+  width: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.list-entry button span:first-child {
+  padding-left: 4px;
+}
+
+.list-entry button span:last-of-type {
+  padding-right: 4px;
+}
+
+.categorized-edges-view>.category>.edges>.edge .full-value,
+.tree-view .tree-entry .full-value {
+  padding: 0 4px;
+  text-align: start;
+  max-width: 150px;
+}
+
+.list-entry button,
+.categorized-edges-view>.category>.edges>.edge button,
+.tree-view .tree-entry button {
+  background-color: white;
+  min-height: 16px;
+  border: none;
+  padding: 0;
+  line-height: 16px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-entry button:hover,
+.categorized-edges-view>.category>.edges>.edge button:hover,
+.tree-view .tree-entry button:hover {
+  background-color: rgba(24, 145, 251, 0.3);
+}
+
+.list-entry button:hover>.button-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover>.button-icon,
+.tree-view .tree-entry button:hover>.button-icon,
+.button-icon:hover {
+  opacity: 1;
+}
+
+.list-entry button:hover~button .extra-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover~button .extra-icon,
+.tree-view .tree-entry button:hover~button .extra-icon,
+.list-entry button:hover~button .copy-icon,
+.categorized-edges-view>.category>.edges>.edge>button:hover~button .copy-icon,
+.tree-view .tree-entry button:hover~button .copy-icon {
+  opacity: 0.3;
+}
+
+.button-icon {
+  opacity: 0;
+}
+
+.tree-view .tree-entry.highlight {
+  text-decoration: underline;
+}
+
+.tree-view.topmost {
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+.tree-view.topmost>.tree-entry {
+  font-style: italic;
+}
+
+.exploration {
+  display: flex;
+  flex-direction: row;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 0;
+  /* 8px 8px 0;*/
+  /*overflow-y: hidden;*/
+}
+
+.categorized-edges-view {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-bottom: 8px;
+}
+
+.categorized-edges-view>.category {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorized-edges-view>.category>.cat-label {
+  opacity: 0.6;
+  font-size: 9px;
+  margin: 0 0 0 12px;
+}
+
+.categorized-edges-view>.category>.edges {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categorized-edges-view>.category>.edges>.edge {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.reordered-button {
+  order: -1;
 }

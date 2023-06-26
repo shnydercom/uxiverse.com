@@ -1,0 +1,37 @@
+{
+  "name": "@uxiverse.com/jsonld-tools",
+  "version": "0.0.9",
+  "description": "tools to handle jsonld as ontologies, metadata and data",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/cjs/index.d.ts",
+  "author": "Jonathan Schneider",
+  "license": "EUPL-1.2",
+  "scripts": {
+    "test": "jest",
+    "build": "yarn tsc",
+    "buildcjs": "tsc -p tsconfig-cjs.json",
+    "prepublishOnly": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/jsonld": "^1.5.8",
+    "@types/node": "^18.15.11",
+    "@uxiverse.com/ontology": "*",
+    "jsonld": "^8.1.1",
+    "jsonld-lint": "^0.3.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "ts-pattern": "^4.2.2"
+  },
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "!**/*.test.ts",
+    "!**/*.test.d.ts",
+    "!**/*.test.js"
+  ]
+}
