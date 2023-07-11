@@ -1,5 +1,5 @@
 {
-  "name": "Find and Replace names",
+  "name": "Find and Rename",
   "id": "956151024412087001",
   "api": "1.0.0",
   "main": "dist/code.js",
