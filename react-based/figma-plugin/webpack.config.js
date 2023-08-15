@@ -52,7 +52,10 @@ module.exports = (env, argv) => ({
     new HtmlInlineScriptPlugin(),
   ],
   devServer: {
-    open: 'http://localhost:3000/public/',
-    port: 3000,
+    open: 'http://localhost:3001/public',
+    port: 3001,
+    static: {
+      directory: path.join(__dirname),
+    },
   },
 })
