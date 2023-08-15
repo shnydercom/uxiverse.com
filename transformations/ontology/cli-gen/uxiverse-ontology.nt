@@ -1035,7 +1035,7 @@
 <https://uxiverse.com/ontology/audio> <http://www.w3.org/2000/01/rdf-schema#comment> "An embedded audio object. This can be a URL or a fully described AudioObject" .
 <https://uxiverse.com/ontology/audio> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://uxiverse.com/ontology> .
 <https://uxiverse.com/ontology/audio> <http://www.w3.org/2000/01/rdf-schema#label> "audio" .
-<https://uxiverse.com/ontology/audio> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://uxiverse.com/ontology/MediaDataType> .
+<https://uxiverse.com/ontology/audio> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://uxiverse.com/ontology/MediaDataType> .
 <https://uxiverse.com/ontology/audio> <https://schema.org/rangeIncludes> <https://schema.org/AudioObject> .
 <https://uxiverse.com/ontology/audio> <https://schema.org/rangeIncludes> <https://schema.org/URL> .
 <https://uxiverse.com/ontology/bVersion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
@@ -1220,7 +1220,7 @@
 <https://uxiverse.com/ontology/isPlaying> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether or not the media is playing" .
 <https://uxiverse.com/ontology/isPlaying> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://uxiverse.com/ontology> .
 <https://uxiverse.com/ontology/isPlaying> <http://www.w3.org/2000/01/rdf-schema#label> "is playing" .
-<https://uxiverse.com/ontology/isPlaying> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://uxiverse.com/ontology/MediaDataTypeProperty> .
+<https://uxiverse.com/ontology/isPlaying> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://uxiverse.com/ontology/MediaDataTypeProperty> .
 <https://uxiverse.com/ontology/isPlaying> <https://schema.org/domainIncludes> <https://uxiverse.com/ontology/MediaDataType> .
 <https://uxiverse.com/ontology/isPlaying> <https://schema.org/rangeIncludes> <https://schema.org/Boolean> .
 <https://uxiverse.com/ontology/isPrimary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .

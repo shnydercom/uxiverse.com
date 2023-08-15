@@ -5008,7 +5008,7 @@
         "@value": "audio"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
       {
         "@id": "https://uxiverse.com/ontology/MediaDataType"
       }
@@ -5933,7 +5933,7 @@
         "@value": "is playing"
       }
     ],
-    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
       {
         "@id": "https://uxiverse.com/ontology/MediaDataTypeProperty"
       }
