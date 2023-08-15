@@ -1,3 +1,5 @@
+import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
+import { AppBar, Toolbar, Typography, Box } from '@mui/material'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -16,7 +18,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeRegistry>
+          <AppBar position="fixed" sx={{ zIndex: 2000 }}>
+            <Toolbar sx={{ backgroundColor: 'background.paper' }}>
+              <Typography variant="h6" noWrap component="div" color="black">
+                Next.js App Router
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              bgcolor: 'background.default',
+              ml: `40px`,
+              mt: ['48px', '56px', '64px'],
+              p: 3,
+            }}
+          >
+            {children}
+          </Box>
+        </ThemeRegistry>
+      </body>
     </html>
   )
 }
