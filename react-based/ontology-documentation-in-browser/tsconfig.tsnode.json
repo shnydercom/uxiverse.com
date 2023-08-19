@@ -1,0 +1,13 @@
+{
+    "include": [
+      "src"
+    ],
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "lib-tsnode",
+      "module": "commonjs",
+      "target": "es2017",
+      "moduleResolution": "node",
+      "declaration": true
+    }
+  }

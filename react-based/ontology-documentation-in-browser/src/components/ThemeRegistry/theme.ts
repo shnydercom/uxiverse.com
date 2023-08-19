@@ -1,25 +1,28 @@
-import { Roboto } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+import localFont from 'next/font/local'
+
+// Font files can be colocated inside of `app`
+const metropolisFont = localFont({
+  src: [
+
+  ],
+  display: "swap",
+})
 
 const theme = createTheme({
   palette: {
     mode: 'light',
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: metropolisFont.style.fontFamily,
   },
   components: {
     MuiAlert: {
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.severity === 'info' && {
-            backgroundColor: '#60a5fa',
+            backgroundColor: '#ffffff',
           }),
         }),
       },
