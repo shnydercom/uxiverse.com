@@ -1,4 +1,5 @@
 import { writeFileSync } from "fs"
+import util from "util";
 
 //this file is necessary because of following error: "Font loader values must be explicitly written literals"
 
@@ -16,7 +17,7 @@ const fontWeightMapping = [
 
 const normal = fontWeightMapping.map((mapping) => {
     return {
-        path: `./font/Metropolis-${mapping.name}`,
+        path: `./../font/Metropolis-${mapping.name}.otf`,
         weight: mapping.weight,
         style: "normal"
     }
@@ -24,14 +25,18 @@ const normal = fontWeightMapping.map((mapping) => {
 
 const italic = fontWeightMapping.map((mapping) => {
     return {
-        path: `./font/Metropolis-${mapping.name}Italic`,
+        path: `./../font/Metropolis-${mapping.name}Italic.otf`,
         weight: mapping.weight,
         style: "italic"
     }
 })
 
 const arrayContent = [...normal, ...italic];
-const fileExportName = "metropolisFontloaderValues"
-const fileContent = `export const ${fileExportName} = [${JSON.stringify(arrayContent)}];`
+const fileExportName = "metropolisFont"
+const fileContent = `import localFont from 'next/font/local'
+export const ${fileExportName} = localFont({
+  src: ${util.inspect(arrayContent)},
+  display: "swap",
+});`
 
-writeFileSync("./src/generated/metropolisFontloaderValues.ts", fileContent)
+writeFileSync(`./src/generated/${fileExportName}.ts`, fileContent)

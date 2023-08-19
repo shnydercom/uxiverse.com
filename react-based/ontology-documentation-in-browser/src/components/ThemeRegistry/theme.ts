@@ -1,14 +1,5 @@
+import { metropolisFont } from '@/generated/metropolisFont';
 import { createTheme } from '@mui/material/styles';
-
-import localFont from 'next/font/local'
-
-// Font files can be colocated inside of `app`
-const metropolisFont = localFont({
-  src: [
-
-  ],
-  display: "swap",
-})
 
 const theme = createTheme({
   palette: {
