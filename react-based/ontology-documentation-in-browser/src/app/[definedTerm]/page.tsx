@@ -1,8 +1,9 @@
 import { i18nEN } from "@/i18n";
 import { Box, Typography } from "@mui/material";
-import { createGraph, findIdentifiableNode } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
+import { RecursiveAncestor } from "@/components/ancestorDisplay";
 
 export const dynamicParams = false;
 
@@ -25,8 +26,7 @@ export async function generateStaticParams() {
         }))
 }
 
-const getNodeForTerm = async (term: string) => {
-    const graph = await getOntologyGraph();
+const getNodeForTerm = (term: string, graph: RtLdGraph): RtLdIdentifiableNode => {
     const searchIri = `${ontologyConfig.baseIRI}${term}`
     const nodeForTerm = findIdentifiableNode(graph, searchIri);
     if (!nodeForTerm) {
@@ -35,8 +35,20 @@ const getNodeForTerm = async (term: string) => {
     return nodeForTerm
 }
 
+const getStringifiedLineage = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph) => {
+    const isProp = nodeForTerm["@t"]?.iri === RDF_PROPERTY;
+    const lineage = getLineage(graph, nodeForTerm["@id"], isProp, { moveTreeHighlightToEnd: false, sortTreeViewSiblings: false })
+    if (!lineage) {
+        notFound()
+    }
+    return lineage;
+}
+
 export default async function Page({ params }: { params: { definedTerm: string } }) {
-    const nodeForTerm = await getNodeForTerm(params.definedTerm);
+    const ontologyGraph = await getOntologyGraph();
+    const nodeForTerm = getNodeForTerm(params.definedTerm, ontologyGraph);
+    const lineage = getStringifiedLineage(nodeForTerm, ontologyGraph);
+    const stopAtTerm = nodeForTerm["@id"];
     return <Box>
         <Typography variant="h4" >
             {params.definedTerm}
@@ -45,5 +57,9 @@ export default async function Page({ params }: { params: { definedTerm: string }
         <Typography variant="caption" fontStyle={"italic"} >
             {i18nEN.ONTOLOGY_TYPE_SUBTITLE}
         </Typography>
+        <RecursiveAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
+        <code style={{ whiteSpace: "break-spaces" }}>
+            {JSON.stringify(lineage, undefined, 2)}
+        </code>
     </Box>
 }
