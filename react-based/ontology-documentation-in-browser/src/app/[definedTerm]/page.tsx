@@ -1,9 +1,10 @@
 import { i18nEN } from "@/i18n";
 import { Box, Typography } from "@mui/material";
-import { RDF_PROPERTY, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
 import { RecursiveAncestor } from "@/components/ancestorDisplay";
+import { match } from "ts-pattern"
 
 export const dynamicParams = false;
 
@@ -52,10 +53,31 @@ export default async function Page({ params }: { params: { definedTerm: string }
     return <Box>
         <Typography variant="h4" >
             {params.definedTerm}
-            {(nodeForTerm?.["@t"]?.iri) ?? "" + "unknown"}
         </Typography>
         <Typography variant="caption" fontStyle={"italic"} >
-            {i18nEN.ONTOLOGY_TYPE_SUBTITLE}
+            {match(nodeForTerm?.["@t"]?.iri)
+                .when(
+                    typeIri => typeIri === RDF_CLASS,
+                    () => {
+                        return i18nEN.ONTOLOGY_CLASS_SUBTITLE
+                    }
+                )
+                .when(
+                    typeIri => typeIri === RDF_PROPERTY,
+                    () => {
+                        return i18nEN.ONTOLOGY_PROPERTY_SUBTITLE
+                    }
+                )
+                .when(
+                    typeIri => typeIri === undefined,
+                    () => {
+                        return i18nEN.ONTOLOGY_TYPE_UNDEFINED
+                    }
+                )
+                .otherwise((value) => {
+                    return `${i18nEN.ONTOLOGY_OTHER_TYPE}${value}`
+                })
+            }
         </Typography>
         <RecursiveAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
         <code style={{ whiteSpace: "break-spaces" }}>

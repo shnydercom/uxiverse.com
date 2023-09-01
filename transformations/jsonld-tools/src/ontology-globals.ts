@@ -7,6 +7,7 @@ export const RDFS_SUBPROP_OF =
   'http://www.w3.org/2000/01/rdf-schema#subPropertyOf'
 export const RDF_PROPERTY =
   'http://www.w3.org/1999/02/22-rdf-syntax-ns#Property'
+export const RDF_CLASS = 'http://www.w3.org/2000/01/rdf-schema#Class'
 //schema
 export const DOMAIN_INCLUDES = 'https://schema.org/domainIncludes'
 export const RANGE_INCLUDES = 'https://schema.org/rangeIncludes'
