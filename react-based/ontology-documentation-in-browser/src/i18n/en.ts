@@ -4,7 +4,8 @@ export const i18nEN = {
     ONTOLOGY_PROPERTY_SUBTITLE: "An uxiverse.com property",
     ONTOLOGY_TYPE_UNDEFINED: "A term of unknown type",
     ONTOLOGY_OTHER_TYPE: "A term of this type: ",
-    ONTOLOGY_DESCRIPTION_ICON_ALT: "An icon for the full description text"
+    ONTOLOGY_DESCRIPTION_ICON_ALT: "An icon for the full description text",
+    ARIA_LABEL_BREADCRUMB: "breadcrumb"
 } as const;
 
 export type i18nMicroCopy = typeof i18nEN;

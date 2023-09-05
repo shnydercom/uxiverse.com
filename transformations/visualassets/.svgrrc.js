@@ -1,5 +1,5 @@
 module.exports = {
-    icon: true,
+    icon: false,
     expandProps: true,
     jsxRuntime: 'classic',
     typescript: true,

@@ -8,7 +8,7 @@
   "author": "Jonathan Schneider",
   "license": "EUPL-1.2",
   "scripts": {
-    "gensvg": "npx @svgr/cli ./",
+    "gen": "npx @svgr/cli ./",
     "build:esm": "yarn tsc",
     "build:cjs": "tsc -p tsconfig-cjs.json",
     "build": "yarn build:esm && yarn build:cjs"

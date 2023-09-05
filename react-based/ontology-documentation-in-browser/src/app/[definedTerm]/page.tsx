@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
-import { RecursiveAncestor } from "@/components/ancestorDisplay";
+import { AncestorBreadcrumbs, RecursiveAncestor } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
 
@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: { definedTerm: string }
                 })
             }
         </Typography>
-        <RecursiveAncestor lineage={lineage} stopAtTerm={termForThisPage} />
+        <AncestorBreadcrumbs lineage={lineage} stopAtTerm={termForThisPage} ariaLabel={i18nEN.ARIA_LABEL_BREADCRUMB} />
         {descriptionText && <DescriptionFullDisplay descriptionText={descriptionText} termToDisplay={termForThisPage} />}
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(lineage, undefined, 2)}
