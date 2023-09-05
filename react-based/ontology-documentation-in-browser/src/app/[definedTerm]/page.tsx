@@ -1,9 +1,9 @@
 import { i18nEN } from "@/i18n";
-import { Box, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
-import { AncestorBreadcrumbs, RecursiveAncestor } from "@/components/ancestorDisplay";
+import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
 
@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { definedTerm: string }
         termForThisPage,
         ontologyGraph
     )
-    return <Box>
+    return <Paper sx={{ display: "flex", flexDirection: "column", gap: "10px", padding: "16px" }}>
         <Typography variant="h4" >
             {params.definedTerm}
         </Typography>
@@ -89,5 +89,5 @@ export default async function Page({ params }: { params: { definedTerm: string }
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(lineage, undefined, 2)}
         </code>
-    </Box>
+    </Paper>
 }
