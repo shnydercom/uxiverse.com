@@ -1,6 +1,6 @@
 module.exports = {
     icon: true,
-    expandProps: false,
+    expandProps: true,
     jsxRuntime: 'classic',
     typescript: true,
     outDir: "./src/",
