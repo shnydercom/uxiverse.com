@@ -23,6 +23,7 @@
   "license": "EUPL-1.2",
   "dependencies": {
     "@uxiverse.com/jsonld-tools": "*",
+    "@uxiverse.com/visualassets": "*",
     "@xstate/react": "^3.2.2",
     "autosuggest-highlight": "^3.3.4",
     "overlayscrollbars": "^2.2.1",

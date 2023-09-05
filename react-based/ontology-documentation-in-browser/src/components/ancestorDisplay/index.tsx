@@ -1,2 +1,2 @@
-export * from "./recursiveAncestor";
-export * from "./singleAncestor";
+export * from "./RecursiveAncestor";
+export * from "./SingleAncestor";

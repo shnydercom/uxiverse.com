@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
 import { Fragment, FunctionComponent } from "react";
-import { SingleAncestor } from "./singleAncestor";
+import { SingleAncestor } from "./SingleAncestor";
 import { ChevronRight } from "@mui/icons-material";
 
 interface RecursiveAncestorProps {
@@ -20,9 +20,10 @@ export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ l
         display: "flex",
         flexDirection: "row"
     }}>
-        <SingleAncestor lineage={lineage} />
+        <SingleAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
         {
             lineage.descendants.map((descendantLineage, idx) => {
+
                 return (<Fragment key={`recAnc-${idx}`}>
                     <ChevronRight />
                     <RecursiveAncestor lineage={descendantLineage} stopAtTerm={stopAtTerm} />

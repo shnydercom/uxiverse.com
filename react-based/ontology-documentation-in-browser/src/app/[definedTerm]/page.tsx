@@ -1,10 +1,11 @@
 import { i18nEN } from "@/i18n";
 import { Box, Typography } from "@mui/material";
-import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
 import { RecursiveAncestor } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
+import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
 
 export const dynamicParams = false;
 
@@ -49,7 +50,11 @@ export default async function Page({ params }: { params: { definedTerm: string }
     const ontologyGraph = await getOntologyGraph();
     const nodeForTerm = getNodeForTerm(params.definedTerm, ontologyGraph);
     const lineage = getStringifiedLineage(nodeForTerm, ontologyGraph);
-    const stopAtTerm = nodeForTerm["@id"];
+    const termForThisPage = nodeForTerm["@id"];
+    const descriptionText = getSingleUxiDefinition(
+        termForThisPage,
+        ontologyGraph
+    )
     return <Box>
         <Typography variant="h4" >
             {params.definedTerm}
@@ -79,7 +84,8 @@ export default async function Page({ params }: { params: { definedTerm: string }
                 })
             }
         </Typography>
-        <RecursiveAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
+        <RecursiveAncestor lineage={lineage} stopAtTerm={termForThisPage} />
+        {descriptionText && <DescriptionFullDisplay descriptionText={descriptionText} termToDisplay={termForThisPage} />}
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(lineage, undefined, 2)}
         </code>
