@@ -1,3 +1,4 @@
+"use client"
 import {
     ExpandedState,
     useReactTable,
@@ -13,15 +14,17 @@ import {
     Header,
     HeaderGroup,
 } from '@tanstack/react-table'
-import React from 'react';
+import React, { useState } from 'react';
 
-export interface ExpandableGroupLayoutProps<T extends { subRows?: T[] }> {
+export type ExpandableDataEntry<T> = Partial<{ subRows: T[] }> | object;
+
+export interface ExpandableGroupLayoutProps<T extends ExpandableDataEntry<T> = object> {
     data: T[];
     columns: ColumnDef<T>[];
     componentDictionary: ComponentDictionary<T>;
 }
 
-export interface ComponentDictionary<T extends { subRows?: T[] }> {
+export interface ComponentDictionary<T extends ExpandableDataEntry<T> = object> {
     Outmost: React.FC<React.PropsWithChildren>;
     TableRoot: React.FC<React.PropsWithChildren>;
     TableHead: React.FC<React.PropsWithChildren>;
@@ -32,10 +35,10 @@ export interface ComponentDictionary<T extends { subRows?: T[] }> {
     TableCell: React.FC<{ headlessProps: Cell<T, unknown> }>;
 }
 
-export const ExpandableGroupLayout = <T extends { subRows?: T[] },>({ data, columns, componentDictionary }: ExpandableGroupLayoutProps<T>) => {
+export const ExpandableGroupLayout = <T extends ExpandableDataEntry<T> = object,>({ data, columns, componentDictionary }: ExpandableGroupLayoutProps<T>) => {
 
-    const [grouping, setGrouping] = React.useState<GroupingState>([])
-    const [expanded, setExpanded] = React.useState<ExpandedState>({})
+    const [grouping, setGrouping] = useState<GroupingState>([])
+    const [expanded, setExpanded] = useState<ExpandedState>({})
     const headlessTable = useReactTable({
         data,
         columns,
@@ -45,7 +48,13 @@ export const ExpandableGroupLayout = <T extends { subRows?: T[] },>({ data, colu
         },
         onGroupingChange: setGrouping,
         onExpandedChange: setExpanded,
-        getSubRows: row => row.subRows,
+        getSubRows: row => {
+            if (
+                Object.prototype.hasOwnProperty.call(row, "subRows")) {
+                return (row as { subRows: T[] }).subRows ?? []
+            }
+            return undefined;
+        },
         getCoreRowModel: getCoreRowModel(),
         getGroupedRowModel: getGroupedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),

@@ -1,1 +1,1 @@
-export * from "./RDFPropertyTable";
+export * from "./RDFPropertiesOnTypeTable";

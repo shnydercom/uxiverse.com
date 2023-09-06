@@ -1,11 +1,12 @@
 import { i18nEN } from "@/i18n";
 import { Paper, Typography } from "@mui/material";
-import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, CategorizedEdges } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
 import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
+import { CategorizedEdgesProp, RDFPropertiesOnTypeTable } from "@/components/propertyDisplay";
 
 export const dynamicParams = false;
 
@@ -46,10 +47,30 @@ const getStringifiedLineage = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGra
     return lineage;
 }
 
+const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph): CategorizedEdgesProp => {
+    let catEdges: CategorizedEdges | null = null;
+    let otherCatEdges: CategorizedEdges | null = null;
+    const isProp = nodeForTerm["@t"]?.iri === RDF_PROPERTY;
+    const term = nodeForTerm["@id"];
+    if (!isProp) {
+        catEdges = getCategorizedEdgesForClasses(graph, term);
+        otherCatEdges = null;
+    } else {
+        catEdges = getCategorizedEdgesForPropertyCanExistOnType(graph, term);
+        otherCatEdges = getCategorizedEdgesForPropertyCanBeOfType(graph, term);
+    }
+    return {
+        isProp,
+        catEdges,
+        otherCatEdges
+    }
+}
+
 export default async function Page({ params }: { params: { definedTerm: string } }) {
     const ontologyGraph = await getOntologyGraph();
     const nodeForTerm = getNodeForTerm(params.definedTerm, ontologyGraph);
     const lineage = getStringifiedLineage(nodeForTerm, ontologyGraph);
+    const categorizedEdgesProp = getCategorizedEdgesProp(nodeForTerm, ontologyGraph);
     const termForThisPage = nodeForTerm["@id"];
     const descriptionText = getSingleUxiDefinition(
         termForThisPage,
@@ -86,8 +107,9 @@ export default async function Page({ params }: { params: { definedTerm: string }
         </Typography>
         <AncestorBreadcrumbs lineage={lineage} stopAtTerm={termForThisPage} ariaLabel={i18nEN.ARIA_LABEL_BREADCRUMB} />
         {descriptionText && <DescriptionFullDisplay descriptionText={descriptionText} termToDisplay={termForThisPage} />}
+        <RDFPropertiesOnTypeTable categorizedEdges={categorizedEdgesProp} />
         <code style={{ whiteSpace: "break-spaces" }}>
-            {JSON.stringify(lineage, undefined, 2)}
+            {JSON.stringify(categorizedEdgesProp, undefined, 2)}
         </code>
     </Paper>
 }
