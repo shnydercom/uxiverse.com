@@ -26,7 +26,10 @@ export const DescriptionIconDisplay: FunctionComponent<DescriptionIconDisplayPro
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            float: "left"
+            float: "left",
+            border: "1px solid #EEEEEE",
+            borderRadius: "6px",
+            margin: "16px"
         }}>
             <SVGTypeIcon aria-description={i18nEN.ONTOLOGY_DESCRIPTION_ICON_ALT} />
         </Box >
