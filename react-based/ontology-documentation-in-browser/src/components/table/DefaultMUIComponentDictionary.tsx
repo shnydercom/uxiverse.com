@@ -11,12 +11,12 @@ export const createDefaultMuiComponentDictionary: <T extends ExpandableDataEntry
     Outmost: MuiTableContainer,
     TableRoot: MuiTable,
     TableHead: MuiTableHead,
-    TableHeaderRow: TableRow,
+    TableHeaderRow: ({ headlessProps, ...props }) => <TableRow {...props} />,
     TableHeaderCell: ({ headlessProps }) => <MuiTableCell>{flexRender(
         headlessProps.column.columnDef.header,
         headlessProps.getContext()
     )}</MuiTableCell>,
-    TableRow: TableRow,
+    TableRow: ({ headlessProps, ...props }) => <TableRow {...props} />,
     TableBody: TableBody,
     TableCell: ({ headlessProps }) => <MuiTableCell>{`${headlessProps.getValue()}`}</MuiTableCell>
 })

@@ -1,5 +1,5 @@
 "use client"
-import { CategorizedEdges, RtLdGraph, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { CategorizedEdges, RtLdGraph, getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import { FunctionComponent, useEffect, useMemo } from "react";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
@@ -19,7 +19,7 @@ interface RDFPropertiesOnTypeTableProps {
 
 interface TableDataEntryForRDFClass {
     rdfProperty: string;
-    rdfExpectedType: string;
+    rdfExpectedTypes: string[];
     description: string;
     /**
      * the type in the ontology that introduced this prop
@@ -37,6 +37,8 @@ const graphResource = wrapPromise(getOntologyGraph())
 
 export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTableProps> = ({ categorizedEdges }) => {
     const graph = graphResource.read();
+    //TODO: handle with suspense
+    if (!isRtLdGraph(graph)) return null;
     const tableEntries = useMemo(() => {
         const isGraphSuccessful = isRtLdGraph(graph);
         if (!isGraphSuccessful || categorizedEdges.isProp || !categorizedEdges.catEdges) {
@@ -50,9 +52,11 @@ export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTabl
                     rdfPropertyEntry,
                     graph
                 ) ?? "";
+                const rdfExpectedTypes = getCategorizedEdgesForPropertyCanBeOfType(graph, rdfPropertyEntry)
+                    ?.categories[rdfPropertyEntry] ?? [];
                 result.push({
                     rdfProperty: rdfPropertyEntry,
-                    rdfExpectedType: "expected type placeholder",
+                    rdfExpectedTypes,
                     description,
                     propFromType: lineageTerm
                 })
@@ -72,10 +76,10 @@ export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTabl
                         cell: info => info.getValue()
                     }),
                 columnHelper.accessor(
-                    "rdfExpectedType",
+                    "rdfExpectedTypes",
                     {
                         header: i18nEN.TABLEHEADING_EXPECTED_TYPE,
-                        cell: info => info.getValue()
+                        cell: info => info.getValue()//.join(",\n")
                     }),
                 columnHelper.accessor("description", {
                     header: i18nEN.TABLEHEADING_DESCRIPTION,
