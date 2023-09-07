@@ -1,10 +1,12 @@
 "use client"
-import { CategorizedEdges } from "@uxiverse.com/jsonld-tools";
-import { FunctionComponent, useMemo } from "react";
+import { CategorizedEdges, RtLdGraph, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { FunctionComponent, useEffect, useMemo } from "react";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { i18nEN } from "@/i18n";
 import { createDefaultMuiComponentDictionary } from "../table/DefaultMUIComponentDictionary";
+import { getOntologyGraph, isRtLdGraph } from "@/graph-logic/getGraph";
+import { wrapPromise } from "@/client-utils";
 
 export interface CategorizedEdgesProp {
     isProp: boolean;
@@ -30,19 +32,28 @@ const RDFPropsTableComponentDictionary: ComponentDictionary<TableDataEntryForRDF
     ...createDefaultMuiComponentDictionary()
 }
 
+//the graph is circular and thus can't be handed over as prop when doing SSR
+const graphResource = wrapPromise(getOntologyGraph())
+
 export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTableProps> = ({ categorizedEdges }) => {
+    const graph = graphResource.read();
     const tableEntries = useMemo(() => {
-        if (categorizedEdges.isProp || !categorizedEdges.catEdges) {
+        const isGraphSuccessful = isRtLdGraph(graph);
+        if (!isGraphSuccessful || categorizedEdges.isProp || !categorizedEdges.catEdges) {
             return null;
         }
         let result: TableDataEntryForRDFClass[] = []
         const { categories, straightLineage } = categorizedEdges.catEdges;
-        straightLineage.forEach((lineageTerm) => {
+        straightLineage.slice().reverse().forEach((lineageTerm) => {
             categories[lineageTerm].forEach((rdfPropertyEntry) => {
+                const description = getSingleUxiDefinition(
+                    rdfPropertyEntry,
+                    graph
+                ) ?? "";
                 result.push({
                     rdfProperty: rdfPropertyEntry,
                     rdfExpectedType: "expected type placeholder",
-                    description: "somedescription",
+                    description,
                     propFromType: lineageTerm
                 })
             })
@@ -50,7 +61,7 @@ export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTabl
         return result;
     }, [categorizedEdges]);
 
-    const columns = useMemo<ColumnDef<TableDataEntryForRDFClass>[]>(
+    const columns = useMemo<ColumnDef<TableDataEntryForRDFClass, string>[]>(
         () => {
             const columnHelper = createColumnHelper<TableDataEntryForRDFClass>()
             const result = [
@@ -83,6 +94,8 @@ export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTabl
     if (!tableEntries) {
         return null;
     }
-    return (<ExpandableGroupLayout<TableDataEntryForRDFClass> data={tableEntries} columns={columns}
+    return (<ExpandableGroupLayout<TableDataEntryForRDFClass>
+        data={tableEntries}
+        columns={columns}
         componentDictionary={RDFPropsTableComponentDictionary} />);
 }

@@ -18,10 +18,10 @@ import React, { useState } from 'react';
 
 export type ExpandableDataEntry<T> = Partial<{ subRows: T[] }> | object;
 
-export interface ExpandableGroupLayoutProps<T extends ExpandableDataEntry<T> = object> {
-    data: T[];
-    columns: ColumnDef<T>[];
-    componentDictionary: ComponentDictionary<T>;
+export interface ExpandableGroupLayoutProps<T1 extends ExpandableDataEntry<T1> = object, T2 = string> {
+    data: T1[];
+    columns: ColumnDef<T1, T2>[];
+    componentDictionary: ComponentDictionary<T1>;
 }
 
 export interface ComponentDictionary<T extends ExpandableDataEntry<T> = object> {

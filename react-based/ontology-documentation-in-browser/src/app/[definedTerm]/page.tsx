@@ -7,13 +7,9 @@ import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
 import { CategorizedEdgesProp, RDFPropertiesOnTypeTable } from "@/components/propertyDisplay";
+import { getOntologyGraph } from "@/graph-logic/getGraph";
 
 export const dynamicParams = false;
-
-async function getOntologyGraph() {
-    const fullOntology = await fetch(ontologyConfig.jsonldIRI).then((res) => res.json());
-    return createGraph(fullOntology);
-}
 
 /**this reroutes to not-found page for terms which are not matched statically */
 export async function generateStaticParams() {
