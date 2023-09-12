@@ -1,12 +1,15 @@
 "use client"
-import { CategorizedEdges, RtLdGraph, getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
-import { FunctionComponent, useEffect, useMemo } from "react";
+import { CategorizedEdges, getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { Fragment, FunctionComponent, useMemo } from "react";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
-import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import { Cell, ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { i18nEN } from "@/i18n";
 import { createDefaultMuiComponentDictionary } from "../table/DefaultMUIComponentDictionary";
 import { getOntologyGraph, isRtLdGraph } from "@/graph-logic/getGraph";
 import { wrapPromise } from "@/client-utils";
+import { Box, BoxProps, Link as MUILink, TableCell, Typography } from "@mui/material";
+import { match } from "ts-pattern";
+import ontologyConfig from "../../../ontology.config";
 
 export interface CategorizedEdgesProp {
     isProp: boolean;
@@ -28,8 +31,57 @@ interface TableDataEntryForRDFClass {
     subRows?: TableDataEntryForRDFClass[]
 }
 
+const guardSingleIRI = (input: Cell<TableDataEntryForRDFClass, unknown>): input is Cell<TableDataEntryForRDFClass, string> => {
+    return input.column.id === "rdfProperty" || input.column.id === "propFromType";
+}
+
+const guardMultiIRI = (input: Cell<TableDataEntryForRDFClass, unknown>): input is Cell<TableDataEntryForRDFClass, string[]> => {
+    return input.column.id === "rdfExpectedTypes";
+}
+
+const baseLength = ontologyConfig.baseIRI.length;
+
+const VerticalLinkWrapper = (props: BoxProps) => {
+    const sx = {
+        display: "flex",
+        flexDirection: "column"
+    }
+    return <Box {...props} sx={sx} />
+}
+
 const RDFPropsTableComponentDictionary: ComponentDictionary<TableDataEntryForRDFClass> = {
-    ...createDefaultMuiComponentDictionary()
+    ...createDefaultMuiComponentDictionary(),
+    TableCell: ({ headlessProps, ...props }) => {
+        const children = match(headlessProps)
+            .when((hProps) => guardSingleIRI(hProps),
+                (hP: Cell<TableDataEntryForRDFClass, string>) => {
+                    let userLink: string = hP.getValue();
+                    let iri: string = hP.getValue();
+                    if (iri.startsWith(ontologyConfig.baseIRI)) {
+                        userLink = iri.slice(baseLength);
+                    }
+                    return <MUILink href={userLink}>{userLink}</MUILink>
+                })
+            .when((hProps) => guardMultiIRI(hProps),
+                (hP: Cell<TableDataEntryForRDFClass, string[]>) => {
+                    let userLinks: string[] = hP.getValue();
+                    let iris: string[] = hP.getValue();
+                    iris.forEach((iri, idx) => {
+                        if (iri.startsWith(ontologyConfig.baseIRI)) {
+                            userLinks[idx] = iri.slice(baseLength);
+                        }
+                    })
+                    const LinkWrapper = iris.length > 1 ? VerticalLinkWrapper : Fragment
+                    return <LinkWrapper>{iris.map((iri, idx) => {
+                        const userLink = userLinks[idx];
+                        return <MUILink href={userLink}>{userLink}</MUILink>
+                    })}</LinkWrapper>
+                })
+            .otherwise((cellVal) => {
+                return <>{cellVal.getValue()}</>
+            })
+        return <TableCell {...props} children={children} />
+    },
 }
 
 //the graph is circular and thus can't be handed over as prop when doing SSR
