@@ -1,12 +1,12 @@
 import { i18nEN } from "@/i18n";
 import { Paper, Typography } from "@mui/material";
-import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, CategorizedEdges } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, CategorizedEdges, getCategorizedEdgesForInstanceMayAppearAsValueForProp } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
 import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
-import { CategorizedEdgesProp, RDFPropertiesOnTypeTable } from "@/components/propertyDisplay";
+import { CategorizedEdgesProp, RDFClassAsValueForPropsTable, RDFPropertiesOnClassTable } from "@/components/propertyDisplay";
 import { getOntologyGraph } from "@/graph-logic/getGraph";
 
 export const dynamicParams = false;
@@ -50,7 +50,7 @@ const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdG
     const term = nodeForTerm["@id"];
     if (!isProp) {
         catEdges = getCategorizedEdgesForClasses(graph, term);
-        otherCatEdges = null;
+        otherCatEdges = getCategorizedEdgesForInstanceMayAppearAsValueForProp(graph, term);
     } else {
         catEdges = getCategorizedEdgesForPropertyCanExistOnType(graph, term);
         otherCatEdges = getCategorizedEdgesForPropertyCanBeOfType(graph, term);
@@ -72,6 +72,7 @@ export default async function Page({ params }: { params: { definedTerm: string }
         termForThisPage,
         ontologyGraph
     )
+    const isReverseRelationshipAvailable = Object.keys(categorizedEdgesProp.otherCatEdges?.categories ?? {}).length > 0
     return <Paper sx={{ display: "flex", flexDirection: "column", gap: "10px", padding: "16px" }}>
         <Typography variant="h4" >
             {params.definedTerm}
@@ -103,7 +104,9 @@ export default async function Page({ params }: { params: { definedTerm: string }
         </Typography>
         <AncestorBreadcrumbs lineage={lineage} stopAtTerm={termForThisPage} ariaLabel={i18nEN.ARIA_LABEL_BREADCRUMB} />
         {descriptionText && <DescriptionFullDisplay descriptionText={descriptionText} termToDisplay={termForThisPage} />}
-        <RDFPropertiesOnTypeTable categorizedEdges={categorizedEdgesProp} />
+        <RDFPropertiesOnClassTable categorizedEdges={categorizedEdgesProp} />
+        {isReverseRelationshipAvailable && <Typography>{i18nEN.fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP(params.definedTerm)}</Typography>}
+        {isReverseRelationshipAvailable && <RDFClassAsValueForPropsTable categorizedEdges={categorizedEdgesProp} />}
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(categorizedEdgesProp, undefined, 2)}
         </code>

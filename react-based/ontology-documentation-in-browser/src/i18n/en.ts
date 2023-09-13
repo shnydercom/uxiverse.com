@@ -8,7 +8,10 @@ export const i18nEN = {
     ARIA_LABEL_BREADCRUMB: "breadcrumb",
     TABLEHEADING_PROPERTY: "Property",
     TABLEHEADING_EXPECTED_TYPE: "Expected Type",
-    TABLEHEADING_DESCRIPTION: "Description"
+    TABLEHEADING_APPEARS_ON_TYPE: "On Type",
+    TABLEHEADING_DESCRIPTION: "Description",
+    fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP:
+        (typeName: string) => `Instances of ${typeName} may appear as a value for the following properties`
 } as const;
 
 export type i18nMicroCopy = typeof i18nEN;

@@ -2,7 +2,7 @@ import { JsonLdProcessor, NodeObject } from "jsonld";
 import { createGraph } from "./createGraph";
 import * as uxiverseOntologyJSONLDfile from "@uxiverse.com/ontology/ontology/uxiverse.com.json";
 import { RtLdGraph } from "./../../graphInterfaces";
-import { getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "./hierarchy";
+import { getAncestorsSiblingsAndChildren, getEdgesOfStartIriAndAncestors } from "./hierarchy";
 
 describe("should get all ancestors, siblings and direct children as an object of IRIs", () => {
     const RDFS_CLASS = "http://www.w3.org/2000/01/rdf-schema#Class";
@@ -175,7 +175,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
 
     test("should write categories for class Button and its ancestors", async () => {
         const buttonIRI = uxiverseRootIRI + "Button";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: buttonIRI,
@@ -199,7 +199,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
 
     test("should write edges for class Button and its ancestors", async () => {
         const buttonIRI = uxiverseRootIRI + "Button";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: buttonIRI,
@@ -218,7 +218,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
 
     test("should write categories for property 'triggers' which has no ancestors", async () => {
         const triggersIRI = uxiverseRootIRI + "triggers";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: triggersIRI,
@@ -237,7 +237,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
     })
     test("should write edges for property 'triggers' which has no ancestors", async () => {
         const triggersIRI = uxiverseRootIRI + "triggers";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: triggersIRI,
@@ -258,7 +258,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
     })
     test("should write edges for property 'triggers', which semantically match 'domainIncludes/canExistOnType'", async () => {
         const triggersIRI = uxiverseRootIRI + "triggers";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: triggersIRI,
@@ -273,7 +273,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
     })
     test("should write edges for property 'triggers', which semantically match 'rangeIncludes/canBeOfType'", async () => {
         const triggersIRI = uxiverseRootIRI + "triggers";
-        const catEdges = getEdgesOfAncestorsOnly(
+        const catEdges = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: triggersIRI,
@@ -288,7 +288,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
     })
     test("regression: should write edges for property 'importance' by 'rangeIncludes/canBeOfType' and 'domainIncludes/canExistOnType' including in and out, which created an infinite loop", async () => {
         const startIRI = uxiverseRootIRI + "importance";
-        const catEdgesRangeIncludes = getEdgesOfAncestorsOnly(
+        const catEdgesRangeIncludes = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: startIRI,
@@ -300,7 +300,7 @@ describe("should get edges of all ancestors that are not the ancestors themselve
         expect(catEdgesRangeIncludes).not.toBeNull();
         expect(catEdgesRangeIncludes!.categories[startIRI]).toContain(uxiverseRootIRI + "IssueSeverityType");
         expect(catEdgesRangeIncludes!.categories[startIRI]).not.toContain(uxiverseRootIRI + "Button");
-        const catEdgesDomainIncludes = getEdgesOfAncestorsOnly(
+        const catEdgesDomainIncludes = getEdgesOfStartIriAndAncestors(
             {
                 graph: runtimeGraph,
                 startIRI: startIRI,

@@ -7,20 +7,21 @@ import { i18nEN } from "@/i18n";
 import { createDefaultMuiComponentDictionary } from "../table/DefaultMUIComponentDictionary";
 import { getOntologyGraph, isRtLdGraph } from "@/graph-logic/getGraph";
 import { wrapPromise } from "@/client-utils";
-import { Box, BoxProps, Link as MUILink, TableCell, Typography } from "@mui/material";
+import { Link as MUILink, TableCell } from "@mui/material";
 import { match } from "ts-pattern";
 import ontologyConfig from "../../../ontology.config";
+import { baseLength, VerticalLinkWrapper } from "./shared";
 
 export interface CategorizedEdgesProp {
     isProp: boolean;
     catEdges: CategorizedEdges | null;
     otherCatEdges: CategorizedEdges | null;
 }
-interface RDFPropertiesOnTypeTableProps {
+interface RDFPropertiesOnClassTableProps {
     categorizedEdges: CategorizedEdgesProp;
 }
 
-interface TableDataEntryForRDFClass {
+export interface TableDataEntryForRDFClass {
     rdfProperty: string;
     rdfExpectedTypes: string[];
     description: string;
@@ -37,16 +38,6 @@ const guardSingleIRI = (input: Cell<TableDataEntryForRDFClass, unknown>): input 
 
 const guardMultiIRI = (input: Cell<TableDataEntryForRDFClass, unknown>): input is Cell<TableDataEntryForRDFClass, string[]> => {
     return input.column.id === "rdfExpectedTypes";
-}
-
-const baseLength = ontologyConfig.baseIRI.length;
-
-const VerticalLinkWrapper = (props: BoxProps) => {
-    const sx = {
-        display: "flex",
-        flexDirection: "column"
-    }
-    return <Box {...props} sx={sx} />
 }
 
 const RDFPropsTableComponentDictionary: ComponentDictionary<TableDataEntryForRDFClass> = {
@@ -87,7 +78,7 @@ const RDFPropsTableComponentDictionary: ComponentDictionary<TableDataEntryForRDF
 //the graph is circular and thus can't be handed over as prop when doing SSR
 const graphResource = wrapPromise(getOntologyGraph())
 
-export const RDFPropertiesOnTypeTable: FunctionComponent<RDFPropertiesOnTypeTableProps> = ({ categorizedEdges }) => {
+export const RDFPropertiesOnClassTable: FunctionComponent<RDFPropertiesOnClassTableProps> = ({ categorizedEdges }) => {
     const graph = graphResource.read();
     //TODO: handle with suspense
     if (!isRtLdGraph(graph)) return null;

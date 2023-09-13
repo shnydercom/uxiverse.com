@@ -1,1 +1,2 @@
-export * from "./RDFPropertiesOnTypeTable";
+export * from "./RDFPropertiesOnClassTable";
+export * from "./RDFClassAsValueForPropsTable"

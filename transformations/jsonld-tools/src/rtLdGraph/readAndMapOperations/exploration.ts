@@ -1,5 +1,5 @@
 
-import { CategorizedEdges, EdgeOfAncestorsInputArgs, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfAncestorsOnly } from "../createOperations";
+import { CategorizedEdges, EdgeOfAncestorsInputArgs, QueryFieldsTwoDeepOptions, StringifiedLineage, findParentIRIinLineage, getAncestorsSiblingsAndChildren, getEdgesOfStartIriAndAncestors, queryFieldsTwoDeep } from "../createOperations";
 import { RtLdGraph } from "../../graphInterfaces";
 import { moveElementToEnd } from "../../IRIUtils";
 import { LDGraphProcessingFeatureFlags } from "../../featureFlags";
@@ -51,10 +51,15 @@ export const getCategorizedEdgesForClasses = (graph: RtLdGraph, startIRI: string
         includeOutgoingEdges,
         ancestorEdgeIRI: ancestorIri
     }
-    return getEdgesOfAncestorsOnly(options)
+    return getEdgesOfStartIriAndAncestors(options)
 }
 
-
+/**
+ * summarizes which types this property can exist on
+ * @param graph 
+ * @param startIRI should be a rdf-property-IRI
+ * @returns 
+ */
 export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
     // property can exist on type [...]
     const ancestorIri = RDFS_SUBPROP_OF;
@@ -69,10 +74,15 @@ export const getCategorizedEdgesForPropertyCanExistOnType = (graph: RtLdGraph, s
         includeOutgoingEdges,
         ancestorEdgeIRI: ancestorIri
     }
-    return getEdgesOfAncestorsOnly(options)
+    return getEdgesOfStartIriAndAncestors(options)
 }
 
-
+/**
+ * summarizes which type(s) this property can take
+ * @param graph 
+ * @param startIRI should be a rdf-property-IRI
+ * @returns a dictionary of ancestors with arrays of their prop/field names
+ */
 export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
     // property can be a [...]
     const ancestorIri = RDFS_SUBPROP_OF;
@@ -87,7 +97,25 @@ export const getCategorizedEdgesForPropertyCanBeOfType = (graph: RtLdGraph, star
         includeOutgoingEdges,
         ancestorEdgeIRI: ancestorIri
     }
-    return getEdgesOfAncestorsOnly(options)
+    return getEdgesOfStartIriAndAncestors(options)
+}
+/**
+ * summarizes the properties on which Instances of start-IRI may appear as a value of, and the types that have said property
+ * @param graph 
+ * @param startIRI 
+ * @returns 
+ */
+export const getCategorizedEdgesForInstanceMayAppearAsValueForProp = (graph: RtLdGraph, startIRI: string): CategorizedEdges | null => {
+    // the properties [...] can be a "startIRI"-Class, and these props exist on [types]
+    const options: QueryFieldsTwoDeepOptions = {
+        graph,
+        startIRI,
+        query: [
+            { isIn: true, edgeTypeIRI: RANGE_INCLUDES },
+            { isIn: false, edgeTypeIRI: DOMAIN_INCLUDES }
+        ]
+    }
+    return queryFieldsTwoDeep(options)
 }
 
 
