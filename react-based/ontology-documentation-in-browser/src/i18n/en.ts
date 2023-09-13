@@ -10,8 +10,9 @@ export const i18nEN = {
     TABLEHEADING_EXPECTED_TYPE: "Expected Type",
     TABLEHEADING_APPEARS_ON_TYPE: "On Type",
     TABLEHEADING_DESCRIPTION: "Description",
+    fn_TYPE_IN_HIERARCHY_POSITION: (typeName: string) => `Types with close relationship to "${typeName}":`,
     fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP:
-        (typeName: string) => `Instances of ${typeName} may appear as a value for the following properties`
+        (typeName: string) => `Instances of "${typeName}" may appear as a value for the following properties`
 } as const;
 
 export type i18nMicroCopy = typeof i18nEN;

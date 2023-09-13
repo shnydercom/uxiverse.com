@@ -8,6 +8,7 @@ import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
 import { CategorizedEdgesProp, RDFClassAsValueForPropsTable, RDFPropertiesOnClassTable } from "@/components/propertyDisplay";
 import { getOntologyGraph } from "@/graph-logic/getGraph";
+import { AncestorSiblingChildrenTreeview } from "@/components/ancestorDisplay/AncestorSiblingChildrenTreeview";
 
 export const dynamicParams = false;
 
@@ -107,8 +108,10 @@ export default async function Page({ params }: { params: { definedTerm: string }
         <RDFPropertiesOnClassTable categorizedEdges={categorizedEdgesProp} />
         {isReverseRelationshipAvailable && <Typography>{i18nEN.fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP(params.definedTerm)}</Typography>}
         {isReverseRelationshipAvailable && <RDFClassAsValueForPropsTable categorizedEdges={categorizedEdgesProp} />}
+        <Typography>{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
+        <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
         <code style={{ whiteSpace: "break-spaces" }}>
-            {JSON.stringify(categorizedEdgesProp, undefined, 2)}
+            {JSON.stringify(lineage, undefined, 2)}
         </code>
     </Paper>
 }
