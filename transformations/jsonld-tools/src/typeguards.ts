@@ -1,7 +1,7 @@
 import { RtLdIdentifiableNode, RtLdValue } from "./graphInterfaces";
 
 export function isRtLdValue(value: any): value is RtLdValue {
-    return value && typeof value === "object" && "@value" in value;
+    return value && typeof value === "object" && "@v" in value;
 }
 
 export function isRtLdIdentifiableNode(value: any): value is RtLdIdentifiableNode {
