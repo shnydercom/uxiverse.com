@@ -1,5 +1,5 @@
 "use client"
-import { CategorizedEdges, getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import { Fragment, FunctionComponent, useMemo } from "react";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
 import { Cell, ColumnDef, createColumnHelper } from "@tanstack/react-table";
@@ -11,12 +11,9 @@ import { Link as MUILink, TableCell } from "@mui/material";
 import { match } from "ts-pattern";
 import ontologyConfig from "../../../ontology.config";
 import { baseLength, VerticalLinkWrapper } from "./shared";
+import { CategorizedEdgesProp } from "../interfaces";
 
-export interface CategorizedEdgesProp {
-    isProp: boolean;
-    catEdges: CategorizedEdges | null;
-    otherCatEdges: CategorizedEdges | null;
-}
+
 interface RDFPropertiesOnClassTableProps {
     categorizedEdges: CategorizedEdgesProp;
 }
@@ -65,7 +62,7 @@ const RDFPropsTableComponentDictionary: ComponentDictionary<TableDataEntryForRDF
                     const LinkWrapper = iris.length > 1 ? VerticalLinkWrapper : Fragment
                     return <LinkWrapper>{iris.map((iri, idx) => {
                         const userLink = userLinks[idx];
-                        return <MUILink href={userLink}>{userLink}</MUILink>
+                        return <MUILink key={`lw-${idx}`} href={userLink}>{userLink}</MUILink>
                     })}</LinkWrapper>
                 })
             .otherwise((cellVal) => {
@@ -84,7 +81,7 @@ export const RDFPropertiesOnClassTable: FunctionComponent<RDFPropertiesOnClassTa
     if (!isRtLdGraph(graph)) return null;
     const tableEntries = useMemo(() => {
         const isGraphSuccessful = isRtLdGraph(graph);
-        if (!isGraphSuccessful || categorizedEdges.isProp || !categorizedEdges.catEdges) {
+        if (!isGraphSuccessful || !categorizedEdges.catEdges) {
             return null;
         }
         let result: TableDataEntryForRDFClass[] = []

@@ -10,6 +10,8 @@ export const i18nEN = {
     TABLEHEADING_EXPECTED_TYPE: "Expected Type",
     TABLEHEADING_APPEARS_ON_TYPE: "On Type",
     TABLEHEADING_DESCRIPTION: "Description",
+    COMPONENT_DESCRIPTION_EXPECTED_TYPES_OF_VALUES: "Values expected to be one of these types",
+    COMPONENT_DESCRIPTION_USED_ON_TYPES: "Used on these types",
     fn_TYPE_IN_HIERARCHY_POSITION: (typeName: string) => `Types with close relationship to "${typeName}":`,
     fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP:
         (typeName: string) => `Instances of "${typeName}" may appear as a value for the following properties`

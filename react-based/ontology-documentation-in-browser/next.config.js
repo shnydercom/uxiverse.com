@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
+
 const ontologyConfig = require("./ontology.config.js");
+/** @type {import('next').NextConfig} */
 const nextConfig = {
     basePath: ontologyConfig.baseNextJsPath,
     reactStrictMode: true,

@@ -1,7 +1,6 @@
 import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
-import { Fragment, FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { SingleAncestor } from "./SingleAncestor";
-import { ChevronRight } from "@mui/icons-material";
 
 export interface RecursiveAncestorProps {
     lineage: StringifiedLineage;
@@ -10,6 +9,8 @@ export interface RecursiveAncestorProps {
 
 export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ lineage, stopAtTerm }) => {
     const stopTermIdx = lineage.descendants.flatMap((val) => val.iris).findIndex((val) => val === stopAtTerm);
+    console.log(stopTermIdx)
+    const curElemMatches = lineage.iris.some((val) => val === stopAtTerm);
     if (stopTermIdx !== -1) {
         const stopTermEncounter = lineage.descendants[stopTermIdx];
         stopTermEncounter.descendants = []
@@ -18,8 +19,7 @@ export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ l
     return (<>
         <SingleAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
         {
-            lineage.descendants.map((descendantLineage, idx) => {
-
+            !curElemMatches && lineage.descendants.map((descendantLineage, idx) => {
                 return (
                     <RecursiveAncestor key={`recAnc-${idx}`} lineage={descendantLineage} stopAtTerm={stopAtTerm} />)
             })

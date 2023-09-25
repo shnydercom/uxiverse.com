@@ -6,9 +6,12 @@ import { notFound } from "next/navigation.js";
 import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
 import { match } from "ts-pattern"
 import { DescriptionFullDisplay } from "@/components/descriptionDisplay";
-import { CategorizedEdgesProp, RDFClassAsValueForPropsTable, RDFPropertiesOnClassTable } from "@/components/propertyDisplay";
+import { RDFClassAsValueForPropsTable, RDFPropertiesOnClassTable } from "@/components/classPropertiesRelationships/index";
 import { getOntologyGraph } from "@/graph-logic/getGraph";
 import { AncestorSiblingChildrenTreeview } from "@/components/ancestorDisplay/AncestorSiblingChildrenTreeview";
+import { ExpectedTypesOfValuesList } from "@/components/propertyClassesRelationships/ExpectedTypesOfValuesList";
+import { UsedOnTypesList } from "@/components/propertyClassesRelationships/UsedOnTypesList";
+import { CategorizedEdgesProp } from "@/components/interfaces";
 
 export const dynamicParams = false;
 
@@ -35,8 +38,7 @@ const getNodeForTerm = (term: string, graph: RtLdGraph): RtLdIdentifiableNode =>
     return nodeForTerm
 }
 
-const getStringifiedLineage = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph) => {
-    const isProp = nodeForTerm["@t"]?.iri === RDF_PROPERTY;
+const getStringifiedLineage = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph, isProp: boolean) => {
     const lineage = getLineage(graph, nodeForTerm["@id"], isProp, { moveTreeHighlightToEnd: false, sortTreeViewSiblings: false })
     if (!lineage) {
         notFound()
@@ -44,10 +46,9 @@ const getStringifiedLineage = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGra
     return lineage;
 }
 
-const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph): CategorizedEdgesProp => {
+const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdGraph, isProp: boolean): CategorizedEdgesProp => {
     let catEdges: CategorizedEdges | null = null;
     let otherCatEdges: CategorizedEdges | null = null;
-    const isProp = nodeForTerm["@t"]?.iri === RDF_PROPERTY;
     const term = nodeForTerm["@id"];
     if (!isProp) {
         catEdges = getCategorizedEdgesForClasses(graph, term);
@@ -57,7 +58,6 @@ const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdG
         otherCatEdges = getCategorizedEdgesForPropertyCanBeOfType(graph, term);
     }
     return {
-        isProp,
         catEdges,
         otherCatEdges
     }
@@ -66,8 +66,10 @@ const getCategorizedEdgesProp = (nodeForTerm: RtLdIdentifiableNode, graph: RtLdG
 export default async function Page({ params }: { params: { definedTerm: string } }) {
     const ontologyGraph = await getOntologyGraph();
     const nodeForTerm = getNodeForTerm(params.definedTerm, ontologyGraph);
-    const lineage = getStringifiedLineage(nodeForTerm, ontologyGraph);
-    const categorizedEdgesProp = getCategorizedEdgesProp(nodeForTerm, ontologyGraph);
+    const isProp = nodeForTerm["@t"]?.iri === RDF_PROPERTY;
+    const isClass = nodeForTerm["@t"]?.iri === RDF_CLASS;
+    const lineage = getStringifiedLineage(nodeForTerm, ontologyGraph, isProp);
+    const categorizedEdgesProp = getCategorizedEdgesProp(nodeForTerm, ontologyGraph, isProp);
     const termForThisPage = nodeForTerm["@id"];
     const descriptionText = getSingleUxiDefinition(
         termForThisPage,
@@ -105,12 +107,26 @@ export default async function Page({ params }: { params: { definedTerm: string }
         </Typography>
         <AncestorBreadcrumbs lineage={lineage} stopAtTerm={termForThisPage} ariaLabel={i18nEN.ARIA_LABEL_BREADCRUMB} />
         {descriptionText && <DescriptionFullDisplay descriptionText={descriptionText} termToDisplay={termForThisPage} />}
-        <RDFPropertiesOnClassTable categorizedEdges={categorizedEdgesProp} />
-        {isReverseRelationshipAvailable && <Typography>{i18nEN.fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP(params.definedTerm)}</Typography>}
-        {isReverseRelationshipAvailable && <RDFClassAsValueForPropsTable categorizedEdges={categorizedEdgesProp} />}
+        {isClass && <>
+            <RDFPropertiesOnClassTable categorizedEdges={categorizedEdgesProp} />
+            {isReverseRelationshipAvailable &&
+                <> <Typography>{i18nEN.fn_TABLEDOCUMENTATION_TYPE_APPEARS_AS_PROP(params.definedTerm)}</Typography>
+                    <RDFClassAsValueForPropsTable categorizedEdges={categorizedEdgesProp} />
+                </>
+            }
+
+        </>}
+        {
+            isProp && <>
+                <ExpectedTypesOfValuesList contentdescription={i18nEN.COMPONENT_DESCRIPTION_EXPECTED_TYPES_OF_VALUES}
+                    categorizedEdges={categorizedEdgesProp} />
+                <UsedOnTypesList contentdescription={i18nEN.COMPONENT_DESCRIPTION_USED_ON_TYPES} categorizedEdges={categorizedEdgesProp} />
+            </>
+        }
         <Typography>{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
         <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
         <code style={{ whiteSpace: "break-spaces" }}>
+            {JSON.stringify(categorizedEdgesProp, undefined, 2)}
             {JSON.stringify(lineage, undefined, 2)}
         </code>
     </Paper>

@@ -17,7 +17,7 @@ export const SingleAncestor: FunctionComponent<SingleAncestorProps> = ({ lineage
         flexDirection: "column"
     }}>
         {
-            lineage.iris.map((iri) => {
+            lineage.iris.map((iri, idx) => {
                 let userLink: string = iri;
                 if (iri.startsWith(ontologyConfig.baseIRI)) {
                     userLink = iri.slice(baseLength);
@@ -27,7 +27,7 @@ export const SingleAncestor: FunctionComponent<SingleAncestorProps> = ({ lineage
                         {userLink}
                     </Typography>
                 }
-                return <MUILink href={userLink}>
+                return <MUILink key={`irilink-${idx}`} href={userLink}>
                     {userLink}
                 </MUILink>
             })

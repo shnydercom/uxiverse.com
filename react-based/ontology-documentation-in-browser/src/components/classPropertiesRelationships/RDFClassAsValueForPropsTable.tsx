@@ -2,7 +2,6 @@
 import { Cell, ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { Fragment, FunctionComponent, useMemo } from "react";
 import { match } from "ts-pattern";
-import { CategorizedEdgesProp } from ".";
 import ontologyConfig from "../../../ontology.config";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
 import { createDefaultMuiComponentDictionary } from "../table/DefaultMUIComponentDictionary";
@@ -12,6 +11,7 @@ import { i18nEN } from "@/i18n";
 import { wrapPromise } from "@/client-utils";
 import { getOntologyGraph, isRtLdGraph } from "@/graph-logic";
 import { getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { CategorizedEdgesProp } from "../interfaces";
 
 //Instances of Thing may appear as a value for the following properties
 export interface TableDataEntryRDFClassAsValue {
@@ -58,7 +58,7 @@ const RDFClassAsValueForPropsTableComponentDictionary: ComponentDictionary<Table
                     const LinkWrapper = iris.length > 1 ? VerticalLinkWrapper : Fragment
                     return <LinkWrapper>{iris.map((iri, idx) => {
                         const userLink = userLinks[idx];
-                        return <MUILink href={userLink}>{userLink}</MUILink>
+                        return <MUILink key={`lw-${idx}`} href={userLink}>{userLink}</MUILink>
                     })}</LinkWrapper>
                 })
             .otherwise((cellVal) => {
