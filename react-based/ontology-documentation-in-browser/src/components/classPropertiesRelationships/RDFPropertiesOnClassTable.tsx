@@ -1,5 +1,5 @@
 "use client"
-import { getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
+import { findIdentifiableNode, getCategorizedEdgesForPropertyCanBeOfType, getSingleUxiDefinition } from "@uxiverse.com/jsonld-tools";
 import { Fragment, FunctionComponent, useMemo } from "react";
 import { ComponentDictionary, ExpandableGroupLayout } from "../table";
 import { Cell, ColumnDef, createColumnHelper } from "@tanstack/react-table";

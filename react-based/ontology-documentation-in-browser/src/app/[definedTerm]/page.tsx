@@ -12,6 +12,7 @@ import { AncestorSiblingChildrenTreeview } from "@/components/ancestorDisplay/An
 import { ExpectedTypesOfValuesList } from "@/components/propertyClassesRelationships/ExpectedTypesOfValuesList";
 import { UsedOnTypesList } from "@/components/propertyClassesRelationships/UsedOnTypesList";
 import { CategorizedEdgesProp } from "@/components/interfaces";
+import { JsonLDTermRenderer } from "@/components/jsonld-content";
 
 export const dynamicParams = false;
 
@@ -125,6 +126,7 @@ export default async function Page({ params }: { params: { definedTerm: string }
         }
         <Typography variant="subtitle2" >{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
         <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
+        <JsonLDTermRenderer term={termForThisPage} />
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(categorizedEdgesProp, undefined, 2)}
             {JSON.stringify(lineage, undefined, 2)}

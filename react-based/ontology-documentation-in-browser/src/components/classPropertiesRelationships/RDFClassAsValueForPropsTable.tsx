@@ -77,7 +77,7 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
     if (!isRtLdGraph(graph)) return null;
     const tableEntries = useMemo(() => {
         const isGraphSuccessful = isRtLdGraph(graph);
-        if (!isGraphSuccessful || categorizedEdges.isProp || !categorizedEdges.otherCatEdges) {
+        if (!isGraphSuccessful || !categorizedEdges.otherCatEdges) {
             return null;
         }
         let result: TableDataEntryRDFClassAsValue[] = []
