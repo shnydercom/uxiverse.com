@@ -126,10 +126,10 @@ export const RDFPropertiesOnClassTable: FunctionComponent<RDFPropertiesOnClassTa
                     cell: info => info.getValue()
                 }),
 
-                columnHelper.accessor(
+                /*columnHelper.accessor(
                     "propFromType", {
                     header: 'propFromType',
-                },)
+                },)*/
             ]
             return result;
         },

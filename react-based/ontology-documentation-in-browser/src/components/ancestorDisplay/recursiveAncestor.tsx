@@ -9,7 +9,6 @@ export interface RecursiveAncestorProps {
 
 export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ lineage, stopAtTerm }) => {
     const stopTermIdx = lineage.descendants.flatMap((val) => val.iris).findIndex((val) => val === stopAtTerm);
-    console.log(stopTermIdx)
     const curElemMatches = lineage.iris.some((val) => val === stopAtTerm);
     if (stopTermIdx !== -1) {
         const stopTermEncounter = lineage.descendants[stopTermIdx];

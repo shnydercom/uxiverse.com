@@ -123,7 +123,7 @@ export default async function Page({ params }: { params: { definedTerm: string }
                 <UsedOnTypesList contentdescription={i18nEN.COMPONENT_DESCRIPTION_USED_ON_TYPES} categorizedEdges={categorizedEdgesProp} />
             </>
         }
-        <Typography>{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
+        <Typography variant="subtitle2" >{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
         <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
         <code style={{ whiteSpace: "break-spaces" }}>
             {JSON.stringify(categorizedEdgesProp, undefined, 2)}
