@@ -124,8 +124,13 @@ export default async function Page({ params }: { params: { definedTerm: string }
                 <UsedOnTypesList contentdescription={i18nEN.COMPONENT_DESCRIPTION_USED_ON_TYPES} categorizedEdges={categorizedEdgesProp} />
             </>
         }
-        <Typography variant="subtitle2" >{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
-        <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
+        {
+            !(isProp && lineage.iris.length == 1) &&
+            <>
+                <Typography variant="subtitle2" >{i18nEN.fn_TYPE_IN_HIERARCHY_POSITION(params.definedTerm)}</Typography>
+                <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={termForThisPage} />
+            </>
+        }
         <JsonLDTermRenderer term={termForThisPage} />
     </Paper>
 }

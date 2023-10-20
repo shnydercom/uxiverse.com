@@ -5,6 +5,10 @@ const ontologyConfig = {
     baseIRI: 'https://uxiverse.com/ontology/',
     //baseIRI: 'https://schema.org/',
     /**
+     * the terms shown as an intro/example on the main page
+     */
+    introTerms: ["Button", "MediaAction", "IssueSeverityType", "ABTest", "UIElementState", "OrganismUIElement"],
+    /**
      * wich path nextjs should use as base path (entire /src behind this path)
      */
     baseNextJsPath: '/ontology',

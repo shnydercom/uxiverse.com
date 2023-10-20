@@ -1,91 +1,44 @@
-import Image from 'next/image'
+import { i18nEN } from "@/i18n";
+import { Paper, Typography } from "@mui/material";
+import ontologyConfig from "../../ontology.config";
+import { findIdentifiableNode, getLineage } from "@uxiverse.com/jsonld-tools";
+import { getOntologyGraph } from "@/graph-logic";
+import { notFound } from "next/navigation";
+import MultiTreeviewTiles from "@/components/ancestorDisplay/MultiTreeviewTiles";
 
-export default function Home() {
+const getMainTreeViewLineages = async () => {
+  const graph = await getOntologyGraph();
+  return ontologyConfig.introTerms.map(term => {
+    const searchIri = `${ontologyConfig.baseIRI}${term}`;
+    const nodeForTerm = findIdentifiableNode(graph, searchIri);
+    if (!nodeForTerm) {
+      notFound();
+    }
+    const lineage = getLineage(graph, nodeForTerm["@id"], false, { moveTreeHighlightToEnd: false, sortTreeViewSiblings: false })
+    if (!lineage) {
+      notFound()
+    }
+    return { lineage, term };
+  })
+}
+
+export default async function OntologyMainPage() {
+  const lineages = await getMainTreeViewLineages();
   return (
     <main >
       <div>
-        <p>
-          Get started by editing&nbsp;
-          <code>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/ontology/vercel.svg"
-              alt="Vercel Logo"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div >
-        <Image
-          src="/ontology/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <Paper sx={{ display: "flex", flexDirection: "column", gap: "10px", padding: "16px" }}>
+          <Typography variant="h4" >
+            {i18nEN.ONTOLOGY_MAIN_HEADING}
+          </Typography>
+          <Typography>
+            {i18nEN.ONTOLOGY_MAIN_INTRO}
+          </Typography>
+          <Typography variant="h4" >
+            {i18nEN.ONTOLOGY_MAIN_A_SELECTION_OF_TERMS}
+          </Typography>
+          <MultiTreeviewTiles lineages={lineages} />
+        </Paper>
       </div>
     </main>
   )

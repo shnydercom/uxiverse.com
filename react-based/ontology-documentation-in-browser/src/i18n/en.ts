@@ -5,6 +5,13 @@ export const i18nEN = {
     ONTOLOGY_TYPE_UNDEFINED: "A term of unknown type",
     ONTOLOGY_OTHER_TYPE: "A term of this type: ",
     ONTOLOGY_DESCRIPTION_ICON_ALT: "An icon for the full description text",
+    ONTOLOGY_MAIN_HEADING: "An Ontology for User Interface Components",
+    ONTOLOGY_MAIN_INTRO: `We can show living organisms's evolutionary pathways with taxonomy-trees,
+     but for the question of 'who eats whom?' we would need to show many more connections. Luckily the elements
+     that make up modern User Interfaces don't eat each other, but they evolve with every design iteration,
+     with changes in our users' hardware, software and the habits of our Apps' users. To show and make use of 
+     these evolving relationships in the evolving realm of User Interface creation, this ontology was started.`,
+    ONTOLOGY_MAIN_A_SELECTION_OF_TERMS: "A selection of terms",
     ARIA_LABEL_BREADCRUMB: "breadcrumb",
     TABLEHEADING_PROPERTY: "Property",
     TABLEHEADING_EXPECTED_TYPE: "Expected Type",

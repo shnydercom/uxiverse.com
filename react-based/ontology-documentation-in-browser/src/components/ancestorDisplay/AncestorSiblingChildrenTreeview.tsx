@@ -9,7 +9,7 @@ import { StringifiedLineage, getWellKnownIriSubPath } from "@uxiverse.com/jsonld
 import { Link, Typography } from "@mui/material";
 
 interface AncestorSiblingChildrenTreeviewProps extends RecursiveAncestorProps {
-
+    linkFormatterFn?: (input: string) => string
 }
 
 const getAllNodeIdsInTree = (lineage: StringifiedLineage): string[] => {
@@ -23,7 +23,7 @@ const getAllNodeIdsInTree = (lineage: StringifiedLineage): string[] => {
     return result;
 }
 
-export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingChildrenTreeviewProps> = ({ lineage, stopAtTerm }) => {
+export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingChildrenTreeviewProps> = ({ lineage, stopAtTerm, linkFormatterFn }) => {
     const renderTree = (lineageNode: StringifiedLineage) => {
         const lineageNodeCombined = lineageNode.iris.map(getWellKnownIriSubPath).join(", ");
         return (
@@ -39,7 +39,7 @@ export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingC
                         preventSelection,
                     } = useTreeItem(lineageNodeCombined);
                     if (selected) { return <Typography>{props.label}</Typography> }
-                    return <>{lineageNode.iris.map(getWellKnownIriSubPath).map(
+                    return <>{lineageNode.iris.map(linkFormatterFn ?? getWellKnownIriSubPath).map(
                         (iri, idx) => <Link key={idx} href={iri}>{props.label}</Link>)}</>
                 }}>
                 {

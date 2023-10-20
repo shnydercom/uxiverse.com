@@ -17,7 +17,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "outDir": "lib/esm",
-    "declaration": true
+    "declaration": true,
+    "sourceMap": true
   },
   "exclude": [
     "../../node_modules",
