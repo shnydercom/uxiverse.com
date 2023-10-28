@@ -1,7 +1,8 @@
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
-import { AppBar, Toolbar, Typography, Box } from '@mui/material'
+import { AppBar, Toolbar, Typography, Box, Link, Stack } from '@mui/material'
 import type { Metadata } from 'next'
 import { i18nEN } from '@/i18n'
+import ontologyConfig from '../../ontology.config'
 
 export const metadata: Metadata = {
   title: 'Uxiverse.com ontology',
@@ -13,15 +14,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  let homeLink = "/";
+  if (ontologyConfig.baseNextJsPath.length > 1 && ontologyConfig.baseIRI.length > 1) {
+    //if the ontology is hosted at a sub-route
+    homeLink = `https://${new URL(ontologyConfig.baseIRI).host}`;
+  }
   return (
     <html lang="en">
       <body>
         <ThemeRegistry>
           <AppBar position="fixed" sx={{ zIndex: 2000 }}>
             <Toolbar>
-              <Typography variant="h6" fontWeight={"800"} fontSize={"20"} noWrap component="div" >
-                {i18nEN.APP_HEADING}
-              </Typography>
+              <Stack direction={'row'} alignItems={"end"} gap={"16px"} >
+                <Link href={homeLink}>
+                  <Typography variant="h6" fontWeight={"800"} fontSize={"20px"} noWrap
+                    color="HighlightText" >
+                    {i18nEN.APP_HEADING}
+                  </Typography>
+                </Link>
+                {
+                  ontologyConfig.baseNextJsPath?.length > 1 &&
+                  <Link href="/">
+                    <Typography variant="h6" fontWeight={"800"} fontSize={"12px"} noWrap
+                      lineHeight={"14px"}
+                      color="HighlightText" >
+                      {i18nEN.APP_ONTOLOGY_LINK}
+                    </Typography>
+                  </Link>
+                }</Stack>
             </Toolbar>
           </AppBar>
           <Box

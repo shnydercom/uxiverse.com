@@ -25,7 +25,9 @@ const MultiTreeviewTiles: FunctionComponent<MultiTreeviewTilesProps> = ({ lineag
         <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "8px" }}>
             {
                 lineages.map(({ lineage, term }) =>
-                    <AncestorSiblingChildrenTreeview lineage={lineage} stopAtTerm={term}
+                    <AncestorSiblingChildrenTreeview
+                        key={term}
+                        lineage={lineage} stopAtTerm={term}
                         linkFormatterFn={mainPageLinkFormatterFn}
                         isSelectedActiveLink />)
             }

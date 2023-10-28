@@ -1,5 +1,6 @@
 export const i18nEN = {
     APP_HEADING: "Uxiverse.com",
+    APP_ONTOLOGY_LINK: "back to overview",
     ONTOLOGY_CLASS_SUBTITLE: "An uxiverse.com type",
     ONTOLOGY_PROPERTY_SUBTITLE: "An uxiverse.com property",
     ONTOLOGY_TYPE_UNDEFINED: "A term of unknown type",

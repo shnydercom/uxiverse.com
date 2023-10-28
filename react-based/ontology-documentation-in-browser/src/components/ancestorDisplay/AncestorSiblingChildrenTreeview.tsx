@@ -1,10 +1,10 @@
 "use client"
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { RecursiveAncestorProps } from ".";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
-import { TreeItem, TreeItemContentProps, useTreeItem } from '@mui/x-tree-view/TreeItem';
+import { TreeItem, useTreeItem } from '@mui/x-tree-view/TreeItem';
 import { StringifiedLineage, getWellKnownIriSubPath } from "@uxiverse.com/jsonld-tools";
 import { Link, Typography } from "@mui/material";
 
@@ -31,39 +31,38 @@ export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingC
         const lineageNodeCombined = unjoined.join(", ");
         return (
             <TreeItem key={lineageNodeCombined} nodeId={lineageNodeCombined} label={unjoined}
-                ContentComponent={({ label }) => {
+                ContentComponent={React.forwardRef(({ label }, ref) => {
                     const strArrLabel: string[] = Array.isArray(label) ? label : [];
                     const {
-                        disabled,
-                        expanded,
                         selected,
-                        focused,
-                        handleExpansion,
-                        handleSelection,
-                        preventSelection,
                     } = useTreeItem(lineageNodeCombined);
                     if (selected) {
                         if (isSelectedActiveLink) {
                             return <Link
+                                ref={ref as React.Ref<HTMLAnchorElement>}
                                 sx={{ fontWeight: "bold" }}
-                                href={getWellKnownIriSubPath(lineageNode.iris[0])}>{strArrLabel[0]}</Link>
+                                href={strFormatter(lineageNode.iris[0])}>{strArrLabel[0]}</Link>
                         }
-                        return <Typography fontWeight={"bold"}>{strArrLabel[0]}</Typography>
+                        return <Typography ref={ref as React.Ref<HTMLSpanElement>} fontWeight={"bold"}>{strArrLabel[0]}</Typography>
                     }
                     return <>{lineageNode.iris.map(strFormatter).map(
                         (iri, idx) => {
                             const subLabel = strArrLabel[idx];
                             if (idx !== 0) {
-                                return <>
+                                return <span
+                                    key={idx}
+                                    ref={ref as React.Ref<HTMLSpanElement>}>
                                     {", "}
-                                    <Link key={idx} href={iri}>{subLabel}</Link>
-                                </>
+                                    <Link href={iri}>{subLabel}</Link>
+                                </span>
                             }
-                            return <Link key={idx} href={iri}>{subLabel}</Link>
+                            return <Link
+                                ref={ref as React.Ref<HTMLAnchorElement>}
+                                key={idx} href={iri}>{subLabel}</Link>
                         }
 
                     )}</>
-                }}>
+                })}>
                 {
                     lineageNode.descendants.map((node) => {
                         return renderTree(node)
