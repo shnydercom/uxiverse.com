@@ -48,7 +48,6 @@ export const JsonLDTermRenderer: FunctionComponent<JsonLDTermRendererProps> = ({
     if (!isRtLdGraph(graph)) return null;
     const nodeForTerm = findIdentifiableNode(graph, term);
     if (!nodeForTerm) return null;
-    console.log(nodeForTerm)
     const renderedJsonLD = identifiableNodeToJsonLDResourceAtIRI(nodeForTerm);
     return (<JsonLDRenderer isDebug={false} content={JSON.stringify(renderedJsonLD, undefined, 2)} />);
 }

@@ -4,12 +4,13 @@ import { RecursiveAncestorProps } from ".";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
-import { TreeItem, useTreeItem } from '@mui/x-tree-view/TreeItem';
+import { TreeItem, TreeItemContentProps, useTreeItem } from '@mui/x-tree-view/TreeItem';
 import { StringifiedLineage, getWellKnownIriSubPath } from "@uxiverse.com/jsonld-tools";
 import { Link, Typography } from "@mui/material";
 
 interface AncestorSiblingChildrenTreeviewProps extends RecursiveAncestorProps {
-    linkFormatterFn?: (input: string) => string
+    linkFormatterFn?: (input: string) => string;
+    isSelectedActiveLink?: boolean;
 }
 
 const getAllNodeIdsInTree = (lineage: StringifiedLineage): string[] => {
@@ -23,12 +24,15 @@ const getAllNodeIdsInTree = (lineage: StringifiedLineage): string[] => {
     return result;
 }
 
-export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingChildrenTreeviewProps> = ({ lineage, stopAtTerm, linkFormatterFn }) => {
+export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingChildrenTreeviewProps> = ({ lineage, stopAtTerm, linkFormatterFn, isSelectedActiveLink }) => {
+    const strFormatter = linkFormatterFn ?? getWellKnownIriSubPath;
     const renderTree = (lineageNode: StringifiedLineage) => {
-        const lineageNodeCombined = lineageNode.iris.map(getWellKnownIriSubPath).join(", ");
+        const unjoined = lineageNode.iris.map(getWellKnownIriSubPath);
+        const lineageNodeCombined = unjoined.join(", ");
         return (
-            <TreeItem key={lineageNodeCombined} nodeId={lineageNodeCombined} label={lineageNodeCombined}
-                ContentComponent={(props) => {
+            <TreeItem key={lineageNodeCombined} nodeId={lineageNodeCombined} label={unjoined}
+                ContentComponent={({ label }) => {
+                    const strArrLabel: string[] = Array.isArray(label) ? label : [];
                     const {
                         disabled,
                         expanded,
@@ -38,9 +42,27 @@ export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingC
                         handleSelection,
                         preventSelection,
                     } = useTreeItem(lineageNodeCombined);
-                    if (selected) { return <Typography>{props.label}</Typography> }
-                    return <>{lineageNode.iris.map(linkFormatterFn ?? getWellKnownIriSubPath).map(
-                        (iri, idx) => <Link key={idx} href={iri}>{props.label}</Link>)}</>
+                    if (selected) {
+                        if (isSelectedActiveLink) {
+                            return <Link
+                                sx={{ fontWeight: "bold" }}
+                                href={getWellKnownIriSubPath(lineageNode.iris[0])}>{strArrLabel[0]}</Link>
+                        }
+                        return <Typography fontWeight={"bold"}>{strArrLabel[0]}</Typography>
+                    }
+                    return <>{lineageNode.iris.map(strFormatter).map(
+                        (iri, idx) => {
+                            const subLabel = strArrLabel[idx];
+                            if (idx !== 0) {
+                                return <>
+                                    {", "}
+                                    <Link key={idx} href={iri}>{subLabel}</Link>
+                                </>
+                            }
+                            return <Link key={idx} href={iri}>{subLabel}</Link>
+                        }
+
+                    )}</>
                 }}>
                 {
                     lineageNode.descendants.map((node) => {
