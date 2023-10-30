@@ -22,12 +22,13 @@ export const SingleAncestor: FunctionComponent<SingleAncestorProps> = ({ lineage
                 if (iri.startsWith(ontologyConfig.baseIRI)) {
                     userLink = iri.slice(baseLength);
                 }
+                const rKey = `irilink-${idx}`;
                 if (iri === stopAtTerm) {
-                    return <Typography>
+                    return <Typography key={rKey}>
                         {userLink}
                     </Typography>
                 }
-                return <MUILink key={`irilink-${idx}`} href={userLink}>
+                return <MUILink key={rKey} href={userLink}>
                     {userLink}
                 </MUILink>
             })

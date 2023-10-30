@@ -31,7 +31,7 @@ export const AncestorSiblingChildrenTreeview: FunctionComponent<AncestorSiblingC
         const lineageNodeCombined = unjoined.join(", ");
         return (
             <TreeItem key={lineageNodeCombined} nodeId={lineageNodeCombined} label={unjoined}
-                ContentComponent={React.forwardRef(({ label }, ref) => {
+                ContentComponent={React.forwardRef(function LinkTreeLeaf({ label }, ref) {
                     const strArrLabel: string[] = Array.isArray(label) ? label : [];
                     const {
                         selected,

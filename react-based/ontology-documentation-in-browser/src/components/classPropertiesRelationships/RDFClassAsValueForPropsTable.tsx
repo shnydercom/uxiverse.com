@@ -64,7 +64,7 @@ const RDFClassAsValueForPropsTableComponentDictionary: ComponentDictionary<Table
             .otherwise((cellVal) => {
                 return <>{cellVal.getValue()}</>
             })
-        return <TableCell {...props} children={children} />
+        return <TableCell {...props}>{children}</TableCell>
     },
 }
 
@@ -74,10 +74,9 @@ const graphResource = wrapPromise(getOntologyGraph())
 export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForPropsTableProps> = ({ categorizedEdges }) => {
     const graph = graphResource.read();
     //TODO: handle with suspense
-    if (!isRtLdGraph(graph)) return null;
+    const isGraphValid = (isRtLdGraph(graph));
     const tableEntries = useMemo(() => {
-        const isGraphSuccessful = isRtLdGraph(graph);
-        if (!isGraphSuccessful || !categorizedEdges.otherCatEdges) {
+        if (!isGraphValid || !categorizedEdges.otherCatEdges) {
             return null;
         }
         let result: TableDataEntryRDFClassAsValue[] = []
@@ -98,7 +97,7 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
             }
         }
         return result;
-    }, [categorizedEdges]);
+    }, [categorizedEdges, isGraphValid, graph]);
 
     const columns = useMemo<ColumnDef<TableDataEntryRDFClassAsValue, string>[]>(
         () => {
@@ -125,7 +124,7 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
         },
         []
     )
-    if (!tableEntries) {
+    if (!tableEntries || !isGraphValid) {
         return null;
     }
     return (<ExpandableGroupLayout<TableDataEntryRDFClassAsValue>
