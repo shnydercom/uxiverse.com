@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 
 export type ExpandableDataEntry<T> = Partial<{ subRows: T[] }> | object;
 
-export interface ExpandableGroupLayoutProps<T1 extends ExpandableDataEntry<T1> = object, T2 = string> {
+export interface ExpandableGroupLayoutProps<T1 extends ExpandableDataEntry<T1> = object, T2 = unknown> {
     data: T1[];
     columns: ColumnDef<T1, T2>[];
     componentDictionary: ComponentDictionary<T1>;
@@ -35,11 +35,11 @@ export interface ComponentDictionary<T extends ExpandableDataEntry<T> = object> 
     TableCell: React.FC<{ headlessProps: Cell<T, unknown> }>;
 }
 
-export const ExpandableGroupLayout = <T extends ExpandableDataEntry<T> = object,>({ data, columns, componentDictionary }: ExpandableGroupLayoutProps<T>) => {
+export const ExpandableGroupLayout = <T extends ExpandableDataEntry<T> = object,>({ data, columns, componentDictionary }: ExpandableGroupLayoutProps<T, unknown>) => {
 
     const [grouping, setGrouping] = useState<GroupingState>([])
     const [expanded, setExpanded] = useState<ExpandedState>({})
-    const headlessTable = useReactTable({
+    const headlessTable = useReactTable<T>({
         data,
         columns,
         state: {
