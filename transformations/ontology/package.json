@@ -14,10 +14,10 @@
     "build:lint": "echo ignoring linting for now, run with: jsonld-lint ./ontology/uxiverse.com.jsonld",
     "build:jsld": "jsonld format ./ontology/uxiverse.com.json --nquads > ./cli-gen/uxiverse-ontology.nt",
     "build:combine": "yarn ts-node ./buildsteps/concatNTFiles.ts",
-    "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology#,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
-    "build": "yarn build:jsld && yarn build:combine && yarn build:dts",
-    "serve": "http-server -p 4321 --cors -c2",
-    "flattenSchema": "ts-node ./scripts/flattenSchema.ts"
+    "build:dts": "schema-dts-gen --context=uxi:https://uxiverse.com/ontology/,schema:https://schema.org/ --ontology=doNotUse --file=./cli-gen/combined-ontology.nt > ./cli-gen/ontology.ts",
+    "build:flattenSchema": "ts-node ./scripts/flattenSchema.ts",
+    "build": "yarn build:jsld && yarn build:combine && yarn build:dts && yarn build:flattenSchema",
+    "serve": "http-server -p 4321 --cors -c2"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.0",
@@ -46,11 +46,11 @@
     "jsonld": "^3.3.0",
     "jsonld-cli": "^0.3.0",
     "jsonld-lint-cli": "^0.3.0",
-    "schema-dts": "^0.11.0",
-    "schema-dts-gen": "^0.11.0",
+    "schema-dts": "^1.1.2",
+    "schema-dts-gen": "^1.1.2",
     "ts-pattern": "^4.2.2",
     "ts-node": "^10.0.0",
-    "typescript": "^4.7.4",
+    "typescript": "^5.1.6",
     "unified": "^9.2.0",
     "http-server": "^14.1.1"
   }

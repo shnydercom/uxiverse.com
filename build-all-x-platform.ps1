@@ -1,0 +1,1 @@
+yarn lerna run build

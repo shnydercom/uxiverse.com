@@ -1012,7 +1012,7 @@
 		{
 			"@id": "uxi:audio",
 			"@type": "Property",
-			"subClassOf": {
+			"subPropertyOf": {
 				"@id": "uxi:MediaDataType"
 			},
 			"canBeOfType": [
@@ -1046,7 +1046,7 @@
 		{
 			"@id": "uxi:isPlaying",
 			"@type": "Property",
-			"subClassOf": [
+			"subPropertyOf": [
 				{
 					"@id": "uxi:MediaDataTypeProperty"
 				}

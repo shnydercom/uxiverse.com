@@ -20,7 +20,7 @@ export const SingleIRIVisualization = () => {
   if (focusedDefinition) {
     try {
       visualizationDataURL = String(
-        require(`../../../assets/type-icons/${getWellKnownIriSubPath(
+        require(`@uxiverse.com/visualassets/type-icons/${getWellKnownIriSubPath(
           focusedDefinition
         )}.svg`).default
       )

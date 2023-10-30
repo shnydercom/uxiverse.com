@@ -168,10 +168,10 @@ export interface EdgeOfAncestorsInputArgs {
     includeIncomingEdges: boolean;
 }
 /**
- * gets edges of all ancestors that are not the ancestors themselves as an object of string-arrays.
+ * gets edges of the startIRI and all ancestors as an object of string-arrays.
  * WARNING: can lead to circular traversal, depending on the graph and input parameters!
  */
-export const getEdgesOfAncestorsOnly = (options: EdgeOfAncestorsInputArgs): CategorizedEdges | null => {
+export const getEdgesOfStartIriAndAncestors = (options: EdgeOfAncestorsInputArgs): CategorizedEdges | null => {
     const { graph, startIRI, includeEdgeTypeIRIs, ancestorEdgeIRI, includeOutgoingEdges, includeIncomingEdges } = options;
     const result: CategorizedEdges = { straightLineage: [], categories: {} };
     let matchedNode = findIdentifiableNode(graph, startIRI)
@@ -220,5 +220,67 @@ export const getEdgesOfAncestorsOnly = (options: EdgeOfAncestorsInputArgs): Cate
         }
         matchedNode = nextAncestors[0]
     }
+    return result;
+}
+
+
+export interface DirectedQuery {
+    /**
+     * "in" or "out" direction of the unknown iri that goes into the categorizedEdges
+     */
+    isIn: boolean;
+    edgeTypeIRI: string;
+}
+
+export interface QueryFieldsTwoDeepOptions {
+    /**
+     * the graph that is being searched in
+     */
+    graph: RtLdGraph;
+    /**
+     * the IRI of an identifiable Node that is searched for in the graph
+     */
+    startIRI: string;
+    query: [DirectedQuery, DirectedQuery];
+}
+
+export const queryFieldsTwoDeep = (options: QueryFieldsTwoDeepOptions): CategorizedEdges | null => {
+    const { graph, startIRI, query } = options;
+    const result: CategorizedEdges = { straightLineage: [startIRI], categories: {} };
+    let matchedNode = findIdentifiableNode(graph, startIRI)
+    if (!matchedNode) return null;
+    //categories-loop:
+    const {
+        edgeTypeIRI: categoryIRI,
+        isIn: categoryIsIn
+    } = query[0];
+    const {
+        edgeTypeIRI: leafIRI,
+        isIn: leafIsIn
+    } = query[1];
+    const matchingEdges = matchedNode.fields
+        .filter(
+            (edge) => compareEdgeTypeIriAnd(categoryIRI)(edge))
+        .filter(
+            compareEdgeNodeIriAnd(matchedNode["@id"], !categoryIsIn));
+    matchingEdges.forEach((edge) => {
+        const categoryDirectionAccessor = categoryIsIn ? "in" : "out";
+        const categoryDirectionContent = edge[categoryDirectionAccessor];
+        if (!isRtLdIdentifiableNode(categoryDirectionContent)) {
+            return;
+        }
+        const resultStr: string[] = categoryDirectionContent.fields
+            .filter(
+                (edge) => compareEdgeTypeIriAnd(leafIRI)(edge))
+            .map((edgesEdge) => {
+                const leafDirectionAccessor = leafIsIn ? "in" : "out";
+                const leafDirectionContent = edgesEdge[leafDirectionAccessor];
+                if (!isRtLdIdentifiableNode(leafDirectionContent)) {
+                    return "";
+                }
+                return leafDirectionContent["@id"]
+            })
+        result.categories[categoryDirectionContent["@id"]] = resultStr;
+    })
     return result;
 }

@@ -1,13 +1,13 @@
 /** Used at the top-level node to indicate the context for the JSON-LD objects used. The context provided in this type is compatible with the keys and URLs in the rest of this generated file. */
 export type WithContext<T extends Thing> = T & {
     "@context": {
-        "uxi": "https://uxiverse.com/ontology#";
+        "uxi": "https://uxiverse.com/ontology/";
         "schema": "https://schema.org/";
     };
 };
 export interface Graph {
     "@context": {
-        "uxi": "https://uxiverse.com/ontology#";
+        "uxi": "https://uxiverse.com/ontology/";
         "schema": "https://schema.org/";
     };
     "@graph": readonly Thing[];
@@ -181,9 +181,9 @@ interface AccommodationBase extends PlaceBase {
     "schema:numberOfBathroomsTotal"?: SchemaValue<Integer, "schema:numberOfBathroomsTotal">;
     /** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
     "schema:numberOfBedrooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfBedrooms">;
-    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
+    /** Number of full bathrooms - The total number of full and ¾ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
     "schema:numberOfFullBathrooms"?: SchemaValue<Number, "schema:numberOfFullBathrooms">;
-    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
+    /** Number of partial bathrooms - The total number of half and ¼ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
     "schema:numberOfPartialBathrooms"?: SchemaValue<Number, "schema:numberOfPartialBathrooms">;
     /** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
     "schema:numberOfRooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfRooms">;
@@ -212,7 +212,7 @@ interface AccountingServiceLeaf extends FinancialServiceBase {
 /**
  * Accountancy business.
  *
- * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}(s).
  */
 export type AccountingService = AccountingServiceLeaf | string;
 
@@ -768,7 +768,7 @@ interface AudienceLeaf extends AudienceBase {
 /** Intended audience for an item, i.e. the group for whom the item was created. */
 export type Audience = AudienceLeaf | BusinessAudience | EducationalAudience | MedicalAudience | PeopleAudience | Researcher;
 
-interface AudiobookBase extends BookBase, AudioObjectBase {
+interface AudiobookBase extends AudioObjectBase, BookBase {
     /** The duration of the item (movie, audio recording, event, etc.) in {@link http://en.wikipedia.org/wiki/ISO_8601 ISO 8601 date format}. */
     "schema:duration"?: SchemaValue<Duration | IdReference, "schema:duration">;
     /** A person who reads (performs) the audiobook. */
@@ -1953,7 +1953,7 @@ interface ComedyEventLeaf extends EventBase {
 /** Event type: Comedy event. */
 export type ComedyEvent = ComedyEventLeaf;
 
-interface ComicCoverArtBase extends VisualArtworkBase, ComicStoryBase {
+interface ComicCoverArtBase extends ComicStoryBase, VisualArtworkBase {
 }
 interface ComicCoverArtLeaf extends ComicCoverArtBase {
     "@type": "schema:ComicCoverArt";
@@ -2048,6 +2048,12 @@ interface CommunicateActionLeaf extends CommunicateActionBase {
 }
 /** The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation. */
 export type CommunicateAction = CommunicateActionLeaf | AskAction | CheckInAction | CheckOutAction | CommentAction | InformAction | InviteAction | ReplyAction | ShareAction | UICommunicateAction;
+
+interface CommunityHealthLeaf extends LocalBusinessBase {
+    "@type": "schema:CommunityHealth";
+}
+/** A field of public health focusing on improving health characteristics of a defined population in relation with their geographical or environment areas. */
+export type CommunityHealth = CommunityHealthLeaf | string;
 
 interface CompleteDataFeedLeaf extends DataFeedBase {
     "@type": "schema:CompleteDataFeed";
@@ -2587,7 +2593,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:thumbnailUrl"?: SchemaValue<URL, "schema:thumbnailUrl">;
     /** Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'PT30M', 'PT1H25M'. */
     "schema:timeRequired"?: SchemaValue<Duration | IdReference, "schema:timeRequired">;
-    /** The work that this work has been translated from. e.g. \u7269\u79CD\u8D77\u6E90 is a translationOf \u201COn the Origin of Species\u201D */
+    /** The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species” */
     "schema:translationOfWork"?: SchemaValue<CreativeWork | IdReference, "schema:translationOfWork">;
     /** Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market, or that translates during some event. */
     "schema:translator"?: SchemaValue<Organization | Person | IdReference, "schema:translator">;
@@ -2605,7 +2611,7 @@ interface CreativeWorkBase extends ThingBase {
     "schema:video"?: SchemaValue<Clip | VideoObject | IdReference, "schema:video">;
     /** Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook. */
     "schema:workExample"?: SchemaValue<CreativeWork | IdReference, "schema:workExample">;
-    /** A work that is a translation of the content of this work. e.g. \u897F\u904A\u8A18 has an English workTranslation \u201CJourney to the West\u201D,a German workTranslation \u201CMonkeys Pilgerfahrt\u201D and a Vietnamese translation T\u00E2y du k\u00FD b\u00ECnh kh\u1EA3o. */
+    /** A work that is a translation of the content of this work. e.g. 西遊記 has an English workTranslation “Journey to the West”,a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese translation Tây du ký bình khảo. */
     "schema:workTranslation"?: SchemaValue<CreativeWork | IdReference, "schema:workTranslation">;
 }
 interface CreativeWorkLeaf extends CreativeWorkBase {
@@ -2668,7 +2674,7 @@ interface CreativeWorkSeriesLeaf extends CreativeWorkSeriesBase {
  */
 export type CreativeWorkSeries = CreativeWorkSeriesLeaf | BookSeries | MovieSeries | Periodical | PodcastSeries | RadioSeries | TVSeries | VideoGameSeries;
 
-interface CreditCardBase extends LoanOrCreditBase, PaymentCardBase {
+interface CreditCardBase extends PaymentCardBase, LoanOrCreditBase {
 }
 interface CreditCardLeaf extends CreditCardBase {
     "@type": "schema:CreditCard";
@@ -3113,7 +3119,7 @@ interface DemandLeaf extends DemandBase {
 /** A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply. */
 export type Demand = DemandLeaf;
 
-interface DentistBase extends MedicalOrganizationBase, LocalBusinessBase, LocalBusinessBase {
+interface DentistBase extends LocalBusinessBase, MedicalOrganizationBase, LocalBusinessBase {
 }
 interface DentistLeaf extends DentistBase {
     "@type": "schema:Dentist";
@@ -3140,6 +3146,12 @@ interface DepositAccountLeaf extends DepositAccountBase {
 }
 /** A type of Bank Account with a main purpose of depositing funds to gain interest or other benefits. */
 export type DepositAccount = DepositAccountLeaf;
+
+interface DermatologyLeaf extends LocalBusinessBase {
+    "@type": "schema:Dermatology";
+}
+/** A specific branch of medical science that pertains to diagnosis and treatment of disorders of skin. */
+export type Dermatology = DermatologyLeaf | string;
 
 interface DetailActionLeaf extends UIActionBase {
     "@type": "uxi:DetailAction";
@@ -3222,6 +3234,12 @@ interface DietarySupplementLeaf extends DietarySupplementBase {
 }
 /** A product taken by mouth that contains a dietary ingredient intended to supplement the diet. Dietary ingredients may include vitamins, minerals, herbs or other botanicals, amino acids, and substances such as enzymes, organ tissues, glandulars and metabolites. */
 export type DietarySupplement = DietarySupplementLeaf;
+
+interface DietNutritionLeaf extends LocalBusinessBase {
+    "@type": "schema:DietNutrition";
+}
+/** Dietetic and nutrition as a medical specialty. */
+export type DietNutrition = DietNutritionLeaf | string;
 
 interface DigitalDocumentBase extends CreativeWorkBase {
     /** A permission related to the access to this document (e.g. permission to read or write an electronic document). For a public document, specify a grantee with an Audience with audienceType equal to "public". */
@@ -3574,7 +3592,7 @@ export type EducationalAudience = EducationalAudienceLeaf;
 interface EducationalOccupationalCredentialBase extends CreativeWorkBase {
     /** Knowledge, skill, ability or personal attribute that must be demonstrated by a person or other entity in order to do something such as earn an Educational Occupational Credential or understand a LearningResource. */
     "schema:competencyRequired"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "schema:competencyRequired">;
-    /** The category or type of credential being described, for example "degree\u201D, \u201Ccertificate\u201D, \u201Cbadge\u201D, or more specific term. */
+    /** The category or type of credential being described, for example "degree”, “certificate”, “badge”, or more specific term. */
     "schema:credentialCategory"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "schema:credentialCategory">;
     /** The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators. */
     "schema:educationalLevel"?: SchemaValue<DefinedTerm | Text | URL | IdReference, "schema:educationalLevel">;
@@ -3736,6 +3754,12 @@ interface EmbassyLeaf extends CivicStructureBase {
 }
 /** An embassy. */
 export type Embassy = EmbassyLeaf | string;
+
+interface EmergencyLeaf extends LocalBusinessBase {
+    "@type": "schema:Emergency";
+}
+/** A specific branch of medical science that deals with the evaluation and initial treatment of medical conditions caused by trauma or sudden illness. */
+export type Emergency = EmergencyLeaf | string;
 
 interface EmergencyServiceLeaf extends LocalBusinessBase {
     "@type": "schema:EmergencyService";
@@ -4066,7 +4090,7 @@ interface EventReservationLeaf extends ReservationBase {
  */
 export type EventReservation = EventReservationLeaf;
 
-interface EventSeriesBase extends ThingBase, EventBase {
+interface EventSeriesBase extends EventBase, ThingBase {
 }
 interface EventSeriesLeaf extends EventSeriesBase {
     "@type": "schema:EventSeries";
@@ -4263,7 +4287,7 @@ interface FindActionLeaf extends ActionBase {
  */
 export type FindAction = FindActionLeaf | CheckAction | DiscoverAction | TrackAction;
 
-interface FireStationBase extends LocalBusinessBase, CivicStructureBase {
+interface FireStationBase extends CivicStructureBase, LocalBusinessBase {
 }
 interface FireStationLeaf extends FireStationBase {
     "@type": "schema:FireStation";
@@ -4365,9 +4389,9 @@ interface FloorPlanBase extends ThingBase {
     "schema:numberOfBathroomsTotal"?: SchemaValue<Integer, "schema:numberOfBathroomsTotal">;
     /** The total integer number of bedrooms in a some {@link https://schema.org/Accommodation Accommodation}, {@link https://schema.org/ApartmentComplex ApartmentComplex} or {@link https://schema.org/FloorPlan FloorPlan}. */
     "schema:numberOfBedrooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfBedrooms">;
-    /** Number of full bathrooms - The total number of full and \u00BE bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
+    /** Number of full bathrooms - The total number of full and ¾ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsFull+Field BathroomsFull field in RESO}. */
     "schema:numberOfFullBathrooms"?: SchemaValue<Number, "schema:numberOfFullBathrooms">;
-    /** Number of partial bathrooms - The total number of half and \u00BC bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
+    /** Number of partial bathrooms - The total number of half and ¼ bathrooms in an {@link https://schema.org/Accommodation Accommodation}. This corresponds to the {@link https://ddwiki.reso.org/display/DDW17/BathroomsPartial+Field BathroomsPartial field in RESO}. */
     "schema:numberOfPartialBathrooms"?: SchemaValue<Number, "schema:numberOfPartialBathrooms">;
     /** The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business. Typical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue. */
     "schema:numberOfRooms"?: SchemaValue<Number | QuantitativeValue | IdReference, "schema:numberOfRooms">;
@@ -4685,6 +4709,12 @@ interface GeospatialGeometryLeaf extends GeospatialGeometryBase {
 /** (Eventually to be defined as) a supertype of GeoShape designed to accommodate definitions from Geo-Spatial best practices. */
 export type GeospatialGeometry = GeospatialGeometryLeaf;
 
+interface GeriatricLeaf extends LocalBusinessBase {
+    "@type": "schema:Geriatric";
+}
+/** A specific branch of medical science that is concerned with the diagnosis and treatment of diseases, debilities and provision of care to the aged. */
+export type Geriatric = GeriatricLeaf | string;
+
 interface GiveActionBase extends TransferActionBase {
     /** A sub property of participant. The participant who is at the receiving end of the action. */
     "schema:recipient"?: SchemaValue<Audience | ContactPoint | Organization | Person | IdReference, "schema:recipient">;
@@ -4794,6 +4824,12 @@ interface GuideLeaf extends GuideBase {
 }
 /** {@link https://schema.org/Guide Guide} is a page or article that recommend specific products or services, or aspects of a thing for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Buying Guide and detail aspects of products or services for a user to consider. A {@link https://schema.org/Guide Guide} may represent a Product Guide and recommend specific products or services. A {@link https://schema.org/Guide Guide} may represent a Ranked List and recommend specific products or services with ranking. */
 export type Guide = GuideLeaf;
+
+interface GynecologicLeaf extends LocalBusinessBase {
+    "@type": "schema:Gynecologic";
+}
+/** A specific branch of medical science that pertains to the health care of women, particularly in the diagnosis and treatment of disorders affecting the female reproductive system. */
+export type Gynecologic = GynecologicLeaf | string;
 
 interface HackathonLeaf extends EventBase {
     "@type": "schema:Hackathon";
@@ -4953,7 +4989,7 @@ interface HomeAndConstructionBusinessLeaf extends LocalBusinessBase {
  *
  * A HomeAndConstructionBusiness is a {@link https://schema.org/LocalBusiness LocalBusiness} that provides services around homes and buildings.
  *
- * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}(s).
  */
 export type HomeAndConstructionBusiness = HomeAndConstructionBusinessLeaf | Electrician | GeneralContractor | HousePainter | HVACBusiness | Locksmith | MovingCompany | Plumber | RoofingContractor | string;
 
@@ -5099,7 +5135,7 @@ interface HowToItemLeaf extends HowToItemBase {
 /** An item used as either a tool or supply when performing the instructions for how to to achieve a result. */
 export type HowToItem = HowToItemLeaf | HowToSupply | HowToTool;
 
-interface HowToSectionBase extends ListItemBase, CreativeWorkBase, ItemListBase {
+interface HowToSectionBase extends CreativeWorkBase, ItemListBase, ListItemBase {
     /**
      * A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred).
      *
@@ -5113,7 +5149,7 @@ interface HowToSectionLeaf extends HowToSectionBase {
 /** A sub-grouping of steps in the instructions for how to achieve a result (e.g. steps for making a pie crust within a pie recipe). */
 export type HowToSection = HowToSectionLeaf;
 
-interface HowToStepBase extends CreativeWorkBase, ListItemBase, ItemListBase {
+interface HowToStepBase extends CreativeWorkBase, ItemListBase, ListItemBase {
 }
 interface HowToStepLeaf extends HowToStepBase {
     "@type": "schema:HowToStep";
@@ -5131,7 +5167,7 @@ interface HowToSupplyLeaf extends HowToSupplyBase {
 /** A supply consumed when performing the instructions for how to achieve a result. */
 export type HowToSupply = HowToSupplyLeaf;
 
-interface HowToTipBase extends ListItemBase, CreativeWorkBase {
+interface HowToTipBase extends CreativeWorkBase, ListItemBase {
 }
 interface HowToTipLeaf extends HowToTipBase {
     "@type": "schema:HowToTip";
@@ -5200,6 +5236,12 @@ interface IgnoreActionLeaf extends ActionBase {
 }
 /** The act of intentionally disregarding the object. An agent ignores an object. */
 export type IgnoreAction = IgnoreActionLeaf;
+
+interface imageLeaf extends MediaDataTypeBase {
+    "@type": "uxi:image";
+}
+/** An image of the item. This can be a URL or a fully described ImageObject. */
+export type image = imageLeaf;
 
 interface ImageGalleryLeaf extends WebPageBase {
     "@type": "schema:ImageGallery";
@@ -5709,7 +5751,7 @@ interface LegalServiceLeaf extends LocalBusinessBase {
 /**
  * A LegalService is a business that provides legally-oriented services, advice and representation, e.g. law firms.
  *
- * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}\(s).
+ * As a {@link https://schema.org/LocalBusiness LocalBusiness} it can be described as a {@link https://schema.org/provider provider} of one or more {@link https://schema.org/Service Service}(s).
  */
 export type LegalService = LegalServiceLeaf | Attorney | Notary | string;
 
@@ -5744,7 +5786,7 @@ interface LegislationBase extends CreativeWorkBase {
     "schema:legislationResponsible"?: SchemaValue<Organization | Person | IdReference, "schema:legislationResponsible">;
     /** Indicates that this legislation (or part of legislation) fulfills the objectives set by another legislation, by passing appropriate implementation measures. Typically, some legislations of European Union's member states or regions transpose European Directives. This indicates a legally binding link between the 2 legislations. */
     "schema:legislationTransposes"?: SchemaValue<Legislation | IdReference, "schema:legislationTransposes">;
-    /** The type of the legislation. Examples of values are "law", "act", "directive", "decree", "regulation", "statutory instrument", "loi organique", "r\u00E8glement grand-ducal", etc., depending on the country. */
+    /** The type of the legislation. Examples of values are "law", "act", "directive", "decree", "regulation", "statutory instrument", "loi organique", "règlement grand-ducal", etc., depending on the country. */
     "schema:legislationType"?: SchemaValue<CategoryCode | Text | IdReference, "schema:legislationType">;
 }
 interface LegislationLeaf extends LegislationBase {
@@ -5753,7 +5795,7 @@ interface LegislationLeaf extends LegislationBase {
 /** A legal document such as an act, decree, bill, etc. (enforceable or not) or a component of a legal act (like an article). */
 export type Legislation = LegislationLeaf | LegislationObject;
 
-interface LegislationObjectBase extends MediaObjectBase, LegislationBase {
+interface LegislationObjectBase extends LegislationBase, MediaObjectBase {
     /** The legal value of this legislation file. The same legislation can be written in multiple files with different legal values. Typically a digitally signed PDF have a "stronger" legal value than the HTML file of the same act. */
     "schema:legislationLegalValue"?: SchemaValue<LegalValueLevel | IdReference, "schema:legislationLegalValue">;
 }
@@ -6122,7 +6164,7 @@ interface MediaDataTypeLeaf extends MediaDataTypeBase {
     "@type": "uxi:MediaDataType";
 }
 /** Data types that are not part of html, but can be embedded, such as image, audio and video */
-export type MediaDataType = MediaDataTypeLeaf;
+export type MediaDataType = MediaDataTypeLeaf | image | video;
 
 interface MediaGalleryLeaf extends WebPageBase {
     "@type": "schema:MediaGallery";
@@ -6244,7 +6286,7 @@ interface MediaSubscriptionLeaf extends MediaSubscriptionBase {
 /** A subscription which allows a user to access media including audio, video, books, etc. */
 export type MediaSubscription = MediaSubscriptionLeaf;
 
-interface MedicalAudienceBase extends AudienceBase, PeopleAudienceBase {
+interface MedicalAudienceBase extends PeopleAudienceBase, AudienceBase {
 }
 interface MedicalAudienceLeaf extends MedicalAudienceBase {
     "@type": "schema:MedicalAudience";
@@ -6262,7 +6304,7 @@ interface MedicalBusinessLeaf extends LocalBusinessBase {
     "@type": "schema:MedicalBusiness";
 }
 /** A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include differents business run by health professionals. */
-export type MedicalBusiness = MedicalBusinessLeaf | Dentist | MedicalClinic | Optician | Pharmacy | Physician | string;
+export type MedicalBusiness = MedicalBusinessLeaf | CommunityHealth | Dentist | Dermatology | DietNutrition | Emergency | Geriatric | Gynecologic | MedicalClinic | Midwifery | Nursing | Obstetric | Oncologic | Optician | Optometric | Otolaryngologic | Pediatric | Pharmacy | Physician | Physiotherapy | PlasticSurgery | Podiatric | PrimaryCare | Psychiatric | PublicHealth | string;
 
 interface MedicalCauseBase extends MedicalEntityBase {
     /** The condition, complication, symptom, sign, etc. caused. */
@@ -6670,7 +6712,7 @@ interface MedicalTherapyLeaf extends MedicalTherapyBase {
     "@type": "schema:MedicalTherapy";
 }
 /** Any medical intervention designed to prevent, treat, and cure human diseases and medical conditions, including both curative and palliative therapies. Medical therapies are typically processes of care relying upon pharmacotherapy, behavioral therapy, supportive therapy (with fluid or nutrition for example), or detoxification (e.g. hemodialysis) aimed at improving or preventing a health condition. */
-export type MedicalTherapy = MedicalTherapyLeaf | OccupationalTherapy | PalliativeProcedure | PhysicalTherapy | RadiationTherapy;
+export type MedicalTherapy = MedicalTherapyLeaf | OccupationalTherapy | PalliativeProcedure | PhysicalTherapy | RadiationTherapy | RespiratoryTherapy;
 
 interface MedicalTrialBase extends MedicalStudyBase {
     /** Specifics about the trial design (enumerated). */
@@ -6871,6 +6913,12 @@ interface MiddleSchoolLeaf extends EducationalOrganizationBase {
 }
 /** A middle school (typically for children aged around 11-14, although this varies somewhat). */
 export type MiddleSchool = MiddleSchoolLeaf | string;
+
+interface MidwiferyLeaf extends LocalBusinessBase {
+    "@type": "schema:Midwifery";
+}
+/** A nurse-like health profession that deals with pregnancy, childbirth, and the postpartum period (including care of the newborn), besides sexual and reproductive health of women throughout their lives. */
+export type Midwifery = MidwiferyLeaf | string;
 
 interface MinifiedStateLeaf extends ElementBase {
     "@type": "uxi:MinifiedState";
@@ -7167,7 +7215,7 @@ interface MovieSeriesLeaf extends MovieSeriesBase {
 /** A series of movies. Included movies can be indicated with the hasPart property. */
 export type MovieSeries = MovieSeriesLeaf;
 
-interface MovieTheaterBase extends LocalBusinessBase, CivicStructureBase {
+interface MovieTheaterBase extends CivicStructureBase, LocalBusinessBase {
     /** The number of screens in the movie theater. */
     "schema:screenCount"?: SchemaValue<Number, "schema:screenCount">;
 }
@@ -7543,6 +7591,12 @@ interface NumericTypeLeaf extends NumericTypeBase {
 /** Data type: Numeric. Human-readable terms that are expressed in numbers, examples could be an NPS score, temperature, etc. */
 export type NumericType = NumericTypeLeaf;
 
+interface NursingLeaf extends LocalBusinessBase {
+    "@type": "schema:Nursing";
+}
+/** A health profession of a person formally educated and trained in the care of the sick or infirm person. */
+export type Nursing = NursingLeaf | string;
+
 interface NutritionInformationBase extends ThingBase {
     /** The number of calories. */
     "schema:calories"?: SchemaValue<Energy | IdReference, "schema:calories">;
@@ -7592,6 +7646,12 @@ interface ObservationLeaf extends ObservationBase {
 }
 /** Instances of the class {@link https://schema.org/Observation Observation} are used to specify observations about an entity (which may or may not be an instance of a {@link https://schema.org/StatisticalPopulation StatisticalPopulation}), at a particular time. The principal properties of an {@link https://schema.org/Observation Observation} are {@link https://schema.org/observedNode observedNode}, {@link https://schema.org/measuredProperty measuredProperty}, {@link https://schema.org/measuredValue measuredValue} (or {@link https://schema.org/median median}, etc.) and {@link https://schema.org/observationDate observationDate} ({@link https://schema.org/measuredProperty measuredProperty} properties can, but need not always, be W3C RDF Data Cube "measure properties", as in the {@link https://www.w3.org/TR/vocab-data-cube/#dsd-example lifeExpectancy example}). See also {@link https://schema.org/StatisticalPopulation StatisticalPopulation}, and the {@link /docs/data-and-datasets.html data and datasets} overview for more details. */
 export type Observation = ObservationLeaf;
+
+interface ObstetricLeaf extends LocalBusinessBase {
+    "@type": "schema:Obstetric";
+}
+/** A specific branch of medical science that specializes in the care of women during the prenatal and postnatal care and with the delivery of the child. */
+export type Obstetric = ObstetricLeaf | string;
 
 interface OccupationBase extends ThingBase {
     /** Educational background needed for the position or Occupation. */
@@ -7837,6 +7897,12 @@ interface OfficeEquipmentStoreLeaf extends LocalBusinessBase {
 /** An office equipment store. */
 export type OfficeEquipmentStore = OfficeEquipmentStoreLeaf | string;
 
+interface OncologicLeaf extends LocalBusinessBase {
+    "@type": "schema:Oncologic";
+}
+/** A specific branch of medical science that deals with benign and malignant tumors, including the study of their development, diagnosis, treatment and prevention. */
+export type Oncologic = OncologicLeaf | string;
+
 interface OnDemandEventLeaf extends PublicationEventBase {
     "@type": "schema:OnDemandEvent";
 }
@@ -7890,6 +7956,12 @@ interface OpticianLeaf extends LocalBusinessBase {
 }
 /** A store that sells reading glasses and similar devices for improving vision. */
 export type Optician = OpticianLeaf | string;
+
+interface OptometricLeaf extends LocalBusinessBase {
+    "@type": "schema:Optometric";
+}
+/** The science or practice of testing visual acuity and prescribing corrective lenses. */
+export type Optometric = OptometricLeaf | string;
 
 interface OrderBase extends ThingBase {
     /** The offer(s) -- e.g., product, quantity and price combinations -- included in the order. */
@@ -8171,6 +8243,12 @@ interface OrganizeActionLeaf extends ActionBase {
 /** The act of manipulating/administering/supervising/controlling one or more objects. */
 export type OrganizeAction = OrganizeActionLeaf | AllocateAction | ApplyAction | BookmarkAction | PlanAction;
 
+interface OtolaryngologicLeaf extends LocalBusinessBase {
+    "@type": "schema:Otolaryngologic";
+}
+/** A specific branch of medical science that is concerned with the ear, nose and throat and their respective disease states. */
+export type Otolaryngologic = OtolaryngologicLeaf | string;
+
 interface OutletStoreLeaf extends LocalBusinessBase {
     "@type": "schema:OutletStore";
 }
@@ -8301,7 +8379,7 @@ interface PathologyTestLeaf extends PathologyTestBase {
 /** A medical test performed by a laboratory that typically involves examination of a tissue sample by a pathologist. */
 export type PathologyTest = PathologyTestLeaf;
 
-interface PatientBase extends MedicalAudienceBase, PersonBase {
+interface PatientBase extends PersonBase, MedicalAudienceBase {
     /** One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process. */
     "schema:diagnosis"?: SchemaValue<MedicalCondition | IdReference, "schema:diagnosis">;
     /** Specifying a drug or medicine used in a medication procedure. */
@@ -8395,6 +8473,12 @@ interface PaymentStatusTypeLeaf extends EnumerationBase {
 }
 /** A specific payment status. For example, PaymentDue, PaymentComplete, etc. */
 export type PaymentStatusType = "https://schema.org/PaymentAutomaticallyApplied" | "schema:PaymentAutomaticallyApplied" | "https://schema.org/PaymentComplete" | "schema:PaymentComplete" | "https://schema.org/PaymentDeclined" | "schema:PaymentDeclined" | "https://schema.org/PaymentDue" | "schema:PaymentDue" | "https://schema.org/PaymentPastDue" | "schema:PaymentPastDue" | PaymentStatusTypeLeaf;
+
+interface PediatricLeaf extends LocalBusinessBase {
+    "@type": "schema:Pediatric";
+}
+/** A specific branch of medical science that specializes in the care of infants, children and adolescents. */
+export type Pediatric = PediatricLeaf | string;
 
 interface PeopleAudienceBase extends AudienceBase {
     /** Specifying the health condition(s) of a patient, medical study, or other target audience. */
@@ -8708,6 +8792,12 @@ interface PhysicianLeaf extends PhysicianBase {
 /** A doctor's office. */
 export type Physician = PhysicianLeaf | string;
 
+interface PhysiotherapyLeaf extends LocalBusinessBase {
+    "@type": "schema:Physiotherapy";
+}
+/** The practice of treatment of disease, injury, or deformity by physical methods such as massage, heat treatment, and exercise rather than by drugs or surgery.. */
+export type Physiotherapy = PhysiotherapyLeaf | string;
+
 interface PlaceBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
@@ -8862,6 +8952,12 @@ interface PlanActionLeaf extends PlanActionBase {
 /** The act of planning the execution of an event/task/action/reservation/plan to a future date. */
 export type PlanAction = PlanActionLeaf | CancelAction | ReserveAction | ScheduleAction;
 
+interface PlasticSurgeryLeaf extends LocalBusinessBase {
+    "@type": "schema:PlasticSurgery";
+}
+/** A specific branch of medical science that pertains to therapeutic or cosmetic repair or re-formation of missing, injured or malformed tissues or body parts by manual and instrumental means. */
+export type PlasticSurgery = PlasticSurgeryLeaf | string;
+
 interface PlayLeaf extends CreativeWorkBase {
     "@type": "schema:Play";
 }
@@ -8921,6 +9017,12 @@ interface PodcastSeriesLeaf extends PodcastSeriesBase {
 }
 /** A podcast is an episodic series of digital audio or video files which a user can download and listen to. */
 export type PodcastSeries = PodcastSeriesLeaf;
+
+interface PodiatricLeaf extends LocalBusinessBase {
+    "@type": "schema:Podiatric";
+}
+/** Podiatry is the care of the human foot, especially the diagnosis and treatment of foot disorders. */
+export type Podiatric = PodiatricLeaf | string;
 
 interface PointActionLeaf extends UIActionBase {
     "@type": "uxi:PointAction";
@@ -9072,6 +9174,12 @@ interface PriceTypeEnumerationLeaf extends EnumerationBase {
 /** Enumerates different price types, for example list price, invoice price, and sale price. */
 export type PriceTypeEnumeration = "https://schema.org/InvoicePrice" | "schema:InvoicePrice" | "https://schema.org/ListPrice" | "schema:ListPrice" | "https://schema.org/MinimumAdvertisedPrice" | "schema:MinimumAdvertisedPrice" | "https://schema.org/MSRP" | "schema:MSRP" | "https://schema.org/SalePrice" | "schema:SalePrice" | "https://schema.org/SRP" | "schema:SRP" | PriceTypeEnumerationLeaf;
 
+interface PrimaryCareLeaf extends LocalBusinessBase {
+    "@type": "schema:PrimaryCare";
+}
+/** The medical care by a physician, or other health-care professional, who is the patient's first contact with the health-care system and who may recommend a specialist if necessary. */
+export type PrimaryCare = PrimaryCareLeaf | string;
+
 interface ProductBase extends ThingBase {
     /**
      * A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.
@@ -9192,7 +9300,7 @@ interface ProductLeaf extends ProductBase {
 /** Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online. */
 export type Product = ProductLeaf | IndividualProduct | ProductCollection | ProductGroup | ProductModel | SomeProducts | Vehicle;
 
-interface ProductCollectionBase extends CollectionBase, ProductBase {
+interface ProductCollectionBase extends ProductBase, CollectionBase {
     /** This links to a node or nodes indicating the exact quantity of the products included in an {@link https://schema.org/Offer Offer} or {@link https://schema.org/ProductCollection ProductCollection}. */
     "schema:includesObject"?: SchemaValue<TypeAndQuantityNode | IdReference, "schema:includesObject">;
 }
@@ -9283,7 +9391,7 @@ export type Project = ProjectLeaf | FundingAgency | ResearchProject | string;
 interface PronounceableTextBase extends Partial<IdReference> {
     /** The language of the content or performance or used in an action. Please use one of the language codes from the {@link http://tools.ietf.org/html/bcp47 IETF BCP 47 standard}. See also {@link https://schema.org/availableLanguage availableLanguage}. */
     "schema:inLanguage"?: SchemaValue<Language | Text | IdReference, "schema:inLanguage">;
-    /** Representation of a text {@link https://schema.org/textValue textValue} using the specified {@link https://schema.org/speechToTextMarkup speechToTextMarkup}. For example the city name of Houston in IPA: /\u02C8hju\u02D0st\u0259n/. */
+    /** Representation of a text {@link https://schema.org/textValue textValue} using the specified {@link https://schema.org/speechToTextMarkup speechToTextMarkup}. For example the city name of Houston in IPA: /ˈhjuːstən/. */
     "schema:phoneticText"?: SchemaValue<Text, "schema:phoneticText">;
     /** Form of markup used. eg. {@link https://www.w3.org/TR/speech-synthesis11 SSML} or {@link https://www.wikidata.org/wiki/Property:P898 IPA}. */
     "schema:speechToTextMarkup"?: SchemaValue<Text, "schema:speechToTextMarkup">;
@@ -9394,6 +9502,12 @@ interface ProteinLeaf extends ProteinBase {
 /** Protein is here used in its widest possible definition, as classes of amino acid based molecules. Amyloid-beta Protein in human (UniProt P05067), eukaryota (e.g. an OrthoDB group) or even a single molecule that one can point to are all of type schema:Protein. A protein can thus be a subclass of another protein, e.g. schema:Protein as a UniProt record can have multiple isoforms inside it which would also be schema:Protein. They can be imagined, synthetic, hypothetical or naturally occurring. */
 export type Protein = ProteinLeaf;
 
+interface PsychiatricLeaf extends LocalBusinessBase {
+    "@type": "schema:Psychiatric";
+}
+/** A specific branch of medical science that is concerned with the study, treatment, and prevention of mental illness, using both medical and psychological therapies. */
+export type Psychiatric = PsychiatricLeaf | string;
+
 interface PsychologicalTreatmentLeaf extends TherapeuticProcedureBase {
     "@type": "schema:PsychologicalTreatment";
 }
@@ -9457,6 +9571,12 @@ interface PublicationVolumeLeaf extends PublicationVolumeBase {
  * See also {@link http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic_2.html blog post}.
  */
 export type PublicationVolume = PublicationVolumeLeaf;
+
+interface PublicHealthLeaf extends LocalBusinessBase {
+    "@type": "schema:PublicHealth";
+}
+/** Branch of medicine that pertains to the health services to improve and protect community health, especially epidemiology, sanitation, immunization, and preventive medicine. */
+export type PublicHealth = PublicHealthLeaf | string;
 
 interface PublicSwimmingPoolLeaf extends LocalBusinessBase {
     "@type": "schema:PublicSwimmingPool";
@@ -10120,6 +10240,12 @@ interface ResortLeaf extends LodgingBusinessBase {
  */
 export type Resort = ResortLeaf | SkiResort | string;
 
+interface RespiratoryTherapyLeaf extends MedicalTherapyBase {
+    "@type": "schema:RespiratoryTherapy";
+}
+/** The therapy that is concerned with the maintenance or improvement of respiratory function (as in patients with pulmonary disease). */
+export type RespiratoryTherapy = RespiratoryTherapyLeaf;
+
 interface RestaurantLeaf extends FoodEstablishmentBase {
     "@type": "schema:Restaurant";
 }
@@ -10202,7 +10328,7 @@ interface ReviewActionLeaf extends ReviewActionBase {
 /** The act of producing a balanced opinion about the object for an audience. An agent reviews an object with participants resulting in a review. */
 export type ReviewAction = ReviewActionLeaf;
 
-interface ReviewNewsArticleBase extends ReviewBase, NewsArticleBase {
+interface ReviewNewsArticleBase extends NewsArticleBase, ReviewBase {
 }
 interface ReviewNewsArticleLeaf extends ReviewNewsArticleBase {
     "@type": "schema:ReviewNewsArticle";
@@ -10940,7 +11066,7 @@ interface SpecialAnnouncementLeaf extends SpecialAnnouncementBase {
  *
  * Several kinds of information can be provided:
  *
- * We encourage the provision of "name", "text", "datePosted", "expires" (if appropriate), "category" and "url" as a simple baseline. It is important to provide a value for "category" where possible, most ideally as a well known URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "https://en.wikipedia.org/w/index.php?title=2019-20\_coronavirus\_pandemic" or "https://www.wikidata.org/wiki/Q81068910".
+ * We encourage the provision of "name", "text", "datePosted", "expires" (if appropriate), "category" and "url" as a simple baseline. It is important to provide a value for "category" where possible, most ideally as a well known URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "https://en.wikipedia.org/w/index.php?title=2019-20_coronavirus_pandemic" or "https://www.wikidata.org/wiki/Q81068910".
  *
  * For many of the possible properties, values can either be simple links or an inline description, depending on whether a summary is available. For a link, provide just the URL of the appropriate page as the property's value. For an inline description, use a {@link https://schema.org/WebContent WebContent} type, and provide the url as a property of that, alongside at least a simple "{@link https://schema.org/text text}" summary of the page. It is unlikely that a single SpecialAnnouncement will need all of the possible properties simultaneously.
  *
@@ -11024,7 +11150,7 @@ interface SpreadsheetDigitalDocumentLeaf extends DigitalDocumentBase {
 /** A spreadsheet file. */
 export type SpreadsheetDigitalDocument = SpreadsheetDigitalDocumentLeaf;
 
-interface StadiumOrArenaBase extends LocalBusinessBase, CivicStructureBase {
+interface StadiumOrArenaBase extends CivicStructureBase, LocalBusinessBase {
 }
 interface StadiumOrArenaLeaf extends StadiumOrArenaBase {
     "@type": "schema:StadiumOrArena";
@@ -11302,7 +11428,7 @@ interface TaxonBase extends ThingBase {
     "schema:hasDefinedTerm"?: SchemaValue<DefinedTerm | IdReference, "schema:hasDefinedTerm">;
     /** Closest parent taxon of the taxon in question. */
     "schema:parentTaxon"?: SchemaValue<Taxon | Text | URL | IdReference, "schema:parentTaxon">;
-    /** The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary \u2013 (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs). */
+    /** The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs). */
     "schema:taxonRank"?: SchemaValue<PropertyValue | Text | URL | IdReference, "schema:taxonRank">;
 }
 interface TaxonLeaf extends TaxonBase {
@@ -11761,7 +11887,7 @@ interface TVEpisodeLeaf extends TVEpisodeBase {
 /** A TV episode which can be part of a series or season. */
 export type TVEpisode = TVEpisodeLeaf;
 
-interface TVSeasonBase extends CreativeWorkSeasonBase, CreativeWorkBase {
+interface TVSeasonBase extends CreativeWorkBase, CreativeWorkSeasonBase {
     /**
      * The country of origin of something, including products as well as creative works such as movie and TV content.
      *
@@ -11783,7 +11909,7 @@ interface TVSeasonLeaf extends TVSeasonBase {
 /** Season dedicated to TV broadcast and associated online delivery. */
 export type TVSeason = TVSeasonLeaf;
 
-interface TVSeriesBase extends CreativeWorkSeriesBase, CreativeWorkBase {
+interface TVSeriesBase extends CreativeWorkBase, CreativeWorkSeriesBase {
     /** An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip. */
     "schema:actor"?: SchemaValue<Person | IdReference, "schema:actor">;
     /**
@@ -12478,6 +12604,12 @@ interface VeterinaryCareLeaf extends MedicalOrganizationBase {
 }
 /** A vet's office. */
 export type VeterinaryCare = VeterinaryCareLeaf | string;
+
+interface videoLeaf extends MediaDataTypeBase {
+    "@type": "uxi:video";
+}
+/** An embedded video object. This can be a URL or a VideoObject */
+export type video = videoLeaf;
 
 interface VideoGalleryLeaf extends WebPageBase {
     "@type": "schema:VideoGallery";
