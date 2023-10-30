@@ -101,7 +101,7 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
 
     const columns = useMemo<ColumnDef<TableDataEntryRDFClassAsValue, string>[]>(
         () => {
-            const columnHelper = createColumnHelper<TableDataEntryRDFClassAsValue>()
+            const columnHelper = createColumnHelper<TableDataEntryRDFClassAsValue>();
             const result = [
                 columnHelper.accessor(
                     "rdfProperty",

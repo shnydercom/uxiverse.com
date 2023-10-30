@@ -36,7 +36,7 @@ export default function RootLayout({
                   ontologyConfig.baseNextJsPath?.length > 1 &&
                   <Link href="/">
                     <Typography variant="h6" fontWeight={"800"} fontSize={"12px"} noWrap
-                      lineHeight={"14px"}
+                      lineHeight={"28px"}
                       color="HighlightText" >
                       {i18nEN.APP_ONTOLOGY_LINK}
                     </Typography>

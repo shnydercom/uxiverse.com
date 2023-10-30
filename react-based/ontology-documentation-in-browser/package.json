@@ -16,7 +16,7 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/x-tree-view": "^6.0.0-alpha.2",
-    "@tanstack/react-table": "^8.9.7",
+    "@tanstack/react-table": "^8.10.7",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@uxiverse.com/jsonld-tools": "*",
