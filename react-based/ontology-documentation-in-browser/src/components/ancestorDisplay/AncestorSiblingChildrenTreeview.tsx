@@ -1,6 +1,6 @@
 "use client"
 import React, { FunctionComponent } from "react";
-import { RecursiveAncestorProps } from ".";
+import { RecursiveAncestorProps } from "./RecursiveAncestor";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';

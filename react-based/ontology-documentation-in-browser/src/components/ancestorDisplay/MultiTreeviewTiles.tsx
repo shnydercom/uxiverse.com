@@ -1,7 +1,7 @@
 "use client"
 import { Box } from "@mui/material";
 import { FunctionComponent } from "react";
-import { AncestorSiblingChildrenTreeview } from ".";
+import { AncestorSiblingChildrenTreeview } from "./AncestorSiblingChildrenTreeview";
 import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
 import ontologyConfig from "../../../ontology.config";
 

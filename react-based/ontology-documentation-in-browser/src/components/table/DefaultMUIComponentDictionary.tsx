@@ -1,4 +1,4 @@
-import { ComponentDictionary, ExpandableDataEntry } from ".";
+import { ComponentDictionary, ExpandableDataEntry } from "./ExpandableGroupLayout";
 import MuiTableContainer from "@mui/material/TableContainer";
 import MuiTable from "@mui/material/Table";
 import MuiTableHead from "@mui/material/TableHead";

@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { FunctionComponent } from "react";
-import { RecursiveAncestor, RecursiveAncestorProps } from ".";
+import { RecursiveAncestor, RecursiveAncestorProps } from "./RecursiveAncestor";
 
 interface AncestorBreadcrumbsProps extends RecursiveAncestorProps {
     ariaLabel: string;
