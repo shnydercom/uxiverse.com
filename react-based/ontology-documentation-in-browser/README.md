@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is documentation generator for ontologies following the schema.org syntax. It's written with nextjs and should support static site generation and/or server-side-rendering
 
 ## Getting Started
 
