@@ -99,7 +99,7 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
         return result;
     }, [categorizedEdges, isGraphValid, graph]);
 
-    const columns = useMemo<ColumnDef<TableDataEntryRDFClassAsValue, string>[]>(
+    const columns = useMemo<ColumnDef<TableDataEntryRDFClassAsValue, unknown>[]>(
         () => {
             const columnHelper = createColumnHelper<TableDataEntryRDFClassAsValue>()
             const result = [

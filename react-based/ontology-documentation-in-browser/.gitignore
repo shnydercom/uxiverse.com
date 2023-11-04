@@ -35,3 +35,6 @@ yarn-error.log*
 next-env.d.ts
 
 src/generated
+
+#ignoring the ontologyConfig.baseNextJsPath folder, manually configured:
+ontology

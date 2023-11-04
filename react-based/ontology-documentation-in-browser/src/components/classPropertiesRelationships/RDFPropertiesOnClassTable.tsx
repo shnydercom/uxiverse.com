@@ -104,7 +104,7 @@ export const RDFPropertiesOnClassTable: FunctionComponent<RDFPropertiesOnClassTa
         return result;
     }, [graph, categorizedEdges, isGraphValid]);
 
-    const columns = useMemo<ColumnDef<TableDataEntryForRDFClass, string>[]>(
+    const columns = useMemo<ColumnDef<TableDataEntryForRDFClass, unknown>[]>(
         () => {
             const columnHelper = createColumnHelper<TableDataEntryForRDFClass>()
             const result = [
