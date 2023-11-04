@@ -107,13 +107,13 @@ export const RDFPropertiesOnClassTable: FunctionComponent<RDFPropertiesOnClassTa
     const columns = useMemo<ColumnDef<TableDataEntryForRDFClass, unknown>[]>(
         () => {
             const columnHelper = createColumnHelper<TableDataEntryForRDFClass>()
-            const result = [
+            const result: ColumnDef<TableDataEntryForRDFClass, unknown>[] = [
                 columnHelper.accessor(
                     "rdfProperty",
                     {
                         header: i18nEN.TABLEHEADING_PROPERTY,
                         cell: info => info.getValue()
-                    }),
+                    }) as any, //(any) typing-strictness still unclear: https://github.com/TanStack/table/issues/4241
                 columnHelper.accessor(
                     "rdfExpectedTypes",
                     {

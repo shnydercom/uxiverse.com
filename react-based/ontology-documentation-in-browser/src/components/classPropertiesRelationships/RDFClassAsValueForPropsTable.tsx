@@ -100,15 +100,15 @@ export const RDFClassAsValueForPropsTable: FunctionComponent<RDFClassAsValueForP
     }, [categorizedEdges, isGraphValid, graph]);
 
     const columns = useMemo<ColumnDef<TableDataEntryRDFClassAsValue, unknown>[]>(
-        () => {
+        (): any => {
             const columnHelper = createColumnHelper<TableDataEntryRDFClassAsValue>()
-            const result = [
+            const result: ColumnDef<TableDataEntryRDFClassAsValue, unknown>[] = [
                 columnHelper.accessor(
                     "rdfProperty",
                     {
                         header: i18nEN.TABLEHEADING_PROPERTY,
                         cell: info => info.getValue()
-                    }),
+                    }) as any, //(any) typing-strictness still unclear: https://github.com/TanStack/table/issues/4241
                 columnHelper.accessor(
                     "rdfAppearsOnTypes",
                     {
