@@ -10,7 +10,7 @@ interface SingleAncestorProps {
     stopAtTerm: string;
 }
 
-export const SingleAncestor: FunctionComponent<SingleAncestorProps> = ({ lineage, stopAtTerm }) => {
+export const SingleAncestorStructure: FunctionComponent<SingleAncestorProps> = ({ lineage, stopAtTerm }) => {
     const baseLength = ontologyConfig.baseIRI.length;
     return (<Box sx={{
         display: "flex",

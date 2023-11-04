@@ -1,13 +1,13 @@
 import { StringifiedLineage } from "@uxiverse.com/jsonld-tools";
 import { FunctionComponent } from "react";
-import { SingleAncestor } from "./SingleAncestor";
+import { SingleAncestorStructure } from "./SingleAncestorStructure";
 
 export interface RecursiveAncestorProps {
     lineage: StringifiedLineage;
     stopAtTerm: string;
 }
 
-export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ lineage, stopAtTerm }) => {
+export const RecursiveAncestorStructure: FunctionComponent<RecursiveAncestorProps> = ({ lineage, stopAtTerm }) => {
     const stopTermIdx = lineage.descendants.flatMap((val) => val.iris).findIndex((val) => val === stopAtTerm);
     const curElemMatches = lineage.iris.some((val) => val === stopAtTerm);
     if (stopTermIdx !== -1) {
@@ -16,11 +16,11 @@ export const RecursiveAncestor: FunctionComponent<RecursiveAncestorProps> = ({ l
         lineage.descendants = [stopTermEncounter]
     }
     return (<>
-        <SingleAncestor lineage={lineage} stopAtTerm={stopAtTerm} />
+        <SingleAncestorStructure lineage={lineage} stopAtTerm={stopAtTerm} />
         {
             !curElemMatches && lineage.descendants.map((descendantLineage, idx) => {
                 return (
-                    <RecursiveAncestor key={`recAnc-${idx}`} lineage={descendantLineage} stopAtTerm={stopAtTerm} />)
+                    <RecursiveAncestorStructure key={`recAnc-${idx}`} lineage={descendantLineage} stopAtTerm={stopAtTerm} />)
             })
         }</>);
 }

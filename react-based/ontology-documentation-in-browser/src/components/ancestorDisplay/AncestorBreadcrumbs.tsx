@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { FunctionComponent } from "react";
-import { RecursiveAncestor, RecursiveAncestorProps } from "./RecursiveAncestor";
+import { RecursiveAncestorStructure, RecursiveAncestorProps } from "./RecursiveAncestorStructure";
 
 interface AncestorBreadcrumbsProps extends RecursiveAncestorProps {
     ariaLabel: string;
@@ -11,6 +11,6 @@ export const AncestorBreadcrumbs: FunctionComponent<AncestorBreadcrumbsProps> = 
     const mutableLineage = JSON.parse(JSON.stringify(lineage));
     return (<Breadcrumbs aria-label={ariaLabel}
         separator={<NavigateNextIcon fontSize="small" />}>
-        <RecursiveAncestor lineage={mutableLineage} stopAtTerm={stopAtTerm} />
+        <RecursiveAncestorStructure lineage={mutableLineage} stopAtTerm={stopAtTerm} />
     </Breadcrumbs>);
 }

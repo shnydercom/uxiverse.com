@@ -1,4 +1,4 @@
-export * from "./RecursiveAncestor";
-export * from "./SingleAncestor";
+export * from "./RecursiveAncestorStructure";
+export * from "./SingleAncestorStructure";
 export * from "./AncestorBreadcrumbs";
 export * from "./AncestorSiblingChildrenTreeview";

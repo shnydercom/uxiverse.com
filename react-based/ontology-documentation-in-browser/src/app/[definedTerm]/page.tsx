@@ -1,6 +1,6 @@
 import { i18nEN } from "@/i18n";
 import { Paper, Typography } from "@mui/material";
-import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, createGraph, findIdentifiableNode, getLineage, getSingleUxiDefinition, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, CategorizedEdges, getCategorizedEdgesForInstanceMayAppearAsValueForProp } from "@uxiverse.com/jsonld-tools";
+import { RDF_PROPERTY, RDF_CLASS, RtLdGraph, RtLdIdentifiableNode, findIdentifiableNode, getLineage, getSingleUxiDefinition, getCategorizedEdgesForClasses, getCategorizedEdgesForPropertyCanBeOfType, getCategorizedEdgesForPropertyCanExistOnType, CategorizedEdges, getCategorizedEdgesForInstanceMayAppearAsValueForProp } from "@uxiverse.com/jsonld-tools";
 import * as ontologyConfig from "../../../ontology.config.js";
 import { notFound } from "next/navigation.js";
 import { AncestorBreadcrumbs } from "@/components/ancestorDisplay";
