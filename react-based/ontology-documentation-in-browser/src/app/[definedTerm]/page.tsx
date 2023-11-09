@@ -14,7 +14,8 @@ import { UsedOnTypesList } from "@/components/propertyClassesRelationships/UsedO
 import { CategorizedEdgesProp } from "@/components/interfaces";
 import { JsonLDTermRenderer } from "@/components/jsonld-content";
 
-export const dynamicParams = false;
+//dynamicParams does not work together with {output:'export'} in next.config.js
+//export const dynamicParams = false;
 
 /**this reroutes to not-found page for terms which are not matched statically */
 export async function generateStaticParams() {
