@@ -95,7 +95,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiLink-root:hover": {
-            "text-shadow": "1px 1px 1px #ffffffaa",
+            "textShadow": "1px 1px 1px #ffffffaa",
           }
         }
       }
