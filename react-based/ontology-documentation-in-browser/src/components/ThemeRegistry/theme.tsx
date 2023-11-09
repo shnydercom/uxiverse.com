@@ -94,6 +94,9 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
+          "& .MuiTypography-root": {
+            "color": "#f9f9f9",
+          },
           "& .MuiLink-root:hover": {
             "textShadow": "1px 1px 1px #ffffffaa",
           }
