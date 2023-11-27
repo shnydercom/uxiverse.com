@@ -29,10 +29,9 @@ const IconRenderer = (props: HostAppElementSelection) => {
   )
 }
 
-const isOptionsOpenSelector: IsOpenSelectorType = state => {
+const isOptionsOpenSelector: IsOpenSelectorType = (state) => {
   return state.context.plugin.hostAppSearch.isOptionsOpen
 }
-
 
 export function CompAutocomplete(
   props: CompAutoCompleteProps & HostAppElementSelection & InputWithIconProps
@@ -59,9 +58,11 @@ export function CompAutocomplete(
 
   const manualCaretOpener:
     | React.MouseEventHandler<HTMLDivElement>
-    | undefined = event => {
-      send({ type: 'MANUALLY_TOGGLE_HOST_OPTIONS' } as ToggleHostOptionsVisibilityEvent)
-    }
+    | undefined = (event) => {
+    send({
+      type: 'MANUALLY_TOGGLE_HOST_OPTIONS',
+    } as ToggleHostOptionsVisibilityEvent)
+  }
 
   const isIconForSelection: boolean =
     !!selectionFocus && value === selectionFocus.name
@@ -82,16 +83,18 @@ export function CompAutocomplete(
           </div>
         )}
       </Input>
-      {rootPortal &&
-        isOptionsOpen &&
-        createPortal(
-          <SelectionList
-            onSelectionClick={onSelectionClick}
-            hostSelection={hostSelection}
-            selectionFocusedElement={selectionFocus}
-          />,
-          rootPortal
-        )}
+      {rootPortal && isOptionsOpen && (
+        <>
+          {createPortal(
+            <SelectionList
+              onSelectionClick={onSelectionClick}
+              hostSelection={hostSelection}
+              selectionFocusedElement={selectionFocus}
+            />,
+            rootPortal
+          )}
+        </>
+      )}
     </div>
   )
 }
