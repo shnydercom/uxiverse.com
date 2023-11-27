@@ -5,12 +5,6 @@ import Image from "next/image";
 import { i18nEN } from "@/i18n";
 import ontologyConfig from "../../ontology.config";
 
-export const metadata: Metadata = {
-  title: "Uxiverse ontology",
-  description:
-    "Structured Relationships between Digital User Interface Components",
-};
-
 const iconSize = 40;
 
 export default function RootLayout({
@@ -60,7 +54,7 @@ export default function RootLayout({
                       fontWeight={"800"}
                       fontSize={"12px"}
                       noWrap
-                      lineHeight={"28px"}
+                      lineHeight={"34px"}
                       color="HighlightText"
                     >
                       {i18nEN.APP_ONTOLOGY_LINK}
