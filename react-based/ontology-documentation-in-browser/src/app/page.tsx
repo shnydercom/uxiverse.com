@@ -41,6 +41,7 @@ export default async function OntologyMainPage() {
   return (
     <>
       <Script
+        id="ontology-linked-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
